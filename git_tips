@@ -1,0 +1,41 @@
+#
+# Some GIT site and tips to help noobs
+#
+
+---------------------------------------------------------------------
+http://yannesposito.com/Scratch/fr/blog/2009-11-12-Git-for-n00b/
+
+Récupérer un projet :
+
+git clone ssh://server/path/to/project
+Utiliser Git tous les jours :
+
+# get modifications from other
+git pull
+# read what was done
+git log
+
+# Make local changes to files 
+hack, hack, hack...
+# list the modified files
+git status
+# show what I've done
+git diff
+
+# tell git to version a new file
+git add new/file
+
+# commit its own modifications 
+# to its local branch
+git commit -a -m "Fix bug #321"
+
+# send local modifications to other
+git push
+
+
+---------------------------------------------------------------------
+http://help.github.com/
+
+---------------------------------------------------------------------
+http://gitref.org/
+
