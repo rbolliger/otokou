@@ -1,0 +1,3 @@
+website/config/databases.yml
+website/cache/*
+website/log/*
