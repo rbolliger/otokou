@@ -1,0 +1,20 @@
+sfGuardUser:
+  User_admin:
+    first_name:     Raffaele
+    last_name:      Bolliger
+    email_address:  raffaele.bolliger@gmail.com
+    username:       ruf
+    password:       admin@1
+    is_super_admin: true
+    Groups:         [Group_admin]
+
+sfGuardGroup:
+  Group_admin:
+    name:           admin
+    description:    Administrator group
+    Permissions:    [Permission_admin]
+
+sfGuardPermission:
+  Permission_admin:
+    name:           admin
+    description:    Administrator permission
