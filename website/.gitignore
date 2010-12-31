@@ -1,0 +1,3 @@
+#config/databases.yml
+cache/*
+log/*
