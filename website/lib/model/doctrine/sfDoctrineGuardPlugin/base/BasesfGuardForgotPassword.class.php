@@ -21,7 +21,7 @@
  * 
  * @package    otokou
  * @subpackage model
- * @author     Your name here
+ * @author     Raffaele Bolliger
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
 abstract class BasesfGuardForgotPassword extends sfDoctrineRecord

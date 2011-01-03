@@ -7,7 +7,7 @@
  *
  * @package    otokou
  * @subpackage form
- * @author     Your name here
+ * @author     Raffaele Bolliger
  * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 29553 2010-05-20 14:33:00Z Kris.Wallsmith $
  */
 abstract class BasesfGuardPermissionForm extends BaseFormDoctrine
