@@ -1,0 +1,41 @@
+charge:
+  actAs: [Timestampable]
+  columns:
+    id: { type: integer, notnull: true, primary: true, autoincrement: true }
+    vehicle_id: integer
+    date: {type: date}
+    kilometers:  { type: double }
+    category_id: integer
+    amount: { type: double }
+    comment: clob
+    quantity: { type: double }
+  relations:
+    User:
+      class: sfGuardUser
+      local: id
+      foreign: user_id
+      foreignAlias: Charges
+      foreignType: many
+      type: one
+     
+     
+category:
+  actAs: [Timestampable, Sluggable]
+  columns:
+    id: { type: integer, notnull: true, primary: true, autoincrement: true }
+    name: { type: string(50) }
+    
+    
+vehicle:
+  actAs: [Timestampable, Sluggable]
+  columns:
+    id: { type: integer, notnull: true, primary: true, autoincrement: true }
+    name: { type: string(50) }
+  relations:
+    User:
+      class: sfGuardUser
+      local: id
+      foreign: user_id
+      foreignAlias: Vehicles
+      foreignType: many
+      type: one
