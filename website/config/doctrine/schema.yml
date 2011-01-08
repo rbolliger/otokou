@@ -24,6 +24,7 @@ category:
   columns:
     id: { type: integer, notnull: true, primary: true, autoincrement: true }
     name: { type: string(50) }
+    comment: { type: clob }
     
     
 vehicle:
