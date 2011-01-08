@@ -1,0 +1,6 @@
+## YAML Template.
+Vehicle:
+  touran:
+    name: VW touran 1.4 TSI
+    User: ruf
+    

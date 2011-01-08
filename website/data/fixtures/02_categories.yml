@@ -1,0 +1,21 @@
+## YAML Template.
+Category:
+  fuel:
+    name: Fuel
+  purchase:
+    name: Initial investment
+    comment: Amount of money paid at delivery (without first leasing)
+  leasing:
+    name: Leasing
+    comment: Monthly fee
+  taxes:
+    name: Tax
+    comment: Circulation plates, tolls, CO2, ...
+  accessories:
+    name: Accessory
+  insurance:
+    name: Insurance
+  fines:
+    name: Fine
+    comment: speed, parking, ...
+  
