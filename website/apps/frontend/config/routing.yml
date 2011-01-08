@@ -1,6 +1,17 @@
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 
+charges:
+  class:                    sfDoctrineRouteCollection
+  options:
+    model:                  Charge
+    module:                 charges
+    prefix_path:            charges
+    with_wildcard_routes:   true
+    with_show:              false
+
+
+
 sf_guard_signin:
   url:   /login
   param: { module: sfGuardAuth, action: signin }
