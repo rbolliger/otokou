@@ -1,25 +1,32 @@
-charge:
+Charge:
   actAs: [Timestampable]
   columns:
     id: { type: integer, notnull: true, primary: true, autoincrement: true }
-    vehicle_id: integer
+    vehicle_id: {type: integer, notnull: true }
+    user_id: {type: integer, notnull: true }
+    category_id: { type: integer, notnull: true }
     date: {type: date, notnull: true }
     kilometers:  { type: double , notnull: true }
-    category_id: { type: integer, notnull: true }
     amount: { type: double, notnull: true}
     comment: clob
     quantity: { type: double }
   relations:
+    Vehicle:
+      local: vehicle_id
+      onDelete: CASCADE
+      foreignAlias: Charges
+    Category:
+      local: category_id
+      onDelete: CASCADE
+      foreignAlias: Charges
     User:
       class: sfGuardUser
-      local: id
-      foreign: user_id
+      local: user_id
+      onDelete: CASCADE
       foreignAlias: Charges
-      foreignType: many
-      type: one
      
      
-category:
+Category:
   actAs: [Timestampable, Sluggable]
   columns:
     id: { type: integer, notnull: true, primary: true, autoincrement: true }
@@ -27,16 +34,15 @@ category:
     comment: { type: clob }
     
     
-vehicle:
+Vehicle:
   actAs: [Timestampable, Sluggable]
   columns:
     id: { type: integer, notnull: true, primary: true, autoincrement: true }
     name: { type: string(50), notnull: true }
+    user_id: {type: integer, notnull: true }
   relations:
     User:
       class: sfGuardUser
-      local: id
-      foreign: user_id
+      local: user_id
+      onDelete: CASCADE
       foreignAlias: Vehicles
-      foreignType: many
-      type: one

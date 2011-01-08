@@ -1,16 +1,16 @@
 <?php
 
 /**
- * vehicle form base class.
+ * Vehicle form base class.
  *
- * @method vehicle getObject() Returns the current form's model object
+ * @method Vehicle getObject() Returns the current form's model object
  *
  * @package    otokou
  * @subpackage form
  * @author     Raffaele Bolliger
  * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 29553 2010-05-20 14:33:00Z Kris.Wallsmith $
  */
-abstract class BasevehicleForm extends BaseFormDoctrine
+abstract class BaseVehicleForm extends BaseFormDoctrine
 {
   public function setup()
   {
@@ -33,7 +33,7 @@ abstract class BasevehicleForm extends BaseFormDoctrine
     ));
 
     $this->validatorSchema->setPostValidator(
-      new sfValidatorDoctrineUnique(array('model' => 'vehicle', 'column' => array('slug')))
+      new sfValidatorDoctrineUnique(array('model' => 'Vehicle', 'column' => array('slug')))
     );
 
     $this->widgetSchema->setNameFormat('vehicle[%s]');
@@ -47,7 +47,7 @@ abstract class BasevehicleForm extends BaseFormDoctrine
 
   public function getModelName()
   {
-    return 'vehicle';
+    return 'Vehicle';
   }
 
 }

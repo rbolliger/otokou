@@ -155,13 +155,13 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
              'local' => 'id',
              'foreign' => 'user_id'));
 
-        $this->hasMany('charge as Charges', array(
-             'local' => 'user_id',
-             'foreign' => 'id'));
+        $this->hasMany('Charge as Charges', array(
+             'local' => 'id',
+             'foreign' => 'user_id'));
 
-        $this->hasMany('vehicle as Vehicles', array(
-             'local' => 'user_id',
-             'foreign' => 'id'));
+        $this->hasMany('Vehicle as Vehicles', array(
+             'local' => 'id',
+             'foreign' => 'user_id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable(array(
              ));
