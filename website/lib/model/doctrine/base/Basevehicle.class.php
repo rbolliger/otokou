@@ -33,6 +33,7 @@ abstract class Basevehicle extends sfDoctrineRecord
              ));
         $this->hasColumn('name', 'string', 50, array(
              'type' => 'string',
+             'notnull' => true,
              'length' => 50,
              ));
     }

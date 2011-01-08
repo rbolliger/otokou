@@ -54,15 +54,19 @@ abstract class Basecharge extends sfDoctrineRecord
              ));
         $this->hasColumn('date', 'date', null, array(
              'type' => 'date',
+             'notnull' => true,
              ));
         $this->hasColumn('kilometers', 'double', null, array(
              'type' => 'double',
+             'notnull' => true,
              ));
         $this->hasColumn('category_id', 'integer', null, array(
              'type' => 'integer',
+             'notnull' => true,
              ));
         $this->hasColumn('amount', 'double', null, array(
              'type' => 'double',
+             'notnull' => true,
              ));
         $this->hasColumn('comment', 'clob', null, array(
              'type' => 'clob',

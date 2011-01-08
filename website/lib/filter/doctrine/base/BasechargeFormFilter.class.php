@@ -14,10 +14,10 @@ abstract class BasechargeFormFilter extends BaseFormFilterDoctrine
   {
     $this->setWidgets(array(
       'vehicle_id'  => new sfWidgetFormFilterInput(),
-      'date'        => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
-      'kilometers'  => new sfWidgetFormFilterInput(),
-      'category_id' => new sfWidgetFormFilterInput(),
-      'amount'      => new sfWidgetFormFilterInput(),
+      'date'        => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
+      'kilometers'  => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'category_id' => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'amount'      => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'comment'     => new sfWidgetFormFilterInput(),
       'quantity'    => new sfWidgetFormFilterInput(),
       'created_at'  => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),

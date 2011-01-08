@@ -24,7 +24,7 @@ abstract class BasevehicleForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'id'         => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'name'       => new sfValidatorString(array('max_length' => 50, 'required' => false)),
+      'name'       => new sfValidatorString(array('max_length' => 50)),
       'created_at' => new sfValidatorDateTime(),
       'updated_at' => new sfValidatorDateTime(),
       'slug'       => new sfValidatorString(array('max_length' => 255, 'required' => false)),

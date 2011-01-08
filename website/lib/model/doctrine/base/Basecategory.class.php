@@ -33,6 +33,7 @@ abstract class Basecategory extends sfDoctrineRecord
              ));
         $this->hasColumn('name', 'string', 50, array(
              'type' => 'string',
+             'notnull' => true,
              'length' => 50,
              ));
         $this->hasColumn('comment', 'clob', null, array(
