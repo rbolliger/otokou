@@ -12,24 +12,7 @@
 
     <body>
         <div id="header">
-
-            <div id="topmenu1" class="hor-menu">
-                <ul>
-                    <li><?php echo link_to('Charges', 'charges') ?></li>
-                    <li><a href="">Cars</a></li>
-                    <li><a href="">Charges</a></li>
-                    <li><a href="">Graphs</a></li>
-                    <li><a href="">Reports</a></li>
-                </ul>
-            </div>
-
-            <div id="topmenu2" class="hor-menu">
-                <ul>
-                    <li><a href="">Settings</a></li>
-                    <li><a href="">Login/Logout</a></li>
-                </ul>
-            </div>
-
+            <?php include_partial('global/topmenu'); ?>
         </div>
 
         <div class="colmask threecol">
@@ -72,12 +55,7 @@
         </div>
         <div id="footer">
 
-            <div class="hor-menu">
-                <ul>
-                    <li><a href="">About Otokou</a></li>
-                    <li class="contact"><a href="">Contact</a></li>
-                </ul>
-            </div>
+            <?php include_partial('global/footer'); ?>
         </div>
 
     </body>

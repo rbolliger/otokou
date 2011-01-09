@@ -1,3 +1,6 @@
 [submodule "website/lib/vendor/symfony"]
 	path = website/lib/vendor/symfony
 	url = https://github.com/vjousse/symfony-1.4.git
+[submodule "website/plugins/ioMenuPlugin"]
+	path = website/plugins/ioMenuPlugin
+	url = git://github.com/weaverryan/ioMenuPlugin.git

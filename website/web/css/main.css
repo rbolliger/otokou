@@ -159,20 +159,31 @@ img {
 }
 
 
-.hor-menu ul
+ul.menu 
 {
-list-style: none;
+  list-style: none;
 padding: 0;
-margin: 0;
-} 
+margin: 0;  
+}
 
-.hor-menu li
+
+ul.menu li
 {
 float: left;
 margin: 0 0.15em;
 }
 
-#topmenu2 ul
+li.first
+{
+    padding-left: 1em;
+}
+
+li.last
+{
+    padding-right: 1em;
+}
+
+#topmenu2
 {
     float:right;
 }
