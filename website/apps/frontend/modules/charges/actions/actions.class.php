@@ -17,13 +17,16 @@ class chargesActions extends sfActions
 
   public function executeNew(sfWebRequest $request)
   {
-    $this->form = new ChargeForm();
+      $charge = new Charge();
+      $charge->setUser($this->getUser()->getGuardUser());
+      
+    $this->form = new ChargeForm($charge);
   }
 
   public function executeCreate(sfWebRequest $request)
   {
     $this->form = new ChargeForm();
-
+    
     $this->processForm($request, $this->form);
 
     $this->setTemplate('new');
