@@ -14,11 +14,9 @@ class ChargeForm extends BaseChargeForm {
 
 
         unset(
-                $this['created_at'], $this['updated_at']
+                $this['created_at'], $this['updated_at'], $this['user_id']
         );
 
-
-        $this->setWidget('user_id', new sfWidgetFormInputHidden());
 
         $this->validatorSchema['kilometers'] = new sfValidatorAnd(array(
                     $this->validatorSchema['kilometers'],
@@ -32,5 +30,6 @@ class ChargeForm extends BaseChargeForm {
         
         $this->validatorSchema['quantity'] = new sfValidatorNumber(array('required'=>false,'min' => 0));
     }
-
+    
+   
 }
