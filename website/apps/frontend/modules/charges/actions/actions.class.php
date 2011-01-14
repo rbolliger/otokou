@@ -48,12 +48,20 @@ class chargesActions extends sfActions {
     }
 
     protected function processForm(sfWebRequest $request, sfForm $form) {
-        $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
+        
+        
+        $userId = $this->getUser()->getGuardUser()->getId();
+        
+        $taintedValues = $request->getParameter($form->getName());
+        $taintedValues['user_id'] = $userId;
+        
+        
+        $form->bind($taintedValues, $request->getFiles($form->getName()));
         if ($form->isValid()) {
             
-            $userId = $this->getUser()->getGuardUser()->getId();
+            
 
-            $form->updateObject(array('user_id' => $userId));
+            //$form->updateObject(array('user_id' => $userId));
 
             $charge = $form->save();
 

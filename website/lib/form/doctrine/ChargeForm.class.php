@@ -14,7 +14,7 @@ class ChargeForm extends BaseChargeForm {
 
 
         unset(
-                $this['created_at'], $this['updated_at'], $this['user_id']
+                $this['created_at'], $this['updated_at']
         );
 
 
