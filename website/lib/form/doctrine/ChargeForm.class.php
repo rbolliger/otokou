@@ -22,14 +22,25 @@ class ChargeForm extends BaseChargeForm {
                     $this->validatorSchema['kilometers'],
                     new sfValidatorNumber(array('min' => 0)),
                 ));
-        
+
         $this->validatorSchema['amount'] = new sfValidatorAnd(array(
                     $this->validatorSchema['amount'],
                     new sfValidatorNumber(array('min' => 0)),
                 ));
+
         
-        $this->validatorSchema['quantity'] = new sfValidatorNumber(array('required'=>false,'min' => 0));
+        $widget = new sfWidgetFormDate(array(
+           'format' => '%day%/%month%/%year%',
+       ));
+        
+        $this->widgetSchema['date'] = new sfWidgetFormJQueryDate(array(
+                    'config' => '{}',
+                    'image'  => '/images/calendar.png',
+                    'date_widget' => $widget
+                ));
+
+
+        $this->validatorSchema['quantity'] = new sfValidatorNumber(array('required' => false, 'min' => 0));
     }
-    
-   
+
 }
