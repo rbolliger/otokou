@@ -9,3 +9,11 @@ all:
         default_table_charset: utf8
         default_table_collate: utf8_general_ci
 
+
+
+test:
+  doctrine:
+    param:
+      dsn: 'mysql:host=localhost;dbname=otokou_test'
+      username: root
+      password: volantino

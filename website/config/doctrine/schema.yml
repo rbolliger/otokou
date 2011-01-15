@@ -30,7 +30,7 @@ Category:
   actAs: [Timestampable, Sluggable]
   columns:
     id: { type: integer, notnull: true, primary: true, autoincrement: true }
-    name: { type: string(50), notnull: true }
+    name: { type: string(50), notnull: true, unique: true }
     comment: { type: clob }
     
     

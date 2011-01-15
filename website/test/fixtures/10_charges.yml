@@ -1,0 +1,18 @@
+## YAML Template.
+Charge:
+  fuel_1:
+    User: ruf
+    Vehicle: touran
+    Category: fuel
+    date: 8.1.2011
+    kilometers:  554
+    amount: 76
+    quantity: 35.2
+  insurance_1:
+    User: ruf
+    Vehicle: touran
+    Category: insurance
+    date: 8.1.2011
+    kilometers:  1000
+    amount: 1700
+    
