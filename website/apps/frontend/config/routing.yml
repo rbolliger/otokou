@@ -28,7 +28,7 @@ sf_guard_password:
 # default rules
 homepage:
   url:   /
-  param: { module: charges, action: new }
+  param: { module: homepage, action: index }
 
 # generic rules
 # please, remove them by adding more specific rules

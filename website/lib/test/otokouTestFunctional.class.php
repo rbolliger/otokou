@@ -36,6 +36,21 @@ class otokouTestFunctional extends sfTestFunctional {
 
         return $this;
     }
+    
+    public function logout() {
+        $this->
+                get('/logout');
+        
+        $this->
+                with('response')->
+                isRedirected()->
+                followRedirect()
+        ;
+
+
+        return $this;
+        
+    }
 
     public function getUserId($username) {
         return $id = Doctrine_Core::getTable('sfGuardUser')->findOneByUsername($username)->getId();
