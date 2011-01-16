@@ -12,18 +12,6 @@ $fuelId = $browser->getIdForCategory('fuel');
 
 
 
-
-
-
-$browser->
-        info('0 - The homepage is redirected to charges/new')->
-        get('/')->
-        with('request')->
-        begin()->
-        isParameter('module', 'charges')->
-        isParameter('action', 'new')->
-        end();
-
 $browser->info('1 - The charges form')->
         info('  1.1 - If "fuel" category is selected, a quantity must be specified')->
         get('/charges/new')->
