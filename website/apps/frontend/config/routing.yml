@@ -9,8 +9,7 @@ charges:
     prefix_path:            charges
     with_wildcard_routes:   true
     with_show:              false
-
-
+    
 
 sf_guard_signin:
   url:   /login

@@ -55,7 +55,39 @@ $browser->info('1 - The charges form')->
         click('Save', getFormData($browser, array('category_id' => $browser->getIdForCategory('Tax'), 'quantity' => null)))->
         with('form')->begin()->
         hasErrors(false)->
+        end()->
+        
+        info('  1.3 - The "Save" button redirects to the charges list')->
+        get('/charges/new')->
+        click('Save', getFormData($browser, array('category_id' => $browser->getIdForCategory('Tax'), 'quantity' => null)))->
+        with('response')->
+        begin()->
+        isRedirected()->
+        followRedirect()->
+        end()->
+        with('request')->
+        begin()->
+        isParameter('module', 'charges')->
+        isParameter('action', 'index')->
+        end()->
+        
+        info('  1.4 - The "Save and Add" button redirects to a new charge input form')->
+        get('/charges/new')->
+        click('Save and Add', getFormData($browser, array('category_id' => $browser->getIdForCategory('Tax'), 'quantity' => null)))->
+        with('response')->
+        begin()->
+        isRedirected()->
+        followRedirect()->
+        end()->
+        with('request')->
+        begin()->
+        isParameter('module', 'charges')->
+        isParameter('action', 'new')->
         end();
+        
+        
+
+
 
 
 function getFormData($browser, $fields = array()) {

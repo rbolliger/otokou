@@ -58,14 +58,16 @@ class chargesActions extends sfActions {
         
         $form->bind($taintedValues, $request->getFiles($form->getName()));
         if ($form->isValid()) {
-            
-            
-
-            //$form->updateObject(array('user_id' => $userId));
 
             $charge = $form->save();
-
-            $this->redirect('@charges_edit?id=' . $charge->getId());
+  
+            
+            if ($request->hasParameter('_save_and_add')) {
+                $this->redirect('@charges_new');
+            } else {
+                $this->redirect('@charges');
+            }
+            
         }
     }
 
