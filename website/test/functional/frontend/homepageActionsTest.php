@@ -2,18 +2,23 @@
 
 include(dirname(__FILE__).'/../../bootstrap/functional.php');
 
-$browser = new sfTestFunctional(new sfBrowser());
+$browser = new otokouTestFunctional(new sfBrowser());
 
 $browser->
-  get('/homepage/index')->
-
-  with('request')->begin()->
-    isParameter('module', 'homepage')->
-    isParameter('action', 'index')->
-  end()->
-
-  with('response')->begin()->
-    isStatusCode(200)->
-    checkElement('body', '!/This is a temporary page/')->
-  end()
-;
+        info('1 - Welcome page')->
+        
+        info('  1.1 - Non-authenthicated User: the signin form is displayed')->
+        logout()->
+        get('/welcome')->
+        with('response')->
+        begin()->
+        checkElement('input #signin_username',true)->
+        end()->
+        
+        info('  1.2 - Authenthicated User: the signin form is NOT displayed')->
+        login()->
+        get('/welcome')->
+        with('response')->
+        begin()->
+        checkElement('input #signin_username',false)->
+        end();
