@@ -23,6 +23,9 @@ sf_guard_password:
   url:   /request_password
   param: { module: sfGuardAuth, action: password }
 
+homepage_welcome:
+  url:   /welcome
+  param: {module: homepage, action: welcome }
 
 
 # default rules
