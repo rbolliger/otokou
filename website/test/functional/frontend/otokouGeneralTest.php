@@ -30,7 +30,48 @@ $browser->
         with('response')->
         begin()->
         checkElement('h1','/Hello/')->
-        end();
+        end()->
+        
+        
+        
+        
+        info('2 - Top Menu')->
+        
+        info('  2.1 - A login link is displayed when the user is not authentified')->
+        logout()->
+        get('/')->
+        with('response')->
+        begin()->
+        checkElement('a #login','/Login/')->
+        end()->
+        
+        info('  2.2 - A logout link is NOT displayed when the user is not authentified')->
+        get('/')->
+        with('response')->
+        begin()->
+        checkElement('a #logout',false)->
+        end()->
+        
+        
+        info('  2.3 - A logout link is displayed when the user is authentified')->
+        login()->
+        get('/')->
+        with('response')->
+        begin()->
+        checkElement('a #logout','/Logout/')->
+        end()->
+        
+        info('  2.4 - A login link is NOT displayed when the user is not authentified')->
+        get('/')->
+        with('response')->
+        begin()->
+        checkElement('a #login',false)->
+        end()
+        
+        
+        
+        
+        ;
         
         
 

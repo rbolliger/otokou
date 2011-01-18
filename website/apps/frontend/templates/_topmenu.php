@@ -14,7 +14,8 @@ echo $menu->render();
 
 $menu = new ioMenu(array('id' => 'topmenu2'));
 $menu->addChild('Settings','');
-$menu->addChild('Login/Logout','');
+$menu->addChild('Login','@sf_guard_signin',array('id' => 'login'))->requiresNoAuth(true);
+$menu->addChild('Logout','@sf_guard_signout',array('id' => 'logout'))->requiresAuth(true);
 echo $menu->render();
 
 ?>
