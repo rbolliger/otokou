@@ -58,10 +58,6 @@ sfGuardUserProfile:
     user_id:
       type: integer(20)
       notnull: true
-    email:
-      type: string(80)
-    fullname:
-      type: string(80)
     validate:
       type: string(17)
   relations:

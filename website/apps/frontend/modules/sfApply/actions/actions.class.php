@@ -2,6 +2,9 @@
 
 require_once(sfConfig::get('sf_plugins_dir') . '/sfDoctrineApplyPlugin/modules/sfApply/lib/BasesfApplyActions.class.php');
 
+require_once(dirname(__FILE__).'/../lib/form/sfApplyApplyForm.class.php');
+
+
 class sfApplyActions extends BasesfApplyActions {
 
     protected function mail($options) {

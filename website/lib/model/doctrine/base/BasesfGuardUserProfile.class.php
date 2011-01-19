@@ -7,21 +7,15 @@
  * 
  * @property integer $id
  * @property integer $user_id
- * @property string $email
- * @property string $fullname
  * @property string $validate
  * @property sfGuardUser $User
  * 
  * @method integer            getId()       Returns the current record's "id" value
  * @method integer            getUserId()   Returns the current record's "user_id" value
- * @method string             getEmail()    Returns the current record's "email" value
- * @method string             getFullname() Returns the current record's "fullname" value
  * @method string             getValidate() Returns the current record's "validate" value
  * @method sfGuardUser        getUser()     Returns the current record's "User" value
  * @method sfGuardUserProfile setId()       Sets the current record's "id" value
  * @method sfGuardUserProfile setUserId()   Sets the current record's "user_id" value
- * @method sfGuardUserProfile setEmail()    Sets the current record's "email" value
- * @method sfGuardUserProfile setFullname() Sets the current record's "fullname" value
  * @method sfGuardUserProfile setValidate() Sets the current record's "validate" value
  * @method sfGuardUserProfile setUser()     Sets the current record's "User" value
  * 
@@ -45,14 +39,6 @@ abstract class BasesfGuardUserProfile extends sfDoctrineRecord
              'type' => 'integer',
              'notnull' => true,
              'length' => 20,
-             ));
-        $this->hasColumn('email', 'string', 80, array(
-             'type' => 'string',
-             'length' => 80,
-             ));
-        $this->hasColumn('fullname', 'string', 80, array(
-             'type' => 'string',
-             'length' => 80,
              ));
         $this->hasColumn('validate', 'string', 17, array(
              'type' => 'string',

@@ -17,16 +17,12 @@ abstract class BasesfGuardUserProfileForm extends BaseFormDoctrine
     $this->setWidgets(array(
       'id'       => new sfWidgetFormInputHidden(),
       'user_id'  => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('User'), 'add_empty' => false)),
-      'email'    => new sfWidgetFormInputText(),
-      'fullname' => new sfWidgetFormInputText(),
       'validate' => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
       'id'       => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'user_id'  => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('User'))),
-      'email'    => new sfValidatorString(array('max_length' => 80, 'required' => false)),
-      'fullname' => new sfValidatorString(array('max_length' => 80, 'required' => false)),
       'validate' => new sfValidatorString(array('max_length' => 17, 'required' => false)),
     ));
 

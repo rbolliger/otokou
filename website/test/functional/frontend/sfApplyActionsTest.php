@@ -131,7 +131,6 @@ function getUserData() {
         'password2' => '123456',
         'email'     => 'sdtsdf@sdsd.com',
         'email2'    => 'sdtsdf@sdsd.com',
-        'fullname'  => 'fgdg dfgxh'
     );
 }
 

@@ -12,4 +12,17 @@
  */
 class sfGuardUserProfile extends BasesfGuardUserProfile
 {
+    
+    public function getFullname() {
+        $user = $this->getUser();
+        
+        $fullname =  $user->getFirstName().' '.$user->getLastName();
+        
+        return $fullname ? $fullname : null;
+    }
+    
+    public function getEmail() {
+               
+        return $this->getUser()->getEmailAddress();
+    }
 }
