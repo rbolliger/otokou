@@ -31,7 +31,7 @@ reset:
   url: /reset
   param: { module: sfApply, action: reset }
 
-resetRequest:
+sf_guard_forgot_password:
   url: /reset-request
   param: { module: sfApply, action: resetRequest }
 
