@@ -17,14 +17,14 @@ class otokouTestFunctional extends sfTestFunctional {
         return $id = Doctrine_Core::getTable('Category')->findOneByName($category)->getId();
     }
 
-    public function login() {
+    public function login($username = 'ruf',$password = 'admin@1') {
 
         $this->
                 get('/login')->
                 click('Signin', array(
                     'signin' => array(
-                        'username' => 'ruf',
-                        'password' => 'admin@1',
+                        'username' => $username,
+                        'password' => $password,
                         )));
 
         $this->
