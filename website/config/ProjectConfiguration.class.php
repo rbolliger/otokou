@@ -11,5 +11,6 @@ class ProjectConfiguration extends sfProjectConfiguration
     $this->enablePlugins('sfDoctrineGuardPlugin');
     $this->enablePlugins('ioMenuPlugin');
     $this->enablePlugins('sfFormExtraPlugin');
+    $this->enablePlugins('sfDoctrineApplyPlugin');
   }
 }

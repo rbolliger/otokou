@@ -46,3 +46,31 @@ Vehicle:
       local: user_id
       onDelete: CASCADE
       foreignAlias: Vehicles
+
+
+sfGuardUserProfile:
+  tableName: sf_guard_user_profile
+  columns:
+    id:
+      type: integer(20)
+      primary: true
+      autoincrement: true
+    user_id:
+      type: integer(20)
+      notnull: true
+    email:
+      type: string(80)
+    fullname:
+      type: string(80)
+    validate:
+      type: string(17)
+  relations:
+    User:
+      class: sfGuardUser
+      foreign: id
+      local: user_id
+      type: one  
+      onDelete: cascade    
+      foreignType: one
+      foreignAlias: Profile
+

@@ -26,7 +26,8 @@ test:
 dev:
   mailer:
     param:
-      delivery_strategy: none
+      delivery_strategy: single_address
+      delivery_address:  raffaele.bolliger@gmail.com
 
 all:
   routing:
@@ -40,3 +41,13 @@ all:
     param:
       cache_key_use_vary_headers: true
       cache_key_use_host_name:    true
+      
+  mailer:
+    class: sfMailer
+    param:
+      logging:           %SF_LOGGING_ENABLED%
+      charset:           %SF_CHARSET%
+      delivery_strategy: realtime
+      transport:
+        class: Swift_SendmailTransport
+        
