@@ -17,7 +17,7 @@ class homepageActions extends sfActions {
      */
     public function executeIndex(sfWebRequest $request) {
         if ($this->getUser()->isAuthenticated()) {
-            $this->forward('charges', 'new');
+            $this->forward('charge', 'new');
         } else {
             $this->forward('homepage', 'welcome');
         }

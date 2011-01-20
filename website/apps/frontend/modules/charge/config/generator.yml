@@ -1,0 +1,33 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           Charge
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          charge
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:  
+        kilometers:
+          help:  Absolute distance traveled by the vehicle since the first release.
+        amount:
+          help: Price of the charge.
+        comment:
+          help: Want to take a note?
+        quantity:
+          help: This field must be specified only for fuel.
+      list:    ~
+      filter:  ~
+      form:    
+        class: ChargeEmbeddedUserForm
+      edit:    
+        title: Edit charge "%%category%%" done at %%kilometers%% kilometers
+        
+      new:     
+        title: Add a New Charge

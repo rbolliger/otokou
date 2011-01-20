@@ -2,7 +2,7 @@
 
 $menu = new ioMenu(array('id' => 'topmenu1'));
 $menu->addChild('Homepage','@homepage_welcome');
-$menu->addChild('Charges', '@charges');
+$menu->addChild('Charges', '@charge');
 $menu->addChild('Graphs', '');
 $menu->addChild('Reports','');
 echo $menu->render();
