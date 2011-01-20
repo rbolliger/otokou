@@ -15,6 +15,7 @@
  * @property boolean $is_active
  * @property boolean $is_super_admin
  * @property timestamp $last_login
+ * @property string $validate
  * @property Doctrine_Collection $Groups
  * @property Doctrine_Collection $Permissions
  * @property Doctrine_Collection $sfGuardUserPermission
@@ -23,7 +24,6 @@
  * @property sfGuardForgotPassword $ForgotPassword
  * @property Doctrine_Collection $Charges
  * @property Doctrine_Collection $Vehicles
- * @property sfGuardUserProfile $Profile
  * 
  * @method string                getFirstName()             Returns the current record's "first_name" value
  * @method string                getLastName()              Returns the current record's "last_name" value
@@ -35,6 +35,7 @@
  * @method boolean               getIsActive()              Returns the current record's "is_active" value
  * @method boolean               getIsSuperAdmin()          Returns the current record's "is_super_admin" value
  * @method timestamp             getLastLogin()             Returns the current record's "last_login" value
+ * @method string                getValidate()              Returns the current record's "validate" value
  * @method Doctrine_Collection   getGroups()                Returns the current record's "Groups" collection
  * @method Doctrine_Collection   getPermissions()           Returns the current record's "Permissions" collection
  * @method Doctrine_Collection   getSfGuardUserPermission() Returns the current record's "sfGuardUserPermission" collection
@@ -43,7 +44,6 @@
  * @method sfGuardForgotPassword getForgotPassword()        Returns the current record's "ForgotPassword" value
  * @method Doctrine_Collection   getCharges()               Returns the current record's "Charges" collection
  * @method Doctrine_Collection   getVehicles()              Returns the current record's "Vehicles" collection
- * @method sfGuardUserProfile    getProfile()               Returns the current record's "Profile" value
  * @method sfGuardUser           setFirstName()             Sets the current record's "first_name" value
  * @method sfGuardUser           setLastName()              Sets the current record's "last_name" value
  * @method sfGuardUser           setEmailAddress()          Sets the current record's "email_address" value
@@ -54,6 +54,7 @@
  * @method sfGuardUser           setIsActive()              Sets the current record's "is_active" value
  * @method sfGuardUser           setIsSuperAdmin()          Sets the current record's "is_super_admin" value
  * @method sfGuardUser           setLastLogin()             Sets the current record's "last_login" value
+ * @method sfGuardUser           setValidate()              Sets the current record's "validate" value
  * @method sfGuardUser           setGroups()                Sets the current record's "Groups" collection
  * @method sfGuardUser           setPermissions()           Sets the current record's "Permissions" collection
  * @method sfGuardUser           setSfGuardUserPermission() Sets the current record's "sfGuardUserPermission" collection
@@ -62,7 +63,6 @@
  * @method sfGuardUser           setForgotPassword()        Sets the current record's "ForgotPassword" value
  * @method sfGuardUser           setCharges()               Sets the current record's "Charges" collection
  * @method sfGuardUser           setVehicles()              Sets the current record's "Vehicles" collection
- * @method sfGuardUser           setProfile()               Sets the current record's "Profile" value
  * 
  * @package    otokou
  * @subpackage model
@@ -119,6 +119,10 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
         $this->hasColumn('last_login', 'timestamp', null, array(
              'type' => 'timestamp',
              ));
+        $this->hasColumn('validate', 'string', 17, array(
+             'type' => 'string',
+             'length' => 17,
+             ));
 
 
         $this->index('is_active_idx', array(
@@ -163,10 +167,6 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
              'foreign' => 'user_id'));
 
         $this->hasMany('Vehicle as Vehicles', array(
-             'local' => 'id',
-             'foreign' => 'user_id'));
-
-        $this->hasOne('sfGuardUserProfile as Profile', array(
              'local' => 'id',
              'foreign' => 'user_id'));
 

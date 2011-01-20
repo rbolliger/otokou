@@ -10,7 +10,10 @@ charges:
     with_wildcard_routes:   true
     with_show:              false
     
-
+homepage_welcome:
+  url:   /welcome
+  param: {module: homepage, action: welcome }
+  
 sf_guard_signin:
   url:   /login
   param: { module: sfGuardAuth, action: signin }
@@ -23,14 +26,6 @@ sf_guard_register:
   url:  /apply
   param: { module: sfApply, action: apply }
 
-homepage_welcome:
-  url:   /welcome
-  param: {module: homepage, action: welcome }
-
-reset:
-  url: /reset
-  param: { module: sfApply, action: reset }
-
 sf_guard_forgot_password:
   url: /reset-request
   param: { module: sfApply, action: resetRequest }
@@ -39,14 +34,6 @@ validate:
   url: /confirm/:validate
   param: { module: sfApply, action: confirm }
 
-settings:
-  url: /settings
-  param: { module: sfApply, action: settings }
-
-# We implement the missing sf_guard_password feature from sfGuardPlugin
-sf_guard_password:
-  url: /reset-request
-  param: { module: sfApply, action: resetRequest }
 
 
 # default rules

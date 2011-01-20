@@ -1,0 +1,4 @@
+sfGuardUser:
+  columns:
+    validate:
+      type: string(17)

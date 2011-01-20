@@ -12,4 +12,10 @@
  */
 class sfGuardUser extends PluginsfGuardUser
 {
+    
+    public function getFullname() {
+        $fullname = $this->getName().' '.$this->getLastName();
+        
+        return $fullname ? $fullname : null;
+    }
 }

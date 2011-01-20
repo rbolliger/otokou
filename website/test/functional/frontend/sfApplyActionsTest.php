@@ -129,7 +129,7 @@ function getUserData() {
         'username' => 'dsgydx',
         'password' => '123456',
         'password2' => '123456',
-        'email'     => 'sdtsdf@sdsd.com',
+        'email_address'     => 'sdtsdf@sdsd.com',
         'email2'    => 'sdtsdf@sdsd.com',
     );
 }
@@ -138,12 +138,11 @@ function getUserFromDB($username) {
         
     return $user = Doctrine::getTable('sfGuardUser')->createQuery('u')->
             where('username = ?', $username)->
-            leftJoin('u.Profile p')->
             fetchOne();
 }
 
 
 function getValidateKeyForUser($username) {
     
-    return getUserFromDB($username)->getProfile()->getValidate();
+    return getUserFromDB($username)->getValidate();
 }
