@@ -3,9 +3,11 @@ charge:
   options:
     model:                Charge
     module:               charge
-    prefix_path:          /charge
+    prefix_path:          /:user_id/charge
     column:               id
     with_wildcard_routes: true
+    route_class:          otkWithUserDoctrineRoute
+    
 
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
