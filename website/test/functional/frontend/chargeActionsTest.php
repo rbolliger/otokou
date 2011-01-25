@@ -13,74 +13,70 @@ $fuelId = $browser->getIdForCategory('fuel');
 
 
 $browser->info('1 - The charge form')->
+        
         info('  1.1 - If "fuel" category is selected, a quantity must be specified')->
-        get('/charge/new')->
-        with('request')->
-        begin()->
-        isParameter('module', 'charge')->
-        isParameter('action', 'new')->
-        end()->
-        click('Save', getFormData($browser, array('category_id' => $fuelId, 'quantity' => null)))->
-        with('form')->
-        begin()->
-        hasErrors()->
-        isError('quantity', '/quantity/')->
-        end()->
-        click('Save', getFormData($browser, array('category_id' => $fuelId, 'quantity' => 12)))->
-        with('form')->
-        begin()->
-        hasErrors(false)->
-        end()->
+            get('/charge/new')->
+                with('request')->
+                    begin()->
+                        isParameter('module', 'charge')->
+                        isParameter('action', 'new')->
+                    end()->
+            click('Save', getFormData($browser, array('category_id' => $fuelId, 'quantity' => null)))->
+                with('form')->
+                    begin()->
+                        hasErrors(1)->
+                        isError('quantity', '/quantity/')->
+                    end()->
+            click('Save', getFormData($browser, array('category_id' => $fuelId, 'quantity' => 12)))->
+                with('form')->
+                    begin()->
+                        hasErrors(false)->
+                    end()->
         
         info(' 1.2 - If any other category is selected, the quantity cannot be specified')->
-        get('/charge/new')->
-        click('Save', getFormData($browser, array('category_id' => $browser->getIdForCategory('Tax'),'quantity' => 12)))->
-        with('form')->
-        begin()->
-        hasErrors()->
-        isError('quantity', '/quantity/')->
-        end()->
-        click('Save', getFormData($browser, array('category_id' => $browser->getIdForCategory('Tax'), 'quantity' => null)))->
-        with('form')->begin()->
-        hasErrors(false)->
-        end()->
+            get('/charge/new')->
+            click('Save', getFormData($browser, array('category_id' => $browser->getIdForCategory('Tax'), 'quantity' => 12)))->
+                with('form')->
+                    begin()->
+                        hasErrors(1)->
+                        isError('quantity', '/quantity/')->
+                    end()->
+            click('Save', getFormData($browser, array('category_id' => $browser->getIdForCategory('Tax'), 'quantity' => null)))->
+                with('form')->begin()->
+                    hasErrors(false)->
+                end()->
         
         info('  1.3 - The "Save" button redirects to object edit')->
-        get('/charge/new')->
-        click('Save', getFormData($browser, array('category_id' => $browser->getIdForCategory('Tax'), 'quantity' => null)))->
-        with('response')->
-        begin()->
-        isRedirected()->
-        followRedirect()->
-        end()->
-        with('request')->
-        begin()->
-        isParameter('module', 'charge')->
-        isParameter('action', 'edit')->
-        end()->
+            get('/charge/new')->
+            click('Save', getFormData($browser, array('category_id' => $browser->getIdForCategory('Tax'), 'quantity' => null)))->
+                with('response')->
+                    begin()->
+                        isRedirected()->
+                        followRedirect()->
+                    end()->
+                with('request')->
+                    begin()->
+                        isParameter('module', 'charge')->
+                        isParameter('action', 'edit')->
+                    end()->
         
         info('  1.4 - The "Save and add" button redirects to a new charge input form')->
-        get('/charge/new')->
-        click('Save and add', getFormData($browser, array('category_id' => $browser->getIdForCategory('Tax'), 'quantity' => null)))->
-        with('response')->
-        begin()->
-        isRedirected()->
-        followRedirect()->
-        end()->
-        with('request')->
-        begin()->
-        isParameter('module', 'charge')->
-        isParameter('action', 'new')->
-        end();
-        
-        
-
-
-
+            get('/charge/new')->
+            click('Save and add', getFormData($browser, array('category_id' => $browser->getIdForCategory('Tax'), 'quantity' => null)))->
+                with('response')->
+                    begin()->
+                        isRedirected()->
+                        followRedirect()->
+                    end()->
+                with('request')->
+                    begin()->
+                        isParameter('module', 'charge')->
+                        isParameter('action', 'new')->
+                    end();
 
 function getFormData($browser, $fields = array()) {
-    
-    
+
+
     $formFields = array(
         'vehicle_id' => $browser->getVehicleId('vw-touran-1-4-tsi'),
         'kilometers' => 100,
@@ -91,8 +87,7 @@ function getFormData($browser, $fields = array()) {
             'day' => 3,
             'month' => 2,
             'year' => 2010)
-        );
-    
+    );
+
     return array('charge' => array_merge($formFields, $fields));
-    
 }
