@@ -16,4 +16,15 @@ class ChargeTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Charge');
     }
+    
+    public static function getAllByUser($user_id)
+    {
+        
+        sfContext::getInstance()->getLogger()->info('sdgsdfgsfg');
+        return $this->createQuery('c')
+                ->where('c.user_id = ?',$user_id)
+                ->execute();
+    }
+    
+
 }

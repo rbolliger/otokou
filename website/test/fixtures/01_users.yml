@@ -7,6 +7,15 @@ sfGuardUser:
     password:       admin@1
     is_super_admin: true
     Groups:         [Group_admin]
+    
+  user2:
+    first_name:     User
+    last_name:      two
+    email_address:  uaser2@gmail.com
+    username:       user2
+    password:       user2
+    is_super_admin: false
+    
 
 sfGuardGroup:
   Group_admin:

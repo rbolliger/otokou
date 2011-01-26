@@ -59,6 +59,24 @@ class otokouTestFunctional extends sfTestFunctional {
     public function getVehicleId($name) {
         return $id = Doctrine_Core::getTable('Vehicle')->findOneBySlug($name)->getId();
     }
+    
+    public function getOneChargeByParams($params = array()) {
+        
+        if (!$params) {
+            throw new sfException('At least one parameter must be specified');
+        }
+        
+        $q = Doctrine_Core::getTable('Charge')->createQuery('c');
+        
+        foreach ($params as $key => $value) {
+            $q->andWhere('c.'.$key.' = ?',$value);
+        }
+        
+        return $q->fetchOne();
+        
+        
+        
+    }
 
 }
 

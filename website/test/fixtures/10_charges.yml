@@ -15,4 +15,11 @@ Charge:
     date: 8.1.2011
     kilometers:  1000
     amount: 1700
+  insurance_2:
+    User: user2
+    Vehicle: car2
+    Category: insurance
+    date: 8.1.2011
+    kilometers:  1000
+    amount: 1700
     

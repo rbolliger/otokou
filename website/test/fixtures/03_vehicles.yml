@@ -3,4 +3,7 @@ Vehicle:
   touran:
     name: VW touran 1.4 TSI
     User: ruf
+  car2:
+    name: car2
+    User: user2
     

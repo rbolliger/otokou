@@ -4,7 +4,7 @@ include(dirname(__FILE__) . '/../../bootstrap/functional.php');
 
 $browser = new otokouTestFunctional(new sfBrowser());
 $browser->loadData()->login();
-
+$browser->setTester('doctrine', 'sfTesterDoctrine');
 
 
 
@@ -72,7 +72,98 @@ $browser->info('1 - The charge form')->
                     begin()->
                         isParameter('module', 'charge')->
                         isParameter('action', 'new')->
-                    end();
+                    end()->
+        
+        
+info('2 - Data access rights')->
+            logout()->
+            login('user2','user2')->
+        
+        info('  2.1 - A user can only see his charges in list')->
+            get('/charge')->
+                with('request')->
+                    begin()->
+                        isParameter('user_id',$browser->getUserId('user2'))->
+                    end()->
+                with('response')->
+                    begin()->
+                        checkElement('div.sf_admin_list tbody tr',1)->
+                    end()->
+        
+        info('  2.2 - A user cannot see other users charges list')->
+            get('/'.$browser->getUserId('ruf').'/charge')->
+                with('request')->
+                    begin()->
+                        isParameter('user_id',$browser->getUserId('ruf'))->
+                    end()->
+                with('response')->
+                    begin()->
+                        isStatusCode(403)->
+                    end()->
+        
+        info('  2.3 - A user cannot edit other user\'s charges')->
+            get('/'.$browser->getUserId('ruf').'/charge/'.
+                    $browser->getOneChargeByParams(array('user_id' => $browser->getUserId('ruf')))->getId().'/edit')->
+                with('response')->
+                    begin()->
+                        isStatusCode(403)->
+                    end()->  
+            get('/'.$browser->getUserId('user2').'/charge/'.
+                    $browser->getOneChargeByParams(array('user_id' => $browser->getUserId('user2')))->getId().'/edit')->
+                with('response')->
+                    begin()->
+                        isStatusCode(200)->
+                    end()->  
+        
+        info('  2.4 - A user cannot delete other user\'s charges')->
+            call('/'.$browser->getUserId('ruf').'/charge/'.
+                    $browser->getOneChargeByParams(array('user_id' => $browser->getUserId('ruf')))->getId(),
+                    'delete',
+                    array('_with_csrf' => true))->
+                with('response')->
+                    begin()->
+                        isStatusCode(403)->
+                    end()->  
+            call('/'.$browser->getUserId('user2').'/charge/'.
+                    $browser->getOneChargeByParams(array('user_id' => $id = $browser->getUserId('user2')))->getId(),
+                    'delete',
+                    array('_with_csrf' => true))->
+                 with('doctrine')->
+                    begin()->
+                        check('Charge', array(
+                          'id'     => $id,
+                        ),false)->
+                    end()->
+
+        
+        info('  2.5 - A user cannot create charges for other users')->
+            get('/'.$browser->getUserId('ruf').'/charge/new')->
+            click('Save', getFormData($browser, array('category_id' => $fuelId, 'quantity' => 12, 'comment' => 'created by user2')))->
+                with('form')->
+                    begin()->
+                        hasErrors(false)->
+                    end()->
+                with('doctrine')->
+                    begin()->
+                        check('Charge', array(
+                          'user_id'     => $browser->getUserId('ruf'),
+                          'category_id' => $fuelId,
+                          'quantity' => 12,
+                          'comment' => 'created by user2'
+                        ),false)->
+                        check('Charge', array(
+                          'user_id'     => $browser->getUserId('user2'),
+                          'category_id' => $fuelId,
+                          'quantity' => 12,
+                          'comment' => 'created by user2'
+                        ),true)->
+                    end()->
+        
+        
+info('3 - Vehicle choices')
+        
+        
+        ;
 
 function getFormData($browser, $fields = array()) {
 
@@ -91,3 +182,4 @@ function getFormData($browser, $fields = array()) {
 
     return array('charge' => array_merge($formFields, $fields));
 }
+

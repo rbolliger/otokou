@@ -7,6 +7,8 @@ charge:
     column:               id
     with_wildcard_routes: true
     route_class:          otkWithUserDoctrineRoute
+    model_methods:
+       list:              getAllByUser
     
 
 # You can find more information about this file on the symfony website:
