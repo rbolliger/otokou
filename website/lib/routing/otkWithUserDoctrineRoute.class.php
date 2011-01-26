@@ -17,7 +17,7 @@ class otkWithUserDoctrineRoute extends sfDoctrineRoute {
 
         if ('object' !== $this->options['type'] || is_array($params)) {
 
-            $params = array_merge(array('user_id' => $this->getUserId()),$params);
+            $params = array_merge(array('username' => $this->getUserId()),$params);
             
         }
 
@@ -30,17 +30,17 @@ class otkWithUserDoctrineRoute extends sfDoctrineRoute {
         $object = parent::doConvertObjectToArray($object);
 
 
-        return array_merge($object, array('user_id' => $this->getUserId()));
+        return array_merge($object, array('username' => $this->getUserId()));
     }
 
     protected function getUserId() {
         $user = sfContext::getInstance()->getUser();
 
-        return $user->isAuthenticated() ? $user->getGuardUser()->getId() : 0;
+        return $user->isAuthenticated() ? $user->getGuardUser()->getUsername() : 0;
     }
 
     protected function getRealVariables() {
-        return array_merge(array('user_id'), parent::getRealVariables());
+        return array_merge(array('username'), parent::getRealVariables());
     }
 
 }

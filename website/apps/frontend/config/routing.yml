@@ -3,7 +3,7 @@ charge:
   options:
     model:                Charge
     module:               charge
-    prefix_path:          /:user_id/charge
+    prefix_path:          /:username/charge
     column:               id
     with_wildcard_routes: true
     route_class:          otkWithUserDoctrineRoute

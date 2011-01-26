@@ -83,7 +83,7 @@ info('2 - Data access rights')->
             get('/charge')->
                 with('request')->
                     begin()->
-                        isParameter('user_id',$browser->getUserId('user2'))->
+                        isParameter('username','user2')->
                     end()->
                 with('response')->
                     begin()->
@@ -91,10 +91,10 @@ info('2 - Data access rights')->
                     end()->
         
         info('  2.2 - A user cannot see other users charges list')->
-            get('/'.$browser->getUserId('ruf').'/charge')->
+            get('/ruf/charge')->
                 with('request')->
                     begin()->
-                        isParameter('user_id',$browser->getUserId('ruf'))->
+                        isParameter('username','ruf')->
                     end()->
                 with('response')->
                     begin()->
@@ -102,13 +102,13 @@ info('2 - Data access rights')->
                     end()->
         
         info('  2.3 - A user cannot edit other user\'s charges')->
-            get('/'.$browser->getUserId('ruf').'/charge/'.
+            get('/ruf/charge/'.
                     $browser->getOneChargeByParams(array('user_id' => $browser->getUserId('ruf')))->getId().'/edit')->
                 with('response')->
                     begin()->
                         isStatusCode(403)->
                     end()->  
-            get('/'.$browser->getUserId('user2').'/charge/'.
+            get('/user2/charge/'.
                     $browser->getOneChargeByParams(array('user_id' => $browser->getUserId('user2')))->getId().'/edit')->
                 with('response')->
                     begin()->
@@ -116,7 +116,7 @@ info('2 - Data access rights')->
                     end()->  
         
         info('  2.4 - A user cannot delete other user\'s charges')->
-            call('/'.$browser->getUserId('ruf').'/charge/'.
+            call('/ruf/charge/'.
                     $browser->getOneChargeByParams(array('user_id' => $browser->getUserId('ruf')))->getId(),
                     'delete',
                     array('_with_csrf' => true))->
@@ -124,7 +124,7 @@ info('2 - Data access rights')->
                     begin()->
                         isStatusCode(403)->
                     end()->  
-            call('/'.$browser->getUserId('user2').'/charge/'.
+            call('/user2/charge/'.
                     $browser->getOneChargeByParams(array('user_id' => $id = $browser->getUserId('user2')))->getId(),
                     'delete',
                     array('_with_csrf' => true))->
@@ -137,7 +137,7 @@ info('2 - Data access rights')->
 
         
         info('  2.5 - A user cannot create charges for other users')->
-            get('/'.$browser->getUserId('ruf').'/charge/new')->
+            get('/ruf/charge/new')->
             click('Save', getFormData($browser, array('category_id' => $fuelId, 'quantity' => 12, 'comment' => 'created by user2')))->
                 with('form')->
                     begin()->

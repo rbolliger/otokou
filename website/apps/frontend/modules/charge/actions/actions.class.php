@@ -15,15 +15,6 @@ class chargeActions extends autoChargeActions {
 
     public function preExecute() {
 
-        sfContext::getInstance()->getLogger()->info('{chargeActions} User logged is '.
-                $this->getUser()->getGuardUser()->getUsername().
-                ' ('.
-                $this->getUser()->getGuardUser()->getId().
-                ')'
-                );
-        
-        //$this->checkOwnership();
-
         parent::preExecute();
 
         $this->context->getEventDispatcher()->connect("admin.build_query", array($this, 'addUserFilter'));
@@ -31,25 +22,27 @@ class chargeActions extends autoChargeActions {
 
     public function addUserFilter($event, $query) {
 
-        $user_id = $this->getRequest()->getParameterHolder()->get('user_id') ?
-                $this->getRequest()->getParameterHolder()->get('user_id') :
-                $this->getUser()->getGuardUser()->getId();
+        $username = $this->getUserFromRouteOrSession();
+        
+        if ($username == $this->getUser()->getGuardUser()->getUsername()) {
+                $id = $this->getUser()->getGuardUser()->getId();
+        } else {
+            $id = Doctrine_Core::getTable('sfGuardUser')->findOneByUsername($username)->getId();
+        }
 
-        return $query->andWhere(sprintf('user_id = %d ', $user_id));
+        return $query->andWhere(sprintf('user_id = %d ', $id));
     }
 
     protected function checkOwnership() {
 
-        $user_id = $this->getRequest()->getParameterHolder()->get('user_id') ?
-                $this->getRequest()->getParameterHolder()->get('user_id') :
-                $this->getUser()->getGuardUser()->getId();
+        $username = $this->getUserFromRouteOrSession();
 
-        if ( $user_id == $this->getUser()->getGuardUser()->getId()) {
+        if ( $username == $this->getUser()->getGuardUser()->getUsername()) {
             $this->getUser()->addCredentials('owner');
         }
         
-        if (!$this->getRequest()->getParameterHolder()->get('user_id')) {
-            $this->getRequest()->getParameterHolder()->set('user_id',$user_id);
+        if (!$this->getRequest()->getParameterHolder()->get('username')) {
+            $this->getRequest()->getParameterHolder()->set('username',$username);
         }
     }
     
@@ -64,5 +57,11 @@ class chargeActions extends autoChargeActions {
         
         return parent::getCredential();
     }
-
+    
+    protected function getUserFromRouteOrSession() {
+        
+        return  $this->getRequest()->getParameterHolder()->get('username') ?
+                $this->getRequest()->getParameterHolder()->get('username') :
+                $this->getUser()->getGuardUser()->getUsername();
+    }
 }
