@@ -39,6 +39,8 @@ class chargeActions extends autoChargeActions {
 
         if ( $username == $this->getUser()->getGuardUser()->getUsername()) {
             $this->getUser()->addCredentials('owner');
+        } else {
+            $this->getUser()->removeCredential('owner');
         }
         
         if (!$this->getRequest()->getParameterHolder()->get('username')) {
@@ -46,9 +48,12 @@ class chargeActions extends autoChargeActions {
         }
     }
     
+    /*
     public function postExecute() {
         $this->getUser()->removeCredential('owner');
     }
+     * 
+     */
 
     
     public function getCredential() {

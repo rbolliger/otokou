@@ -89,6 +89,10 @@ info('2 - Data access rights')->
                     begin()->
                         checkElement('div.sf_admin_list tbody tr',1)->
                     end()->
+                with('user')->
+                    begin()->
+                        hasCredential('owner')->
+                    end()->
         
         info('  2.2 - A user cannot see other users charges list')->
             get('/ruf/charge')->
@@ -100,6 +104,10 @@ info('2 - Data access rights')->
                     begin()->
                         isStatusCode(403)->
                     end()->
+                with('user')->
+                    begin()->
+                        hasCredential('owner',false)->
+                    end()->
         
         info('  2.3 - A user cannot edit other user\'s charges')->
             get('/ruf/charge/'.
@@ -107,13 +115,21 @@ info('2 - Data access rights')->
                 with('response')->
                     begin()->
                         isStatusCode(403)->
-                    end()->  
+                    end()-> 
+                with('user')->
+                    begin()->
+                        hasCredential('owner',false)->
+                    end()->
             get('/user2/charge/'.
                     $browser->getOneChargeByParams(array('user_id' => $browser->getUserId('user2')))->getId().'/edit')->
                 with('response')->
                     begin()->
                         isStatusCode(200)->
-                    end()->  
+                    end()-> 
+                with('user')->
+                    begin()->
+                        hasCredential('owner',true)->
+                    end()->
         
         info('  2.4 - A user cannot delete other user\'s charges')->
             call('/ruf/charge/'.
@@ -123,7 +139,11 @@ info('2 - Data access rights')->
                 with('response')->
                     begin()->
                         isStatusCode(403)->
-                    end()->  
+                    end()-> 
+                with('user')->
+                    begin()->
+                        hasCredential('owner',false)->
+                    end()->
             call('/user2/charge/'.
                     $browser->getOneChargeByParams(array('user_id' => $id = $browser->getUserId('user2')))->getId(),
                     'delete',
@@ -134,29 +154,21 @@ info('2 - Data access rights')->
                           'id'     => $id,
                         ),false)->
                     end()->
+                 with('user')->
+                    begin()->
+                        hasCredential('owner',true)->
+                    end()->
 
         
         info('  2.5 - A user cannot create charges for other users')->
             get('/ruf/charge/new')->
-            click('Save', getFormData($browser, array('category_id' => $fuelId, 'quantity' => 12, 'comment' => 'created by user2')))->
-                with('form')->
+                with('response')->
                     begin()->
-                        hasErrors(false)->
-                    end()->
-                with('doctrine')->
+                        isStatusCode(403)->
+                    end()->  
+                with('user')->
                     begin()->
-                        check('Charge', array(
-                          'user_id'     => $browser->getUserId('ruf'),
-                          'category_id' => $fuelId,
-                          'quantity' => 12,
-                          'comment' => 'created by user2'
-                        ),false)->
-                        check('Charge', array(
-                          'user_id'     => $browser->getUserId('user2'),
-                          'category_id' => $fuelId,
-                          'quantity' => 12,
-                          'comment' => 'created by user2'
-                        ),true)->
+                        hasCredential('owner',false)->
                     end()->
         
         
