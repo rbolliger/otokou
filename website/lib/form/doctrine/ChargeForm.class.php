@@ -38,6 +38,20 @@ class ChargeForm extends BaseChargeForm {
                     'image' => '/images/calendar.png',
                     'date_widget' => $widget
                 ));
+        
+        
+        $q = Doctrine_Core::getTable($this->getRelatedModelName('Vehicle'))->createQuery('v')->where('v.user_id = ?',$this->getObject()->getUserId());
+        
+        $this->widgetSchema['vehicle_id'] = new sfWidgetFormDoctrineChoice(array(
+            'model'         => $this->getRelatedModelName('Vehicle'),
+            'add_empty'     => false,
+            'query'  => $q,
+            ));
+        
+        $this->validatorSchema['vehicle_id'] = new sfValidatorDoctrineChoice(array(
+            'model'         => $this->getRelatedModelName('Vehicle'),
+            'query'  => $q,
+            ));
 
 
         $this->validatorSchema['quantity'] = new sfValidatorNumber(array('required' => false, 'min' => 0));

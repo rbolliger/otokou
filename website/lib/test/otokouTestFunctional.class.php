@@ -57,7 +57,10 @@ class otokouTestFunctional extends sfTestFunctional {
     }
 
     public function getVehicleId($name) {
-        return $id = Doctrine_Core::getTable('Vehicle')->findOneBySlug($name)->getId();
+        
+        $v = Doctrine_Core::getTable('Vehicle')->findOneBySlug($name);
+        
+        return $v ? $v->getId() : null;
     }
     
     public function getOneChargeByParams($params = array()) {

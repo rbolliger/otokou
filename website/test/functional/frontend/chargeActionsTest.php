@@ -172,7 +172,39 @@ info('2 - Data access rights')->
                     end()->
         
         
-info('3 - Vehicle choices')
+info('3 - Vehicle choices')->
+        
+        info('  3.1 - A user can only see his cars')->
+        logout()->
+        login('ruf','admin@1')->
+        get('/ruf/charge/new')->
+        with('response')->
+            begin()->
+                checkElement('select#charge_vehicle_id option',1)->
+            end()->
+        
+        info('  3.2 - A user cannot select other user\'s vechicles')->
+        click('Save', getFormData($browser, array('vehicle_id' => $browser->getVehicleId('car3'))))->
+                with('form')->
+                    begin()->
+                        hasErrors(1)->
+                        isError('vehicle_id', '/invalid/')->
+                    end()->
+        
+        info('  3.3 - A user cannot select non-registered vechicles')->
+        click('Save', getFormData($browser, array('vehicle_id' => $browser->getVehicleId('car-non-existent'))))->
+                with('form')->
+                    begin()->
+                        hasErrors(1)->
+                        isError('vehicle_id', '/required/')->
+                    end()->
+        
+        info('  3.4 - A user can only select his own vechicles')->
+        click('Save', getFormData($browser, array('vehicle_id' => $browser->getVehicleId('vw-touran-1-4-tsi'))))->
+                with('form')->
+                    begin()->
+                        hasErrors(false)->
+                    end()
         
         
         ;
@@ -181,6 +213,7 @@ function getFormData($browser, $fields = array()) {
 
 
     $formFields = array(
+        'category_id' =>$browser->getIdForCategory('tax'),
         'vehicle_id' => $browser->getVehicleId('vw-touran-1-4-tsi'),
         'kilometers' => 100,
         'amount' => 22,
