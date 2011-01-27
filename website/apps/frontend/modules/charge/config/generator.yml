@@ -22,7 +22,17 @@ generator:
           help: Want to take a note?
         quantity:
           help: This field must be specified only for fuel.
-      list:    ~
+      list:    
+        layout:  stacked
+        params:  |
+          <b>%%=amount%% CHF</b><br />
+          <i>%%category%%</i>  %%quantity%% registered at <i>%%date%%</i> (%%kilometers%% km) for car <b>%%vehicle%%</b><br />
+          %%comment%%
+        display:  [amount, category, _quantity, date, kilometers, comment]
+        fields:
+          date:
+            date_format: EEEE d MMM y
+        
       filter:  ~
       form:    
         class: ChargeEmbeddedUserForm
