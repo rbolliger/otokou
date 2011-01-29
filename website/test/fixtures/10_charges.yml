@@ -22,4 +22,102 @@ Charge:
     date: 8.1.2011
     kilometers:  1000
     amount: 1700
-    
+  Charge_1:
+    Vehicle: touran
+    User: ruf
+    Category: fuel
+    date: '2008-01-20'
+    kilometers: '554.00'
+    amount: '76.00'
+    comment: ''
+    quantity: '35.20'
+    created_at: '2011-01-20 08:46:42'
+    updated_at: '2011-01-20 15:37:54'
+  Charge_2:
+    Vehicle: touran
+    User: ruf
+    Category: insurance
+    date: '2008-01-20'
+    kilometers: '1000.00'
+    amount: '1700.00'
+    comment: ''
+    quantity: null
+    created_at: '2011-01-20 08:46:42'
+    updated_at: '2011-01-26 17:32:21'
+  Charge_5:
+    Vehicle: touran
+    User: ruf
+    Category: taxes
+    date: '2010-08-04'
+    kilometers: '1234.00'
+    amount: '2.00'
+    comment: '3sdfgysdfg sdfg ydfgydfg ydfgsdfg'
+    quantity: null
+    created_at: '2011-01-20 16:09:25'
+    updated_at: '2011-01-27 14:37:53'
+  Charge_7:
+    Vehicle: touran
+    User: ruf
+    Category: fuel
+    date: '2011-01-11'
+    kilometers: '345.00'
+    amount: '345.00'
+    comment: ''
+    quantity: '2345235.00'
+    created_at: '2011-01-20 16:48:46'
+    updated_at: '2011-01-25 13:58:57'
+  Charge_9:
+    Vehicle: touran
+    User: ruf
+    Category: fuel
+    date: '2011-01-02'
+    kilometers: '234.00'
+    amount: '1700.00'
+    comment: ''
+    quantity: '2345235.00'
+    created_at: '2011-01-25 11:56:40'
+    updated_at: '2011-01-25 11:56:40'
+  Charge_10:
+    Vehicle: touran
+    User: ruf
+    Category: taxes
+    date: '2011-01-17'
+    kilometers: '234.00'
+    amount: '123.00'
+    comment: ''
+    quantity: null
+    created_at: '2011-01-25 11:56:56'
+    updated_at: '2011-01-25 11:56:56'
+  Charge_11:
+    Vehicle: touran
+    User: ruf
+    Category: fuel
+    date: '2011-01-03'
+    kilometers: '234.00'
+    amount: '23.00'
+    comment: ''
+    quantity: '1234.00'
+    created_at: '2011-01-25 12:18:34'
+    updated_at: '2011-01-25 12:18:34'
+  Charge_12:
+    Vehicle: touran
+    User: ruf
+    Category: fuel
+    date: '2011-01-02'
+    kilometers: '2345.00'
+    amount: '2345.00'
+    comment: ''
+    quantity: '12.00'
+    created_at: '2011-01-26 17:22:43'
+    updated_at: '2011-01-26 17:22:43'
+  Charge_13:
+    Vehicle: touran
+    User: ruf
+    Category: fuel
+    date: '2011-01-03'
+    kilometers: '234.00'
+    amount: '234.00'
+    comment: ''
+    quantity: '12.00'
+    created_at: '2011-01-27 11:37:17'
+    updated_at: '2011-01-27 11:37:17'

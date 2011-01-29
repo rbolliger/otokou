@@ -204,7 +204,103 @@ info('3 - Vehicle choices')->
                 with('form')->
                     begin()->
                         hasErrors(false)->
-                    end()
+                    end()->
+        
+info('4 - List filters')->
+        logout()->
+        login('ruf','admin@1')->
+        
+        info('  4.1 - Vehicle: the user can see only his vehicles in the list')->
+        get('/ruf/charge')->
+            with('response')->
+                begin()->
+                    checkElement('select#charge_filters_vehicle_id option',2)->
+                end()->
+        
+        info('  4.2 - Vehicle: the filtering works')->
+        click('Filter',array(
+            'charge_filters' => array(
+                'vehicle_id' => $browser->getVehicleId('car2')
+        )))->
+            with('form')->
+                begin()->
+                    hasErrors(1)->
+                    isError('vehicle_id', '/invalid/')->
+                end()->
+        click('Filter',array(
+            'charge_filters' => array(
+                'vehicle_id' => $browser->getVehicleId('vw-touran-1-4-tsi'))))->
+            with('form')->
+                begin()->
+                    hasErrors(false)->
+                end()->
+            with('response')->
+                begin()->
+                    isRedirected()->
+                    followRedirect()->
+                end()->
+            with('response')->
+                begin()->
+                    checkElement('div.sf_admin_list tbody tr',16)->
+                end()->
+            with('doctrine')->
+                begin()->
+                    check('Charge', array(
+                          'vehicle_id'     => $browser->getVehicleId('vw-touran-1-4-tsi'),
+                        ),16)->
+                end()->
+        
+        
+        info('  4.3 - Kilometers (and Amount and quantity): the range filter works')->
+        click('Filter',array(
+            'charge_filters' => array(
+                'kilometers' => array('from' => 0))))->
+            with('response')->
+                begin()->
+                    isRedirected()->
+                    followRedirect()->
+                end()->
+            with('response')->
+                begin()->
+                    checkElement('div.sf_admin_list tbody tr',16)->
+                end()->
+        click('Filter',array(
+            'charge_filters' => array(
+                'kilometers' => array('from' => 35, 'to' => 500))))->
+            with('response')->
+                begin()->
+                    isRedirected()->
+                    followRedirect()->
+                end()->
+            with('response')->
+                begin()->
+                    checkElement('div.sf_admin_list tbody tr',10)->
+                end()->
+        click('Filter',array(
+            'charge_filters' => array(
+                'kilometers' => array('from' => null, 'to' => 1500))))->
+            with('response')->
+                begin()->
+                    isRedirected()->
+                    followRedirect()->
+                end()->
+            with('response')->
+                begin()->
+                    checkElement('div.sf_admin_list tbody tr',15)->
+                end()->
+        click('Filter',array(
+            'charge_filters' => array(
+                'kilometers' => array('to' => null))))->
+            with('response')->
+                begin()->
+                    isRedirected()->
+                    followRedirect()->
+                end()->
+            with('response')->
+                begin()->
+                    checkElement('div.sf_admin_list tbody tr',16)->
+                end()
+        
         
         
         ;
