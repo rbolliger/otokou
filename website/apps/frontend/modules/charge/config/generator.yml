@@ -35,7 +35,7 @@ generator:
         table_method: retrieveAdminChargeList
         
       filter:  
-        display: [vehicle_id, category_id, date, kilometers, amount, comment, quantity]
+        display: [vehicle_id, category_id, date, kilometers, amount, quantity, comment]
         class:  ChargeFormWithUserFilter
         fields:
           comment:
