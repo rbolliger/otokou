@@ -45,6 +45,7 @@ class ChargeFormWithUserFilter extends BaseChargeFormFilter {
                         'date_widget' => $widget
                     )),
                     'with_empty' => false,
+                    'template' => 'from %from_date% to %to_date%',
                 ))
         ;
 
@@ -63,8 +64,10 @@ class ChargeFormWithUserFilter extends BaseChargeFormFilter {
 
 
         $this->widgetSchema['amount'] = clone $this->widgetSchema['kilometers'];
-
         $this->validatorSchema['amount'] = clone $this->validatorSchema['kilometers'];
+        
+        $this->widgetSchema['quantity'] = clone $this->widgetSchema['kilometers'];
+        $this->validatorSchema['quantity'] = clone $this->validatorSchema['kilometers'];
     }
 
     protected function getUserId() {
@@ -77,6 +80,11 @@ class ChargeFormWithUserFilter extends BaseChargeFormFilter {
     }
 
     public function addAmountColumnQuery(Doctrine_Query $query, $field, $values) {
+
+        $this->addRangeQuery($query, $field, $values);
+    }
+    
+    public function addQuantityColumnQuery(Doctrine_Query $query, $field, $values) {
 
         $this->addRangeQuery($query, $field, $values);
     }
