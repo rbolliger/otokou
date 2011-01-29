@@ -64,7 +64,7 @@ class ChargeFormWithUserFilter extends BaseChargeFormFilter {
 
         $this->widgetSchema['amount'] = clone $this->widgetSchema['kilometers'];
 
-        $this->validatorSchema['kilometers'] = clone $this->validatorSchema['kilometers'];
+        $this->validatorSchema['amount'] = clone $this->validatorSchema['kilometers'];
     }
 
     protected function getUserId() {
