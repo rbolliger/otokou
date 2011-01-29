@@ -47,34 +47,51 @@ class ChargeFormWithUserFilter extends BaseChargeFormFilter {
                     'with_empty' => false,
                 ))
         ;
-        
-       $this->widgetSchema['kilometers'] = new sfWidgetFormFilterDate(array(
-           'from_date' => new sfWidgetFormInput(),
-           'to_date' => new sfWidgetFormInput(),
-           'with_empty' => false,
-           'template' => 'between %from_date% and %to_date%',
-           ));
-       
-       $this->validatorSchema['kilometers'] = new sfValidatorDateRange(array(
-           'required' => false,
-           'from_date' => new sfValidatorNumber(array('required' => false)),
-           'to_date' => new sfValidatorNumber(array('required' => false))
-           ));
-       
-        
-        
-        
+
+        $this->widgetSchema['kilometers'] = new sfWidgetFormFilterDate(array(
+                    'from_date' => new sfWidgetFormInput(array('default' => null)),
+                    'to_date' => new sfWidgetFormInput(array('default' => null)),
+                    'with_empty' => false,
+                    'template' => 'between %from_date% and %to_date%',
+                ));
+
+        $this->validatorSchema['kilometers'] = new sfValidatorDateRange(array(
+                    'required' => false,
+                    'from_date' => new sfValidatorNumber(array('required' => false)),
+                    'to_date' => new sfValidatorNumber(array('required' => false))
+                ));
+
+
+        $this->widgetSchema['amount'] = clone $this->widgetSchema['kilometers'];
+
+        $this->validatorSchema['kilometers'] = clone $this->validatorSchema['kilometers'];
     }
 
     protected function getUserId() {
 
         return sfContext::getInstance()->getUser()->getGuarduser()->getId();
     }
-    
+
     public function addKilometersColumnQuery(Doctrine_Query $query, $field, $values) {
-       
-        parent::addDateQuery($query, $field, $values);
+        $this->addRangeQuery($query, $field, $values);
     }
-    
+
+    public function addAmountColumnQuery(Doctrine_Query $query, $field, $values) {
+
+        $this->addRangeQuery($query, $field, $values);
+    }
+
+    public function addRangeQuery(Doctrine_Query $query, $field, $values) {
+        
+        $fieldName = $this->getFieldName($field);
+
+        if ($values['from']) {
+            $query->andWhere(sprintf('%s.%s >= ?', $query->getRootAlias(), $fieldName), $values['from']);
+        }
+        
+        if ($values['to']) {
+            $query->andWhere(sprintf('%s.%s <= ?', $query->getRootAlias(), $fieldName), $values['to']);
+        }
+    }
 
 }
