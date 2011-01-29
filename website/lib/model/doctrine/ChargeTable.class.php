@@ -26,5 +26,16 @@ class ChargeTable extends Doctrine_Table
                 ->execute();
     }
     
+    public function retrieveAdminChargeList(Doctrine_Query $q)
+  {
+    $rootAlias = $q->getRootAlias();
+ 
+    $q->leftJoin($rootAlias . '.Category ct');
+    $q->leftJoin($rootAlias . '.Vehicle v');
+ 
+    return $q;
+  }
+
+    
 
 }

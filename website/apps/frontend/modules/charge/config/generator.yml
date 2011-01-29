@@ -32,6 +32,7 @@ generator:
         fields:
           date:
             date_format: EEEE d MMM y
+        table_method: retrieveAdminChargeList
         
       filter:  
         display: [vehicle_id, category_id, date, kilometers, amount, comment, quantity]
