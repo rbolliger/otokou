@@ -33,7 +33,12 @@ generator:
           date:
             date_format: EEEE d MMM y
         
-      filter:  ~
+      filter:  
+        display: [vehicle_id, category_id, date, kilometers, amount, comment, quantity]
+        class:  ChargeFormWithUserFilter
+        fields:
+          comment:
+            help: Any text put as comment
       form:    
         class: ChargeEmbeddedUserForm
       edit:    
