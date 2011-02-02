@@ -144,10 +144,13 @@ info('2 - Data access rights')->
                     begin()->
                         hasCredential('owner',false)->
                     end()->
-            call('/user2/charge/'.
-                    $browser->getOneChargeByParams(array('user_id' => $id = $browser->getUserId('user2')))->getId(),
-                    'delete',
-                    array('_with_csrf' => true))->
+                with('doctrine')->
+                    begin()->
+                        check('Charge', array(
+                          'id'     => $id = $browser->getOneChargeByParams(array('user_id' => $browser->getUserId('user2')))->getId(),
+                        ),true)->
+                    end()->
+            call('/user2/charge/'.$id ,'delete', array('_with_csrf' => true))->
                  with('doctrine')->
                     begin()->
                         check('Charge', array(
@@ -247,6 +250,7 @@ info('4 - List filters')->
                 begin()->
                     check('Charge', array(
                           'vehicle_id'     => $browser->getVehicleId('vw-touran-1-4-tsi'),
+                          'user_id'        => $browser->getUserId('ruf'),
                         ),16)->
                 end()->
         
@@ -299,7 +303,86 @@ info('4 - List filters')->
             with('response')->
                 begin()->
                     checkElement('div.sf_admin_list tbody tr',16)->
+                end()->
+       
+info('5 - Pagination')->
+        logout()->
+        login('user3','user3')->
+        
+        info('  5.1 - The number of displayed elements to show in list can be changed')->
+        get('/user3/charge')->        
+            with('response')->
+                begin()->
+                    checkElement('div.max_per_page',true)->
+                    checkElement('div.sf_admin_pagination',true)->
+                end()->
+        
+        info('  5.2 - By default, charges list show 20 elements')->
+            with('response')->
+                begin()->
+                    checkElement('div.sf_admin_list tbody tr',20)->
+                end()->
+        
+        info('  5.3 - If the User defines a different default value in his settings, the number of elements matches his choice')->
+        logout()->
+        login('user4','user4')->
+        get('/user4/charge')-> 
+            with('response')->
+                    begin()->
+                        checkElement('div.sf_admin_list tbody tr',3)->
+                    end()->
+            with('doctrine')->
+                    begin()->
+                        check('sfGuardUser', array(
+                              'username'     => 'user4',
+                              'list_max_per_page' => 3,
+                            ),true)->
+                    end()->
+        
+        info('  5.4 - The user can navigate through multiple pages')->
+        click('a[href*="page=2"]')->
+        with('response')->
+                    begin()->
+                        checkElement('div.sf_admin_list tbody tr',3)->
+                    end()->
+        
+        info('  5.5 - Changing the number of elements returns to page 1 and displays the requested number of elements')->
+        post('/user4/charge/maxPerPage/action', array('max_per_page' => 1000))->
+            with('request')->
+                begin()->
+                    isParameter('action','maxPerPage')->
+                    isParameter('max_per_page',1000)->
+                end()->
+            with('response')->
+                    begin()->
+                        isRedirected()->
+                        followRedirect()->
+                    end()->
+            with('response')->
+                begin()->
+                    checkElement('div.sf_admin_list tbody tr',81)->
+                    checkElement('select#max_per_page option[selected="selected"][value=1000]',1)->
+                    checkElement('.sf_admin_pagination a[href*="page=2"]',false)->
+                end()->
+        post('/user4/charge/maxPerPage/action', array('max_per_page' => 50))->
+            with('request')->
+                begin()->
+                    isParameter('action','maxPerPage')->
+                    isParameter('max_per_page',50)->
+                end()->
+            with('response')->
+                    begin()->
+                        isRedirected()->
+                        followRedirect()->
+                    end()->
+            with('response')->
+                begin()->
+                    checkElement('div.sf_admin_list tbody tr',50)->
+                    checkElement('select#max_per_page option[selected="selected"][value=50]',1)->
+                    checkElement('.sf_admin_pagination a[href*="page=2"]',true)->
                 end()
+                
+
         
         
         

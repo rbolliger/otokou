@@ -33,4 +33,17 @@ class chargeGeneratorConfiguration extends BaseChargeGeneratorConfiguration
         return parent::getForm($object,$options);
         
     }
+    
+    public function getPagerMaxPerPage() {
+        
+        $user = sfContext::getInstance()->getUser();
+        
+        $value = $user->getAttribute('charge_list_max_per_page', $user->getGuardUser()->getListMaxPerPage());
+        
+        return $value ? $value : parent::getPagerMaxPerPage();
+    }
+    
+    public function getGeneratorMaxPerPage() {
+        return parent::getPagerMaxPerPage();
+    }
 }

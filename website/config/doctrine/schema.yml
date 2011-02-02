@@ -48,4 +48,7 @@ Vehicle:
       foreignAlias: Vehicles
 
 
-
+sfGuardUser:
+  columns:
+    list_max_per_page:
+      type: string(5)

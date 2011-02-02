@@ -16,3 +16,14 @@ Charge:
     kilometers:  1000
     amount: 1700
     
+<?php for ($i = 100; $i <= 130; $i++): ?>
+  Charge_<?php echo $i ?>:
+    Vehicle: touran
+    User: ruf
+    Category: fuel
+    date: '2011-01-03'
+    kilometers: '520.00'
+    amount:      <?php echo $i."\n" ?>
+    comment: ''
+    quantity: <?php echo $i."\n" ?>
+<?php endfor ?>

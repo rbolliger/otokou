@@ -17,3 +17,6 @@ test:
       dsn: 'mysql:host=localhost;dbname=otokou_test'
       username: root
       password: volantino
+      #dsn: 'sqlite::memory:'
+
+      
