@@ -217,7 +217,7 @@ info('4 - List filters')->
         get('/ruf/charge')->
             with('response')->
                 begin()->
-                    checkElement('select#charge_filters_vehicle_id option',2)->
+                    checkElement('.sf_admin_filter_field_vehicle_id ul li',1)->
                 end()->
         
         info('  4.2 - Vehicle: the filtering works')->
@@ -230,8 +230,8 @@ info('4 - List filters')->
                     hasErrors(1)->
                     isError('vehicle_id', '/invalid/')->
                 end()->
-        click('Filter',array(
-            'charge_filters' => array(
+            click('Filter',array(
+                'charge_filters' => array(
                 'vehicle_id' => $browser->getVehicleId('vw-touran-1-4-tsi'))))->
             with('form')->
                 begin()->
@@ -254,10 +254,66 @@ info('4 - List filters')->
                         ),16)->
                 end()->
         
-        
-        info('  4.3 - Kilometers (and Amount and quantity): the range filter works')->
+        info('  4.3 - The user can select multiple categories')->
+        call('/ruf/charge/filter/action?_reset','post',array('_with_csrf' => true))->
+            with('response')->
+                begin()->
+                    isRedirected()->
+                    followRedirect()->
+                end()->
         click('Filter',array(
-            'charge_filters' => array(
+                'charge_filters' => array(
+                'category_id' => array($browser->getIdForCategory('Insurance'),$browser->getIdForCategory('Tax')))))->
+            with('response')->
+                begin()->
+                    isRedirected()->
+                    followRedirect()->
+                end()->
+            with('response')->
+                begin()->
+                    checkElement('div.sf_admin_list tbody tr',8)->
+                end()->
+            with('doctrine')->
+                begin()->
+                    check('Charge',
+                            Doctrine_Core::getTable('Charge')->createQuery('a')
+                                ->orWhere('a.category_id = ?',$browser->getIdForCategory('Insurance'))
+                                ->orWhere('a.category_id = ?',$browser->getIdForCategory('Tax'))
+                                ->andWhere('a.user_id = ?',$browser->getUserId('ruf'))
+                            ,8)->
+                end()->
+        click('Filter',array(
+                'charge_filters' => array(
+                'category_id' => array($browser->getIdForCategory('Insurance'),$browser->getIdForCategory('Fuel')))))->
+            with('response')->
+                begin()->
+                    isRedirected()->
+                    followRedirect()->
+                end()->
+            with('response')->
+                begin()->
+                    checkElement('div.sf_admin_list tbody tr',10)->
+                end()->
+            with('doctrine')->
+                begin()->
+                    check('Charge',
+                            Doctrine_Core::getTable('Charge')->createQuery('a')
+                                ->orWhere('a.category_id = ?',$browser->getIdForCategory('Insurance'))
+                                ->orWhere('a.category_id = ?',$browser->getIdForCategory('Fuel'))
+                                ->andWhere('a.user_id = ?',$browser->getUserId('ruf'))
+                            ,10)->
+                end()->
+        
+        
+        info('  4.4 - Kilometers (and Amount and quantity): the range filter works')->
+        call('/ruf/charge/filter/action?_reset','post',array('_with_csrf' => true))->
+            with('response')->
+                begin()->
+                    isRedirected()->
+                    followRedirect()->
+                end()->
+        click('Filter',array(
+                'charge_filters' => array(
                 'kilometers' => array('from' => 0))))->
             with('response')->
                 begin()->
