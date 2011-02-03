@@ -65,12 +65,14 @@ class chargeActions extends autoChargeActions {
         $username = $this->getUsernameFromRouteOrSession();
 
         if ($username == $this->getUser()->getGuardUser()->getUsername()) {
-            $id = $this->getUser()->getGuardUser()->getId();
+            $user = $this->getUser()->getGuardUser();
         } else {
-            $id = Doctrine_Core::getTable('sfGuardUser')->findOneByUsername($username)->getId();
+            $user = Doctrine_Core::getTable('sfGuardUser')->findOneByUsername($username);
         }
+        
+       $this->forward404Unless($user);
 
-        return $id;
+        return $user->getId();
     }
 
     public function executeMaxPerPage(sfRequest $request) {

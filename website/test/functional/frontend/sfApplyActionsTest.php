@@ -11,6 +11,19 @@ $user = getUserData();
 $browser->
         info('1 - Apply Action')->
         get('/apply')->
+        click('Create My Account', array('sfApplyApply' => array(
+            'username' => 'ruf',
+            'email_address'     => 'sdtsdfsdsdsdsdcom',
+            'email2'    => 'sdtsdf@sdsd.com',
+        )))->
+            with('form')->
+                begin()->
+                    hasErrors(4)->
+                    isError('username','/invalid/')->
+                    isError('password','/required/')->
+                    isError('password2','/required/')->
+                    isError('email_address','/invalid/')->
+                end()->
         click('Create My Account', array('sfApplyApply' => $user))->
             with('form')->
                 begin()->
@@ -81,7 +94,7 @@ $browser->
 
         
         logout()->
-        info('  3.1 Non-Authenticated User')->
+        info('  3.2 Non-Authenticated User')->
         get('/reset-request')->
         click('Reset My Password',array('sfApplyResetRequest' => array('username_or_email' => $user['username'])))->
             with('mailer')->

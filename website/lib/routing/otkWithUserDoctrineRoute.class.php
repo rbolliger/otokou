@@ -42,6 +42,7 @@ class otkWithUserDoctrineRoute extends sfDoctrineRoute {
     protected function getRealVariables() {
         return array_merge(array('username'), parent::getRealVariables());
     }
+    
 
 }
 

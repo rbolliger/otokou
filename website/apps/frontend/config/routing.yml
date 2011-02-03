@@ -34,6 +34,11 @@ sf_guard_register:
 sf_guard_forgot_password:
   url: /reset-request
   param: { module: sfApply, action: resetRequest }
+  
+reset:
+  url: /reset
+  param: { module: sfApply, action: reset }
+
 
 validate:
   url: /confirm/:validate
@@ -50,8 +55,9 @@ user_settings_account:
   options:
     model: sfGuardUser
     type: object
-    method: retrieveByUsername
     allow_empty: false
+  requirements:
+    sf_method: [get,post,put]
   
 user_settings_otokou:
   url: /:username/settings/otokou
@@ -60,8 +66,9 @@ user_settings_otokou:
   options:
     model: sfGuardUser
     type: object
-    method: retrieveByUsername
     allow_empty: false
+  requirements:
+    sf_method: [get,post,put]
 
 
 # default rules

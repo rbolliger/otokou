@@ -39,7 +39,6 @@ class sfApplyApplyForm extends sfGuardUserForm {
         // own transactions. Adding two fields to the profile form
         // is definitely simpler.
 
-
         $this->widgetSchema['password2'] = new sfWidgetFormInputPassword(array(), array('maxlength' => 128));
         $this->widgetSchema['email2']    = new sfWidgetFormInputText();
         $this->widgetSchema['password']    = new sfWidgetFormInputPassword(array(),array('maxlength' => 128, 'required' => true));
@@ -61,38 +60,11 @@ class sfApplyApplyForm extends sfGuardUserForm {
         $this->widgetSchema->setNameFormat('sfApplyApply[%s]');
         $this->widgetSchema->setFormFormatterName('list');
 
-
-
-        // We have the right to an opinion on these fields because we
-        // implement at least part of their behavior. Validators for the
-        // rest of the user profile come from the schema and from the
-        // developer's form subclass
-
-        $this->setValidator('username', new sfValidatorAnd(array(
-                    $this->getValidator('username'),
-                    new sfValidatorString(array(
-                        'required' => true,
-                        'trim' => true,
-                        'min_length' => 0,
-                        'max_length' => 128
-                    )),
-                    // Usernames should be safe to output without escaping and generally username-like.
-                    new sfValidatorRegex(array(
-                        'pattern' => '/^\w+$/'
-                            ), array('invalid' => 'Usernames must contain only letters, numbers and underscores.'))                    
-        )));
+        
 
         // Passwords are never printed - ever - except in the context of Symfony form validation which has built-in escaping.
         // So we don't need a regex here to limit what is allowed
         // Don't print passwords when complaining about inadequate length
-        $this->setValidator('password', new sfValidatorString(array(
-                    'required' => true,
-                    'trim' => true,
-                    'min_length' => 6,
-                    'max_length' => 128
-                        ), array(
-                    'min_length' => 'That password is too short. It must contain a minimum of %min_length% characters.')));
-
         $this->setValidator('password2', new sfValidatorString(array(
                     'required' => true,
                     'trim' => true,
@@ -106,17 +78,14 @@ class sfApplyApplyForm extends sfGuardUserForm {
         // <, > and & are rare but not forbidden due to the "quoted string in the local part" form of email address
         // (read the RFC if you don't believe me...).
 
-        $this->setValidator('email_address', new sfValidatorAnd(array(
-                    $this->getValidator('email_address'),
-                    new sfValidatorEmail(array('required' => true, 'trim' => true)),
-                    )));
+        
 
         $this->setValidator('email2', new sfValidatorEmail(array(
                     'required' => true,
                     'trim' => true
                 )));
         
-        $this->getValidator('email_address')->setMessage('invalid', 'An account with that email address already exists. If you have forgotten your password, click "cancel", then "Reset My Password."');
+        $this->getValidator('email_address')->setMessage('invalid', 'The email address is not a valid address or an account with that email address already exists. If you have forgotten your password, click "cancel", then "Reset My Password."');
 
 
 
