@@ -15,17 +15,25 @@ class ChargeFormWithUserFilter extends BaseChargeFormFilter {
         $q = Doctrine_Core::getTable($this->getRelatedModelName('Vehicle'))->createQuery('v')->where('v.user_id = ?', $this->getUserId());
 
         $this->widgetSchema['vehicle_id'] = new sfWidgetFormDoctrineChoice(array(
-                    'model' => $this->getRelatedModelName('Vehicle'),
-                    'add_empty' => true,
-                    'query' => $q,
+                    'model'     => $this->getRelatedModelName('Vehicle'),
+                    'query'     => $q,
+                    'multiple'  => true,
+                    'expanded'  => true,
                 ));
 
         $this->validatorSchema['vehicle_id'] = new sfValidatorDoctrineChoice(array(
                     'model' => $this->getRelatedModelName('Vehicle'),
                     'query' => $q,
                     'required' => false,
+                    'multiple'  => true,
                 ));
 
+        
+        $this->widgetSchema['category_id']->setOption('expanded', true);
+        $this->widgetSchema['category_id']->setOption('multiple', true);
+        $this->widgetSchema['category_id']->setOption('add_empty', false);
+        
+        $this->validatorSchema['category_id']->setOption('multiple', true);
 
 
 
