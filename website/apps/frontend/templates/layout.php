@@ -35,16 +35,16 @@
                         <?php echo $sf_content ?>
                     </div>
                     <div class="col2">
-                        <?php if (has_slot('rightcol')): ?>
-                            <?php include_slot('rightcol') ?>
+                        <?php if (has_slot('leftcol')): ?>
+                            <?php include_slot('leftcol') ?>
                         <?php else: ?>
                             <h1>Right column</h1>
                         <?php endif; ?>
                     </div>
                     <div class="col3">
 
-                        <?php if (has_slot('leftcol')): ?>
-                            <?php include_slot('leftcol') ?>
+                        <?php if (has_slot('rightcol')): ?>
+                            <?php include_slot('rightcol') ?>
                         <?php else: ?>
                             <h1>Left column</h1>
                         <?php endif; ?>
