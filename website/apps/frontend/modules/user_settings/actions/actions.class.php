@@ -15,8 +15,8 @@ class user_settingsActions extends sfActions
   *
   * @param sfRequest $request A request object
   */
-  public function executeIndex(sfWebRequest $request)
+  public function executeAccount(sfWebRequest $request)
   {
-    $this->forward('default', 'module');
+    
   }
 }

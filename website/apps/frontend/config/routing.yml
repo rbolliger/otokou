@@ -40,6 +40,29 @@ validate:
   param: { module: sfApply, action: confirm }
 
 
+## User Settings
+#------------------------------
+
+user_settings_account:
+  url: /:username/settings/account
+  param: {module: user_settings, action: account}
+  class: otkWithUserDoctrineRoute
+  options:
+    model: sfGuardUser
+    type: object
+    method: retrieveByUsername
+    allow_empty: false
+  
+user_settings_otokou:
+  url: /:username/settings/otokou
+  param: {module: user_settings, action: otokou}
+  class: otkWithUserDoctrineRoute
+  options:
+    model: sfGuardUser
+    type: object
+    method: retrieveByUsername
+    allow_empty: false
+
 
 # default rules
 homepage:
