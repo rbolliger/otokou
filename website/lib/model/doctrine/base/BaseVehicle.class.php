@@ -8,19 +8,22 @@
  * @property integer $id
  * @property string $name
  * @property integer $user_id
+ * @property boolean $is_archived
  * @property sfGuardUser $User
  * @property Doctrine_Collection $Charges
  * 
- * @method integer             getId()      Returns the current record's "id" value
- * @method string              getName()    Returns the current record's "name" value
- * @method integer             getUserId()  Returns the current record's "user_id" value
- * @method sfGuardUser         getUser()    Returns the current record's "User" value
- * @method Doctrine_Collection getCharges() Returns the current record's "Charges" collection
- * @method Vehicle             setId()      Sets the current record's "id" value
- * @method Vehicle             setName()    Sets the current record's "name" value
- * @method Vehicle             setUserId()  Sets the current record's "user_id" value
- * @method Vehicle             setUser()    Sets the current record's "User" value
- * @method Vehicle             setCharges() Sets the current record's "Charges" collection
+ * @method integer             getId()          Returns the current record's "id" value
+ * @method string              getName()        Returns the current record's "name" value
+ * @method integer             getUserId()      Returns the current record's "user_id" value
+ * @method boolean             getIsArchived()  Returns the current record's "is_archived" value
+ * @method sfGuardUser         getUser()        Returns the current record's "User" value
+ * @method Doctrine_Collection getCharges()     Returns the current record's "Charges" collection
+ * @method Vehicle             setId()          Sets the current record's "id" value
+ * @method Vehicle             setName()        Sets the current record's "name" value
+ * @method Vehicle             setUserId()      Sets the current record's "user_id" value
+ * @method Vehicle             setIsArchived()  Sets the current record's "is_archived" value
+ * @method Vehicle             setUser()        Sets the current record's "User" value
+ * @method Vehicle             setCharges()     Sets the current record's "Charges" collection
  * 
  * @package    otokou
  * @subpackage model
@@ -45,6 +48,10 @@ abstract class BaseVehicle extends sfDoctrineRecord
         $this->hasColumn('user_id', 'integer', null, array(
              'type' => 'integer',
              'notnull' => true,
+             ));
+        $this->hasColumn('is_archived', 'boolean', null, array(
+             'type' => 'boolean',
+             'default' => false,
              ));
     }
 

@@ -40,6 +40,7 @@ Vehicle:
     id: { type: integer, notnull: true, primary: true, autoincrement: true }
     name: { type: string(50), notnull: true }
     user_id: {type: integer, notnull: true }
+    is_archived: {type: boolean, default: false }
   relations:
     User:
       class: sfGuardUser
