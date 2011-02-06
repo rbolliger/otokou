@@ -3,9 +3,12 @@ vehicle:
   options:
     model:                Vehicle
     module:               vehicle
-    prefix_path:          /vehicle
+    prefix_path:          /:username/settings/vehicles
     column:               id
     with_wildcard_routes: true
+    route_class:          otkWithUserDoctrineRoute
+    model_methods:
+       list:              getAllByUser
 
 charge:
   class: sfDoctrineRouteCollection
