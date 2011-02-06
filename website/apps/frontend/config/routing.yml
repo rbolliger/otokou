@@ -9,7 +9,6 @@ charge:
     route_class:          otkWithUserDoctrineRoute
     model_methods:
        list:              getAllByUser
-    
 
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
@@ -35,9 +34,13 @@ sf_guard_forgot_password:
   url: /reset-request
   param: { module: sfApply, action: resetRequest }
   
-reset:
+apply_reset:
   url: /reset
   param: { module: sfApply, action: reset }
+  
+apply_resetCancel:
+  url: /reset-cancel
+  param: { module: sfApply, action: resetCancel }
 
 
 validate:
@@ -78,9 +81,9 @@ homepage:
 
 # generic rules
 # please, remove them by adding more specific rules
-default_index:
-  url:   /:module
-  param: { action: index }
+#default_index:
+#  url:   /:module
+#  param: { action: index }
 
-default:
-  url:   /:module/:action/*
+#default:
+#  url:   /:module/:action/*

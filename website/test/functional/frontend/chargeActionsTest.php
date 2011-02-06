@@ -10,12 +10,16 @@ $browser->setTester('doctrine', 'sfTesterDoctrine');
 
 $fuelId = $browser->getIdForCategory('fuel');
 
+$browser->      
 
-
-$browser->info('1 - The charge form')->
+        
+        info('1 - The charge form')->
         
         info('  1.1 - If "fuel" category is selected, a quantity must be specified')->
             get('/charge/new')->
+                with('response')->
+                    isStatusCode(404)->
+            get('/ruf/charge/new')->
                 with('request')->
                     begin()->
                         isParameter('module', 'charge')->
@@ -34,7 +38,7 @@ $browser->info('1 - The charge form')->
                     end()->
         
         info(' 1.2 - If any other category is selected, the quantity cannot be specified')->
-            get('/charge/new')->
+            get('/ruf/charge/new')->
             click('Save', getFormData($browser, array('category_id' => $browser->getIdForCategory('Tax'), 'quantity' => 12)))->
                 with('form')->
                     begin()->
@@ -47,7 +51,7 @@ $browser->info('1 - The charge form')->
                 end()->
         
         info('  1.3 - The "Save" button redirects to object edit')->
-            get('/charge/new')->
+            get('/ruf/charge/new')->
             click('Save', getFormData($browser, array('category_id' => $browser->getIdForCategory('Tax'), 'quantity' => null)))->
                 with('response')->
                     begin()->
@@ -61,7 +65,7 @@ $browser->info('1 - The charge form')->
                     end()->
         
         info('  1.4 - The "Save and add" button redirects to a new charge input form')->
-            get('/charge/new')->
+            get('/ruf/charge/new')->
             click('Save and add', getFormData($browser, array('category_id' => $browser->getIdForCategory('Tax'), 'quantity' => null)))->
                 with('response')->
                     begin()->
@@ -81,6 +85,9 @@ info('2 - Data access rights')->
         
         info('  2.1 - A user can only see his charges in list')->
             get('/charge')->
+                with('response')->
+                    isStatusCode(404)->
+            get('/user2/charge')->
                 with('request')->
                     begin()->
                         isParameter('username','user2')->

@@ -10,4 +10,6 @@
  */
 class chargeGeneratorHelper extends BaseChargeGeneratorHelper
 {
+    
+
 }
