@@ -1,7 +1,7 @@
 <h1>Hello<h1/>
 
 
-    <?php slot('leftcol') ?>
+    <?php slot('rightcol') ?>
     <?php if ($sf_user->isAuthenticated()) { ?>
 
         Hello <?php  echo($sf_user->getGuardUser()->getUsername()); ?>
