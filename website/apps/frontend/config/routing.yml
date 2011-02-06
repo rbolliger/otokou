@@ -1,3 +1,12 @@
+vehicle:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Vehicle
+    module:               vehicle
+    prefix_path:          /vehicle
+    column:               id
+    with_wildcard_routes: true
+
 charge:
   class: sfDoctrineRouteCollection
   options:

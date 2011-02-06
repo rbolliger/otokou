@@ -128,7 +128,17 @@ $browser->
                           'id'     => $browser->getUserId('ruf'),
                           'list_max_per_page' => null
                         ),true)->
+                end()->
+        
+        info('3 - Vehicles settings')->
+        
+        click('Manage vehicles')->
+            with('request')-> 
+                begin()->
+                    isParameter('module','vehicle')->
+                    isParameter('action','index')->
                 end()
+        
         
 
 ;
