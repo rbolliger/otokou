@@ -10,11 +10,6 @@
  */
 class user_settingsActions extends sfActions {
 
-    /**
-     * Executes index action
-     *
-     * @param sfRequest $request A request object
-     */
     public function executeAccount(sfWebRequest $request) {
 
 
@@ -36,4 +31,25 @@ class user_settingsActions extends sfActions {
         }
     }
 
+    public function executeOtokou(sfWebRequest $request) {
+
+
+        $user = $this->getRoute()->getObject();
+        $this->form = new sfGuardUserOtokouSettingsForm($user);
+ 
+
+
+        if ($request->isMethod('put')) {
+            $this->form->bind($request->getParameter($this->form->getName()), $request->getFiles($this->form->getName()));
+
+            if ($this->form->isValid()) { 
+                $this->form->save();
+                
+                $this->getUser()->setFlash('notice', 'The account details have been saved.');
+
+                $this->redirect('@user_settings_otokou');
+            }
+        }
+    }
+    
 }

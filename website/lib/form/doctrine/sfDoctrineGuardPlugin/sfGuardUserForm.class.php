@@ -12,6 +12,7 @@ class sfGuardUserForm extends PluginsfGuardUserForm
 {
   public function configure()
   {
+           
       
       $this->setValidator('username', new sfValidatorAnd(array(
                     $this->getValidator('username'),
@@ -43,5 +44,18 @@ class sfGuardUserForm extends PluginsfGuardUserForm
                     $this->getValidator('email_address'),
                     new sfValidatorEmail(array('required' => true, 'trim' => true)),
                     )));
+      
+      
+      $this->setValidator('list_max_per_page', new sfValidatorAnd(array(
+                    $this->getValidator('list_max_per_page'),
+                    new sfValidatorInteger(array(
+                        'required' => false,
+                        'min'      => 1,
+                        )
+                        , array(
+                            'invalid' => 'Only integer numbers larger than 0 can be defined')),
+                    ),
+              array('required' => false)
+              ));
   }
 }

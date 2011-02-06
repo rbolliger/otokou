@@ -44,6 +44,91 @@ $browser->
                 with('form')->
                     begin()->
                         hasErrors(false)->
-                    end()
+                    end()->
+                with('response')->
+                    begin()->
+                        isRedirected()->
+                        followRedirect()->
+                    end()->
+                with('request')->
+                    begin()->
+                        isParameter('module','user_settings')->
+                        isParameter('action','account')->
+                    end()->
+        
+        
+        
+        info('2 - Otokou settings')->
+        
+        info('  2.1 - List max_per_page')->
+        get('/ruf/settings/otokou')->   
+            with('response')->
+              begin()->
+                isStatusCode(200)->
+              end()->
+        click('Update',array('sf_guard_user' =>
+            array(
+                'list_max_per_page' => -0.3
+            )))->
+            with('form')->
+                begin()->
+                    hasErrors(1)->
+                    isError('list_max_per_page','invalid')->
+                end()->
+         click('Update',array('sf_guard_user' =>
+            array(
+                'list_max_per_page' => 25
+            )))->
+            with('form')->
+                begin()->
+                    hasErrors(false)->
+                end()->
+           with('response')->
+                begin()->
+                    isRedirected()->
+                    followRedirect()->
+                end()->
+            with('request')->
+                begin()->
+                    isParameter('module','user_settings')->
+                    isParameter('action','otokou')->
+                end()->
+            with('doctrine')->
+                begin()->
+                    check('sfGuardUser', array(
+                          'id'     => $browser->getUserId('ruf'),
+                          'list_max_per_page' => 25
+                        ),true)->
+                end()->
+        click('Update',array('sf_guard_user' =>
+            array(
+                'list_max_per_page' => null
+            )))->
+            with('form')->
+                begin()->
+                    hasErrors(false)->
+                end()->
+           with('response')->
+                begin()->
+                    isRedirected()->
+                    followRedirect()->
+                end()->
+            with('request')->
+                begin()->
+                    isParameter('module','user_settings')->
+                    isParameter('action','otokou')->
+                end()->
+            with('doctrine')->
+                begin()->
+                    check('sfGuardUser', array(
+                          'id'     => $browser->getUserId('ruf'),
+                          'list_max_per_page' => 25
+                        ),false)->
+                    check('sfGuardUser', array(
+                          'id'     => $browser->getUserId('ruf'),
+                          'list_max_per_page' => null
+                        ),true)->
+                end()
+        
 
 ;
