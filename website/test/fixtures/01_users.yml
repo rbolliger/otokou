@@ -34,6 +34,14 @@ sfGuardUser:
     is_super_admin: false
     list_max_per_page: 3
     
+  user_vehicle:
+    first_name:     User
+    last_name:      two
+    email_address:  use_vehicle@gmail.com
+    username:       user_vehicle
+    password:       user
+    is_super_admin: false
+    
 
 sfGuardGroup:
   Group_admin:

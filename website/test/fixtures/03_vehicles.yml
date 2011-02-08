@@ -9,5 +9,12 @@ Vehicle:
   car3:
     name: car3
     User: user2
+  car_vehicle_1:
+    name: car vehicle 1
+    User: user_vehicle
+  car_vehicle_2:
+    name: car vehicle 2
+    User: user_vehicle
+    is_archived: true
   
     

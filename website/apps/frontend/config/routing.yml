@@ -10,6 +10,7 @@ vehicle:
     model_methods:
        list:              getAllByUser
 
+
 charge:
   class: sfDoctrineRouteCollection
   options:

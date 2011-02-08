@@ -12,4 +12,9 @@
  */
 class Vehicle extends BaseVehicle
 {
+    public function toggleArchive() {
+        $this->setIsArchived(!$this->getIsArchived());
+        $this->save();
+    }
+    
 }

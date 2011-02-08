@@ -7,15 +7,31 @@ generator:
     with_show:             false
     singular:              ~
     plural:                ~
-    route_prefix:          vehicle
     with_doctrine_route:   true
     actions_base_class:    sfActions
+    route_prefix:          vehicle
 
     config:
       actions: ~
-      fields:  ~
-      list:    ~
-      filter:  ~
-      form:    ~
-      edit:    ~
-      new:     ~
+      fields:  
+        name:
+          help: Define an explicit name for the vehicle.
+        is_archived:
+           help: You can archive vehicles you don't use anymore. Its data still remain available.
+           label: Is archived?
+      list:   
+        display: [=name, is_archived]
+        title: Your vehicles
+        max_per_page:   20
+        object_actions:
+            _edit:        ~
+            _delete:      ~
+            archive:   { label: Archive, action: archive }
+      filter:  
+        class: false
+      form:    
+        class: VehicleEmbeddedUserForm
+      edit:    
+        title: Edit vehicle %%name%%
+      new:     
+        title: Add a new vehicle
