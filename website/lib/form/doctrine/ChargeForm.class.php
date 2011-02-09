@@ -40,8 +40,11 @@ class ChargeForm extends BaseChargeForm {
                 ));
         
         
-        $q = Doctrine_Core::getTable($this->getRelatedModelName('Vehicle'))->createQuery('v')->where('v.user_id = ?',$this->getObject()->getUserId());
-        
+        $q = Doctrine_Core::getTable($this->getRelatedModelName('Vehicle'))
+                ->createQuery('v')
+                ->andWhere('v.user_id = ?',$this->getObject()->getUserId())
+                ->andWhere('v.is_archived = ?',false);
+         
         $this->widgetSchema['vehicle_id'] = new sfWidgetFormDoctrineChoice(array(
             'model'         => $this->getRelatedModelName('Vehicle'),
             'add_empty'     => false,

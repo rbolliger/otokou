@@ -12,7 +12,10 @@ class ChargeFormWithUserFilter extends BaseChargeFormFilter {
 
     public function configure() {
 
-        $q = Doctrine_Core::getTable($this->getRelatedModelName('Vehicle'))->createQuery('v')->where('v.user_id = ?', $this->getUserId());
+        $q = Doctrine_Core::getTable($this->getRelatedModelName('Vehicle'))
+                ->createQuery('v')
+                ->andWhere('v.user_id = ?', $this->getUserId())
+                ->andWhere('v.is_archived = ?',false);
 
         $this->widgetSchema['vehicle_id'] = new sfWidgetFormDoctrineChoice(array(
                     'model'     => $this->getRelatedModelName('Vehicle'),

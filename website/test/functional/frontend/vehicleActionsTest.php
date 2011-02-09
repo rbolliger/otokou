@@ -147,7 +147,35 @@ $browser->
                         check('Vehicle', array(
                               'id'     => $browser->getVehicleId('mycar'),
                             ),false)->
-                    end()
+                    end()->
+        
+        
+        info('5- Dropdown menus')->
+        
+        info('  5.1 - Charges list (filters)')->
+        get('/user_vehicle/charge')->
+            with('response')->
+                begin()->
+                    checkElement('.sf_admin_filter_field_vehicle_id ul li',1)->
+                end()->
+            with('doctrine')->
+                begin()->
+                    check('Vehicle', array(
+                              'user_id'     => $browser->getUserId('user_vehicle'),
+                            ),2)->
+                    check('Vehicle', array(
+                              'user_id'     => $browser->getUserId('user_vehicle'),
+                              'is_archived' => 1,
+                            ),1)->
+                end()->
+        
+        info('  5.2 - New charge')->
+        get('/user_vehicle/charge/new')->
+            with('response')->
+            begin()->
+                checkElement('select#charge_vehicle_id option',1)->
+            end()
+        
         
 
 
