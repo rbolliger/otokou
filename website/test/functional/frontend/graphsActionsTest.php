@@ -2,18 +2,39 @@
 
 include(dirname(__FILE__).'/../../bootstrap/functional.php');
 
-$browser = new sfTestFunctional(new sfBrowser());
+$browser = new otokouTestFunctional(new sfBrowser());
+$browser->loadData();
+$browser->setTester('doctrine', 'sfTesterDoctrine');
 
 $browser->
-  get('/graphs/index')->
+        
+        info('1 - Index')->
+        get('/ruf/graphs')->
+          with('request')->begin()->
+            isParameter('module', 'graphs')->
+            isParameter('action', 'index')->
+          end()->
+          with('response')->begin()->
+            isStatusCode(401)->
+          end()->
 
-  with('request')->begin()->
-    isParameter('module', 'graphs')->
-    isParameter('action', 'index')->
-  end()->
-
-  with('response')->begin()->
-    isStatusCode(200)->
-    checkElement('body', '!/This is a temporary page/')->
-  end()
+        login('user_graphs','user')->
+        get('/graphs')->
+          with('response')->begin()->
+            isStatusCode(404)->
+          end()->
+        
+        get('/ruf/graphs')->
+          with('response')->begin()->
+            isStatusCode(403)->
+          end()->
+        
+        get('/user_graphs/graphs')->
+          with('request')->begin()->
+            isParameter('module', 'graphs')->
+            isParameter('action', 'index')->
+          end()->
+          with('response')->begin()->
+            isStatusCode(200)->
+          end()
 ;

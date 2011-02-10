@@ -10,6 +10,7 @@
  */
 class graphsActions extends sfActions
 {
+        
  /**
   * Executes index action
   *
@@ -19,4 +20,36 @@ class graphsActions extends sfActions
   {
     $this->forward('default', 'module');
   }
+  
+  
+  
+  protected function checkOwnership() {
+
+        $username = $this->getUsernameFromRouteOrSession();
+
+        if ($username == $this->getUser()->getGuardUser()->getUsername()) {
+            $this->getUser()->addCredentials('owner');
+        } else {
+            $this->getUser()->removeCredential('owner');
+        }
+
+        if (!$this->getRequest()->getParameterHolder()->get('username')) {
+            $this->getRequest()->getParameterHolder()->set('username', $username);
+        }
+    }
+
+    public function getCredential() {
+
+        $this->checkOwnership();
+
+        return parent::getCredential();
+    }
+
+    protected function getUsernameFromRouteOrSession() {
+
+        return $this->getRequest()->getParameterHolder()->get('username') ?
+                $this->getRequest()->getParameterHolder()->get('username') :
+                $this->getUser()->getGuardUser()->getUsername();
+    }
+  
 }
