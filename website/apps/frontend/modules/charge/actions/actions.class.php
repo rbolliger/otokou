@@ -24,7 +24,7 @@ class chargeActions extends autoChargeActions {
 
     public function addUserFilter($event, $query) {
 
-        return $query->andWhere(sprintf('user_id = %d ', $this->getUserIdFromRouteOrSession()));
+        return $query->andWhere($query->getRootAlias() . '.user_id = ? ', $this->getUserIdFromRouteOrSession());
     }
 
     public function addUserToConfig(sfEvent $event) {
@@ -69,8 +69,8 @@ class chargeActions extends autoChargeActions {
         } else {
             $user = Doctrine_Core::getTable('sfGuardUser')->findOneByUsername($username);
         }
-        
-       $this->forward404Unless($user);
+
+        $this->forward404Unless($user);
 
         return $user->getId();
     }
@@ -78,31 +78,29 @@ class chargeActions extends autoChargeActions {
     public function executeMaxPerPage(sfRequest $request) {
 
         $form = new PaginationMaxPerPageForm($this->getUser(), $this->getMaxPerPageOptions(), false);
-        
+
         $isValid = $form->process($request);
-        
+
         if ($isValid) {
-           
+
             $this->redirect('@charge?page=1');
-            
-            }
-        
+        }
+
         $this->pager = $this->getPager();
         $this->sort = $this->getSort();
 
         $this->setTemplate('index');
         $this->pager->form = $form;
-
     }
 
     protected function getMaxPerPageOptions() {
 
-        
-        $def = $this->getUser()->getGuardUser()->getListMaxPerPage() ? 
-                            $this->getUser()->getGuardUser()->getListMaxPerPage() : 
-                            $this->configuration->getGeneratorMaxPerPage();
 
-        
+        $def = $this->getUser()->getGuardUser()->getListMaxPerPage() ?
+                $this->getUser()->getGuardUser()->getListMaxPerPage() :
+                $this->configuration->getGeneratorMaxPerPage();
+
+
         $options = array(
             'max_per_page_name' => 'charge_list_max_per_page',
             'max_per_page_choices' => array(
@@ -118,19 +116,18 @@ class chargeActions extends autoChargeActions {
 
         return $options;
     }
-    
-   public function executeIndex(sfWebRequest $request) {
-              
-       parent::executeIndex($request); 
 
-       $this->pager->form = new PaginationMaxPerPageForm($this->getUser(), $this->getMaxPerPageOptions(), false);
-           
+    public function executeIndex(sfWebRequest $request) {
+
+        parent::executeIndex($request);
+
+        $this->pager->form = new PaginationMaxPerPageForm($this->getUser(), $this->getMaxPerPageOptions(), false);
     }
-    
+
     public function executeFilter(sfWebRequest $request) {
-        
+
         parent::executeFilter($request);
-        
+
         $this->pager->form = new PaginationMaxPerPageForm($this->getUser(), $this->getMaxPerPageOptions(), false);
     }
 

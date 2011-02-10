@@ -144,3 +144,14 @@ Charge:
     amount:      <?php echo $i."\n" ?>
     comment: ''
 <?php endfor ?>
+
+<?php for ($i = 1; $i <= 9; $i++): ?>
+  Charge_user_vehicle_<?php echo $i ?>:
+    Vehicle: car_vehicle_<?php echo (fmod($i,2) ? 1 : 2)."\n" ?>
+    User: user_vehicle
+    Category: taxes
+    date: '2011-01-03'
+    kilometers: '653.00'
+    amount:      <?php echo $i."\n" ?>
+    comment: ''
+<?php endfor ?>

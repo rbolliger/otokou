@@ -157,6 +157,9 @@ $browser->
             with('response')->
                 begin()->
                     checkElement('.sf_admin_filter_field_vehicle_id ul li',1)->
+        
+                    // Checking that only charged for non-archived vehicles are displayed
+                    checkElement('div.sf_admin_list tbody tr',4)->
                 end()->
             with('doctrine')->
                 begin()->

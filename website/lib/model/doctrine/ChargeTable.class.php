@@ -32,6 +32,7 @@ class ChargeTable extends Doctrine_Table
  
     $q->leftJoin($rootAlias . '.Category ct');
     $q->leftJoin($rootAlias . '.Vehicle v');
+    $q->andWhere('v.is_archived = ?',false);
  
     return $q;
   }
