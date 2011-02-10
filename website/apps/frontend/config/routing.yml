@@ -1,3 +1,11 @@
+graph_index:
+  url: /:username/graphs
+  class: otkWithUserRoute
+  param: {module: graphs, action: index }
+
+
+
+
 vehicle:
   class: sfDoctrineRouteCollection
   options:
