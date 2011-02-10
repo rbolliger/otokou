@@ -20,8 +20,7 @@ class ChargeFormFilter extends BaseChargeFormFilter
         $this->widgetSchema['category_id']->setOption('add_empty', false);
         
         $this->validatorSchema['category_id']->setOption('multiple', true);
-
-
+        
 
         $widget = new sfWidgetFormDate(array(
                     'format' => '%day%/%month%/%year%',

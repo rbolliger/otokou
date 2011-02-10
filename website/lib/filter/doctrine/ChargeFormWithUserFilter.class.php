@@ -21,13 +21,16 @@ class ChargeFormWithUserFilter extends ChargeFormFilter {
                         ->createQuery('v')
                         ->andWhere('v.user_id = ?', $this->getUserId())
                         ->andWhere('v.is_archived = ?', false);
-
+        
+               
+       
         $this->widgetSchema['vehicle_id'] = new sfWidgetFormDoctrineChoice(array(
                     'model' => $this->getRelatedModelName('Vehicle'),
                     'query' => $q,
                     'multiple' => true,
                     'expanded' => true,
                 ));
+        
 
         $this->validatorSchema['vehicle_id'] = new sfValidatorDoctrineChoice(array(
                     'model' => $this->getRelatedModelName('Vehicle'),

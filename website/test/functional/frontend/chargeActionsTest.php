@@ -225,6 +225,10 @@ info('4 - List filters')->
             with('response')->
                 begin()->
                     checkElement('.sf_admin_filter_field_vehicle_id ul li',1)->
+                    // all vehicles are checked by default
+                    checkElement('.sf_admin_filter_field_vehicle_id ul li input[checked="checked"]',1)->
+                    // all categories are checked by default
+                    checkElement('.sf_admin_filter_field_category_id ul li input[checked="checked"]',7)->
                 end()->
         
         info('  4.2 - Vehicle: the filtering works')->
@@ -266,14 +270,34 @@ info('4 - List filters')->
             with('response')->
                 begin()->
                     isRedirected()->
+                    isStatusCode(302)->
                     followRedirect()->
                 end()->
-        click('Filter',array(
+
+            with('request')->
+                begin()->
+                    isParameter('module','charge')->
+                    isParameter('action','index')->
+                end()->
+
+        post('/ruf/charge/filter/action',array(
                 'charge_filters' => array(
-                'category_id' => array($browser->getIdForCategory('Insurance'),$browser->getIdForCategory('Tax')))))->
+                    'category_id' => array($browser->getIdForCategory('Insurance'),$browser->getIdForCategory('Tax'))
+                        )
+                        ,array('_with_csrf' => true))
+                )->
+        //click('Filter',array(
+         //       'charge_filters' => array(
+         //       'category_id' => array($browser->getIdForCategory('Insurance'),$browser->getIdForCategory('Tax')))))->
+            with('form')->
+                begin()->
+                    hasErrors(false)->
+                    debug()->
+                end()->
             with('response')->
                 begin()->
                     isRedirected()->
+                    isStatusCode(302)->
                     followRedirect()->
                 end()->
             with('response')->
