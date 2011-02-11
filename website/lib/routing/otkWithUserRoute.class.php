@@ -31,9 +31,12 @@ class otkWithUserRoute extends sfRequestRoute {
     public function matchesParameters($params, $context = array()) {
 
         $params = array_merge(array('username' => $this->getUserId()), $params);
-
+        
         return parent::matchesParameters($params, $context);
     }
+    
+    
+    
 
 }
 

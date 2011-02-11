@@ -2,8 +2,15 @@ graph_index:
   url: /:username/graphs
   class: otkWithUserRoute
   param: {module: graphs, action: index }
+  requirements:
+    sf_method: [ get, post, head ]
 
-
+graph_filter:
+  url: /:username/graphs/filter
+  class: otkWithUserRoute
+  param: {module: graphs, action: filter }
+  requirements:
+    sf_method: [post]
 
 
 vehicle:

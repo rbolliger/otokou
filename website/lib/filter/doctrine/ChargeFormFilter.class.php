@@ -18,6 +18,7 @@ class ChargeFormFilter extends BaseChargeFormFilter
         $this->widgetSchema['category_id']->setOption('expanded', true);
         $this->widgetSchema['category_id']->setOption('multiple', true);
         $this->widgetSchema['category_id']->setOption('add_empty', false);
+        $this->widgetSchema['category_id']->setOption('label', 'Categories');
         
         $this->validatorSchema['category_id']->setOption('multiple', true);
         

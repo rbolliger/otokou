@@ -36,5 +36,20 @@ $browser->
           end()->
           with('response')->begin()->
             isStatusCode(200)->
-          end()
+          end()->
+        
+        info('2 - Filters')->
+        
+        info('  2.1 - Blank filtering')->
+        Click('Filter')->
+        with('request')->
+            begin()->
+                isParameter('module','graphs')->
+                isParameter('action','filter')->
+            end()->
+        with('form')->
+            begin()->
+                hasErrors(false)->
+            end()
+        
 ;

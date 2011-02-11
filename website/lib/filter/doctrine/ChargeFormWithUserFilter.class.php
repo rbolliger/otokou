@@ -29,6 +29,7 @@ class ChargeFormWithUserFilter extends ChargeFormFilter {
                     'query' => $q,
                     'multiple' => true,
                     'expanded' => true,
+                    'label' =>  'Vehicles',
                 ));
         
 
@@ -38,6 +39,7 @@ class ChargeFormWithUserFilter extends ChargeFormFilter {
                     'required' => false,
                     'multiple' => true,
                 ));
+        
     }
 
     protected function getUserId() {
