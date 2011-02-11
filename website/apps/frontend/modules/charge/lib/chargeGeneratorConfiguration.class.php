@@ -47,14 +47,5 @@ class chargeGeneratorConfiguration extends BaseChargeGeneratorConfiguration
         return parent::getPagerMaxPerPage();
     }
     
-    public function getFilterDefaults()
-  {
-        $defaults = array(
-            'vehicle_id' =>  array_keys($this->getFilterForm(array())->getWidget('vehicle_id')->getChoices()),
-            'category_id' =>  array_keys($this->getFilterForm(array())->getWidget('category_id')->getChoices()),
-        );
-        
-        return $defaults;
-
-  }
+  
 }
