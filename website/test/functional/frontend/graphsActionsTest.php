@@ -66,6 +66,19 @@ $browser->
         Click('Filter',array(
             'charge_filters' => array(
                 'vehicle_id' => array($browser->getVehicleId('car-graphs-1')),
+                'vehicle_display' => 'anything',
+                'category_id' => array($browser->getIdForCategory('Tax'),$browser->getIdForCategory('Fuel')),
+                'category_display' => 'single',
+            )
+        ))->
+            with('form')->
+            begin()->
+                hasErrors(1)->
+                isError('vehicle_display','/invalid/')->
+            end()->
+        Click('Filter',array(
+            'charge_filters' => array(
+                'vehicle_id' => array($browser->getVehicleId('car-graphs-1')),
                 'vehicle_display' => 'stacked',
                 'category_id' => array($browser->getIdForCategory('Tax'),$browser->getIdForCategory('Fuel')),
                 'category_display' => 'single',
@@ -79,6 +92,11 @@ $browser->
             begin()->
                 isRedirected()->
                 followRedirect()->
+            end()->
+        with('request')->
+            begin()->
+                isParameter('module','graphs')->
+                isParameter('action','index')->
             end()->
         with('response')->
             begin()->

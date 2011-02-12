@@ -42,6 +42,13 @@ class ChargeFormFilter extends BaseChargeFormFilter
                     'template' => 'from %from_date% to %to_date%',
                 ))
         ;
+        
+        $this->validatorSchema['date'] = new sfValidatorDateRange(
+                array(
+                    'required' => false,
+                    'from_date' => new sfValidatorDate(array('required' => false)),
+                    'to_date' => new sfValidatorDate(array('required' => false))
+                    ));
 
         $this->widgetSchema['kilometers'] = new sfWidgetFormFilterDate(array(
                     'from_date' => new sfWidgetFormInput(array('default' => null)),

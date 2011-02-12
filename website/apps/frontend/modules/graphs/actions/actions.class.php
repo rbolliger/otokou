@@ -14,6 +14,8 @@ class graphsActions extends sfActions {
         parent::preExecute();
 
         $this->filters = new ChargeForGraphsFilter($this->getFilters());
+       
+        
     }
 
     /**
@@ -24,8 +26,15 @@ class graphsActions extends sfActions {
     public function executeIndex(sfWebRequest $request) {
 
         $this->setPreviousTemplate('index');
+        $this->setPreviousAction('index');
+
 
         $this->data = $this->getFilters();
+        
+
+            
+
+
         
     }
 
@@ -44,7 +53,7 @@ class graphsActions extends sfActions {
 
             $this->setFilters($this->filters->getValues());
 
-            $this->redirect($request->getReferer());
+            $this->redirect($this->getPreviousAction());
         }
 
 
@@ -95,11 +104,19 @@ class graphsActions extends sfActions {
     }
 
     protected function getPreviousTemplate() {
-        return $this->getUser()->getAttribute('graphs.prevTemplate', 'index', 'graphs');
+        return $this->getUser()->getAttribute('graphs.prevTemplate', null, 'graphs');
     }
 
     protected function setPreviousTemplate($template) {
         return $this->getUser()->setAttribute('graphs.prevTemplate', $template, 'graphs');
+    }
+    
+    protected function getPreviousAction() {
+        return 'graphs/'.$this->getUser()->getAttribute('graphs.prevAction', null, 'graphs');
+    }
+
+    protected function setPreviousAction($action) {
+        return $this->getUser()->setAttribute('graphs.prevAction', $action, 'graphs');
     }
 
 }
