@@ -16,7 +16,12 @@ class otokouTestFunctional extends sfTestFunctional {
     }
 
     public function getIdForCategory($category) {
-        return $id = Doctrine_Core::getTable('Category')->findOneByName($category)->getId();
+        $c = Doctrine_Core::getTable('Category')->findOneByName($category);
+        
+        if (!$c) {
+            throw new sfException(sprintf('Cannot find any category with name %s', $category));
+        }
+        return $c->getId() ;
     }
 
     public function login($username = 'ruf',$password = 'admin@1') {
@@ -62,7 +67,10 @@ class otokouTestFunctional extends sfTestFunctional {
         
         $v = Doctrine_Core::getTable('Vehicle')->findOneBySlug($name);
         
-        return $v ? $v->getId() : null;
+        if (!$v) {
+            throw new sfException(sprintf('Cannot find any vehicle with slug %s', $name));
+        }
+        return $v->getId() ;
     }
     
     public function getOneChargeByParams($params = array()) {

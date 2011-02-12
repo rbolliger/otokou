@@ -1,7 +1,7 @@
 <?php use_stylesheets_for_form($filters) ?>
 <?php use_javascripts_for_form($filters) ?>
 
-
+<div class="graphs_filters">
 <?php if ($filters->hasGlobalErrors()): ?>
     <?php echo $filters->renderGlobalErrors() ?>
 <?php endif; ?>
@@ -17,3 +17,5 @@
     </tr>
 </table>
 </form>
+
+</div>

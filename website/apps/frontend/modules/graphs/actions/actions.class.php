@@ -26,6 +26,7 @@ class graphsActions extends sfActions {
         $this->setPreviousTemplate('index');
 
         $this->data = $this->getFilters();
+        
     }
 
     public function executeFilter(sfWebRequest $request) {

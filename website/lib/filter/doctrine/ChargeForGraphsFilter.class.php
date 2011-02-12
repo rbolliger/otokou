@@ -43,6 +43,15 @@ class ChargeForGraphsFilter extends ChargeFormWithUserFilter {
         $this->widgetSchema['category_display'] = clone $this->widgetSchema['vehicle_display'];
         $this->validatorSchema['category_display'] = clone $this->validatorSchema['vehicle_display'];
         $this->widgetSchema->moveField('category_display', sfWidgetFormSchema::BEFORE, 'date');
+        
+        $q = Doctrine_Core::getTable($this->getRelatedModelName('Vehicle'))
+                        ->createQuery('v')
+                        ->andWhere('v.user_id = ?', $this->getUserId());
+        
+               
+        $this->widgetSchema['vehicle_id']->setOption('query', $q);
+        $this->validatorSchema['vehicle_id']->setOption('query', $q);
+        
     }
 
 }

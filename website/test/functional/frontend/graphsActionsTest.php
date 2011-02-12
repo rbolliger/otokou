@@ -50,6 +50,42 @@ $browser->
         with('form')->
             begin()->
                 hasErrors(false)->
-            end()
+            end()->
+        with('response')->
+            begin()->
+                isRedirected()->
+                followRedirect()->
+            end()->
+        with('response')->
+            begin()->
+            // two vehicles listed, including archived one
+                checkElement('div.graphs_filters tr input[name="charge_filters[vehicle_id][]"]',2)->
+            end()->
         
+        info('  2.2 - Filter action')->
+        Click('Filter',array(
+            'charge_filters' => array(
+                'vehicle_id' => array($browser->getVehicleId('car-graphs-1')),
+                'vehicle_display' => 'stacked',
+                'category_id' => array($browser->getIdForCategory('Tax'),$browser->getIdForCategory('Fuel')),
+                'category_display' => 'single',
+            )
+        ))->
+            with('form')->
+            begin()->
+                hasErrors(false)->
+            end()->
+        with('response')->
+            begin()->
+                isRedirected()->
+                followRedirect()->
+            end()->
+        with('response')->
+            begin()->
+            // two vehicles listed, including archived one
+                checkElement('div.graphs_filters tr input[name="charge_filters[vehicle_id][]"][checked="checked"]',1)->
+                checkElement('div.graphs_filters tr input[name="charge_filters[vehicle_display]"][checked="checked"]',1)->
+                checkElement('div.graphs_filters tr input[name="charge_filters[category_id][]"][checked="checked"]',2)->
+                checkElement('div.graphs_filters tr input[name="charge_filters[category_display]"][checked="checked"]',1)->
+            end()
 ;
