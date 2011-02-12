@@ -202,7 +202,7 @@ info('3 - Vehicle choices')->
                     end()->
         
         info('  3.3 - A user cannot select non-registered vechicles')->
-        click('Save', getFormData($browser, array('vehicle_id' => $browser->getVehicleId('car-non-existent'))))->
+        click('Save', getFormData($browser, array('vehicle_id' => $browser->getVehicleId('car-non-existent',false))))->
                 with('form')->
                     begin()->
                         hasErrors(1)->

@@ -145,7 +145,7 @@ $browser->
             with('doctrine')->
                     begin()->
                         check('Vehicle', array(
-                              'id'     => $browser->getVehicleId('mycar'),
+                              'id'     => $browser->getVehicleId('mycar',false),
                             ),false)->
                     end()->
         
