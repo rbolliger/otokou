@@ -29,9 +29,14 @@ class graphsActions extends sfActions {
         $this->setPreviousAction('index');
 
 
-        $this->data = $this->getFilters();
+        $this->data = $this->getData();
         
-
+        $filters = $this->getFilters();
+        
+        $filters = $this->updateFieldIfEmpty($filters, 'vehicle_display', 'single');
+        $filters = $this->updateFieldIfEmpty($filters, 'category_display', 'stascked');
+        
+        $this->query = $this->filters->buildQuery($filters)->execute();
             
 
 
@@ -41,9 +46,10 @@ class graphsActions extends sfActions {
     public function executeFilter(sfWebRequest $request) {
 
         if ($request->hasParameter('_reset')) {
+            
             $this->setFilters(array());
 
-            $this->redirect($request->getReferer());
+            $this->redirect($this->getPreviousAction());
         }
 
 
@@ -57,7 +63,8 @@ class graphsActions extends sfActions {
         }
 
 
-        $this->data = $this->getFilters();
+        $this->data = $this->getData();
+        $this->query = $this->filters->buildQuery($this->getFilters())->execute();
         $this->setTemplate($this->getPreviousTemplate());
     }
 
@@ -117,6 +124,22 @@ class graphsActions extends sfActions {
 
     protected function setPreviousAction($action) {
         return $this->getUser()->setAttribute('graphs.prevAction', $action, 'graphs');
+    }
+    
+    protected function getData() {
+        
+        return $this->getFilters();
+        
+    }
+    
+    protected function updateFieldIfEmpty($filters,$field,$value) {
+        
+        if (!in_array($field, array_keys($filters))) {
+            $filters[$field] = $value;
+        }
+
+        return $filters;
+        
     }
 
 }

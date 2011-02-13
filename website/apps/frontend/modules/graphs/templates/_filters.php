@@ -11,8 +11,8 @@
     <?php echo $filters ?>
     <tr>
         <td colspan="2">
-            <?php echo link_to('Reset', '@graph_index', array(), array('query_string' => '_reset', 'method' => 'post')) ?>
-            <input type="submit" value="Filter" />
+            <?php echo link_to('Reset', 'graph_filter', array(), array('query_string' => '_reset', 'method' => 'post')) ?>
+             <input type="submit" value="Filter" />
         </td>
     </tr>
 </table>

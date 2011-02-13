@@ -53,6 +53,20 @@ class ChargeForGraphsFilter extends ChargeFormWithUserFilter {
         $this->validatorSchema['vehicle_id']->setOption('query', $q);
         
     }
+    
+    public function addVehicleDisplayColumnQuery(Doctrine_Query $query, $field, $values) {
+        
+        /*
+        if ('single' == $values) {
+           $query->addGroupBy($query->getRootAlias().'.vehicle_id'); 
+        }
+
+*/
+        
+        
+        
+        
+    }
 
 }
 

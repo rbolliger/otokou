@@ -14,3 +14,7 @@ end_slot();
 
 
 <?php print_r($data); ?>
+
+<?php foreach ($query as $charge): ?>
+<?php echo "<br>".$charge->getId()."</br>"; ?>
+<?php endforeach; ?>
