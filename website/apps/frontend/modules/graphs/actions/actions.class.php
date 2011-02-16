@@ -13,7 +13,6 @@ class graphsActions extends sfActions {
     public function preExecute() {
         parent::preExecute();
 
-        //$this->filters = new ChargeForGraphsFilter($this->getFilters());
         $this->filters = new GraphWithUserFormFilter($this->getFilters());
        
         
@@ -35,9 +34,9 @@ class graphsActions extends sfActions {
         $filters = $this->getFilters();
         
         $filters = $this->updateFieldIfEmpty($filters, 'vehicle_display', 'single');
-        $filters = $this->updateFieldIfEmpty($filters, 'category_display', 'stascked');
+        $filters = $this->updateFieldIfEmpty($filters, 'category_display', 'stacked');
         
-        $this->query = $this->filters->buildQuery($filters)->execute();
+        $this->query_results = $this->filters->buildQuery($filters)->execute();
             
 
 
@@ -65,7 +64,7 @@ class graphsActions extends sfActions {
 
 
         $this->data = $this->getData();
-        $this->query = $this->filters->buildQuery($this->getFilters())->execute();
+        $this->query_results = $this->filters->buildQuery($this->getFilters())->execute();
         $this->setTemplate($this->getPreviousTemplate());
     }
 

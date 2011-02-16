@@ -13,8 +13,6 @@ end_slot();
 ?>
 
 
-<?php print_r($data); ?>
+<?php include_partial('debug',array('data' => $data,'query_results' => $query_results)) ?>
 
-<?php foreach ($query as $charge): ?>
-<?php echo "<br>".$charge->getId()."</br>"; ?>
-<?php endforeach; ?>
+
