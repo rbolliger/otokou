@@ -13,7 +13,8 @@ class graphsActions extends sfActions {
     public function preExecute() {
         parent::preExecute();
 
-        $this->filters = new ChargeForGraphsFilter($this->getFilters());
+        //$this->filters = new ChargeForGraphsFilter($this->getFilters());
+        $this->filters = new GraphWithUserFormFilter($this->getFilters());
        
         
     }

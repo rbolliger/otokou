@@ -53,3 +53,35 @@ sfGuardUser:
   columns:
     list_max_per_page:
       type: string(5)
+
+
+Graph:
+  actAs: [Timestampable]
+  columns:
+    id: { type: integer, notnull: true, primary: true, autoincrement: true }
+    vehicle_id: {type: integer, notnull: true }
+    vehicle_display: {type: string(20), notnull: true}
+    user_id: {type: integer, notnull: true }
+    category_id: { type: integer, notnull: true }
+    category_display: {type: string(20), notnull: true}
+    date_from: {type: date }
+    date_to: {type: date }
+    kilometers_from:  { type: double }
+    kilometers_to:  { type: double }
+    range_type: {type: string(20), notnull: true}
+    sha: {type: string(64), notnull: true}
+    graph_name: {type: string(20), notnull: true}
+  relations:
+    Vehicle:
+      local: vehicle_id
+      onDelete: CASCADE
+      foreignAlias: Charges
+    Category:
+      local: category_id
+      onDelete: CASCADE
+      foreignAlias: Charges
+    User:
+      class: sfGuardUser
+      local: user_id
+      onDelete: CASCADE
+      foreignAlias: Charges

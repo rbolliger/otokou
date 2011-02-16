@@ -59,29 +59,41 @@ $browser->
         with('response')->
             begin()->
             // two vehicles listed, including archived one
-                checkElement('div.graphs_filters tr input[name="charge_filters[vehicle_id][]"]',2)->
+                checkElement('div.graphs_filters tr input[name="graph_filters[vehicle_id][]"]',2)->
             end()->
         
         info('  2.2 - Filter action')->
         Click('Filter',array(
-            'charge_filters' => array(
-                'vehicle_id' => array($browser->getVehicleId('car-graphs-1')),
+            'graph_filters' => array(
+                'vehicle_id' => array($browser->getVehicleId('car-graphs-1df',false)),
                 'vehicle_display' => 'anything',
-                'category_id' => array($browser->getIdForCategory('Tax'),$browser->getIdForCategory('Fuel')),
-                'category_display' => 'single',
+                'category_id' => array($browser->getIdForCategory('Taxfjh',false),$browser->getIdForCategory('Fuel',false)),
+                'category_display' => 'ydfghdfgzh',
+                'range_type' => 'gdfg',
+                'date_range' => array('from' => 'asdraxd', 'to' => '235434'),
+                'kilometers_range' => array('from' => 'asdraxd', 'to' => '235434'),
             )
         ))->
             with('form')->
             begin()->
-                hasErrors(1)->
+                hasErrors(7)->
+                isError('vehicle_id','/invalid/')->
                 isError('vehicle_display','/invalid/')->
+                isError('category_id','/invalid/')->
+                isError('category_display','/invalid/')->
+                isError('range_type','/invalid/')->
+                isError('date_range','/invalid/')->
+                isError('kilometers_range','/invalid/')->
             end()->
         Click('Filter',array(
-            'charge_filters' => array(
+            'graph_filters' => array(
                 'vehicle_id' => array($browser->getVehicleId('car-graphs-1')),
                 'vehicle_display' => 'stacked',
                 'category_id' => array($browser->getIdForCategory('Tax'),$browser->getIdForCategory('Fuel')),
                 'category_display' => 'single',
+                'range_type' => 'date',
+                'date_range' => array('from' => '', 'to' => ''),
+                'kilometers_range' => array('from' => '', 'to' => ''),
             )
         ))->
             with('form')->
@@ -101,9 +113,9 @@ $browser->
         with('response')->
             begin()->
             // two vehicles listed, including archived one
-                checkElement('div.graphs_filters tr input[name="charge_filters[vehicle_id][]"][checked="checked"]',1)->
-                checkElement('div.graphs_filters tr input[name="charge_filters[vehicle_display]"][checked="checked"]',1)->
-                checkElement('div.graphs_filters tr input[name="charge_filters[category_id][]"][checked="checked"]',2)->
-                checkElement('div.graphs_filters tr input[name="charge_filters[category_display]"][checked="checked"]',1)->
+                checkElement('div.graphs_filters tr input[name="graph_filters[vehicle_id][]"][checked="checked"]',1)->
+                checkElement('div.graphs_filters tr input[name="graph_filters[vehicle_display]"][checked="checked"]',1)->
+                checkElement('div.graphs_filters tr input[name="graph_filters[category_id][]"][checked="checked"]',2)->
+                checkElement('div.graphs_filters tr input[name="graph_filters[category_display]"][checked="checked"]',1)->
             end()
 ;
