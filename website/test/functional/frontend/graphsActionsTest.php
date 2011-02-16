@@ -60,6 +60,14 @@ $browser->
             begin()->
             // two vehicles listed, including archived one
                 checkElement('div.graphs_filters tr input[name="graph_filters[vehicle_id][]"]',2)->
+                checkElement('#filter_values_vehicle_id:contains("nothing")]',true)->
+                checkElement('#filter_values_vehicle_display:contains("nothing")]',true)->
+                checkElement('#filter_values_category_id:contains("nothing")]',true)->
+                checkElement('#filter_values_category_display:contains("nothing")]',true)->
+                checkElement('#filter_values_range_type:contains("nothing")]',true)->
+                checkElement('#filter_values_date_range:contains("nothing")]',true)->
+                checkElement('#filter_values_kilometers_range:contains("nothing")]',true)->
+                checkElement('table#query_results:contains("No elements found")]',true)->
             end()->
         
         info('  2.2 - Filter action')->

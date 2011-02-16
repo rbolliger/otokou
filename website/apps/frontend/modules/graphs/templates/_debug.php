@@ -9,7 +9,18 @@
 
         <tr>
             <td><?php echo $key ?></td>
-            <td><?php echo is_array($value) ? implode(', ',$value) : $value ?></td>
+
+            <?php if(!$value) {
+                $print = 'nothing';
+            } elseif (is_array($value)) {
+                $print = implode(', ',$value);
+                $print = ($print == ', ') ? 'nothing' : $print;
+            } else {
+                $print = $value;
+            } ?>
+
+
+            <td id="<?php echo 'filter_values_'.$key ?>"> <?php echo $print ?></td>
         </tr>
 
     <?php endforeach; ?>
