@@ -125,5 +125,13 @@ $browser->
                 checkElement('div.graphs_filters tr input[name="graph_filters[vehicle_display]"][checked="checked"]',1)->
                 checkElement('div.graphs_filters tr input[name="graph_filters[category_id][]"][checked="checked"]',2)->
                 checkElement('div.graphs_filters tr input[name="graph_filters[category_display]"][checked="checked"]',1)->
+                checkElement('#filter_values_vehicle_id:contains("'.$browser->getVehicleId('car-graphs-1').'")]',true)->
+                checkElement('#filter_values_vehicle_display:contains("stacked")]',true)->
+                checkElement('#filter_values_category_id:contains("'.$browser->getIdForCategory('Tax').', '.$browser->getIdForCategory('Fuel').'")]',true)->
+                checkElement('#filter_values_category_display:contains("single")]',true)->
+                checkElement('#filter_values_range_type:contains("date")]',true)->
+                checkElement('#filter_values_date_range:contains("nothing")]',true)->
+                checkElement('#filter_values_kilometers_range:contains("nothing")]',true)->
+                checkElement('table#query_results:contains("No elements found")]',true)->
             end()
 ;
