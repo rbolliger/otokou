@@ -5,47 +5,55 @@
 
     <table class="debug" id="filter_values">
 
-    <?php foreach ($sf_data->getRaw('data') as $key => $value) : ?>
+    <?php foreach ($data = $sf_data->getRaw('data') as $key => $value) : ?>
 
         <tr>
             <td><?php echo $key ?></td>
 
-            <?php if(!$value) {
-                $print = 'nothing';
-            } elseif (is_array($value)) {
-                $print = implode(', ',$value);
-                $print = ($print == ', ') ? 'nothing' : $print;
-            } else {
-                $print = $value;
-            } ?>
+        <?php
+        if (!$value) {
+            $print = 'nothing';
+        } elseif (is_array($value)) {
+            $print = implode(', ', $value);
+            $print = ($print == ', ') ? 'nothing' : $print;
+        } else {
+            $print = $value;
+        }
+        ?>
 
 
-            <td id="<?php echo 'filter_values_'.$key ?>"> <?php echo $print ?></td>
-        </tr>
+        <td id="<?php echo 'filter_values_' . $key ?>"> <?php echo $print ?></td>
 
-    <?php endforeach; ?>
-    </table>
-
-<h2>Query results:</h2>
-
-
-<table class="debug" id="query_results">
-
-    <?php foreach ($query_results as $graph) : ?>
-
-        <tr>
-            <td><?php echo $graph->getId() ?></td>
-            <td><?php echo $graph->getSha() ?></td>
-        </tr>
-
+    </tr>
     <?php endforeach; ?>
 
-        <?php if(!count($query_results)) : ?>
-        <tr>
-            <td>No elements found</td>
-        </tr>
-        <?php        endif;?>
-    </table>
+    <?php if (!$data) : ?>
+            <tr>
+                <td>No elements found</td>
+            </tr>
+    <?php endif; ?>
+        </table>
+
+        <h2>Query results:</h2>
+
+
+        <table class="debug" id="query_results">
+
+<?php foreach ($query_results = (is_object($sf_data->getRaw('gb')) ? $gb->getGraphsQueryResults() : $sf_data->getRaw('gb')) as $graph) : ?>
+
+                <tr>
+                    <td><?php echo $graph->getId() ?></td>
+                    <td><?php echo $graph->getSha() ?></td>
+                </tr>
+
+    <?php endforeach; ?>
+
+<?php if (!$query_results || !count($query_results) || !$data ): ?>
+                    <tr>
+                        <td>No elements found</td>
+                    </tr>
+<?php endif; ?>
+                </table>
 
 
 <?php endif ?>

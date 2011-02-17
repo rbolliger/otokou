@@ -59,29 +59,64 @@ Graph:
   actAs: [Timestampable]
   columns:
     id: { type: integer, notnull: true, primary: true, autoincrement: true }
-    vehicle_id: {type: integer, notnull: true }
+    #vehicle_id: {type: integer, notnull: true }
     vehicle_display: {type: string(20), notnull: true}
     user_id: {type: integer, notnull: true }
-    category_id: { type: integer, notnull: true }
+    #category_id: { type: integer, notnull: true }
     category_display: {type: string(20), notnull: true}
     date_from: {type: date }
     date_to: {type: date }
     kilometers_from:  { type: double }
     kilometers_to:  { type: double }
     range_type: {type: string(20), notnull: true}
-    sha: {type: string(64), notnull: true}
-    graph_name: {type: string(20), notnull: true}
+    sha: {type: string(40), notnull: true, unique: true}
+    format: {type: string(5), notnull: true}
+
   relations:
-    Vehicle:
-      local: vehicle_id
+    Vehicles:
       onDelete: CASCADE
-      foreignAlias: Charges
-    Category:
-      local: category_id
+      foreignAlias: Graphs
+      class: Vehicle
+      refClass: GraphVehicle
+    Categories:
       onDelete: CASCADE
-      foreignAlias: Charges
+      foreignAlias: Graphs
+      class: Category
+      refClass: GraphCategory
     User:
       class: sfGuardUser
       local: user_id
       onDelete: CASCADE
-      foreignAlias: Charges
+      foreignAlias: Graphs
+
+GraphVehicle:
+  columns:
+    graph_id:
+      type: integer
+      primary: true
+    vehicle_id:
+      type: integer
+      primary: true
+  relations:
+    Graph:
+      foreignAlias: GraphVehicles
+      onDelete: CASCADE
+    Vehicle:
+      foreignAlias: GraphVehicles
+      onDelete: CASCADE
+
+GraphCategory:
+  columns:
+    graph_id:
+      type: integer
+      primary: true
+    category_id:
+      type: integer
+      primary: true
+  relations:
+    Graph:
+      foreignAlias: GraphVehicles
+      onDelete: CASCADE
+    Category:
+      foreignAlias: GraphVehicles
+      onDelete: CASCADE

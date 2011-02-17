@@ -15,28 +15,49 @@ class GraphFormFilter extends BaseGraphFormFilter {
         // Removing some fields
         unset(
                 $this['sha'],
-                $this['graph_name'],
+                $this['format'],
                 $this['created_at'],
                 $this['updated_at']
         );
 
         // Vehicle
-        $this->widgetSchema['vehicle_id']->setOption('expanded', true);
-        $this->widgetSchema['vehicle_id']->setOption('multiple', true);
-        $this->widgetSchema['vehicle_id']->setOption('label', 'Vehicles');
-        $this->widgetSchema['vehicle_id']->setOption('add_empty', false);
+        $this->widgetSchema['vehicles_list']->setOptions(
+                array_merge($this->widgetSchema['vehicles_list']->getOptions(),
+                array(
+                    'expanded'  => true,
+                    'multiple'  => true,
+                    'label'     => 'Vehicles',
+                    'add_empty' => false,
+                    )));
 
-        $this->validatorSchema['vehicle_id']->setOption('required', false);
-        $this->validatorSchema['vehicle_id']->setOption('multiple', true);
+        $this->validatorSchema['vehicles_list']->setOptions(
+                array_merge($this->widgetSchema['vehicles_list']->getOptions(),
+                array(
+                    'required'  => false,
+                    'multiple'  => true
+                    )));
+
+
+        $this->widgetSchema->moveField('vehicles_list', sfWidgetFormSchema::FIRST);
 
 
         // Category
-        $this->widgetSchema['category_id']->setOption('expanded', true);
-        $this->widgetSchema['category_id']->setOption('multiple', true);
-        $this->widgetSchema['category_id']->setOption('add_empty', false);
-        $this->widgetSchema['category_id']->setOption('label', 'Categories');
+        $this->widgetSchema['categories_list']->setOptions(
+                array_merge($this->widgetSchema['categories_list']->getOptions(),
+                array(
+                    'expanded'  => true,
+                    'multiple'  => true,
+                    'label'     => 'Categories',
+                    'add_empty' => false,
+                    )));
 
-        $this->validatorSchema['category_id']->setOption('multiple', true);
+        $this->validatorSchema['categories_list']->setOptions(
+                array_merge($this->widgetSchema['categories_list']->getOptions(),
+                array(
+                    'required'  => false,
+                    'multiple'  => true
+                    )));
+
 
         // Display options
         $display_choices = Doctrine_Core::getTable('Graph')->getDisplayChoices();
@@ -58,7 +79,7 @@ class GraphFormFilter extends BaseGraphFormFilter {
                 ));
 
 
-        $this->widgetSchema->moveField('vehicle_display', sfWidgetFormSchema::BEFORE, 'category_id');
+        $this->widgetSchema->moveField('vehicle_display', sfWidgetFormSchema::BEFORE, 'categories_list');
 
         // Category Display
         $this->widgetSchema['category_display'] = clone $this->widgetSchema['vehicle_display'];
@@ -66,7 +87,7 @@ class GraphFormFilter extends BaseGraphFormFilter {
 
         $this->validatorSchema['category_display'] = clone $this->validatorSchema['vehicle_display'];
 
-        $this->widgetSchema->moveField('category_display', sfWidgetFormSchema::AFTER, 'category_id');
+        $this->widgetSchema->moveField('category_display', sfWidgetFormSchema::AFTER, 'categories_list');
 
         // Dates range
         unset(
@@ -140,6 +161,8 @@ class GraphFormFilter extends BaseGraphFormFilter {
                             'multiple' => false,
                             'required' => false,
                 ));
+
+        $this->widgetSchema->moveField('range_type', sfWidgetFormSchema::BEFORE, 'date_range');
 
 
 

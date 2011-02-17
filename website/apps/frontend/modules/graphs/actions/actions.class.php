@@ -14,8 +14,7 @@ class graphsActions extends sfActions {
         parent::preExecute();
 
         $this->filters = new GraphWithUserFormFilter($this->getFilters());
-       
-        
+
     }
 
     /**
@@ -29,24 +28,21 @@ class graphsActions extends sfActions {
         $this->setPreviousAction('index');
 
 
-        $this->data = $this->getData();
-        
         $filters = $this->getFilters();
-        
+
         $filters = $this->updateFieldIfEmpty($filters, 'vehicle_display', 'single');
         $filters = $this->updateFieldIfEmpty($filters, 'category_display', 'stacked');
-        
-        $this->query_results = $this->filters->buildQuery($filters)->execute();
-            
 
+        $this->gb = new GraphBuilder($this->getGBData());
 
-        
+        $this->data = $this->getData();
+
     }
 
     public function executeFilter(sfWebRequest $request) {
 
         if ($request->hasParameter('_reset')) {
-            
+
             $this->setFilters(array());
 
             $this->redirect($this->getPreviousAction());
@@ -64,7 +60,7 @@ class graphsActions extends sfActions {
 
 
         $this->data = $this->getData();
-        $this->query_results = $this->filters->buildQuery($this->getFilters())->execute();
+        $this->gb = array();
         $this->setTemplate($this->getPreviousTemplate());
     }
 
@@ -117,29 +113,57 @@ class graphsActions extends sfActions {
     protected function setPreviousTemplate($template) {
         return $this->getUser()->setAttribute('graphs.prevTemplate', $template, 'graphs');
     }
-    
+
     protected function getPreviousAction() {
-        return 'graphs/'.$this->getUser()->getAttribute('graphs.prevAction', null, 'graphs');
+        return 'graphs/' . $this->getUser()->getAttribute('graphs.prevAction', null, 'graphs');
     }
 
     protected function setPreviousAction($action) {
         return $this->getUser()->setAttribute('graphs.prevAction', $action, 'graphs');
     }
-    
+
     protected function getData() {
-        
+
         return $this->getFilters();
-        
     }
-    
-    protected function updateFieldIfEmpty($filters,$field,$value) {
-        
+
+    protected function updateFieldIfEmpty($filters, $field, $value) {
+
         if (!in_array($field, array_keys($filters))) {
             $filters[$field] = $value;
         }
 
         return $filters;
-        
+    }
+
+    protected function getGBData() {
+
+        $filters = $this->getFilters();
+
+        $data = array(
+            'format'            => 'png',
+            'user_id'           => $this->getUser()->getGuardUser()->getId(),
+            'vehicles_list'     => $this->getFilterValue('vehicles_list'),
+            'vehicle_display'   => $this->getFilterValue('vehicle_display'),
+            'categories_list'   => $this->getFilterValue('categories_list'),
+            'category_display'  => $this->getFilterValue('category_display'),
+            'range_type'        => $this->getFilterValue('range_type'),
+            'date_from'         => $this->getFilterValue('from',null,$this->getFilterValue('date_range')),
+            'date_to'           => $this->getFilterValue('to',null,$this->getFilterValue('date_range')),
+            'kilometers_from'   => $this->getFilterValue('from',null,$this->getFilterValue('kilometers_range')),
+            'kilometers_to'     => $this->getFilterValue('to',null,$this->getFilterValue('kilometers_range')),
+        );
+
+
+        return $data;
+    }
+
+    public function getFilterValue($field,$default = null,$filters = null) {
+
+        $filters = $filters === null ? $this->getFilters() : $filters;
+
+        return isset($filters[$field]) ? $filters[$field] : $default;
+
     }
 
 }

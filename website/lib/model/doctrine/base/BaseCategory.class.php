@@ -9,15 +9,21 @@
  * @property string $name
  * @property clob $comment
  * @property Doctrine_Collection $Charges
+ * @property Doctrine_Collection $Graphs
+ * @property Doctrine_Collection $GraphVehicles
  * 
- * @method integer             getId()      Returns the current record's "id" value
- * @method string              getName()    Returns the current record's "name" value
- * @method clob                getComment() Returns the current record's "comment" value
- * @method Doctrine_Collection getCharges() Returns the current record's "Charges" collection
- * @method Category            setId()      Sets the current record's "id" value
- * @method Category            setName()    Sets the current record's "name" value
- * @method Category            setComment() Sets the current record's "comment" value
- * @method Category            setCharges() Sets the current record's "Charges" collection
+ * @method integer             getId()            Returns the current record's "id" value
+ * @method string              getName()          Returns the current record's "name" value
+ * @method clob                getComment()       Returns the current record's "comment" value
+ * @method Doctrine_Collection getCharges()       Returns the current record's "Charges" collection
+ * @method Doctrine_Collection getGraphs()        Returns the current record's "Graphs" collection
+ * @method Doctrine_Collection getGraphVehicles() Returns the current record's "GraphVehicles" collection
+ * @method Category            setId()            Sets the current record's "id" value
+ * @method Category            setName()          Sets the current record's "name" value
+ * @method Category            setComment()       Sets the current record's "comment" value
+ * @method Category            setCharges()       Sets the current record's "Charges" collection
+ * @method Category            setGraphs()        Sets the current record's "Graphs" collection
+ * @method Category            setGraphVehicles() Sets the current record's "GraphVehicles" collection
  * 
  * @package    otokou
  * @subpackage model
@@ -49,6 +55,15 @@ abstract class BaseCategory extends sfDoctrineRecord
     {
         parent::setUp();
         $this->hasMany('Charge as Charges', array(
+             'local' => 'id',
+             'foreign' => 'category_id'));
+
+        $this->hasMany('Graph as Graphs', array(
+             'refClass' => 'GraphCategory',
+             'local' => 'category_id',
+             'foreign' => 'graph_id'));
+
+        $this->hasMany('GraphCategory as GraphVehicles', array(
              'local' => 'id',
              'foreign' => 'category_id'));
 

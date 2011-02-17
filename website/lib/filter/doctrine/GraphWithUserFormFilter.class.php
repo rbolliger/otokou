@@ -16,13 +16,12 @@ class GraphWithUserFormFilter extends GraphFormFilter {
 
         unset($this['user_id']);
 
-        $q = Doctrine_Core::getTable($this->getRelatedModelName('Vehicle'))
-                        ->createQuery('v')
-                        ->andWhere('v.user_id = ?', $this->getUserId());
+        $q = Doctrine_Core::getTable('Vehicle')
+                ->createQuery('v')
+                ->where('v.user_id = ?', $this->getUserId());
 
-
-        $this->widgetSchema['vehicle_id']->setOption('query', $q);
-        $this->validatorSchema['vehicle_id']->setOption('query', $q);
+        $this->widgetSchema['vehicles_list']->setOption('query', $q);
+        $this->validatorSchema['vehicles_list']->setOption('query', $q);
 
 
 

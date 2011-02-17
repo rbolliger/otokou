@@ -11,19 +11,25 @@
  * @property boolean $is_archived
  * @property sfGuardUser $User
  * @property Doctrine_Collection $Charges
+ * @property Doctrine_Collection $Graphs
+ * @property Doctrine_Collection $GraphVehicles
  * 
- * @method integer             getId()          Returns the current record's "id" value
- * @method string              getName()        Returns the current record's "name" value
- * @method integer             getUserId()      Returns the current record's "user_id" value
- * @method boolean             getIsArchived()  Returns the current record's "is_archived" value
- * @method sfGuardUser         getUser()        Returns the current record's "User" value
- * @method Doctrine_Collection getCharges()     Returns the current record's "Charges" collection
- * @method Vehicle             setId()          Sets the current record's "id" value
- * @method Vehicle             setName()        Sets the current record's "name" value
- * @method Vehicle             setUserId()      Sets the current record's "user_id" value
- * @method Vehicle             setIsArchived()  Sets the current record's "is_archived" value
- * @method Vehicle             setUser()        Sets the current record's "User" value
- * @method Vehicle             setCharges()     Sets the current record's "Charges" collection
+ * @method integer             getId()            Returns the current record's "id" value
+ * @method string              getName()          Returns the current record's "name" value
+ * @method integer             getUserId()        Returns the current record's "user_id" value
+ * @method boolean             getIsArchived()    Returns the current record's "is_archived" value
+ * @method sfGuardUser         getUser()          Returns the current record's "User" value
+ * @method Doctrine_Collection getCharges()       Returns the current record's "Charges" collection
+ * @method Doctrine_Collection getGraphs()        Returns the current record's "Graphs" collection
+ * @method Doctrine_Collection getGraphVehicles() Returns the current record's "GraphVehicles" collection
+ * @method Vehicle             setId()            Sets the current record's "id" value
+ * @method Vehicle             setName()          Sets the current record's "name" value
+ * @method Vehicle             setUserId()        Sets the current record's "user_id" value
+ * @method Vehicle             setIsArchived()    Sets the current record's "is_archived" value
+ * @method Vehicle             setUser()          Sets the current record's "User" value
+ * @method Vehicle             setCharges()       Sets the current record's "Charges" collection
+ * @method Vehicle             setGraphs()        Sets the current record's "Graphs" collection
+ * @method Vehicle             setGraphVehicles() Sets the current record's "GraphVehicles" collection
  * 
  * @package    otokou
  * @subpackage model
@@ -64,6 +70,15 @@ abstract class BaseVehicle extends sfDoctrineRecord
              'onDelete' => 'CASCADE'));
 
         $this->hasMany('Charge as Charges', array(
+             'local' => 'id',
+             'foreign' => 'vehicle_id'));
+
+        $this->hasMany('Graph as Graphs', array(
+             'refClass' => 'GraphVehicle',
+             'local' => 'vehicle_id',
+             'foreign' => 'graph_id'));
+
+        $this->hasMany('GraphVehicle as GraphVehicles', array(
              'local' => 'id',
              'foreign' => 'vehicle_id'));
 

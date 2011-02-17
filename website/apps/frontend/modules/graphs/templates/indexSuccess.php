@@ -13,6 +13,8 @@ end_slot();
 ?>
 
 
-<?php include_partial('debug',array('data' => $data,'query_results' => $query_results)) ?>
+<?php //echo $gb->display() ?>
+
+<?php include_partial('debug',array('data' => $data,'gb' => $gb)) ?>
 
 
