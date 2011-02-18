@@ -166,19 +166,26 @@ class GraphBuilder {
             else {
 
                 // ensuring that there are no more and no less foreign elements than those requested
-                $q->leftJoin($q->getRootAlias() . '.' . $foreign[$key]['model'] . ' ' . $key . '_bis');
-                $q->addSelect('COUNT(' . $key . '_bis.' . $foreign[$key]['column'] . ') as num_foreign');
-                $q->having('num_foreign = ?', count($value));
+                $q->leftJoin($q->getRootAlias() . '.' . $foreign[$key]['model'] . ' ' . $key);
+                $q->addSelect('COUNT(' . $key . '.' . $foreign[$key]['column'] . ') as num_' . $key);
+
 
                 // if one or more values are set
                 if ($value) {
 
                     // getting all foreign elements having $value
-                    $q->innerJoin($q->getRootAlias() . '.' . $foreign[$key]['model'] . ' ' . $key);
+
                     $q->whereIn($key . '.' . $foreign[$key]['column'], $value);
                 }
             }
+
         }
+
+
+        $q->having('num_vehicles_list = ? AND num_categories_list = ?', array(
+            count($this->data['vehicles_list']),
+            count($this->data['categories_list'])));
+
 
 
         $this->query = $q;
