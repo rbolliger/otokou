@@ -149,14 +149,16 @@ class GraphBuilder {
         );
 
 
-        $q = Doctrine_Core::getTable('Graph')->createQuery('g')->select('g.*');
+        $q = Doctrine_Query::create()->from('Graph g')->select('g.*');
 
         foreach ($this->data as $key => $value) {
 
             // if this is a local column
             if (in_array($key, $locals)) {
 
-                if ($value) {
+                if (count($value) == 1) {
+                    $q->andWhere('g.'.$key.' = ?', $value);
+                } elseif (count($value) > 1) {
                     $q->andWhereIn('g.' . $key, $value);
                 } else {
                     $q->andWhere('g.' . $key . ' IS NULL');
@@ -166,27 +168,25 @@ class GraphBuilder {
             else {
 
                 // ensuring that there are no more and no less foreign elements than those requested
-                $q->leftJoin($q->getRootAlias() . '.' . $foreign[$key]['model'] . ' ' . $key);
-                $q->addSelect('COUNT(' . $key . '.' . $foreign[$key]['column'] . ') as num_' . $key);
-
+                $fname = $key.'_all';
+                $q->leftJoin('g.'.$foreign[$key]['model'].' '.$fname);
+                $q->addSelect('COUNT('.$fname.'.graph_id) as num_'.$fname);
+                $q->groupBy('g.id');
+                $q->addHaving('num_'.$fname.' = ?',count($value));
 
                 // if one or more values are set
                 if ($value) {
 
                     // getting all foreign elements having $value
-
-                    $q->whereIn($key . '.' . $foreign[$key]['column'], $value);
+                    $fname = $key.'_lim';
+                    $q->leftJoin($q->getRootAlias().'.'.$foreign[$key]['model'].' '.$fname);
+                    $q->addSelect('COUNT('.$fname.'.'.$foreign[$key]['column'].') as num_'.$fname);
+                    $q->whereIn($fname.'.'.$foreign[$key]['column'], $value);
+                    $q->addHaving('num_'.$fname.' = ?',count($value));
                 }
             }
 
         }
-
-
-        $q->having('num_vehicles_list = ? AND num_categories_list = ?', array(
-            count($this->data['vehicles_list']),
-            count($this->data['categories_list'])));
-
-
 
         $this->query = $q;
     }
@@ -204,7 +204,12 @@ class GraphBuilder {
                 $defaults['id']
         );
 
-        return $defaults;
+        $foreign = array(
+            'vehicles_list' => null,
+            'categories_list' => null,
+        );
+
+        return array_merge($defaults,$foreign);
     }
 
 }

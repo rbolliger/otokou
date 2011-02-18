@@ -60,8 +60,16 @@ class otokouTestFunctional extends sfTestFunctional {
         return $this;
     }
 
-    public function getUserId($username) {
-        return $id = Doctrine_Core::getTable('sfGuardUser')->findOneByUsername($username)->getId();
+    public function getUserId($username, $throw = true) {
+        $v = Doctrine_Core::getTable('sfGuardUser')->findOneByUsername($username);
+
+        if (!$v && $throw) {
+            throw new sfException(sprintf('Cannot find any user with username %s', $username));
+        } elseif (!$v && !$throw) {
+            return null;
+        }
+
+        return $v->getId();
     }
 
     public function getVehicleId($name, $throw = true) {

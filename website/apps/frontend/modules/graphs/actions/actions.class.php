@@ -138,8 +138,6 @@ class graphsActions extends sfActions {
 
     protected function getGBData() {
 
-        $filters = $this->getFilters();
-
         $data = array(
             'format'            => 'png',
             'user_id'           => $this->getUser()->getGuardUser()->getId(),

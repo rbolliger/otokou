@@ -69,7 +69,6 @@ abstract class BaseGraph extends sfDoctrineRecord
              ));
         $this->hasColumn('vehicle_display', 'string', 20, array(
              'type' => 'string',
-             'notnull' => true,
              'length' => 20,
              ));
         $this->hasColumn('user_id', 'integer', null, array(
@@ -78,7 +77,6 @@ abstract class BaseGraph extends sfDoctrineRecord
              ));
         $this->hasColumn('category_display', 'string', 20, array(
              'type' => 'string',
-             'notnull' => true,
              'length' => 20,
              ));
         $this->hasColumn('date_from', 'date', null, array(
@@ -95,7 +93,6 @@ abstract class BaseGraph extends sfDoctrineRecord
              ));
         $this->hasColumn('range_type', 'string', 20, array(
              'type' => 'string',
-             'notnull' => true,
              'length' => 20,
              ));
         $this->hasColumn('sha', 'string', 40, array(
@@ -106,7 +103,6 @@ abstract class BaseGraph extends sfDoctrineRecord
              ));
         $this->hasColumn('format', 'string', 5, array(
              'type' => 'string',
-             'notnull' => true,
              'length' => 5,
              ));
     }

@@ -59,18 +59,16 @@ Graph:
   actAs: [Timestampable]
   columns:
     id: { type: integer, notnull: true, primary: true, autoincrement: true }
-    #vehicle_id: {type: integer, notnull: true }
-    vehicle_display: {type: string(20), notnull: true}
+    vehicle_display: {type: string(20)}
     user_id: {type: integer, notnull: true }
-    #category_id: { type: integer, notnull: true }
-    category_display: {type: string(20), notnull: true}
+    category_display: {type: string(20)}
     date_from: {type: date }
     date_to: {type: date }
     kilometers_from:  { type: double }
     kilometers_to:  { type: double }
-    range_type: {type: string(20), notnull: true}
+    range_type: {type: string(20)}
     sha: {type: string(40), notnull: true, unique: true}
-    format: {type: string(5), notnull: true}
+    format: {type: string(5)}
 
   relations:
     Vehicles:

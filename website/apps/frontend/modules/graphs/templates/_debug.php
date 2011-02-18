@@ -40,7 +40,7 @@
         <table class="debug" id="query_results">
 
 <?php foreach ($query_results = (is_object($sf_data->getRaw('gb')) ? $gb->getGraphsQueryResults() : $sf_data->getRaw('gb')) as $graph) : ?>
-
+<?php print_r($query_results->count()) ?>
                 <tr>
                     <td><?php echo $graph->getId() ?></td>
                     <td><?php echo $graph->getSha() ?></td>
@@ -48,7 +48,8 @@
 
     <?php endforeach; ?>
 
-<?php if (!$query_results || !count($query_results) || !$data ): ?>
+         
+<?php if (!$query_results || !count($query_results) ): ?>
                     <tr>
                         <td>No elements found</td>
                     </tr>

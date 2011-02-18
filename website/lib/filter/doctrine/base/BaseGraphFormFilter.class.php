@@ -13,16 +13,16 @@ abstract class BaseGraphFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'vehicle_display'  => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'vehicle_display'  => new sfWidgetFormFilterInput(),
       'user_id'          => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('User'), 'add_empty' => true)),
-      'category_display' => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'category_display' => new sfWidgetFormFilterInput(),
       'date_from'        => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
       'date_to'          => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
       'kilometers_from'  => new sfWidgetFormFilterInput(),
       'kilometers_to'    => new sfWidgetFormFilterInput(),
-      'range_type'       => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'range_type'       => new sfWidgetFormFilterInput(),
       'sha'              => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'format'           => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'format'           => new sfWidgetFormFilterInput(),
       'created_at'       => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
       'updated_at'       => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
       'vehicles_list'    => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'Vehicle')),
