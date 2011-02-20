@@ -8,7 +8,7 @@ Doctrine_Core::loadData(sfConfig::get('sf_test_dir') . '/fixtures');
 $ut = new otokouTestFunctional(new sfBrowser());
 
 
-$t = new lime_test(2, new lime_output_color());
+$t = new lime_test(3, new lime_output_color());
 
 
 
@@ -20,7 +20,18 @@ $t->diag('->getGraphsQueryResults()');
 $data = array('user_id' => $ut->getUserId('user_gb'));
 $gb = new GraphBuilder(getData($data));
 $t->isa_ok($gb->getGraphsQueryResults(), 'Doctrine_Collection','getGraphsQueryResults() returns a Doctrine_Collection');
-$t->is(count($gb->getGraphsQueryResults()),0, 'getGraphsQueryResults() returns no corresponding object exists in DB');
+$t->is(count($gb->getGraphsQueryResults()),0, 'getGraphsQueryResults() returns nothing if no corresponding object exists in DB');
+
+
+$data = array(
+    'user_id' => $ut->getUserId('user_gb'),
+    'categories_list' => array($ut->getIdForCategory('Tax'),$ut->getIdForCategory('Fuel')),
+        );
+$gb = new GraphBuilder(getData($data));
+$t->cmp_ok($gb->getGraphsQueryResults()->count(), '==', 1, 'getGraphsQueryResults() retrieves only entries matching EXACTLY the requested parameters');
+
+
+
 
 function getData($data = array()) {
 

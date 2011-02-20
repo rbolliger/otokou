@@ -1,0 +1,53 @@
+Graph:
+  graph_gb_1:
+    vehicle_display:
+    User: user_gb
+    category_display:
+    date_from:
+    date_to:
+    kilometers_from:
+    kilometers_to:
+    range_type:
+    sha: 1231234
+    format:
+    Categories: [taxes, fuel]
+
+  graph_gb_2:
+    vehicle_display:
+    User: user_gb
+    category_display:
+    date_from:
+    date_to:
+    kilometers_from:
+    kilometers_to:
+    range_type:
+    sha: 12312343
+    format:
+    Categories: [taxes, fuel, leasing]
+
+  graph_gb_3:
+    vehicle_display:
+    User: user_gb
+    category_display:
+    date_from:
+    date_to:
+    kilometers_from:
+    kilometers_to:
+    range_type:
+    sha: 1231234sdf
+    format:
+    Categories: [taxes]
+
+  graph_gb_4:
+    vehicle_display:
+    User: user_gb
+    category_display:
+    date_from:
+    date_to:
+    kilometers_from:
+    kilometers_to:
+    range_type:
+    sha: 1231234asdfas
+    format:
+    Categories: [taxes, fuel]
+    Vehicles: [car_gb_1]

@@ -23,5 +23,11 @@ Vehicle:
     name: car graphs 2
     User: user_graphs
     is_archived: true
+  car_gb_1:
+    name: car gb 1
+    User: user_gb
+  car_gb_2:
+    name: car gb 2
+    User: user_gb
   
     

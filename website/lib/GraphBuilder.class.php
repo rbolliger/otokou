@@ -116,6 +116,11 @@ class GraphBuilder {
         );
     }
 
+    public function getQuery() {
+
+        return $this->query ? $this->query : $this->buildGraphsQuery();
+    }
+
     protected function saveNewGraph() {
 
         $graph = new Graph();
@@ -150,6 +155,7 @@ class GraphBuilder {
 
 
         $q = Doctrine_Query::create()->from('Graph g')->select('g.*');
+        $q->addGroupBy('g.id');
 
         foreach ($this->data as $key => $value) {
 
@@ -157,9 +163,11 @@ class GraphBuilder {
             if (in_array($key, $locals)) {
 
                 if (count($value) == 1) {
-                    $q->andWhere('g.'.$key.' = ?', $value);
+                    $q->andWhere('g.' . $key . ' = ?',$value);
+
                 } elseif (count($value) > 1) {
-                    $q->andWhereIn('g.' . $key, $value);
+                    $q->andWhereIn('g.' . $key,$value);
+
                 } else {
                     $q->andWhere('g.' . $key . ' IS NULL');
                 }
@@ -167,28 +175,44 @@ class GraphBuilder {
             // if this is a foreign reference
             else {
 
+                $fname = $key . '_all';
+                $q->leftJoin('g.' . $foreign[$key]['model'] . ' ' . $fname);
+
                 // ensuring that there are no more and no less foreign elements than those requested
-                $fname = $key.'_all';
-                $q->leftJoin('g.'.$foreign[$key]['model'].' '.$fname);
-                $q->addSelect('COUNT('.$fname.'.graph_id) as num_'.$fname);
-                $q->groupBy('g.id');
-                $q->addHaving('num_'.$fname.' = ?',count($value));
+                $suff = '_all_sq';
+                $fname = $key . $suff;
+                $root = 'g' . $fname;
+                $sq = $q->createSubquery()
+                                ->addSelect($root . '.id')
+                                ->addFrom('Graph ' . $root)
+                                ->leftJoin($root . '.' . $foreign[$key]['model'] . ' ' . $fname)
+                                ->addGroupBy($root . '.id')
+                                ->addHaving('COUNT(' . $fname . '.graph_id) = '.count($value));
+
+                $q->andWhere('g.id IN (' . $sq->getDql() . ')');
 
                 // if one or more values are set
                 if ($value) {
 
                     // getting all foreign elements having $value
-                    $fname = $key.'_lim';
-                    $q->leftJoin($q->getRootAlias().'.'.$foreign[$key]['model'].' '.$fname);
-                    $q->addSelect('COUNT('.$fname.'.'.$foreign[$key]['column'].') as num_'.$fname);
-                    $q->whereIn($fname.'.'.$foreign[$key]['column'], $value);
-                    $q->addHaving('num_'.$fname.' = ?',count($value));
+                    $suff = '_lim_sq';
+                    $fname = $key . $suff;
+                    $root = 'g' . $fname;
+                    $sq2 = $q->createSubquery()
+                                    ->addSelect($root . '.id')
+                                    ->addFrom('Graph ' . $root)
+                                    ->leftJoin($root . '.' . $foreign[$key]['model'] . ' ' . $fname)
+                                    ->andWhere($fname . '.' . $foreign[$key]['column'].' IN ('.implode(',',$value) .')')
+                                    ->addGroupBy($root . '.id')
+                                    ->addHaving('COUNT(' . $fname . '.graph_id) = '.count($value));
+
+                    $q->andWhere('g.id IN (' . $sq2->getDql() . ')');
+
                 }
             }
-
         }
 
-        $this->query = $q;
+        return $this->query = $q;
     }
 
     protected function getDataDefaults() {
@@ -209,7 +233,7 @@ class GraphBuilder {
             'categories_list' => null,
         );
 
-        return array_merge($defaults,$foreign);
+        return array_merge($defaults, $foreign);
     }
 
 }
