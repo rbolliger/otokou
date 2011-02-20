@@ -8,13 +8,13 @@ Doctrine_Core::loadData(sfConfig::get('sf_test_dir') . '/fixtures');
 $ut = new otokouTestFunctional(new sfBrowser());
 
 
-$t = new lime_test(3, new lime_output_color());
+$t = new lime_test(4, new lime_output_color());
 
 
 
 
 
-// begin testing your model class
+// ->getGraphsQueryResults()
 $t->diag('->getGraphsQueryResults()');
 
 $data = array('user_id' => $ut->getUserId('user_gb'));
@@ -31,6 +31,23 @@ $gb = new GraphBuilder(getData($data));
 $t->cmp_ok($gb->getGraphsQueryResults()->count(), '==', 1, 'getGraphsQueryResults() retrieves only entries matching EXACTLY the requested parameters');
 
 
+// ->getQuery()
+$t->diag('->getQuery()');
+
+$gb = new GraphBuilder(array());
+$t->isa_ok($gb->getQuery(),'Doctrine_Query','->getQuery() returns a Doctrine_Query object');
+
+
+//
+// ->display()
+// ->generate()
+// -> getGraphName()
+// ->getGraphPath()
+
+// ->getOption()
+// ->retrieveOrCreate()
+// ->setAttributes()
+// ->setOptions()
 
 
 function getData($data = array()) {
@@ -55,3 +72,5 @@ function getData($data = array()) {
 
     return array_merge($defaults, $data);
 }
+
+

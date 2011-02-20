@@ -118,7 +118,11 @@ class GraphBuilder {
 
     public function getQuery() {
 
-        return $this->query ? $this->query : $this->buildGraphsQuery();
+        if (!$this->query) {
+            $this->buildGraphsQuery();
+        }
+
+        return $this->query;
     }
 
     protected function saveNewGraph() {
@@ -212,7 +216,9 @@ class GraphBuilder {
             }
         }
 
-        return $this->query = $q;
+        $this->query = $q;
+
+        return $this->query;
     }
 
     protected function getDataDefaults() {
