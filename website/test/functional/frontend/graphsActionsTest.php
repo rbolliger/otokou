@@ -99,7 +99,7 @@ $browser->
             end()->
             with('doctrine')->
             begin()->
-                check('Graph',array(),4)->
+                check('Graph',array('user_id' => $browser->getUserId('user_graphs')),0)->
             end()->
             with('response')->
             begin()->
