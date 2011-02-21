@@ -99,7 +99,11 @@ $browser->
             end()->
             with('doctrine')->
             begin()->
-                check('Graph',array(),false)->
+                check('Graph',array(),4)->
+            end()->
+            with('response')->
+            begin()->
+                checkElement('table#query_results:contains("No elements found")]',true)->
             end()->
         Click('Filter',array(
             'graph_filters' => array(
