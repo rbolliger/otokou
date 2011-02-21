@@ -15,7 +15,8 @@ class VehicleEmbeddedUserForm extends VehicleForm {
         parent::configure();
 
         unset(
-                $this['user_id']
+                $this['user_id'],
+                $this['graphs_list']
         );
     }
 
