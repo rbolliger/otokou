@@ -149,7 +149,21 @@ $browser->
          with('doctrine')->
             begin()->
               check('Graph',array('user_id' => $browser->getUserId('user_graphs')),1)->
-             end()
+             end()->
+
+        info('  2.3 - Clear filters at logout')->
+        logout()->
+        with('user')->
+            begin()->
+                isAuthenticated(false)->
+                isAttribute('charge.filters', null, 'admin_module')->
+            end()->
+        login('user_graphs','user')->
+        with('user')->
+            begin()->
+                isAuthenticated(true)->
+                isAttribute('charge.filters', null, 'admin_module')->
+            end()
 ;
 
 

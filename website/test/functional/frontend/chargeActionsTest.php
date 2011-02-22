@@ -389,6 +389,53 @@ info('4 - List filters')->
                 begin()->
                     checkElement('div.sf_admin_list tbody tr',16)->
                 end()->
+
+        info('  4.5 - Comments search')->
+        call('/ruf/charge/filter/action?_reset','post',array('_with_csrf' => true))->
+            with('response')->
+                begin()->
+                    isRedirected()->
+                    followRedirect()->
+                end()->
+        click('Filter',array(
+                'charge_filters' => array(
+                'comment' => array('text' => 'tra'),
+                    )))->
+            with('form')->
+                begin()->
+                    hasErrors(false)->
+                end()->
+            with('response')->
+                begin()->
+                    isRedirected()->
+                    followRedirect()->
+                end()->
+            with('response')->
+                begin()->
+                    checkElement('div.sf_admin_list tbody tr',4)->
+                end()->
+            with('doctrine')->
+                begin()->
+                    check('Charge',
+                            Doctrine_Core::getTable('Charge')->createQuery('a')
+                                ->where('a.comment LIKE ?','%tra%')
+                            ,4)->
+                end()->
+
+           info('  4.6 - Filters deletion after logout and change user')->
+           logout()->
+           with('user')->
+            begin()->
+                isAuthenticated(false)->
+                isAttribute('charge.filters', null, 'admin_module')->
+            end()->
+           login('user3','user3')->
+           with('user')->
+            begin()->
+                isAuthenticated(true)->
+                isAttribute('charge.filters', null, 'admin_module')->
+            end()->
+
        
 info('5 - Pagination')->
         logout()->

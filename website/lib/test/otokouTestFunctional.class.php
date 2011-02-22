@@ -52,8 +52,15 @@ class otokouTestFunctional extends sfTestFunctional {
 
         $this->
                 with('response')->
-                isRedirected()->
-                followRedirect()
+                begin()->
+                    isRedirected()->
+                    followRedirect()->
+                end()->
+                with('request')->
+                    begin()->
+                        isParameter('module','homepage')->
+                        isParameter('action','index')->
+                    end()
         ;
 
 

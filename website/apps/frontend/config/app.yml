@@ -7,3 +7,7 @@ all:
     from:
       email: "raffaele.bolliger@gmail.com"
       fullname: "The staff at otokou"
+
+  sf_guard_plugin:
+    #success_signin_url:      @my_route?param=value # the plugin use the referer as default
+    success_signout_url:     homepage/index         # the plugin use the referer as default
