@@ -8,7 +8,7 @@ Doctrine_Core::loadData(sfConfig::get('sf_test_dir') . '/fixtures');
 $ut = new otokouTestFunctional(new sfBrowser());
 
 
-$t = new lime_test(11, new lime_output_color());
+$t = new lime_test(14, new lime_output_color());
 
 
 // ->getQuery()
@@ -67,12 +67,29 @@ $g3 = $gb->getGraphsQueryResults();
 $t->cmp_ok($g3->count(), '==', 1,'the newly created graph can be retrieved from the DB');
 $t->is($g2, $g3[0],'->retriveOrCreate() saves the new Graph in the DB');
 
-//
+
+// -> getGraphFormat()
+$t->diag('-> getGraphFormat()');
+
+sfConfig::clear('app_graph_default_format');
+$data = array('user_id' => $ut->getUserId('user_gb'));
+$gb = new GraphBuilder(getData($data));
+
+$t->cmp_ok($gb->getGraphFormat(), '==', 'png','By default, the pictures format is png');
+
+sfConfig::set('app_graph_default_format', 'jpg');
+$t->cmp_ok($gb->getGraphFormat(), '==', 'jpg','The user can set a default format in app_graph_default_format');
+
+$data = array('user_id' => $ut->getUserId('user_gb'),'format' => 'png');
+$gb = new GraphBuilder(getData($data));
+
+$t->cmp_ok($gb->getGraphFormat(), '==', 'png','The format can be specified for each graph individually');
+
 // ->display()
 // ->generate()
-// -> getGraphName()
+// ->getGraphName()
 // ->getGraphPath()
-
+// ->addParamaters() unsets $this->graph
 
 // ->getOption()
 // ->setAttributes()

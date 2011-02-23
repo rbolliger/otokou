@@ -20,7 +20,7 @@ class GraphBuilder {
 
     public function __construct(array $parameters, array $options = array(), array $attributes = array()) {
 
-        $this->parameters = array_merge($this->getDataDefaults(), $parameters);
+        $this->setParameters($parameters);
 
 
         $this->setOptions($this->getDefaultOptions());
@@ -51,7 +51,26 @@ class GraphBuilder {
     }
 
     public function getGraphName() {
-        return $this->graph->getSha() . '.' . $this->graph->getFormat();
+        return $this->getGraph()->getSha() . '.' . $this->getGraphFormat();
+    }
+
+    public function getGraphFormat() {
+       
+        $format = $this->getGraph()->getFormat();
+        
+        $format = (!$format == '' || !is_null($format)) ?
+                $format :
+                sfConfig::get('app_graph_default_format', 'png');
+
+        return $format;
+    }
+
+    public function getGraph() {
+        if (!isset($this->graph) || !$this->graph) {
+            $this->retrieveOrCreate();
+        }
+
+        return $this->graph;
     }
 
     public function getOption($name, $default = null) {
@@ -61,6 +80,18 @@ class GraphBuilder {
 
     public function setOptions($options) {
         $this->options = array_merge($this->options, $options);
+    }
+
+    public function setParameters(array $parameters) {
+
+        $this->parameters = array_merge($this->getDataDefaults(), $parameters);
+        unset($this->graph);
+    }
+
+    public function addParameters(array $parameters) {
+
+        $this->parameters = array_merge($this->parameters, $parameters);
+        unset($this->graph);
     }
 
     public function retrieveOrCreate() {
