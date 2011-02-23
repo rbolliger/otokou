@@ -73,8 +73,8 @@ $t->is($g2, $g3[0],'->retriveOrCreate() saves the new Graph in the DB');
 // -> getGraphName()
 // ->getGraphPath()
 
-// ->getOption()
 
+// ->getOption()
 // ->setAttributes()
 // ->setOptions()
 

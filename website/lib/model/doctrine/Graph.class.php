@@ -10,6 +10,91 @@
  * @author     Raffaele Bolliger
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-class Graph extends BaseGraph
-{
+class Graph extends BaseGraph {
+
+    public function preSave($event) {
+        parent::preSave($event);
+
+
+        if (!$this->getSha()) {
+
+            $sha = $this->generateSha();
+            while (true) {
+                $g = Doctrine_Core::getTable('Graph')->findOneBySha($sha);
+                if (empty($g)) {
+                    break;
+                }
+                $sha = $this->generateSha(true, array('with_random_string' => true));
+            }
+
+
+            $this->setSha($sha);
+        }
+    }
+
+    public function generateSha($force = false, $options = array()) {
+
+        if ($this->getSha() && !$force) {
+            return;
+        }
+
+// getting table columns
+        $columns = $this->getTable()->getColumnNames();
+
+// getting relations Ids
+        $relations_ids = array();
+        foreach ($this->getReferences() as $relation) {
+
+            foreach ($relation as $element) {
+
+                $relations_ids[get_class($element)][] = $element->getId();
+            }
+        }
+
+
+// building hash string
+        $str = '';
+        $sep = ', ';
+        foreach ($columns as $col) {
+            $cnt = $this->get($col);
+
+            if (empty ($cnt)) {
+                continue;
+            }
+
+            $str .= implode($sep, (array) $cnt);
+        }
+
+        if ($relations_ids) {
+            foreach ($relations_ids as $name => $value) {
+
+                $str .= implode($sep, (array) $value);
+            }
+        }
+
+        if (isset($options['with_random_string'])) {
+            $str .= $this->generateRandomString(20);
+        }
+
+        return sha1($str);
+    }
+
+    protected function generateRandomString($length = 32, $chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890') {
+
+        // Length of character list
+        $chars_length = (strlen($chars) - 1);
+
+        // Start our string
+        $string = $chars{rand(0, $chars_length)};
+
+        // Generate random string
+        for ($i = 1; $i < $length; $i = strlen($string)) {
+            // Grab a random character from our list
+            $string .= $chars{rand(0, $chars_length)};
+        }
+
+        // Return the string
+        return $string;
+    }
+
 }
