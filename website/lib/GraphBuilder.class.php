@@ -12,15 +12,15 @@
  */
 class GraphBuilder {
 
-    protected $data;
-    protected $query;
+    protected $parameters;
+    protected $graph_query;
     protected $options = array();
     protected $attributes = array();
     protected $graph;
 
-    public function __construct(array $data, array $options = array(), array $attributes = array()) {
+    public function __construct(array $parameters, array $options = array(), array $attributes = array()) {
 
-        $this->data = array_merge($this->getDataDefaults(), $data);
+        $this->parameters = array_merge($this->getDataDefaults(), $parameters);
 
 
         $this->setOptions($this->getDefaultOptions());
@@ -37,7 +37,7 @@ class GraphBuilder {
     public function display() {
 
         $this->retrieveOrCreate();
-        echo image_tag($this->getGraphPath(), $this->getAttributes());
+        return image_tag($this->getGraphPath(), $this->getAttributes());
     }
 
     public function setAttributes(array $attributes) {
@@ -65,16 +65,13 @@ class GraphBuilder {
 
     public function retrieveOrCreate() {
 
-        $this->buildGraphsQuery();
-        $graph = $this->getGraphsQueryResults();
+        if (!$this->graph_query) {
+            $this->buildGraphsQuery();
+        }
+        $coll = $this->getGraphsQueryResults();
 
         // Ensuring that at most one element is retrieved
-        if ($count = count($graph) > 1) {
-
-            throw new sfException('More than one graph can be retrieved from requested criteria. Something wrong here!');
-        }
-        // In none, we generate a nwe graph
-        elseif ($count == 0) {
+        if (count($coll) == 0) {
 
             $graph = $this->saveNewGraph();
         }
@@ -82,10 +79,10 @@ class GraphBuilder {
         // Ok, we have already one
         else {
 
-            $this->graph = $graph;
+            $this->graph = $coll[0];
         }
 
-        return $graph;
+        return $this->graph;
     }
 
     public function generate() {
@@ -94,16 +91,17 @@ class GraphBuilder {
 
     public function getGraphsQueryResults() {
 
-        if (!$this->query) {
+        if (!$this->graph_query) {
             $this->buildGraphsQuery();
         }
 
         // trying to recover a graph in DB, if it exists
-        try {
-            $graph = $this->query->execute();
-        } catch (Exception $exc) {
-            $e = new sfException();
-            throw $e->createFromException($exc);
+        $graph = $this->graph_query->execute();
+
+
+        if ($count = count($graph) > 1) {
+
+            throw new sfException('More than one graph can be retrieved from requested criteria. Something wrong here!');
         }
 
         return $graph;
@@ -118,22 +116,39 @@ class GraphBuilder {
 
     public function getQuery() {
 
-        if (!$this->query) {
+        if (!$this->graph_query) {
             $this->buildGraphsQuery();
         }
 
-        return $this->query;
+        return $this->graph_query;
     }
 
     protected function saveNewGraph() {
 
         $graph = new Graph();
-        $graph->fromArray($this->data);
+
+        $params = $this->parameters;
+
+        $foreign = array(
+            'categories_list' => 'Categories',
+            'vehicles_list' => 'Vehicles',
+        );
+
+
+        $graph->fromArray($this->parameters);
+
+        foreach ($foreign as $field => $class) {
+
+            if (isset($params[$field])) {
+
+                $graph->link($class, $params[$field]);
+//                unset($params[$field]);
+            }
+        }
+
         $graph->save();
 
         $this->graph = $graph;
-
-        $this->generate();
 
         return $graph;
     }
@@ -161,17 +176,15 @@ class GraphBuilder {
         $q = Doctrine_Query::create()->from('Graph g')->select('g.*');
         $q->addGroupBy('g.id');
 
-        foreach ($this->data as $key => $value) {
+        foreach ($this->parameters as $key => $value) {
 
             // if this is a local column
             if (in_array($key, $locals)) {
 
                 if (count($value) == 1) {
-                    $q->andWhere('g.' . $key . ' = ?',$value);
-
+                    $q->andWhere('g.' . $key . ' = ?', $value);
                 } elseif (count($value) > 1) {
-                    $q->andWhereIn('g.' . $key,$value);
-
+                    $q->andWhereIn('g.' . $key, $value);
                 } else {
                     $q->andWhere('g.' . $key . ' IS NULL');
                 }
@@ -191,7 +204,7 @@ class GraphBuilder {
                                 ->addFrom('Graph ' . $root)
                                 ->leftJoin($root . '.' . $foreign[$key]['model'] . ' ' . $fname)
                                 ->addGroupBy($root . '.id')
-                                ->addHaving('COUNT(' . $fname . '.graph_id) = '.count($value));
+                                ->addHaving('COUNT(' . $fname . '.graph_id) = ' . count($value));
 
                 $q->andWhere('g.id IN (' . $sq->getDql() . ')');
 
@@ -206,19 +219,18 @@ class GraphBuilder {
                                     ->addSelect($root . '.id')
                                     ->addFrom('Graph ' . $root)
                                     ->leftJoin($root . '.' . $foreign[$key]['model'] . ' ' . $fname)
-                                    ->andWhere($fname . '.' . $foreign[$key]['column'].' IN ('.implode(',',$value) .')')
+                                    ->andWhere($fname . '.' . $foreign[$key]['column'] . ' IN (' . implode(',', $value) . ')')
                                     ->addGroupBy($root . '.id')
-                                    ->addHaving('COUNT(' . $fname . '.graph_id) = '.count($value));
+                                    ->addHaving('COUNT(' . $fname . '.graph_id) = ' . count($value));
 
                     $q->andWhere('g.id IN (' . $sq2->getDql() . ')');
-
                 }
             }
         }
 
-        $this->query = $q;
+        $this->graph_query = $q;
 
-        return $this->query;
+        return $this->graph_query;
     }
 
     protected function getDataDefaults() {
