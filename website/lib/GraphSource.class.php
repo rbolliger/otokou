@@ -23,6 +23,13 @@ class GraphSource {
         return isset($this->parameters[$param]) ? $this->parameters[$param] : $default;
     }
 
+    public function getSeriesCount() {
+
+        $data = $this->getParam('raw_data');
+
+        return $data ? count(array_keys($data)) : null;
+    }
+
 
 
 

@@ -168,6 +168,7 @@ class GraphBuilder {
 
         $gs = new GraphSource();
 
+        // setting decorations
         $params = array(
             'title',
             'x_axis_label',
@@ -178,13 +179,14 @@ class GraphBuilder {
             $gs->setParam($param, $this->getParam($param));
         }
 
-
+        // getting source data
         $vehicle_display = $this->getParam('vehicle_display', 'single');
         $category_display = $this->getParam('category_display', 'stacked');
 
         $data = $this->getGraphSourceData($vehicle_display, $category_display);
 
-        $gs->setParam('series', $data);
+        $gs->setParam('raw_data', $data);
+       
 
         return $this->graph_source = $gs;
     }
