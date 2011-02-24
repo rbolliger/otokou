@@ -17,6 +17,7 @@ class GraphBuilder {
     protected $options = array();
     protected $attributes = array();
     protected $graph;
+    protected $graph_source;
 
     public function __construct(array $parameters, array $options = array(), array $attributes = array()) {
 
@@ -47,7 +48,11 @@ class GraphBuilder {
 
     public function getGraphPath() {
 
-        return $this->getOption('base_path') . '/' . $this->getGraphName();
+        return $this->getGraphImageBasePath() . '/' . $this->getGraphName();
+    }
+
+    public function getGraphImageBasePath() {
+        return $this->getOption('image_base_path', sfConfig::get('app_graph_image_base_path', '/web/images/graphs'));
     }
 
     public function getGraphName() {
@@ -55,9 +60,9 @@ class GraphBuilder {
     }
 
     public function getGraphFormat() {
-       
+
         $format = $this->getGraph()->getFormat();
-        
+
         $format = (!$format == '' || !is_null($format)) ?
                 $format :
                 sfConfig::get('app_graph_default_format', 'png');
@@ -154,7 +159,48 @@ class GraphBuilder {
         return $this->graph_query;
     }
 
-    protected function saveNewGraph() {
+    public function getParam($name,$default = null) {
+
+        return isset($this->parameters[$name]) ? $this->parameters[$name] : $default;
+    }
+
+
+    public function buildGraphSource() {
+
+        $gs = new GraphSource();
+
+        $params = array(
+            'title',
+            'x_axis_label',
+            'y_axis_label',
+         );
+
+         foreach ($params as $param) {
+             $gs->setParam($param, $this->getParam($param));
+         }
+
+
+         $vehicle_display = $this->getParam('vehicle_display','single');
+         $category_display = $this->getParam('category_display','stacked');
+
+         $data = $this->getGraphSourceData($vehicle_display,$category_display);
+
+         $gs->setParam('series',$data);
+
+         return $this->graph_source = $gs;
+
+
+        }
+
+
+        public function getGraphSourceData($vehicle_display,$category_display) {
+            
+        }
+
+
+
+
+        protected function saveNewGraph() {
 
         $graph = new Graph();
 
@@ -262,6 +308,41 @@ class GraphBuilder {
         $this->graph_query = $q;
 
         return $this->graph_query;
+    }
+
+    protected function buildChargeQuery($vehicles = array(), $categories = array()) {
+
+        $q = Doctrine_Query::create()->from('Charge c')->select('c.*');
+
+
+        $q->andWhere('c.user_id = ?', $this->getParam('user_id'));
+
+
+        if ($p = $this->getParam('date_from')) {
+            $q->andWhere('c.date >= ?', $p);
+        }
+
+        if ($p = $this->getParam('date_to')) {
+            $q->andWhere('c.date <= ?', $p);
+        }
+
+        if ($p = $this->getParam('kilometers_from')) {
+            $q->andWhere('c.kilometers >= ?', $p);
+        }
+
+        if ($p = $this->getParam('kilometers_to')) {
+            $q->andWhere('c.kilometers <= ?', $p);
+        }
+
+        if ($vehicles) {
+            $q->andWhereIn('c.vehicle_id', $vehicles);
+        }
+
+        if ($categories) {
+            $q->andWhereIn('c.category_id', $categories);
+        }
+
+        return $q;
     }
 
     protected function getDataDefaults() {

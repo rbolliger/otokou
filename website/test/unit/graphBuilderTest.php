@@ -8,33 +8,32 @@ Doctrine_Core::loadData(sfConfig::get('sf_test_dir') . '/fixtures');
 $ut = new otokouTestFunctional(new sfBrowser());
 
 
-$t = new lime_test(14, new lime_output_color());
+$t = new lime_test(23, new lime_output_color());
 
 
 // ->getQuery()
 $t->diag('->getQuery()');
 
-$gb = new GraphBuilder(array());
-$t->isa_ok($gb->getQuery(),'Doctrine_Query','->getQuery() returns a Doctrine_Query object');
+$gb = newGraph(array());
+$t->isa_ok($gb->getQuery(), 'Doctrine_Query', '->getQuery() returns a Doctrine_Query object');
 
 
 
 // ->getGraphsQueryResults()
 $t->diag('->getGraphsQueryResults()');
 
-$data = array('user_id' => $ut->getUserId('user_gb'));
-$gb = new GraphBuilder(getData($data));
+
+$gb = newGraph();
 $qr = $gb->getGraphsQueryResults();
-$t->isa_ok($qr, 'Doctrine_Collection','getGraphsQueryResults() returns A Doctrine_Collection');
-$t->is(count($qr),0, 'getGraphsQueryResults() returns nothing if no corresponding object exists in DB');
+$t->isa_ok($qr, 'Doctrine_Collection', 'getGraphsQueryResults() returns A Doctrine_Collection');
+$t->is(count($qr), 0, 'getGraphsQueryResults() returns nothing if no corresponding object exists in DB');
 
 
 $data = array(
-    'user_id' => $ut->getUserId('user_gb'),
-    'categories_list' => array($ut->getIdForCategory('Tax'),$ut->getIdForCategory('Fuel')),
-        );
-$gb = new GraphBuilder(getData($data));
-$t->isa_ok($gb->getGraphsQueryResults(), 'Doctrine_Collection','getGraphsQueryResults() returns a Doctrine_Collection object if the requested object is found in DB');
+    'categories_list' => array($ut->getIdForCategory('Tax'), $ut->getIdForCategory('Fuel')),
+);
+$gb = newGraph($data);
+$t->isa_ok($gb->getGraphsQueryResults(), 'Doctrine_Collection', 'getGraphsQueryResults() returns a Doctrine_Collection object if the requested object is found in DB');
 $t->cmp_ok($gb->getGraphsQueryResults()->count(), '==', 1, 'getGraphsQueryResults() retrieves only entries matching EXACTLY the requested parameters');
 
 
@@ -43,54 +42,92 @@ $t->cmp_ok($gb->getGraphsQueryResults()->count(), '==', 1, 'getGraphsQueryResult
 $t->diag('->retrieveOrCreate()');
 
 $data = array(
-    'user_id' => $ut->getUserId('user_gb'),
-    'categories_list' => array($ut->getIdForCategory('Tax'),$ut->getIdForCategory('Fuel')),
-        );
-$gb = new GraphBuilder(getData($data));
+    'categories_list' => array($ut->getIdForCategory('Tax'), $ut->getIdForCategory('Fuel')),
+);
+$gb = newGraph($data);
 $g1 = $gb->retrieveOrCreate();
 $g2 = $gb->getGraphsQueryResults();
 $t->isa_ok($g1, 'Graph', '->retriveOrCreate() returns a Graph object when the element is found in the DB');
-$t->is($g1, $g2[0],'->retriveOrCreate() returns a graph found in DB, if available');
+$t->is($g1, $g2[0], '->retriveOrCreate() returns a graph found in DB, if available');
 
 
 $data = array(
-    'user_id' => $ut->getUserId('user_gb'),
-    'categories_list' => array($ut->getIdForCategory('Tax'),$ut->getIdForCategory('Fuel')),
+    'categories_list' => array($ut->getIdForCategory('Tax'), $ut->getIdForCategory('Fuel')),
     'kilometers_from' => 123,
-        );
-$gb = new GraphBuilder(getData($data));
+);
+$gb = newGraph($data);
 $g1 = $gb->getGraphsQueryResults();
 $g2 = $gb->retrieveOrCreate();
 $t->isa_ok($g2, 'Graph', '->retriveOrCreate() returns a new Graph object when nohing is in DB');
-$t->cmp_ok($g1->count(), '==', 0,'->retriveOrCreate() returns a new Graph if nothing exists in the DB');
+$t->cmp_ok($g1->count(), '==', 0, '->retriveOrCreate() returns a new Graph if nothing exists in the DB');
 $g3 = $gb->getGraphsQueryResults();
-$t->cmp_ok($g3->count(), '==', 1,'the newly created graph can be retrieved from the DB');
-$t->is($g2, $g3[0],'->retriveOrCreate() saves the new Graph in the DB');
+$t->cmp_ok($g3->count(), '==', 1, 'the newly created graph can be retrieved from the DB');
+$t->is($g2, $g3[0], '->retriveOrCreate() saves the new Graph in the DB');
 
 
 // -> getGraphFormat()
 $t->diag('-> getGraphFormat()');
 
 sfConfig::clear('app_graph_default_format');
-$data = array('user_id' => $ut->getUserId('user_gb'));
-$gb = new GraphBuilder(getData($data));
+$gb = newGraph();
 
-$t->cmp_ok($gb->getGraphFormat(), '==', 'png','By default, the pictures format is png');
+$t->cmp_ok($gb->getGraphFormat(), '==', 'png', 'By default, the pictures format is png');
 
 sfConfig::set('app_graph_default_format', 'jpg');
-$t->cmp_ok($gb->getGraphFormat(), '==', 'jpg','The user can set a default format in app_graph_default_format');
+$t->cmp_ok($gb->getGraphFormat(), '==', 'jpg', 'The user can set a default format in app_graph_default_format');
 
-$data = array('user_id' => $ut->getUserId('user_gb'),'format' => 'png');
-$gb = new GraphBuilder(getData($data));
+$data = array('format' => 'png');
+$gb = newGraph($data);
 
-$t->cmp_ok($gb->getGraphFormat(), '==', 'png','The format can be specified for each graph individually');
+$t->cmp_ok($gb->getGraphFormat(), '==', 'png', 'The format can be specified for each graph individually');
+
+
+// ->getGraphName()
+$t->diag('->getGraphName()');
+$g = newGraph();
+$name = $g->getGraph()->getSha() . '.' . $g->getGraphFormat();
+$t->cmp_ok($name, '==', $g->getGraphName(), 'The name of the graph is built from the sha key and the format');
+
+
+
+// ->getGraphImageBasePath()
+$t->diag('->getGraphImageBasePath()');
+
+sfConfig::clear('app_graph_image_base_path');
+$gb = newGraph();
+$t->cmp_ok($gb->getGraphImageBasePath(), '==', '/web/images/graphs', 'By default, base path is /web/images/graphs');
+
+sfConfig::set('app_graph_image_base_path', '/web/images/graphs/static');
+$t->cmp_ok($gb->getGraphImageBasePath(), '==', '/web/images/graphs/static', 'The user can set the path in app_graph_image_base_path');
+
+$options = array('image_base_path' => '/web/images/static');
+$gb = newGraph(array(),$options);
+$t->cmp_ok($gb->getGraphImageBasePath(), '==', '/web/images/static', 'The base path can be set for each GraphBuilder instance individually');
+
+
+$t->diag('-> getGraphPath()');
+$g = newGraph();
+$path = $g->getGraphImageBasePath() . '/' . $g->getGraphName();
+$t->cmp_ok($path, '==', $g->getGraphPath(), 'The graph is built from the base path and the graph name');
+
+
+// ->buildGraphSource()
+$t->diag('->buildGraphSource()');
+$g = newGraph();
+$t->isa_ok($g->buildGraphSource(), 'GraphSource', '->buildGraphSource returns a GraphSource object');
+
+
+// ->getParam()
+$t->diag('->getParam()');
+
+$g = newGraph(array('sdfgsdfgsgd' => 123));
+$t->cmp_ok($g->getParam('sdfgsdfgsgd','aaa'), '===', 123,'->getParam() returns the requested parameter value if the parameter exists');
+$t->cmp_ok($g->getParam('drasdf'), '===', null,'->getParam() returns NULL if the parameter is not found and no default value is specified');
+$t->cmp_ok($g->getParam('drasdf','aaa'), '===', 'aaa','->getParam() returns the specified default value if the parameter is not found');
 
 // ->display()
 // ->generate()
-// ->getGraphName()
-// ->getGraphPath()
 // ->addParamaters() unsets $this->graph
-
 // ->getOption()
 // ->setAttributes()
 // ->setOptions()
@@ -119,4 +156,14 @@ function getData($data = array()) {
     return array_merge($defaults, $data);
 }
 
+function newGraph($data = array(),$options = array(),$attributes = array()) {
 
+    $ut = new otokouTestFunctional(new sfBrowser());
+
+    $data = array_merge(
+                    array(
+                        'user_id' => $ut->getUserId('user_gb'),
+                    ),
+                    $data);
+    return new GraphBuilder(getData($data),$options,$attributes);
+}
