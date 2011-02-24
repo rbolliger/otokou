@@ -29,5 +29,8 @@ Vehicle:
   car_gb_2:
     name: car gb 2
     User: user_gb
+  car_gb_3:
+    name: car gb 3
+    User: user_gb
   
     

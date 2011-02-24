@@ -159,11 +159,10 @@ class GraphBuilder {
         return $this->graph_query;
     }
 
-    public function getParam($name,$default = null) {
+    public function getParam($name, $default = null) {
 
         return isset($this->parameters[$name]) ? $this->parameters[$name] : $default;
     }
-
 
     public function buildGraphSource() {
 
@@ -173,34 +172,101 @@ class GraphBuilder {
             'title',
             'x_axis_label',
             'y_axis_label',
-         );
+        );
 
-         foreach ($params as $param) {
-             $gs->setParam($param, $this->getParam($param));
-         }
-
-
-         $vehicle_display = $this->getParam('vehicle_display','single');
-         $category_display = $this->getParam('category_display','stacked');
-
-         $data = $this->getGraphSourceData($vehicle_display,$category_display);
-
-         $gs->setParam('series',$data);
-
-         return $this->graph_source = $gs;
-
-
+        foreach ($params as $param) {
+            $gs->setParam($param, $this->getParam($param));
         }
 
 
-        public function getGraphSourceData($vehicle_display,$category_display) {
-            
+        $vehicle_display = $this->getParam('vehicle_display', 'single');
+        $category_display = $this->getParam('category_display', 'stacked');
+
+        $data = $this->getGraphSourceData($vehicle_display, $category_display);
+
+        $gs->setParam('series', $data);
+
+        return $this->graph_source = $gs;
+    }
+
+    public function getGraphSourceData($vehicle_display, $category_display) {
+
+        $data = array();
+
+        if ($vehicle_display == 'stacked' && $category_display == 'stacked') {
+            $case = 1;
+        } elseif ($vehicle_display == 'stacked' && $category_display == 'single') {
+            $case = 2;
+        } elseif ($vehicle_display == 'single' && $category_display == 'stacked') {
+            $case = 3;
+        } elseif ($vehicle_display == 'single' && $category_display == 'single') {
+            $case = 4;
+        }
+
+        $vehicles = $this->getParam('vehicles_list', null);
+        $categories = $this->getParam('categories_list', null);
+        $nb_categories = count($categories);
+        $nb_vehicles = count($vehicles);
+
+        switch ($case) {
+            case 1:
+                $ns = 0;
+
+                $q = $this->buildChargeQuery($vehicles, $categories);
+                $charges = $q->execute();
+
+                $data[$ns++] = $charges;
+
+                break;
+
+            case 2:
+                $ns = 0;
+                for ($indexC = 0; $indexC < $nb_categories; $indexC++) {
+
+                    $q = $this->buildChargeQuery($vehicles, $categories[$indexC]);
+                    $charges = $q->execute();
+
+                    $data[$ns++] = $charges;
+                }
+
+                break;
+
+            case 3:
+                $ns = 0;
+                for ($indexV = 0; $indexV < $nb_vehicles; $indexV++) {
+
+                    $q = $this->buildChargeQuery($vehicles[$indexV], $categories);
+                    $charges = $q->execute();
+
+                    $data[$ns++] = $charges;
+                }
+
+                break;
+
+
+            case 4:
+                $ns = 0;
+                for ($indexC = 0; $indexC < $nb_categories; $indexC++) {
+                    for ($indexV = 0; $indexV < $nb_vehicles; $indexV++) {
+
+                        $q = $this->buildChargeQuery($vehicles[$indexV], $categories[$indexC]);
+                        $charges = $q->execute();
+
+                        $data[$ns++] = $charges;
+                    }
+                }
+
+                break;
+
+            default:
+                break;
         }
 
 
+        return $data;
+    }
 
-
-        protected function saveNewGraph() {
+    protected function saveNewGraph() {
 
         $graph = new Graph();
 

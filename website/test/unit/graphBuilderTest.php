@@ -8,7 +8,7 @@ Doctrine_Core::loadData(sfConfig::get('sf_test_dir') . '/fixtures');
 $ut = new otokouTestFunctional(new sfBrowser());
 
 
-$t = new lime_test(23, new lime_output_color());
+$t = new lime_test(28, new lime_output_color());
 
 
 // ->getQuery()
@@ -125,6 +125,32 @@ $t->cmp_ok($g->getParam('sdfgsdfgsgd','aaa'), '===', 123,'->getParam() returns t
 $t->cmp_ok($g->getParam('drasdf'), '===', null,'->getParam() returns NULL if the parameter is not found and no default value is specified');
 $t->cmp_ok($g->getParam('drasdf','aaa'), '===', 'aaa','->getParam() returns the specified default value if the parameter is not found');
 
+
+// ->getGraphSourceData()
+$t->diag('->getGraphSourceData()');
+$params = array(
+    'categories_list' => array($ut->getIdForCategory('Tax'), $ut->getIdForCategory('Fuel')),
+    'vehicles_list' => array($ut->getVehicleId('car-gb-1'),$ut->getVehicleId('car-gb-2'),$ut->getVehicleId('car-gb-3')),
+);
+$g = newGraph($params);
+$data = $g->getGraphSourceData('stacked', 'stacked');
+$t->cmp_ok(count(array_keys($data)), '==', 1,'->getGraphSourceData() returns a single data serie when both displays are stacked');
+
+$data = $g->getGraphSourceData('stacked', 'single');
+$t->cmp_ok(count(array_keys($data)), '==', 2,'->getGraphSourceData() returns a number of data series corresponding to the number of categories');
+
+
+$data = $g->getGraphSourceData('single', 'stacked');
+$t->cmp_ok(count(array_keys($data)), '==', 3,'->getGraphSourceData() returns a number of data series corresponding to the number of vehicles');
+
+
+$data = $g->getGraphSourceData('single', 'single');
+$t->cmp_ok(count(array_keys($data)), '==', 6,'->getGraphSourceData() returns a number of data series corresponding to the number of vehicles multiplied by the number of categories');
+$t->isa_ok($data[0], 'Doctrine_Collection', '->getGraphSourceData() returns one or more series of Dcotrine_Collection');
+
+
+//
+//
 // ->display()
 // ->generate()
 // ->addParamaters() unsets $this->graph
