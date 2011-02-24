@@ -8,7 +8,7 @@ Doctrine_Core::loadData(sfConfig::get('sf_test_dir') . '/fixtures');
 $ut = new otokouTestFunctional(new sfBrowser());
 
 
-$t = new lime_test(28, new lime_output_color());
+$t = new lime_test(29, new lime_output_color());
 
 
 // ->getQuery()
@@ -90,24 +90,24 @@ $t->cmp_ok($name, '==', $g->getGraphName(), 'The name of the graph is built from
 
 
 
-// ->getGraphImageBasePath()
-$t->diag('->getGraphImageBasePath()');
+// ->getGraphBasePath()
+$t->diag('->getGraphBasePath()');
 
-sfConfig::clear('app_graph_image_base_path');
+sfConfig::clear('app_graph_base_path');
 $gb = newGraph();
-$t->cmp_ok($gb->getGraphImageBasePath(), '==', '/web/images/graphs', 'By default, base path is /web/images/graphs');
+$t->cmp_ok($gb->getGraphBasePath(), '==', '/images/graphs', 'By default, base path is /images/graphs');
 
-sfConfig::set('app_graph_image_base_path', '/web/images/graphs/static');
-$t->cmp_ok($gb->getGraphImageBasePath(), '==', '/web/images/graphs/static', 'The user can set the path in app_graph_image_base_path');
+sfConfig::set('app_graph_base_path', '/images/graphs/static');
+$t->cmp_ok($gb->getGraphBasePath(), '==', '/images/graphs/static', 'The user can set the path in app_graph_base_path');
 
-$options = array('image_base_path' => '/web/images/static');
+$options = array('base_path' => '/images/static');
 $gb = newGraph(array(),$options);
-$t->cmp_ok($gb->getGraphImageBasePath(), '==', '/web/images/static', 'The base path can be set for each GraphBuilder instance individually');
+$t->cmp_ok($gb->getGraphBasePath(), '==', '/images/static', 'The base path can be set for each GraphBuilder instance individually');
 
 
 $t->diag('-> getGraphPath()');
 $g = newGraph();
-$path = $g->getGraphImageBasePath() . '/' . $g->getGraphName();
+$path = $g->getGraphBasePath() . '/' . $g->getGraphName();
 $t->cmp_ok($path, '==', $g->getGraphPath(), 'The graph is built from the base path and the graph name');
 
 
@@ -148,6 +148,18 @@ $data = $g->getGraphSourceData('single', 'single');
 $t->cmp_ok(count(array_keys($data)), '==', 6,'->getGraphSourceData() returns a number of data series corresponding to the number of vehicles multiplied by the number of categories');
 $t->isa_ok($data[0], 'Doctrine_Collection', '->getGraphSourceData() returns one or more series of Dcotrine_Collection');
 
+
+// ->checkPath()
+$t->diag('checkPath()');
+$path = '/images/test';
+sfConfig::set('app_graph_base_path',$path);
+sfConfig::set('sf_web_dir',realpath(dirname(__FILE__).'/../../web'));
+$g  = newGraph();
+$g->checkPath($g->getGraphBasePath());
+$t->ok(file_exists(sfConfig::get('sf_web_dir').$path), '->checkPath() checks that a path exists and created it if not');
+
+$fs = new sfFilesystem();
+$fs->remove(sfConfig::get('sf_web_dir').$path);
 
 //
 //

@@ -19,6 +19,14 @@ class GraphBuilder {
     protected $graph;
     protected $graph_source;
 
+    public function doDisplay() {
+
+    }
+
+    public function doGenerate() {
+
+    }
+
     public function __construct(array $parameters, array $options = array(), array $attributes = array()) {
 
         $this->setParameters($parameters);
@@ -37,8 +45,9 @@ class GraphBuilder {
 
     public function display() {
 
-        $this->retrieveOrCreate();
-        return image_tag($this->getGraphPath(), $this->getAttributes());
+        $this->generate();
+
+        $this->doDisplay();
     }
 
     public function setAttributes(array $attributes) {
@@ -48,11 +57,12 @@ class GraphBuilder {
 
     public function getGraphPath() {
 
-        return $this->getGraphImageBasePath() . '/' . $this->getGraphName();
+        return $this->getGraphBasePath() . '/' . $this->getGraphName();
     }
 
-    public function getGraphImageBasePath() {
-        return $this->getOption('image_base_path', sfConfig::get('app_graph_image_base_path', '/web/images/graphs'));
+    public function getGraphBasePath() {
+        return $this->getOption('base_path', sfConfig::get('app_graph_base_path', '/images/graphs'));
+
     }
 
     public function getGraphName() {
@@ -90,13 +100,13 @@ class GraphBuilder {
     public function setParameters(array $parameters) {
 
         $this->parameters = array_merge($this->getDataDefaults(), $parameters);
-        unset($this->graph);
+        $this->clearGeneratedElements();
     }
 
     public function addParameters(array $parameters) {
 
         $this->parameters = array_merge($this->parameters, $parameters);
-        unset($this->graph);
+        $this->clearGeneratedElements();
     }
 
     public function retrieveOrCreate() {
@@ -123,6 +133,29 @@ class GraphBuilder {
 
     public function generate() {
 
+        if (!$this->graph) {
+            $this->retrieveOrCreate();
+        }
+
+        $this->checkPath($this->getGraphBasePath());
+
+        if (!$this->graph_source) {
+            $this->getGraphSource();
+        }
+
+        $this->doGenerate();
+    }
+
+    public function checkPath($path) {
+
+        $rel = $path[0] == DIRECTORY_SEPARATOR ? $path : DIRECTORY_SEPARATOR.$path;
+
+        $abs = sfConfig::get('sf_web_dir').$rel;
+
+        if (!file_exists($abs)) {
+            $fs = new sfFilesystem();
+            $fs->mkdirs($abs);
+        }
     }
 
     public function getGraphsQueryResults() {
@@ -146,7 +179,6 @@ class GraphBuilder {
     public function getDefaultOptions() {
 
         return array(
-            'base_path' => '/graphs',
         );
     }
 
@@ -186,7 +218,7 @@ class GraphBuilder {
         $data = $this->getGraphSourceData($vehicle_display, $category_display);
 
         $gs->setParam('raw_data', $data);
-       
+
 
         return $this->graph_source = $gs;
     }
@@ -268,6 +300,15 @@ class GraphBuilder {
         return $data;
     }
 
+    public function getGraphSource() {
+
+        if (!$this->graph_source) {
+            $this->buildGraphSource();
+        }
+
+        return $this->graph_source;
+    }
+
     protected function saveNewGraph() {
 
         $graph = new Graph();
@@ -287,7 +328,6 @@ class GraphBuilder {
             if (isset($params[$field])) {
 
                 $graph->link($class, $params[$field]);
-//                unset($params[$field]);
             }
         }
 
@@ -432,6 +472,14 @@ class GraphBuilder {
         );
 
         return array_merge($defaults, $foreign);
+    }
+
+    protected function clearGeneratedElements() {
+
+        unset(
+                $this->graph,
+                $this->graph_source
+        );
     }
 
 }
