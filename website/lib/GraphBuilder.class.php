@@ -148,9 +148,11 @@ class GraphBuilder {
 
     public function checkPath($path) {
 
-        $rel = $path[0] == DIRECTORY_SEPARATOR ? $path : DIRECTORY_SEPARATOR.$path;
+        $system_path = str_replace("/", DIRECTORY_SEPARATOR, $path);
 
-        $abs = sfConfig::get('sf_web_dir').$rel;
+        $system_path = ($system_path[0] == DIRECTORY_SEPARATOR ? $path : DIRECTORY_SEPARATOR.$path);
+
+        $abs = sfConfig::get('sf_web_dir').$system_path;
 
         if (!file_exists($abs)) {
             $fs = new sfFilesystem();
