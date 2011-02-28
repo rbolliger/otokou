@@ -8,7 +8,7 @@ Doctrine_Core::loadData(sfConfig::get('sf_test_dir') . '/fixtures');
 $ut = new otokouTestFunctional(new sfBrowser());
 
 
-$t = new lime_test(32, new lime_output_color());
+$t = new lime_test(34, new lime_output_color());
 
 
 // ->getQuery()
@@ -161,20 +161,35 @@ $t->cmp_ok(count(array_keys($data)), '==', 3,'->getGraphSourceData() returns a n
 
 $data = $g->getGraphSourceData('single', 'single');
 $t->cmp_ok(count(array_keys($data)), '==', 6,'->getGraphSourceData() returns a number of data series corresponding to the number of vehicles multiplied by the number of categories');
-$t->isa_ok($data[0], 'Doctrine_Collection', '->getGraphSourceData() returns one or more series of Dcotrine_Collection');
+$t->isa_ok($data[0], 'Doctrine_Collection', '->getGraphSourceData() returns one or more series of Doctrine_Collection');
 
 
 // ->checkPath()
 $t->diag('checkPath()');
 $path = '/images/test';
 sfConfig::set('app_graph_base_path',$path);
-sfConfig::set('sf_web_dir',realpath(dirname(__FILE__).'/../../web'));
+sfConfig::set('sf_root_dir',realpath(dirname(__FILE__).'/../..'));
+sfConfig::set('sf_web_dir',  sfConfig::get('sf_root_dir').'/web');
 $g  = newGraph();
-$g->checkPath($g->getGraphBasePath());
-$t->ok(file_exists(sfConfig::get('sf_web_dir').$path), '->checkPath() checks that a path exists and created it if not');
+$g->checkPath($g->getGraphBasePath('system'));
+$t->ok(file_exists(sfConfig::get('sf_web_dir').$path), '->checkPath() checks that a path exists. If not, the path is created');
 
 $fs = new sfFilesystem();
 $fs->remove(sfConfig::get('sf_web_dir').$path);
+
+$g->checkPath($g->getGraphBasePath('system'),false);
+$t->ok(!file_exists(sfConfig::get('sf_web_dir').$path), '->checkPath() accepts a "create" option. If set to false, the path is not created, if not found.');
+
+
+try
+{
+  $g->checkPath($g->getGraphBasePath('web'));
+  $t->fail('no code should be executed after throwing an exception');
+}
+catch (Exception $e)
+{
+  $t->pass('->checkPath() only accepts system paths');
+}
 
 //
 //

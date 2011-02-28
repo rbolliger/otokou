@@ -56,7 +56,7 @@ class GraphBuilder {
     }
 
     public function getGraphPath($type = 'web') {
-        
+
         return $this->getGraphBasePath($type) . '/' . $this->getGraphName();
     }
 
@@ -64,7 +64,7 @@ class GraphBuilder {
 
         $path = $this->getOption('base_path', sfConfig::get('app_graph_base_path', '/images/graphs'));
 
-        $path = ($path[0] == '/' ? $path : '/'.$path);
+        $path = ($path[0] == '/' ? $path : '/' . $path);
 
         switch ($type) {
             case 'web':
@@ -74,18 +74,17 @@ class GraphBuilder {
             case 'system':
                 $path = $this->convertToSystemPath($path);
 
-                $path = sfConfig::get('sf_web_dir').$path;
+                $path = sfConfig::get('sf_web_dir') . $path;
 
 
                 break;
 
             default:
 
-                throw new sfException('Unknown option '.$type);
+                throw new sfException('Unknown option ' . $type);
         }
 
         return $path;
-
     }
 
     public function getGraphName() {
@@ -181,24 +180,18 @@ class GraphBuilder {
         }
 
         // Checking that the base path exists
-        $this->checkPath($this->getGraphBasePath());
-
-
-
-
+        $this->checkPath($this->getGraphBasePath('system'));
     }
 
-    public function checkPath($path) {
+    public function checkPath($path,$create = true) {
 
-        $system_path = $this->convertToSystemPath($path);
+        if (false === strpos($path, sfConfig::get('sf_root_dir'))) {
+            throw new sfException(sprintf('checkPath() only accepts system paths. Got "%s" instead.',$path));
+        }
 
-        $system_path = ($system_path[0] == DIRECTORY_SEPARATOR ? $path : DIRECTORY_SEPARATOR.$path);
-
-        $abs = sfConfig::get('sf_web_dir').$system_path;
-
-        if (!file_exists($abs)) {
+        if (!file_exists($path) && $create) {
             $fs = new sfFilesystem();
-            $fs->mkdirs($abs);
+            $fs->mkdirs($path);
         }
     }
 
