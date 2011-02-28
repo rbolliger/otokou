@@ -175,24 +175,28 @@ class GraphBuilder {
     public function graphSourceIsAvailable() {
 
         // Does the Graph object has been retrived from the DB?
-        if (!$this->graph) {
-            $this->retrieveOrCreate();
-        }
+        $this->getGraph();
 
         // Checking that the base path exists
         $this->checkPath($this->getGraphBasePath('system'));
+
+        return $this->checkPath($this->getGraphPath('system'), false);
     }
 
-    public function checkPath($path,$create = true) {
+    public function checkPath($path, $create = true) {
 
         if (false === strpos($path, sfConfig::get('sf_root_dir'))) {
-            throw new sfException(sprintf('checkPath() only accepts system paths. Got "%s" instead.',$path));
+            throw new sfException(sprintf('checkPath() only accepts system paths. Got "%s" instead.', $path));
         }
 
-        if (!file_exists($path) && $create) {
+        $exists = file_exists($path);
+        if (!$exists && $create) {
             $fs = new sfFilesystem();
             $fs->mkdirs($path);
+            $exists = true;
         }
+
+        return $exists;
     }
 
     public function getGraphsQueryResults() {
@@ -513,10 +517,8 @@ class GraphBuilder {
 
     protected function clearGeneratedElements() {
 
-        unset(
-                $this->graph,
-                $this->graph_source
-        );
+        $this->graph = null;
+        $this->graph_source = null;
     }
 
     protected function convertToSystemPath($path) {

@@ -8,7 +8,7 @@ Doctrine_Core::loadData(sfConfig::get('sf_test_dir') . '/fixtures');
 $ut = new otokouTestFunctional(new sfBrowser());
 
 
-$t = new lime_test(34, new lime_output_color());
+$t = new lime_test(36, new lime_output_color());
 
 
 // ->getQuery()
@@ -190,6 +190,18 @@ catch (Exception $e)
 {
   $t->pass('->checkPath() only accepts system paths');
 }
+
+// ->graphSourceIsAvailable()
+$t->diag('->graphSourceIsAvailable()');
+$g  = newGraph();
+$t->cmp_ok($g->graphSourceIsAvailable(), '===', false, 'Graph source file is not available for new graphs');
+
+
+$fs = new sfFilesystem();
+$fs->touch($g->getGraphPath('system'));
+$t->cmp_ok($g->graphSourceIsAvailable(), '===', true, 'Graph source file is found, if it exists');
+$fs->remove($g->getGraphPath('system'));
+$fs->remove($g->getGraphBasePath('system'));
 
 //
 //
