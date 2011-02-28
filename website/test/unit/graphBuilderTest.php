@@ -8,7 +8,7 @@ Doctrine_Core::loadData(sfConfig::get('sf_test_dir') . '/fixtures');
 $ut = new otokouTestFunctional(new sfBrowser());
 
 
-$t = new lime_test(29, new lime_output_color());
+$t = new lime_test(32, new lime_output_color());
 
 
 // ->getQuery()
@@ -103,6 +103,21 @@ $t->cmp_ok($gb->getGraphBasePath(), '==', '/images/graphs/static', 'The user can
 $options = array('base_path' => '/images/static');
 $gb = newGraph(array(),$options);
 $t->cmp_ok($gb->getGraphBasePath(), '==', '/images/static', 'The base path can be set for each GraphBuilder instance individually');
+
+$t->cmp_ok($gb->getGraphBasePath('web'), '==', '/images/static', 'The "web" option returns a relative url');
+
+sfConfig::set('sf_web_dir',realpath(dirname(__FILE__).'/../../web'));
+$t->cmp_ok($gb->getGraphBasePath('system'), '==', sfConfig::get('sf_web_dir').'/images/static', 'The "system" option returns an absolute system path');
+
+try
+{
+  $gb->getGraphBasePath('sdgdfgxdf');
+  $t->fail('no code should be executed after throwing an exception');
+}
+catch (Exception $e)
+{
+  $t->pass('Only "web" and "system" are possible types');
+}
 
 
 $t->diag('-> getGraphPath()');

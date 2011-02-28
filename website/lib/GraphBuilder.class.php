@@ -55,13 +55,36 @@ class GraphBuilder {
         $this->attributes = array_merge($this->attributes, $attributes);
     }
 
-    public function getGraphPath() {
-
-        return $this->getGraphBasePath() . '/' . $this->getGraphName();
+    public function getGraphPath($type = 'web') {
+        
+        return $this->getGraphBasePath($type) . '/' . $this->getGraphName();
     }
 
-    public function getGraphBasePath() {
-        return $this->getOption('base_path', sfConfig::get('app_graph_base_path', '/images/graphs'));
+    public function getGraphBasePath($type = 'web') {
+
+        $path = $this->getOption('base_path', sfConfig::get('app_graph_base_path', '/images/graphs'));
+
+        $path = ($path[0] == '/' ? $path : '/'.$path);
+
+        switch ($type) {
+            case 'web':
+
+                break;
+
+            case 'system':
+                $path = $this->convertToSystemPath($path);
+
+                $path = sfConfig::get('sf_web_dir').$path;
+
+
+                break;
+
+            default:
+
+                throw new sfException('Unknown option '.$type);
+        }
+
+        return $path;
 
     }
 
@@ -133,11 +156,15 @@ class GraphBuilder {
 
     public function generate() {
 
+        // Does the Graph object has been retrived from the DB?
         if (!$this->graph) {
             $this->retrieveOrCreate();
         }
 
-        $this->checkPath($this->getGraphBasePath());
+        // If the source is already available, we stop here
+        if ($this->graphSourceIsAvailable()) {
+            return;
+        }
 
         if (!$this->graph_source) {
             $this->getGraphSource();
@@ -146,9 +173,24 @@ class GraphBuilder {
         $this->doGenerate();
     }
 
+    public function graphSourceIsAvailable() {
+
+        // Does the Graph object has been retrived from the DB?
+        if (!$this->graph) {
+            $this->retrieveOrCreate();
+        }
+
+        // Checking that the base path exists
+        $this->checkPath($this->getGraphBasePath());
+
+
+
+
+    }
+
     public function checkPath($path) {
 
-        $system_path = str_replace("/", DIRECTORY_SEPARATOR, $path);
+        $system_path = $this->convertToSystemPath($path);
 
         $system_path = ($system_path[0] == DIRECTORY_SEPARATOR ? $path : DIRECTORY_SEPARATOR.$path);
 
@@ -482,6 +524,11 @@ class GraphBuilder {
                 $this->graph,
                 $this->graph_source
         );
+    }
+
+    protected function convertToSystemPath($path) {
+
+        return str_replace("/", DIRECTORY_SEPARATOR, $path);
     }
 
 }
