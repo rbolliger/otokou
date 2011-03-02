@@ -6,5 +6,11 @@ class GraphBuilderPGraph extends GraphBuilder {
 
         return image_tag($this->getGraphPath(), $this->getAttributes());
     }
+
+    public function  doGenerate() {
+        parent::doGenerate();
+
+        
+    }
 }
 
