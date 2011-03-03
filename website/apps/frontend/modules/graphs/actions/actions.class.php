@@ -33,7 +33,7 @@ class graphsActions extends sfActions {
         $filters = $this->updateFieldIfEmpty($filters, 'vehicle_display', 'single');
         $filters = $this->updateFieldIfEmpty($filters, 'category_display', 'stacked');
 
-        $this->gb = new GraphBuilder($this->getGBData());
+        $this->gb = new GraphBuilderPChart($this->getGBData());
 
         $this->data = $this->getData();
 

@@ -18,6 +18,7 @@ class GraphBuilder {
     protected $attributes = array();
     protected $graph;
     protected $graph_source;
+    protected $logger;
 
     public function doDisplay() {
 
@@ -36,6 +37,8 @@ class GraphBuilder {
         $this->setOptions($options);
 
         $this->setAttributes($attributes);
+
+        $this->setLogger($this->getOption('logger', sfContext::getInstance()->getLogger()));
     }
 
     public function __toString() {
@@ -43,16 +46,34 @@ class GraphBuilder {
         $this->display();
     }
 
+    public function setLogger(sfLogger $logger) {
+        $this->logger = $logger;
+    }
+
+    public function getLogger() {
+        return $this->logger;
+    }
+
     public function display() {
 
         $this->generate();
 
-        $this->doDisplay();
+        return $this->doDisplay();
+    }
+
+    public function addAttributes(array $attributes) {
+
+        $this->attributes = array_merge($this->attributes, $attributes);
     }
 
     public function setAttributes(array $attributes) {
 
-        $this->attributes = array_merge($this->attributes, $attributes);
+        $this->attributes = $attributes;
+    }
+
+    public function getAttributes() {
+
+        return $this->attributes;
     }
 
     public function getGraphPath($type = 'web') {
@@ -62,16 +83,21 @@ class GraphBuilder {
 
     public function getGraphBasePath($type = 'web') {
 
-        $path = $this->getOption('base_path', sfConfig::get('app_graph_base_path', '/images/graphs'));
+        $path = $this->getOption('base_path', sfConfig::get('app_graph_base_path', '/graphs'));
 
-        $path = ($path[0] == '/' ? $path : '/' . $path);
 
         switch ($type) {
             case 'web':
+                $path = ($path[0] == '/' ? substr($path, 1) : $path);
 
                 break;
 
             case 'system':
+                $path = ($path[0] == '/' ? $path : '/' . $path);
+
+                // adding "images" folder
+                $path = '/' . sfConfig::get('sf_web_images_dir_name', 'images') . $path;
+
                 $path = $this->convertToSystemPath($path);
 
                 $path = sfConfig::get('sf_web_dir') . $path;
@@ -128,7 +154,13 @@ class GraphBuilder {
     public function addParameters(array $parameters) {
 
         $this->parameters = array_merge($this->parameters, $parameters);
+
         $this->clearGeneratedElements();
+    }
+
+    public function getParameter($name, $default = null) {
+
+        return isset($this->parameters[$name]) ? $this->parameters[$name] : $default;
     }
 
     public function retrieveOrCreate() {
@@ -162,12 +194,17 @@ class GraphBuilder {
 
         // If the source is already available, we stop here
         if ($this->graphSourceIsAvailable()) {
+            $this->getLogger()->info(sprintf('Graph %s exists. Skipping generation.', $this->getGraphPath('system')));
+
             return;
         }
 
         if (!$this->graph_source) {
             $this->getGraphSource();
         }
+
+        $this->getLogger()->info(sprintf('Graph %s picture does not exist exist. Generating it.', $this->getGraphPath('system')));
+
 
         $this->doGenerate();
     }
@@ -232,11 +269,6 @@ class GraphBuilder {
         return $this->graph_query;
     }
 
-    public function getParam($name, $default = null) {
-
-        return isset($this->parameters[$name]) ? $this->parameters[$name] : $default;
-    }
-
     public function buildGraphSource() {
 
         $gs = new GraphSource();
@@ -249,17 +281,18 @@ class GraphBuilder {
         );
 
         foreach ($params as $param) {
-            $gs->setParam($param, $this->getParam($param));
+            $gs->setParam($param, $this->getParameter($param));
         }
 
         // getting source data
-        $vehicle_display = $this->getParam('vehicle_display', 'single');
-        $category_display = $this->getParam('category_display', 'stacked');
+        $vehicle_display = $this->getParameter('vehicle_display', 'single');
+        $category_display = $this->getParameter('category_display', 'stacked');
 
         $data = $this->getGraphSourceData($vehicle_display, $category_display);
 
         $gs->setParam('raw_data', $data);
 
+        $this->getLogger()->info(sprintf('Graph %s source does not exist exist. Building graph data source.', $this->getGraphName()));
 
         return $this->graph_source = $gs;
     }
@@ -278,8 +311,8 @@ class GraphBuilder {
             $case = 4;
         }
 
-        $vehicles = $this->getParam('vehicles_list', null);
-        $categories = $this->getParam('categories_list', null);
+        $vehicles = $this->getParameter('vehicles_list', null);
+        $categories = $this->getParameter('categories_list', null);
         $nb_categories = count($categories);
         $nb_vehicles = count($vehicles);
 
@@ -464,22 +497,22 @@ class GraphBuilder {
         $q = Doctrine_Query::create()->from('Charge c')->select('c.*');
 
 
-        $q->andWhere('c.user_id = ?', $this->getParam('user_id'));
+        $q->andWhere('c.user_id = ?', $this->getParameter('user_id'));
 
 
-        if ($p = $this->getParam('date_from')) {
+        if ($p = $this->getParameter('date_from')) {
             $q->andWhere('c.date >= ?', $p);
         }
 
-        if ($p = $this->getParam('date_to')) {
+        if ($p = $this->getParameter('date_to')) {
             $q->andWhere('c.date <= ?', $p);
         }
 
-        if ($p = $this->getParam('kilometers_from')) {
+        if ($p = $this->getParameter('kilometers_from')) {
             $q->andWhere('c.kilometers >= ?', $p);
         }
 
-        if ($p = $this->getParam('kilometers_to')) {
+        if ($p = $this->getParameter('kilometers_to')) {
             $q->andWhere('c.kilometers <= ?', $p);
         }
 

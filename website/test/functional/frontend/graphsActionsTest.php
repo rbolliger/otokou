@@ -67,7 +67,7 @@ $browser->
                 checkElement('#filter_values_range_type:contains("nothing")]',true)->
                 checkElement('#filter_values_date_range:contains("nothing")]',true)->
                 checkElement('#filter_values_kilometers_range:contains("nothing")]',true)->
-                checkElement('table#query_results:contains("No elements found")]',true)->
+                checkElement('table#query_results tbody tr',1)->
             end()->
         with('doctrine')->
             begin()->
@@ -99,7 +99,7 @@ $browser->
             end()->
             with('doctrine')->
             begin()->
-                check('Graph',array('user_id' => $browser->getUserId('user_graphs')),0)->
+                check('Graph',array('user_id' => $browser->getUserId('user_graphs')),1)->
             end()->
             with('response')->
             begin()->
@@ -144,11 +144,11 @@ $browser->
                 checkElement('#filter_values_range_type:contains("date")]',true)->
                 checkElement('#filter_values_date_range:contains("nothing")]',true)->
                 checkElement('#filter_values_kilometers_range:contains("nothing")]',true)->
-                checkElement('table#query_results:contains("No elements found")]',true)->
+                checkElement('table#query_results tbody tr',1)->
             end()->
          with('doctrine')->
             begin()->
-              check('Graph',array('user_id' => $browser->getUserId('user_graphs')),1)->
+              check('Graph',array('user_id' => $browser->getUserId('user_graphs')),2)->
              end()->
 
         info('  2.3 - Clear filters at logout')->

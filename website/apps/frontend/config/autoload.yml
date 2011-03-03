@@ -1,0 +1,6 @@
+autoload:
+  vendor_pChart:
+    name: pChart
+    path:      %SF_LIB_DIR%/vendor/pChart2.1.0/
+    recursive: on
+    exclude: [cache, examples]
