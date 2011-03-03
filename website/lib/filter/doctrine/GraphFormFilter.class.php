@@ -31,7 +31,7 @@ class GraphFormFilter extends BaseGraphFormFilter {
                     )));
 
         $this->validatorSchema['vehicles_list']->setOptions(
-                array_merge($this->widgetSchema['vehicles_list']->getOptions(),
+                array_merge($this->validatorSchema['vehicles_list']->getOptions(),
                 array(
                     'required'  => false,
                     'multiple'  => true
@@ -52,7 +52,7 @@ class GraphFormFilter extends BaseGraphFormFilter {
                     )));
 
         $this->validatorSchema['categories_list']->setOptions(
-                array_merge($this->widgetSchema['categories_list']->getOptions(),
+                array_merge($this->validatorSchema['categories_list']->getOptions(),
                 array(
                     'required'  => false,
                     'multiple'  => true
@@ -174,11 +174,9 @@ class GraphFormFilter extends BaseGraphFormFilter {
         if (($values['date_range']['from'] || $values['date_range']['to']) && ($values['kilometers_range']['from'] || $values['kilometers_range']['to'])) {
             $error = new sfValidatorError($validator, "Only one field between date and kilometers range can be defined for X-axis.");
 
-            // throw an error bound to the password field
             throw new sfValidatorErrorSchema($validator, array('date_range' => $error, 'kilometers_range' => $error));
         }
 
-        // password is correct, return the clean values
         return $values;
     }
 
