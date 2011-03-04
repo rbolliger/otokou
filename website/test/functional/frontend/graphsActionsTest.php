@@ -37,6 +37,10 @@ $browser->
           with('response')->begin()->
             isStatusCode(200)->
           end()->
+          with('doctrine')->
+            begin()->
+                check('Graph',array('user_id' => $browser->getUserId('user_graphs')),1)->
+            end()->
         
         info('2 - Filters')->
         
@@ -51,28 +55,38 @@ $browser->
             begin()->
                 hasErrors(false)->
             end()->
+        with('doctrine')->
+            begin()->
+                check('Graph',array('user_id' => $browser->getUserId('user_graphs')),1)->
+            end()->
         with('response')->
             begin()->
                 isRedirected()->
                 followRedirect()->
+            end()->
+        with('request')->
+            begin()->
+                isParameter('module','graphs')->
+                isParameter('action','index')->
+            end()->
+        with('doctrine')->
+            begin()->
+                check('Graph',array('user_id' => $browser->getUserId('user_graphs')),1)->
             end()->
         with('response')->
             begin()->
             // two vehicles listed, including archived one
                 checkElement('div.graphs_filters tr input[name="graph_filters[vehicles_list][]"]',2)->
                 checkElement('#filter_values_vehicles_list:contains("nothing")]',true)->
-                checkElement('#filter_values_vehicle_display:contains("nothing")]',true)->
+                checkElement('#filter_values_vehicle_display:contains("single")]',true)->
                 checkElement('#filter_values_categories_list:contains("nothing")]',true)->
-                checkElement('#filter_values_category_display:contains("nothing")]',true)->
-                checkElement('#filter_values_range_type:contains("nothing")]',true)->
+                checkElement('#filter_values_category_display:contains("stacked")]',true)->
+                checkElement('#filter_values_range_type:contains("kilometers")]',true)->
                 checkElement('#filter_values_date_range:contains("nothing")]',true)->
                 checkElement('#filter_values_kilometers_range:contains("nothing")]',true)->
                 checkElement('table#query_results tbody tr',1)->
             end()->
-        with('doctrine')->
-            begin()->
-                check('Graph',array('user_id' => $browser->getUserId('user_graphs')),1)->
-            end()->
+        
         
         info('  2.2 - Filter action')->
         Click('Filter',array(

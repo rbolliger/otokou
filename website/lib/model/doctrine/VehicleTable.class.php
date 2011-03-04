@@ -16,5 +16,11 @@ class VehicleTable extends Doctrine_Table {
         return Doctrine_Core::getTable('Vehicle');
     }
 
+    public function getVehiclesByUserIdQuery($id) {
+        $q = $this->createQuery('v')->select('v.*')
+                        ->andWhere('v.user_id = ?', $id);
+
+        return $q;
+    }
 
 }

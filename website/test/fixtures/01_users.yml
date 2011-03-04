@@ -57,6 +57,22 @@ sfGuardUser:
     username:       user_gb
     password:       user
     is_super_admin: false
+
+  user_gb_noCars:
+    first_name:     User
+    last_name:      two
+    email_address:  user_gb_noCars@gmail.com
+    username:       user_gb_noCars
+    password:       user
+    is_super_admin: false
+
+  user_gb_noCharges:
+    first_name:     User
+    last_name:      two
+    email_address:  user_gb_noCharges@gmail.com
+    username:       user_gb_noCharges
+    password:       user
+    is_super_admin: false
     
 
 sfGuardGroup:

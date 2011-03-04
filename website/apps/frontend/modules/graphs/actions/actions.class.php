@@ -32,8 +32,18 @@ class graphsActions extends sfActions {
 
         $filters = $this->updateFieldIfEmpty($filters, 'vehicle_display', 'single');
         $filters = $this->updateFieldIfEmpty($filters, 'category_display', 'stacked');
+        $filters = $this->updateFieldIfEmpty($filters, 'graph_name', 'cost_per_km');
+        $filters = $this->updateFieldIfEmpty($filters, 'range_type', 'kilometers');
 
-        $this->gb = new GraphBuilderPChart($this->getGBData());
+        $this->setFilters($filters);
+        
+
+        $options = array('chart_parameters' => array(
+
+        ));
+
+
+        $this->gb = new GraphBuilderPChart($this->getGBData(),$options);
 
         $this->data = $this->getData();
 
@@ -129,7 +139,7 @@ class graphsActions extends sfActions {
 
     protected function updateFieldIfEmpty($filters, $field, $value) {
 
-        if (!in_array($field, array_keys($filters))) {
+        if (!isset($filters[$field])) {
             $filters[$field] = $value;
         }
 
@@ -150,6 +160,7 @@ class graphsActions extends sfActions {
             'date_to'           => $this->getFilterValue('to',null,$this->getFilterValue('date_range')),
             'kilometers_from'   => $this->getFilterValue('from',null,$this->getFilterValue('kilometers_range')),
             'kilometers_to'     => $this->getFilterValue('to',null,$this->getFilterValue('kilometers_range')),
+            'graph_name'        => $this->getFilterValue('graph_name'),
         );
 
 
@@ -158,7 +169,7 @@ class graphsActions extends sfActions {
 
     public function getFilterValue($field,$default = null,$filters = null) {
 
-        $filters = $filters === null ? $this->getFilters() : $filters;
+        $filters = (($filters === null) ? $this->getFilters() : $filters);
 
         return isset($filters[$field]) ? $filters[$field] : $default;
 

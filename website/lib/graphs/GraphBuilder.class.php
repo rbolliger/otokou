@@ -26,11 +26,13 @@ class GraphBuilder {
 
     public function doGenerate() {
 
+        // false because no graph has been generated. true must be returned only if a graph has been generated
+        return false;
     }
 
     public function __construct(array $parameters, array $options = array(), array $attributes = array()) {
 
-        $this->setParameters($parameters);
+        $this->setParameters($parameters); 
 
 
         $this->setOptions($this->getDefaultOptions());
@@ -56,9 +58,14 @@ class GraphBuilder {
 
     public function display() {
 
-        $this->generate();
+        $done = $this->generate();
 
-        return $this->doDisplay();
+        if ($done) {
+
+            return $this->doDisplay();
+        } else {
+            return 'Not enough data do draw a chart. Please, change some criteria.';
+        }
     }
 
     public function addAttributes(array $attributes) {
@@ -187,6 +194,8 @@ class GraphBuilder {
 
     public function generate() {
 
+        $done = true;
+
         // Does the Graph object has been retrived from the DB?
         if (!$this->graph) {
             $this->retrieveOrCreate();
@@ -196,17 +205,23 @@ class GraphBuilder {
         if ($this->graphSourceIsAvailable()) {
             $this->getLogger()->info(sprintf('Graph %s exists. Skipping generation.', $this->getGraphPath('system')));
 
-            return;
+            return $done;
         }
 
         if (!$this->graph_source) {
-            $this->getGraphSource();
+            $done = $this->getGraphSource();
         }
+
+        if (!$done) {
+
+            return $done;
+        }
+
 
         $this->getLogger()->info(sprintf('Graph %s picture does not exist exist. Generating it.', $this->getGraphPath('system')));
 
 
-        $this->doGenerate();
+        return $this->doGenerate();
     }
 
     public function graphSourceIsAvailable() {
@@ -248,7 +263,7 @@ class GraphBuilder {
 
         if ($count = count($graph) > 1) {
 
-            throw new sfException('More than one graph can be retrieved from requested criteria. Something wrong here!');
+            throw new sfException('More than one graph can be retrieved with the requested criteria. Something wrong here!');
         }
 
         return $graph;
@@ -273,33 +288,31 @@ class GraphBuilder {
 
         $gs = new GraphSource();
 
-        // setting decorations
-        $params = array(
-            'title',
-            'x_axis_label',
-            'y_axis_label',
-        );
-
-        foreach ($params as $param) {
-            $gs->setParam($param, $this->getParameter($param));
-        }
+        // setting chart parameters
+        $gs->addParams($this->getOption('chart_parameters'));
 
         // getting source data
         $vehicle_display = $this->getParameter('vehicle_display', 'single');
         $category_display = $this->getParameter('category_display', 'stacked');
 
-        $data = $this->getGraphSourceData($vehicle_display, $category_display);
+        $series = $this->getGraphSourceData($vehicle_display, $category_display);
 
-        $gs->setParam('raw_data', $data);
+        if (!$series) {
+            return false;
+        }
+
+        $gs->setSeries($series);
 
         $this->getLogger()->info(sprintf('Graph %s source does not exist exist. Building graph data source.', $this->getGraphName()));
 
-        return $this->graph_source = $gs;
+        $this->graph_source = $gs;
+
+        return true;
     }
 
     public function getGraphSourceData($vehicle_display, $category_display) {
 
-        $data = array();
+
 
         if ($vehicle_display == 'stacked' && $category_display == 'stacked') {
             $case = 1;
@@ -309,78 +322,147 @@ class GraphBuilder {
             $case = 3;
         } elseif ($vehicle_display == 'single' && $category_display == 'single') {
             $case = 4;
+        } else {
+            throw new sfException(sprintf('Something wrong with nput parameters "%s" and "%s". Cannot define a case', $vehicle_display, $category_display));
         }
 
-        $vehicles = $this->getParameter('vehicles_list', null);
-        $categories = $this->getParameter('categories_list', null);
-        $nb_categories = count($categories);
-        $nb_vehicles = count($vehicles);
 
+        $vl = $this->getVehiclesList();
+        $cl = $this->getCategoriesList();
+
+        // If no cars, we won't display anything
+        if (empty($vl['list'])) {
+
+            $this->getLogger()->info('No cars found. Chart won\'t be generated.');
+
+            return false;
+        }
+
+        // Building arrays containing the indexes of categories and vehicles to be considered to build each serie
         switch ($case) {
             case 1:
-                $ns = 0;
 
-                $q = $this->buildChargeQuery($vehicles, $categories);
-                $charges = $q->execute();
-
-                $data[$ns++] = $charges;
+                $v_idx[0] = $vl['list'];
+                $c_idx[0] = $cl['list'];
 
                 break;
 
             case 2:
-                $ns = 0;
-                for ($indexC = 0; $indexC < $nb_categories; $indexC++) {
 
-                    $q = $this->buildChargeQuery($vehicles, $categories[$indexC]);
-                    $charges = $q->execute();
+                for ($indexC = 0; $indexC < $cl['count']; $indexC++) {
 
-                    $data[$ns++] = $charges;
+                    $v_idx[$indexC] = $vl['list'];
+                    $c_idx[$indexC] = $cl['list'][$indexC];
                 }
-
                 break;
 
             case 3:
-                $ns = 0;
-                for ($indexV = 0; $indexV < $nb_vehicles; $indexV++) {
+                for ($indexV = 0; $indexV < $vl['count']; $indexV++) {
 
-                    $q = $this->buildChargeQuery($vehicles[$indexV], $categories);
-                    $charges = $q->execute();
-
-                    $data[$ns++] = $charges;
+                    $v_idx[$indexV] = $vl['list'][$indexV];
+                    $c_idx[$indexV] = $cl['list'];
                 }
 
                 break;
 
 
             case 4:
-                $ns = 0;
-                for ($indexC = 0; $indexC < $nb_categories; $indexC++) {
-                    for ($indexV = 0; $indexV < $nb_vehicles; $indexV++) {
+                $ns = -1;
+                for ($indexC = 0; $indexC < $cl['count']; $indexC++) {
+                    for ($indexV = 0; $indexV < $vl['count']; $indexV++) {
 
-                        $q = $this->buildChargeQuery($vehicles[$indexV], $categories[$indexC]);
-                        $charges = $q->execute();
+                        $ns++;
 
-                        $data[$ns++] = $charges;
+                        $v_idx[$ns] = $vl['list'][$indexV];
+                        $c_idx[$ns] = $cl['list'][$indexC];
                     }
                 }
 
                 break;
 
-            default:
+            default :
+                throw new sfException('Something wrong here. Cannot get the right case.');
                 break;
         }
 
 
-        return $data;
+        $ns = -1;
+        $series = array();
+        foreach ($v_idx as $key => $vid) {
+
+            $cid = $c_idx[$key];
+
+
+            $q = $this->buildChargeQuery($vid, $cid);
+
+            $charges = $q->execute();
+
+            if (!count($charges)) {
+                continue;
+            }
+
+            $label = $this->buildLabelForSerie(array(
+                        'vehicle_display' => $vehicle_display,
+                        'vehicle_id' => $vid,
+                        'category_display' => $category_display,
+                        'category_id' => $cid,
+                    ));
+
+            $ns++;
+
+            $params = array(
+                'id' => 'Serie_' . $ns,
+                'raw_data' => $charges,
+                'label' => $label,
+            );
+
+            $series[$ns] = new GraphDataSerie($params);
+        }
+
+
+        if (!count($series)) {
+            return false;
+        }
+
+        return $series;
     }
 
     public function getGraphSource() {
 
         if (!$this->graph_source) {
-            $this->buildGraphSource();
+            $done = $this->buildGraphSource();
+
+            if (!$done) {
+                return $done;
+            }
         }
 
         return $this->graph_source;
+    }
+
+    protected function buildLabelForSerie($params) {
+
+        $label = '';
+
+        if ($params['vehicle_display'] == 'single') {
+
+            $v = Doctrine_Core::getTable('Vehicle')->findOneById($params['vehicle_id']);
+
+            $label .= $v->getName();
+        }
+
+        if ($params['category_display'] == 'single') {
+            $c = Doctrine_Core::getTable('Category')->findOneById($params['category_id']);
+
+            $label .= ' - ' . $c->getName();
+        }
+
+        if ($params['vehicle_display'] == 'stacked' && $params['category_display'] == 'stacked') {
+
+            $label .= 'All vehicles and categories';
+        }
+
+        return $label;
     }
 
     protected function saveNewGraph() {
@@ -449,7 +531,7 @@ class GraphBuilder {
                 }
             }
             // if this is a foreign reference
-            else {
+            elseif (in_array($key, array_keys($foreign))) {
 
                 $fname = $key . '_all';
                 $q->leftJoin('g.' . $foreign[$key]['model'] . ' ' . $fname);
@@ -557,6 +639,51 @@ class GraphBuilder {
     protected function convertToSystemPath($path) {
 
         return str_replace("/", DIRECTORY_SEPARATOR, $path);
+    }
+
+    protected function getVehiclesList() {
+
+        $vehicles = $this->getParameter('vehicles_list', null);
+
+        $nb_vehicles = count($vehicles);
+
+        // If no vehicles are specified by the suer, we get all vehicles
+        if (!$nb_vehicles) {
+            $q = Doctrine_Core::getTable('Vehicle')->getVehiclesByUserIdQuery($this->getParameter('user_id'));
+
+            $vehicle_objects = $q->execute(array(), Doctrine_Core::HYDRATE_ARRAY);
+            foreach ($vehicle_objects as $key => $values) {
+                $vehicles[] = $values['id'];
+            }
+            $nb_vehicles = count($vehicles);
+        }
+
+        return $params = array(
+    'list' => $vehicles,
+    'count' => $nb_vehicles,
+        );
+    }
+
+    protected function getCategoriesList() {
+
+        $categories = $this->getParameter('categories_list', null);
+        $nb_categories = count($categories);
+
+
+        // If no categories are specified by the user, we get all categories
+        if ($nb_categories == 0) {
+            $category_objects = Doctrine_Core::getTable('Category')->findAll(Doctrine_Core::HYDRATE_ARRAY);
+
+            foreach ($category_objects as $key => $values) {
+                $categories[] = $values['id'];
+            }
+            $nb_categories = count($categories);
+        }
+
+        return $params = array(
+    'list' => $categories,
+    'count' => $nb_categories,
+        );
     }
 
 }
