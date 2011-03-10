@@ -7,14 +7,17 @@
 <?php endif; ?>
 
 <?php echo $filters->renderFormTag(url_for('@graph_filter')) ?>
-<table>
+    <table><tbody>
     <?php echo $filters ?>
+         </tbody>
+         <tfoot>
     <tr>
         <td colspan="2">
             <?php echo link_to('Reset', 'graph_filter', array(), array('query_string' => '_reset', 'method' => 'post')) ?>
              <input type="submit" value="Filter" />
         </td>
     </tr>
+    </tfoot>
 </table>
 </form>
 

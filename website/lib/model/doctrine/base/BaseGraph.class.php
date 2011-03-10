@@ -16,6 +16,7 @@
  * @property string $range_type
  * @property string $sha
  * @property string $format
+ * @property string $graph_name
  * @property Doctrine_Collection $Vehicles
  * @property Doctrine_Collection $Categories
  * @property sfGuardUser $User
@@ -32,6 +33,7 @@
  * @method string              getRangeType()        Returns the current record's "range_type" value
  * @method string              getSha()              Returns the current record's "sha" value
  * @method string              getFormat()           Returns the current record's "format" value
+ * @method string              getGraphName()        Returns the current record's "graph_name" value
  * @method Doctrine_Collection getVehicles()         Returns the current record's "Vehicles" collection
  * @method Doctrine_Collection getCategories()       Returns the current record's "Categories" collection
  * @method sfGuardUser         getUser()             Returns the current record's "User" value
@@ -47,6 +49,7 @@
  * @method Graph               setRangeType()        Sets the current record's "range_type" value
  * @method Graph               setSha()              Sets the current record's "sha" value
  * @method Graph               setFormat()           Sets the current record's "format" value
+ * @method Graph               setGraphName()        Sets the current record's "graph_name" value
  * @method Graph               setVehicles()         Sets the current record's "Vehicles" collection
  * @method Graph               setCategories()       Sets the current record's "Categories" collection
  * @method Graph               setUser()             Sets the current record's "User" value
@@ -69,6 +72,7 @@ abstract class BaseGraph extends sfDoctrineRecord
              ));
         $this->hasColumn('vehicle_display', 'string', 20, array(
              'type' => 'string',
+             'notnull' => true,
              'length' => 20,
              ));
         $this->hasColumn('user_id', 'integer', null, array(
@@ -77,6 +81,7 @@ abstract class BaseGraph extends sfDoctrineRecord
              ));
         $this->hasColumn('category_display', 'string', 20, array(
              'type' => 'string',
+             'notnull' => true,
              'length' => 20,
              ));
         $this->hasColumn('date_from', 'date', null, array(
@@ -93,6 +98,7 @@ abstract class BaseGraph extends sfDoctrineRecord
              ));
         $this->hasColumn('range_type', 'string', 20, array(
              'type' => 'string',
+             'notnull' => true,
              'length' => 20,
              ));
         $this->hasColumn('sha', 'string', 40, array(
@@ -103,7 +109,13 @@ abstract class BaseGraph extends sfDoctrineRecord
              ));
         $this->hasColumn('format', 'string', 5, array(
              'type' => 'string',
+             'notnull' => true,
              'length' => 5,
+             ));
+        $this->hasColumn('graph_name', 'string', 40, array(
+             'type' => 'string',
+             'notnull' => true,
+             'length' => 40,
              ));
     }
 

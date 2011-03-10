@@ -17,7 +17,8 @@ class GraphFormFilter extends BaseGraphFormFilter {
                 $this['sha'],
                 $this['format'],
                 $this['created_at'],
-                $this['updated_at']
+                $this['updated_at'],
+                $this['graph_name']
         );
 
         // Vehicle

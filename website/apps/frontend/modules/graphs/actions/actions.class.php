@@ -30,12 +30,13 @@ class graphsActions extends sfActions {
 
         $filters = $this->getFilters();
 
-        $filters = $this->updateFieldIfEmpty($filters, 'vehicle_display', 'single');
-        $filters = $this->updateFieldIfEmpty($filters, 'category_display', 'stacked');
-        $filters = $this->updateFieldIfEmpty($filters, 'graph_name', 'cost_per_km');
-        $filters = $this->updateFieldIfEmpty($filters, 'range_type', 'kilometers');
+        $filters = $this->updateFilterFieldIfEmpty($filters, 'vehicle_display', 'single');
+        $filters = $this->updateFilterFieldIfEmpty($filters, 'category_display', 'stacked');
+        $filters = $this->updateFilterFieldIfEmpty($filters, 'range_type', 'kilometers');
 
         $this->setFilters($filters);
+
+        $this->setFilterField('graph_name', 'cost_per_km');
         
 
         $options = array('chart_parameters' => array(
@@ -76,6 +77,16 @@ class graphsActions extends sfActions {
 
     protected function setFilters(array $filters) {
         return $this->getUser()->setAttribute('graphs.filters', $filters, 'graphs');
+    }
+
+    protected function setFilterField($field, $value) {
+
+        $filters = $this->getFilters();
+
+        $filters[$field] = $value;
+
+        $this->setFilters($filters);
+
     }
 
     protected function getFilters() {
@@ -137,7 +148,7 @@ class graphsActions extends sfActions {
         return $this->getFilters();
     }
 
-    protected function updateFieldIfEmpty($filters, $field, $value) {
+    protected function updateFilterFieldIfEmpty($filters, $field, $value) {
 
         if (!isset($filters[$field])) {
             $filters[$field] = $value;

@@ -128,9 +128,9 @@ class GraphBuilder {
 
         $format = $this->getGraph()->getFormat();
 
-        $format = (!$format == '' || !is_null($format)) ?
-                $format :
-                sfConfig::get('app_graph_default_format', 'png');
+        $format = (!$format || is_null($format)) ?
+                sfConfig::get('app_graph_default_format', 'png') :
+                $format;
 
         return $format;
     }
@@ -168,6 +168,11 @@ class GraphBuilder {
     public function getParameter($name, $default = null) {
 
         return isset($this->parameters[$name]) ? $this->parameters[$name] : $default;
+    }
+
+    public function getParameters() {
+
+        return $this->parameters;
     }
 
     public function retrieveOrCreate() {
@@ -438,6 +443,13 @@ class GraphBuilder {
         }
 
         return $this->graph_source;
+    }
+
+    public function reloadGraph() {
+
+        $g = $this->getGraph();
+
+        $g->refresh();
     }
 
     protected function buildLabelForSerie($params) {

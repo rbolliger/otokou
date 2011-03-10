@@ -11,7 +11,7 @@ sfContext::createInstance($app_configuration);
 $ut = new otokouTestFunctional(new sfBrowser());
 
 
-$t = new lime_test(55, new lime_output_color());
+$t = new lime_test(56, new lime_output_color());
 
 
 // ->getQuery()
@@ -23,6 +23,7 @@ $t->isa_ok($gb->getQuery(), 'Doctrine_Query', '->getQuery() returns a Doctrine_Q
 
 
 // ->getGraphsQueryResults()
+// These tests are based on the graph_gb_1 to graph_gb_4 fixtures
 $t->diag('->getGraphsQueryResults()');
 
 
@@ -68,6 +69,15 @@ $t->cmp_ok($g3->count(), '==', 1, 'the newly created graph can be retrieved from
 $t->is($g2, $g3[0], '->retriveOrCreate() saves the new Graph in the DB');
 
 
+// ->reloadGraph()
+$t->diag('->reloadGraph()');
+$g = $gb->getGraph();
+$g->setFormat('');
+$g->save();
+$gb->reloadGraph();
+$t->cmp_ok($gb->getGraph(),'===',$g,'->reloadGraph() resets the loaded graph and retrieves the updated graph from the DB');
+
+
 // -> getGraphFormat()
 $t->diag('-> getGraphFormat()');
 
@@ -77,6 +87,10 @@ $gb = newGraph();
 $t->cmp_ok($gb->getGraphFormat(), '==', 'png', 'By default, the pictures format is png');
 
 sfConfig::set('app_graph_default_format', 'jpg');
+$g = $gb->getGraph();
+$g->setFormat('');
+$g->save();
+$gb->reloadGraph();
 $t->cmp_ok($gb->getGraphFormat(), '==', 'jpg', 'The user can set a default format in app_graph_default_format');
 
 $data = array('format' => 'png');
@@ -330,7 +344,12 @@ function newGraph($data = array(),$options = array(),$attributes = array()) {
 
     $data = array_merge(
                     array(
-                        'user_id' => $ut->getUserId('user_gb'),
+                        'user_id'           => $ut->getUserId('user_gb'),
+                        'vehicle_display'   => 'single',
+                        'category_display'  => 'stacked',
+                        'range_type'        => 'kilometers',
+                        'format'            => 'png',
+                        'graph_name'        => 'cost_per_km',
                     ),
                     $data);
 

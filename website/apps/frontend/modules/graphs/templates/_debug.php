@@ -4,7 +4,7 @@
     <h2>Filters values:</h2>
 
     <table class="debug" id="filter_values">
-
+        <tbody>
     <?php foreach ($data = $sf_data->getRaw('data') as $key => $value) : ?>
 
         <tr>
@@ -32,7 +32,7 @@
                 <td>No elements found</td>
             </tr>
     <?php endif; ?>
-        </table>
+        </tbody></table>
 
         <h2>Query results:</h2>
 

@@ -84,7 +84,10 @@ $browser->
                 checkElement('#filter_values_range_type:contains("kilometers")]',true)->
                 checkElement('#filter_values_date_range:contains("nothing")]',true)->
                 checkElement('#filter_values_kilometers_range:contains("nothing")]',true)->
+                checkElement('#filter_values_graph_name:contains("cost_per_km")]',true)->
                 checkElement('table#query_results tbody tr',1)->
+                checkElement('table#filter_values tbody tr',8)->
+                checkElement('.graphs_filters table tbody tr',7)->
             end()->
         
         
@@ -158,7 +161,9 @@ $browser->
                 checkElement('#filter_values_range_type:contains("date")]',true)->
                 checkElement('#filter_values_date_range:contains("nothing")]',true)->
                 checkElement('#filter_values_kilometers_range:contains("nothing")]',true)->
+                checkElement('#filter_values_graph_name:contains("cost_per_km")]',true)->
                 checkElement('table#query_results tbody tr',1)->
+                checkElement('table#filter_values tbody tr',8)->
             end()->
          with('doctrine')->
             begin()->
