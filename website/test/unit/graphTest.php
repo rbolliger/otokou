@@ -2,10 +2,11 @@
 include dirname(__FILE__) . '/../bootstrap/unit.php';
 
 new sfDatabaseManager($configuration);
+Doctrine_Core::loadData(sfConfig::get('sf_test_dir') . '/fixtures');
 
 $ut = new otokouTestFunctional(new sfBrowser());
 
-$t = new lime_test(8, new lime_output_color());
+$t = new lime_test(11, new lime_output_color());
 
 
 
@@ -72,3 +73,22 @@ $g2->save();
 $g->save();
 $finalsha = $g->getSha();
 $t->isnt($sha, $finalsha, 'When saving the object, ->save() checks that a unique sha is set. If not, a new one is generated.');
+
+
+// ->delete()
+$t->diag('->delete()');
+$g = new Graph();
+$g->setUserId($ut->getUserId('ruf'));
+$g->save();
+$id = $g->getId();
+$path = $g->getGraphPath('system');
+$fs = new sfFilesystem(new sfEventDispatcher());
+$fs->touch($path);
+
+$t->cmp_ok(file_exists($path), '===', true, 'A Graph may have an associated figure file.');
+
+$g->delete();
+$g2 = Doctrine_Core::getTable('Graph')->findOneById($id);
+
+$t->cmp_ok($g2, '===', false, '->delete() deletes the graph from the DB');
+$t->cmp_ok(file_exists($path), '===', false, '->delete() also deletes the image associated to the Graph');

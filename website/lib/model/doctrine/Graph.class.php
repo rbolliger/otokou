@@ -58,7 +58,7 @@ class Graph extends BaseGraph {
         foreach ($columns as $col) {
             $cnt = $this->get($col);
 
-            if (empty ($cnt)) {
+            if (empty($cnt)) {
                 continue;
             }
 
@@ -95,6 +95,75 @@ class Graph extends BaseGraph {
 
         // Return the string
         return $string;
+    }
+
+    public function getGraphPath($type = 'web') {
+
+        return $this->getGraphBasePath($type) . '/' . $this->getGraphName();
+    }
+
+    public function getGraphName() {
+        return $this->getSha() . '.' . $this->getGraphFormat();
+    }
+
+    public function getGraphFormat() {
+
+        $format = $this->getFormat();
+
+        $format = (!$format || is_null($format)) ?
+                sfConfig::get('app_graph_default_format', 'png') :
+                $format;
+
+        return $format;
+    }
+
+    public function getGraphBasePath($type = 'web') {
+
+        $path = sfConfig::get('app_graph_base_path', '/graphs');
+
+
+        switch ($type) {
+            case 'web':
+                $path = ($path[0] == '/' ? substr($path, 1) : $path);
+
+                break;
+
+            case 'system':
+                $path = ($path[0] == '/' ? $path : '/' . $path);
+
+                // adding "images" folder
+                $path = '/' . sfConfig::get('sf_web_images_dir_name', 'images') . $path;
+
+                $path = $this->convertToSystemPath($path);
+
+                $path = sfConfig::get('sf_web_dir') . $path;
+
+
+                break;
+
+            default:
+
+                throw new sfException('Unknown option ' . $type);
+        }
+
+        return $path;
+    }
+
+    protected function convertToSystemPath($path) {
+
+        return str_replace("/", DIRECTORY_SEPARATOR, $path);
+    }
+
+    public function delete(Doctrine_Connection $conn = null) {
+
+        parent::delete($conn);
+
+        $path = $this->getGraphPath('system');
+
+        if (file_exists($path)) {
+            $fs = new sfFilesystem(new sfEventDispatcher());
+            $fs->remove($path);
+        }
     }
 
 }
