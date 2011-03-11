@@ -16,7 +16,7 @@ class GraphTable extends Doctrine_Table
 
     protected static $range_type = array(
         'date' => 'Date',
-        'distance' => 'Kilomenters',
+        'distance' => 'Kilometers',
     );
 
     /**

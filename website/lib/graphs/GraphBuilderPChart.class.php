@@ -152,7 +152,7 @@ class GraphBuilderPChart extends GraphBuilder {
 
                 break;
 
-            case 'kilometers':
+            case 'distance':
 
                 $params = array(
                     'label' => 'Distance',
