@@ -129,8 +129,42 @@ $browser->
                 'categories_list' => array($browser->getIdForCategory('Tax'),$browser->getIdForCategory('Fuel')),
                 'category_display' => 'single',
                 'range_type' => 'date',
-                'date_range' => array('from' => '', 'to' => ''),
-                'kilometers_range' => array('from' => '', 'to' => ''),
+                'date_range' => array('from' => '1234', 'to' => ''),
+                'kilometers_range' => array('from' => '1234', 'to' => ''),
+            )
+        ))->
+            with('form')->
+            begin()->
+                hasErrors(2)->
+                isError('date_range','/Only one/')->
+                isError('kilometers_range','/Only one/')->
+            end()->
+        Click('Filter',array(
+            'graph_filters' => array(
+                'vehicles_list' => array($browser->getVehicleId('car-graphs-1')),
+                'vehicle_display' => 'stacked',
+                'categories_list' => array($browser->getIdForCategory('Tax'),$browser->getIdForCategory('Fuel')),
+                'category_display' => 'single',
+                'range_type' => 'date',
+                'date_range' => array('from' => '', 'to' => '56'),
+                'kilometers_range' => array('from' => '0', 'to' => '34535'),
+            )
+        ))->
+            with('form')->
+            begin()->
+                hasErrors(2)->
+                isError('date_range','/Only one/')->
+                isError('kilometers_range','/Only one/')->
+            end()->
+        Click('Filter',array(
+            'graph_filters' => array(
+                'vehicles_list' => array($browser->getVehicleId('car-graphs-1')),
+                'vehicle_display' => 'stacked',
+                'categories_list' => array($browser->getIdForCategory('Tax'),$browser->getIdForCategory('Fuel')),
+                'category_display' => 'single',
+                'range_type' => 'date',
+                'date_range' => array('from' => '', 'to' => date('Y-m-d')),
+                'kilometers_range' => array('from' => '0', 'to' => ''),
             )
         ))->
             with('form')->
@@ -159,8 +193,8 @@ $browser->
                 checkElement('#filter_values_categories_list:contains("'.$browser->getIdForCategory('Tax').', '.$browser->getIdForCategory('Fuel').'")]',true)->
                 checkElement('#filter_values_category_display:contains("single")]',true)->
                 checkElement('#filter_values_range_type:contains("date")]',true)->
-                checkElement('#filter_values_date_range:contains("nothing")]',true)->
-                checkElement('#filter_values_kilometers_range:contains("nothing")]',true)->
+                checkElement('#filter_values_date_range:contains(", '.date('Y-m-d').'")]',true)->
+                checkElement('#filter_values_kilometers_range:contains("0,")]',true)->
                 checkElement('#filter_values_graph_name:contains("cost_per_km")]',true)->
                 checkElement('table#query_results tbody tr',1)->
                 checkElement('table#filter_values tbody tr',8)->

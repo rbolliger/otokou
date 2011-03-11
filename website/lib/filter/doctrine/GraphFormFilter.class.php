@@ -167,13 +167,25 @@ class GraphFormFilter extends BaseGraphFormFilter {
 
 
 
-        $this->mergePostValidator(new sfValidatorCallback(array('callback' => array($this, 'checkDateAndKilometersRanges'))));
+        $this->mergePostValidator(new sfValidatorCallback(array('callback' => array($this, 'checkDateAndKilometersFrom'))));
+        $this->mergePostValidator(new sfValidatorCallback(array('callback' => array($this, 'checkDateAndKilometersTo'))));
     }
 
-    public function checkDateAndKilometersRanges($validator, $values) {
+    public function checkDateAndKilometersFrom($validator, $values) {
 
-        if (($values['date_range']['from'] || $values['date_range']['to']) && ($values['kilometers_range']['from'] || $values['kilometers_range']['to'])) {
-            $error = new sfValidatorError($validator, "Only one field between date and kilometers range can be defined for X-axis.");
+         if (isset($values['date_range']['from']) && isset($values['kilometers_range']['from'])) {
+            $error = new sfValidatorError($validator, 'Only one field between "date from" and "kilometers from" can be defined for X-axis.');
+
+            throw new sfValidatorErrorSchema($validator, array('date_range' => $error, 'kilometers_range' => $error));
+        }
+
+        return $values;
+    }
+
+    public function checkDateAndKilometersTo($validator, $values) {
+
+         if (isset($values['date_range']['to']) && isset($values['kilometers_range']['to'])) {
+            $error = new sfValidatorError($validator, 'Only one field between "date to" and "kilometers to" can be defined for X-axis.');
 
             throw new sfValidatorErrorSchema($validator, array('date_range' => $error, 'kilometers_range' => $error));
         }
