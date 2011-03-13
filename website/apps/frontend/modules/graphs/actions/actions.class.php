@@ -32,7 +32,7 @@ class graphsActions extends sfActions {
 
         $filters = $this->updateFilterFieldIfEmpty($filters, 'vehicle_display', 'single');
         $filters = $this->updateFilterFieldIfEmpty($filters, 'category_display', 'stacked');
-        $filters = $this->updateFilterFieldIfEmpty($filters, 'range_type', 'kilometers');
+        $filters = $this->updateFilterFieldIfEmpty($filters, 'range_type', 'distance');
 
         $this->setFilters($filters);
 
