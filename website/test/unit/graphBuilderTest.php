@@ -11,7 +11,7 @@ sfContext::createInstance($app_configuration);
 $ut = new otokouTestFunctional(new sfBrowser());
 
 
-$t = new lime_test(56, new lime_output_color());
+$t = new lime_test(53, new lime_output_color());
 
 
 // ->getQuery()
@@ -117,15 +117,6 @@ $t->cmp_ok($gb->getGraphBasePath(), '==', 'graphs', 'By default, base path is gr
 sfConfig::set('app_graph_base_path', '/graphs/static');
 $t->cmp_ok($gb->getGraphBasePath(), '==', 'graphs/static', 'The user can set the path in app_graph_base_path');
 
-$options = array('base_path' => '/static');
-$gb = newGraph(array(),$options);
-$t->cmp_ok($gb->getGraphBasePath(), '==', 'static', 'The base path can be set for each GraphBuilder instance individually');
-
-$t->cmp_ok($gb->getGraphBasePath('web'), '==', 'static', 'The "web" option returns a relative url to the "sf_web_dir/images" folder');
-
-sfConfig::set('sf_web_dir',realpath(dirname(__FILE__).'/../../web'));
-$t->cmp_ok($gb->getGraphBasePath('system'), '==', sfConfig::get('sf_web_dir').'/images/static', 'The "system" option returns an absolute system path');
-
 try
 {
   $gb->getGraphBasePath('sdgdfgxdf');
@@ -211,10 +202,10 @@ $t->cmp_ok(count(array_keys($data)), '<=', count($c)*count($v),'->getGraphSource
 // ->checkPath()
 $t->diag('checkPath()');
 $path = '/test';
-$fullpath = sfConfig::get('sf_web_dir').'/images'.$path;
 sfConfig::set('app_graph_base_path',$path);
 sfConfig::set('sf_root_dir',realpath(dirname(__FILE__).'/../..'));
 sfConfig::set('sf_web_dir',  sfConfig::get('sf_root_dir').'/web');
+$fullpath = sfConfig::get('sf_web_dir').'/images'.$path;
 $g  = newGraph();
 $exist = $g->checkPath($g->getGraphBasePath('system'));
 $t->ok(file_exists($fullpath), '->checkPath() checks that a path exists. If not, the path is created');

@@ -71,7 +71,7 @@ function newGraph($data = array(),$options = array(),$attributes = array()) {
                     array(
                         'user_id'       => $ut->getUserId('user_gb'),
                         'graph_name'    => 'cost_per_km',
-                        'range_type'    => 'kilometers',
+                        'range_type'    => 'distance',
                     ),
                     $data);
 

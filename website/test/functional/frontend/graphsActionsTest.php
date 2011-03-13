@@ -81,7 +81,7 @@ $browser->
                 checkElement('#filter_values_vehicle_display:contains("single")]',true)->
                 checkElement('#filter_values_categories_list:contains("nothing")]',true)->
                 checkElement('#filter_values_category_display:contains("stacked")]',true)->
-                checkElement('#filter_values_range_type:contains("kilometers")]',true)->
+                checkElement('#filter_values_range_type:contains("distance")]',true)->
                 checkElement('#filter_values_date_range:contains("nothing")]',true)->
                 checkElement('#filter_values_kilometers_range:contains("nothing")]',true)->
                 checkElement('#filter_values_graph_name:contains("cost_per_km")]',true)->
