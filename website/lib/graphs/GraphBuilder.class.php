@@ -175,7 +175,7 @@ class GraphBuilder {
         }
 
         // If the source is already available, we stop here
-        if ($this->graphSourceIsAvailable()) {
+        if ($this->graphSourceIsAvailable() && !$this->doForceGenerate()) {
             $this->getLogger()->info(sprintf('Graph %s exists. Skipping generation.', $this->getGraphPath('system')));
 
             return $done;
@@ -418,6 +418,12 @@ class GraphBuilder {
         $g = $this->getGraph();
 
         $g->refresh();
+    }
+
+    public function doForceGenerate() {
+
+        return sfConfig::get('app_graphs_force_generate',false);
+
     }
 
     protected function buildLabelForSerie($params) {
