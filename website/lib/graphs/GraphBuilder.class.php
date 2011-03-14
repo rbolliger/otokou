@@ -32,7 +32,7 @@ class GraphBuilder {
 
     public function __construct(array $parameters, array $options = array(), array $attributes = array()) {
 
-        $this->setParameters($parameters); 
+        $this->setParameters($parameters);
 
 
         $this->setOptions($this->getDefaultOptions());
@@ -100,7 +100,6 @@ class GraphBuilder {
     public function getGraphFormat() {
 
         return $this->getGraph()->getGraphFormat();
-
     }
 
     public function getGraph() {
@@ -190,8 +189,11 @@ class GraphBuilder {
             return $done;
         }
 
-
-        $this->getLogger()->info(sprintf('Graph %s picture does not exist exist. Generating it.', $this->getGraphPath('system')));
+        if (!$this->doForceGenerate()) {
+            $this->getLogger()->info(sprintf('Graph %s picture does not exist exist. Generating it.', $this->getGraphPath('system')));
+        } else {
+            $this->getLogger()->info(sprintf('Graph %s generation was forced or file does not exist. File is generated.', $this->getGraphPath('system')));
+        }
 
 
         return $this->doGenerate();
@@ -422,8 +424,7 @@ class GraphBuilder {
 
     public function doForceGenerate() {
 
-        return sfConfig::get('app_graphs_force_generate',false);
-
+        return sfConfig::get('app_graphs_force_generate', false);
     }
 
     protected function buildLabelForSerie($params) {
@@ -621,7 +622,6 @@ class GraphBuilder {
         $this->graph = null;
         $this->graph_source = null;
     }
-
 
     protected function getVehiclesList() {
 
