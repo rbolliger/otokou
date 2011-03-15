@@ -429,24 +429,31 @@ class GraphBuilder {
 
     protected function buildLabelForSerie($params) {
 
-        $label = '';
 
-        if ($params['vehicle_display'] == 'single') {
+        if ($params['vehicle_display'] == 'single' && $params['category_display'] == 'stacked') {
 
             $v = Doctrine_Core::getTable('Vehicle')->findOneById($params['vehicle_id']);
 
-            $label .= $v->getName();
+            $label = $v->getName();
         }
 
-        if ($params['category_display'] == 'single') {
+         if ($params['vehicle_display'] == 'single' && $params['category_display'] == 'single') {
+
+            $v = Doctrine_Core::getTable('Vehicle')->findOneById($params['vehicle_id']);
             $c = Doctrine_Core::getTable('Category')->findOneById($params['category_id']);
 
-            $label .= ' - ' . $c->getName();
+            $label = $v->getName() .' - '. $c->getName();
+        }
+
+        if ($params['vehicle_display'] == 'stacked' && $params['category_display'] == 'single') {
+            $c = Doctrine_Core::getTable('Category')->findOneById($params['category_id']);
+
+            $label = $c->getName();
         }
 
         if ($params['vehicle_display'] == 'stacked' && $params['category_display'] == 'stacked') {
 
-            $label .= 'All vehicles and categories';
+            $label = 'All vehicles and categories';
         }
 
         return $label;

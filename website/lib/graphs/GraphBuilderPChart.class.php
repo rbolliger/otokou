@@ -37,38 +37,84 @@ class GraphBuilderPChart extends GraphBuilder {
         return $done;
     }
 
-    protected function buildPicture($data) {
+    protected function buildPicture(pData $data) {
 
-        $myPicture = new pImage(700, 230, $data);
-        $myPicture->drawRectangle(0, 0, 699, 229, array("R" => 0, "G" => 0, "B" => 0));
+
+        // Color scheme from kuler "Q10 Chart"
+        
+
+        $myPicture = new pImage(700, 400, $data);
+        //$myPicture->drawRectangle(0, 0, 699, 399, array("R" => 0, "G" => 0, "B" => 0));
 
         $myPicture->setShadow(TRUE, array("X" => 1, "Y" => 1, "R" => 50, "G" => 50, "B" => 50, "Alpha" => 20));
 
-        $myPicture->setFontProperties(array("FontName" => sfConfig::get('sf_web_dir') . "/fonts/Bedizen.ttf", "FontSize" => 14));
+        $myPicture->setFontProperties(array("FontName" => sfConfig::get('sf_web_dir') . "/fonts/Ubuntu-R.ttf", "FontSize" => 14));
         $TextSettings = array("Align" => TEXT_ALIGN_MIDDLEMIDDLE
-            , "R" => 48, "G" => 48, "B" => 48);
-        $myPicture->drawText(350, 25, "cvbxcfhfghx vhn", $TextSettings);
+            , "R" => 40, "G" => 40, "B" => 43);
+        $myPicture->drawText(350, 25, $this->getOption('title'), $TextSettings);
 
         $myPicture->setShadow(FALSE);
-        $myPicture->setGraphArea(50, 50, 675, 190);
-        $myPicture->setFontProperties(array("R" => 0, "G" => 0, "B" => 0, "FontName" => sfConfig::get('sf_web_dir') . "/fonts/pf_arma_five.ttf", "FontSize" => 6));
+        $myPicture->setGraphArea(90, 50, 675, 330);
+        $myPicture->setFontProperties(array("R" => 40, "G" => 40, "B" => 43, "FontName" => sfConfig::get('sf_web_dir') . "/fonts/DejaVuSans-ExtraLight.ttf", "FontSize" => 9));
 
-        $Settings = array("Pos" => SCALE_POS_LEFTRIGHT
-            , "Mode" => SCALE_MODE_FLOATING
-            , "LabelingMethod" => LABELING_ALL
-            , "GridR" => 177, "GridG" => 200, "GridB" => 204, "GridAlpha" => 50, "TickR" => 0, "TickG" => 0, "TickB" => 0, "TickAlpha" => 50, "LabelRotation" => 0, "CycleBackground" => 1, "DrawXLines" => 1, "DrawSubTicks" => 1, "SubTickR" => 255, "SubTickG" => 0, "SubTickB" => 0, "SubTickAlpha" => 50, "DrawYLines" => ALL);
+        $Settings = array(
+            "Pos" => SCALE_POS_LEFTRIGHT,
+            "Mode" => SCALE_MODE_FLOATING,
+            "LabelingMethod" => LABELING_ALL,
+            "DrawXLines"  => false,
+            "DrawYLines" => ALL,
+            "GridTicks" => 1,
+            "GridR" => 168,
+            "GridG" => 186,
+            "GridB" => 203,
+            "GridAlpha" => 30,
+            "AxisR" => 40,
+            "AxisG" => 40,
+            "AxisB" => 43,
+            "AxisAlpha" => 100,
+            "TickR" => 40,
+            "TickG" => 40,
+            "TickB" => 43,
+            "TickAlpha" => 50,
+            "DrawSubTicks" => 1,
+            "SubTickR" => 168,
+            "SubTickG" => 186,
+            "SubTickB" => 203,
+            "SubTickAlpha" => 100,
+            "DrawArrows" => false,
+            "CycleBackground" => false,
+                    );
         $myPicture->drawScale($Settings);
 
         $myPicture->setShadow(TRUE, array("X" => 1, "Y" => 1, "R" => 50, "G" => 50, "B" => 50, "Alpha" => 10));
 
-        $Config = array("ForceTransparency" => 30, "AroundZero" => 1);
+        $Config = array(
+            "ForceTransparency" => 10,
+            "AroundZero" => 1,
+            "DisplayValues" => false,
+            );
         $myPicture->drawAreaChart($Config);
 
-        $Config = array("FontR" => 0, "FontG" => 0, "FontB" => 0, "FontName" => sfConfig::get('sf_web_dir') . "/fonts/GeosansLight.ttf", "FontSize" => 6, "Margin" => 6, "Alpha" => 30, "BoxSize" => 5, "Style" => LEGEND_BOX
-            , "Mode" => LEGEND_VERTICAL
-            , "Family" => LEGEND_FAMILY_CIRCLE
+        $Config = array(
+            'DisplayValues' => false,
+            'DisplayColor'  => DISPLAY_AUTO,
         );
-        $myPicture->drawLegend(651, 16, $Config);
+        $myPicture->drawLineChart($Config);
+
+        $Config = array(
+            "FontName" => sfConfig::get('sf_web_dir') . "/fonts/Ubuntu-R.ttf",
+            "FontSize" => 6,
+            "FontR" => 40,
+            "FontG" => 40,
+            "FontB" => 43,
+            "Margin" => 6,
+            "Alpha" => 100,
+            "BoxSize" => 5,
+            "Style" => LEGEND_NOBORDER,
+            "Mode" => LEGEND_HORIZONTAL,
+            "Family" => LEGEND_FAMILY_LINE,
+        );
+        $myPicture->drawLegend(20, 375, $Config);
 
         return $myPicture;
     }
@@ -130,11 +176,12 @@ class GraphBuilderPChart extends GraphBuilder {
             $myData->addPoints($y_data[$key], $serie->getId());
             $myData->setSerieDescription($serie->getId(), $serie->getLabel());
             $myData->setSerieOnAxis($serie->getId(), 0);
+            $myData->setSerieWeight($serie->getId(), 1);
         }
 
         $myData->setAxisPosition(0, AXIS_POSITION_LEFT);
-        $myData->setAxisName(0, "Cost");
-        $myData->setAxisUnit(0, "CHF");
+        $myData->setAxisName(0, "Cost [CHF]");
+        //$myData->setAxisUnit(0, "CHF");
 
         return $myData;
     }
@@ -155,7 +202,7 @@ class GraphBuilderPChart extends GraphBuilder {
             case 'distance':
 
                 $params = array(
-                    'label' => 'Distance',
+                    'label' => 'Distance [km]',
                     'format' => 'number',
                     'column' => 'kilometers',
                 );

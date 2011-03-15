@@ -39,9 +39,9 @@ class graphsActions extends sfActions {
         $this->setFilterField('graph_name', 'cost_per_km');
         
 
-        $options = array('chart_parameters' => array(
-
-        ));
+        $options = array(
+            'title' => 'Relative Cost [CHF/km]',
+        );
 
 
         $this->gb = new GraphBuilderPChart($this->getGBData(),$options);
