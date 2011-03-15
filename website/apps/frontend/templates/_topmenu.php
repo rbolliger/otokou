@@ -3,7 +3,7 @@
 $menu = new ioMenu(array('id' => 'topmenu1'));
 $menu->addChild('Homepage','@homepage_welcome');
 $menu->addChild('Charges', '@charge')->requiresAuth(true);
-$menu->addChild('Graphs', '@graph_index')->requiresAuth(true);
+$menu->addChild('Charts', '@graph_index')->requiresAuth(true);
 $menu->addChild('Reports','')->requiresAuth(true);
 echo $menu->render();
 
