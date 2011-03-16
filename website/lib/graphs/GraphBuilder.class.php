@@ -675,5 +675,38 @@ class GraphBuilder {
         );
     }
 
+
+    protected function getAxisParametersByRangeType($type) {
+
+        switch ($type) {
+            case 'date':
+
+                $params = array(
+                    'label' => 'Date',
+                    'format' => 'datetime',
+                    'column' => 'date',
+                );
+
+                break;
+
+            case 'distance':
+
+                $params = array(
+                    'label' => 'Distance [km]',
+                    'format' => 'number',
+                    'column' => 'kilometers',
+                );
+
+                break;
+
+            default:
+
+                throw new sfException(sprintf('Unknown range type %s', $type));
+                break;
+        }
+
+        return $params;
+    }
+
 }
 
