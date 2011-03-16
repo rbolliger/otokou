@@ -127,20 +127,25 @@ class GraphBuilderPChart extends GraphBuilder {
         $myData = new pData();
 
         // X-axis
-        $axis_params = $this->getAxisParametersByRangeType($this->getParameter('range_type'));
+        $axis_data = $gs->buildXAxisDataByRangeTypeAndCalculationBase($this->getParameter('range_type'),'distance');
 
-        $x_column = $gs->getSeriesDataByColumn($axis_params['column'], $axis_params['format']);
+        $id = "x-axis";
+        $myData->addPoints($axis_data['value'], "x-axis");
+        $myData->setSerieDescription($id, $axis_data['label']);
+        $myData->setAbscissa($id);
 
-        $x_data = $gs->buildXAxisData($x_column);
+        $is_date = $this->getParameter('range_type') == 'date' ? true : false;
+        $display_mode = $is_date ? AXIS_FORMAT_DATE : AXIS_FORMAT_DEFAULT;
+        $display_format = $is_date ? 'd-M-Y' : null;
 
-        $myData->addPoints($x_data, "x-axis");
-        $myData->setSerieDescription("x-axis", $axis_params['label']);
-        $myData->setAbscissa("x-axis");
+        $myData->setXAxisDisplay($display_mode, $display_format);
 
 
         // Y-axis
         $y_columns = $gs->getSeriesDataByColumn('amount');
 
+        $x_data = $axis_data['base'];
+        $x_column = $axis_data['base_column'];
         $y_data = array();
 
         foreach ($x_data as $bkey => $bound) {

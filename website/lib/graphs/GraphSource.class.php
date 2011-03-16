@@ -44,7 +44,7 @@ class GraphSource {
             $serie = $series[$s];
 
             $raw_data = $serie->getRawData();
-            
+
 
             $data = array();
             foreach ($raw_data as $charge) {
@@ -92,6 +92,104 @@ class GraphSource {
         return $data;
     }
 
+    public function buildXAxisDataByRangeTypeAndCalculationBase($range_type, $base_type) {
+
+        // Checking that range_type is known
+        if (!in_array($range_type, array_keys(GraphTable::getRangeTypes()))) {
+            throw new sfException(sprintf('Unknown range type "%s".', $range_type));
+        }
+
+        // Checking that base_type exists
+        if (!in_array($range_type, array_keys(GraphTable::getRangeTypes()))) {
+            throw new sfException(sprintf('Unknown range type "%s".', $base_type));
+        }
+
+
+        // getting axis parameters
+        $axis_params = $this->getAxisParametersByRangeType($range_type);
+        $base_params = $this->getAxisParametersByRangeType($base_type);
+
+        // getting data for x-axis column
+        $x_column = $this->getSeriesDataByColumn($axis_params['column'], $axis_params['format']);
+
+        // building x-axis data
+        $x_data = $this->buildXAxisData($x_column);
+
+
+        // getting data used as base column. This column is used to compute the chart values.
+        if ($axis_params['column'] === $base_params['column']) {
+            $base_data = $x_data;
+            $base_column = $x_column;
+        } else {
+
+            $base_column = $this->getSeriesDataByColumn($base_params['column'], $base_params['format']);
+
+            $base_data = array();
+
+            foreach ($x_data as $key => $value) {
+
+                $bda = array();
+
+                foreach ($x_column as $xkey => $serie) {
+
+                    $k = array_keys($serie, $value);
+
+                    if (!$k) {
+                        continue;
+                    }
+                    
+                    $bd = array_intersect_key($base_column[$xkey], array_combine($k, $k));
+
+                    $bda = array_merge($bda, $bd);
+                }
+
+                $base_data[$key] = max($bda);
+            }
+        }
+
+
+        $data = array(
+            'value' => $x_data,
+            'base' => $base_data,
+            'x_column' => $x_column,
+            'base_column' => $base_column,
+        );
+
+        return array_merge($data, $axis_params);
+    }
+
+    protected function getAxisParametersByRangeType($type) {
+
+        switch ($type) {
+            case 'date':
+
+                $params = array(
+                    'label' => 'Date',
+                    'format' => 'datetime',
+                    'column' => 'date',
+                );
+
+                break;
+
+            case 'distance':
+
+                $params = array(
+                    'label' => 'Distance [km]',
+                    'format' => 'number',
+                    'column' => 'kilometers',
+                );
+
+                break;
+
+            default:
+
+                throw new sfException(sprintf('Unknown range type %s', $type));
+                break;
+        }
+
+        return $params;
+    }
+
     public function getYAxisDataByColumn($xi, $x_column, $y_column, $x_type='number', $y_type='number') {
 
 //
@@ -137,6 +235,16 @@ class GraphSource {
 
         $filtered_array = array_filter($array, function ($element) use ($bound) {
                             return ($element <= $bound);
+                        });
+
+
+        return $filtered_array;
+    }
+
+    public static function filterValuesDifferentThan($array, $value) {
+
+        $filtered_array = array_filter($array, function ($element) use ($bound) {
+                            return ($element == $value);
                         });
 
 
