@@ -30,6 +30,8 @@ class GraphBuilderPChart extends GraphBuilder {
 
         $picture = $this->buildPicture($data);
 
+        $chart = $this->plotChart($picture, $data);
+
         $picture->render($this->getGraphPath('system'));
 
         sfContext::getInstance()->getLogger()->info(sprintf('Rendering graph %s with pGraph.', $this->getGraphPath()));
@@ -41,10 +43,10 @@ class GraphBuilderPChart extends GraphBuilder {
 
 
         // Color scheme from kuler "Q10 Chart"
-        
 
-        $myPicture = new pImage(700, 400, $data);
-        //$myPicture->drawRectangle(0, 0, 699, 399, array("R" => 0, "G" => 0, "B" => 0));
+
+        $myPicture = new pImage(700, 475, $data);
+        //$myPicture->drawRectangle(0, 0, 699, 474, array("R" => 0, "G" => 0, "B" => 0));
 
         $myPicture->setShadow(TRUE, array("X" => 1, "Y" => 1, "R" => 50, "G" => 50, "B" => 50, "Alpha" => 20));
 
@@ -57,11 +59,19 @@ class GraphBuilderPChart extends GraphBuilder {
         $myPicture->setGraphArea(90, 50, 675, 330);
         $myPicture->setFontProperties(array("R" => 40, "G" => 40, "B" => 43, "FontName" => sfConfig::get('sf_web_dir') . "/fonts/DejaVuSans-ExtraLight.ttf", "FontSize" => 9));
 
+        return $myPicture;
+    }
+
+    protected function plotChart(pImage $picture, pData $data) {
+
+
+
+        $myScatter = new pScatter($picture, $data);
+
         $Settings = array(
             "Pos" => SCALE_POS_LEFTRIGHT,
             "Mode" => SCALE_MODE_FLOATING,
-            "LabelingMethod" => LABELING_ALL,
-            "DrawXLines"  => false,
+            "DrawXLines" => FALSE,
             "DrawYLines" => ALL,
             "GridTicks" => 1,
             "GridR" => 168,
@@ -83,23 +93,13 @@ class GraphBuilderPChart extends GraphBuilder {
             "SubTickAlpha" => 100,
             "DrawArrows" => false,
             "CycleBackground" => false,
-                    );
-        $myPicture->drawScale($Settings);
-
-        $myPicture->setShadow(TRUE, array("X" => 1, "Y" => 1, "R" => 50, "G" => 50, "B" => 50, "Alpha" => 10));
-
-        $Config = array(
-            "ForceTransparency" => 10,
-            "AroundZero" => 1,
-            "DisplayValues" => false,
-            );
-        $myPicture->drawAreaChart($Config);
-
-        $Config = array(
-            'DisplayValues' => false,
-            'DisplayColor'  => DISPLAY_AUTO,
         );
-        $myPicture->drawLineChart($Config);
+        $myScatter->drawScatterScale($Settings);
+
+        $picture->setShadow(TRUE, array("X" => 1, "Y" => 1, "R" => 0, "G" => 0, "B" => 0, "Alpha" => 10));
+
+        $myScatter->drawScatterLineChart();
+        $myScatter->drawScatterPlotChart();
 
         $Config = array(
             "FontName" => sfConfig::get('sf_web_dir') . "/fonts/Ubuntu-R.ttf",
@@ -114,39 +114,41 @@ class GraphBuilderPChart extends GraphBuilder {
             "Mode" => LEGEND_HORIZONTAL,
             "Family" => LEGEND_FAMILY_LINE,
         );
-        $myPicture->drawLegend(20, 375, $Config);
-
-        return $myPicture;
+        $myScatter->drawScatterLegend(20, 450, $Config);
     }
+
 
     protected function buildCostPerKmGraphData() {
 
         $gs = $this->getGraphSource();
 
-
         $myData = new pData();
 
         // X-axis
-        $axis_data = $gs->buildXAxisDataByRangeTypeAndCalculationBase($this->getParameter('range_type'),'distance');
+        $axis_data = $gs->buildXAxisDataByRangeTypeAndCalculationBase($this->getParameter('range_type'), 'distance');
 
-        $id = "x-axis";
+        $x_id = "x-axis";
         $myData->addPoints($axis_data['value'], "x-axis");
-        $myData->setSerieDescription($id, $axis_data['label']);
-        $myData->setAbscissa($id);
+
+        $myData->setAxisName(0, $axis_data['label']);
+        $myData->setAxisXY(0, AXIS_X);
+        $myData->setAxisPosition(0, AXIS_POSITION_BOTTOM);
 
         $is_date = $this->getParameter('range_type') == 'date' ? true : false;
         $display_mode = $is_date ? AXIS_FORMAT_DATE : AXIS_FORMAT_DEFAULT;
         $display_format = $is_date ? 'd-M-Y' : null;
 
-        $myData->setXAxisDisplay($display_mode, $display_format);
+        $myData->setAxisDisplay(0,$display_mode, $display_format);
 
 
         // Y-axis
+        
         $y_columns = $gs->getSeriesDataByColumn('amount');
 
         $x_data = $axis_data['base'];
         $x_column = $axis_data['base_column'];
         $y_data = array();
+
 
         foreach ($x_data as $bkey => $bound) {
 
@@ -155,43 +157,39 @@ class GraphBuilderPChart extends GraphBuilder {
 
                 // removing x elements that are larger than bound
                 $filter = $gs->filterValuesLargerThan($x_column[$ykey], $bound);
-                
-                
+
                 // getting corresponding y elements
                 $y_filtered = array_intersect_key($y_values, $filter);
 
-
+                // calculating relative cost
                 if (!count($y_filtered)) {
                     $cost = VOID;
                 } else {
                     $cost = array_sum($y_filtered) / $bound;
                 }
 
-                // calculating relative cost
+                // assigning result to temporary array
                 $y_data[$ykey][$bkey] = $cost;
-
             }
         }
 
-
         $y_series = $gs->getSeries();
-
 
         foreach ($y_series as $key => $serie) {
             $myData->addPoints($y_data[$key], $serie->getId());
-            $myData->setSerieDescription($serie->getId(), $serie->getLabel());
-            $myData->setSerieOnAxis($serie->getId(), 0);
-            $myData->setSerieWeight($serie->getId(), 1);
+            $myData->setSerieOnAxis($serie->getId(), 1);
+
+            $myData->setScatterSerie($x_id, $serie->getId(), $key);
+            $myData->setScatterSerieDescription($key, $serie->getLabel());
+            $myData->setScatterSerieWeight($key, 0.7);
         }
 
-        $myData->setAxisPosition(0, AXIS_POSITION_LEFT);
-        $myData->setAxisName(0, "Cost [CHF]");
-        //$myData->setAxisUnit(0, "CHF");
+        $myData->setAxisName(1, 'Cost [CHF]');
+        $myData->setAxisXY(1, AXIS_Y);
+        $myData->setAxisPosition(1, AXIS_POSITION_LEFT);
 
         return $myData;
     }
-
-    
 
 }
 

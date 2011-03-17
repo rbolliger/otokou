@@ -198,7 +198,7 @@
              if ( $i%2 == 1 ) { $BGColor = array("R"=>$BackgroundR1,"G"=>$BackgroundG1,"B"=>$BackgroundB1,"Alpha"=>$BackgroundAlpha1); } else { $BGColor = array("R"=>$BackgroundR2,"G"=>$BackgroundG2,"B"=>$BackgroundB2,"Alpha"=>$BackgroundAlpha2); }
              if ( $LastX != NULL && $CycleBackground  && ( $DrawXLines == ALL || in_array($AxisID,$DrawXLines) )) { $this->pChartObject->drawFilledRectangle($LastX,$this->pChartObject->GraphAreaY1+$FloatingOffset,$XPos,$this->pChartObject->GraphAreaY2-$FloatingOffset,$BGColor); }
 
-             if ( $DrawXLines == ALL || in_array($AxisID,$DrawXLines) ) { $this->pChartObject->drawLine($XPos,$this->pChartObject->GraphAreaY1+$FloatingOffset,$XPos,$this->pChartObject->GraphAreaY2-$FloatingOffset,array("R"=>$GridR,"G"=>$GridG,"B"=>$GridB,"Alpha"=>$GridAlpha,"Ticks"=>$GridTicks)); }
+             if ( ($DrawXLines !== FALSE) && ($DrawXLines == ALL || in_array($AxisID,$DrawXLines)) ) { $this->pChartObject->drawLine($XPos,$this->pChartObject->GraphAreaY1+$FloatingOffset,$XPos,$this->pChartObject->GraphAreaY2-$FloatingOffset,array("R"=>$GridR,"G"=>$GridG,"B"=>$GridB,"Alpha"=>$GridAlpha,"Ticks"=>$GridTicks)); }
              if ( $DrawSubTicks && $i != $AxisSettings["Rows"] )
               $this->pChartObject->drawLine($XPos+$SubTicksSize,$YPos-$InnerSubTickWidth,$XPos+$SubTicksSize,$YPos+$OuterSubTickWidth,array("R"=>$SubTickR,"G"=>$SubTickG,"B"=>$SubTickB,"Alpha"=>$SubTickAlpha));
 
