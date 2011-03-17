@@ -45,8 +45,8 @@ class GraphBuilderPChart extends GraphBuilder {
         // Color scheme from kuler "Q10 Chart"
 
 
-        $myPicture = new pImage(700, 475, $data);
-        $myPicture->drawRectangle(0, 0, 699, 474, array("R" => 0, "G" => 0, "B" => 0));
+        $myPicture = new pImage(900, 475, $data);
+        //$myPicture->drawRectangle(0, 0, 899, 474, array("R" => 0, "G" => 0, "B" => 0));
 
         $myPicture->setShadow(TRUE, array("X" => 1, "Y" => 1, "R" => 50, "G" => 50, "B" => 50, "Alpha" => 20));
 
@@ -56,7 +56,7 @@ class GraphBuilderPChart extends GraphBuilder {
         $myPicture->drawText(350, 25, $this->getOption('title'), $TextSettings);
 
         $myPicture->setShadow(FALSE);
-        $myPicture->setGraphArea(90, 75, 675, 360);
+        $myPicture->setGraphArea(90, 50, 649, 360);
         $myPicture->setFontProperties(array("R" => 40, "G" => 40, "B" => 43, "FontName" => sfConfig::get('sf_web_dir') . "/fonts/DejaVuSans-ExtraLight.ttf", "FontSize" => 9));
 
         return $myPicture;
@@ -111,10 +111,10 @@ class GraphBuilderPChart extends GraphBuilder {
             "Alpha" => 100,
             "BoxSize" => 5,
             "Style" => LEGEND_NOBORDER,
-            "Mode" => LEGEND_HORIZONTAL,
+            "Mode" => LEGEND_VERTICAL,
             "Family" => LEGEND_FAMILY_LINE,
         );
-        $myScatter->drawScatterLegend(20, 50, $Config);
+        $myScatter->drawScatterLegend(655, 50, $Config);
     }
 
 
