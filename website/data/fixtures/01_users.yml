@@ -8,6 +8,14 @@ sfGuardUser:
     is_super_admin: true
     Groups:         [Group_admin]
 
+  franz:
+    first_name:     Franz
+    last_name:      Bolliger
+    email_address:  franzbolliger@bluewin.ch
+    username:       franz
+    password:       1234
+    is_super_admin: false
+
 sfGuardGroup:
   Group_admin:
     name:           admin
