@@ -7,8 +7,7 @@ sfGuardUser:
     password:       admin@1
     is_super_admin: true
     Groups:         [Group_admin]
-    
-    
+
   user2:
     first_name:     User
     last_name:      two

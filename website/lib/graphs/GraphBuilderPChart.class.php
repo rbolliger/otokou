@@ -99,7 +99,7 @@ class GraphBuilderPChart extends GraphBuilder {
         $picture->setShadow(TRUE, array("X" => 1, "Y" => 1, "R" => 0, "G" => 0, "B" => 0, "Alpha" => 10));
 
         $myScatter->drawScatterLineChart();
-        $myScatter->drawScatterPlotChart();
+        //$myScatter->drawScatterPlotChart();
 
         $Config = array(
             "FontName" => sfConfig::get('sf_web_dir') . "/fonts/Ubuntu-R.ttf",

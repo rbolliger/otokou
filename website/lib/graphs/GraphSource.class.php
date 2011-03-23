@@ -147,17 +147,20 @@ class GraphSource {
                 }
 
                 $base_data[$key] = max($bda);
-
-
-                // looking for data == 0 and changing its value
-                if (isset($options['check_zeroes']) && $options['check_zeroes'] == true) {
-
-                    if ($base_data[$key] == 0) {
-                        $base_data[$key] = isset($options['zero_approx']) ? $options['zero_approx'] : 0.01;
-                    }
-                }
             }
         }
+
+
+        // looking for data == 0 and changing its value
+                if (isset($options['check_zeroes']) && $options['check_zeroes'] == true) {
+
+                    $keys = array_keys($base_data,0);
+
+                    foreach ($keys as $key) {
+                        $base_data[$key] = isset($options['zero_approx']) ? $options['zero_approx'] : 0.01;
+                    }
+                    
+                }
 
 
         $data = array(
