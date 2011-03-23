@@ -24,19 +24,19 @@ class GraphFormFilter extends BaseGraphFormFilter {
         // Vehicle
         $this->widgetSchema['vehicles_list']->setOptions(
                 array_merge($this->widgetSchema['vehicles_list']->getOptions(),
-                array(
-                    'expanded'  => true,
-                    'multiple'  => true,
-                    'label'     => 'Vehicles',
-                    'add_empty' => false,
-                    )));
+                        array(
+                            'expanded' => true,
+                            'multiple' => true,
+                            'label' => 'Vehicles',
+                            'add_empty' => false,
+                )));
 
         $this->validatorSchema['vehicles_list']->setOptions(
                 array_merge($this->validatorSchema['vehicles_list']->getOptions(),
-                array(
-                    'required'  => false,
-                    'multiple'  => true
-                    )));
+                        array(
+                            'required' => false,
+                            'multiple' => true
+                )));
 
 
         $this->widgetSchema->moveField('vehicles_list', sfWidgetFormSchema::FIRST);
@@ -45,19 +45,19 @@ class GraphFormFilter extends BaseGraphFormFilter {
         // Category
         $this->widgetSchema['categories_list']->setOptions(
                 array_merge($this->widgetSchema['categories_list']->getOptions(),
-                array(
-                    'expanded'  => true,
-                    'multiple'  => true,
-                    'label'     => 'Categories',
-                    'add_empty' => false,
-                    )));
+                        array(
+                            'expanded' => true,
+                            'multiple' => true,
+                            'label' => 'Categories',
+                            'add_empty' => false,
+                )));
 
         $this->validatorSchema['categories_list']->setOptions(
                 array_merge($this->validatorSchema['categories_list']->getOptions(),
-                array(
-                    'required'  => false,
-                    'multiple'  => true
-                    )));
+                        array(
+                            'required' => false,
+                            'multiple' => true
+                )));
 
 
         // Display options
@@ -96,8 +96,11 @@ class GraphFormFilter extends BaseGraphFormFilter {
                 $this['date_to']
         );
 
+        $years = range(date('Y') - 25, date('Y') + 5);
+
         $widget = new sfWidgetFormDate(array(
                     'format' => '%day%/%month%/%year%',
+                    'years'  => array_combine($years, $years),
                 ));
 
         $this->widgetSchema['date_range'] = new sfWidgetFormFilterDate(array(
@@ -173,7 +176,7 @@ class GraphFormFilter extends BaseGraphFormFilter {
 
     public function checkDateAndKilometersFrom($validator, $values) {
 
-         if (isset($values['date_range']['from']) && isset($values['kilometers_range']['from'])) {
+        if (isset($values['date_range']['from']) && isset($values['kilometers_range']['from'])) {
             $error = new sfValidatorError($validator, 'Only one field between "date from" and "kilometers from" can be defined for X-axis.');
 
             throw new sfValidatorErrorSchema($validator, array('date_range' => $error, 'kilometers_range' => $error));
@@ -184,7 +187,7 @@ class GraphFormFilter extends BaseGraphFormFilter {
 
     public function checkDateAndKilometersTo($validator, $values) {
 
-         if (isset($values['date_range']['to']) && isset($values['kilometers_range']['to'])) {
+        if (isset($values['date_range']['to']) && isset($values['kilometers_range']['to'])) {
             $error = new sfValidatorError($validator, 'Only one field between "date to" and "kilometers to" can be defined for X-axis.');
 
             throw new sfValidatorErrorSchema($validator, array('date_range' => $error, 'kilometers_range' => $error));
