@@ -117,7 +117,6 @@ class GraphBuilderPChart extends GraphBuilder {
         $myScatter->drawScatterLegend(655, 50, $Config);
     }
 
-
     protected function buildCostPerKmGraphData() {
 
         $gs = $this->getGraphSource();
@@ -125,7 +124,11 @@ class GraphBuilderPChart extends GraphBuilder {
         $myData = new pData();
 
         // X-axis
-        $axis_data = $gs->buildXAxisDataByRangeTypeAndCalculationBase($this->getParameter('range_type'), 'distance');
+        $options = array(
+            'check_zeroes' => true,
+            'zero_approx' => 0.01,
+        );
+        $axis_data = $gs->buildXAxisDataByRangeTypeAndCalculationBase($this->getParameter('range_type'), 'distance', $options);
 
         $x_id = "x-axis";
         $myData->addPoints($axis_data['value'], "x-axis");
@@ -138,11 +141,11 @@ class GraphBuilderPChart extends GraphBuilder {
         $display_mode = $is_date ? AXIS_FORMAT_DATE : AXIS_FORMAT_DEFAULT;
         $display_format = $is_date ? 'd-M-Y' : null;
 
-        $myData->setAxisDisplay(0,$display_mode, $display_format);
+        $myData->setAxisDisplay(0, $display_mode, $display_format);
 
 
         // Y-axis
-        
+
         $y_columns = $gs->getSeriesDataByColumn('amount');
 
         $x_data = $axis_data['base'];
@@ -165,6 +168,7 @@ class GraphBuilderPChart extends GraphBuilder {
                 if (!count($y_filtered)) {
                     $cost = VOID;
                 } else {
+
                     $cost = array_sum($y_filtered) / $bound;
                 }
 
@@ -184,7 +188,7 @@ class GraphBuilderPChart extends GraphBuilder {
             $myData->setScatterSerieWeight($key, 0.7);
         }
 
-        $myData->setAxisName(1, 'Cost [CHF]');
+        $myData->setAxisName(1, 'Cost [CHF/km]');
         $myData->setAxisXY(1, AXIS_Y);
         $myData->setAxisPosition(1, AXIS_POSITION_LEFT);
 

@@ -92,7 +92,7 @@ class GraphSource {
         return $data;
     }
 
-    public function buildXAxisDataByRangeTypeAndCalculationBase($range_type, $base_type) {
+    public function buildXAxisDataByRangeTypeAndCalculationBase($range_type, $base_type, $options = array()) {
 
         // Checking that range_type is known
         if (!in_array($range_type, array_keys(GraphTable::getRangeTypes()))) {
@@ -112,8 +112,11 @@ class GraphSource {
         // getting data for x-axis column
         $x_column = $this->getSeriesDataByColumn($axis_params['column'], $axis_params['format']);
 
+
         // building x-axis data
         $x_data = $this->buildXAxisData($x_column);
+
+
 
 
         // getting data used as base column. This column is used to compute the chart values.
@@ -137,13 +140,22 @@ class GraphSource {
                     if (!$k) {
                         continue;
                     }
-                    
+
                     $bd = array_intersect_key($base_column[$xkey], array_combine($k, $k));
 
                     $bda = array_merge($bda, $bd);
                 }
 
                 $base_data[$key] = max($bda);
+
+
+                // looking for data == 0 and changing its value
+                if (isset($options['check_zeroes']) && $options['check_zeroes'] == true) {
+
+                    if ($base_data[$key] == 0) {
+                        $base_data[$key] = isset($options['zero_approx']) ? $options['zero_approx'] : 0.01;
+                    }
+                }
             }
         }
 
