@@ -1,0 +1,6747 @@
+Charge:
+  franz_astra_1:
+    User: franz
+    Vehicle: astra
+    date: '1996-11-18'
+    comment: 'Acquisto (con benzina)'
+    kilometers: 0
+    amount: 5600
+    Category: purchase
+  franz_astra_2:
+    User: franz
+    Vehicle: astra
+    date: '1996-11-18'
+    comment: 'Ripresa Peugeot (scalato su Peugeot)'
+    kilometers: 0
+    amount: 1000
+    Category: purchase
+  franz_astra_3:
+    User: franz
+    Vehicle: astra
+    date: '1996-11-18'
+    comment: 'Cauzione + 1a rata'
+    kilometers: 0
+    amount: 964.35
+    Category: leasing
+  franz_astra_4:
+    User: franz
+    Vehicle: astra
+    date: '1996-11-18'
+    comment: 'Diff. circolazione + tasse'
+    kilometers: 0
+    amount: 71.1
+    Category: taxes
+  franz_astra_5:
+    User: franz
+    Vehicle: astra
+    date: '1996-11-24'
+    comment: Benzina
+    kilometers: 474
+    amount: 40
+    Category: fuel
+    quantity: 32.8
+  franz_astra_6:
+    User: franz
+    Vehicle: astra
+    date: '1996-11-30'
+    comment: Benzina
+    kilometers: 889
+    amount: 40
+    Category: fuel
+    quantity: 32.8
+  franz_astra_7:
+    User: franz
+    Vehicle: astra
+    date: '1996-12-04'
+    comment: 'Servizio 1''000 km'
+    kilometers: 1176
+    amount: 87.35
+    Category: maintenance
+  franz_astra_8:
+    User: franz
+    Vehicle: astra
+    date: '1996-12-05'
+    comment: Benzina
+    kilometers: 1262
+    amount: 40
+    Category: fuel
+    quantity: 32.4
+  franz_astra_9:
+    User: franz
+    Vehicle: astra
+    date: '1996-12-12'
+    comment: Benzina
+    kilometers: 1591
+    amount: 40
+    Category: fuel
+    quantity: 32.3
+  franz_astra_10:
+    User: franz
+    Vehicle: astra
+    date: '1996-12-13'
+    comment: '2a rata'
+    kilometers: 1600
+    amount: 464.35
+    Category: leasing
+  franz_astra_11:
+    User: franz
+    Vehicle: astra
+    date: '1996-12-16'
+    comment: Benzina
+    kilometers: 1968
+    amount: 40
+    Category: fuel
+    quantity: 32.8
+  franz_astra_12:
+    User: franz
+    Vehicle: astra
+    date: '1996-12-21'
+    comment: Benzina
+    kilometers: 2364
+    amount: 40
+    Category: fuel
+    quantity: 32.4
+  franz_astra_13:
+    User: franz
+    Vehicle: astra
+    date: '1996-12-29'
+    comment: 'Assicurazione 1° sem. 97'
+    kilometers: 2500
+    amount: 664.5
+    Category: insurance
+  franz_astra_14:
+    User: franz
+    Vehicle: astra
+    date: '1997-01-04'
+    comment: Benzina
+    kilometers: 2704
+    amount: 40
+    Category: fuel
+    quantity: 32.8
+  franz_astra_15:
+    User: franz
+    Vehicle: astra
+    date: '1997-01-13'
+    comment: Benzina
+    kilometers: 3096
+    amount: 40
+    Category: fuel
+    quantity: 33.3
+  franz_astra_16:
+    User: franz
+    Vehicle: astra
+    date: '1997-01-15'
+    comment: '3a rata'
+    kilometers: 3200
+    amount: 464.35
+    Category: leasing
+  franz_astra_17:
+    User: franz
+    Vehicle: astra
+    date: '1997-01-18'
+    comment: Benzina
+    kilometers: 3485
+    amount: 40
+    Category: fuel
+    quantity: 31.9
+  franz_astra_18:
+    User: franz
+    Vehicle: astra
+    date: '1997-01-27'
+    comment: Benzina
+    kilometers: 3888
+    amount: 40
+    Category: fuel
+    quantity: 32.1
+  franz_astra_19:
+    User: franz
+    Vehicle: astra
+    date: '1997-01-30'
+    comment: Benzina
+    kilometers: 4272
+    amount: 40
+    Category: fuel
+    quantity: 31.6
+  franz_astra_20:
+    User: franz
+    Vehicle: astra
+    date: '1997-01-31'
+    comment: 'Circolazione 97'
+    kilometers: 4300
+    amount: 351
+    Category: taxes
+  franz_astra_21:
+    User: franz
+    Vehicle: astra
+    date: '1997-02-06'
+    comment: Benzina
+    kilometers: 4700
+    amount: 40
+    Category: fuel
+    quantity: 31.6
+  franz_astra_22:
+    User: franz
+    Vehicle: astra
+    date: '1997-02-10'
+    comment: Benzina
+    kilometers: 5104
+    amount: 40
+    Category: fuel
+    quantity: 31.6
+  franz_astra_23:
+    User: franz
+    Vehicle: astra
+    date: '1997-02-14'
+    comment: '4a rata'
+    kilometers: 5300
+    amount: 464.35
+    Category: leasing
+  franz_astra_24:
+    User: franz
+    Vehicle: astra
+    date: '1997-02-17'
+    comment: Benzina
+    kilometers: 5471
+    amount: 40
+    Category: fuel
+    quantity: 31.6
+  franz_astra_25:
+    User: franz
+    Vehicle: astra
+    date: '1997-02-22'
+    comment: Benzina
+    kilometers: 5889
+    amount: 40
+    Category: fuel
+    quantity: 31.6
+  franz_astra_26:
+    User: franz
+    Vehicle: astra
+    date: '1997-03-03'
+    comment: Benzina
+    kilometers: 6276
+    amount: 40
+    Category: fuel
+    quantity: 32.1
+  franz_astra_27:
+    User: franz
+    Vehicle: astra
+    date: '1997-03-10'
+    comment: Benzina
+    kilometers: 6762
+    amount: 40
+    Category: fuel
+    quantity: 32.1
+  franz_astra_28:
+    User: franz
+    Vehicle: astra
+    date: '1997-03-14'
+    comment: '5a rata'
+    kilometers: 6900
+    amount: 464.35
+    Category: leasing
+  franz_astra_29:
+    User: franz
+    Vehicle: astra
+    date: '1997-03-17'
+    comment: Benzina
+    kilometers: 7171
+    amount: 40
+    Category: fuel
+    quantity: 32.1
+  franz_astra_30:
+    User: franz
+    Vehicle: astra
+    date: '1997-03-24'
+    comment: Benzina
+    kilometers: 7551
+    amount: 40
+    Category: fuel
+    quantity: 32.1
+  franz_astra_31:
+    User: franz
+    Vehicle: astra
+    date: '1997-03-25'
+    comment: 'Servizio 7''500 km'
+    kilometers: 7587
+    amount: 0
+    Category: maintenance
+  franz_astra_32:
+    User: franz
+    Vehicle: astra
+    date: '1997-04-03'
+    comment: Benzina
+    kilometers: 7892
+    amount: 40
+    Category: fuel
+    quantity: 31.4
+  franz_astra_33:
+    User: franz
+    Vehicle: astra
+    date: '1997-04-09'
+    comment: Benzina
+    kilometers: 8330
+    amount: 40
+    Category: fuel
+    quantity: 33.2
+  franz_astra_34:
+    User: franz
+    Vehicle: astra
+    date: '1997-04-15'
+    comment: '6a rata'
+    kilometers: 8750
+    amount: 464.35
+    Category: leasing
+  franz_astra_35:
+    User: franz
+    Vehicle: astra
+    date: '1997-04-16'
+    comment: Benzina
+    kilometers: 8766
+    amount: 40
+    Category: fuel
+    quantity: 32.4
+  franz_astra_36:
+    User: franz
+    Vehicle: astra
+    date: '1997-04-27'
+    comment: Benzina
+    kilometers: 9143
+    amount: 40
+    Category: fuel
+    quantity: 33.1
+  franz_astra_37:
+    User: franz
+    Vehicle: astra
+    date: '1997-04-27'
+    comment: Lavaggio
+    kilometers: 9166
+    amount: 6.5
+    Category: maintenance
+  franz_astra_38:
+    User: franz
+    Vehicle: astra
+    date: '1997-05-03'
+    comment: Benzina
+    kilometers: 9557
+    amount: 40
+    Category: fuel
+    quantity: 33.1
+  franz_astra_39:
+    User: franz
+    Vehicle: astra
+    date: '1997-05-10'
+    comment: Benzina
+    kilometers: 9958
+    amount: 40
+    Category: fuel
+    quantity: 34.5
+  franz_astra_40:
+    User: franz
+    Vehicle: astra
+    date: '1997-05-15'
+    comment: '7a rata'
+    kilometers: 10100
+    amount: 464.35
+    Category: leasing
+  franz_astra_41:
+    User: franz
+    Vehicle: astra
+    date: '1997-05-21'
+    comment: Benzina
+    kilometers: 10352
+    amount: 40
+    Category: fuel
+    quantity: 32.7
+  franz_astra_42:
+    User: franz
+    Vehicle: astra
+    date: '1997-05-29'
+    comment: Benzina
+    kilometers: 10836
+    amount: 40
+    Category: fuel
+    quantity: 33.1
+  franz_astra_43:
+    User: franz
+    Vehicle: astra
+    date: '1997-06-08'
+    comment: Benzina
+    kilometers: 11197
+    amount: 40
+    Category: fuel
+    quantity: 32.3
+  franz_astra_44:
+    User: franz
+    Vehicle: astra
+    date: '1997-06-13'
+    comment: Benzina
+    kilometers: 11665
+    amount: 40
+    Category: fuel
+    quantity: 32.3
+  franz_astra_45:
+    User: franz
+    Vehicle: astra
+    date: '1997-06-15'
+    comment: '8a rata'
+    kilometers: 11750
+    amount: 464.35
+    Category: leasing
+  franz_astra_46:
+    User: franz
+    Vehicle: astra
+    date: '1997-06-20'
+    comment: Benzina
+    kilometers: 12019
+    amount: 40
+    Category: fuel
+    quantity: 32.3
+  franz_astra_47:
+    User: franz
+    Vehicle: astra
+    date: '1997-06-25'
+    comment: Benzina
+    kilometers: 12491
+    amount: 40
+    Category: fuel
+    quantity: 32.8
+  franz_astra_48:
+    User: franz
+    Vehicle: astra
+    date: '1997-06-30'
+    comment: 'Assicurazione 2° sem. 97'
+    kilometers: 12900
+    amount: 607.5
+    Category: insurance
+  franz_astra_49:
+    User: franz
+    Vehicle: astra
+    date: '1997-07-01'
+    comment: Benzina
+    kilometers: 12931
+    amount: 40
+    Category: fuel
+    quantity: 33.3
+  franz_astra_50:
+    User: franz
+    Vehicle: astra
+    date: '1997-07-15'
+    comment: '9a rata'
+    kilometers: 13310
+    amount: 464.35
+    Category: leasing
+  franz_astra_51:
+    User: franz
+    Vehicle: astra
+    date: '1997-07-21'
+    comment: Benzina
+    kilometers: 13369
+    amount: 40
+    Category: fuel
+    quantity: 33.9
+  franz_astra_52:
+    User: franz
+    Vehicle: astra
+    date: '1997-07-27'
+    comment: Benzina
+    kilometers: 13822
+    amount: 40
+    Category: fuel
+    quantity: 32.8
+  franz_astra_53:
+    User: franz
+    Vehicle: astra
+    date: '1997-08-03'
+    comment: Benzina
+    kilometers: 14219
+    amount: 40
+    Category: fuel
+    quantity: 32.3
+  franz_astra_54:
+    User: franz
+    Vehicle: astra
+    date: '1997-08-10'
+    comment: Benzina
+    kilometers: 14639
+    amount: 40
+    Category: fuel
+    quantity: 31.8
+  franz_astra_55:
+    User: franz
+    Vehicle: astra
+    date: '1997-08-15'
+    comment: '10a rata'
+    kilometers: 14758
+    amount: 464.35
+    Category: leasing
+  franz_astra_56:
+    User: franz
+    Vehicle: astra
+    date: '1997-08-28'
+    comment: Benzina
+    kilometers: 15043
+    amount: 40
+    Category: fuel
+    quantity: 31.5
+  franz_astra_57:
+    User: franz
+    Vehicle: astra
+    date: '1997-08-29'
+    comment: 'Servizio 15''000 km'
+    kilometers: 15075
+    amount: 386.05
+    Category: maintenance
+  franz_astra_58:
+    User: franz
+    Vehicle: astra
+    date: '1997-09-05'
+    comment: Benzina
+    kilometers: 15395
+    amount: 40
+    Category: fuel
+    quantity: 31.5
+  franz_astra_59:
+    User: franz
+    Vehicle: astra
+    date: '1997-09-10'
+    comment: Benzina
+    kilometers: 15842
+    amount: 40
+    Category: fuel
+    quantity: 31.5
+  franz_astra_60:
+    User: franz
+    Vehicle: astra
+    date: '1997-09-15'
+    comment: '11a rata'
+    kilometers: 16108
+    amount: 464.35
+    Category: leasing
+  franz_astra_61:
+    User: franz
+    Vehicle: astra
+    date: '1997-09-20'
+    comment: Benzina
+    kilometers: 16197
+    amount: 40
+    Category: fuel
+    quantity: 31.5
+  franz_astra_62:
+    User: franz
+    Vehicle: astra
+    date: '1997-09-26'
+    comment: Benzina
+    kilometers: 16621
+    amount: 40
+    Category: fuel
+    quantity: 31.5
+  franz_astra_63:
+    User: franz
+    Vehicle: astra
+    date: '1997-10-03'
+    comment: Benzina
+    kilometers: 17007
+    amount: 40
+    Category: fuel
+    quantity: 31.5
+  franz_astra_64:
+    User: franz
+    Vehicle: astra
+    date: '1997-10-09'
+    comment: Benzina
+    kilometers: 17507
+    amount: 40
+    Category: fuel
+    quantity: 31.5
+  franz_astra_65:
+    User: franz
+    Vehicle: astra
+    date: '1997-10-15'
+    comment: Benzina
+    kilometers: 17928
+    amount: 40
+    Category: fuel
+    quantity: 31.5
+  franz_astra_66:
+    User: franz
+    Vehicle: astra
+    date: '1997-10-15'
+    comment: '12a rata'
+    kilometers: 17928
+    amount: 464.35
+    Category: leasing
+  franz_astra_67:
+    User: franz
+    Vehicle: astra
+    date: '1997-10-21'
+    comment: Benzina
+    kilometers: 18316
+    amount: 40
+    Category: fuel
+    quantity: 31.5
+  franz_astra_68:
+    User: franz
+    Vehicle: astra
+    date: '1997-10-26'
+    comment: Benzina
+    kilometers: 18703
+    amount: 40
+    Category: fuel
+    quantity: 31.5
+  franz_astra_69:
+    User: franz
+    Vehicle: astra
+    date: '1997-10-31'
+    comment: Benzina
+    kilometers: 19084
+    amount: 40
+    Category: fuel
+    quantity: 31.5
+  franz_astra_70:
+    User: franz
+    Vehicle: astra
+    date: '1997-11-02'
+    comment: Benzina
+    kilometers: 19609
+    amount: 45
+    Category: fuel
+    quantity: 35.4
+  franz_astra_71:
+    User: franz
+    Vehicle: astra
+    date: '1997-11-09'
+    comment: Benzina
+    kilometers: 20005
+    amount: 40
+    Category: fuel
+    quantity: 31.8
+  franz_astra_72:
+    User: franz
+    Vehicle: astra
+    date: '1997-11-15'
+    comment: '13a rata'
+    kilometers: 20435
+    amount: 464.35
+    Category: leasing
+  franz_astra_73:
+    User: franz
+    Vehicle: astra
+    date: '1997-11-16'
+    comment: Lavaggio
+    kilometers: 20435
+    amount: 6.5
+    Category: maintenance
+  franz_astra_74:
+    User: franz
+    Vehicle: astra
+    date: '1997-11-16'
+    comment: Benzina
+    kilometers: 20435
+    amount: 40
+    Category: fuel
+    quantity: 31.8
+  franz_astra_75:
+    User: franz
+    Vehicle: astra
+    date: '1997-11-22'
+    comment: '2 gomme neve dietro'
+    kilometers: 20789
+    amount: 222
+    Category: accessories
+  franz_astra_76:
+    User: franz
+    Vehicle: astra
+    date: '1997-11-25'
+    comment: Benzina
+    kilometers: 20847
+    amount: 40
+    Category: fuel
+    quantity: 31.8
+  franz_astra_77:
+    User: franz
+    Vehicle: astra
+    date: '1997-11-30'
+    comment: Benzina
+    kilometers: 21210
+    amount: 40
+    Category: fuel
+    quantity: 32.3
+  franz_astra_78:
+    User: franz
+    Vehicle: astra
+    date: '1997-12-05'
+    comment: Benzina
+    kilometers: 21553
+    amount: 40
+    Category: fuel
+    quantity: 32.2
+  franz_astra_79:
+    User: franz
+    Vehicle: astra
+    date: '1997-12-10'
+    comment: Benzina
+    kilometers: 22025
+    amount: 40
+    Category: fuel
+    quantity: 32.3
+  franz_astra_80:
+    User: franz
+    Vehicle: astra
+    date: '1997-12-15'
+    comment: '14a rata'
+    kilometers: 22100
+    amount: 464.35
+    Category: leasing
+  franz_astra_81:
+    User: franz
+    Vehicle: astra
+    date: '1997-12-16'
+    comment: Benzina
+    kilometers: 22426
+    amount: 40
+    Category: fuel
+    quantity: 32.3
+  franz_astra_82:
+    User: franz
+    Vehicle: astra
+    date: '1997-12-17'
+    comment: 'Servizio 22''500 km'
+    kilometers: 22458
+    amount: 103.3
+    Category: maintenance
+  franz_astra_83:
+    User: franz
+    Vehicle: astra
+    date: '1997-12-23'
+    comment: Benzina
+    kilometers: 22782
+    amount: 40
+    Category: fuel
+    quantity: 32.8
+  franz_astra_84:
+    User: franz
+    Vehicle: astra
+    date: '1997-12-31'
+    comment: 'Assicurazione 1° sem. 98'
+    kilometers: 23200
+    amount: 607.5
+    Category: insurance
+  franz_astra_85:
+    User: franz
+    Vehicle: astra
+    date: '1998-01-01'
+    comment: Benzina
+    kilometers: 23205
+    amount: 40
+    Category: fuel
+    quantity: 33.1
+  franz_astra_86:
+    User: franz
+    Vehicle: astra
+    date: '1998-01-07'
+    comment: Benzina
+    kilometers: 23620
+    amount: 40
+    Category: fuel
+    quantity: 33
+  franz_astra_87:
+    User: franz
+    Vehicle: astra
+    date: '1998-01-07'
+    comment: '2 gomme neve davanti'
+    kilometers: 23640
+    amount: 244
+    Category: accessories
+  franz_astra_88:
+    User: franz
+    Vehicle: astra
+    date: '1998-01-11'
+    comment: Benzina
+    kilometers: 23845
+    amount: 20
+    Category: fuel
+    quantity: 16.5
+  franz_astra_89:
+    User: franz
+    Vehicle: astra
+    date: '1998-01-11'
+    comment: Benzina
+    kilometers: 24290
+    amount: 40
+    Category: fuel
+    quantity: 33.1
+  franz_astra_90:
+    User: franz
+    Vehicle: astra
+    date: '1998-01-15'
+    comment: '15a rata'
+    kilometers: 24500
+    amount: 464.35
+    Category: leasing
+  franz_astra_91:
+    User: franz
+    Vehicle: astra
+    date: '1998-01-19'
+    comment: Benzina
+    kilometers: 24649
+    amount: 40
+    Category: fuel
+    quantity: 33.1
+  franz_astra_92:
+    User: franz
+    Vehicle: astra
+    date: '1998-01-26'
+    comment: Benzina
+    kilometers: 25074
+    amount: 40
+    Category: fuel
+    quantity: 33.1
+  franz_astra_93:
+    User: franz
+    Vehicle: astra
+    date: '1998-02-01'
+    comment: Vignetta
+    kilometers: 25430
+    amount: 40
+    Category: taxes
+  franz_astra_94:
+    User: franz
+    Vehicle: astra
+    date: '1998-02-02'
+    comment: Benzina
+    kilometers: 25536
+    amount: 40
+    Category: fuel
+    quantity: 33.1
+  franz_astra_95:
+    User: franz
+    Vehicle: astra
+    date: '1998-02-09'
+    comment: Benzina
+    kilometers: 25962
+    amount: 40
+    Category: fuel
+    quantity: 33.1
+  franz_astra_96:
+    User: franz
+    Vehicle: astra
+    date: '1998-02-12'
+    comment: Lavaggio
+    kilometers: 26316
+    amount: 10
+    Category: maintenance
+  franz_astra_97:
+    User: franz
+    Vehicle: astra
+    date: '1998-02-14'
+    comment: Benzina
+    kilometers: 26351
+    amount: 40
+    Category: fuel
+    quantity: 33.1
+  franz_astra_98:
+    User: franz
+    Vehicle: astra
+    date: '1998-02-15'
+    comment: '16a rata'
+    kilometers: 26500
+    amount: 464.35
+    Category: leasing
+  franz_astra_99:
+    User: franz
+    Vehicle: astra
+    date: '1998-02-21'
+    comment: Benzina
+    kilometers: 26840
+    amount: 40
+    Category: fuel
+    quantity: 32.9
+  franz_astra_100:
+    User: franz
+    Vehicle: astra
+    date: '1998-02-28'
+    comment: Benzina
+    kilometers: 27216
+    amount: 40
+    Category: fuel
+    quantity: 33.6
+  franz_astra_101:
+    User: franz
+    Vehicle: astra
+    date: '1998-02-28'
+    comment: 'Circolazione 98'
+    kilometers: 27216
+    amount: 369
+    Category: taxes
+  franz_astra_102:
+    User: franz
+    Vehicle: astra
+    date: '1998-03-05'
+    comment: Benzina
+    kilometers: 27744
+    amount: 40
+    Category: fuel
+    quantity: 33.6
+  franz_astra_103:
+    User: franz
+    Vehicle: astra
+    date: '1998-03-11'
+    comment: Benzina
+    kilometers: 28148
+    amount: 40
+    Category: fuel
+    quantity: 33.6
+  franz_astra_104:
+    User: franz
+    Vehicle: astra
+    date: '1998-03-15'
+    comment: '17a rata'
+    kilometers: 28500
+    amount: 465.35
+    Category: leasing
+  franz_astra_105:
+    User: franz
+    Vehicle: astra
+    date: '1998-03-18'
+    comment: Benzina
+    kilometers: 28575
+    amount: 40
+    Category: fuel
+    quantity: 34.2
+  franz_astra_106:
+    User: franz
+    Vehicle: astra
+    date: '1998-03-25'
+    comment: Benzina
+    kilometers: 28995
+    amount: 30
+    Category: fuel
+    quantity: 25.2
+  franz_astra_107:
+    User: franz
+    Vehicle: astra
+    date: '1998-03-29'
+    comment: Benzina
+    kilometers: 29393
+    amount: 40
+    Category: fuel
+    quantity: 33.3
+  franz_astra_108:
+    User: franz
+    Vehicle: astra
+    date: '1998-04-04'
+    comment: Benzina
+    kilometers: 29803
+    amount: 40
+    Category: fuel
+    quantity: 33.3
+  franz_astra_109:
+    User: franz
+    Vehicle: astra
+    date: '1998-04-08'
+    comment: 'Servizio 30''000 km'
+    kilometers: 30053
+    amount: 422.25
+    Category: maintenance
+  franz_astra_110:
+    User: franz
+    Vehicle: astra
+    date: '1998-04-11'
+    comment: Benzina
+    kilometers: 30218
+    amount: 40
+    Category: fuel
+    quantity: 33.3
+  franz_astra_111:
+    User: franz
+    Vehicle: astra
+    date: '1998-04-15'
+    comment: '18a rata'
+    kilometers: 30500
+    amount: 464.35
+    Category: leasing
+  franz_astra_112:
+    User: franz
+    Vehicle: astra
+    date: '1998-04-18'
+    comment: Benzina
+    kilometers: 30665
+    amount: 40
+    Category: fuel
+    quantity: 33.3
+  franz_astra_113:
+    User: franz
+    Vehicle: astra
+    date: '1998-04-23'
+    comment: Benzina
+    kilometers: 31128
+    amount: 40
+    Category: fuel
+    quantity: 33.4
+  franz_astra_114:
+    User: franz
+    Vehicle: astra
+    date: '1998-04-28'
+    comment: Benzina
+    kilometers: 31537
+    amount: 40
+    Category: fuel
+    quantity: 33.3
+  franz_astra_115:
+    User: franz
+    Vehicle: astra
+    date: '1998-05-05'
+    comment: Benzina
+    kilometers: 31982
+    amount: 40
+    Category: fuel
+    quantity: 33.3
+  franz_astra_116:
+    User: franz
+    Vehicle: astra
+    date: '1998-05-12'
+    comment: Benzina
+    kilometers: 32399
+    amount: 40
+    Category: fuel
+    quantity: 33.3
+  franz_astra_117:
+    User: franz
+    Vehicle: astra
+    date: '1998-05-15'
+    comment: 'Cambio gomma anteriore'
+    kilometers: 32571
+    amount: 34
+    Category: maintenance
+  franz_astra_118:
+    User: franz
+    Vehicle: astra
+    date: '1998-05-15'
+    comment: '19a rata'
+    kilometers: 32571
+    amount: 464.35
+    Category: leasing
+  franz_astra_119:
+    User: franz
+    Vehicle: astra
+    date: '1998-05-18'
+    comment: Benzina
+    kilometers: 32788
+    amount: 40
+    Category: fuel
+    quantity: 33.3
+  franz_astra_120:
+    User: franz
+    Vehicle: astra
+    date: '1998-05-23'
+    comment: Benzina
+    kilometers: 33228
+    amount: 40
+    Category: fuel
+    quantity: 33.3
+  franz_astra_121:
+    User: franz
+    Vehicle: astra
+    date: '1998-05-29'
+    comment: Benzina
+    kilometers: 33702
+    amount: 40
+    Category: fuel
+    quantity: 33.6
+  franz_astra_122:
+    User: franz
+    Vehicle: astra
+    date: '1998-06-04'
+    comment: Benzina
+    kilometers: 34129
+    amount: 40
+    Category: fuel
+    quantity: 33.6
+  franz_astra_123:
+    User: franz
+    Vehicle: astra
+    date: '1998-06-10'
+    comment: Benzina
+    kilometers: 34573
+    amount: 40
+    Category: fuel
+    quantity: 33.3
+  franz_astra_124:
+    User: franz
+    Vehicle: astra
+    date: '1998-06-15'
+    comment: '20a rata'
+    kilometers: 35000
+    amount: 464.35
+    Category: leasing
+  franz_astra_125:
+    User: franz
+    Vehicle: astra
+    date: '1998-06-16'
+    comment: Benzina
+    kilometers: 35045
+    amount: 40
+    Category: fuel
+    quantity: 33.5
+  franz_astra_126:
+    User: franz
+    Vehicle: astra
+    date: '1998-06-21'
+    comment: Benzina
+    kilometers: 35400
+    amount: 40
+    Category: fuel
+    quantity: 33.9
+  franz_astra_127:
+    User: franz
+    Vehicle: astra
+    date: '1998-06-28'
+    comment: Benzina
+    kilometers: 35788
+    amount: 40
+    Category: fuel
+    quantity: 33.9
+  franz_astra_128:
+    User: franz
+    Vehicle: astra
+    date: '1998-06-30'
+    comment: 'Assicurazione 2° sem. 98'
+    kilometers: 35810
+    amount: 607.5
+    Category: insurance
+  franz_astra_129:
+    User: franz
+    Vehicle: astra
+    date: '1998-07-06'
+    comment: Benzina
+    kilometers: 36214
+    amount: 40
+    Category: fuel
+    quantity: 33.9
+  franz_astra_130:
+    User: franz
+    Vehicle: astra
+    date: '1998-07-15'
+    comment: '21a rata'
+    kilometers: 36250
+    amount: 464.35
+    Category: leasing
+  franz_astra_131:
+    User: franz
+    Vehicle: astra
+    date: '1998-07-17'
+    comment: Benzina
+    kilometers: 36628
+    amount: 40
+    Category: fuel
+    quantity: 33.9
+  franz_astra_132:
+    User: franz
+    Vehicle: astra
+    date: '1998-07-23'
+    comment: Benzina
+    kilometers: 37058
+    amount: 40
+    Category: fuel
+    quantity: 33.9
+  franz_astra_133:
+    User: franz
+    Vehicle: astra
+    date: '1998-07-30'
+    comment: 'Servizio 37''500 km'
+    kilometers: 37470
+    amount: 142.7
+    Category: maintenance
+  franz_astra_134:
+    User: franz
+    Vehicle: astra
+    date: '1998-07-31'
+    comment: Benzina
+    kilometers: 37529
+    amount: 40
+    Category: fuel
+    quantity: 33.9
+  franz_astra_135:
+    User: franz
+    Vehicle: astra
+    date: '1998-08-05'
+    comment: Benzina
+    kilometers: 37936
+    amount: 40
+    Category: fuel
+    quantity: 33.9
+  franz_astra_136:
+    User: franz
+    Vehicle: astra
+    date: '1998-08-11'
+    comment: Benzina
+    kilometers: 38453
+    amount: 40
+    Category: fuel
+    quantity: 33.9
+  franz_astra_137:
+    User: franz
+    Vehicle: astra
+    date: '1998-08-15'
+    comment: '22a rata'
+    kilometers: 38600
+    amount: 464.35
+    Category: leasing
+  franz_astra_138:
+    User: franz
+    Vehicle: astra
+    date: '1998-08-19'
+    comment: Benzina
+    kilometers: 38795
+    amount: 50
+    Category: fuel
+    quantity: 33.7
+  franz_astra_139:
+    User: franz
+    Vehicle: astra
+    date: '1998-08-23'
+    comment: Benzina
+    kilometers: 39342
+    amount: 40
+    Category: fuel
+    quantity: 33.7
+  franz_astra_140:
+    User: franz
+    Vehicle: astra
+    date: '1998-09-02'
+    comment: Benzina
+    kilometers: 39800
+    amount: 40
+    Category: fuel
+    quantity: 34.4
+  franz_astra_141:
+    User: franz
+    Vehicle: astra
+    date: '1998-09-08'
+    comment: Benzina
+    kilometers: 40265
+    amount: 40
+    Category: fuel
+    quantity: 34.5
+  franz_astra_142:
+    User: franz
+    Vehicle: astra
+    date: '1998-09-15'
+    comment: '23a rata'
+    kilometers: 40680
+    amount: 464.35
+    Category: leasing
+  franz_astra_143:
+    User: franz
+    Vehicle: astra
+    date: '1998-09-16'
+    comment: Benzina
+    kilometers: 40700
+    amount: 40
+    Category: fuel
+    quantity: 34.5
+  franz_astra_144:
+    User: franz
+    Vehicle: astra
+    date: '1998-09-21'
+    comment: Benzina
+    kilometers: 41702
+    amount: 40
+    Category: fuel
+    quantity: 34.2
+  franz_astra_145:
+    User: franz
+    Vehicle: astra
+    date: '1998-09-26'
+    comment: Benzina
+    kilometers: 41552
+    amount: 40
+    Category: fuel
+    quantity: 34.2
+  franz_astra_146:
+    User: franz
+    Vehicle: astra
+    date: '1998-10-02'
+    comment: Benzina
+    kilometers: 42012
+    amount: 40
+    Category: fuel
+    quantity: 34.2
+  franz_astra_147:
+    User: franz
+    Vehicle: astra
+    date: '1998-10-03'
+    comment: Benzina
+    kilometers: 42410
+    amount: 40
+    Category: fuel
+    quantity: 35.3
+  franz_astra_148:
+    User: franz
+    Vehicle: astra
+    date: '1998-10-04'
+    comment: Benzina
+    kilometers: 42831
+    amount: 30
+    Category: fuel
+    quantity: 25.7
+  franz_astra_149:
+    User: franz
+    Vehicle: astra
+    date: '1998-10-07'
+    comment: Benzina
+    kilometers: 43298
+    amount: 40
+    Category: fuel
+    quantity: 34.2
+  franz_astra_150:
+    User: franz
+    Vehicle: astra
+    date: '1998-10-15'
+    comment: '24a rata'
+    kilometers: 43770
+    amount: 464.35
+    Category: leasing
+  franz_astra_151:
+    User: franz
+    Vehicle: astra
+    date: '1998-10-16'
+    comment: Benzina
+    kilometers: 43782
+    amount: 40
+    Category: fuel
+    quantity: 34.2
+  franz_astra_152:
+    User: franz
+    Vehicle: astra
+    date: '1998-10-21'
+    comment: Benzina
+    kilometers: 44225
+    amount: 40
+    Category: fuel
+    quantity: 34.2
+  franz_astra_153:
+    User: franz
+    Vehicle: astra
+    date: '1998-10-28'
+    comment: Benzina
+    kilometers: 44658
+    amount: 40
+    Category: fuel
+    quantity: 34.2
+  franz_astra_154:
+    User: franz
+    Vehicle: astra
+    date: '1998-10-31'
+    comment: Benzina
+    kilometers: 45102
+    amount: 40
+    Category: fuel
+    quantity: 34.3
+  franz_astra_155:
+    User: franz
+    Vehicle: astra
+    date: '1998-11-04'
+    comment: 'Servizio 45''000 km'
+    kilometers: 45325
+    amount: 525.35
+    Category: maintenance
+  franz_astra_156:
+    User: franz
+    Vehicle: astra
+    date: '1998-11-08'
+    comment: Benzina
+    kilometers: 45482
+    amount: 40
+    Category: fuel
+    quantity: 34.2
+  franz_astra_157:
+    User: franz
+    Vehicle: astra
+    date: '1998-11-09'
+    comment: 'Guarnizione pompa olio'
+    kilometers: 45600
+    amount: 0
+    Category: maintenance
+  franz_astra_158:
+    User: franz
+    Vehicle: astra
+    date: '1998-11-10'
+    comment: 'Rip. Carrozz. (assic. terzo) 1690.50 '
+    kilometers: 45609
+    amount: 0
+    Category: maintenance
+  franz_astra_159:
+    User: franz
+    Vehicle: astra
+    date: '1998-11-14'
+    comment: Benzina
+    kilometers: 45857
+    amount: 40
+    Category: fuel
+    quantity: 34.5
+  franz_astra_160:
+    User: franz
+    Vehicle: astra
+    date: '1998-11-15'
+    comment: '25a rata'
+    kilometers: 45990
+    amount: 464.35
+    Category: leasing
+  franz_astra_161:
+    User: franz
+    Vehicle: astra
+    date: '1998-11-18'
+    comment: Benzina
+    kilometers: 46350
+    amount: 40
+    Category: fuel
+    quantity: 34.5
+  franz_astra_162:
+    User: franz
+    Vehicle: astra
+    date: '1998-11-25'
+    comment: Benzina
+    kilometers: 46755
+    amount: 40
+    Category: fuel
+    quantity: 34.5
+  franz_astra_163:
+    User: franz
+    Vehicle: astra
+    date: '1998-11-27'
+    comment: 'Gomme (2 nuove, 2 sostituite)'
+    kilometers: 46892
+    amount: 270
+    Category: maintenance
+  franz_astra_164:
+    User: franz
+    Vehicle: astra
+    date: '1998-12-02'
+    comment: Benzina
+    kilometers: 47130
+    amount: 40
+    Category: fuel
+    quantity: 34.5
+  franz_astra_165:
+    User: franz
+    Vehicle: astra
+    date: '1998-12-06'
+    comment: Benzina
+    kilometers: 47617
+    amount: 40
+    Category: fuel
+    quantity: 35.1
+  franz_astra_166:
+    User: franz
+    Vehicle: astra
+    date: '1998-12-12'
+    comment: Benzina
+    kilometers: 48064
+    amount: 40
+    Category: fuel
+    quantity: 35.1
+  franz_astra_167:
+    User: franz
+    Vehicle: astra
+    date: '1998-12-15'
+    comment: '26a rata'
+    kilometers: 48280
+    amount: 464.35
+    Category: leasing
+  franz_astra_168:
+    User: franz
+    Vehicle: astra
+    date: '1998-12-18'
+    comment: Benzina
+    kilometers: 48474
+    amount: 40
+    Category: fuel
+    quantity: 35.1
+  franz_astra_169:
+    User: franz
+    Vehicle: astra
+    date: '1998-12-24'
+    comment: Lavaggio
+    kilometers: 48813
+    amount: 10
+    Category: maintenance
+  franz_astra_170:
+    User: franz
+    Vehicle: astra
+    date: '1998-12-25'
+    comment: Benzina
+    kilometers: 48896
+    amount: 40
+    Category: fuel
+    quantity: 35.1
+  franz_astra_171:
+    User: franz
+    Vehicle: astra
+    date: '1998-12-30'
+    comment: Benzina
+    kilometers: 49302
+    amount: 40
+    Category: fuel
+    quantity: 35.1
+  franz_astra_172:
+    User: franz
+    Vehicle: astra
+    date: '1998-12-30'
+    comment: 'Assicurazione 1° sem. 99'
+    kilometers: 49302
+    amount: 607.5
+    Category: insurance
+  franz_astra_173:
+    User: franz
+    Vehicle: astra
+    date: '1999-01-08'
+    comment: Vignetta
+    kilometers: 49700
+    amount: 40
+    Category: taxes
+  franz_astra_174:
+    User: franz
+    Vehicle: astra
+    date: '1999-01-09'
+    comment: Benzina
+    kilometers: 49779
+    amount: 40
+    Category: fuel
+    quantity: 35.1
+  franz_astra_175:
+    User: franz
+    Vehicle: astra
+    date: '1999-01-15'
+    comment: Benzina
+    kilometers: 50201
+    amount: 45
+    Category: fuel
+    quantity: 39.5
+  franz_astra_176:
+    User: franz
+    Vehicle: astra
+    date: '1999-01-15'
+    comment: '27a rata'
+    kilometers: 50250
+    amount: 468.7
+    Category: leasing
+  franz_astra_177:
+    User: franz
+    Vehicle: astra
+    date: '1999-01-19'
+    comment: Benzina
+    kilometers: 50718
+    amount: 40
+    Category: fuel
+    quantity: 34.8
+  franz_astra_178:
+    User: franz
+    Vehicle: astra
+    date: '1999-01-22'
+    comment: Benzina
+    kilometers: 51217
+    amount: 40
+    Category: fuel
+    quantity: 35.1
+  franz_astra_179:
+    User: franz
+    Vehicle: astra
+    date: '1999-01-27'
+    comment: Lavaggio
+    kilometers: 51567
+    amount: 10
+    Category: maintenance
+  franz_astra_180:
+    User: franz
+    Vehicle: astra
+    date: '1999-01-27'
+    comment: Benzina
+    kilometers: 51626
+    amount: 40
+    Category: fuel
+    quantity: 35.1
+  franz_astra_181:
+    User: franz
+    Vehicle: astra
+    date: '1999-02-03'
+    comment: Benzina
+    kilometers: 52101
+    amount: 40
+    Category: fuel
+    quantity: 35.1
+  franz_astra_182:
+    User: franz
+    Vehicle: astra
+    date: '1999-02-10'
+    comment: 'Servizio 52''500 km'
+    kilometers: 52454
+    amount: 115.9
+    Category: maintenance
+  franz_astra_183:
+    User: franz
+    Vehicle: astra
+    date: '1999-02-12'
+    comment: Benzina
+    kilometers: 52536
+    amount: 40
+    Category: fuel
+    quantity: 35.1
+  franz_astra_184:
+    User: franz
+    Vehicle: astra
+    date: '1999-02-15'
+    comment: '28a rata'
+    kilometers: 52670
+    amount: 468.7
+    Category: leasing
+  franz_astra_185:
+    User: franz
+    Vehicle: astra
+    date: '1999-02-17'
+    comment: Benzina
+    kilometers: 52958
+    amount: 40
+    Category: fuel
+    quantity: 35.1
+  franz_astra_186:
+    User: franz
+    Vehicle: astra
+    date: '1999-02-22'
+    comment: Benzina
+    kilometers: 53440
+    amount: 40
+    Category: fuel
+    quantity: 35.1
+  franz_astra_187:
+    User: franz
+    Vehicle: astra
+    date: '1999-02-25'
+    comment: Benzina
+    kilometers: 53837
+    amount: 40
+    Category: fuel
+    quantity: 35.1
+  franz_astra_188:
+    User: franz
+    Vehicle: astra
+    date: '1999-02-26'
+    comment: 'Circolazione 99'
+    kilometers: 53920
+    amount: 369
+    Category: taxes
+  franz_astra_189:
+    User: franz
+    Vehicle: astra
+    date: '1999-03-03'
+    comment: Benzina
+    kilometers: 54216
+    amount: 43
+    Category: fuel
+    quantity: 37.4
+  franz_astra_190:
+    User: franz
+    Vehicle: astra
+    date: '1999-03-10'
+    comment: Benzina
+    kilometers: 54791
+    amount: 40
+    Category: fuel
+    quantity: 34.8
+  franz_astra_191:
+    User: franz
+    Vehicle: astra
+    date: '1999-03-14'
+    comment: Benzina
+    kilometers: 55145
+    amount: 40
+    Category: fuel
+    quantity: 34.8
+  franz_astra_192:
+    User: franz
+    Vehicle: astra
+    date: '1999-03-15'
+    comment: '29a rata'
+    kilometers: 55200
+    amount: 468.7
+    Category: leasing
+  franz_astra_193:
+    User: franz
+    Vehicle: astra
+    date: '1999-03-20'
+    comment: Benzina
+    kilometers: 55617
+    amount: 40
+    Category: fuel
+    quantity: 34.5
+  franz_astra_194:
+    User: franz
+    Vehicle: astra
+    date: '1999-03-26'
+    comment: Benzina
+    kilometers: 56110
+    amount: 40
+    Category: fuel
+    quantity: 34.5
+  franz_astra_195:
+    User: franz
+    Vehicle: astra
+    date: '1999-03-31'
+    comment: Benzina
+    kilometers: 56600
+    amount: 40
+    Category: fuel
+    quantity: 33.9
+  franz_astra_196:
+    User: franz
+    Vehicle: astra
+    date: '1999-03-31'
+    comment: 'Sostituito lampadina'
+    kilometers: 56600
+    amount: 11.7
+    Category: maintenance
+  franz_astra_197:
+    User: franz
+    Vehicle: astra
+    date: '1999-04-05'
+    comment: Benzina
+    kilometers: 57022
+    amount: 45
+    Category: fuel
+    quantity: 38.1
+  franz_astra_198:
+    User: franz
+    Vehicle: astra
+    date: '1999-04-10'
+    comment: 'Sostituito 2 gomme'
+    kilometers: 57354
+    amount: 35
+    Category: maintenance
+  franz_astra_199:
+    User: franz
+    Vehicle: astra
+    date: '1999-04-11'
+    comment: Benzina
+    kilometers: 57505
+    amount: 40
+    Category: fuel
+    quantity: 33.3
+  franz_astra_200:
+    User: franz
+    Vehicle: astra
+    date: '1999-04-14'
+    comment: Benzina
+    kilometers: 57972
+    amount: 40
+    Category: fuel
+    quantity: 33.3
+  franz_astra_201:
+    User: franz
+    Vehicle: astra
+    date: '1999-04-15'
+    comment: '30a rata'
+    kilometers: 58002
+    amount: 468.7
+    Category: leasing
+  franz_astra_202:
+    User: franz
+    Vehicle: astra
+    date: '1999-04-21'
+    comment: Benzina
+    kilometers: 58379
+    amount: 40
+    Category: fuel
+    quantity: 33.3
+  franz_astra_203:
+    User: franz
+    Vehicle: astra
+    date: '1999-04-26'
+    comment: Benzina
+    kilometers: 58742
+    amount: 40
+    Category: fuel
+    quantity: 33.4
+  franz_astra_204:
+    User: franz
+    Vehicle: astra
+    date: '1999-05-01'
+    comment: Benzina
+    kilometers: 59211
+    amount: 40
+    Category: fuel
+    quantity: 33.3
+  franz_astra_205:
+    User: franz
+    Vehicle: astra
+    date: '1999-05-07'
+    comment: Benzina
+    kilometers: 59686
+    amount: 45
+    Category: fuel
+    quantity: 36.7
+  franz_astra_206:
+    User: franz
+    Vehicle: astra
+    date: '1999-05-11'
+    comment: Benzina
+    kilometers: 60201
+    amount: 40
+    Category: fuel
+    quantity: 32.8
+  franz_astra_207:
+    User: franz
+    Vehicle: astra
+    date: '1999-05-12'
+    comment: 'Servizio 60''000 km'
+    kilometers: 60208
+    amount: 508.7
+    Category: maintenance
+  franz_astra_208:
+    User: franz
+    Vehicle: astra
+    date: '1999-05-15'
+    comment: Benzina
+    kilometers: 60612
+    amount: 40
+    Category: fuel
+    quantity: 32.8
+  franz_astra_209:
+    User: franz
+    Vehicle: astra
+    date: '1999-05-15'
+    comment: '31a rata'
+    kilometers: 60615
+    amount: 468.7
+    Category: leasing
+  franz_astra_210:
+    User: franz
+    Vehicle: astra
+    date: '1999-05-19'
+    comment: Benzina
+    kilometers: 61004
+    amount: 40
+    Category: fuel
+    quantity: 32.8
+  franz_astra_211:
+    User: franz
+    Vehicle: astra
+    date: '1999-05-23'
+    comment: Benzina
+    kilometers: 61490
+    amount: 40.05
+    Category: fuel
+    quantity: 32.7
+  franz_astra_212:
+    User: franz
+    Vehicle: astra
+    date: '1999-05-25'
+    comment: Benzina
+    kilometers: 61970
+    amount: 40
+    Category: fuel
+    quantity: 32.8
+  franz_astra_213:
+    User: franz
+    Vehicle: astra
+    date: '1999-05-31'
+    comment: Benzina
+    kilometers: 62362
+    amount: 45
+    Category: fuel
+    quantity: 37.8
+  franz_astra_214:
+    User: franz
+    Vehicle: astra
+    date: '1999-06-05'
+    comment: Benzina
+    kilometers: 62900
+    amount: 40
+    Category: fuel
+    quantity: 33.3
+  franz_astra_215:
+    User: franz
+    Vehicle: astra
+    date: '1999-06-10'
+    comment: Benzina
+    kilometers: 63369
+    amount: 40
+    Category: fuel
+    quantity: 33.3
+  franz_astra_216:
+    User: franz
+    Vehicle: astra
+    date: '1999-06-15'
+    comment: Benzina
+    kilometers: 63788
+    amount: 40
+    Category: fuel
+    quantity: 33.3
+  franz_astra_217:
+    User: franz
+    Vehicle: astra
+    date: '1999-06-15'
+    comment: '32a rata'
+    kilometers: 63788
+    amount: 468.7
+    Category: leasing
+  franz_astra_218:
+    User: franz
+    Vehicle: astra
+    date: '1999-06-16'
+    comment: 'Cambio 2 gomme'
+    kilometers: 63811
+    amount: 240
+    Category: maintenance
+  franz_astra_219:
+    User: franz
+    Vehicle: astra
+    date: '1999-06-17'
+    comment: Benzina
+    kilometers: 64290
+    amount: 40
+    Category: fuel
+    quantity: 33.4
+  franz_astra_220:
+    User: franz
+    Vehicle: astra
+    date: '1999-06-15'
+    comment: Benzina
+    kilometers: 64620
+    amount: 40
+    Category: fuel
+    quantity: 32.8
+  franz_astra_221:
+    User: franz
+    Vehicle: astra
+    date: '1999-06-24'
+    comment: Benzina
+    kilometers: 65084
+    amount: 40
+    Category: fuel
+    quantity: 32.8
+  franz_astra_222:
+    User: franz
+    Vehicle: astra
+    date: '1999-06-30'
+    comment: 'Assicurazione 2° sem 99'
+    kilometers: 65400
+    amount: 607.5
+    Category: insurance
+  franz_astra_223:
+    User: franz
+    Vehicle: astra
+    date: '1999-07-01'
+    comment: Benzina
+    kilometers: 65475
+    amount: 40
+    Category: fuel
+    quantity: 32.8
+  franz_astra_224:
+    User: franz
+    Vehicle: astra
+    date: '1999-07-08'
+    comment: Benzina
+    kilometers: 65911
+    amount: 40
+    Category: fuel
+    quantity: 32.3
+  franz_astra_225:
+    User: franz
+    Vehicle: astra
+    date: '1999-07-13'
+    comment: Benzina
+    kilometers: 66363
+    amount: 40
+    Category: fuel
+    quantity: 32.3
+  franz_astra_226:
+    User: franz
+    Vehicle: astra
+    date: '1999-07-15'
+    comment: '33a rata'
+    kilometers: 66453
+    amount: 468.7
+    Category: leasing
+  franz_astra_227:
+    User: franz
+    Vehicle: astra
+    date: '1999-07-17'
+    comment: Benzina
+    kilometers: 66713
+    amount: 40
+    Category: fuel
+    quantity: 32.3
+  franz_astra_228:
+    User: franz
+    Vehicle: astra
+    date: '1999-07-20'
+    comment: Benzina
+    kilometers: 66838
+    amount: 21.3
+    Category: fuel
+    quantity: 17
+  franz_astra_229:
+    User: franz
+    Vehicle: astra
+    date: '1999-07-28'
+    comment: Benzina
+    kilometers: 67319
+    amount: 41.5
+    Category: fuel
+    quantity: 25.9
+  franz_astra_230:
+    User: franz
+    Vehicle: astra
+    date: '1999-07-30'
+    comment: Benzina
+    kilometers: 67749
+    amount: 40
+    Category: fuel
+    quantity: 32.1
+  franz_astra_231:
+    User: franz
+    Vehicle: astra
+    date: '1999-08-02'
+    comment: 'Servizio 67''500 km'
+    kilometers: 67993
+    amount: 101.05
+    Category: maintenance
+  franz_astra_232:
+    User: franz
+    Vehicle: astra
+    date: '1999-08-05'
+    comment: Benzina
+    kilometers: 68202
+    amount: 40
+    Category: fuel
+    quantity: 32.3
+  franz_astra_233:
+    User: franz
+    Vehicle: astra
+    date: '1999-08-13'
+    comment: Benzina
+    kilometers: 68598
+    amount: 40
+    Category: fuel
+    quantity: 31
+  franz_astra_234:
+    User: franz
+    Vehicle: astra
+    date: '1999-08-15'
+    comment: '34a rata'
+    kilometers: 68600
+    amount: 468.7
+    Category: leasing
+  franz_astra_235:
+    User: franz
+    Vehicle: astra
+    date: '1999-08-22'
+    comment: Benzina
+    kilometers: 68924
+    amount: 40
+    Category: fuel
+    quantity: 31
+  franz_astra_236:
+    User: franz
+    Vehicle: astra
+    date: '1999-08-26'
+    comment: Benzina
+    kilometers: 69347
+    amount: 40
+    Category: fuel
+    quantity: 31
+  franz_astra_237:
+    User: franz
+    Vehicle: astra
+    date: '1999-08-29'
+    comment: Benzina
+    kilometers: 69614
+    amount: 38
+    Category: fuel
+    quantity: 29.5
+  franz_astra_238:
+    User: franz
+    Vehicle: astra
+    date: '1999-09-02'
+    comment: Benzina
+    kilometers: 70238
+    amount: 40
+    Category: fuel
+    quantity: 31.5
+  franz_astra_239:
+    User: franz
+    Vehicle: astra
+    date: '1999-09-08'
+    comment: Benzina
+    kilometers: 70640
+    amount: 40
+    Category: fuel
+    quantity: 31.5
+  franz_astra_240:
+    User: franz
+    Vehicle: astra
+    date: '1999-09-14'
+    comment: Benzina
+    kilometers: 71047
+    amount: 45
+    Category: fuel
+    quantity: 35.3
+  franz_astra_241:
+    User: franz
+    Vehicle: astra
+    date: '1999-09-15'
+    comment: '35a rata'
+    kilometers: 71090
+    amount: 468.7
+    Category: leasing
+  franz_astra_242:
+    User: franz
+    Vehicle: astra
+    date: '1999-09-20'
+    comment: Benzina
+    kilometers: 71537
+    amount: 40
+    Category: fuel
+    quantity: 31
+  franz_astra_243:
+    User: franz
+    Vehicle: astra
+    date: '1999-09-24'
+    comment: Benzina
+    kilometers: 71940
+    amount: 45
+    Category: fuel
+    quantity: 34.9
+  franz_astra_244:
+    User: franz
+    Vehicle: astra
+    date: '1999-10-01'
+    comment: Benzina
+    kilometers: 72398
+    amount: 40
+    Category: fuel
+    quantity: 30.8
+  franz_astra_245:
+    User: franz
+    Vehicle: astra
+    date: '1999-10-04'
+    comment: 'Servizio 75''000 km'
+    kilometers: 72460
+    amount: 450.95
+    Category: maintenance
+  franz_astra_246:
+    User: franz
+    Vehicle: astra
+    date: '1999-10-06'
+    comment: ammortizzatore
+    kilometers: 72460
+    amount: 331.1
+    Category: maintenance
+  franz_astra_247:
+    User: franz
+    Vehicle: astra
+    date: '1999-10-07'
+    comment: Benzina
+    kilometers: 72757
+    amount: 40
+    Category: fuel
+    quantity: 31
+  franz_astra_248:
+    User: franz
+    Vehicle: astra
+    date: '1999-10-10'
+    comment: Benzina
+    kilometers: 72983
+    amount: 38.5
+    Category: fuel
+    quantity: 29.9
+  franz_astra_249:
+    User: franz
+    Vehicle: astra
+    date: '1999-10-13'
+    comment: Benzina
+    kilometers: 73581
+    amount: 40
+    Category: fuel
+    quantity: 31
+  franz_astra_250:
+    User: franz
+    Vehicle: astra
+    date: '1999-10-15'
+    comment: '36a rata'
+    kilometers: 73700
+    amount: 468.7
+    Category: leasing
+  franz_astra_251:
+    User: franz
+    Vehicle: astra
+    date: '1999-10-17'
+    comment: Benzina
+    kilometers: 73968
+    amount: 40
+    Category: fuel
+    quantity: 31
+  franz_astra_252:
+    User: franz
+    Vehicle: astra
+    date: '1999-10-19'
+    comment: Benzina
+    kilometers: 74355
+    amount: 40
+    Category: fuel
+    quantity: 31
+  franz_astra_253:
+    User: franz
+    Vehicle: astra
+    date: '1999-10-24'
+    comment: Benzina
+    kilometers: 74768
+    amount: 40
+    Category: fuel
+    quantity: 31
+  franz_astra_254:
+    User: franz
+    Vehicle: astra
+    date: '1999-10-28'
+    comment: Benzina
+    kilometers: 75176
+    amount: 40
+    Category: fuel
+    quantity: 30.9
+  franz_astra_255:
+    User: franz
+    Vehicle: astra
+    date: '1999-10-29'
+    comment: 'Cambio 2 cuscinetti cinghia distrib.'
+    kilometers: 75212
+    amount: 256.4
+    Category: maintenance
+  franz_astra_256:
+    User: franz
+    Vehicle: astra
+    date: '1999-11-01'
+    comment: Benzina
+    kilometers: 75525
+    amount: 40
+    Category: fuel
+    quantity: 31
+  franz_astra_257:
+    User: franz
+    Vehicle: astra
+    date: '1999-11-07'
+    comment: Benzina
+    kilometers: 75905
+    amount: 40
+    Category: fuel
+    quantity: 31
+  franz_astra_258:
+    User: franz
+    Vehicle: astra
+    date: '1999-11-12'
+    comment: Benzina
+    kilometers: 76301
+    amount: 40
+    Category: fuel
+    quantity: 31
+  franz_astra_259:
+    User: franz
+    Vehicle: astra
+    date: '1999-11-17'
+    comment: Benzina
+    kilometers: 76646
+    amount: 40
+    Category: fuel
+    quantity: 30.8
+  franz_astra_260:
+    User: franz
+    Vehicle: astra
+    date: '1999-11-20'
+    comment: Benzina
+    kilometers: 77018
+    amount: 40
+    Category: fuel
+    quantity: 30.5
+  franz_astra_261:
+    User: franz
+    Vehicle: astra
+    date: '1999-11-24'
+    comment: Benzina
+    kilometers: 77433
+    amount: 40
+    Category: fuel
+    quantity: 30.5
+  franz_astra_262:
+    User: franz
+    Vehicle: astra
+    date: '1999-11-24'
+    comment: Lavaggio
+    kilometers: 77513
+    amount: 10
+    Category: maintenance
+  franz_astra_263:
+    User: franz
+    Vehicle: astra
+    date: '1999-11-26'
+    comment: 'cambio 2 gomme + 2 gomme nuove'
+    kilometers: 77600
+    amount: 272
+    Category: maintenance
+  franz_astra_264:
+    User: franz
+    Vehicle: astra
+    date: '1999-11-26'
+    comment: Benzina
+    kilometers: 77890
+    amount: 40
+    Category: fuel
+    quantity: 30.5
+  franz_astra_265:
+    User: franz
+    Vehicle: astra
+    date: '1999-12-01'
+    comment: '2 lampadine anabbaglianti ant.'
+    kilometers: 78198
+    amount: 21.5
+    Category: maintenance
+  franz_astra_266:
+    User: franz
+    Vehicle: astra
+    date: '1999-12-01'
+    comment: Benzina
+    kilometers: 78227
+    amount: 50
+    Category: fuel
+    quantity: 37.3
+  franz_astra_267:
+    User: franz
+    Vehicle: astra
+    date: '1999-12-06'
+    comment: Benzina
+    kilometers: 78690
+    amount: 50
+    Category: fuel
+    quantity: 37.3
+  franz_astra_268:
+    User: franz
+    Vehicle: astra
+    date: '1999-12-14'
+    comment: Benzina
+    kilometers: 79123
+    amount: 50
+    Category: fuel
+    quantity: 37.3
+  franz_astra_269:
+    User: franz
+    Vehicle: astra
+    date: '1999-12-20'
+    comment: Benzina
+    kilometers: 79608
+    amount: 50
+    Category: fuel
+    quantity: 37
+  franz_astra_270:
+    User: franz
+    Vehicle: astra
+    date: '1999-12-27'
+    comment: Benzina
+    kilometers: 80000
+    amount: 50
+    Category: fuel
+    quantity: 37.3
+  franz_astra_271:
+    User: franz
+    Vehicle: astra
+    date: '1999-12-30'
+    comment: 'Assicurazione 1° sem. 00'
+    kilometers: 80100
+    amount: 624.4
+    Category: insurance
+  franz_astra_272:
+    User: franz
+    Vehicle: astra
+    date: '2000-01-06'
+    comment: Benzina
+    kilometers: 80341
+    amount: 42
+    Category: fuel
+    quantity: 31.3
+  franz_astra_273:
+    User: franz
+    Vehicle: astra
+    date: '2000-01-13'
+    comment: Benzina
+    kilometers: 80853
+    amount: 40
+    Category: fuel
+    quantity: 30.5
+  franz_astra_274:
+    User: franz
+    Vehicle: astra
+    date: '2000-01-18'
+    comment: Benzina
+    kilometers: 81226
+    amount: 40
+    Category: fuel
+    quantity: 30.5
+  franz_astra_275:
+    User: franz
+    Vehicle: astra
+    date: '2000-01-19'
+    comment: Vignetta
+    kilometers: 81371
+    amount: 40
+    Category: taxes
+  franz_astra_276:
+    User: franz
+    Vehicle: astra
+    date: '2000-01-21'
+    comment: Benzina
+    kilometers: 81634
+    amount: 50
+    Category: fuel
+    quantity: 37.6
+  franz_astra_277:
+    User: franz
+    Vehicle: astra
+    date: '2000-01-28'
+    comment: Benzina
+    kilometers: 82090
+    amount: 50
+    Category: fuel
+    quantity: 37.5
+  franz_astra_278:
+    User: franz
+    Vehicle: astra
+    date: '2000-02-02'
+    comment: Benzina
+    kilometers: 82526
+    amount: 40
+    Category: fuel
+    quantity: 30.1
+  franz_astra_279:
+    User: franz
+    Vehicle: astra
+    date: '2000-02-03'
+    comment: 'Servizio 82''500 km'
+    kilometers: 82540
+    amount: 104.8
+    Category: maintenance
+  franz_astra_280:
+    User: franz
+    Vehicle: astra
+    date: '2000-02-07'
+    comment: Benzina
+    kilometers: 82893
+    amount: 50
+    Category: fuel
+    quantity: 36.8
+  franz_astra_281:
+    User: franz
+    Vehicle: astra
+    date: '2000-02-13'
+    comment: Benzina
+    kilometers: 83304
+    amount: 50
+    Category: fuel
+    quantity: 36.7
+  franz_astra_282:
+    User: franz
+    Vehicle: astra
+    date: '2000-02-16'
+    comment: Benzina
+    kilometers: 83878
+    amount: 50
+    Category: fuel
+    quantity: 36.8
+  franz_astra_283:
+    User: franz
+    Vehicle: astra
+    date: '2000-02-20'
+    comment: Benzina
+    kilometers: 84371
+    amount: 50
+    Category: fuel
+    quantity: 36
+  franz_astra_284:
+    User: franz
+    Vehicle: astra
+    date: '2000-02-25'
+    comment: Benzina
+    kilometers: 84826
+    amount: 50
+    Category: fuel
+    quantity: 36
+  franz_astra_285:
+    User: franz
+    Vehicle: astra
+    date: '2000-02-28'
+    comment: 'Circolazione 00'
+    kilometers: 85000
+    amount: 369
+    Category: taxes
+  franz_astra_286:
+    User: franz
+    Vehicle: astra
+    date: '2000-03-02'
+    comment: Benzina
+    kilometers: 85222
+    amount: 50
+    Category: fuel
+    quantity: 36
+  franz_astra_287:
+    User: franz
+    Vehicle: astra
+    date: '2000-03-05'
+    comment: Benzina
+    kilometers: 85572
+    amount: 40
+    Category: fuel
+    quantity: 28.9
+  franz_astra_288:
+    User: franz
+    Vehicle: astra
+    date: '2000-03-10'
+    comment: Benzina
+    kilometers: 86052
+    amount: 50
+    Category: fuel
+    quantity: 34.5
+  franz_astra_289:
+    User: franz
+    Vehicle: astra
+    date: '2000-03-16'
+    comment: Benzina
+    kilometers: 86493
+    amount: 50
+    Category: fuel
+    quantity: 35.2
+  franz_astra_290:
+    User: franz
+    Vehicle: astra
+    date: '2000-03-18'
+    comment: 'cambio 2 gomme + 2 gomme nuove'
+    kilometers: 86594
+    amount: 285
+    Category: maintenance
+  franz_astra_291:
+    User: franz
+    Vehicle: astra
+    date: '2000-03-23'
+    comment: Benzina
+    kilometers: 86926
+    amount: 50
+    Category: fuel
+    quantity: 35.2
+  franz_astra_292:
+    User: franz
+    Vehicle: astra
+    date: '2000-03-29'
+    comment: Benzina
+    kilometers: 87324
+    amount: 50
+    Category: fuel
+    quantity: 35.2
+  franz_astra_293:
+    User: franz
+    Vehicle: astra
+    date: '2000-04-05'
+    comment: Benzina
+    kilometers: 87783
+    amount: 50
+    Category: fuel
+    quantity: 35.2
+  franz_astra_294:
+    User: franz
+    Vehicle: astra
+    date: '2000-04-10'
+    comment: Benzina
+    kilometers: 88167
+    amount: 50.05
+    Category: fuel
+    quantity: 35
+  franz_astra_295:
+    User: franz
+    Vehicle: astra
+    date: '2000-04-14'
+    comment: Benzina
+    kilometers: 88691
+    amount: 50
+    Category: fuel
+    quantity: 36
+  franz_astra_296:
+    User: franz
+    Vehicle: astra
+    date: '2000-04-21'
+    comment: Benzina
+    kilometers: 89104
+    amount: 50
+    Category: fuel
+    quantity: 36
+  franz_astra_297:
+    User: franz
+    Vehicle: astra
+    date: '2000-05-01'
+    comment: Benzina
+    kilometers: 89526
+    amount: 50
+    Category: fuel
+    quantity: 35.5
+  franz_astra_298:
+    User: franz
+    Vehicle: astra
+    date: '2000-05-05'
+    comment: Benzina
+    kilometers: 90000
+    amount: 50
+    Category: fuel
+    quantity: 35.5
+  franz_astra_299:
+    User: franz
+    Vehicle: astra
+    date: '2000-05-08'
+    comment: 'Servizioo 90''000 km'
+    kilometers: 90147
+    amount: 406.9
+    Category: maintenance
+  franz_astra_300:
+    User: franz
+    Vehicle: astra
+    date: '2000-05-12'
+    comment: Benzina
+    kilometers: 90443
+    amount: 50
+    Category: fuel
+    quantity: 34.5
+  franz_astra_301:
+    User: franz
+    Vehicle: astra
+    date: '2000-05-17'
+    comment: Benzina
+    kilometers: 90894
+    amount: 50
+    Category: fuel
+    quantity: 34.5
+  franz_astra_302:
+    User: franz
+    Vehicle: astra
+    date: '2000-05-23'
+    comment: Benzina
+    kilometers: 91370
+    amount: 20
+    Category: fuel
+    quantity: 13.3
+  franz_astra_303:
+    User: franz
+    Vehicle: astra
+    date: '2000-05-24'
+    comment: Benzina
+    kilometers: 91400
+    amount: 50
+    Category: fuel
+    quantity: 33.6
+  franz_astra_304:
+    User: franz
+    Vehicle: astra
+    date: '2000-05-30'
+    comment: Benzina
+    kilometers: 91947
+    amount: 50
+    Category: fuel
+    quantity: 31.8
+  franz_astra_305:
+    User: franz
+    Vehicle: astra
+    date: '2000-06-05'
+    comment: Benzina
+    kilometers: 92340
+    amount: 50
+    Category: fuel
+    quantity: 32
+  franz_astra_306:
+    User: franz
+    Vehicle: astra
+    date: '2000-06-09'
+    comment: Benzina
+    kilometers: 92705
+    amount: 60
+    Category: fuel
+    quantity: 38.7
+  franz_astra_307:
+    User: franz
+    Vehicle: astra
+    date: '2000-06-15'
+    comment: Benzina
+    kilometers: 93236
+    amount: 50
+    Category: fuel
+    quantity: 32.3
+  franz_astra_308:
+    User: franz
+    Vehicle: astra
+    date: '2000-06-20'
+    comment: Benzina
+    kilometers: 93620
+    amount: 60
+    Category: fuel
+    quantity: 38.7
+  franz_astra_309:
+    User: franz
+    Vehicle: astra
+    date: '2000-06-23'
+    comment: Benzina
+    kilometers: 94031
+    amount: 52.5
+    Category: fuel
+    quantity: 34.2
+  franz_astra_310:
+    User: franz
+    Vehicle: astra
+    date: '2000-06-29'
+    comment: Benzina
+    kilometers: 94545
+    amount: 60
+    Category: fuel
+    quantity: 38
+  franz_astra_311:
+    User: franz
+    Vehicle: astra
+    date: '2000-06-30'
+    comment: 'Assicurazione 2° sem. 00'
+    kilometers: 94590
+    amount: 624.4
+    Category: insurance
+  franz_astra_312:
+    User: franz
+    Vehicle: astra
+    date: '2000-07-05'
+    comment: Benzina
+    kilometers: 95080
+    amount: 60
+    Category: fuel
+    quantity: 39
+  franz_astra_313:
+    User: franz
+    Vehicle: astra
+    date: '2000-07-12'
+    comment: Benzina
+    kilometers: 95619
+    amount: 50
+    Category: fuel
+    quantity: 33.6
+  franz_astra_314:
+    User: franz
+    Vehicle: astra
+    date: '2000-07-18'
+    comment: Benzina
+    kilometers: 95968
+    amount: 30
+    Category: fuel
+    quantity: 20
+  franz_astra_315:
+    User: franz
+    Vehicle: astra
+    date: '2000-07-22'
+    comment: Benzina
+    kilometers: 96132
+    amount: 48
+    Category: fuel
+    quantity: 32.7
+  franz_astra_316:
+    User: franz
+    Vehicle: astra
+    date: '2000-07-23'
+    comment: Benzina
+    kilometers: 96574
+    amount: 30
+    Category: fuel
+    quantity: 20.1
+  franz_astra_317:
+    User: franz
+    Vehicle: astra
+    date: '2000-07-28'
+    comment: Benzina
+    kilometers: 96971
+    amount: 50
+    Category: fuel
+    quantity: 36.2
+  franz_astra_318:
+    User: franz
+    Vehicle: astra
+    date: '2000-08-05'
+    comment: Benzina
+    kilometers: 97401
+    amount: 50
+    Category: fuel
+    quantity: 34.7
+  franz_astra_319:
+    User: franz
+    Vehicle: astra
+    date: '2000-08-09'
+    comment: 'Servizio 97''500 km (omaggio)'
+    kilometers: 97603
+    amount: 0
+    Category: maintenance
+  franz_astra_320:
+    User: franz
+    Vehicle: astra
+    date: '2000-08-13'
+    comment: Benzina
+    kilometers: 97817
+    amount: 30
+    Category: fuel
+    quantity: 20.6
+  franz_astra_321:
+    User: franz
+    Vehicle: astra
+    date: '2000-08-17'
+    comment: Benzina
+    kilometers: 98125
+    amount: 50
+    Category: fuel
+    quantity: 34
+  franz_astra_322:
+    User: franz
+    Vehicle: astra
+    date: '2000-08-19'
+    comment: Benzina
+    kilometers: 98242
+    amount: 25
+    Category: fuel
+    quantity: 16.7
+  franz_astra_323:
+    User: franz
+    Vehicle: astra
+    date: '2000-09-02'
+    comment: Benzina
+    kilometers: 98702
+    amount: 66.85
+    Category: fuel
+    quantity: 36.6
+  franz_astra_324:
+    User: franz
+    Vehicle: astra
+    date: '2000-09-04'
+    comment: Benzina
+    kilometers: 99128
+    amount: 55
+    Category: fuel
+    quantity: 36.9
+  franz_astra_325:
+    User: franz
+    Vehicle: astra
+    date: '2000-09-13'
+    comment: Benzina
+    kilometers: 99638
+    amount: 50
+    Category: fuel
+    quantity: 32.9
+  franz_astra_326:
+    User: franz
+    Vehicle: astra
+    date: '2000-09-15'
+    comment: Benzina
+    kilometers: 100106
+    amount: 50
+    Category: fuel
+    quantity: 32.5
+  franz_astra_327:
+    User: franz
+    Vehicle: astra
+    date: '2000-09-22'
+    comment: Benzina
+    kilometers: 100554
+    amount: 50
+    Category: fuel
+    quantity: 32.9
+  franz_astra_328:
+    User: franz
+    Vehicle: astra
+    date: '2000-09-28'
+    comment: Benzina
+    kilometers: 100938
+    amount: 50
+    Category: fuel
+    quantity: 33.3
+  franz_astra_329:
+    User: franz
+    Vehicle: astra
+    date: '2000-10-01'
+    comment: Benzina
+    kilometers: 101340
+    amount: 50
+    Category: fuel
+    quantity: 33.3
+  franz_astra_330:
+    User: franz
+    Vehicle: astra
+    date: '2000-10-08'
+    comment: Benzina
+    kilometers: 101795
+    amount: 50
+    Category: fuel
+    quantity: 35
+  franz_astra_331:
+    User: franz
+    Vehicle: astra
+    date: '2000-10-13'
+    comment: Benzina
+    kilometers: 102237
+    amount: 50
+    Category: fuel
+    quantity: 35
+  franz_astra_332:
+    User: franz
+    Vehicle: astra
+    date: '2000-10-17'
+    comment: Benzina
+    kilometers: 102723
+    amount: 53
+    Category: fuel
+    quantity: 33.5
+  franz_astra_333:
+    User: franz
+    Vehicle: astra
+    date: '2000-10-20'
+    comment: Benzina
+    kilometers: 103107
+    amount: 60
+    Category: fuel
+    quantity: 40.3
+  franz_astra_334:
+    User: franz
+    Vehicle: astra
+    date: '2000-10-21'
+    comment: Benzina
+    kilometers: 103492
+    amount: 40
+    Category: fuel
+    quantity: 27.5
+  franz_astra_335:
+    User: franz
+    Vehicle: astra
+    date: '2000-10-26'
+    comment: Benzina
+    kilometers: 104080
+    amount: 50
+    Category: fuel
+    quantity: 32.9
+  franz_astra_336:
+    User: franz
+    Vehicle: astra
+    date: '2000-10-30'
+    comment: 'Servizio 105''000 km + pompa acqua'
+    kilometers: 104392
+    amount: 1022.65
+    Category: maintenance
+  franz_astra_337:
+    User: franz
+    Vehicle: astra
+    date: '2000-11-01'
+    comment: Benzina
+    kilometers: 104462
+    amount: 50
+    Category: fuel
+    quantity: 32.9
+  franz_astra_338:
+    User: franz
+    Vehicle: astra
+    date: '2000-11-06'
+    comment: 'cambio 4 gomme'
+    kilometers: 104754
+    amount: 68
+    Category: maintenance
+  franz_astra_339:
+    User: franz
+    Vehicle: astra
+    date: '2000-11-07'
+    comment: Benzina
+    kilometers: 104817
+    amount: 50
+    Category: fuel
+    quantity: 33.8
+  franz_astra_340:
+    User: franz
+    Vehicle: astra
+    date: '2000-11-11'
+    comment: Benzina
+    kilometers: 105255
+    amount: 50
+    Category: fuel
+    quantity: 33.8
+  franz_astra_341:
+    User: franz
+    Vehicle: astra
+    date: '2000-11-16'
+    comment: Benzina
+    kilometers: 105662
+    amount: 50
+    Category: fuel
+    quantity: 34
+  franz_astra_342:
+    User: franz
+    Vehicle: astra
+    date: '2000-11-20'
+    comment: '1 gomma nuova (rottura per sasso)'
+    kilometers: 105996
+    amount: 115
+    Category: accessories
+  franz_astra_343:
+    User: franz
+    Vehicle: astra
+    date: '2000-11-22'
+    comment: Benzina
+    kilometers: 106105
+    amount: 50
+    Category: fuel
+    quantity: 34
+  franz_astra_344:
+    User: franz
+    Vehicle: astra
+    date: '2000-11-30'
+    comment: Benzina
+    kilometers: 106523
+    amount: 50
+    Category: fuel
+    quantity: 33.6
+  franz_astra_345:
+    User: franz
+    Vehicle: astra
+    date: '2000-12-07'
+    comment: Benzina
+    kilometers: 106910
+    amount: 50
+    Category: fuel
+    quantity: 35
+  franz_astra_346:
+    User: franz
+    Vehicle: astra
+    date: '2000-12-13'
+    comment: Benzina
+    kilometers: 107333
+    amount: 50
+    Category: fuel
+    quantity: 35.5
+  franz_astra_347:
+    User: franz
+    Vehicle: astra
+    date: '2000-12-18'
+    comment: Benzina
+    kilometers: 107753
+    amount: 50
+    Category: fuel
+    quantity: 36.2
+  franz_astra_348:
+    User: franz
+    Vehicle: astra
+    date: '2000-12-26'
+    comment: Benzina
+    kilometers: 108146
+    amount: 50
+    Category: fuel
+    quantity: 36.5
+  franz_astra_349:
+    User: franz
+    Vehicle: astra
+    date: '2000-12-31'
+    comment: 'Assicurazione 1° sem. 01'
+    kilometers: 108400
+    amount: 624.4
+    Category: insurance
+  franz_astra_350:
+    User: franz
+    Vehicle: astra
+    date: '2001-01-06'
+    comment: Benzina
+    kilometers: 108623
+    amount: 50
+    Category: fuel
+    quantity: 36.5
+  franz_astra_351:
+    User: franz
+    Vehicle: astra
+    date: '2001-01-12'
+    comment: Benzina
+    kilometers: 109117
+    amount: 50
+    Category: fuel
+    quantity: 36.5
+  franz_astra_352:
+    User: franz
+    Vehicle: astra
+    date: '2001-01-16'
+    comment: '1 coprimozzo'
+    kilometers: 109450
+    amount: 55
+    Category: maintenance
+  franz_astra_353:
+    User: franz
+    Vehicle: astra
+    date: '2001-01-17'
+    comment: Benzina
+    kilometers: 109519
+    amount: 50
+    Category: fuel
+    quantity: 36.5
+  franz_astra_354:
+    User: franz
+    Vehicle: astra
+    date: '2001-01-23'
+    comment: Benzina
+    kilometers: 110056
+    amount: 50
+    Category: fuel
+    quantity: 35.7
+  franz_astra_355:
+    User: franz
+    Vehicle: astra
+    date: '2001-01-28'
+    comment: Benzina
+    kilometers: 110410
+    amount: 50
+    Category: fuel
+    quantity: 35.7
+  franz_astra_356:
+    User: franz
+    Vehicle: astra
+    date: '2001-01-28'
+    comment: Vignetta
+    kilometers: 110410
+    amount: 40
+    Category: taxes
+  franz_astra_357:
+    User: franz
+    Vehicle: astra
+    date: '2001-02-02'
+    comment: Benzina
+    kilometers: 110954
+    amount: 50
+    Category: fuel
+    quantity: 35.7
+  franz_astra_358:
+    User: franz
+    Vehicle: astra
+    date: '2001-02-04'
+    comment: Benzina
+    kilometers: 111385
+    amount: 50
+    Category: fuel
+    quantity: 35.8
+  franz_astra_359:
+    User: franz
+    Vehicle: astra
+    date: '2001-02-12'
+    comment: Benzina
+    kilometers: 111867
+    amount: 50
+    Category: fuel
+    quantity: 35
+  franz_astra_360:
+    User: franz
+    Vehicle: astra
+    date: '2001-02-16'
+    comment: Benzina
+    kilometers: 112334
+    amount: 55
+    Category: fuel
+    quantity: 36.5
+  franz_astra_361:
+    User: franz
+    Vehicle: astra
+    date: '2001-02-22'
+    comment: 'Servizio 112''500 km (omaggio)'
+    kilometers: 112641
+    amount: 0
+    Category: maintenance
+  franz_astra_362:
+    User: franz
+    Vehicle: astra
+    date: '2001-02-24'
+    comment: Benzina
+    kilometers: 112770
+    amount: 50
+    Category: fuel
+    quantity: 35
+  franz_astra_363:
+    User: franz
+    Vehicle: astra
+    date: '2001-02-28'
+    comment: 'Circolazione 01'
+    kilometers: 113001
+    amount: 369
+    Category: taxes
+  franz_astra_364:
+    User: franz
+    Vehicle: astra
+    date: '2001-03-06'
+    comment: Benzina
+    kilometers: 113237
+    amount: 50
+    Category: fuel
+    quantity: 35.7
+  franz_astra_365:
+    User: franz
+    Vehicle: astra
+    date: '2001-03-11'
+    comment: Benzina
+    kilometers: 113643
+    amount: 50
+    Category: fuel
+    quantity: 35.7
+  franz_astra_366:
+    User: franz
+    Vehicle: astra
+    date: '2001-03-20'
+    comment: Benzina
+    kilometers: 114146
+    amount: 50
+    Category: fuel
+    quantity: 35.7
+  franz_astra_367:
+    User: franz
+    Vehicle: astra
+    date: '2001-03-26'
+    comment: Benzina
+    kilometers: 114650
+    amount: 50
+    Category: fuel
+    quantity: 35.5
+  franz_astra_368:
+    User: franz
+    Vehicle: astra
+    date: '2001-04-01'
+    comment: Benzina
+    kilometers: 115111
+    amount: 50
+    Category: fuel
+    quantity: 34.9
+  franz_astra_369:
+    User: franz
+    Vehicle: astra
+    date: '2001-04-09'
+    comment: Benzina
+    kilometers: 115530
+    amount: 50
+    Category: fuel
+    quantity: 35
+  franz_astra_370:
+    User: franz
+    Vehicle: astra
+    date: '2001-04-13'
+    comment: 'Cambio 2 gomme'
+    kilometers: 115830
+    amount: 30
+    Category: maintenance
+  franz_astra_371:
+    User: franz
+    Vehicle: astra
+    date: '2001-04-15'
+    comment: Benzina
+    kilometers: 115904
+    amount: 50
+    Category: fuel
+    quantity: 34.2
+  franz_astra_372:
+    User: franz
+    Vehicle: astra
+    date: '2001-04-22'
+    comment: Benzina
+    kilometers: 116283
+    amount: 50
+    Category: fuel
+    quantity: 33.6
+  franz_astra_373:
+    User: franz
+    Vehicle: astra
+    date: '2001-04-26'
+    comment: Benzina
+    kilometers: 116870
+    amount: 50
+    Category: fuel
+    quantity: 33.6
+  franz_astra_374:
+    User: franz
+    Vehicle: astra
+    date: '2001-05-02'
+    comment: Benzina
+    kilometers: 117358
+    amount: 68
+    Category: fuel
+    quantity: 44.7
+  franz_astra_375:
+    User: franz
+    Vehicle: astra
+    date: '2001-05-07'
+    comment: Benzina
+    kilometers: 117954
+    amount: 50
+    Category: fuel
+    quantity: 32.9
+  franz_astra_376:
+    User: franz
+    Vehicle: astra
+    date: '2001-05-12'
+    comment: Benzina
+    kilometers: 118407
+    amount: 50
+    Category: fuel
+    quantity: 32.5
+  franz_astra_377:
+    User: franz
+    Vehicle: astra
+    date: '2001-05-18'
+    comment: Benzina
+    kilometers: 118792
+    amount: 50
+    Category: fuel
+    quantity: 32.9
+  franz_astra_378:
+    User: franz
+    Vehicle: astra
+    date: '2001-05-26'
+    comment: Benzina
+    kilometers: 119276
+    amount: 50
+    Category: fuel
+    quantity: 32.9
+  franz_astra_379:
+    User: franz
+    Vehicle: astra
+    date: '2001-05-31'
+    comment: Benzina
+    kilometers: 119655
+    amount: 50
+    Category: fuel
+    quantity: 32.9
+  franz_astra_380:
+    User: franz
+    Vehicle: astra
+    date: '2001-06-06'
+    comment: 'Servizio 120''000 km + freni'
+    kilometers: 120075
+    amount: 1041.85
+    Category: maintenance
+  franz_astra_381:
+    User: franz
+    Vehicle: astra
+    date: '2001-06-07'
+    comment: Benzina
+    kilometers: 120080
+    amount: 50
+    Category: fuel
+    quantity: 33.6
+  franz_astra_382:
+    User: franz
+    Vehicle: astra
+    date: '2001-06-12'
+    comment: Benzina
+    kilometers: 120510
+    amount: 50
+    Category: fuel
+    quantity: 33.6
+  franz_astra_383:
+    User: franz
+    Vehicle: astra
+    date: '2001-06-20'
+    comment: Benzina
+    kilometers: 120964
+    amount: 50
+    Category: fuel
+    quantity: 34.2
+  franz_astra_384:
+    User: franz
+    Vehicle: astra
+    date: '2001-06-26'
+    comment: Benzina
+    kilometers: 121431
+    amount: 50
+    Category: fuel
+    quantity: 35
+  franz_astra_385:
+    User: franz
+    Vehicle: astra
+    date: '2001-06-30'
+    comment: 'Assicurazione 2° sem 01'
+    kilometers: 121800
+    amount: 624.4
+    Category: insurance
+  franz_astra_386:
+    User: franz
+    Vehicle: astra
+    date: '2001-07-01'
+    comment: Benzina
+    kilometers: 121860
+    amount: 50
+    Category: fuel
+    quantity: 35
+  franz_astra_387:
+    User: franz
+    Vehicle: astra
+    date: '2001-07-09'
+    comment: Benzina
+    kilometers: 122328
+    amount: 55
+    Category: fuel
+    quantity: 38.5
+  franz_astra_388:
+    User: franz
+    Vehicle: astra
+    date: '2001-07-17'
+    comment: Benzina
+    kilometers: 122737
+    amount: 30
+    Category: fuel
+    quantity: 20.3
+  franz_astra_389:
+    User: franz
+    Vehicle: astra
+    date: '2001-07-20'
+    comment: Benzina
+    kilometers: 123071
+    amount: 50
+    Category: fuel
+    quantity: 36.1
+  franz_astra_390:
+    User: franz
+    Vehicle: astra
+    date: '2001-07-22'
+    comment: Benzina
+    kilometers: 123503
+    amount: 50
+    Category: fuel
+    quantity: 35.6
+  franz_astra_391:
+    User: franz
+    Vehicle: astra
+    date: '2001-07-29'
+    comment: Benzina
+    kilometers: 124037
+    amount: 50
+    Category: fuel
+    quantity: 36.5
+  franz_astra_392:
+    User: franz
+    Vehicle: astra
+    date: '2001-08-05'
+    comment: Benzina
+    kilometers: 124520
+    amount: 50
+    Category: fuel
+    quantity: 35.7
+  franz_astra_393:
+    User: franz
+    Vehicle: astra
+    date: '2001-08-12'
+    comment: Benzina
+    kilometers: 124974
+    amount: 50
+    Category: fuel
+    quantity: 35.7
+  franz_astra_394:
+    User: franz
+    Vehicle: astra
+    date: '2001-08-17'
+    comment: '2 gomme nuove'
+    kilometers: 125461
+    amount: 220
+    Category: accessories
+  franz_astra_395:
+    User: franz
+    Vehicle: astra
+    date: '2001-08-17'
+    comment: Benzina
+    kilometers: 125484
+    amount: 50
+    Category: fuel
+    quantity: 35.3
+  franz_astra_396:
+    User: franz
+    Vehicle: astra
+    date: '2001-08-18'
+    comment: Benzina
+    kilometers: 125617
+    amount: 24
+    Category: fuel
+    quantity: 16.9
+  franz_astra_397:
+    User: franz
+    Vehicle: astra
+    date: '2001-08-31'
+    comment: 'Alternatore + batteria'
+    kilometers: 125955
+    amount: 1566
+    Category: maintenance
+  franz_astra_398:
+    User: franz
+    Vehicle: astra
+    date: '2001-09-01'
+    comment: Benzina
+    kilometers: 125964
+    amount: 40
+    Category: fuel
+    quantity: 25
+  franz_astra_399:
+    User: franz
+    Vehicle: astra
+    date: '2001-09-01'
+    comment: 'IVA dogana CH'
+    kilometers: 126240
+    amount: 95
+    Category: maintenance
+  franz_astra_400:
+    User: franz
+    Vehicle: astra
+    date: '2001-09-03'
+    comment: Benzina
+    kilometers: 126504
+    amount: 50
+    Category: fuel
+    quantity: 35
+  franz_astra_401:
+    User: franz
+    Vehicle: astra
+    date: '2001-09-09'
+    comment: Benzina
+    kilometers: 126934
+    amount: 50
+    Category: fuel
+    quantity: 34.5
+  franz_astra_402:
+    User: franz
+    Vehicle: astra
+    date: '2001-09-13'
+    comment: Benzina
+    kilometers: 127427
+    amount: 50
+    Category: fuel
+    quantity: 34.5
+  franz_astra_403:
+    User: franz
+    Vehicle: astra
+    date: '2001-09-19'
+    comment: 'Servizio 127''500 km'
+    kilometers: 127721
+    amount: 120.55
+    Category: maintenance
+  franz_astra_404:
+    User: franz
+    Vehicle: astra
+    date: '2001-09-22'
+    comment: Benzina
+    kilometers: 127848
+    amount: 50
+    Category: fuel
+    quantity: 34.5
+  franz_astra_405:
+    User: franz
+    Vehicle: astra
+    date: '2001-09-25'
+    comment: Benzina
+    kilometers: 128315
+    amount: 50
+    Category: fuel
+    quantity: 35.5
+  franz_astra_406:
+    User: franz
+    Vehicle: astra
+    date: '2001-09-28'
+    comment: Benzina
+    kilometers: 128755
+    amount: 50
+    Category: fuel
+    quantity: 36.2
+  franz_astra_407:
+    User: franz
+    Vehicle: astra
+    date: '2001-10-03'
+    comment: Benzina
+    kilometers: 129257
+    amount: 50
+    Category: fuel
+    quantity: 35.7
+  franz_astra_408:
+    User: franz
+    Vehicle: astra
+    date: '2001-10-07'
+    comment: Benzina
+    kilometers: 129683
+    amount: 50
+    Category: fuel
+    quantity: 36.2
+  franz_astra_409:
+    User: franz
+    Vehicle: astra
+    date: '2001-10-12'
+    comment: Benzina
+    kilometers: 130111
+    amount: 50
+    Category: fuel
+    quantity: 36.5
+  franz_astra_410:
+    User: franz
+    Vehicle: astra
+    date: '2001-10-18'
+    comment: Benzina
+    kilometers: 130632
+    amount: 50
+    Category: fuel
+    quantity: 36.7
+  franz_astra_411:
+    User: franz
+    Vehicle: astra
+    date: '2001-10-23'
+    comment: Benzina
+    kilometers: 131042
+    amount: 50
+    Category: fuel
+    quantity: 37.3
+  franz_astra_412:
+    User: franz
+    Vehicle: astra
+    date: '2001-10-30'
+    comment: Benzina
+    kilometers: 131550
+    amount: 50
+    Category: fuel
+    quantity: 37.3
+  franz_astra_413:
+    User: franz
+    Vehicle: astra
+    date: '2001-11-03'
+    comment: Benzina
+    kilometers: 132002
+    amount: 50
+    Category: fuel
+    quantity: 37.3
+  franz_astra_414:
+    User: franz
+    Vehicle: astra
+    date: '2001-11-06'
+    comment: '1 lampadina'
+    kilometers: 132274
+    amount: 10
+    Category: maintenance
+  franz_astra_415:
+    User: franz
+    Vehicle: astra
+    date: '2001-11-09'
+    comment: Benzina
+    kilometers: 132459
+    amount: 50
+    Category: fuel
+    quantity: 37.9
+  franz_astra_416:
+    User: franz
+    Vehicle: astra
+    date: '2001-11-12'
+    comment: '1 lampadina (omaggio)'
+    kilometers: 132699
+    amount: 0
+    Category: maintenance
+  franz_astra_417:
+    User: franz
+    Vehicle: astra
+    date: '2001-11-14'
+    comment: Benzina
+    kilometers: 132944
+    amount: 50
+    Category: fuel
+    quantity: 37.9
+  franz_astra_418:
+    User: franz
+    Vehicle: astra
+    date: '2001-11-21'
+    comment: Benzina
+    kilometers: 133325
+    amount: 50
+    Category: fuel
+    quantity: 39.1
+  franz_astra_419:
+    User: franz
+    Vehicle: astra
+    date: '2001-01-27'
+    comment: Benzina
+    kilometers: 133485
+    amount: 50
+    Category: fuel
+    quantity: 39.1
+  franz_astra_420:
+    User: franz
+    Vehicle: astra
+    date: '2001-12-04'
+    comment: Benzina
+    kilometers: 134350
+    amount: 50.05
+    Category: fuel
+    quantity: 38
+  franz_astra_421:
+    User: franz
+    Vehicle: astra
+    date: '2001-12-07'
+    comment: Benzina
+    kilometers: 134755
+    amount: 50
+    Category: fuel
+    quantity: 38.2
+  franz_astra_422:
+    User: franz
+    Vehicle: astra
+    date: '2001-12-07'
+    comment: '4 gomme nuove (neve)'
+    kilometers: 134755
+    amount: 500
+    Category: accessories
+  franz_astra_423:
+    User: franz
+    Vehicle: astra
+    date: '2001-12-11'
+    comment: 'Servizio 135''000 km'
+    kilometers: 135073
+    amount: 293.5
+    Category: maintenance
+  franz_astra_424:
+    User: franz
+    Vehicle: astra
+    date: '2001-12-13'
+    comment: Benzina
+    kilometers: 135284
+    amount: 50
+    Category: fuel
+    quantity: 38.8
+  franz_astra_425:
+    User: franz
+    Vehicle: astra
+    date: '2001-12-18'
+    comment: Benzina
+    kilometers: 135726
+    amount: 50
+    Category: fuel
+    quantity: 38.8
+  franz_astra_426:
+    User: franz
+    Vehicle: astra
+    date: '2001-12-26'
+    comment: Benzina
+    kilometers: 136140
+    amount: 50
+    Category: fuel
+    quantity: 38.8
+  franz_astra_427:
+    User: franz
+    Vehicle: astra
+    date: '2001-12-31'
+    comment: 'Assicurazione 1° sem 02'
+    kilometers: 136280
+    amount: 624.4
+    Category: insurance
+  franz_astra_428:
+    User: franz
+    Vehicle: astra
+    date: '2002-01-08'
+    comment: Benzina
+    kilometers: 136656
+    amount: 50
+    Category: fuel
+    quantity: 38.8
+  franz_astra_429:
+    User: franz
+    Vehicle: astra
+    date: '2002-01-16'
+    comment: Benzina
+    kilometers: 137171
+    amount: 50
+    Category: fuel
+    quantity: 38.7
+  franz_astra_430:
+    User: franz
+    Vehicle: astra
+    date: '2002-01-23'
+    comment: Benzina
+    kilometers: 137670
+    amount: 50
+    Category: fuel
+    quantity: 38.8
+  franz_astra_431:
+    User: franz
+    Vehicle: astra
+    date: '2002-01-24'
+    comment: Vignetta
+    kilometers: 137700
+    amount: 40
+    Category: taxes
+  franz_astra_432:
+    User: franz
+    Vehicle: astra
+    date: '2002-02-01'
+    comment: Benzina
+    kilometers: 138177
+    amount: 50
+    Category: fuel
+    quantity: 38.8
+  franz_astra_433:
+    User: franz
+    Vehicle: astra
+    date: '2002-02-07'
+    comment: Benzina
+    kilometers: 138630
+    amount: 50
+    Category: fuel
+    quantity: 38.3
+  franz_astra_434:
+    User: franz
+    Vehicle: astra
+    date: '2002-02-17'
+    comment: Benzina
+    kilometers: 139143
+    amount: 50
+    Category: fuel
+    quantity: 38.8
+  franz_astra_435:
+    User: franz
+    Vehicle: astra
+    date: '2002-02-23'
+    comment: Benzina
+    kilometers: 139669
+    amount: 50
+    Category: fuel
+    quantity: 38.8
+  franz_astra_436:
+    User: franz
+    Vehicle: astra
+    date: '2002-02-28'
+    comment: 'Circolazione 02'
+    kilometers: 139900
+    amount: 369
+    Category: taxes
+  franz_astra_437:
+    User: franz
+    Vehicle: astra
+    date: '2002-03-02'
+    comment: Benzina
+    kilometers: 140174
+    amount: 50
+    Category: fuel
+    quantity: 38.2
+  franz_astra_438:
+    User: franz
+    Vehicle: astra
+    date: '2002-03-07'
+    comment: Benzina
+    kilometers: 140655
+    amount: 50
+    Category: fuel
+    quantity: 38.2
+  franz_astra_439:
+    User: franz
+    Vehicle: astra
+    date: '2002-03-11'
+    comment: 'Cambio 4 gomme'
+    kilometers: 140980
+    amount: 60
+    Category: maintenance
+  franz_astra_440:
+    User: franz
+    Vehicle: astra
+    date: '2002-03-13'
+    comment: Benzina
+    kilometers: 141113
+    amount: 50
+    Category: fuel
+    quantity: 37.3
+  franz_astra_441:
+    User: franz
+    Vehicle: astra
+    date: '2002-03-20'
+    comment: Benzina
+    kilometers: 141666
+    amount: 46
+    Category: fuel
+    quantity: 33.8
+  franz_astra_442:
+    User: franz
+    Vehicle: astra
+    date: '2002-03-25'
+    comment: Benzina
+    kilometers: 142134
+    amount: 50
+    Category: fuel
+    quantity: 36.8
+  franz_astra_443:
+    User: franz
+    Vehicle: astra
+    date: '2002-03-29'
+    comment: 'Servizio 142''500 km'
+    kilometers: 142486
+    amount: 629.5
+    Category: maintenance
+  franz_astra_444:
+    User: franz
+    Vehicle: astra
+    date: '2002-04-01'
+    comment: Benzina
+    kilometers: 142583
+    amount: 50
+    Category: fuel
+    quantity: 36.8
+  franz_astra_445:
+    User: franz
+    Vehicle: astra
+    date: '2002-04-06'
+    comment: Benzina
+    kilometers: 143102
+    amount: 51
+    Category: fuel
+    quantity: 37
+  franz_astra_446:
+    User: franz
+    Vehicle: astra
+    date: '2002-04-13'
+    comment: Benzina
+    kilometers: 143558
+    amount: 50
+    Category: fuel
+    quantity: 35.5
+  franz_astra_447:
+    User: franz
+    Vehicle: astra
+    date: '2002-04-15'
+    comment: 'Tassa collaudo'
+    kilometers: 143652
+    amount: 60
+    Category: taxes
+  franz_astra_448:
+    User: franz
+    Vehicle: astra
+    date: '2002-04-18'
+    comment: Benzina
+    kilometers: 144043
+    amount: 50
+    Category: fuel
+    quantity: 36.2
+  franz_astra_449:
+    User: franz
+    Vehicle: astra
+    date: '2002-04-23'
+    comment: 'Preparazione + collaudo'
+    kilometers: 144388
+    amount: 102.2
+    Category: maintenance
+  franz_astra_450:
+    User: franz
+    Vehicle: astra
+    date: '2002-04-24'
+    comment: Benzina
+    kilometers: 144459
+    amount: 50
+    Category: fuel
+    quantity: 36.2
+  franz_astra_451:
+    User: franz
+    Vehicle: astra
+    date: '2002-04-30'
+    comment: Benzina
+    kilometers: 145046
+    amount: 50
+    Category: fuel
+    quantity: 36
+  franz_astra_452:
+    User: franz
+    Vehicle: astra
+    date: '2002-05-04'
+    comment: Benzina
+    kilometers: 145527
+    amount: 25
+    Category: fuel
+    quantity: 17.7
+  franz_astra_453:
+    User: franz
+    Vehicle: astra
+    date: '2002-05-07'
+    comment: Benzina
+    kilometers: 145761
+    amount: 50
+    Category: fuel
+    quantity: 36
+  franz_astra_454:
+    User: franz
+    Vehicle: astra
+    date: '2002-05-13'
+    comment: Benzina
+    kilometers: 146230
+    amount: 50
+    Category: fuel
+    quantity: 36.5
+  franz_astra_455:
+    User: franz
+    Vehicle: astra
+    date: '2002-05-19'
+    comment: Benzina
+    kilometers: 146682
+    amount: 50
+    Category: fuel
+    quantity: 36.5
+  franz_astra_456:
+    User: franz
+    Vehicle: astra
+    date: '2002-05-25'
+    comment: Benzina
+    kilometers: 146492
+    amount: 50
+    Category: fuel
+    quantity: 36.5
+  franz_astra_457:
+    User: franz
+    Vehicle: astra
+    date: '2002-05-30'
+    comment: Benzina
+    kilometers: 147678
+    amount: 50
+    Category: fuel
+    quantity: 36.5
+  franz_astra_458:
+    User: franz
+    Vehicle: astra
+    date: '2002-06-05'
+    comment: Benzina
+    kilometers: 148209
+    amount: 50
+    Category: fuel
+    quantity: 37
+  franz_astra_459:
+    User: franz
+    Vehicle: astra
+    date: '2002-06-11'
+    comment: Benzina
+    kilometers: 148654
+    amount: 50
+    Category: fuel
+    quantity: 37
+  franz_astra_460:
+    User: franz
+    Vehicle: astra
+    date: '2002-06-16'
+    comment: Benzina
+    kilometers: 149021
+    amount: 40
+    Category: fuel
+    quantity: 29.6
+  franz_astra_461:
+    User: franz
+    Vehicle: astra
+    date: '2002-06-18'
+    comment: Benzina
+    kilometers: 149670
+    amount: 50
+    Category: fuel
+    quantity: 36.2
+  franz_astra_462:
+    User: franz
+    Vehicle: astra
+    date: '2002-06-24'
+    comment: Benzina
+    kilometers: 150107
+    amount: 50
+    Category: fuel
+    quantity: 36.2
+  franz_astra_463:
+    User: franz
+    Vehicle: astra
+    date: '2002-06-27'
+    comment: 'Servizio 150''000 km'
+    kilometers: 150280
+    amount: 272.1
+    Category: maintenance
+  franz_astra_464:
+    User: franz
+    Vehicle: astra
+    date: '2002-06-29'
+    comment: Benzina
+    kilometers: 150624
+    amount: 60
+    Category: fuel
+    quantity: 44.3
+  franz_astra_465:
+    User: franz
+    Vehicle: astra
+    date: '2002-06-30'
+    comment: 'Assicurazione 2° sem. 02'
+    kilometers: 150702
+    amount: 624.4
+    Category: insurance
+  franz_astra_466:
+    User: franz
+    Vehicle: astra
+    date: '2002-07-04'
+    comment: Benzina
+    kilometers: 151243
+    amount: 50
+    Category: fuel
+    quantity: 36.2
+  franz_astra_467:
+    User: franz
+    Vehicle: astra
+    date: '2002-07-13'
+    comment: Benzina
+    kilometers: 151666
+    amount: 50
+    Category: fuel
+    quantity: 36.2
+  franz_astra_468:
+    User: franz
+    Vehicle: astra
+    date: '2002-07-20'
+    comment: Benzina
+    kilometers: 152126
+    amount: 50
+    Category: fuel
+    quantity: 36.2
+  franz_astra_469:
+    User: franz
+    Vehicle: astra
+    date: '2002-07-22'
+    comment: Benzina
+    kilometers: 152742
+    amount: 50
+    Category: fuel
+    quantity: 36.2
+  franz_astra_470:
+    User: franz
+    Vehicle: astra
+    date: '2002-07-28'
+    comment: Benzina
+    kilometers: 153165
+    amount: 50
+    Category: fuel
+    quantity: 36.8
+  franz_astra_471:
+    User: franz
+    Vehicle: astra
+    date: '2002-08-04'
+    comment: Benzina
+    kilometers: 153655
+    amount: 50
+    Category: fuel
+    quantity: 36.8
+  franz_astra_472:
+    User: franz
+    Vehicle: astra
+    date: '2002-08-11'
+    comment: Benzina
+    kilometers: 153988
+    amount: 35
+    Category: fuel
+    quantity: 25.7
+  franz_astra_473:
+    User: franz
+    Vehicle: astra
+    date: '2002-08-12'
+    comment: Benzina
+    kilometers: 154561
+    amount: 50
+    Category: fuel
+    quantity: 37
+  franz_astra_474:
+    User: franz
+    Vehicle: astra
+    date: '2002-08-24'
+    comment: Benzina
+    kilometers: 155028
+    amount: 50
+    Category: fuel
+    quantity: 36.2
+  franz_astra_475:
+    User: franz
+    Vehicle: astra
+    date: '2002-08-28'
+    comment: Benzina
+    kilometers: 155540
+    amount: 50
+    Category: fuel
+    quantity: 36.4
+  franz_astra_476:
+    User: franz
+    Vehicle: astra
+    date: '2002-09-01'
+    comment: Benzina
+    kilometers: 156001
+    amount: 50
+    Category: fuel
+    quantity: 36.2
+  franz_astra_477:
+    User: franz
+    Vehicle: astra
+    date: '2002-09-04'
+    comment: Benzina
+    kilometers: 156457
+    amount: 48
+    Category: fuel
+    quantity: 35.4
+  franz_astra_478:
+    User: franz
+    Vehicle: astra
+    date: '2002-09-08'
+    comment: Benzina
+    kilometers: 157070
+    amount: 50
+    Category: fuel
+    quantity: 36.8
+  franz_astra_479:
+    User: franz
+    Vehicle: astra
+    date: '2002-09-15'
+    comment: Benzina
+    kilometers: 157519
+    amount: 50
+    Category: fuel
+    quantity: 36
+  franz_astra_480:
+    User: franz
+    Vehicle: astra
+    date: '2002-09-18'
+    comment: 'Servizio 157''500 km'
+    kilometers: 157738
+    amount: 172.65
+    Category: maintenance
+  franz_astra_481:
+    User: franz
+    Vehicle: astra
+    date: '2002-09-21'
+    comment: Benzina
+    kilometers: 157964
+    amount: 50
+    Category: fuel
+    quantity: 36
+  franz_astra_482:
+    User: franz
+    Vehicle: astra
+    date: '2002-09-28'
+    comment: Benzina
+    kilometers: 158464
+    amount: 50
+    Category: fuel
+    quantity: 36
+  franz_astra_483:
+    User: franz
+    Vehicle: astra
+    date: '2002-10-02'
+    comment: Benzina
+    kilometers: 159017
+    amount: 50
+    Category: fuel
+    quantity: 36
+  franz_astra_484:
+    User: franz
+    Vehicle: astra
+    date: '2002-10-06'
+    comment: Benzina
+    kilometers: 159397
+    amount: 48
+    Category: fuel
+    quantity: 34.5
+  franz_astra_485:
+    User: franz
+    Vehicle: astra
+    date: '2002-10-13'
+    comment: Benzina
+    kilometers: 159951
+    amount: 50
+    Category: fuel
+    quantity: 35.5
+  franz_astra_486:
+    User: franz
+    Vehicle: astra
+    date: '2002-10-16'
+    comment: Benzina
+    kilometers: 160135
+    amount: 26
+    Category: fuel
+    quantity: 18.4
+  franz_astra_487:
+    User: franz
+    Vehicle: astra
+    date: '2002-10-16'
+    comment: Benzina
+    kilometers: 160532
+    amount: 40
+    Category: fuel
+    quantity: 28.5
+  franz_astra_488:
+    User: franz
+    Vehicle: astra
+    date: '2002-10-20'
+    comment: Benzina
+    kilometers: 161158
+    amount: 50
+    Category: fuel
+    quantity: 34.5
+  franz_astra_489:
+    User: franz
+    Vehicle: astra
+    date: '2002-10-27'
+    comment: Benzina
+    kilometers: 161518
+    amount: 50
+    Category: fuel
+    quantity: 36
+  franz_astra_490:
+    User: franz
+    Vehicle: astra
+    date: '2002-10-21'
+    comment: Benzina
+    kilometers: 162077
+    amount: 50
+    Category: fuel
+    quantity: 36.8
+  franz_astra_491:
+    User: franz
+    Vehicle: astra
+    date: '2002-11-06'
+    comment: Benzina
+    kilometers: 162585
+    amount: 48.9
+    Category: fuel
+    quantity: 37.3
+  franz_astra_492:
+    User: franz
+    Vehicle: astra
+    date: '2002-11-10'
+    comment: Benzina
+    kilometers: 163018
+    amount: 50.85
+    Category: fuel
+    quantity: 38.8
+  franz_astra_493:
+    User: franz
+    Vehicle: astra
+    date: '2002-11-18'
+    comment: Benzina
+    kilometers: 163538
+    amount: 50.85
+    Category: fuel
+    quantity: 38.8
+  franz_astra_494:
+    User: franz
+    Vehicle: astra
+    date: '2002-11-23'
+    comment: Benzina
+    kilometers: 164069
+    amount: 50
+    Category: fuel
+    quantity: 38.2
+  franz_astra_495:
+    User: franz
+    Vehicle: astra
+    date: '2002-11-25'
+    comment: '1 gomma nuova e 3 cambio'
+    kilometers: 164270
+    amount: 171
+    Category: maintenance
+  franz_astra_496:
+    User: franz
+    Vehicle: astra
+    date: '2002-12-02'
+    comment: Benzina
+    kilometers: 164581
+    amount: 50
+    Category: fuel
+    quantity: 37.6
+  franz_astra_497:
+    User: franz
+    Vehicle: astra
+    date: '2002-12-05'
+    comment: 'Servizio 165''000 km + pompa acqua'
+    kilometers: 164888
+    amount: 1095.2
+    Category: maintenance
+  franz_astra_498:
+    User: franz
+    Vehicle: astra
+    date: '2002-12-07'
+    comment: Benzina
+    kilometers: 165051
+    amount: 50
+    Category: fuel
+    quantity: 37
+  franz_astra_499:
+    User: franz
+    Vehicle: astra
+    date: '2002-12-10'
+    comment: Benzina
+    kilometers: 165585
+    amount: 40
+    Category: fuel
+    quantity: 28.6
+  franz_astra_500:
+    User: franz
+    Vehicle: astra
+    date: '2002-12-13'
+    comment: Benzina
+    kilometers: 165965
+    amount: 50
+    Category: fuel
+    quantity: 37
+  franz_astra_501:
+    User: franz
+    Vehicle: astra
+    date: '2002-12-19'
+    comment: Benzina
+    kilometers: 166432
+    amount: 50
+    Category: fuel
+    quantity: 36.2
+  franz_astra_502:
+    User: franz
+    Vehicle: astra
+    date: '2002-12-21'
+    comment: Lavaggio
+    kilometers: 166666
+    amount: 5
+    Category: maintenance
+  franz_astra_503:
+    User: franz
+    Vehicle: astra
+    date: '2002-12-26'
+    comment: Benzina
+    kilometers: 166819
+    amount: 50
+    Category: fuel
+    quantity: 36.2
+  franz_astra_504:
+    User: franz
+    Vehicle: astra
+    date: '2002-12-31'
+    comment: 'Assicurazione 1° sem. 03'
+    kilometers: 167210
+    amount: 624.7
+    Category: insurance
+  franz_astra_505:
+    User: franz
+    Vehicle: astra
+    date: '2003-01-02'
+    comment: Benzina
+    kilometers: 167300
+    amount: 50
+    Category: fuel
+    quantity: 36.2
+  franz_astra_506:
+    User: franz
+    Vehicle: astra
+    date: '2003-01-09'
+    comment: Lavaggio
+    kilometers: 167610
+    amount: 6.5
+    Category: maintenance
+  franz_astra_507:
+    User: franz
+    Vehicle: astra
+    date: '2003-01-11'
+    comment: Benzina
+    kilometers: 167673
+    amount: 50
+    Category: fuel
+    quantity: 36.8
+  franz_astra_508:
+    User: franz
+    Vehicle: astra
+    date: '2003-01-17'
+    comment: Benzina
+    kilometers: 168204
+    amount: 50
+    Category: fuel
+    quantity: 36.8
+  franz_astra_509:
+    User: franz
+    Vehicle: astra
+    date: '2003-01-23'
+    comment: Lampadina
+    kilometers: 168442
+    amount: 14
+    Category: maintenance
+  franz_astra_510:
+    User: franz
+    Vehicle: astra
+    date: '2003-01-26'
+    comment: Benzina
+    kilometers: 168619
+    amount: 50
+    Category: fuel
+    quantity: 36.2
+  franz_astra_511:
+    User: franz
+    Vehicle: astra
+    date: '2003-01-30'
+    comment: Lampadina
+    kilometers: 168896
+    amount: 12.5
+    Category: maintenance
+  franz_astra_512:
+    User: franz
+    Vehicle: astra
+    date: '2003-01-30'
+    comment: Vignetta
+    kilometers: 168896
+    amount: 40
+    Category: taxes
+  franz_astra_513:
+    User: franz
+    Vehicle: astra
+    date: '2003-02-02'
+    comment: Benzina
+    kilometers: 169110
+    amount: 50
+    Category: fuel
+    quantity: 36.2
+  franz_astra_514:
+    User: franz
+    Vehicle: astra
+    date: '2003-02-06'
+    comment: Lavaggio
+    kilometers: 169407
+    amount: 6.5
+    Category: maintenance
+  franz_astra_515:
+    User: franz
+    Vehicle: astra
+    date: '2003-02-10'
+    comment: Benzina
+    kilometers: 169598
+    amount: 50
+    Category: fuel
+    quantity: 36.2
+  franz_astra_516:
+    User: franz
+    Vehicle: astra
+    date: '2003-02-13'
+    comment: Benzina
+    kilometers: 170020
+    amount: 50
+    Category: fuel
+    quantity: 35.5
+  franz_astra_517:
+    User: franz
+    Vehicle: astra
+    date: '2003-02-15'
+    comment: Benzina
+    kilometers: 170464
+    amount: 50
+    Category: fuel
+    quantity: 35.2
+  franz_astra_518:
+    User: franz
+    Vehicle: astra
+    date: '2003-02-20'
+    comment: Benzina
+    kilometers: 170981
+    amount: 50.05
+    Category: fuel
+    quantity: 35.5
+  franz_astra_519:
+    User: franz
+    Vehicle: astra
+    date: '2003-02-27'
+    comment: Benzina
+    kilometers: 171480
+    amount: 50
+    Category: fuel
+    quantity: 35.5
+  franz_astra_520:
+    User: franz
+    Vehicle: astra
+    date: '2003-02-28'
+    comment: 'Circolazione 03'
+    kilometers: 171557
+    amount: 369
+    Category: taxes
+  franz_astra_521:
+    User: franz
+    Vehicle: astra
+    date: '2003-03-06'
+    comment: Benzina
+    kilometers: 171859
+    amount: 50
+    Category: fuel
+    quantity: 35.5
+  franz_astra_522:
+    User: franz
+    Vehicle: astra
+    date: '2003-03-15'
+    comment: Benzina
+    kilometers: 172347
+    amount: 50
+    Category: fuel
+    quantity: 35.5
+  franz_astra_523:
+    User: franz
+    Vehicle: astra
+    date: '2003-03-22'
+    comment: Benzina
+    kilometers: 172824
+    amount: 50
+    Category: fuel
+    quantity: 36.2
+  franz_astra_524:
+    User: franz
+    Vehicle: astra
+    date: '2003-03-24'
+    comment: 'Servizio 172''500 km'
+    kilometers: 172835
+    amount: 271.7
+    Category: maintenance
+  franz_astra_525:
+    User: franz
+    Vehicle: astra
+    date: '2003-03-31'
+    comment: Benzina
+    kilometers: 173279
+    amount: 50
+    Category: fuel
+    quantity: 36
+  franz_astra_526:
+    User: franz
+    Vehicle: astra
+    date: '2003-04-07'
+    comment: Benzina
+    kilometers: 173768
+    amount: 52
+    Category: fuel
+    quantity: 38.5
+  franz_astra_527:
+    User: franz
+    Vehicle: astra
+    date: '2003-04-11'
+    comment: Benzina
+    kilometers: 174260
+    amount: 50
+    Category: fuel
+    quantity: 36.2
+  franz_astra_528:
+    User: franz
+    Vehicle: astra
+    date: '2003-04-22'
+    comment: Benzina
+    kilometers: 174767
+    amount: 50
+    Category: fuel
+    quantity: 36
+  franz_astra_529:
+    User: franz
+    Vehicle: astra
+    date: '2003-04-24'
+    comment: '4 gomme nuove (estate)'
+    kilometers: 174862
+    amount: 388.65
+    Category: accessories
+  franz_astra_530:
+    User: franz
+    Vehicle: astra
+    date: '2003-04-29'
+    comment: Benzina
+    kilometers: 175135
+    amount: 50
+    Category: fuel
+    quantity: 37
+  franz_astra_531:
+    User: franz
+    Vehicle: astra
+    date: '2003-05-07'
+    comment: Benzina
+    kilometers: 175643
+    amount: 50
+    Category: fuel
+    quantity: 37
+  franz_astra_532:
+    User: franz
+    Vehicle: astra
+    date: '2003-05-12'
+    comment: Benzina
+    kilometers: 176159
+    amount: 50
+    Category: fuel
+    quantity: 37.6
+  franz_astra_533:
+    User: franz
+    Vehicle: astra
+    date: '2003-05-18'
+    comment: 'Benzina (omaggio)'
+    kilometers: 176583
+    amount: 0
+    Category: fuel
+    quantity: 37.6
+  franz_astra_534:
+    User: franz
+    Vehicle: astra
+    date: '2003-05-25'
+    comment: Benzina
+    kilometers: 177129
+    amount: 50
+    Category: fuel
+    quantity: 37.6
+  franz_astra_535:
+    User: franz
+    Vehicle: astra
+    date: '2003-05-31'
+    comment: Benzina
+    kilometers: 177600
+    amount: 50
+    Category: fuel
+    quantity: 37.3
+  franz_astra_536:
+    User: franz
+    Vehicle: astra
+    date: '2003-06-05'
+    comment: Benzina
+    kilometers: 178070
+    amount: 50
+    Category: fuel
+    quantity: 37.3
+  franz_astra_537:
+    User: franz
+    Vehicle: astra
+    date: '2003-06-11'
+    comment: Benzina
+    kilometers: 178574
+    amount: 50
+    Category: fuel
+    quantity: 37.3
+  franz_astra_538:
+    User: franz
+    Vehicle: astra
+    date: '2003-06-16'
+    comment: Benzina
+    kilometers: 178998
+    amount: 50
+    Category: fuel
+    quantity: 37.3
+  franz_astra_539:
+    User: franz
+    Vehicle: astra
+    date: '2003-06-22'
+    comment: Benzina
+    kilometers: 179489
+    amount: 50
+    Category: fuel
+    quantity: 38.2
+  franz_astra_540:
+    User: franz
+    Vehicle: astra
+    date: '2003-06-28'
+    comment: Benzina
+    kilometers: 179941
+    amount: 50
+    Category: fuel
+    quantity: 38.2
+  franz_astra_541:
+    User: franz
+    Vehicle: astra
+    date: '2003-06-30'
+    comment: 'Servizio 180''000 km'
+    kilometers: 180050
+    amount: 391.55
+    Category: maintenance
+  franz_astra_542:
+    User: franz
+    Vehicle: astra
+    date: '2003-06-30'
+    comment: 'Asicurazione 2° sem 03'
+    kilometers: 180050
+    amount: 624.7
+    Category: insurance
+  franz_astra_543:
+    User: franz
+    Vehicle: astra
+    date: '2003-07-05'
+    comment: Benzina
+    kilometers: 180217
+    amount: 40
+    Category: fuel
+    quantity: 29.9
+  franz_astra_544:
+    User: franz
+    Vehicle: astra
+    date: '2003-07-06'
+    comment: Benzina
+    kilometers: 180751
+    amount: 50
+    Category: fuel
+    quantity: 37.6
+  franz_astra_545:
+    User: franz
+    Vehicle: astra
+    date: '2003-07-13'
+    comment: Benzina
+    kilometers: 181235
+    amount: 50
+    Category: fuel
+    quantity: 36.8
+  franz_astra_546:
+    User: franz
+    Vehicle: astra
+    date: '2003-07-18'
+    comment: Benzina
+    kilometers: 181704
+    amount: 50
+    Category: fuel
+    quantity: 36.2
+  franz_astra_547:
+    User: franz
+    Vehicle: astra
+    date: '2003-07-26'
+    comment: Benzina
+    kilometers: 182214
+    amount: 50
+    Category: fuel
+    quantity: 36.2
+  franz_astra_548:
+    User: franz
+    Vehicle: astra
+    date: '2003-07-31'
+    comment: Benzina
+    kilometers: 182673
+    amount: 50
+    Category: fuel
+    quantity: 36.5
+  franz_astra_549:
+    User: franz
+    Vehicle: astra
+    date: '2003-08-11'
+    comment: Benzina
+    kilometers: 183043
+    amount: 30
+    Category: fuel
+    quantity: 21.6
+  franz_astra_550:
+    User: franz
+    Vehicle: astra
+    date: '2003-08-17'
+    comment: Benzina
+    kilometers: 183323
+    amount: 50
+    Category: fuel
+    quantity: 35.7
+  franz_astra_551:
+    User: franz
+    Vehicle: astra
+    date: '2003-08-20'
+    comment: Lampadina
+    kilometers: 183698
+    amount: 5
+    Category: maintenance
+  franz_astra_552:
+    User: franz
+    Vehicle: astra
+    date: '2003-08-21'
+    comment: Benzina
+    kilometers: 183777
+    amount: 40
+    Category: fuel
+    quantity: 29.2
+  franz_astra_553:
+    User: franz
+    Vehicle: astra
+    date: '2003-08-29'
+    comment: Benzina
+    kilometers: 184175
+    amount: 50
+    Category: fuel
+    quantity: 35.5
+  franz_astra_554:
+    User: franz
+    Vehicle: astra
+    date: '2003-09-09'
+    comment: Benzina
+    kilometers: 184576
+    amount: 49
+    Category: fuel
+    quantity: 35.5
+  franz_astra_555:
+    User: franz
+    Vehicle: astra
+    date: '2003-09-22'
+    comment: Benzina
+    kilometers: 185032
+    amount: 47.15
+    Category: fuel
+    quantity: 36
+  franz_astra_556:
+    User: franz
+    Vehicle: astra
+    date: '2003-10-01'
+    comment: Benzina
+    kilometers: 185496
+    amount: 48
+    Category: fuel
+    quantity: 35.1
+  franz_astra_557:
+    User: franz
+    Vehicle: astra
+    date: '2003-10-03'
+    comment: Benzina
+    kilometers: 185659
+    amount: 20
+    Category: fuel
+    quantity: 13
+  franz_astra_558:
+    User: franz
+    Vehicle: astra
+    date: '2003-10-10'
+    comment: Benzina
+    kilometers: 186170
+    amount: 48.5
+    Category: fuel
+    quantity: 37.3
+  franz_astra_559:
+    User: franz
+    Vehicle: astra
+    date: '2003-10-21'
+    comment: Benzina
+    kilometers: 186491
+    amount: 40
+    Category: fuel
+    quantity: 29.9
+  franz_astra_560:
+    User: franz
+    Vehicle: astra
+    date: '2003-10-29'
+    comment: Benzina
+    kilometers: 187082
+    amount: 50
+    Category: fuel
+    quantity: 37.3
+  franz_astra_561:
+    User: franz
+    Vehicle: astra
+    date: '2003-11-02'
+    comment: Benzina
+    kilometers: 187540
+    amount: 50
+    Category: fuel
+    quantity: 37.3
+  franz_astra_562:
+    User: franz
+    Vehicle: astra
+    date: '2003-11-06'
+    comment: 'Cambio 4 gomme'
+    kilometers: 187760
+    amount: 64
+    Category: maintenance
+  franz_astra_563:
+    User: franz
+    Vehicle: astra
+    date: '2003-11-08'
+    comment: Benzina
+    kilometers: 188042
+    amount: 50
+    Category: fuel
+    quantity: 37.3
+  franz_astra_564:
+    User: franz
+    Vehicle: astra
+    date: '2003-11-14'
+    comment: Benzina
+    kilometers: 188497
+    amount: 50
+    Category: fuel
+    quantity: 37
+  franz_astra_565:
+    User: franz
+    Vehicle: astra
+    date: '2003-11-19'
+    comment: Benzina
+    kilometers: 189101
+    amount: 18.5
+    Category: fuel
+    quantity: 37.3
+  franz_astra_566:
+    User: franz
+    Vehicle: astra
+    date: '2003-11-26'
+    comment: Benzina
+    kilometers: 189532
+    amount: 48.5
+    Category: fuel
+    quantity: 37.3
+  franz_astra_567:
+    User: franz
+    Vehicle: astra
+    date: '2003-12-01'
+    comment: Benzina
+    kilometers: 190045
+    amount: 48.5
+    Category: fuel
+    quantity: 37.3
+  franz_astra_568:
+    User: franz
+    Vehicle: astra
+    date: '2003-12-07'
+    comment: Benzina
+    kilometers: 190510
+    amount: 50
+    Category: fuel
+    quantity: 37.3
+  franz_astra_569:
+    User: franz
+    Vehicle: astra
+    date: '2003-12-16'
+    comment: Benzina
+    kilometers: 191025
+    amount: 50
+    Category: fuel
+    quantity: 37.2
+  franz_astra_570:
+    User: franz
+    Vehicle: astra
+    date: '2003-12-23'
+    comment: Benzina
+    kilometers: 191516
+    amount: 50
+    Category: fuel
+    quantity: 37.3
+  franz_astra_571:
+    User: franz
+    Vehicle: astra
+    date: '2003-12-23'
+    comment: Lavaggio
+    kilometers: 191552
+    amount: 10
+    Category: maintenance
+  franz_astra_572:
+    User: franz
+    Vehicle: astra
+    date: '2003-12-30'
+    comment: Benzina
+    kilometers: 191925
+    amount: 50
+    Category: fuel
+    quantity: 37.3
+  franz_astra_573:
+    User: franz
+    Vehicle: astra
+    date: '2004-01-08'
+    comment: Benzina
+    kilometers: 192445
+    amount: 50
+    Category: fuel
+    quantity: 37.3
+  franz_astra_574:
+    User: franz
+    Vehicle: astra
+    date: '2004-01-09'
+    comment: Lavaggio
+    kilometers: 192526
+    amount: 10
+    Category: maintenance
+  franz_astra_575:
+    User: franz
+    Vehicle: astra
+    date: '2004-01-15'
+    comment: Benzina
+    kilometers: 192945
+    amount: 50
+    Category: fuel
+    quantity: 36.8
+  franz_astra_576:
+    User: franz
+    Vehicle: astra
+    date: '2004-01-23'
+    comment: Benzina
+    kilometers: 193426
+    amount: 50
+    Category: fuel
+    quantity: 36.8
+  franz_astra_577:
+    User: franz
+    Vehicle: astra
+    date: '2004-01-26'
+    comment: 'Vignetta (omaggio)'
+    kilometers: 193698
+    amount: 0
+    Category: taxes
+  franz_astra_578:
+    User: franz
+    Vehicle: astra
+    date: '2004-01-29'
+    comment: Benzina
+    kilometers: 193892
+    amount: 50
+    Category: fuel
+    quantity: 36.8
+  franz_astra_579:
+    User: franz
+    Vehicle: astra
+    date: '2004-01-30'
+    comment: 'Assicurazione 1° sem. 04'
+    kilometers: 193910
+    amount: 624.7
+    Category: insurance
+  franz_astra_580:
+    User: franz
+    Vehicle: astra
+    date: '2004-02-02'
+    comment: Lampadine
+    kilometers: 194276
+    amount: 20
+    Category: maintenance
+  franz_astra_581:
+    User: franz
+    Vehicle: astra
+    date: '2004-02-03'
+    comment: Benzina
+    kilometers: 194337
+    amount: 50
+    Category: fuel
+    quantity: 36.8
+  franz_astra_582:
+    User: franz
+    Vehicle: astra
+    date: '2004-02-12'
+    comment: Benzina
+    kilometers: 194855
+    amount: 50
+    Category: fuel
+    quantity: 36.8
+  franz_astra_583:
+    User: franz
+    Vehicle: astra
+    date: '2004-02-17'
+    comment: 'Servizio 195''000 km'
+    kilometers: 195107
+    amount: 297.5
+    Category: maintenance
+  franz_astra_584:
+    User: franz
+    Vehicle: astra
+    date: '2004-02-18'
+    comment: Lavaggio
+    kilometers: 195155
+    amount: 14
+    Category: maintenance
+  franz_astra_585:
+    User: franz
+    Vehicle: astra
+    date: '2004-02-19'
+    comment: Benzina
+    kilometers: 195326
+    amount: 50
+    Category: fuel
+    quantity: 36.8
+  franz_astra_586:
+    User: franz
+    Vehicle: astra
+    date: '2004-02-24'
+    comment: Benzina
+    kilometers: 195807
+    amount: 50
+    Category: fuel
+    quantity: 36.2
+  franz_astra_587:
+    User: franz
+    Vehicle: astra
+    date: '2005-02-28'
+    comment: 'Circolazione 04'
+    kilometers: 195900
+    amount: 369
+    Category: taxes
+  franz_astra_588:
+    User: franz
+    Vehicle: astra
+    date: '2004-03-04'
+    comment: Benzina
+    kilometers: 196260
+    amount: 53.8
+    Category: fuel
+    quantity: 39.9
+  franz_astra_589:
+    User: franz
+    Vehicle: astra
+    date: '2004-03-07'
+    comment: Benzina
+    kilometers: 196855
+    amount: 55
+    Category: fuel
+    quantity: 40.1
+  franz_astra_590:
+    User: franz
+    Vehicle: astra
+    date: '2004-03-11'
+    comment: Benzina
+    kilometers: 197462
+    amount: 48.9
+    Category: fuel
+    quantity: 36.2
+  franz_astra_591:
+    User: franz
+    Vehicle: astra
+    date: '2004-03-18'
+    comment: Benzina
+    kilometers: 197954
+    amount: 50
+    Category: fuel
+    quantity: 35.7
+  franz_astra_592:
+    User: franz
+    Vehicle: astra
+    date: '2004-03-22'
+    comment: Benzina
+    kilometers: 198506
+    amount: 50
+    Category: fuel
+    quantity: 35.7
+  franz_astra_593:
+    User: franz
+    Vehicle: astra
+    date: '2004-03-30'
+    comment: Benzina
+    kilometers: 199004
+    amount: 48.95
+    Category: fuel
+    quantity: 35.7
+  franz_astra_594:
+    User: franz
+    Vehicle: astra
+    date: '2004-04-05'
+    comment: Benzina
+    kilometers: 199431
+    amount: 48.95
+    Category: fuel
+    quantity: 35.7
+  franz_astra_595:
+    User: franz
+    Vehicle: astra
+    date: '2004-04-14'
+    comment: Benzina
+    kilometers: 199917
+    amount: 53.85
+    Category: fuel
+    quantity: 39.3
+  franz_astra_596:
+    User: franz
+    Vehicle: astra
+    date: '2004-04-23'
+    comment: Benzina
+    kilometers: 200428
+    amount: 48.95
+    Category: fuel
+    quantity: 34.5
+  franz_astra_597:
+    User: franz
+    Vehicle: astra
+    date: '2004-04-29'
+    comment: Benzina
+    kilometers: 200939
+    amount: 48.95
+    Category: fuel
+    quantity: 34.5
+  franz_astra_598:
+    User: franz
+    Vehicle: astra
+    date: '2004-05-06'
+    comment: Benzina
+    kilometers: 201376
+    amount: 49
+    Category: fuel
+    quantity: 33.3
+  franz_astra_599:
+    User: franz
+    Vehicle: astra
+    date: '2004-05-14'
+    comment: Benzina
+    kilometers: 201859
+    amount: 49
+    Category: fuel
+    quantity: 32.9
+  franz_astra_600:
+    User: franz
+    Vehicle: astra
+    date: '2004-06-03'
+    comment: Benzina
+    kilometers: 202253
+    amount: 50
+    Category: fuel
+    quantity: 32.9
+  franz_astra_601:
+    User: franz
+    Vehicle: astra
+    date: '2004-06-09'
+    comment: 'Montato 2 gomme estive'
+    kilometers: 202510
+    amount: 71
+    Category: maintenance
+  franz_astra_602:
+    User: franz
+    Vehicle: astra
+    date: '2004-06-15'
+    comment: Benzina
+    kilometers: 202703
+    amount: 50
+    Category: fuel
+    quantity: 34
+  franz_astra_603:
+    User: franz
+    Vehicle: astra
+    date: '2004-06-21'
+    comment: Benzina
+    kilometers: 203223
+    amount: 50
+    Category: fuel
+    quantity: 34
+  franz_astra_604:
+    User: franz
+    Vehicle: astra
+    date: '2004-06-26'
+    comment: Benzina
+    kilometers: 203634
+    amount: 50
+    Category: fuel
+    quantity: 34.5
+  franz_astra_605:
+    User: franz
+    Vehicle: astra
+    date: '2004-06-28'
+    comment: Lavaggio
+    kilometers: 203697
+    amount: 18
+    Category: maintenance
+  franz_astra_606:
+    User: franz
+    Vehicle: astra
+    date: '2004-06-28'
+    comment: Benzina
+    kilometers: 203760
+    amount: 22
+    Category: fuel
+    quantity: 15.5
+  franz_astra_607:
+    User: franz
+    Vehicle: astra
+    date: '2004-07-01'
+    comment: Benzina
+    kilometers: 204235
+    amount: 62.4
+    Category: fuel
+    quantity: 35.2
+  franz_astra_608:
+    User: franz
+    Vehicle: astra
+    date: '2004-07-04'
+    comment: Benzina
+    kilometers: 204798
+    amount: 50
+    Category: fuel
+    quantity: 34.5
+  franz_astra_609:
+    User: franz
+    Vehicle: astra
+    date: '2004-07-12'
+    comment: Benzina
+    kilometers: 205583
+    amount: 50
+    Category: fuel
+    quantity: 34
+  franz_astra_610:
+    User: franz
+    Vehicle: astra
+    date: '2004-07-15'
+    comment: 'Assicurazione 2° sem. 04'
+    kilometers: 205700
+    amount: 503.9
+    Category: insurance
+  franz_astra_611:
+    User: franz
+    Vehicle: astra
+    date: '2004-07-18'
+    comment: Benzina
+    kilometers: 205811
+    amount: 50
+    Category: fuel
+    quantity: 33.3
+  franz_astra_612:
+    User: franz
+    Vehicle: astra
+    date: '2004-07-23'
+    comment: Benzina
+    kilometers: 206286
+    amount: 50
+    Category: fuel
+    quantity: 33.1
+  franz_astra_613:
+    User: franz
+    Vehicle: astra
+    date: '2004-07-28'
+    comment: Benzina
+    kilometers: 206709
+    amount: 50
+    Category: fuel
+    quantity: 33.3
+  franz_astra_614:
+    User: franz
+    Vehicle: astra
+    date: '2004-08-03'
+    comment: Benzina
+    kilometers: 207170
+    amount: 51
+    Category: fuel
+    quantity: 34
+  franz_astra_615:
+    User: franz
+    Vehicle: astra
+    date: '2004-08-15'
+    comment: Benzina
+    kilometers: 207613
+    amount: 50
+    Category: fuel
+    quantity: 33.6
+  franz_astra_616:
+    User: franz
+    Vehicle: astra
+    date: '2004-08-21'
+    comment: Benzina
+    kilometers: 208039
+    amount: 50
+    Category: fuel
+    quantity: 34.5
+  franz_astra_617:
+    User: franz
+    Vehicle: astra
+    date: '2004-08-26'
+    comment: Benzina
+    kilometers: 208563
+    amount: 50
+    Category: fuel
+    quantity: 34
+  franz_astra_618:
+    User: franz
+    Vehicle: astra
+    date: '2004-09-03'
+    comment: Benzina
+    kilometers: 209021
+    amount: 50.05
+    Category: fuel
+    quantity: 33.4
+  franz_astra_619:
+    User: franz
+    Vehicle: astra
+    date: '2004-09-09'
+    comment: Benzina
+    kilometers: 209497
+    amount: 50
+    Category: fuel
+    quantity: 34.5
+  franz_astra_620:
+    User: franz
+    Vehicle: astra
+    date: '2004-09-16'
+    comment: Benzina
+    kilometers: 209944
+    amount: 50
+    Category: fuel
+    quantity: 34.5
+  franz_astra_621:
+    User: franz
+    Vehicle: astra
+    date: '2004-09-18'
+    comment: 'Servizio 210''000 km'
+    kilometers: 210068
+    amount: 375.5
+    Category: maintenance
+  franz_astra_622:
+    User: franz
+    Vehicle: astra
+    date: '2004-09-23'
+    comment: Benzina
+    kilometers: 210443
+    amount: 50
+    Category: fuel
+    quantity: 34.5
+  franz_astra_623:
+    User: franz
+    Vehicle: astra
+    date: '2004-09-30'
+    comment: Benzina
+    kilometers: 210887
+    amount: 50
+    Category: fuel
+    quantity: 33.6
+  franz_astra_624:
+    User: franz
+    Vehicle: astra
+    date: '2004-10-03'
+    comment: Benzina
+    kilometers: 211349
+    amount: 50
+    Category: fuel
+    quantity: 33.8
+  franz_astra_625:
+    User: franz
+    Vehicle: astra
+    date: '2004-10-07'
+    comment: 'Controllo CO'
+    kilometers: 211601
+    amount: 40
+    Category: maintenance
+  franz_astra_626:
+    User: franz
+    Vehicle: astra
+    date: '2004-10-08'
+    comment: Benzina
+    kilometers: 211681
+    amount: 50
+    Category: fuel
+    quantity: 33.8
+  franz_astra_627:
+    User: franz
+    Vehicle: astra
+    date: '2004-10-10'
+    comment: Benzina
+    kilometers: 212099
+    amount: 23
+    Category: fuel
+    quantity: 19.5
+  franz_astra_628:
+    User: franz
+    Vehicle: astra
+    date: '2004-10-10'
+    comment: Benzina
+    kilometers: 212357
+    amount: 30
+    Category: fuel
+    quantity: 19.6
+  franz_astra_629:
+    User: franz
+    Vehicle: astra
+    date: '2004-10-15'
+    comment: Benzina
+    kilometers: 212811
+    amount: 50
+    Category: fuel
+    quantity: 33.1
+  franz_astra_630:
+    User: franz
+    Vehicle: astra
+    date: '2004-10-21'
+    comment: Benzina
+    kilometers: 213249
+    amount: 50
+    Category: fuel
+    quantity: 33.1
+  franz_astra_631:
+    User: franz
+    Vehicle: astra
+    date: '2004-10-29'
+    comment: Benzina
+    kilometers: 213692
+    amount: 50
+    Category: fuel
+    quantity: 33.5
+  franz_astra_632:
+    User: franz
+    Vehicle: astra
+    date: '2004-11-09'
+    comment: Benzina
+    kilometers: 214098
+    amount: 50
+    Category: fuel
+    quantity: 34
+  franz_astra_633:
+    User: franz
+    Vehicle: astra
+    date: '1900-01-14'
+    comment: Benzina
+    kilometers: 214550
+    amount: 50
+    Category: fuel
+    quantity: 34.1
+  franz_astra_634:
+    User: franz
+    Vehicle: astra
+    date: '2004-11-19'
+    comment: Benzina
+    kilometers: 215030
+    amount: 50
+    Category: fuel
+    quantity: 34.5
+  franz_astra_635:
+    User: franz
+    Vehicle: astra
+    date: '2004-11-26'
+    comment: Benzina
+    kilometers: 215476
+    amount: 41
+    Category: fuel
+    quantity: 28.1
+  franz_astra_636:
+    User: franz
+    Vehicle: astra
+    date: '2004-12-02'
+    comment: Benzina
+    kilometers: 215801
+    amount: 50
+    Category: fuel
+    quantity: 34.5
+  franz_astra_637:
+    User: franz
+    Vehicle: astra
+    date: '2004-12-03'
+    comment: 'Gomme inverno (2 nuove, 2 mont.)'
+    kilometers: 215932
+    amount: 280
+    Category: accessories
+  franz_astra_638:
+    User: franz
+    Vehicle: astra
+    date: '2004-12-10'
+    comment: Benzina
+    kilometers: 216259
+    amount: 50
+    Category: fuel
+    quantity: 35.5
+  franz_astra_639:
+    User: franz
+    Vehicle: astra
+    date: '2004-12-14'
+    comment: Benzina
+    kilometers: 216712
+    amount: 50
+    Category: fuel
+    quantity: 35.5
+  franz_astra_640:
+    User: franz
+    Vehicle: astra
+    date: '2004-12-17'
+    comment: Lavaggio
+    kilometers: 216958
+    amount: 10
+    Category: maintenance
+  franz_astra_641:
+    User: franz
+    Vehicle: astra
+    date: '2004-12-19'
+    comment: Benzina
+    kilometers: 217184
+    amount: 50
+    Category: fuel
+    quantity: 36
+  franz_astra_642:
+    User: franz
+    Vehicle: astra
+    date: '2004-12-27'
+    comment: Benzina
+    kilometers: 217673
+    amount: 50
+    Category: fuel
+    quantity: 35.5
+  franz_astra_643:
+    User: franz
+    Vehicle: astra
+    date: '2005-01-06'
+    comment: Benzina
+    kilometers: 218108
+    amount: 50
+    Category: fuel
+    quantity: 36.5
+  franz_astra_644:
+    User: franz
+    Vehicle: astra
+    date: '2005-01-09'
+    comment: Benzina
+    kilometers: 218507
+    amount: 25
+    Category: fuel
+    quantity: 17.9
+  franz_astra_645:
+    User: franz
+    Vehicle: astra
+    date: '2005-01-13'
+    comment: Benzina
+    kilometers: 218874
+    amount: 50
+    Category: fuel
+    quantity: 36.8
+  franz_astra_646:
+    User: franz
+    Vehicle: astra
+    date: '2005-01-17'
+    comment: 'Assicurazione 1° sem. 05'
+    kilometers: 219150
+    amount: 503.9
+    Category: insurance
+  franz_astra_647:
+    User: franz
+    Vehicle: astra
+    date: '2005-01-20'
+    comment: Benzina
+    kilometers: 219378
+    amount: 50
+    Category: fuel
+    quantity: 36.8
+  franz_astra_648:
+    User: franz
+    Vehicle: astra
+    date: '2005-01-27'
+    comment: Benzina
+    kilometers: 219866
+    amount: 50.05
+    Category: fuel
+    quantity: 36.3
+  franz_astra_649:
+    User: franz
+    Vehicle: astra
+    date: '2005-02-02'
+    comment: Benzina
+    kilometers: 220349
+    amount: 50
+    Category: fuel
+    quantity: 35.5
+  franz_astra_650:
+    User: franz
+    Vehicle: astra
+    date: '2005-02-10'
+    comment: Benzina
+    kilometers: 220796
+    amount: 50
+    Category: fuel
+    quantity: 35.5
+  franz_astra_651:
+    User: franz
+    Vehicle: astra
+    date: '2005-02-17'
+    comment: Benzina
+    kilometers: 221274
+    amount: 50
+    Category: fuel
+    quantity: 35
+  franz_astra_652:
+    User: franz
+    Vehicle: astra
+    date: '2005-02-21'
+    comment: Benzina
+    kilometers: 221740
+    amount: 50
+    Category: fuel
+    quantity: 35
+  franz_astra_653:
+    User: franz
+    Vehicle: astra
+    date: '2005-02-24'
+    comment: Benzina
+    kilometers: 222233
+    amount: 50
+    Category: fuel
+    quantity: 35
+  franz_astra_654:
+    User: franz
+    Vehicle: astra
+    date: '2005-02-25'
+    comment: Lavaggio
+    kilometers: 222366
+    amount: 14
+    Category: maintenance
+  franz_astra_655:
+    User: franz
+    Vehicle: astra
+    date: '2005-02-28'
+    comment: 'Circolazione 05'
+    kilometers: 222370
+    amount: 369
+    Category: taxes
+  franz_astra_656:
+    User: franz
+    Vehicle: astra
+    date: '2005-03-03'
+    comment: Benzina
+    kilometers: 222644
+    amount: 48.95
+    Category: fuel
+    quantity: 35
+  franz_astra_657:
+    User: franz
+    Vehicle: astra
+    date: '2005-03-07'
+    comment: Lavaggio
+    kilometers: 222987
+    amount: 14
+    Category: maintenance
+  franz_astra_658:
+    User: franz
+    Vehicle: astra
+    date: '2005-03-08'
+    comment: Benzina
+    kilometers: 223115
+    amount: 50
+    Category: fuel
+    quantity: 35
+  franz_astra_659:
+    User: franz
+    Vehicle: astra
+    date: '2005-03-08'
+    comment: 'Lampadina anteriore sinistra'
+    kilometers: 223115
+    amount: 13
+    Category: maintenance
+  franz_astra_660:
+    User: franz
+    Vehicle: astra
+    date: '2005-03-14'
+    comment: Benzina
+    kilometers: 223664
+    amount: 50
+    Category: fuel
+    quantity: 34.2
+  franz_astra_661:
+    User: franz
+    Vehicle: astra
+    date: '2005-03-19'
+    comment: Benzina
+    kilometers: 224094
+    amount: 50
+    Category: fuel
+    quantity: 34.2
+  franz_astra_662:
+    User: franz
+    Vehicle: astra
+    date: '2005-03-26'
+    comment: Benzina
+    kilometers: 224481
+    amount: 50
+    Category: fuel
+    quantity: 33.8
+  franz_astra_663:
+    User: franz
+    Vehicle: astra
+    date: '2005-04-04'
+    comment: 'Servizio 225''000 km'
+    kilometers: 224987
+    amount: 811.1
+    Category: maintenance
+  franz_astra_664:
+    User: franz
+    Vehicle: astra
+    date: '2005-04-04'
+    comment: Benzina
+    kilometers: 224991
+    amount: 50
+    Category: fuel
+    quantity: 33.3
+  franz_astra_665:
+    User: franz
+    Vehicle: astra
+    date: '2005-04-08'
+    comment: Benzina
+    kilometers: 225516
+    amount: 50
+    Category: fuel
+    quantity: 32.7
+  franz_astra_666:
+    User: franz
+    Vehicle: astra
+    date: '2005-04-15'
+    comment: Benzina
+    kilometers: 226987
+    amount: 50
+    Category: fuel
+    quantity: 33.1
+  franz_astra_667:
+    User: franz
+    Vehicle: astra
+    date: '2005-04-19'
+    comment: 'Vari (v. fattura + 40.- benzina auto)'
+    kilometers: 226200
+    amount: 1235.95
+    Category: maintenance
+  franz_astra_668:
+    User: franz
+    Vehicle: astra
+    date: '2005-04-22'
+    comment: Benzina
+    kilometers: 226399
+    amount: 50
+    Category: fuel
+    quantity: 33.1
+  franz_astra_669:
+    User: franz
+    Vehicle: astra
+    date: '2005-04-26'
+    comment: Benzina
+    kilometers: 226869
+    amount: 50
+    Category: fuel
+    quantity: 33.1
+  franz_astra_670:
+    User: franz
+    Vehicle: astra
+    date: '2005-05-03'
+    comment: Benzina
+    kilometers: 227310
+    amount: 60
+    Category: fuel
+    quantity: 39.2
+  franz_astra_671:
+    User: franz
+    Vehicle: astra
+    date: '2005-05-12'
+    comment: Benzina
+    kilometers: 227834
+    amount: 50
+    Category: fuel
+    quantity: 33.1
+  franz_astra_672:
+    User: franz
+    Vehicle: astra
+    date: '2005-05-17'
+    comment: Benzina
+    kilometers: 228294
+    amount: 50
+    Category: fuel
+    quantity: 33.1
+  franz_astra_673:
+    User: franz
+    Vehicle: astra
+    date: '2005-05-24'
+    comment: Benzina
+    kilometers: 228694
+    amount: 50
+    Category: fuel
+    quantity: 33.2
+  franz_astra_674:
+    User: franz
+    Vehicle: astra
+    date: '2005-06-02'
+    comment: Benzina
+    kilometers: 229195
+    amount: 50
+    Category: fuel
+    quantity: 33.6
+  franz_astra_675:
+    User: franz
+    Vehicle: astra
+    date: '2005-06-07'
+    comment: Benzina
+    kilometers: 229615
+    amount: 50
+    Category: fuel
+    quantity: 32.9
+  franz_astra_676:
+    User: franz
+    Vehicle: astra
+    date: '2005-06-10'
+    comment: 'Multa velocità'
+    kilometers: 229800
+    amount: 40
+    Category: fines
+  franz_astra_677:
+    User: franz
+    Vehicle: astra
+    date: '2005-06-12'
+    comment: Benzina
+    kilometers: 230035
+    amount: 50
+    Category: fuel
+    quantity: 32.9
+  franz_astra_678:
+    User: franz
+    Vehicle: astra
+    date: '2005-06-15'
+    comment: 'Assicurazione 2° sem. 05'
+    kilometers: 230400
+    amount: 503.9
+    Category: insurance
+  franz_astra_679:
+    User: franz
+    Vehicle: astra
+    date: '2005-06-16'
+    comment: Benzina
+    kilometers: 230454
+    amount: 50
+    Category: fuel
+    quantity: 32.9
+  franz_astra_680:
+    User: franz
+    Vehicle: astra
+    date: '2005-06-21'
+    comment: Benzina
+    kilometers: 230946
+    amount: 50
+    Category: fuel
+    quantity: 32.5
+  franz_astra_681:
+    User: franz
+    Vehicle: astra
+    date: '2005-06-26'
+    comment: Benzina
+    kilometers: 231332
+    amount: 50
+    Category: fuel
+    quantity: 32.6
+  franz_astra_682:
+    User: franz
+    Vehicle: astra
+    date: '2005-07-04'
+    comment: Benzina
+    kilometers: 231786
+    amount: 50
+    Category: fuel
+    quantity: 32.7
+  franz_astra_683:
+    User: franz
+    Vehicle: astra
+    date: '2005-07-06'
+    comment: Benzina
+    kilometers: 232212
+    amount: 50
+    Category: fuel
+    quantity: 31.7
+  franz_astra_684:
+    User: franz
+    Vehicle: astra
+    date: '2005-07-12'
+    comment: Benzina
+    kilometers: 232647
+    amount: 70
+    Category: fuel
+    quantity: 43.7
+  franz_astra_685:
+    User: franz
+    Vehicle: astra
+    date: '2005-07-13'
+    comment: Benzina
+    kilometers: 233147
+    amount: 52
+    Category: fuel
+    quantity: 33.4
+  franz_astra_686:
+    User: franz
+    Vehicle: astra
+    date: '2005-07-19'
+    comment: Benzina
+    kilometers: 233761
+    amount: 50
+    Category: fuel
+    quantity: 31.2
+  franz_astra_687:
+    User: franz
+    Vehicle: astra
+    date: '2005-07-24'
+    comment: Benzina
+    kilometers: 234057
+    amount: 50
+    Category: fuel
+    quantity: 31.8
+  franz_astra_688:
+    User: franz
+    Vehicle: astra
+    date: '2005-07-25'
+    comment: 'Servizio 240''000 km'
+    kilometers: 234167
+    amount: 1619.9
+    Category: maintenance
+  franz_astra_689:
+    User: franz
+    Vehicle: astra
+    date: '2005-07-30'
+    comment: Benzina
+    kilometers: 234492
+    amount: 40
+    Category: fuel
+    quantity: 24.6
+  franz_astra_690:
+    User: franz
+    Vehicle: astra
+    date: '2005-08-03'
+    comment: Benzina
+    kilometers: 234841
+    amount: 50.1
+    Category: fuel
+    quantity: 31.5
+  franz_astra_691:
+    User: franz
+    Vehicle: astra
+    date: '2005-08-08'
+    comment: Benzina
+    kilometers: 235267
+    amount: 55.05
+    Category: fuel
+    quantity: 34.6
+  franz_astra_692:
+    User: franz
+    Vehicle: astra
+    date: '2005-08-19'
+    comment: Benzina
+    kilometers: 235771
+    amount: 50
+    Category: fuel
+    quantity: 30.5
+  franz_astra_693:
+    User: franz
+    Vehicle: astra
+    date: '2005-08-28'
+    comment: Benzina
+    kilometers: 236212
+    amount: 50
+    Category: fuel
+    quantity: 30.5
+  franz_astra_694:
+    User: franz
+    Vehicle: astra
+    date: '2005-09-02'
+    comment: Benzina
+    kilometers: 236594
+    amount: 50
+    Category: fuel
+    quantity: 29.6
+  franz_astra_695:
+    User: franz
+    Vehicle: astra
+    date: '2005-09-08'
+    comment: Benzina
+    kilometers: 237012
+    amount: 50
+    Category: fuel
+    quantity: 28.6
+  franz_astra_696:
+    User: franz
+    Vehicle: astra
+    date: '2005-09-15'
+    comment: Benzina
+    kilometers: 237395
+    amount: 50
+    Category: fuel
+    quantity: 29.6
+  franz_astra_697:
+    User: franz
+    Vehicle: astra
+    date: '2005-09-20'
+    comment: Benzina
+    kilometers: 237784
+    amount: 50
+    Category: fuel
+    quantity: 29.6
+  franz_astra_698:
+    User: franz
+    Vehicle: astra
+    date: '2005-09-24'
+    comment: Benzina
+    kilometers: 238192
+    amount: 50
+    Category: fuel
+    quantity: 29.4
+  franz_astra_699:
+    User: franz
+    Vehicle: astra
+    date: '2005-09-29'
+    comment: Benzina
+    kilometers: 238597
+    amount: 50
+    Category: fuel
+    quantity: 29.8
+  franz_astra_700:
+    User: franz
+    Vehicle: astra
+    date: '2005-10-05'
+    comment: Benzina
+    kilometers: 239044
+    amount: 50
+    Category: fuel
+    quantity: 29.4
+  franz_astra_701:
+    User: franz
+    Vehicle: astra
+    date: '2005-10-12'
+    comment: Benzina
+    kilometers: 239448
+    amount: 55
+    Category: fuel
+    quantity: 32.4
+  franz_astra_702:
+    User: franz
+    Vehicle: astra
+    date: '2005-10-16'
+    comment: Benzina
+    kilometers: 239817
+    amount: 50
+    Category: fuel
+    quantity: 28.8
+  franz_astra_703:
+    User: franz
+    Vehicle: astra
+    date: '2005-10-21'
+    comment: Benzina
+    kilometers: 240299
+    amount: 70
+    Category: fuel
+    quantity: 42.1
+  franz_astra_704:
+    User: franz
+    Vehicle: astra
+    date: '2005-10-26'
+    comment: Benzina
+    kilometers: 240950
+    amount: 50
+    Category: fuel
+    quantity: 30.1
+  franz_astra_705:
+    User: franz
+    Vehicle: astra
+    date: '2005-10-18'
+    comment: Benzina
+    kilometers: 241319
+    amount: 62.5
+    Category: fuel
+    quantity: 38.3
+  franz_astra_706:
+    User: franz
+    Vehicle: astra
+    date: '2005-10-29'
+    comment: Benzina
+    kilometers: 241724
+    amount: 50
+    Category: fuel
+    quantity: 28.8
+  franz_astra_707:
+    User: franz
+    Vehicle: astra
+    date: '2005-11-08'
+    comment: Benzina
+    kilometers: 242339
+    amount: 50
+    Category: fuel
+    quantity: 31.4
+  franz_astra_708:
+    User: franz
+    Vehicle: astra
+    date: '2005-11-12'
+    comment: Benzina
+    kilometers: 242733
+    amount: 50
+    Category: fuel
+    quantity: 31.5
+  franz_astra_709:
+    User: franz
+    Vehicle: astra
+    date: '2005-11-17'
+    comment: 'Sostituito 4 gomme'
+    kilometers: 243032
+    amount: 70
+    Category: maintenance
+  franz_astra_710:
+    User: franz
+    Vehicle: astra
+    date: '2005-11-18'
+    comment: Benzina
+    kilometers: 243226
+    amount: 50
+    Category: fuel
+    quantity: 30.5
+  franz_astra_711:
+    User: franz
+    Vehicle: astra
+    date: '2005-11-25'
+    comment: Benzina
+    kilometers: 243611
+    amount: 50
+    Category: fuel
+    quantity: 32.1
+  franz_astra_712:
+    User: franz
+    Vehicle: astra
+    date: '2005-12-02'
+    comment: Benzina
+    kilometers: 244073
+    amount: 50
+    Category: fuel
+    quantity: 31.5
+  franz_astra_713:
+    User: franz
+    Vehicle: astra
+    date: '2005-12-08'
+    comment: Benzina
+    kilometers: 244465
+    amount: 50
+    Category: fuel
+    quantity: 31.5
+  franz_astra_714:
+    User: franz
+    Vehicle: astra
+    date: '2005-12-13'
+    comment: Benzina
+    kilometers: 244864
+    amount: 50
+    Category: fuel
+    quantity: 31.4
+  franz_astra_715:
+    User: franz
+    Vehicle: astra
+    date: '2005-12-18'
+    comment: Lavaggio
+    kilometers: 245290
+    amount: 16
+    Category: maintenance
+  franz_astra_716:
+    User: franz
+    Vehicle: astra
+    date: '2005-12-18'
+    comment: Benzina
+    kilometers: 245293
+    amount: 55
+    Category: fuel
+    quantity: 34.6
+  franz_astra_717:
+    User: franz
+    Vehicle: astra
+    date: '2005-12-22'
+    comment: 'Cambio olio (senza fattura)'
+    kilometers: 245506
+    amount: 100
+    Category: maintenance
+  franz_astra_718:
+    User: franz
+    Vehicle: astra
+    date: '2005-12-23'
+    comment: 'Cambio lampadine'
+    kilometers: 245708
+    amount: 10
+    Category: maintenance
+  franz_astra_719:
+    User: franz
+    Vehicle: astra
+    date: '2005-12-24'
+    comment: Benzina
+    kilometers: 245774
+    amount: 48.1
+    Category: fuel
+    quantity: 31.8
+  franz_astra_720:
+    User: franz
+    Vehicle: astra
+    date: '2005-12-29'
+    comment: Benzina
+    kilometers: 246120
+    amount: 50
+    Category: fuel
+    quantity: 30.8
+  franz_astra_721:
+    User: franz
+    Vehicle: astra
+    date: '2006-01-03'
+    comment: Lavaggio
+    kilometers: 246400
+    amount: 15
+    Category: maintenance
+  franz_astra_722:
+    User: franz
+    Vehicle: astra
+    date: '2006-01-04'
+    comment: Benzina
+    kilometers: 246524
+    amount: 50
+    Category: fuel
+    quantity: 31
+  franz_astra_723:
+    User: franz
+    Vehicle: astra
+    date: '2006-01-12'
+    comment: Benzina
+    kilometers: 247093
+    amount: 50
+    Category: fuel
+    quantity: 31.4
+  franz_astra_724:
+    User: franz
+    Vehicle: astra
+    date: '2006-01-13'
+    comment: Vignetta
+    kilometers: 247240
+    amount: 40
+    Category: taxes
+  franz_astra_725:
+    User: franz
+    Vehicle: astra
+    date: '2006-01-13'
+    comment: 'Assicurazione 1° sem. 06'
+    kilometers: 247250
+    amount: 503.9
+    Category: insurance
+  franz_astra_726:
+    User: franz
+    Vehicle: astra
+    date: '2006-01-17'
+    comment: Benzina
+    kilometers: 247487
+    amount: 50
+    Category: fuel
+    quantity: 31.4
+  franz_astra_727:
+    User: franz
+    Vehicle: astra
+    date: '2006-01-24'
+    comment: Benzina
+    kilometers: 247969
+    amount: 50
+    Category: fuel
+    quantity: 31.4
+  franz_astra_728:
+    User: franz
+    Vehicle: astra
+    date: '2006-02-01'
+    comment: Benzina
+    kilometers: 248409
+    amount: 50
+    Category: fuel
+    quantity: 31.1
+  franz_astra_729:
+    User: franz
+    Vehicle: astra
+    date: '2006-02-03'
+    comment: Lavaggio
+    kilometers: 248619
+    amount: 15
+    Category: maintenance
+  franz_astra_730:
+    User: franz
+    Vehicle: astra
+    date: '2006-02-06'
+    comment: Benzina
+    kilometers: 248820
+    amount: 50
+    Category: fuel
+    quantity: 31.1
+  franz_astra_731:
+    User: franz
+    Vehicle: astra
+    date: '2006-02-13'
+    comment: Benzina
+    kilometers: 249255
+    amount: 50
+    Category: fuel
+    quantity: 31.1
+  franz_astra_732:
+    User: franz
+    Vehicle: astra
+    date: '2006-02-21'
+    comment: Benzina
+    kilometers: 249680
+    amount: 50
+    Category: fuel
+    quantity: 31.4
+  franz_astra_733:
+    User: franz
+    Vehicle: astra
+    date: '2006-02-26'
+    comment: Benzina
+    kilometers: 250107
+    amount: 50
+    Category: fuel
+    quantity: 31.4
+  franz_astra_734:
+    User: franz
+    Vehicle: astra
+    date: '2006-02-28'
+    comment: 'Circolazione 06'
+    kilometers: 250210
+    amount: 369
+    Category: taxes
+  franz_astra_735:
+    User: franz
+    Vehicle: astra
+    date: '2006-03-08'
+    comment: Benzina
+    kilometers: 250543
+    amount: 30
+    Category: fuel
+    quantity: 18.5
+  franz_astra_736:
+    User: franz
+    Vehicle: astra
+    date: '2006-03-12'
+    comment: Benzina
+    kilometers: 250747
+    amount: 60
+    Category: fuel
+    quantity: 39
+  franz_astra_737:
+    User: franz
+    Vehicle: astra
+    date: '2006-03-15'
+    comment: 'Tassa collaudo'
+    kilometers: 251100
+    amount: 60
+    Category: taxes
+  franz_astra_738:
+    User: franz
+    Vehicle: astra
+    date: '2006-03-21'
+    comment: Benzina
+    kilometers: 251347
+    amount: 50
+    Category: fuel
+    quantity: 31.4
+  franz_astra_739:
+    User: franz
+    Vehicle: astra
+    date: '2006-03-25'
+    comment: Lavaggio
+    kilometers: 251744
+    amount: 18
+    Category: maintenance
+  franz_astra_740:
+    User: franz
+    Vehicle: astra
+    date: '2006-03-26'
+    comment: Benzina
+    kilometers: 251761
+    amount: 50
+    Category: fuel
+    quantity: 31.1
+  franz_astra_741:
+    User: franz
+    Vehicle: astra
+    date: '2006-03-27'
+    comment: 'Sost. gomme ant.  + collaudo (OK!)'
+    kilometers: 251790
+    amount: 175.4
+    Category: accessories
+  franz_astra_742:
+    User: franz
+    Vehicle: astra
+    date: '2006-03-31'
+    comment: Benzina
+    kilometers: 252191
+    amount: 50
+    Category: fuel
+    quantity: 30.7
+  franz_astra_743:
+    User: franz
+    Vehicle: astra
+    date: '2006-04-09'
+    comment: Benzina
+    kilometers: 252583
+    amount: 50
+    Category: fuel
+    quantity: 30.1
+  franz_astra_744:
+    User: franz
+    Vehicle: astra
+    date: '2006-04-12'
+    comment: Benzina
+    kilometers: 253028
+    amount: 50
+    Category: fuel
+    quantity: 29.6
+  franz_astra_745:
+    User: franz
+    Vehicle: astra
+    date: '2006-04-24'
+    comment: Benzina
+    kilometers: 253446
+    amount: 55
+    Category: fuel
+    quantity: 31.6
+  franz_astra_746:
+    User: franz
+    Vehicle: astra
+    date: '2006-04-28'
+    comment: Benzina
+    kilometers: 253905
+    amount: 60
+    Category: fuel
+    quantity: 34.1
+  franz_astra_747:
+    User: franz
+    Vehicle: astra
+    date: '2006-05-05'
+    comment: Benzina
+    kilometers: 254402
+    amount: 40
+    Category: fuel
+    quantity: 34.1
+  franz_astra_748:
+    User: franz
+    Vehicle: astra
+    date: '2006-05-11'
+    comment: Benzina
+    kilometers: 254794
+    amount: 50
+    Category: fuel
+    quantity: 29.6
+  franz_astra_749:
+    User: franz
+    Vehicle: astra
+    date: '2006-05-18'
+    comment: Benzina
+    kilometers: 255260
+    amount: 50
+    Category: fuel
+    quantity: 28.9
+  franz_astra_750:
+    User: franz
+    Vehicle: astra
+    date: '2006-05-24'
+    comment: 'Olio + liquido condizionatore'
+    kilometers: 255552
+    amount: 226.25
+    Category: maintenance
+  franz_astra_751:
+    User: franz
+    Vehicle: astra
+    date: '2006-05-25'
+    comment: Benzina
+    kilometers: 255636
+    amount: 50
+    Category: fuel
+    quantity: 29.6
+  franz_astra_752:
+    User: franz
+    Vehicle: astra
+    date: '2006-06-01'
+    comment: Benzina
+    kilometers: 256043
+    amount: 50
+    Category: fuel
+    quantity: 29.2
+  franz_astra_753:
+    User: franz
+    Vehicle: astra
+    date: '2006-06-08'
+    comment: Benzina
+    kilometers: 256461
+    amount: 50.05
+    Category: fuel
+    quantity: 28.9
+  franz_astra_754:
+    User: franz
+    Vehicle: astra
+    date: '2006-06-14'
+    comment: Benzina
+    kilometers: 256895
+    amount: 61
+    Category: fuel
+    quantity: 34.9
+  franz_astra_755:
+    User: franz
+    Vehicle: astra
+    date: '2006-06-15'
+    comment: 'Assicurazione 2° sem 06'
+    kilometers: 256950
+    amount: 503.9
+    Category: insurance
+  franz_astra_756:
+    User: franz
+    Vehicle: astra
+    date: '2006-06-18'
+    comment: 'Blocco contakm, quindi spia motore'
+    kilometers: 257102
+    amount: 0
+    Category: maintenance
+  franz_astra_757:
+    User: franz
+    Vehicle: astra
+    date: '2006-06-20'
+    comment: 'Sostituz. cordina contachilomertri'
+    kilometers: 257242
+    amount: 143.1
+    Category: maintenance
+  franz_astra_758:
+    User: franz
+    Vehicle: astra
+    date: '2006-06-21'
+    comment: Benzina
+    kilometers: 257259
+    amount: 50
+    Category: fuel
+    quantity: 28.9
+  franz_astra_759:
+    User: franz
+    Vehicle: astra
+    date: '2006-06-27'
+    comment: Benzina
+    kilometers: 257827
+    amount: 50
+    Category: fuel
+    quantity: 28.9
+  franz_astra_760:
+    User: franz
+    Vehicle: astra
+    date: '2006-07-09'
+    comment: Benzina
+    kilometers: 258120
+    amount: 50
+    Category: fuel
+    quantity: 28.6
+  franz_astra_761:
+    User: franz
+    Vehicle: astra
+    date: '2006-07-15'
+    comment: Benzina
+    kilometers: 258523
+    amount: 60
+    Category: fuel
+    quantity: 33.9
+  franz_astra_762:
+    User: franz
+    Vehicle: astra
+    date: '2006-07-31'
+    comment: Benzina
+    kilometers: 258939
+    amount: 60
+    Category: fuel
+    quantity: 33.3
+  franz_astra_763:
+    User: franz
+    Vehicle: astra
+    date: '2006-08-08'
+    comment: Benzina
+    kilometers: 259424
+    amount: 60
+    Category: fuel
+    quantity: 33.4
+  franz_astra_764:
+    User: franz
+    Vehicle: astra
+    date: '2006-08-19'
+    comment: Benzina
+    kilometers: 259817
+    amount: 50
+    Category: fuel
+    quantity: 29.1
+  franz_astra_765:
+    User: franz
+    Vehicle: astra
+    date: '2006-08-29'
+    comment: Benzina
+    kilometers: 260276
+    amount: 50
+    Category: fuel
+    quantity: 28.2
+  franz_astra_766:
+    User: franz
+    Vehicle: astra
+    date: '2006-09-07'
+    comment: Benzina
+    kilometers: 260638
+    amount: 50
+    Category: fuel
+    quantity: 29.6
+  franz_astra_767:
+    User: franz
+    Vehicle: astra
+    date: '2006-09-15'
+    comment: Benzina
+    kilometers: 261070
+    amount: 50
+    Category: fuel
+    quantity: 30.1
+  franz_astra_768:
+    User: franz
+    Vehicle: astra
+    date: '2006-10-02'
+    comment: Benzina
+    kilometers: 261462
+    amount: 20
+    Category: fuel
+    quantity: 12.5
+  franz_astra_769:
+    User: franz
+    Vehicle: astra
+    date: '2006-10-02'
+    comment: Vendita
+    kilometers: 261489
+    amount: 0
+    Category: purchase

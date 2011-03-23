@@ -4,7 +4,7 @@ Charge:
     User: ruf
     Vehicle: touran
     Category: fuel
-    date: 8.1.2011
+    date: '2011-1-18'
     kilometers:  554
     amount: 76
     quantity: 35.2
@@ -12,7 +12,7 @@ Charge:
     User: ruf
     Vehicle: touran
     Category: insurance
-    date: 8.1.2011
+    date: '2011-1-18'
     kilometers:  1000
     amount: 1700
     

@@ -12,14 +12,16 @@ class importFranzDataTask extends sfBaseTask {
             new sfCommandOption('application', null, sfCommandOption::PARAMETER_REQUIRED, 'The application name'),
             new sfCommandOption('env', null, sfCommandOption::PARAMETER_REQUIRED, 'The environment', 'dev'),
             new sfCommandOption('connection', null, sfCommandOption::PARAMETER_REQUIRED, 'The connection name', 'doctrine'),
-                // add your own options here
+            new sfCommandOption('fixture', null, sfCommandOption::PARAMETER_OPTIONAL, 'The relative fixture file (relative path with respect to sf_data_dir)'),
+            new sfCommandOption('User', null, sfCommandOption::PARAMETER_REQUIRED, 'The identifier of the User in fixtures', 'franz'),
+            new sfCommandOption('Vehicle', null, sfCommandOption::PARAMETER_REQUIRED, 'The identifier of the Vehicle in fixtures', 'astra'),
         ));
 
         $this->namespace = 'import';
         $this->name = 'FranzData';
-        $this->briefDescription = 'Imports data from csv files generated from Franz\'s excel data into the DB';
+        $this->briefDescription = 'Imports data from csv files generated from Franz\'s excel and generates a fixture file';
         $this->detailedDescription = <<<EOF
-The [FranzData|INFO] task imports data from a csv file to the database. The csv file has been generated from
+The [FranzData|INFO] task imports data from a csv file to a fixture file. The csv file has been generated from
 Franz vehicles data.
 
 Call it with:
@@ -33,116 +35,174 @@ EOF;
         $databaseManager = new sfDatabaseManager($this->configuration);
         $connection = $databaseManager->getDatabase($options['connection'])->getConnection();
 
+
+        // Checking that the csv file exist
         $file = sfConfig::get('sf_root_dir') . DIRECTORY_SEPARATOR . $arguments['file'];
 
         if (!file_exists($file)) {
             throw new sfException(sprintf('File %s does not exist.', $file));
         }
 
+        // building fixture file name and path
+
+        $user = isset($options['User']) ? $options['User'] : 'franz';
+        $vehicle = isset($options['Vehicle']) ? $options['Vehicle'] : 'astra';
+
+
+        $fixture_file = isset($options['fixture']) ? $options[$fixture] : $this->getFixtureFile('11_' . $user . '_' . $vehicle);
+        $fixture_file = sfConfig::get('sf_data_dir') . DIRECTORY_SEPARATOR . $fixture_file;
+
+        if (file_exists($fixture_file)) {
+            $answer = $this->askConfirmation(sprintf('A yaml fixture already exist in "%s". Overwrite? [Y/n]', $fixture_file));
+
+            if (!$answer) {
+                return false;
+            }
+        }
+
 
 
         $file_handle = fopen($file, "r");
+
+        $fixtures = array();
+        $id = 0;
 
         while (!feof($file_handle)) {
 
             $line_of_text = fgetcsv($file_handle, 1024);
 
-            $s = $this->importLine($line_of_text);
 
-            echo $s . "\n";
+            $s = $this->importLine($line_of_text, $options);
+            if (!$s) {
+                continue;
+            }
+
+            $id++;
+            $fname = $s['User'] . '_' . $s['Vehicle'] . '_' . $id;
+
+            $fixtures[$fname] = $s;
+
+            $this->log(sprintf('Read line %d', $id));
+
+//            echo $s . "\n";
         }
 
+
         fclose($file_handle);
+
+        // Writing yaml file
+
+        $fixtures = array('Charge' => $fixtures);
+
+        $dumper = new sfYamlDumper();
+        $yaml = $dumper->dump($fixtures, 3);
+
+        file_put_contents($fixture_file, $yaml);
+
+        $this->log(sprintf('OK fixture file successfully created in %s.', $fixture_file));
     }
 
-    protected function importLine($line) {
+    protected function importLine($line, $options) {
 
         if (!$line) {
             return '';
         }
 
+        $user = isset($options['User']) ? $options['User'] : 'franz';
+        $vehicle = isset($options['Vehicle']) ? $options['Vehicle'] : 'astra';
 
-        $c = new Charge();
 
-        $c->setUser($this->getUser('franz'));
-        $c->setVehicle($this->getVehicle('Opel Astra Caravan 1.6'));
-        $c->setDate($line[0]);
-        $c->setComment($line[1]);
-        $c->setKilometers($line[2]);
+        $c = array();
+        $c['User'] = $user;
+        $c['Vehicle'] = $vehicle;
+        $c['date'] = $this->formatDate($line[0]);
+        $c['comment'] = $line[1];
+        $c['kilometers'] = $this->toNumber($line[2]);
 
-        if ($n3 = $this->toNumber($line[3]) > 0) {
-            $amount = $n3;
-        } elseif ($n4 = $this->toNumber($line[4]) > 0) {
-            $amount = $n4;
-        }elseif ($n3 == 0 && $n4 == 0) {
+//        $c = new Charge();
+//
+//        $c->setUser($this->getUser('franz'));
+//        $c->setVehicle($this->getVehicle('Opel Astra Caravan 1.6'));
+//        $c->setDate($line[0]);
+//        $c->setComment($line[1]);
+//        $c->setKilometers($line[2]);
+
+        if ($this->toNumber($line[3]) > 0) {
+            $amount = $this->toNumber($line[3]);
+        } elseif ($this->toNumber($line[4]) > 0) {
+            $amount = $this->toNumber($line[4]);
+        } elseif ($this->toNumber($line[3]) == 0 && $this->toNumber($line[4]) == 0) {
             $amount = 0;
         } else {
             throw new sfException(sprintf('Amount defined at line "%s" is not an operating or investment cost. Something wrong here.', implode(', ', $line)));
         }
 
+        $c['amount'] = $amount;
 
-        $c->setAmount($amount);
+//        $c->setAmount($amount);
 
         $category = $this->parseCategory($line[1]);
 
-        $c->setCategory($category);
+        $c['Category'] = $category;
+//        $c->setCategory($category);
 
-        if ($this->getCategory('Fuel') === $category) {
+        if ('fuel' === $category) {
+//        if ($this->getCategory('fuel') === $category) {
             $q = $this->toNumber($line[5]);
 
             if (!$q) {
-                throw new sfException(sprintf('Line "%s" appears to be in category fuel, but no quantity is defined.',implode(', ', $line)));
+                throw new sfException(sprintf('Line "%s" appears to be in category fuel, but no quantity is defined.', implode(', ', $line)));
             }
 
-            $c->setQuantity($q);
+            $c['quantity'] = $q;
+//            $c->setQuantity($q);
         }
 
 
+//
+//        $s = '';
+//        $s .= $c->getVehicle()->getName().', ';
+//        $s .= $c->getUser()->getUsername().', ';
+//        $s .= $c->getCategory()->getName().', ';
+//        $s .= $c->getDate().', ';
+//        $s .= $c->getKilometers().', ';
+//        $s .= $c->getAmount().', ';
+//        $s .= $c->getQuantity();
 
-        $s = '';
-        $s .= $c->getVehicle()->getName().', ';
-        $s .= $c->getUser()->getUsername().', ';
-        $s .= $c->getCategory()->getName().', ';
-        $s .= $c->getDate().', ';
-        $s .= $c->getKilometers().', ';
-        $s .= $c->getAmount().', ';
-        $s .= $c->getQuantity();
-
-        return $s;
+        return $c;
     }
 
-    protected function getUser($username) {
-
-        $u = Doctrine_Core::getTable('sfGuardUser')->findOneByUsername($username);
-
-        if (!$u) {
-            throw new sfException(sprintf('User "%s" not found',$username));
-        }
-
-        return $u;
-    }
-
-    protected function getVehicle($name) {
-
-        $v = Doctrine_Core::getTable('Vehicle')->findOneByName($name);
-
-        if (!$v) {
-            throw new sfException(sprintf('Vehicle "%s" not found',$name));
-        }
-
-        return $v;
-    }
-
-    protected function getCategory($name) {
-
-        $v = Doctrine_Core::getTable('Category')->findOneByName($name);
-
-        if (!$v) {
-            throw new sfException(sprintf('Category "%s" not found',$name));
-        }
-
-        return $v;
-    }
+//    protected function getUser($username) {
+//
+//        $u = Doctrine_Core::getTable('sfGuardUser')->findOneByUsername($username);
+//
+//        if (!$u) {
+//            throw new sfException(sprintf('User "%s" not found',$username));
+//        }
+//
+//        return $u;
+//    }
+//    protected function getVehicle($name) {
+//
+//        $v = Doctrine_Core::getTable('Vehicle')->findOneByName($name);
+//
+//        if (!$v) {
+//            throw new sfException(sprintf('Vehicle "%s" not found',$name));
+//        }
+//
+//        return $v;
+//    }
+//
+//    protected function getCategory($name) {
+//
+//        $v = Doctrine_Core::getTable('Category')->findOneByName($name);
+//
+//        if (!$v) {
+//            throw new sfException(sprintf('Category "%s" not found',$name));
+//        }
+//
+//        return $v;
+//    }
 
     protected function parseCategory($param) {
 
@@ -151,103 +211,123 @@ EOF;
         }
 
 
-        if ($this->contains($param,array(
-            'Acquisto',
-            'Ripresa',
-            'Vendita',
-            ))) {
-            return $this->getCategory('Initial investment');
+        if ($this->contains($param, array(
+                    'Acquisto',
+                    'Ripresa',
+                    'Vendita',
+                ))) {
+            return 'purchase';
+//            return $this->getCategory('Initial investment');
         }
 
-        if ($this->contains($param,array(
-            'Rata'
-            ))) {
-            return $this->getCategory('Leasing');
+        if ($this->contains($param, array(
+                    'Rata'
+                ))) {
+            return 'leasing';
+//            return $this->getCategory('Leasing');
         }
 
-        if ($this->contains($param,array(
-            'circolazione',
-            'tass',
-            'vignetta'
-            ))) {
-            return $this->getCategory('Tax');
+        if ($this->contains($param, array(
+                    'circolazione',
+                    'tass',
+                    'vignetta'
+                ))) {
+            return 'taxes';
+//            return $this->getCategory('Tax');
         }
 
-        if ($this->contains($param,array(
-            'servizio',
-            'lavaggio',
-            'cambio',
-            'olio',
-            'sosti',
-            'ammortizzatore',
-            'lampadin',
-            'coprimozzo',
-            'alternatore',
-            'IVA',
-            'preparazione',
-            'montato',
-            'controllo',
-            'blocco',
-            'carroz',
-            'vari',
-            ))) {
-            return $this->getCategory('Maintenance');
+        if ($this->contains($param, array(
+                    'servizio',
+                    'lavaggio',
+                    'cambio',
+                    'olio',
+                    'sosti',
+                    'ammortizzatore',
+                    'lampadin',
+                    'coprimozzo',
+                    'alternatore',
+                    'IVA',
+                    'preparazione',
+                    'montato',
+                    'controllo',
+                    'blocco',
+                    'carroz',
+                    'vari',
+                ))) {
+            return 'maintenance';
+//            return $this->getCategory('Maintenance');
         }
 
-        if ($this->contains($param,array(
-            'Benzina'
-            ))) {
-            return $this->getCategory('Fuel');
+        if ($this->contains($param, array(
+                    'Benzina'
+                ))) {
+            return 'fuel';
+//            return $this->getCategory('Fuel');
         }
 
-        if ($this->contains($param,array(
-            'gomm'
-            ))) {
-            return $this->getCategory('Accessory');
+        if ($this->contains($param, array(
+                    'gomm'
+                ))) {
+            return 'accessories';
+//            return $this->getCategory('Accessory');
         }
 
-        if ($this->contains($param,array(
-            'Assicurazione',
-            'Asicurazione',
-            ))) {
-            return $this->getCategory('Insurance');
+        if ($this->contains($param, array(
+                    'Assicurazione',
+                    'Asicurazione',
+                ))) {
+            return 'insurance';
+//            return $this->getCategory('Insurance');
         }
 
-        if ($this->contains($param,array(
-            'Multa'
-        ))) {
-            return $this->getCategory('Fine');
+        if ($this->contains($param, array(
+                    'Multa'
+                ))) {
+            return 'fines';
+//            return $this->getCategory('Fine');
         }
 
 
-        throw new sfException(sprintf('Cannot find any category for "%s"',$param));
-        
-
+        throw new sfException(sprintf('Cannot find any category for "%s"', $param));
     }
 
-    protected function contains($subject,$keywords) {
+    protected function contains($subject, $keywords) {
 
         $pattern = '';
         foreach ($keywords as $key => $kw) {
-            $pattern .= ($key == 0 ? '' : '|').$kw;
+            $pattern .= ( $key == 0 ? '' : '|') . $kw;
         }
 
-        $pattern = '/'.$pattern.'/i';
+        $pattern = '/' . $pattern . '/i';
 
 
         return preg_match($pattern, $subject);
-
     }
 
     protected function toNumber($string) {
 
         $n = str_replace(',', '', $string);
-        $n = str_replace('-', '0', $string);
+        $n = str_replace('-', '0', $n);
 
         $n = (float) $n;
 
         return $n;
+    }
 
+    protected function getFixtureFile($filename) {
+
+        $fixture = 'fixtures' . DIRECTORY_SEPARATOR . $filename . '.yml';
+
+
+        return $fixture;
+    }
+
+    protected function formatDate($date) {
+
+        $dto = new DateTime($date);
+        $formatted = $dto->format('Y-m-d');
+
+        return $formatted;
     }
 
 }
