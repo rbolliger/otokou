@@ -84,7 +84,6 @@ EOF;
 
             $this->log(sprintf('Read line %d', $id));
 
-//            echo $s . "\n";
         }
 
 
@@ -119,13 +118,6 @@ EOF;
         $c['comment'] = $line[1];
         $c['kilometers'] = $this->toNumber($line[2]);
 
-//        $c = new Charge();
-//
-//        $c->setUser($this->getUser('franz'));
-//        $c->setVehicle($this->getVehicle('Opel Astra Caravan 1.6'));
-//        $c->setDate($line[0]);
-//        $c->setComment($line[1]);
-//        $c->setKilometers($line[2]);
 
         if ($this->toNumber($line[3]) > 0) {
             $amount = $this->toNumber($line[3]);
@@ -139,15 +131,14 @@ EOF;
 
         $c['amount'] = $amount;
 
-//        $c->setAmount($amount);
 
         $category = $this->parseCategory($line[1]);
 
         $c['Category'] = $category;
-//        $c->setCategory($category);
+
 
         if ('fuel' === $category) {
-//        if ($this->getCategory('fuel') === $category) {
+
             $q = $this->toNumber($line[5]);
 
             if (!$q) {
@@ -155,54 +146,12 @@ EOF;
             }
 
             $c['quantity'] = $q;
-//            $c->setQuantity($q);
+
         }
-
-
-//
-//        $s = '';
-//        $s .= $c->getVehicle()->getName().', ';
-//        $s .= $c->getUser()->getUsername().', ';
-//        $s .= $c->getCategory()->getName().', ';
-//        $s .= $c->getDate().', ';
-//        $s .= $c->getKilometers().', ';
-//        $s .= $c->getAmount().', ';
-//        $s .= $c->getQuantity();
 
         return $c;
     }
 
-//    protected function getUser($username) {
-//
-//        $u = Doctrine_Core::getTable('sfGuardUser')->findOneByUsername($username);
-//
-//        if (!$u) {
-//            throw new sfException(sprintf('User "%s" not found',$username));
-//        }
-//
-//        return $u;
-//    }
-//    protected function getVehicle($name) {
-//
-//        $v = Doctrine_Core::getTable('Vehicle')->findOneByName($name);
-//
-//        if (!$v) {
-//            throw new sfException(sprintf('Vehicle "%s" not found',$name));
-//        }
-//
-//        return $v;
-//    }
-//
-//    protected function getCategory($name) {
-//
-//        $v = Doctrine_Core::getTable('Category')->findOneByName($name);
-//
-//        if (!$v) {
-//            throw new sfException(sprintf('Category "%s" not found',$name));
-//        }
-//
-//        return $v;
-//    }
 
     protected function parseCategory($param) {
 
@@ -216,15 +165,15 @@ EOF;
                     'Ripresa',
                     'Vendita',
                 ))) {
+
             return 'purchase';
-//            return $this->getCategory('Initial investment');
         }
 
         if ($this->contains($param, array(
                     'Rata'
                 ))) {
+
             return 'leasing';
-//            return $this->getCategory('Leasing');
         }
 
         if ($this->contains($param, array(
@@ -232,8 +181,8 @@ EOF;
                     'tass',
                     'vignetta'
                 ))) {
+
             return 'taxes';
-//            return $this->getCategory('Tax');
         }
 
         if ($this->contains($param, array(
@@ -254,37 +203,37 @@ EOF;
                     'carroz',
                     'vari',
                 ))) {
+
             return 'maintenance';
-//            return $this->getCategory('Maintenance');
         }
 
         if ($this->contains($param, array(
                     'Benzina'
                 ))) {
+
             return 'fuel';
-//            return $this->getCategory('Fuel');
         }
 
         if ($this->contains($param, array(
                     'gomm'
                 ))) {
+
             return 'accessories';
-//            return $this->getCategory('Accessory');
         }
 
         if ($this->contains($param, array(
                     'Assicurazione',
                     'Asicurazione',
                 ))) {
+
             return 'insurance';
-//            return $this->getCategory('Insurance');
         }
 
         if ($this->contains($param, array(
                     'Multa'
                 ))) {
+
             return 'fines';
-//            return $this->getCategory('Fine');
         }
 
 
