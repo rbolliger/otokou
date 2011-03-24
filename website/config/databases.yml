@@ -2,7 +2,7 @@ all:
   doctrine:
     class: sfDoctrineDatabase
     param:
-      dsn: 'mysql:host=localhost;dbname=otokou'
+      dsn: 'mysql:host=localhost;dbname=otokou_dev'
       username: root
       password: volantino
       attributes:
