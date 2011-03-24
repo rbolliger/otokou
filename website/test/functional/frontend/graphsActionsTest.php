@@ -305,7 +305,31 @@ $browser->
           with('doctrine')->
             begin()->
                 check('Graph',array('user_id' => $browser->getUserId('user_graphs')),2)->
-            end();
+            end()->
+        
+
+        info('4 - Cost per year')->
+         get('/user_graphs/charts/cost_annual')->
+         with('request')->begin()->
+            isParameter('module', 'graphs')->
+            isParameter('action', 'costPerYear')->
+          end()->
+        call('/user_graphs/charts/filter?_reset','post',array('_with_csrf' => true))->
+            with('response')->
+                begin()->
+                    isRedirected()->
+                    followRedirect()->
+                end()->
+            with('response')->
+                begin()->
+                    checkElement('img',true)->
+                    checkElement('#filter_values_vehicle_display:contains("single")]',true)->
+                    checkElement('#filter_values_category_display:contains("stacked")]',true)->
+                    checkElement('#filter_values_graph_name:contains("cost_per_year")]',true)->
+                    checkElement('#filter_values_range_type:contains("date")]',true)->
+                    checkElement('table#filter_values tbody tr',4)->
+                end()
+          
 ;
 
 

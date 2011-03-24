@@ -59,6 +59,34 @@ class graphsActions extends sfActions {
 
     }
 
+    public function executeCostPerYear(sfWebRequest $request) {
+
+        $this->setPreviousTemplate('costPerKm');
+        $this->setPreviousAction('costPerYear');
+
+
+        $filters = $this->getFilters();
+
+        $filters = $this->updateFilterFieldIfEmpty($filters, 'vehicle_display', 'single');
+        $filters = $this->updateFilterFieldIfEmpty($filters, 'category_display', 'stacked');
+        $filters = $this->updateFilterFieldIfEmpty($filters, 'range_type', 'date');
+
+        $this->setFilters($filters);
+
+        $this->setFilterField('graph_name', 'cost_per_year');
+
+
+        $options = array(
+            'title' => 'Total Cost [CHF/year]',
+        );
+        $this->gb = new GraphBuilderPChart($this->getGBData(),$options);
+
+        $this->data = $this->getData();
+
+        $this->setTemplate('costPerKm');
+
+    }
+
     public function executeFilter(sfWebRequest $request) {
 
         if ($request->hasParameter('_reset')) {

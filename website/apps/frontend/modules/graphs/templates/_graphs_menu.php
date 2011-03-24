@@ -2,11 +2,15 @@
 
 $menu = new ioMenu('graphs_menu');
 $menu->addChild('Costs');
+$menu->addChild('Travel');
 $menu->addChild('Fuel consumption');
 
 $menu['Costs']->addChild('Cost per km','@graph_cost_per_km');
-$menu['Costs']->addChild('Cost per year','');
-$menu['Costs']->addChild('Cost per month','');
+$menu['Costs']->addChild('Cost per year','@graph_cost_per_year');
+$menu['Costs']->addChild('Cost repartition','');
+
+$menu['Travel']->addChild('Annual travel','');
+$menu['Travel']->addChild('Monthly travel','');
 
 $menu['Fuel consumption']->addChild('Litres per 100 km','');
 $menu['Fuel consumption']->addChild('Litres per month','');

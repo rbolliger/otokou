@@ -19,6 +19,13 @@ graph_cost_per_km:
   requirements:
     sf_method: [ get ]
 
+graph_cost_per_year:
+  url: /:username/charts/cost_annual
+  class: otkWithUserRoute
+  param: {module: graphs, action: costPerYear }
+  requirements:
+    sf_method: [ get ]
+
 
 vehicle:
   class: sfDoctrineRouteCollection

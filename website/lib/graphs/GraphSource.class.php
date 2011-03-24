@@ -31,6 +31,11 @@ class GraphSource {
 
     public function getSeriesDataByColumn($column, $type='number') {
 
+        if (!in_array($type,array('number','datetime'))) {
+            throw new sfException(sprintf('Unknown type "%s"',$type));
+        }
+
+
         if (!$column) {
             throw new sfException('No column defined. Cannot get series data!');
         }
@@ -47,7 +52,8 @@ class GraphSource {
 
 
             $data = array();
-            foreach ($raw_data as $charge) {
+            foreach ($raw_data as $key => $charge) {
+
 
 
                 $v = $charge->get($column);
@@ -59,7 +65,7 @@ class GraphSource {
                     $v = strtotime($v);
                 }
 
-                $data[] = $v;
+                $data[$key] = $v;
             }
 
             $series_data[$s] = $data;
@@ -205,23 +211,6 @@ class GraphSource {
         return $params;
     }
 
-    public function getYAxisDataByColumn($xi, $x_column, $y_column, $x_type='number', $y_type='number') {
-
-//
-//        $x_series = $this->getSeriesDataByColumn($x_column,$x_type);
-//        $y_series = $this->getSeriesDataByColumn($y_column,$y_type);
-//
-//
-//        $yi = array();
-//        foreach ($x_series as $key => $x_values) {
-//
-//            $MIL = new Math_Interpolation_Lagrange($x_values, $y_series[$key], $xi);
-//
-//            $yi[$key] = $MIL->getInterpolants();
-//        }
-//
-//        return $yi;
-    }
 
     public function getSeries() {
         $series = $this->getParam('series');
@@ -264,6 +253,17 @@ class GraphSource {
 
 
         return $filtered_array;
+    }
+
+    public static function filterValuesOutsideRange($array,$min,$max) {
+
+        $filtered_array = array_filter($array, function ($element) use ($min, $max) {
+                            return ($element <= $max && $element >= $min);
+                        });
+
+
+        return $filtered_array;
+
     }
 
 }

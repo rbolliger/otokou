@@ -18,7 +18,14 @@ class GraphBuilderPChart extends GraphBuilder {
         switch ($name) {
             case 'cost_per_km':
                 $data = $this->buildCostPerKmGraphData();
+                $picture = $this->buildPicture($data);
+                $chart = $this->plotScatterChart($picture, $data);
+                break;
 
+            case 'cost_per_year':
+                $data = $this->buildCostPerYearGraphData();
+                $picture = $this->buildPicture($data);
+                $picture = $this->plotBarChart($picture);
                 break;
 
             default:
@@ -26,11 +33,6 @@ class GraphBuilderPChart extends GraphBuilder {
                 throw new sfException(sprintf('Unknown graph name %s', $name));
                 break;
         }
-
-
-        $picture = $this->buildPicture($data);
-
-        $chart = $this->plotChart($picture, $data);
 
         $picture->render($this->getGraphPath('system'));
 
@@ -62,7 +64,7 @@ class GraphBuilderPChart extends GraphBuilder {
         return $myPicture;
     }
 
-    protected function plotChart(pImage $picture, pData $data) {
+    protected function plotScatterChart(pImage $picture, pData $data) {
 
 
 
@@ -115,6 +117,62 @@ class GraphBuilderPChart extends GraphBuilder {
             "Family" => LEGEND_FAMILY_LINE,
         );
         $myScatter->drawScatterLegend(655, 50, $Config);
+    }
+
+    protected function plotBarChart(pImage $picture) {
+
+        $picture->setShadow(FALSE);
+
+        $Settings = array(
+            "Pos" => SCALE_POS_LEFTRIGHT,
+            "Mode" => SCALE_MODE_FLOATING,
+            "DrawXLines" => FALSE,
+            "DrawYLines" => ALL,
+            "GridTicks" => 1,
+            "GridR" => 168,
+            "GridG" => 186,
+            "GridB" => 203,
+            "GridAlpha" => 30,
+            "AxisR" => 40,
+            "AxisG" => 40,
+            "AxisB" => 43,
+            "AxisAlpha" => 100,
+            "TickR" => 40,
+            "TickG" => 40,
+            "TickB" => 43,
+            "TickAlpha" => 50,
+            "DrawSubTicks" => 1,
+            "SubTickR" => 168,
+            "SubTickG" => 186,
+            "SubTickB" => 203,
+            "SubTickAlpha" => 100,
+            "DrawArrows" => false,
+            "CycleBackground" => false,
+        );
+        $picture->drawScale($Settings);
+
+        $options = array(
+            'AroundZero' => true,
+            'Draw0Line'  => true,
+        );
+        $picture->drawBarChart($options);
+
+        $Config = array(
+            "FontName" => sfConfig::get('sf_web_dir') . "/fonts/Ubuntu-R.ttf",
+            "FontSize" => 6,
+            "FontR" => 40,
+            "FontG" => 40,
+            "FontB" => 43,
+            "Margin" => 6,
+            "Alpha" => 100,
+            "BoxSize" => 5,
+            "Style" => LEGEND_NOBORDER,
+            "Mode" => LEGEND_VERTICAL,
+            "Family" => LEGEND_FAMILY_LINE,
+        );
+        $picture->drawLegend(655, 50, $Config);
+
+        return $picture;
     }
 
     protected function buildCostPerKmGraphData() {
@@ -191,6 +249,83 @@ class GraphBuilderPChart extends GraphBuilder {
         $myData->setAxisName(1, 'Cost [CHF/km]');
         $myData->setAxisXY(1, AXIS_Y);
         $myData->setAxisPosition(1, AXIS_POSITION_LEFT);
+
+        return $myData;
+    }
+
+    protected function buildCostPerYearGraphData() {
+
+        $gs = $this->getGraphSource();
+
+        $myData = new pData();
+
+        // x-axis
+        $dates = $gs->getSeriesDataByColumn('date', 'datetime');
+
+        $date_max = array();
+        $date_min = array();
+        foreach ($dates as $d) {
+            $date_max[] = max($d);
+            $date_min[] = min($d);
+        }
+
+        $date_max = max($date_max);
+        $date_min = min($date_min);
+
+
+        $year_min = date('Y', $date_min);
+        $year_max = date('Y', $date_max);
+        $years = range($year_min, $year_max);
+
+        // building limits for each x-axis serie
+        $dates_range = array();
+        foreach (range($year_min, $year_max + 1) as $year) {
+            $dates_range[] = strtotime($year . 'jan-1');
+        }
+
+
+        $x_id = "x-axis";
+        $myData->addPoints($years, $x_id);
+        $myData->setSerieDescription($x_id, 'Years');
+        $myData->setAbscissa($x_id);
+
+
+        // Y-axis
+        $costs = $gs->getSeriesDataByColumn('amount', 'number');
+        $y_series = $gs->getSeries();
+
+        $myData->setAxisName(0, "Annual costs [CHF/year]");
+
+        $y_data = array();
+        foreach ($dates as $skey => $serie) {
+
+            for ($index = 0; $index < count($dates_range) - 1; $index++) {
+                // removing x elements that are larger than bound
+
+                $filter = $gs->filterValuesOutsideRange($serie, $dates_range[$index], $dates_range[$index + 1]);
+
+
+
+                if (!$filter) {
+                    $y_cost = 0;
+                } else {
+
+                    // getting corresponding y elements
+                    $y_filtered = array_intersect_key($costs[$skey], $filter);
+
+                    $y_cost = array_sum($y_filtered);
+                }
+
+                $y_data[$skey][$index] = $y_cost;
+            }
+
+            $y_id = $y_series[$skey]->getId();
+            $myData->addPoints($y_data[$skey], $y_id);
+            $myData->setSerieDescription($y_id, $y_series[$skey]->getLabel());
+        }
+
+
+
 
         return $myData;
     }
