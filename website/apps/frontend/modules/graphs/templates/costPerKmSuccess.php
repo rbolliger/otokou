@@ -12,9 +12,8 @@ include_partial('filters', array('filters' => $filters));
 end_slot();
 ?>
 
-
-<h2>Please, select on the left menu a graph you want to display</h2>
-
+<?php $gb = $sf_data->getRaw('gb');?>
+<?php if($gb) { echo $gb->display(); } ?>
 
 <?php include_partial('debug',array('data' => $data,'gb' => $gb)) ?>
 

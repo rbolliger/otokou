@@ -166,3 +166,14 @@ Charge:
     amount:      <?php echo $i."\n" ?>
     comment: ''
 <?php endfor ?>
+
+<?php for ($i = 1; $i <= 150; $i++): ?>
+  Charge_user_graphs_<?php echo $i ?>:
+    Vehicle: car_graphs_1
+    User: user_graphs
+    Category: taxes
+    date: '2011-01-03'
+    kilometers: <?php echo rand(1,10000)."\n" ?>
+    amount:      <?php echo $i."\n" ?>
+    comment: ''
+<?php endfor ?>

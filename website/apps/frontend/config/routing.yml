@@ -1,16 +1,23 @@
 graph_index:
-  url: /:username/graphs
+  url: /:username/charts
   class: otkWithUserRoute
   param: {module: graphs, action: index }
   requirements:
     sf_method: [ get, post, head ]
 
 graph_filter:
-  url: /:username/graphs/filter
+  url: /:username/charts/filter
   class: otkWithUserRoute
   param: {module: graphs, action: filter }
   requirements:
     sf_method: [post]
+
+graph_cost_per_km:
+  url: /:username/charts/cost_per_km
+  class: otkWithUserRoute
+  param: {module: graphs, action: costPerKm }
+  requirements:
+    sf_method: [ get ]
 
 
 vehicle:

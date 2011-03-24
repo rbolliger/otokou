@@ -17,15 +17,26 @@ class graphsActions extends sfActions {
 
     }
 
+    public function executeIndex(sfWebRequest $request) {
+
+        $this->setPreviousTemplate('index');
+        $this->setPreviousAction('index');
+
+        $options = array();
+        $this->gb = new GraphBuilderPChart($this->getGBData(),$options);
+
+        $this->data = $this->getData();
+    }
+
     /**
      * Executes index action
      *
      * @param sfRequest $request A request object
      */
-    public function executeIndex(sfWebRequest $request) {
+    public function executeCostPerKm(sfWebRequest $request) {
 
-        $this->setPreviousTemplate('index');
-        $this->setPreviousAction('index');
+        $this->setPreviousTemplate('costPerKm');
+        $this->setPreviousAction('costPerKm');
 
 
         $filters = $this->getFilters();
@@ -42,8 +53,6 @@ class graphsActions extends sfActions {
         $options = array(
             'title' => 'Relative Cost [CHF/km]',
         );
-
-
         $this->gb = new GraphBuilderPChart($this->getGBData(),$options);
 
         $this->data = $this->getData();
