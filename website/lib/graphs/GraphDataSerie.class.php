@@ -7,7 +7,7 @@
 class GraphDataSerie {
 
     protected $params;
-    protected static $fields = array('raw_data','id','label');
+    protected static $fields = array('raw_data','id','label','vehicle_id','category_id');
 
 
     public function  __construct(array $params) {
@@ -59,6 +59,18 @@ class GraphDataSerie {
         $this->setParameter('raw_data',$value);
     }
 
+    public function setVehicleId($value) {
+
+        $this->setParameter('vehicle_id',$value);
+    }
+
+    public function setCategoryId($value) {
+
+        $this->setParameter('category_id',$value);
+    }
+
+
+
 
     public function getId() {
 
@@ -73,6 +85,16 @@ class GraphDataSerie {
     public function getRawData() {
 
         return $this->getParameter('raw_data');
+    }
+
+    public function getVehicleId() {
+
+        return $this->getParameter('vehicle_id');
+    }
+
+    public function getCategoryId() {
+
+        return $this->getParameter('category_id');
     }
 
 

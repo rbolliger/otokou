@@ -259,6 +259,14 @@ class GraphBuilder {
         return $this->graph_query;
     }
 
+    /**
+     * Builds and stores a GraphSource object, containing the raw data required to
+     * plot the graph.
+     *
+     * @see GraphSource
+     *
+     * @return true of false, depending if a GraphSource has been correctly built.
+     */
     public function buildGraphSource() {
 
         $gs = new GraphSource();
@@ -389,6 +397,8 @@ class GraphBuilder {
                 'id' => 'Serie_' . $ns,
                 'raw_data' => $charges,
                 'label' => $label,
+                'vehicle_id' => $vid,
+                'category_id' => $cid,
             );
 
             $series[$ns] = new GraphDataSerie($params);
@@ -402,6 +412,12 @@ class GraphBuilder {
         return $series;
     }
 
+    /**
+     * Returns a GraphSource object, containing the raw data required to build the graph.
+     * 
+     * @return GraphSource
+     * @see GraphSource
+     */
     public function getGraphSource() {
 
         if (!$this->graph_source) {
@@ -636,7 +652,7 @@ class GraphBuilder {
 
         $nb_vehicles = count($vehicles);
 
-        // If no vehicles are specified by the suer, we get all vehicles
+        // If no vehicles are specified by the user, we get all vehicles
         if (!$nb_vehicles) {
             $q = Doctrine_Core::getTable('Vehicle')->getVehiclesByUserIdQuery($this->getParameter('user_id'));
 
@@ -648,8 +664,8 @@ class GraphBuilder {
         }
 
         return $params = array(
-    'list' => $vehicles,
-    'count' => $nb_vehicles,
+            'list' => $vehicles,
+            'count' => $nb_vehicles,
         );
     }
 
@@ -663,15 +679,20 @@ class GraphBuilder {
         if ($nb_categories == 0) {
             $category_objects = Doctrine_Core::getTable('Category')->findAll(Doctrine_Core::HYDRATE_ARRAY);
 
+            $categories = array();
+            $names = array();
+
             foreach ($category_objects as $key => $values) {
                 $categories[] = $values['id'];
+                $names[] = $values['name'];
             }
             $nb_categories = count($categories);
         }
 
         return $params = array(
-    'list' => $categories,
-    'count' => $nb_categories,
+            'list' => $categories,
+            'count' => $nb_categories,
+            'names' => $names,
         );
     }
 

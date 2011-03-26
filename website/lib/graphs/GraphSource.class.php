@@ -212,6 +212,12 @@ class GraphSource {
     }
 
 
+    /**
+     * Returns data series as an array of GraphDataSerie
+     * 
+     * @return array of GraphDataSerie
+     * @see GraphDataSerie
+     */
     public function getSeries() {
         $series = $this->getParam('series');
         if (!$series) {

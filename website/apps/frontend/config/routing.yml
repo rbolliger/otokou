@@ -26,6 +26,13 @@ graph_cost_per_year:
   requirements:
     sf_method: [ get ]
 
+graph_cost_allocation:
+  url: /:username/charts/cost_allocation
+  class: otkWithUserRoute
+  param: {module: graphs, action: costPie }
+  requirements:
+    sf_method: [ get ]
+
 
 vehicle:
   class: sfDoctrineRouteCollection

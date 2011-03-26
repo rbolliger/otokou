@@ -27,3 +27,16 @@ Charge:
     comment: ''
     quantity: <?php echo $i."\n" ?>
 <?php endfor ?>
+
+
+<?php for ($i = 0; $i <= 50; $i++): ?>
+  Charge_<?php echo $i ?>:
+    Vehicle: ruf_v2
+    User: ruf
+    Category: fuel
+    date: '2011-01-03'
+    kilometers: '520.00'
+    amount:      <?php echo $i."\n" ?>
+    comment: ''
+    quantity: <?php echo $i."\n" ?>
+<?php endfor ?>

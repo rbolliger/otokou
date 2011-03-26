@@ -28,6 +28,24 @@ class GraphBuilderPChart extends GraphBuilder {
                 $picture = $this->plotBarChart($picture);
                 break;
 
+            case 'cost_pie':
+                $data = $this->buildCostPieGraphData();
+
+                $raw_data = $data->getData();
+                // -1 to remove abscissa
+                $n_series = count($raw_data['Series'])-1;
+
+                $options = array(
+                    'chart_height' => 310,
+                    'graph_area_height' => 310 * ceil(($n_series + 1) / 2),
+                    'n_series' => $n_series,
+                    'legend_height' => 0,
+                    'x_label_height' => 0,
+                );
+                $picture = $this->buildPicture($data, $options);
+                $pie = $this->plotPieChart($picture,$data,$options);
+                break;
+
             default:
 
                 throw new sfException(sprintf('Unknown graph name %s', $name));
@@ -41,24 +59,30 @@ class GraphBuilderPChart extends GraphBuilder {
         return $done;
     }
 
-    protected function buildPicture(pData $data) {
+    protected function buildPicture(pData $data, $options = array()) {
 
+                   
+        $title_height = isset($options['title_height']) ? $options['title_height'] : 50;
+        $ga_height = isset($options['graph_area_height']) ? $options['graph_area_height'] : 310;
+        $x_label_height = isset($options['x_label_height']) ? $options['x_label_height'] : 50;
 
+        $height = $title_height + $ga_height + $x_label_height;
+        $width = 900;
         // Color scheme from kuler "Q10 Chart"
 
 
-        $myPicture = new pImage(900, 475, $data);
-        //$myPicture->drawRectangle(0, 0, 899, 474, array("R" => 0, "G" => 0, "B" => 0));
+        $myPicture = new pImage($width, $height, $data);
+        $myPicture->drawRectangle(0, 0, $width-1, $height-1, array("R" => 0, "G" => 0, "B" => 0));
 
         $myPicture->setShadow(TRUE, array("X" => 1, "Y" => 1, "R" => 50, "G" => 50, "B" => 50, "Alpha" => 20));
 
         $myPicture->setFontProperties(array("FontName" => sfConfig::get('sf_web_dir') . "/fonts/Ubuntu-R.ttf", "FontSize" => 14));
         $TextSettings = array("Align" => TEXT_ALIGN_MIDDLEMIDDLE
             , "R" => 40, "G" => 40, "B" => 43);
-        $myPicture->drawText(350, 25, $this->getOption('title'), $TextSettings);
+        $myPicture->drawText($width/2, $title_height/2, $this->getOption('title'), $TextSettings);
 
         $myPicture->setShadow(FALSE);
-        $myPicture->setGraphArea(90, 50, 649, 360);
+        $myPicture->setGraphArea(90, 50, 649, $ga_height);
         $myPicture->setFontProperties(array("R" => 40, "G" => 40, "B" => 43, "FontName" => sfConfig::get('sf_web_dir') . "/fonts/DejaVuSans-ExtraLight.ttf", "FontSize" => 9));
 
         return $myPicture;
@@ -119,6 +143,77 @@ class GraphBuilderPChart extends GraphBuilder {
         $myScatter->drawScatterLegend(655, 50, $Config);
     }
 
+    protected function plotPieChart(pImage $picture, pData $data, $options = array()) {
+
+
+        $pie = new pPie($picture, $data);
+
+        $raw_data = $data->getData();
+        $n_series = $options['n_series'];
+        $series_names = array_keys($raw_data['Series']);
+        $chart_height = $options['chart_height'];
+        $title_height = isset($options['title_height']) ? $options['title_height'] : 50;
+
+
+        $c = -1;
+        foreach ($series_names as $key => $id) {
+
+            if ('labels' == $id) {
+                continue;
+            }
+
+            $c++;
+
+            $data->setSerieDrawable($id, true);
+
+            $posX = ($c == 0) ? 225 :
+                (($c+1) % 2 == 1 ? 225+450 : 225);
+
+            $posY = ($c == 0) ? $chart_height/2 :
+                $chart_height/2 + $chart_height*(floor($c/2)+ $c % 2);
+            $posY = $title_height + $posY; // title
+
+            $options = array(
+                'Radius' => $chart_height/2*.9,
+                'SkewFactore' => 0.5,
+                'SliceHeight' => 10,
+                'DataGapAngle'=>0,
+                //'DataGapRadius'=>$chart_height/2/10,
+                'Border'=>TRUE,
+                'BorderR' => 255,
+                'BorderG' => 255,
+                'BorderB' => 255,
+                'SecondPass' => true,
+                'WriteValues' => true,
+                'ValueR' => 0,
+                'ValueG' => 0,
+                'ValueB' => 0,
+                );
+            $pie->draw3DPie($posX, $posY, $options);
+
+            $data->setSerieDrawable($id, false);
+        }
+
+
+
+
+
+        $Config = array(
+            "FontName" => sfConfig::get('sf_web_dir') . "/fonts/Ubuntu-R.ttf",
+            "FontSize" => 6,
+            "FontR" => 40,
+            "FontG" => 40,
+            "FontB" => 43,
+            "Margin" => 6,
+            "Alpha" => 100,
+            "BoxSize" => 5,
+            "Style" => LEGEND_NOBORDER,
+            "Mode" => LEGEND_VERTICAL,
+            "Family" => LEGEND_FAMILY_LINE,
+        );
+        $pie->drawPieLegend(450, 50, $Config);
+    }
+
     protected function plotBarChart(pImage $picture) {
 
         $picture->setShadow(FALSE);
@@ -153,7 +248,7 @@ class GraphBuilderPChart extends GraphBuilder {
 
         $options = array(
             'AroundZero' => true,
-            'Draw0Line'  => true,
+            'Draw0Line' => true,
         );
         $picture->drawBarChart($options);
 
@@ -324,7 +419,64 @@ class GraphBuilderPChart extends GraphBuilder {
             $myData->setSerieDescription($y_id, $y_series[$skey]->getLabel());
         }
 
+        return $myData;
+    }
 
+    public function buildCostPieGraphData() {
+
+        $myData = new pData();
+
+        // get data series
+        $gs = $this->getGraphSource();
+        $series = $gs->getSeries();
+
+        // get amounts for each serie
+        $amounts = $gs->getSeriesDataByColumn('amount', 'number');
+
+        // list of all the requested categories and vehicles
+        $categories = $this->getCategoriesList();
+        $vehicles = $this->getVehiclesList();
+
+        // initialization: a cell for each initially requested category and vehicle
+        $data = array_combine($categories['list'], array_fill(0, $categories['count'], 0));
+        $data = array_combine($vehicles['list'], array_fill(0, $vehicles['count'], $data));
+
+        // filling $data with the real values
+        foreach ($series as $key => $serie) {
+            $vid = $serie->getVehicleId();
+            // if $vid has more than one element, vehicles are stacked, so we got only one chart
+            $vid = count($vid) > 1 ? 1 : $vid;
+
+            $cid = $serie->getCategoryId();
+
+            $value = array_sum($amounts[$key]);
+
+            $data[$vid][$cid] = $value;
+        }
+
+
+        // building chart data for each vehicle
+        $counter = -1;
+        foreach ($data as $key => $value) {
+
+            $counter++;
+
+            $points = array_values($data[$key]);
+
+            // If all values are VOID, we skip the serie
+            if ($points === array_fill(0, count($points), 0)) {
+                continue;
+            }
+
+            $id = $series[$counter]->getId();
+            $myData->addPoints($points, $id);
+            $myData->setSerieDescription($id, $series[$counter]->getLabel());
+            $myData->setSerieDrawable($id, false); // series will be activated in plotPieChart
+        }
+
+        // adding labels
+        $myData->addPoints($categories['names'], 'labels');
+        $myData->setAbscissa('labels');
 
 
         return $myData;

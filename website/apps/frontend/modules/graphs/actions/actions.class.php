@@ -17,6 +17,14 @@ class graphsActions extends sfActions {
 
     }
 
+    public function postExecute() {
+        parent::postExecute();
+
+        $this->data = $this->getData();
+
+    }
+
+
     public function executeIndex(sfWebRequest $request) {
 
         $this->setPreviousTemplate('index');
@@ -25,7 +33,6 @@ class graphsActions extends sfActions {
         $options = array();
         $this->gb = new GraphBuilderPChart($this->getGBData(),$options);
 
-        $this->data = $this->getData();
     }
 
     /**
@@ -55,8 +62,6 @@ class graphsActions extends sfActions {
         );
         $this->gb = new GraphBuilderPChart($this->getGBData(),$options);
 
-        $this->data = $this->getData();
-
     }
 
     public function executeCostPerYear(sfWebRequest $request) {
@@ -81,9 +86,33 @@ class graphsActions extends sfActions {
         );
         $this->gb = new GraphBuilderPChart($this->getGBData(),$options);
 
-        $this->data = $this->getData();
 
         $this->setTemplate('costPerKm');
+
+    }
+
+    public function executeCostPie(sfWebRequest $request) {
+
+        $this->setPreviousTemplate('costPerKm');
+        $this->setPreviousAction('costPie');
+        $this->setTemplate('costPerKm');
+
+        // updating filters
+        $filters = $this->getFilters();
+
+        $filters = $this->updateFilterFieldIfEmpty($filters, 'vehicle_display', 'single');
+
+        $this->setFilters($filters);
+
+        $this->setFilterField('category_display', 'single'); // forced
+        $this->setFilterField('graph_name', 'cost_pie');
+
+        $options = array(
+            'title' => 'Cost allocation [CHF]',
+        );
+        $this->gb = new GraphBuilderPChart($this->getGBData(),$options);
+
+
 
     }
 
@@ -107,7 +136,6 @@ class graphsActions extends sfActions {
         }
 
 
-        $this->data = $this->getData();
         $this->gb = array();
         $this->setTemplate($this->getPreviousTemplate());
     }

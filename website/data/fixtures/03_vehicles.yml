@@ -4,6 +4,10 @@ Vehicle:
     name: VW touran 1.4 TSI
     User: ruf
 
+  ruf_v2:
+    name: ruf vehicle 2
+    User: ruf
+
   astra:
     name: Opel Astra Caravan 1.6
     User: franz

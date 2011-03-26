@@ -60,6 +60,11 @@
      $LabelG		= isset($Format["LabelG"]) ? $Format["LabelG"] : 0;
      $LabelB		= isset($Format["LabelB"]) ? $Format["LabelB"] : 0;
      $LabelAlpha	= isset($Format["LabelAlpha"]) ? $Format["LabelAlpha"] : 100;
+     $WriteValues	= isset($Format["WriteValues"]) ? $Format["WriteValues"] : FALSE;
+     $ValueR		= isset($Format["ValueR"]) ? $Format["ValueR"] : 255;
+     $ValueG		= isset($Format["ValueG"]) ? $Format["ValueG"] : 255;
+     $ValueB		= isset($Format["ValueB"]) ? $Format["ValueB"] : 255;
+     $ValueAlpha	= isset($Format["ValueAlpha"]) ? $Format["ValueAlpha"] : 100;
 
      /* Data Processing */
      $Data    = $this->pDataObject->getData();
@@ -279,7 +284,7 @@
      /* Try to find the data serie */
      $DataSerie = "";
      foreach ($Data["Series"] as $SerieName => $SerieData)
-      { if ( $SerieName != $Data["Abscissa"]) { $DataSerie = $SerieName; } }
+      { if ( $SerieName != $Data["Abscissa"] && $SerieData['isDrawable']) { $DataSerie = $SerieName; break;} }
 
      /* Do we have data to compute? */
      if ( $DataSerie == "" ) { return(PIE_NO_DATASERIE); }
