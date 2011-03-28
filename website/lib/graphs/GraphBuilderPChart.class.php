@@ -33,7 +33,7 @@ class GraphBuilderPChart extends GraphBuilder {
 
                 $raw_data = $data->getData();
                 // -1 to remove abscissa
-                $n_series = count($raw_data['Series'])-1;
+                $n_series = count($raw_data['Series']) - 1;
 
                 $options = array(
                     'chart_height' => 310,
@@ -43,7 +43,7 @@ class GraphBuilderPChart extends GraphBuilder {
                     'x_label_height' => 0,
                 );
                 $picture = $this->buildPicture($data, $options);
-                $pie = $this->plotPieChart($picture,$data,$options);
+                $pie = $this->plotPieChart($picture, $data, $options);
                 break;
 
             default:
@@ -61,7 +61,7 @@ class GraphBuilderPChart extends GraphBuilder {
 
     protected function buildPicture(pData $data, $options = array()) {
 
-                   
+
         $title_height = isset($options['title_height']) ? $options['title_height'] : 50;
         $ga_height = isset($options['graph_area_height']) ? $options['graph_area_height'] : 310;
         $x_label_height = isset($options['x_label_height']) ? $options['x_label_height'] : 50;
@@ -72,14 +72,14 @@ class GraphBuilderPChart extends GraphBuilder {
 
 
         $myPicture = new pImage($width, $height, $data);
-        $myPicture->drawRectangle(0, 0, $width-1, $height-1, array("R" => 0, "G" => 0, "B" => 0));
+        $myPicture->drawRectangle(0, 0, $width - 1, $height - 1, array("R" => 0, "G" => 0, "B" => 0));
 
         $myPicture->setShadow(TRUE, array("X" => 1, "Y" => 1, "R" => 50, "G" => 50, "B" => 50, "Alpha" => 20));
 
         $myPicture->setFontProperties(array("FontName" => sfConfig::get('sf_web_dir') . "/fonts/Ubuntu-R.ttf", "FontSize" => 14));
         $TextSettings = array("Align" => TEXT_ALIGN_MIDDLEMIDDLE
             , "R" => 40, "G" => 40, "B" => 43);
-        $myPicture->drawText($width/2, $title_height/2, $this->getOption('title'), $TextSettings);
+        $myPicture->drawText($width / 2, $title_height / 2, $this->getOption('title'), $TextSettings);
 
         $myPicture->setShadow(FALSE);
         $myPicture->setGraphArea(90, 50, 649, $ga_height);
@@ -167,19 +167,19 @@ class GraphBuilderPChart extends GraphBuilder {
             $data->setSerieDrawable($id, true);
 
             $posX = ($c == 0) ? 225 :
-                (($c+1) % 2 == 1 ? 225+450 : 225);
+                    (($c + 1) % 2 == 1 ? 225 + 450 : 225);
 
-            $posY = ($c == 0) ? $chart_height/2 :
-                $chart_height/2 + $chart_height*(floor($c/2)+ $c % 2);
+            $posY = ($c == 0) ? $chart_height / 2 :
+                    $chart_height / 2 + $chart_height * (floor($c / 2) + $c % 2);
             $posY = $title_height + $posY; // title
 
             $options = array(
-                'Radius' => $chart_height/2*.9,
+                'Radius' => $chart_height / 2 * .9,
                 'SkewFactore' => 0.5,
                 'SliceHeight' => 10,
-                'DataGapAngle'=>0,
+                'DataGapAngle' => 0,
                 //'DataGapRadius'=>$chart_height/2/10,
-                'Border'=>TRUE,
+                'Border' => TRUE,
                 'BorderR' => 255,
                 'BorderG' => 255,
                 'BorderB' => 255,
@@ -188,10 +188,15 @@ class GraphBuilderPChart extends GraphBuilder {
                 'ValueR' => 0,
                 'ValueG' => 0,
                 'ValueB' => 0,
-                );
+            );
             $pie->draw3DPie($posX, $posY, $options);
 
             $data->setSerieDrawable($id, false);
+
+
+            $TextSettings = array("Align" => TEXT_ALIGN_MIDDLEMIDDLE
+                , "R" => 40, "G" => 40, "B" => 43);
+            $picture->drawText($posX, $posY-$chart_height/2*.9, $raw_data['Series'][$id]['Description'], $TextSettings);
         }
 
 
@@ -442,8 +447,12 @@ class GraphBuilderPChart extends GraphBuilder {
         $data = array_combine($vehicles['list'], array_fill(0, $vehicles['count'], $data));
 
         // filling $data with the real values
+        $description = array();
         foreach ($series as $key => $serie) {
             $vid = $serie->getVehicleId();
+
+            $description[] = count($vid) > 1 ? 'All vehicles' : Doctrine_Core::getTable('Vehicle')->findOneById($vid)->getName();
+
             // if $vid has more than one element, vehicles are stacked, so we got only one chart
             $vid = count($vid) > 1 ? 1 : $vid;
 
@@ -468,9 +477,10 @@ class GraphBuilderPChart extends GraphBuilder {
                 continue;
             }
 
+
             $id = $series[$counter]->getId();
             $myData->addPoints($points, $id);
-            $myData->setSerieDescription($id, $series[$counter]->getLabel());
+            $myData->setSerieDescription($id, $description[$counter]);
             $myData->setSerieDrawable($id, false); // series will be activated in plotPieChart
         }
 
