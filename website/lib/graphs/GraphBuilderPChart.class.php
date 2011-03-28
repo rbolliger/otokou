@@ -46,6 +46,12 @@ class GraphBuilderPChart extends GraphBuilder {
                 $pie = $this->plotPieChart($picture, $data, $options);
                 break;
 
+            case 'trip_annual':
+                $data = $this->buildTripAnnualGraphData();
+                $picture = $this->buildPicture($data);
+                $picture = $this->plotBarChart($picture);
+                break;
+
             default:
 
                 throw new sfException(sprintf('Unknown graph name %s', $name));
@@ -362,30 +368,11 @@ class GraphBuilderPChart extends GraphBuilder {
         // x-axis
         $dates = $gs->getSeriesDataByColumn('date', 'datetime');
 
-        $date_max = array();
-        $date_min = array();
-        foreach ($dates as $d) {
-            $date_max[] = max($d);
-            $date_min[] = min($d);
-        }
-
-        $date_max = max($date_max);
-        $date_min = min($date_min);
-
-
-        $year_min = date('Y', $date_min);
-        $year_max = date('Y', $date_max);
-        $years = range($year_min, $year_max);
-
-        // building limits for each x-axis serie
-        $dates_range = array();
-        foreach (range($year_min, $year_max + 1) as $year) {
-            $dates_range[] = strtotime($year . 'jan-1');
-        }
+        $x_dates = $gs->buildXAxisDataByDateRange($dates);
 
 
         $x_id = "x-axis";
-        $myData->addPoints($years, $x_id);
+        $myData->addPoints($x_dates['years'], $x_id);
         $myData->setSerieDescription($x_id, 'Years');
         $myData->setAbscissa($x_id);
 
@@ -399,10 +386,10 @@ class GraphBuilderPChart extends GraphBuilder {
         $y_data = array();
         foreach ($dates as $skey => $serie) {
 
-            for ($index = 0; $index < count($dates_range) - 1; $index++) {
+            for ($index = 0; $index < count($x_dates['range']) - 1; $index++) {
                 // removing x elements that are larger than bound
 
-                $filter = $gs->filterValuesOutsideRange($serie, $dates_range[$index], $dates_range[$index + 1]);
+                $filter = $gs->filterValuesOutsideRange($serie, $x_dates['range'][$index], $x_dates['range'][$index + 1]);
 
 
 
@@ -488,6 +475,61 @@ class GraphBuilderPChart extends GraphBuilder {
         $myData->addPoints($categories['names'], 'labels');
         $myData->setAbscissa('labels');
 
+
+        return $myData;
+    }
+
+     protected function buildTripAnnualGraphData() {
+
+        $gs = $this->getGraphSource();
+
+        $myData = new pData();
+
+        // x-axis
+        $dates = $gs->getSeriesDataByColumn('date', 'datetime');
+
+        $x_dates = $gs->buildXAxisDataByDateRange($dates);
+
+
+        $x_id = "x-axis";
+        $myData->addPoints($x_dates['years'], $x_id);
+        $myData->setSerieDescription($x_id, 'Years');
+        $myData->setAbscissa($x_id);
+
+
+        // Y-axis
+        $kilometers = $gs->getSeriesDataByColumn('kilometers', 'number');
+        $y_series = $gs->getSeries();
+
+        $myData->setAxisName(0, "Annual travel [km/year]");
+
+        $y_data = array();
+        foreach ($dates as $skey => $serie) {
+
+            for ($index = 0; $index < count($x_dates['range']) - 1; $index++) {
+                // removing x elements that are larger than bound
+
+                $filter = $gs->filterValuesOutsideRange($serie, $x_dates['range'][$index], $x_dates['range'][$index + 1]);
+
+
+
+                if (!$filter) {
+                    $y_travel = 0;
+                } else {
+
+                    // getting corresponding y elements
+                    $y_filtered = array_intersect_key($kilometers[$skey], $filter);
+
+                    $y_travel = max($y_filtered) - min($y_filtered);
+                }
+
+                $y_data[$skey][$index] = $y_travel;
+            }
+
+            $y_id = $y_series[$skey]->getId();
+            $myData->addPoints($y_data[$skey], $y_id);
+            $myData->setSerieDescription($y_id, $y_series[$skey]->getLabel());
+        }
 
         return $myData;
     }

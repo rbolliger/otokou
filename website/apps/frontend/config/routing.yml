@@ -33,6 +33,13 @@ graph_cost_allocation:
   requirements:
     sf_method: [ get ]
 
+graph_trip_annual:
+  url: /:username/charts/travel_annual
+  class: otkWithUserRoute
+  param: {module: graphs, action: tripAnnual }
+  requirements:
+    sf_method: [ get ]
+
 
 vehicle:
   class: sfDoctrineRouteCollection

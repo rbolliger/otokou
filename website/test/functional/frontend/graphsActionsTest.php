@@ -349,6 +349,26 @@ $browser->
                     checkElement('#filter_values_category_display:contains("single")]',true)->
                     checkElement('#filter_values_graph_name:contains("cost_pie")]',true)->
                     checkElement('table#filter_values tbody tr',3)->
+                end()->
+
+        info('6 - Annual travel')->
+         get('/user_graphs/charts/annual_travel')->
+         with('request')->begin()->
+            isParameter('module', 'graphs')->
+            isParameter('action', 'tripAnnual')->
+          end()->
+        call('/user_graphs/charts/filter?_reset','post',array('_with_csrf' => true))->
+            with('response')->
+                begin()->
+                    isRedirected()->
+                    followRedirect()->
+                end()->
+            with('response')->
+                begin()->
+                    checkElement('img',true)->
+                    checkElement('#filter_values_vehicle_display:contains("single")]',true)->
+                    checkElement('#filter_values_graph_name:contains("trip_annual")]',true)->
+                    checkElement('table#filter_values tbody tr',2)->
                 end()
           
 ;

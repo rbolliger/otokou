@@ -116,6 +116,30 @@ class graphsActions extends sfActions {
 
     }
 
+    public function executeTripAnnual(sfWebRequest $request) {
+
+        $this->setPreviousTemplate('costPerKm');
+        $this->setPreviousAction('tripAnnual');
+        $this->setTemplate('costPerKm');
+
+
+        $filters = $this->getFilters();
+
+        $filters = $this->updateFilterFieldIfEmpty($filters, 'vehicle_display', 'single');
+
+        $this->setFilters($filters);
+
+        $this->setFilterField('range_type', 'date');
+        $this->setFilterField('graph_name', 'trip_annual');
+        $this->setFilterField('category_display', 'stacked');
+
+
+        $options = array(
+            'title' => 'Annual travel [km/year]',
+        );
+        $this->gb = new GraphBuilderPChart($this->getGBData(),$options);
+    }
+
     public function executeFilter(sfWebRequest $request) {
 
         if ($request->hasParameter('_reset')) {

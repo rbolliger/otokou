@@ -179,6 +179,39 @@ class GraphSource {
         return array_merge($data, $axis_params);
     }
 
+
+    public function buildXAxisDataByDateRange($dates) {
+
+        $date_max = array();
+        $date_min = array();
+        foreach ($dates as $d) {
+            $date_max[] = max($d);
+            $date_min[] = min($d);
+        }
+
+        $date_max = max($date_max);
+        $date_min = min($date_min);
+
+
+        $year_min = date('Y', $date_min);
+        $year_max = date('Y', $date_max);
+        $years = range($year_min, $year_max);
+
+        // building limits for each x-axis serie
+        $dates_range = array();
+        foreach (range($year_min, $year_max + 1) as $year) {
+            $dates_range[] = strtotime($year . 'jan-1');
+        }
+
+        return array(
+            'year_min'  => $year_min,
+            'year_max'  => $year_max,
+            'years'     => $years,
+            'range'     => $dates_range,
+        );
+
+    }
+
     protected function getAxisParametersByRangeType($type) {
 
         switch ($type) {
