@@ -352,7 +352,7 @@ $browser->
                 end()->
 
         info('6 - Annual travel')->
-         get('/user_graphs/charts/annual_travel')->
+         get('/user_graphs/charts/travel_annual')->
          with('request')->begin()->
             isParameter('module', 'graphs')->
             isParameter('action', 'tripAnnual')->
@@ -367,8 +367,10 @@ $browser->
                 begin()->
                     checkElement('img',true)->
                     checkElement('#filter_values_vehicle_display:contains("single")]',true)->
+                    checkElement('#filter_values_category_display:contains("stacked")]',true)->
+                    checkElement('#filter_values_range_type:contains("date")]',true)->
                     checkElement('#filter_values_graph_name:contains("trip_annual")]',true)->
-                    checkElement('table#filter_values tbody tr',2)->
+                    checkElement('table#filter_values tbody tr',4)->
                 end()
           
 ;
