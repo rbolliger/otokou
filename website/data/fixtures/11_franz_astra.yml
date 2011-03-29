@@ -3659,7 +3659,7 @@ Charge:
   franz_astra_419:
     User: franz
     Vehicle: astra
-    date: '2001-01-27'
+    date: '2001-11-27'
     comment: Benzina
     kilometers: 133485
     amount: 50
@@ -5544,7 +5544,7 @@ Charge:
   franz_astra_633:
     User: franz
     Vehicle: astra
-    date: '2004-01-14'
+    date: '2004-11-14'
     comment: Benzina
     kilometers: 214550
     amount: 50

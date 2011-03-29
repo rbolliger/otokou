@@ -10,7 +10,7 @@ $menu['Costs']->addChild('Cost per year','@graph_cost_per_year');
 $menu['Costs']->addChild('Cost allocation','@graph_cost_allocation');
 
 $menu['Travel']->addChild('Annual travel','@graph_trip_annual');
-$menu['Travel']->addChild('Monthly travel','');
+$menu['Travel']->addChild('Monthly travel','@graph_trip_monthly');
 
 $menu['Fuel consumption']->addChild('Litres per 100 km','');
 $menu['Fuel consumption']->addChild('Litres per month','');

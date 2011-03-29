@@ -31,8 +31,8 @@ class GraphSource {
 
     public function getSeriesDataByColumn($column, $type='number') {
 
-        if (!in_array($type,array('number','datetime'))) {
-            throw new sfException(sprintf('Unknown type "%s"',$type));
+        if (!in_array($type, array('number', 'datetime'))) {
+            throw new sfException(sprintf('Unknown type "%s"', $type));
         }
 
 
@@ -158,15 +158,14 @@ class GraphSource {
 
 
         // looking for data == 0 and changing its value
-                if (isset($options['check_zeroes']) && $options['check_zeroes'] == true) {
+        if (isset($options['check_zeroes']) && $options['check_zeroes'] == true) {
 
-                    $keys = array_keys($base_data,0);
+            $keys = array_keys($base_data, 0);
 
-                    foreach ($keys as $key) {
-                        $base_data[$key] = isset($options['zero_approx']) ? $options['zero_approx'] : 0.01;
-                    }
-                    
-                }
+            foreach ($keys as $key) {
+                $base_data[$key] = isset($options['zero_approx']) ? $options['zero_approx'] : 0.01;
+            }
+        }
 
 
         $data = array(
@@ -179,8 +178,13 @@ class GraphSource {
         return array_merge($data, $axis_params);
     }
 
+    public function buildXAxisDataByDateRange($dates, $unit) {
 
-    public function buildXAxisDataByDateRange($dates) {
+        $units = array('year', 'month');
+        if (!in_array($unit, $units)) {
+            throw new sfException(sprintf('Unknown unit "%s". Accepted values are %s', $unit, implode(', ', $units)));
+        }
+
 
         $date_max = array();
         $date_min = array();
@@ -192,24 +196,75 @@ class GraphSource {
         $date_max = max($date_max);
         $date_min = min($date_min);
 
-
         $year_min = date('Y', $date_min);
         $year_max = date('Y', $date_max);
-        $years = range($year_min, $year_max);
 
-        // building limits for each x-axis serie
+
         $dates_range = array();
-        foreach (range($year_min, $year_max + 1) as $year) {
-            $dates_range[] = strtotime($year . 'jan-1');
+        $labels = array();
+
+        if ('year' == $unit) {
+
+            $labels = range($year_min, $year_max);
+
+            foreach (range($year_min, $year_max + 1) as $year) {
+                $dates_range[] = strtotime($year . 'jan-1');
+            }
+
+            $description = 'Years';
+        } else {
+
+            $month_min = date('m', $date_min);
+            $month_max = date('m', $date_max);
+
+
+            $years = range($year_min, $year_max);
+            
+
+            foreach ($years as $key => $year) {
+
+                if ($key == 0) {
+                    $idx_start = $month_min;
+                    $idx_stop = 12;
+                } elseif ($key == count($years) - 1) {
+                    $idx_start = 1;
+                    $idx_stop = $month_max;
+                } else {
+                    $idx_start = 1;
+                    $idx_stop = 12;
+                }
+
+
+                for ($month = $idx_start; $month < $idx_stop + 1; $month++) {
+
+                    $date = new DateTime(sprintf('%s-%s-01', $year, $month));
+
+                    $labels[] = $date->format('Y-M');
+
+                    $dates_range[] = strtotime(sprintf('%s-%s-01', $year, $month));
+                }
+            }
+
+            // adding one more value to ranges
+            if ($month < 12) {
+                $month++;
+            } else {
+                $year++;
+                $month = 1;
+            }
+            $dates_range[] = strtotime(sprintf('%s-%s-01', $year, $month));
+
+            $description = 'Month';
         }
 
-        return array(
-            'year_min'  => $year_min,
-            'year_max'  => $year_max,
-            'years'     => $years,
-            'range'     => $dates_range,
-        );
 
+        return array(
+            'year_min' => $year_min,
+            'year_max' => $year_max,
+            'labels' => $labels,
+            'range' => $dates_range,
+            'description' => $description,
+        );
     }
 
     protected function getAxisParametersByRangeType($type) {
@@ -243,7 +298,6 @@ class GraphSource {
 
         return $params;
     }
-
 
     /**
      * Returns data series as an array of GraphDataSerie
@@ -294,15 +348,14 @@ class GraphSource {
         return $filtered_array;
     }
 
-    public static function filterValuesOutsideRange($array,$min,$max) {
+    public static function filterValuesOutsideRange($array, $min, $max) {
 
         $filtered_array = array_filter($array, function ($element) use ($min, $max) {
-                            return ($element <= $max && $element >= $min);
+                            return ($element < $max && $element >= $min);
                         });
 
 
         return $filtered_array;
-
     }
 
 }

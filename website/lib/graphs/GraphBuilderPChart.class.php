@@ -47,9 +47,20 @@ class GraphBuilderPChart extends GraphBuilder {
                 break;
 
             case 'trip_annual':
-                $data = $this->buildTripAnnualGraphData();
+                $data = $this->buildTripGraphData('year');
                 $picture = $this->buildPicture($data);
                 $picture = $this->plotBarChart($picture);
+                break;
+
+            case 'trip_monthly':
+                $data = $this->buildTripGraphData('month');
+                $picture = $this->buildPicture($data);
+
+                $options = array(
+                    'LabelSkip' => 5,
+                    'LabelRotation' => 90,
+                );
+                $picture = $this->plotBarChart($picture,$options);
                 break;
 
             default:
@@ -202,7 +213,7 @@ class GraphBuilderPChart extends GraphBuilder {
 
             $TextSettings = array("Align" => TEXT_ALIGN_MIDDLEMIDDLE
                 , "R" => 40, "G" => 40, "B" => 43);
-            $picture->drawText($posX, $posY-$chart_height/2*.9, $raw_data['Series'][$id]['Description'], $TextSettings);
+            $picture->drawText($posX, $posY - $chart_height / 2 * .9, $raw_data['Series'][$id]['Description'], $TextSettings);
         }
 
 
@@ -225,7 +236,7 @@ class GraphBuilderPChart extends GraphBuilder {
         $pie->drawPieLegend(450, 50, $Config);
     }
 
-    protected function plotBarChart(pImage $picture) {
+    protected function plotBarChart(pImage $picture,$options = array()) {
 
         $picture->setShadow(FALSE);
 
@@ -255,6 +266,7 @@ class GraphBuilderPChart extends GraphBuilder {
             "DrawArrows" => false,
             "CycleBackground" => false,
         );
+        $Settings = array_merge($Settings,$options);
         $picture->drawScale($Settings);
 
         $options = array(
@@ -368,11 +380,11 @@ class GraphBuilderPChart extends GraphBuilder {
         // x-axis
         $dates = $gs->getSeriesDataByColumn('date', 'datetime');
 
-        $x_dates = $gs->buildXAxisDataByDateRange($dates);
+        $x_dates = $gs->buildXAxisDataByDateRange($dates,'year');
 
 
         $x_id = "x-axis";
-        $myData->addPoints($x_dates['years'], $x_id);
+        $myData->addPoints($x_dates['labels'], $x_id);
         $myData->setSerieDescription($x_id, 'Years');
         $myData->setAbscissa($x_id);
 
@@ -441,12 +453,14 @@ class GraphBuilderPChart extends GraphBuilder {
             $description[] = count($vid) > 1 ? 'All vehicles' : Doctrine_Core::getTable('Vehicle')->findOneById($vid)->getName();
 
             // if $vid has more than one element, vehicles are stacked, so we got only one chart
-            $vid = count($vid) > 1 ? 1 : $vid;
+            if (count($vid) > 1) {
+                $vid = 1;
+            }
 
             $cid = $serie->getCategoryId();
 
             $value = array_sum($amounts[$key]);
-
+print_r($vid);echo ', '; print_r($cid);print_r($data); echo '<br />';
             $data[$vid][$cid] = $value;
         }
 
@@ -479,7 +493,12 @@ class GraphBuilderPChart extends GraphBuilder {
         return $myData;
     }
 
-     protected function buildTripAnnualGraphData() {
+    protected function buildTripGraphData($unit) {
+
+        $units = array('year', 'month');
+        if (!in_array($unit, $units)) {
+            throw new sfException(sprintf('Unknown unit "%s". Accepted values are %s', $unit, implode(', ', $units)));
+        }
 
         $gs = $this->getGraphSource();
 
@@ -488,12 +507,11 @@ class GraphBuilderPChart extends GraphBuilder {
         // x-axis
         $dates = $gs->getSeriesDataByColumn('date', 'datetime');
 
-        $x_dates = $gs->buildXAxisDataByDateRange($dates);
-
+        $x_dates = $gs->buildXAxisDataByDateRange($dates, $unit);
 
         $x_id = "x-axis";
-        $myData->addPoints($x_dates['years'], $x_id);
-        $myData->setSerieDescription($x_id, 'Years');
+        $myData->addPoints($x_dates['labels'], $x_id);
+        $myData->setSerieDescription($x_id, $x_dates['description']);
         $myData->setAbscissa($x_id);
 
 
@@ -501,14 +519,15 @@ class GraphBuilderPChart extends GraphBuilder {
         $kilometers = $gs->getSeriesDataByColumn('kilometers', 'number');
         $y_series = $gs->getSeries();
 
-        $myData->setAxisName(0, "Annual travel [km/year]");
+        $title = $unit == 'year' ? "Annual travel [km/year]" : 'Monthly travel [km/month]';
+        $myData->setAxisName(0, $title);
 
         $y_data = array();
+        $prev_y = false;
         foreach ($dates as $skey => $serie) {
 
             for ($index = 0; $index < count($x_dates['range']) - 1; $index++) {
-                // removing x elements that are larger than bound
-
+                // removing elements outside the required range
                 $filter = $gs->filterValuesOutsideRange($serie, $x_dates['range'][$index], $x_dates['range'][$index + 1]);
 
 
@@ -520,16 +539,43 @@ class GraphBuilderPChart extends GraphBuilder {
                     // getting corresponding y elements
                     $y_filtered = array_intersect_key($kilometers[$skey], $filter);
 
-                    $y_travel = max($y_filtered) - min($y_filtered);
+                    // set the first value form prev_y, which is not 0, but the lowest distance runned by
+                    // the vehicle. This depends on the filters applied by the user.
+                    if (false === $prev_y) {
+                        $prev_y = min($y_filtered);
+                    }
+
+                    $y_travel = max($y_filtered) - $prev_y;
+                    $prev_y = max($y_filtered);
                 }
 
                 $y_data[$skey][$index] = $y_travel;
+
+//                 echo $x_dates['range'][$index].
+//                ' ('.date('Y-m-d',$x_dates['range'][$index]).') => '.
+//                        $x_dates['range'][$index+1].
+//                        ' ('.date('Y-m-d',$x_dates['range'][$index+1]).') => '.
+//                        implode(', ',$filter).' => '.
+//                         implode(', ',$y_filtered).' => '.
+//                         '<b>'.$y_travel.'</b>'.
+//                        "<br \>";
             }
+
+
+
 
             $y_id = $y_series[$skey]->getId();
             $myData->addPoints($y_data[$skey], $y_id);
             $myData->setSerieDescription($y_id, $y_series[$skey]->getLabel());
         }
+
+
+//            foreach ($y_data[0] as $cip => $y) {
+//                $x = $x_dates['range'][$cip];
+//
+//                echo date('Y-M-d',$x)." => ".$y."<br \>\n";
+//            }
+//        die();
 
         return $myData;
     }

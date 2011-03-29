@@ -140,6 +140,30 @@ class graphsActions extends sfActions {
         $this->gb = new GraphBuilderPChart($this->getGBData(),$options);
     }
 
+    public function executeTripMonthly(sfWebRequest $request) {
+
+        $this->setPreviousTemplate('costPerKm');
+        $this->setPreviousAction('tripMOnthly');
+        $this->setTemplate('costPerKm');
+
+
+        $filters = $this->getFilters();
+
+        $filters = $this->updateFilterFieldIfEmpty($filters, 'vehicle_display', 'single');
+
+        $this->setFilters($filters);
+
+        $this->setFilterField('range_type', 'date');
+        $this->setFilterField('graph_name', 'trip_monthly');
+        $this->setFilterField('category_display', 'stacked');
+
+
+        $options = array(
+            'title' => 'Monthly travel [km/year]',
+        );
+        $this->gb = new GraphBuilderPChart($this->getGBData(),$options);
+    }
+
     public function executeFilter(sfWebRequest $request) {
 
         if ($request->hasParameter('_reset')) {

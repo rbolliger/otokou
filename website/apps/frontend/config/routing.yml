@@ -40,6 +40,13 @@ graph_trip_annual:
   requirements:
     sf_method: [ get ]
 
+graph_trip_monthly:
+  url: /:username/charts/travel_monthly
+  class: otkWithUserRoute
+  param: {module: graphs, action: tripMonthly }
+  requirements:
+    sf_method: [ get ]
+
 
 vehicle:
   class: sfDoctrineRouteCollection
