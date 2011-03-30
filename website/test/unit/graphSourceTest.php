@@ -8,7 +8,7 @@ Doctrine_Core::loadData(sfConfig::get('sf_test_dir') . '/fixtures');
 //$ut = new otokouTestFunctional(new sfBrowser());
 
 
-$t = new lime_test(16, new lime_output_color());
+$t = new lime_test(26, new lime_output_color());
 
 
 // ->setParam()
@@ -114,6 +114,27 @@ $series = $gs->getSeriesDataByColumn('kilometers');
 $t->cmp_ok(count(array_keys($series)), '===', 3, '->getSeriesDataByColumn() returns a data serie for each raw data serie stored.');
 $t->cmp_ok(array(count($series[0]),count($series[1]),count($series[2])), '===', array(count($data),count($data),count($data)), '->getSeriesDataByColumn() returns a value for each element in raw_data');
 
+// ::filterValuesLargerThan()
+$t->diag('::filterValuesLargerThan()');
+$data = array(1,2,3,4,5,6,7,8);
+
+$keys = GraphSource::filterValuesLargerThan($data, 5);
+$t->cmp_ok($keys, '===', array(1,2,3,4,5),'::filterValuesLargerThan() returns the elements of the input array whose value is lower than the given bound');
+
+
+// ::filterValuesDifferentThan()
+$t->diag('::filterValuesDifferentThan()');
+$data = array(1,1.1,0.9,2,3,1,1);
+
+$keys = GraphSource::filterValuesDifferentThan($data, 1);
+$t->cmp_ok($keys, '===', array(0 => 1,5 => 1,6 => 1),'::filterValuesDifferentThan() returns the elements of the input array whose value is equal than the given bound');
+
+// ::filterValuesOutsideRange
+$t->diag('::filterValuesOutsideRange()');
+$data = array(1,2,3,4,5,6,7,1,3,4);
+
+$keys = GraphSource::filterValuesOutsideRange($data, 1, 4);
+$t->cmp_ok($keys, '===', array(0 => 1,1 => 2,2 => 3,7 => 1,8 => 3),'::filterValuesOutsideRange() returns the elements of the input array whose value is equal or larger than the lower bound and lower of the upper bound');
 
 
 
@@ -155,19 +176,70 @@ $x = $g->buildXAxisData($x_series);
 $t->cmp_ok($x, '===', $dates, '->buildXAxisData() returns an array containing the unique values of all series data for the requestes column');
 
 
+// buildXAxisDataByRangeTypeAndCalculationBase()
+$t->diag('::buildXAxisDataByRangeTypeAndCalculationBase');
 
-// ::filterValuesLargerThan()
-$t->diag('::filterValuesLargerThan()');
-$data = array(1,2,3,4,5,6,7,8);
+$rt = 'anything';
+$bt = 'date';
+$options = array();
+try
+{
+  $x = $g->buildXAxisDataByRangeTypeAndCalculationBase($rt, $bt, $options);
+  $t->fail('no code should be executed after throwing an exception');
+}
+catch (Exception $e)
+{
+  $t->pass('->buildXAxisDataByRangeTypeAndCalculationBase() anly accepts range types defined by GraphTable::getRangeTypes()');
+}
 
-$keys = GraphSource::filterValuesLargerThan($data, 5);
-$t->cmp_ok($keys, '===', array(1,2,3,4,5),'::filterValuesLargerThan() returns the elements of the input array whose value is lower than the given bound');
+$rt = 'date';
+$bt = 'sdgsd';
+$options = array();
+try
+{
+  $x = $g->buildXAxisDataByRangeTypeAndCalculationBase($rt, $bt, $options);
+  $t->fail('no code should be executed after throwing an exception');
+}
+catch (Exception $e)
+{
+  $t->pass('->buildXAxisDataByRangeTypeAndCalculationBase() anly accepts base types defined by GraphTable::getRangeTypes()');
+}
 
 
+$rt = 'date';
+$bt = 'date';
+$options = array();
+$x = $g->buildXAxisDataByRangeTypeAndCalculationBase($rt, $bt, $options);
 
-//// ->getYAxisDataByColumn()
-//$t->diag('->getYAxisDataByColumn()');
-//$y = $g->getYAxisDataByColumn($x, 'date', 'amount','datetime','number');
-//$t->cmp_ok(count($y), '===', 2,'->getYAxisDataByColumn() returns an array for each data serie');
-//$t->cmp_ok(array(count($y[0]),count($y[1])), '===', array(count($x),count($x)), '->getYAxisDataByColumn() returns arrays of the same length of the x-axis data');
+$t->isa_ok($x, 'array', '->buildXAxisDataByRangeTypeAndCalculationBase() returns an array');
 
+$t->cmp_ok($x['value'], '===', $x['base'], '->buildXAxisDataByRangeTypeAndCalculationBase() returns the same value in "base" and "value", if range and base types are the same.');
+
+
+$rt = 'distance';
+$bt = 'distance';
+$options = array();
+$x = $g->buildXAxisDataByRangeTypeAndCalculationBase($rt, $bt, $options);
+$t->cmp_ok($x['value'], '===', $x['base'], '->buildXAxisDataByRangeTypeAndCalculationBase() returns the same value in "base" and "value", if range and base types are the same.');
+
+$rt = 'date';
+$bt = 'distance';
+$options = array();
+$x = $g->buildXAxisDataByRangeTypeAndCalculationBase($rt, $bt, $options);
+$t->cmp_ok(count($x['value']), '===', count($x['base']), '->buildXAxisDataByRangeTypeAndCalculationBase() "value" and "base" fields have the same size.');
+
+$rt = 'distance';
+$bt = 'distance';
+$options = array(
+    'check_zeroes' => false,
+);
+$x = $g->buildXAxisDataByRangeTypeAndCalculationBase($rt, $bt, $options);
+$t->cmp_ok(count(array_keys($x['base'],0)), '===', 1, '->buildXAxisDataByRangeTypeAndCalculationBase() When "check_zeroes" is set to false, zeroes may appear in "base" field.');
+
+
+$options = array(
+    'check_zeroes' => true,
+    'zero_approx'  => -1234,
+);
+$x = $g->buildXAxisDataByRangeTypeAndCalculationBase($rt, $bt, $options);
+$t->cmp_ok(count(array_keys($x['base'],-1234)), '===', 1, '->buildXAxisDataByRangeTypeAndCalculationBase() When "check_zeroes" is set to true, zeroes are repalced with the value set in "zero_approx".');

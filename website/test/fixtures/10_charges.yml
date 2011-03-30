@@ -121,6 +121,17 @@ Charge:
     quantity: '12.00'
     created_at: '2011-01-27 11:37:17'
     updated_at: '2011-01-27 11:37:17'
+  Charge_13:
+    Vehicle: touran
+    User: ruf
+    Category: fuel
+    date: '2011-01-03'
+    kilometers: 0
+    amount: '234.00'
+    comment: 'tralala'
+    quantity: '12.00'
+    created_at: '2011-01-27 11:37:17'
+    updated_at: '2011-01-27 11:37:17'
 
 <?php for ($i = 100; $i <= 130; $i++): ?>
   Charge_<?php echo $i ?>:

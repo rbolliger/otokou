@@ -98,6 +98,19 @@ class GraphSource {
         return $data;
     }
 
+    /**
+     * Returns an array containing all the required data to build the x-axis of a chart.
+     * The function provides data for two range types (if $range_type and $base_type are different)
+     * in order to build the axis labels and the x-axis values required to build a chart.
+     *
+     * @param string $range_type Range type. Value must be one given by GraphTable::getRangeTypes()
+     * @param string $base_type  Base type. Value must be one given by GraphTable::getRangeTypes()
+     * @param array $options Function options. Available options are:
+     *                      check_zeroes: the function checks if any value is equal to 0. This may
+     *                                      create problems when the y-axis value is divided by the x-axis value.
+     *                      zero_approx: this options sets the value to assign when 0 is found.
+     * @return array  Array containing all required data to build the x-axis
+     */
     public function buildXAxisDataByRangeTypeAndCalculationBase($range_type, $base_type, $options = array()) {
 
         // Checking that range_type is known
@@ -340,7 +353,7 @@ class GraphSource {
 
     public static function filterValuesDifferentThan($array, $value) {
 
-        $filtered_array = array_filter($array, function ($element) use ($bound) {
+        $filtered_array = array_filter($array, function ($element) use ($value) {
                             return ($element == $value);
                         });
 
