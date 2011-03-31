@@ -1,11 +1,6 @@
 <?php
 
-include dirname(__FILE__) . '/../bootstrap/unit.php';
-
-new sfDatabaseManager($configuration);
-Doctrine_Core::loadData(sfConfig::get('sf_test_dir') . '/fixtures');
-//
-//$ut = new otokouTestFunctional(new sfBrowser());
+include dirname(__FILE__) . '/../bootstrap/Doctrine.php';
 
 
 $t = new lime_test(26, new lime_output_color());

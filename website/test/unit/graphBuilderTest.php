@@ -1,9 +1,6 @@
 <?php
 
-include dirname(__FILE__) . '/../bootstrap/unit.php';
-
-new sfDatabaseManager($configuration);
-Doctrine_Core::loadData(sfConfig::get('sf_test_dir') . '/fixtures');
+include dirname(__FILE__) . '/../bootstrap/Doctrine.php';
 
 $app_configuration = ProjectConfiguration::getApplicationConfiguration('frontend', 'test', true);
 sfContext::createInstance($app_configuration);
