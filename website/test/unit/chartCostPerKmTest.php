@@ -24,21 +24,12 @@ $scenarios = array(
 
 foreach ($scenarios as $key => $scenario) {
 
-    $t->diag(sprintf('->buildCostPerKmChartData() scenario %d (%s)', $key, implode(', ', $scenario)));
-    $g = $ut->getChartSource($scenario[0], $scenario[1]);
-    $data = $g->buildCostPerKmChartData($scenario[2]);
-    $x = $ut->getXForScenario($scenario);
-    $y = getYForScenario($ut,$scenario);
+    $y = getYForScenario($ut, $scenario);
 
-    $t->cmp_ok(array_values($data['x']['values']), '==', $x, '->buildCostPerKmChartData() x-values are ok');
-    $t->cmp_ok(count($data['y']['series']), '===', count($y), '->buildCostPerKmChartData() y-values series count ok');
-
-    foreach ($data['y']['series'] as $ykey => $values) {
-        $t->cmp_ok(array_values($data['y']['series'][$ykey]['values']), '==', $y[$ykey], sprintf('->buildCostPerKmChartData() y-values for serie "%d" ok', $ykey));
-    }
+    $ut->runTest($t, $scenario, 'buildCostPerKmChartData', $y);
 }
 
-function getYForScenario($ut,$scenario) {
+function getYForScenario($ut, $scenario) {
 
     $case = $ut->getCase($scenario[0], $scenario[1]);
     $range = $scenario[2];

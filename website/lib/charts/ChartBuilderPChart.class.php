@@ -301,13 +301,6 @@ class ChartBuilderPChart extends ChartBuilder {
 
         $cd = $gs->buildCostPerKmChartData($this->getParameter('range_type'));
 
-//        // X-axis
-//        $options = array(
-//            'check_zeroes' => true,
-//            'zero_approx' => 0.01,
-//        );
-//        $axis_data = $gs->buildXAxisDataByRangeTypeAndCalculationBase($this->getParameter('range_type'), 'distance', $options);
-
         $x_id = $cd['x']['id'];
         $myData->addPoints($cd['x']['values'], $x_id);
 
@@ -320,44 +313,6 @@ class ChartBuilderPChart extends ChartBuilder {
         $display_format = $is_date ? 'd-M-Y' : null;
 
         $myData->setAxisDisplay(0, $display_mode, $display_format);
-
-
-        // Y-axis
-
-//        $y_columns = $gs->getSeriesDataByColumn('amount');
-//
-//        $x_data = $axis_data['base'];
-//        $x_column = $axis_data['base_column'];
-//        $y_data = array();
-
-
-//        foreach ($x_data as $bkey => $bound) {
-//
-//
-//            foreach ($y_columns as $ykey => $y_values) {
-//
-//                // removing x elements that are larger than bound
-//                $filter = $gs->filterValuesLargerThan($x_column[$ykey], $bound);
-//
-//                // getting corresponding y elements
-//                $y_filtered = array_intersect_key($y_values, $filter);
-//
-//                // calculating relative cost
-//                if (!count($y_filtered)) {
-//                    $cost = VOID;
-//                } else {
-//
-//                    $cost = array_sum($y_filtered) / $bound;
-//                }
-//
-//                // assigning result to temporary array
-//                $y_data[$ykey][$bkey] = $cost;
-//            }
-//        }
-
-//        $y_series = $gs->getSeries();
-
-
 
         foreach ($cd['y']['series'] as $key => $serie) {
 

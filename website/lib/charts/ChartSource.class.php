@@ -392,15 +392,14 @@ class ChartSource {
             'values' => $x_data['value'],
             'description' => $x_data['label'],
         );
-//print_r($x_data);die();
- 
+
 
         // Y-axis
         $y_columns = $this->getSeriesDataByColumn('amount');
-//print_r($y_columns);
+
         $x_values = $x_data['value'];
         $x_column = $x_data['x_column'];
-//print_r($x_column);
+
         $y_data = array();
         $y_series = $this->getSeries();
 
@@ -414,20 +413,16 @@ class ChartSource {
 
                 // removing x elements that are larger than bound
                 $filter = $this->filterValuesLargerThan($x_column[$ykey], $bound);
-//echo "bound\n"; print_r($bound);
-//echo "filter\n"; print_r($filter);
-               
+
+
                 if (!count($filter)) {
                     $cost = 0;
                 } else {
 
-                     // getting corresponding y elements
-                $y_filtered = array_intersect_key($y_values, $filter);
-//echo "y_filtered\n";print_r($y_filtered);
-                // calculating relative cost
+                    // getting corresponding y elements
+                    $y_filtered = array_intersect_key($y_values, $filter);
 
                     $distance = $x_data['base'][$bkey];
-
 
                     $cost = array_sum($y_filtered) / $distance;
                 }
@@ -446,6 +441,9 @@ class ChartSource {
 
 
         return $data;
+    }
+
+    public function buildCostPerYearChartData($range_type) {
         
     }
 

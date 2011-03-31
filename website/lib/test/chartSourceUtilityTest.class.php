@@ -131,7 +131,6 @@ class chartSourceUtilityTest {
         $g->setSeries($series);
 
         return $g;
-
     }
 
     public function getXForScenario($scenario) {
@@ -190,6 +189,22 @@ class chartSourceUtilityTest {
         }
 
         return $scn;
+    }
+
+    public function runTest($t,$scenario, $fname, $y) {
+
+
+        $t->diag(sprintf('->%s() scenario %d (%s)', $fname, $key, implode(', ', $scenario)));
+        $g = $this->getChartSource($scenario[0], $scenario[1]);
+        $data = $g->$fname($scenario[2]);
+        $x = $this->getXForScenario($scenario);
+
+        $t->cmp_ok(array_values($data['x']['values']), '==', $x, sprintf('->%s() x-values are ok', $fname));
+        $t->cmp_ok(count($data['y']['series']), '===', count($y), sprintf('->%s() y-values series count ok', $fname));
+
+        foreach ($data['y']['series'] as $ykey => $values) {
+            $t->cmp_ok(array_values($data['y']['series'][$ykey]['values']), '==', $y[$ykey], sprintf('->%s() y-values for serie "%d" ok', $fname, $ykey));
+        }
     }
 
 }
