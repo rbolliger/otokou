@@ -8,7 +8,7 @@ $browser->setTester('doctrine', 'sfTesterDoctrine');
 
 
 
-$fuelId = $browser->getIdForCategory('fuel');
+$fuelId = $browser->getIdForCategory('Fuel');
 
 $browser->      
 
@@ -524,7 +524,7 @@ function getFormData($browser, $fields = array()) {
 
 
     $formFields = array(
-        'category_id' =>$browser->getIdForCategory('tax'),
+        'category_id' =>$browser->getIdForCategory('Tax'),
         'vehicle_id' => $browser->getVehicleId('vw-touran-1-4-tsi'),
         'kilometers' => 100,
         'amount' => 22,

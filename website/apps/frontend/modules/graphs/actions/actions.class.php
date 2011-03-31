@@ -106,6 +106,7 @@ class graphsActions extends sfActions {
 
         $this->setFilterField('category_display', 'single'); // forced
         $this->setFilterField('graph_name', 'cost_pie');
+        $this->setFilterField('range_type', 'distance');  // this value is set because the DB needs a non-empty value
 
         $options = array(
             'title' => 'Cost allocation [CHF]',

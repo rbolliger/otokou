@@ -8,9 +8,8 @@
 class otokouTestFunctional extends sfTestFunctional {
 
     public function loadData() {
-        //new sfDatabaseManager(sfContext::getInstance()->getConfiguration());
-        //Doctrine::createTablesFromModels(dirname(__FILE__).'/../model'); 
-        Doctrine_Core::loadData(sfConfig::get('sf_test_dir') . '/fixtures');
+
+        Doctrine::loadData(sfConfig::get('sf_test_dir') . '/fixtures');
 
         return $this;
     }
@@ -38,8 +37,10 @@ class otokouTestFunctional extends sfTestFunctional {
 
         $this->
                 with('response')->
+                begin()->
                 isRedirected()->
-                followRedirect()
+                followRedirect()->
+                end()
         ;
 
 

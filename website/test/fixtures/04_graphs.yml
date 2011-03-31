@@ -10,6 +10,7 @@ Graph:
     range_type: kilometers
     sha: 1231234
     format: png
+    graph_name: something
     Categories: [taxes, fuel]
 
   graph_gb_2:
@@ -23,6 +24,7 @@ Graph:
     range_type: kilometers
     sha: 12312343
     format: png
+    graph_name: something
     Categories: [taxes, fuel, leasing]
 
   graph_gb_3:
@@ -36,6 +38,7 @@ Graph:
     range_type: kilometers
     sha: 1231234sdf
     format: png
+    graph_name: something
     Categories: [taxes]
 
   graph_gb_4:
@@ -49,5 +52,6 @@ Graph:
     range_type: kilometers
     sha: 1231234asdfas
     format: png
+    graph_name: something
     Categories: [taxes, fuel]
     Vehicles: [car_gb_1]

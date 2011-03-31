@@ -70,6 +70,9 @@ function newGraph($data = array(),$options = array(),$attributes = array()) {
                         'user_id'       => $ut->getUserId('user_gb'),
                         'graph_name'    => 'cost_per_km',
                         'range_type'    => 'distance',
+                        'vehicle_display' => 'stacked',
+                        'category_display' => 'single',
+                        'format'        => 'png',
                     ),
                     $data);
 

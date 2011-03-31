@@ -364,7 +364,7 @@ $browser->
                     checkElement('#filter_values_vehicle_display:contains("single")]',true)->
                     checkElement('#filter_values_category_display:contains("single")]',true)->
                     checkElement('#filter_values_graph_name:contains("cost_pie")]',true)->
-                    checkElement('table#filter_values tbody tr',3)->
+                    checkElement('table#filter_values tbody tr',4)->
                 end()->
 
         info('6 - Annual travel')->

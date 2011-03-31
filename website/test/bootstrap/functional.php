@@ -27,3 +27,9 @@ sfToolkit::clearDirectory(sfConfig::get('sf_app_cache_dir'));
 
 
 
+new sfDatabaseManager(sfContext::getInstance()->getConfiguration());
+
+Doctrine::createTablesFromModels(dirname(__FILE__).'/../../lib/model');
+//Doctrine::loadData(sfConfig::get('sf_test_dir').'/fixtures');
+
+

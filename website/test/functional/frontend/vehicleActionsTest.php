@@ -109,16 +109,16 @@ $browser->
         info('3 - Edit')->
         
         info('  3.1 - Routing')->
-        get(sprintf('/settings/vehicles/%s/edit',$browser->getVehicleId('myCar')))->
+        get(sprintf('/settings/vehicles/%s/edit',$browser->getVehicleId('mycar')))->
             with('response')->
                 isStatusCode(404)->
-        get(sprintf('/user2/settings/vehicles/%s/edit',$browser->getVehicleId('myCar')))->
+        get(sprintf('/user2/settings/vehicles/%s/edit',$browser->getVehicleId('mycar')))->
             with('response')->
                 isStatusCode(403)->
         get(sprintf('/user2/settings/vehicles/%s/edit',$browser->getVehicleId('car2')))->
             with('response')->
                 isStatusCode(403)->
-        get(sprintf('/user_vehicle/settings/vehicles/%s/edit',$browser->getVehicleId('myCar')))->
+        get(sprintf('/user_vehicle/settings/vehicles/%s/edit',$browser->getVehicleId('mycar')))->
             with('response')->
                 isStatusCode(200)->
             with('request')->
@@ -126,7 +126,7 @@ $browser->
                     isParameter('module','vehicle')->
                     isParameter('action','edit')->
                     isParameter('username','user_vehicle')->
-                    isParameter('id',$browser->getVehicleId('myCar'))->
+                    isParameter('id',$browser->getVehicleId('mycar'))->
                 end()->
         
         

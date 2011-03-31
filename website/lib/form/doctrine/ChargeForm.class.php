@@ -64,7 +64,7 @@ class ChargeForm extends BaseChargeForm {
 
     public function checkQuantity($validator, $values) {
 
-        $category = 'fuel';
+        $category = 'Fuel';
         $id = Doctrine_Core::getTable('Category')->findOneByName($category)->getId();
 
 
