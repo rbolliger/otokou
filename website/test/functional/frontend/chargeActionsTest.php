@@ -363,7 +363,7 @@ info('4 - List filters')->
                 end()->
             with('response')->
                 begin()->
-                    checkElement('div.sf_admin_list tbody tr',10)->
+                    checkElement('div.sf_admin_list tbody tr',9)->
                 end()->
         click('Filter',array(
             'charge_filters' => array(
