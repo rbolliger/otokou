@@ -4,7 +4,7 @@ include dirname(__FILE__) . '/../bootstrap/Doctrine.php';
 
 
 
-$ut = new graphSourceUtilityTest();
+$ut = new chartSourceUtilityTest();
 
 $t = new lime_test(34, new lime_output_color());
 
@@ -24,17 +24,17 @@ $scenarios = array(
 
 foreach ($scenarios as $key => $scenario) {
 
-    $t->diag(sprintf('->buildCostPerKmGraphData() scenario %d (%s)', $key, implode(', ', $scenario)));
-    $g = $ut->getGraphSource($scenario[0], $scenario[1]);
-    $data = $g->buildCostPerKmGraphData($scenario[2]);
+    $t->diag(sprintf('->buildCostPerKmChartData() scenario %d (%s)', $key, implode(', ', $scenario)));
+    $g = $ut->getChartSource($scenario[0], $scenario[1]);
+    $data = $g->buildCostPerKmChartData($scenario[2]);
     $x = $ut->getXForScenario($scenario);
     $y = getYForScenario($ut,$scenario);
 
-    $t->cmp_ok(array_values($data['x']['values']), '==', $x, '->buildCostPerKmGraphData() x-values are ok');
-    $t->cmp_ok(count($data['y']['series']), '===', count($y), '->buildCostPerKmGraphData() y-values series count ok');
+    $t->cmp_ok(array_values($data['x']['values']), '==', $x, '->buildCostPerKmChartData() x-values are ok');
+    $t->cmp_ok(count($data['y']['series']), '===', count($y), '->buildCostPerKmChartData() y-values series count ok');
 
     foreach ($data['y']['series'] as $ykey => $values) {
-        $t->cmp_ok(array_values($data['y']['series'][$ykey]['values']), '==', $y[$ykey], sprintf('->buildCostPerKmGraphData() y-values for serie "%d" ok', $ykey));
+        $t->cmp_ok(array_values($data['y']['series'][$ykey]['values']), '==', $y[$ykey], sprintf('->buildCostPerKmChartData() y-values for serie "%d" ok', $ykey));
     }
 }
 

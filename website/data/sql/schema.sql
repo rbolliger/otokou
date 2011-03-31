@@ -1,8 +1,8 @@
 CREATE TABLE category (id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR(50) NOT NULL UNIQUE, comment LONGTEXT, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, slug VARCHAR(255));
 CREATE TABLE charge (id INTEGER PRIMARY KEY AUTOINCREMENT, vehicle_id INTEGER NOT NULL, user_id INTEGER NOT NULL, category_id INTEGER NOT NULL, date DATE NOT NULL, kilometers DOUBLE NOT NULL, amount DOUBLE NOT NULL, comment LONGTEXT, quantity DOUBLE, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL);
-CREATE TABLE graph (id INTEGER PRIMARY KEY AUTOINCREMENT, vehicle_display VARCHAR(20) NOT NULL, user_id INTEGER NOT NULL, category_display VARCHAR(20) NOT NULL, date_from DATE, date_to DATE, kilometers_from DOUBLE, kilometers_to DOUBLE, range_type VARCHAR(20) NOT NULL, sha VARCHAR(40) NOT NULL UNIQUE, format VARCHAR(5) NOT NULL, graph_name VARCHAR(40) NOT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL);
-CREATE TABLE graph_category (graph_id INTEGER, category_id INTEGER, PRIMARY KEY(graph_id, category_id));
-CREATE TABLE graph_vehicle (graph_id INTEGER, vehicle_id INTEGER, PRIMARY KEY(graph_id, vehicle_id));
+CREATE TABLE chart (id INTEGER PRIMARY KEY AUTOINCREMENT, vehicle_display VARCHAR(20), user_id INTEGER NOT NULL, category_display VARCHAR(20), date_from DATE, date_to DATE, kilometers_from DOUBLE, kilometers_to DOUBLE, range_type VARCHAR(20), sha VARCHAR(40) NOT NULL UNIQUE, format VARCHAR(5), chart_name VARCHAR(40), created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL);
+CREATE TABLE chart_category (chart_id INTEGER, category_id INTEGER, PRIMARY KEY(chart_id, category_id));
+CREATE TABLE chart_vehicle (chart_id INTEGER, vehicle_id INTEGER, PRIMARY KEY(chart_id, vehicle_id));
 CREATE TABLE vehicle (id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR(50) NOT NULL, user_id INTEGER NOT NULL, is_archived INTEGER DEFAULT '0', created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, slug VARCHAR(255));
 CREATE TABLE sf_guard_forgot_password (id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER NOT NULL, unique_key VARCHAR(255), expires_at DATETIME NOT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL);
 CREATE TABLE sf_guard_group (id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR(255) UNIQUE, description VARCHAR(1000), created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL);

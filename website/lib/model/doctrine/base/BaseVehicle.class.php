@@ -11,8 +11,8 @@
  * @property boolean $is_archived
  * @property sfGuardUser $User
  * @property Doctrine_Collection $Charges
- * @property Doctrine_Collection $Graphs
- * @property Doctrine_Collection $GraphVehicles
+ * @property Doctrine_Collection $Charts
+ * @property Doctrine_Collection $ChartVehicles
  * 
  * @method integer             getId()            Returns the current record's "id" value
  * @method string              getName()          Returns the current record's "name" value
@@ -20,16 +20,16 @@
  * @method boolean             getIsArchived()    Returns the current record's "is_archived" value
  * @method sfGuardUser         getUser()          Returns the current record's "User" value
  * @method Doctrine_Collection getCharges()       Returns the current record's "Charges" collection
- * @method Doctrine_Collection getGraphs()        Returns the current record's "Graphs" collection
- * @method Doctrine_Collection getGraphVehicles() Returns the current record's "GraphVehicles" collection
+ * @method Doctrine_Collection getCharts()        Returns the current record's "Charts" collection
+ * @method Doctrine_Collection getChartVehicles() Returns the current record's "ChartVehicles" collection
  * @method Vehicle             setId()            Sets the current record's "id" value
  * @method Vehicle             setName()          Sets the current record's "name" value
  * @method Vehicle             setUserId()        Sets the current record's "user_id" value
  * @method Vehicle             setIsArchived()    Sets the current record's "is_archived" value
  * @method Vehicle             setUser()          Sets the current record's "User" value
  * @method Vehicle             setCharges()       Sets the current record's "Charges" collection
- * @method Vehicle             setGraphs()        Sets the current record's "Graphs" collection
- * @method Vehicle             setGraphVehicles() Sets the current record's "GraphVehicles" collection
+ * @method Vehicle             setCharts()        Sets the current record's "Charts" collection
+ * @method Vehicle             setChartVehicles() Sets the current record's "ChartVehicles" collection
  * 
  * @package    otokou
  * @subpackage model
@@ -73,12 +73,12 @@ abstract class BaseVehicle extends sfDoctrineRecord
              'local' => 'id',
              'foreign' => 'vehicle_id'));
 
-        $this->hasMany('Graph as Graphs', array(
-             'refClass' => 'GraphVehicle',
+        $this->hasMany('Chart as Charts', array(
+             'refClass' => 'ChartVehicle',
              'local' => 'vehicle_id',
-             'foreign' => 'graph_id'));
+             'foreign' => 'chart_id'));
 
-        $this->hasMany('GraphVehicle as GraphVehicles', array(
+        $this->hasMany('ChartVehicle as ChartVehicles', array(
              'local' => 'id',
              'foreign' => 'vehicle_id'));
 

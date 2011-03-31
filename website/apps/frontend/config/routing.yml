@@ -1,49 +1,49 @@
-graph_index:
+chart_index:
   url: /:username/charts
   class: otkWithUserRoute
-  param: {module: graphs, action: index }
+  param: {module: charts, action: index }
   requirements:
     sf_method: [ get, post, head ]
 
-graph_filter:
+chart_filter:
   url: /:username/charts/filter
   class: otkWithUserRoute
-  param: {module: graphs, action: filter }
+  param: {module: charts, action: filter }
   requirements:
     sf_method: [post]
 
-graph_cost_per_km:
+chart_cost_per_km:
   url: /:username/charts/cost_per_km
   class: otkWithUserRoute
-  param: {module: graphs, action: costPerKm }
+  param: {module: charts, action: costPerKm }
   requirements:
     sf_method: [ get ]
 
-graph_cost_per_year:
+chart_cost_per_year:
   url: /:username/charts/cost_annual
   class: otkWithUserRoute
-  param: {module: graphs, action: costPerYear }
+  param: {module: charts, action: costPerYear }
   requirements:
     sf_method: [ get ]
 
-graph_cost_allocation:
+chart_cost_allocation:
   url: /:username/charts/cost_allocation
   class: otkWithUserRoute
-  param: {module: graphs, action: costPie }
+  param: {module: charts, action: costPie }
   requirements:
     sf_method: [ get ]
 
-graph_trip_annual:
+chart_trip_annual:
   url: /:username/charts/travel_annual
   class: otkWithUserRoute
-  param: {module: graphs, action: tripAnnual }
+  param: {module: charts, action: tripAnnual }
   requirements:
     sf_method: [ get ]
 
-graph_trip_monthly:
+chart_trip_monthly:
   url: /:username/charts/travel_monthly
   class: otkWithUserRoute
-  param: {module: graphs, action: tripMonthly }
+  param: {module: charts, action: tripMonthly }
   requirements:
     sf_method: [ get ]
 

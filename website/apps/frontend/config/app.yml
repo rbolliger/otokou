@@ -13,10 +13,10 @@ all:
     success_signout_url:     homepage/index         # the plugin use the referer as default
 
 
-  graphs:
-    force_generate: false    # force generation of graphs at each request
+  charts:
+    force_generate: false    # force generation of charts at each request
 
 
 dev:
-  graphs:
+  charts:
     force_generate: true

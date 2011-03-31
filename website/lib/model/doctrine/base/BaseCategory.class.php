@@ -9,21 +9,21 @@
  * @property string $name
  * @property clob $comment
  * @property Doctrine_Collection $Charges
- * @property Doctrine_Collection $Graphs
- * @property Doctrine_Collection $GraphVehicles
+ * @property Doctrine_Collection $Charts
+ * @property Doctrine_Collection $ChartVehicles
  * 
  * @method integer             getId()            Returns the current record's "id" value
  * @method string              getName()          Returns the current record's "name" value
  * @method clob                getComment()       Returns the current record's "comment" value
  * @method Doctrine_Collection getCharges()       Returns the current record's "Charges" collection
- * @method Doctrine_Collection getGraphs()        Returns the current record's "Graphs" collection
- * @method Doctrine_Collection getGraphVehicles() Returns the current record's "GraphVehicles" collection
+ * @method Doctrine_Collection getCharts()        Returns the current record's "Charts" collection
+ * @method Doctrine_Collection getChartVehicles() Returns the current record's "ChartVehicles" collection
  * @method Category            setId()            Sets the current record's "id" value
  * @method Category            setName()          Sets the current record's "name" value
  * @method Category            setComment()       Sets the current record's "comment" value
  * @method Category            setCharges()       Sets the current record's "Charges" collection
- * @method Category            setGraphs()        Sets the current record's "Graphs" collection
- * @method Category            setGraphVehicles() Sets the current record's "GraphVehicles" collection
+ * @method Category            setCharts()        Sets the current record's "Charts" collection
+ * @method Category            setChartVehicles() Sets the current record's "ChartVehicles" collection
  * 
  * @package    otokou
  * @subpackage model
@@ -58,12 +58,12 @@ abstract class BaseCategory extends sfDoctrineRecord
              'local' => 'id',
              'foreign' => 'category_id'));
 
-        $this->hasMany('Graph as Graphs', array(
-             'refClass' => 'GraphCategory',
+        $this->hasMany('Chart as Charts', array(
+             'refClass' => 'ChartCategory',
              'local' => 'category_id',
-             'foreign' => 'graph_id'));
+             'foreign' => 'chart_id'));
 
-        $this->hasMany('GraphCategory as GraphVehicles', array(
+        $this->hasMany('ChartCategory as ChartVehicles', array(
              'local' => 'id',
              'foreign' => 'category_id'));
 

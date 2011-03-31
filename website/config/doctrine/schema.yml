@@ -55,67 +55,67 @@ sfGuardUser:
       type: string(5)
 
 
-Graph:
+Chart:
   actAs: [Timestampable]
   columns:
     id: { type: integer, notnull: true, primary: true, autoincrement: true }
-    vehicle_display: {type: string(20), notnull: true }
+    vehicle_display: {type: string(20) }
     user_id: {type: integer, notnull: true }
-    category_display: {type: string(20), notnull: true}
+    category_display: {type: string(20)}
     date_from: {type: date }
     date_to: {type: date }
     kilometers_from:  { type: double }
     kilometers_to:  { type: double }
-    range_type: {type: string(20), notnull: true}
+    range_type: {type: string(20)}
     sha: {type: string(40), notnull: true, unique: true}
-    format: {type: string(5), notnull: true}
-    graph_name: {type: string(40), notnull: true}
+    format: {type: string(5)}
+    chart_name: {type: string(40)}
 
   relations:
     Vehicles:
       onDelete: CASCADE
-      foreignAlias: Graphs
+      foreignAlias: Charts
       class: Vehicle
-      refClass: GraphVehicle
+      refClass: ChartVehicle
     Categories:
       onDelete: CASCADE
-      foreignAlias: Graphs
+      foreignAlias: Charts
       class: Category
-      refClass: GraphCategory
+      refClass: ChartCategory
     User:
       class: sfGuardUser
       local: user_id
       onDelete: CASCADE
-      foreignAlias: Graphs
+      foreignAlias: Charts
 
-GraphVehicle:
+ChartVehicle:
   columns:
-    graph_id:
+    chart_id:
       type: integer
       primary: true
     vehicle_id:
       type: integer
       primary: true
   relations:
-    Graph:
-      foreignAlias: GraphVehicles
+    Chart:
+      foreignAlias: ChartVehicles
       onDelete: CASCADE
     Vehicle:
-      foreignAlias: GraphVehicles
+      foreignAlias: ChartVehicles
       onDelete: CASCADE
 
-GraphCategory:
+ChartCategory:
   columns:
-    graph_id:
+    chart_id:
       type: integer
       primary: true
     category_id:
       type: integer
       primary: true
   relations:
-    Graph:
-      foreignAlias: GraphVehicles
+    Chart:
+      foreignAlias: ChartVehicles
       onDelete: CASCADE
     Category:
-      foreignAlias: GraphVehicles
+      foreignAlias: ChartVehicles
       onDelete: CASCADE

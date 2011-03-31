@@ -18,7 +18,7 @@ abstract class BaseCategoryFormFilter extends BaseFormFilterDoctrine
       'created_at'  => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
       'updated_at'  => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
       'slug'        => new sfWidgetFormFilterInput(),
-      'graphs_list' => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'Graph')),
+      'charts_list' => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'Chart')),
     ));
 
     $this->setValidators(array(
@@ -27,7 +27,7 @@ abstract class BaseCategoryFormFilter extends BaseFormFilterDoctrine
       'created_at'  => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
       'updated_at'  => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
       'slug'        => new sfValidatorPass(array('required' => false)),
-      'graphs_list' => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'Graph', 'required' => false)),
+      'charts_list' => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'Chart', 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('category_filters[%s]');
@@ -39,7 +39,7 @@ abstract class BaseCategoryFormFilter extends BaseFormFilterDoctrine
     parent::setup();
   }
 
-  public function addGraphsListColumnQuery(Doctrine_Query $query, $field, $values)
+  public function addChartsListColumnQuery(Doctrine_Query $query, $field, $values)
   {
     if (!is_array($values))
     {
@@ -52,8 +52,8 @@ abstract class BaseCategoryFormFilter extends BaseFormFilterDoctrine
     }
 
     $query
-      ->leftJoin($query->getRootAlias().'.GraphCategory GraphCategory')
-      ->andWhereIn('GraphCategory.graph_id', $values)
+      ->leftJoin($query->getRootAlias().'.ChartCategory ChartCategory')
+      ->andWhereIn('ChartCategory.chart_id', $values)
     ;
   }
 
@@ -71,7 +71,7 @@ abstract class BaseCategoryFormFilter extends BaseFormFilterDoctrine
       'created_at'  => 'Date',
       'updated_at'  => 'Date',
       'slug'        => 'Text',
-      'graphs_list' => 'ManyKey',
+      'charts_list' => 'ManyKey',
     );
   }
 }

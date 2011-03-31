@@ -16,12 +16,12 @@ Vehicle:
     name: car vehicle 2
     User: user_vehicle
     is_archived: true
-  car_graphs_1:
-    name: car graphs 1
-    User: user_graphs
-  car_graphs_2:
-    name: car graphs 2
-    User: user_graphs
+  car_charts_1:
+    name: car charts 1
+    User: user_charts
+  car_charts_2:
+    name: car charts 2
+    User: user_charts
     is_archived: true
   car_gb_1:
     name: car gb 1

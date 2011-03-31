@@ -21,7 +21,7 @@ abstract class BaseCategoryForm extends BaseFormDoctrine
       'created_at'  => new sfWidgetFormDateTime(),
       'updated_at'  => new sfWidgetFormDateTime(),
       'slug'        => new sfWidgetFormInputText(),
-      'graphs_list' => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'Graph')),
+      'charts_list' => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'Chart')),
     ));
 
     $this->setValidators(array(
@@ -31,7 +31,7 @@ abstract class BaseCategoryForm extends BaseFormDoctrine
       'created_at'  => new sfValidatorDateTime(),
       'updated_at'  => new sfValidatorDateTime(),
       'slug'        => new sfValidatorString(array('max_length' => 255, 'required' => false)),
-      'graphs_list' => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'Graph', 'required' => false)),
+      'charts_list' => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'Chart', 'required' => false)),
     ));
 
     $this->validatorSchema->setPostValidator(
@@ -59,28 +59,28 @@ abstract class BaseCategoryForm extends BaseFormDoctrine
   {
     parent::updateDefaultsFromObject();
 
-    if (isset($this->widgetSchema['graphs_list']))
+    if (isset($this->widgetSchema['charts_list']))
     {
-      $this->setDefault('graphs_list', $this->object->Graphs->getPrimaryKeys());
+      $this->setDefault('charts_list', $this->object->Charts->getPrimaryKeys());
     }
 
   }
 
   protected function doSave($con = null)
   {
-    $this->saveGraphsList($con);
+    $this->saveChartsList($con);
 
     parent::doSave($con);
   }
 
-  public function saveGraphsList($con = null)
+  public function saveChartsList($con = null)
   {
     if (!$this->isValid())
     {
       throw $this->getErrorSchema();
     }
 
-    if (!isset($this->widgetSchema['graphs_list']))
+    if (!isset($this->widgetSchema['charts_list']))
     {
       // somebody has unset this widget
       return;
@@ -91,8 +91,8 @@ abstract class BaseCategoryForm extends BaseFormDoctrine
       $con = $this->getConnection();
     }
 
-    $existing = $this->object->Graphs->getPrimaryKeys();
-    $values = $this->getValue('graphs_list');
+    $existing = $this->object->Charts->getPrimaryKeys();
+    $values = $this->getValue('charts_list');
     if (!is_array($values))
     {
       $values = array();
@@ -101,13 +101,13 @@ abstract class BaseCategoryForm extends BaseFormDoctrine
     $unlink = array_diff($existing, $values);
     if (count($unlink))
     {
-      $this->object->unlink('Graphs', array_values($unlink));
+      $this->object->unlink('Charts', array_values($unlink));
     }
 
     $link = array_diff($values, $existing);
     if (count($link))
     {
-      $this->object->link('Graphs', array_values($link));
+      $this->object->link('Charts', array_values($link));
     }
   }
 

@@ -179,9 +179,9 @@ Charge:
 <?php endfor ?>
 
 <?php for ($i = 1; $i <= 150; $i++): ?>
-  Charge_user_graphs_<?php echo $i ?>:
-    Vehicle: car_graphs_1
-    User: user_graphs
+  Charge_user_charts_<?php echo $i ?>:
+    Vehicle: car_charts_1
+    User: user_charts
     Category: taxes
     date: '2011-01-03'
     kilometers: <?php echo rand(1,10000)."\n" ?>

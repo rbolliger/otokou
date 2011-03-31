@@ -33,11 +33,11 @@ sfGuardUser:
     is_super_admin: false
     list_max_per_page: 3
     
-  user_graphs:
+  user_charts:
     first_name:     User
     last_name:      two
-    email_address:  use_graphs@gmail.com
-    username:       user_graphs
+    email_address:  use_charts@gmail.com
+    username:       user_charts
     password:       user
     is_super_admin: false
     
@@ -74,7 +74,7 @@ sfGuardUser:
     is_super_admin: false
 
   user_gs:
-    first_name:     User graphSource
+    first_name:     User chartSource
     last_name:      two
     email_address:  user_gs@gmail.com
     username:       user_gs

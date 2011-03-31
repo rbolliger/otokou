@@ -16,7 +16,7 @@ class VehicleEmbeddedUserForm extends VehicleForm {
 
         unset(
                 $this['user_id'],
-                $this['graphs_list']
+                $this['charts_list']
         );
     }
 
