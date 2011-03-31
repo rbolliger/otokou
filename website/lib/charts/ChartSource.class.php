@@ -218,7 +218,7 @@ class ChartSource {
             $labels = range($year_min, $year_max);
 
             foreach (range($year_min, $year_max + 1) as $year) {
-                $dates_range[] = strtotime($year . 'jan-1');
+                $dates_range[] = strtotime($year . '-1-1');
             }
 
             $description = 'Years';
@@ -443,8 +443,58 @@ class ChartSource {
         return $data;
     }
 
-    public function buildCostPerYearChartData($range_type) {
-        
+    public function buildCostPerYearChartData() {
+
+        $data = array();
+
+        // x-axis
+        $dates = $this->getSeriesDataByColumn('date', 'datetime');
+
+        $x_dates = $this->buildXAxisDataByDateRange($dates, 'year');
+
+        $data['x'] = array(
+            'id' => 'x-axis',
+            'values' => $x_dates['labels'],
+            'description' => $x_dates['description'],
+        );
+
+        // Y-axis
+        $data['y']['series'] = array();
+        $data['y']['description'] = "Annual costs [CHF/year]";
+
+        $costs = $this->getSeriesDataByColumn('amount', 'number');
+        $y_series = $this->getSeries();
+
+
+        $y_data = array();
+        foreach ($dates as $skey => $serie) {
+
+            for ($index = 0; $index < count($x_dates['range']) - 1; $index++) {
+
+                // removing x elements that are larger than bound
+                $filter = $this->filterValuesOutsideRange($serie, $x_dates['range'][$index], $x_dates['range'][$index + 1]);
+
+                if (!$filter) {
+                    $y_cost = 0;
+                } else {
+
+                    // getting corresponding y elements
+                    $y_filtered = array_intersect_key($costs[$skey], $filter);
+
+                    $y_cost = array_sum($y_filtered);
+                }
+
+                $y_data[$skey][$index] = $y_cost;
+            }
+
+            $data['y']['series'][$skey] = array(
+                'id' => $y_series[$skey]->getId(),
+                'label' => $y_series[$skey]->getLabel(),
+                'values' => $y_data[$skey],
+            );
+        }
+
+        return $data;
     }
 
 }

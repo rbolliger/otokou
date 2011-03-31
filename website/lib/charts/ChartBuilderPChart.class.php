@@ -60,7 +60,7 @@ class ChartBuilderPChart extends ChartBuilder {
                     'LabelSkip' => 5,
                     'LabelRotation' => 90,
                 );
-                $picture = $this->plotBarChart($picture,$options);
+                $picture = $this->plotBarChart($picture, $options);
                 break;
 
             default:
@@ -236,7 +236,7 @@ class ChartBuilderPChart extends ChartBuilder {
         $pie->drawPieLegend(450, 50, $Config);
     }
 
-    protected function plotBarChart(pImage $picture,$options = array()) {
+    protected function plotBarChart(pImage $picture, $options = array()) {
 
         $picture->setShadow(FALSE);
 
@@ -266,7 +266,7 @@ class ChartBuilderPChart extends ChartBuilder {
             "DrawArrows" => false,
             "CycleBackground" => false,
         );
-        $Settings = array_merge($Settings,$options);
+        $Settings = array_merge($Settings, $options);
         $picture->drawScale($Settings);
 
         $options = array(
@@ -336,52 +336,27 @@ class ChartBuilderPChart extends ChartBuilder {
 
         $gs = $this->getChartSource();
 
+        $data = $gs->buildCostPerYearChartData();
+
         $myData = new pData();
 
         // x-axis
-        $dates = $gs->getSeriesDataByColumn('date', 'datetime');
-
-        $x_dates = $gs->buildXAxisDataByDateRange($dates,'year');
-
-
-        $x_id = "x-axis";
+        $x_id = $data['x']['id'];
         $myData->addPoints($x_dates['labels'], $x_id);
-        $myData->setSerieDescription($x_id, 'Years');
+        $myData->setSerieDescription($x_id, $data['x']['description']);
         $myData->setAbscissa($x_id);
 
-
         // Y-axis
-        $costs = $gs->getSeriesDataByColumn('amount', 'number');
         $y_series = $gs->getSeries();
 
-        $myData->setAxisName(0, "Annual costs [CHF/year]");
+        $myData->setAxisName(0, $data['y']['description']);
 
         $y_data = array();
-        foreach ($dates as $skey => $serie) {
+        foreach ($y_series as $skey => $serie) {
 
-            for ($index = 0; $index < count($x_dates['range']) - 1; $index++) {
-                // removing x elements that are larger than bound
-
-                $filter = $gs->filterValuesOutsideRange($serie, $x_dates['range'][$index], $x_dates['range'][$index + 1]);
-
-
-
-                if (!$filter) {
-                    $y_cost = 0;
-                } else {
-
-                    // getting corresponding y elements
-                    $y_filtered = array_intersect_key($costs[$skey], $filter);
-
-                    $y_cost = array_sum($y_filtered);
-                }
-
-                $y_data[$skey][$index] = $y_cost;
-            }
-
-            $y_id = $y_series[$skey]->getId();
-            $myData->addPoints($y_data[$skey], $y_id);
-            $myData->setSerieDescription($y_id, $y_series[$skey]->getLabel());
+            $y_id = $data['y']['series'][$skey]['id'];
+            $myData->addPoints($data['y']['series'][$skey]['values'], $y_id);
+            $myData->setSerieDescription($y_id, $data['y']['series'][$skey]['label']);
         }
 
         return $myData;
@@ -421,7 +396,11 @@ class ChartBuilderPChart extends ChartBuilder {
             $cid = $serie->getCategoryId();
 
             $value = array_sum($amounts[$key]);
-print_r($vid);echo ', '; print_r($cid);print_r($data); echo '<br />';
+            print_r($vid);
+            echo ', ';
+            print_r($cid);
+            print_r($data);
+            echo '<br />';
             $data[$vid][$cid] = $value;
         }
 

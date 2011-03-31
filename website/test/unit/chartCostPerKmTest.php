@@ -25,8 +25,9 @@ $scenarios = array(
 foreach ($scenarios as $key => $scenario) {
 
     $y = getYForScenario($ut, $scenario);
+    $x = getXForScenario($ut, $scenario);
 
-    $ut->runTest($t, $scenario, 'buildCostPerKmChartData', $y);
+    $ut->runTest($t, $scenario, 'buildCostPerKmChartData', $x, $y);
 }
 
 function getYForScenario($ut, $scenario) {
@@ -115,5 +116,46 @@ function getYForScenario($ut, $scenario) {
     }
 
     return $y;
+}
+
+function getXForScenario($ut,$scenario) {
+
+    $case = $ut->getCase($scenario[0], $scenario[1]);
+    $range = $scenario[2];
+
+
+    if ($range == 'distance') {
+        $x = array(
+            12,
+            50,
+            65,
+            70,
+            100,
+            123,
+            200,
+            300,
+            324,
+            400,
+            456,
+            654
+        );
+    } else {
+        $x = array(
+            1293836400,
+            1294095600,
+            1294614000,
+            1296514800,
+            1296946800,
+            1297724400,
+            1298934000,
+            1299625200,
+            1300489200,
+            1301608800,
+            1304200800,
+            1306879200,
+        );
+    }
+
+    return $x;
 }
 

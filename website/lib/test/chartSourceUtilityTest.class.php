@@ -133,48 +133,6 @@ class chartSourceUtilityTest {
         return $g;
     }
 
-    public function getXForScenario($scenario) {
-
-        $case = $this->getCase($scenario[0], $scenario[1]);
-        $range = $scenario[2];
-
-//        switch ($case) {
-//            case 1:
-
-        if ($range == 'distance') {
-            $x = array(
-                12,
-                50,
-                65,
-                70,
-                100,
-                123,
-                200,
-                300,
-                324,
-                400,
-                456,
-                654
-            );
-        } else {
-            $x = array(
-                1293836400,
-                1294095600,
-                1294614000,
-                1296514800,
-                1296946800,
-                1297724400,
-                1298934000,
-                1299625200,
-                1300489200,
-                1301608800,
-                1304200800,
-                1306879200,
-            );
-        }
-
-        return $x;
-    }
 
     public function getCase($vd, $cd) {
 
@@ -191,13 +149,13 @@ class chartSourceUtilityTest {
         return $scn;
     }
 
-    public function runTest($t,$scenario, $fname, $y) {
+    public function runTest($t,$scenario, $fname, $x, $y) {
 
 
         $t->diag(sprintf('->%s() scenario %d (%s)', $fname, $key, implode(', ', $scenario)));
         $g = $this->getChartSource($scenario[0], $scenario[1]);
         $data = $g->$fname($scenario[2]);
-        $x = $this->getXForScenario($scenario);
+        
 
         $t->cmp_ok(array_values($data['x']['values']), '==', $x, sprintf('->%s() x-values are ok', $fname));
         $t->cmp_ok(count($data['y']['series']), '===', count($y), sprintf('->%s() y-values series count ok', $fname));
