@@ -1,3 +1,4 @@
 #config/databases.yml
 cache/*
 log/*
+web/images/charts
