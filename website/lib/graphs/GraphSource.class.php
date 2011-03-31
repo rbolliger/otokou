@@ -50,11 +50,8 @@ class GraphSource {
 
             $raw_data = $serie->getRawData();
 
-
             $data = array();
             foreach ($raw_data as $key => $charge) {
-
-
 
                 $v = $charge->get($column);
                 if (!$v) {
@@ -232,7 +229,7 @@ class GraphSource {
 
 
             $years = range($year_min, $year_max);
-            
+
 
             foreach ($years as $key => $year) {
 
@@ -369,6 +366,87 @@ class GraphSource {
 
 
         return $filtered_array;
+    }
+
+    /**
+     * Builds the data required to build a cost-per-km chart
+     *
+     * @param string $range_type Defines the type of range to be used as x-axis labels. The value must be one in
+     *                              GraphTable::getRangeTypes().
+     *
+     * @return array $data 
+     */
+    public function buildCostPerKmGraphData($range_type) {
+
+        $data = array();
+
+        // X-axis
+        $options = array(
+            'check_zeroes' => true,
+            'zero_approx' => 0.01,
+        );
+        $x_data = $this->buildXAxisDataByRangeTypeAndCalculationBase($range_type, 'distance', $options);
+
+        $data['x'] = array(
+            'id' => 'x-axis',
+            'values' => $x_data['value'],
+            'description' => $x_data['label'],
+        );
+//print_r($x_data);die();
+ 
+
+        // Y-axis
+        $y_columns = $this->getSeriesDataByColumn('amount');
+//print_r($y_columns);
+        $x_values = $x_data['value'];
+        $x_column = $x_data['x_column'];
+//print_r($x_column);
+        $y_data = array();
+        $y_series = $this->getSeries();
+
+        $data['y']['series'] = array();
+        $data['y']['description'] = 'Cost [CHF/km]';
+
+
+        foreach ($y_columns as $ykey => $y_values) {
+
+            foreach ($x_values as $bkey => $bound) {
+
+                // removing x elements that are larger than bound
+                $filter = $this->filterValuesLargerThan($x_column[$ykey], $bound);
+//echo "bound\n"; print_r($bound);
+//echo "filter\n"; print_r($filter);
+               
+                if (!count($filter)) {
+                    $cost = 0;
+                } else {
+
+                     // getting corresponding y elements
+                $y_filtered = array_intersect_key($y_values, $filter);
+//echo "y_filtered\n";print_r($y_filtered);
+                // calculating relative cost
+
+                    $distance = $x_data['base'][$bkey];
+
+
+                    $cost = array_sum($y_filtered) / $distance;
+                }
+
+                // assigning result to temporary array
+                $y_data[$ykey][$bkey] = $cost;
+            }
+
+
+            $data['y']['series'][$ykey] = array(
+                'id' => $y_series[$ykey]->getId(),
+                'label' => $y_series[$ykey]->getLabel(),
+                'values' => $y_data[$ykey],
+            );
+        }
+
+
+        return $data;
+        
     }
 
 }

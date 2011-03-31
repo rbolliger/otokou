@@ -299,17 +299,19 @@ class GraphBuilderPChart extends GraphBuilder {
 
         $myData = new pData();
 
-        // X-axis
-        $options = array(
-            'check_zeroes' => true,
-            'zero_approx' => 0.01,
-        );
-        $axis_data = $gs->buildXAxisDataByRangeTypeAndCalculationBase($this->getParameter('range_type'), 'distance', $options);
+        $cd = $gs->buildCostPerKmGraphData($this->getParameter('range_type'));
 
-        $x_id = "x-axis";
-        $myData->addPoints($axis_data['value'], "x-axis");
+//        // X-axis
+//        $options = array(
+//            'check_zeroes' => true,
+//            'zero_approx' => 0.01,
+//        );
+//        $axis_data = $gs->buildXAxisDataByRangeTypeAndCalculationBase($this->getParameter('range_type'), 'distance', $options);
 
-        $myData->setAxisName(0, $axis_data['label']);
+        $x_id = $cd['x']['id'];
+        $myData->addPoints($cd['x']['values'], $x_id);
+
+        $myData->setAxisName(0, $cd['x']['label']);
         $myData->setAxisXY(0, AXIS_X);
         $myData->setAxisPosition(0, AXIS_POSITION_BOTTOM);
 
@@ -322,49 +324,53 @@ class GraphBuilderPChart extends GraphBuilder {
 
         // Y-axis
 
-        $y_columns = $gs->getSeriesDataByColumn('amount');
-
-        $x_data = $axis_data['base'];
-        $x_column = $axis_data['base_column'];
-        $y_data = array();
-
-
-        foreach ($x_data as $bkey => $bound) {
+//        $y_columns = $gs->getSeriesDataByColumn('amount');
+//
+//        $x_data = $axis_data['base'];
+//        $x_column = $axis_data['base_column'];
+//        $y_data = array();
 
 
-            foreach ($y_columns as $ykey => $y_values) {
+//        foreach ($x_data as $bkey => $bound) {
+//
+//
+//            foreach ($y_columns as $ykey => $y_values) {
+//
+//                // removing x elements that are larger than bound
+//                $filter = $gs->filterValuesLargerThan($x_column[$ykey], $bound);
+//
+//                // getting corresponding y elements
+//                $y_filtered = array_intersect_key($y_values, $filter);
+//
+//                // calculating relative cost
+//                if (!count($y_filtered)) {
+//                    $cost = VOID;
+//                } else {
+//
+//                    $cost = array_sum($y_filtered) / $bound;
+//                }
+//
+//                // assigning result to temporary array
+//                $y_data[$ykey][$bkey] = $cost;
+//            }
+//        }
 
-                // removing x elements that are larger than bound
-                $filter = $gs->filterValuesLargerThan($x_column[$ykey], $bound);
+//        $y_series = $gs->getSeries();
 
-                // getting corresponding y elements
-                $y_filtered = array_intersect_key($y_values, $filter);
 
-                // calculating relative cost
-                if (!count($y_filtered)) {
-                    $cost = VOID;
-                } else {
 
-                    $cost = array_sum($y_filtered) / $bound;
-                }
+        foreach ($cd['y']['series'] as $key => $serie) {
 
-                // assigning result to temporary array
-                $y_data[$ykey][$bkey] = $cost;
-            }
-        }
+            $y_id = $cd['y']['series'][$key]['id'];
+            $myData->addPoints($cd['y']['series'][$key]['values'], $y_id);
+            $myData->setSerieOnAxis($y_id, 1);
 
-        $y_series = $gs->getSeries();
-
-        foreach ($y_series as $key => $serie) {
-            $myData->addPoints($y_data[$key], $serie->getId());
-            $myData->setSerieOnAxis($serie->getId(), 1);
-
-            $myData->setScatterSerie($x_id, $serie->getId(), $key);
-            $myData->setScatterSerieDescription($key, $serie->getLabel());
+            $myData->setScatterSerie($x_id, $y_id, $key);
+            $myData->setScatterSerieDescription($key, $cd['y']['series'][$key]['label']);
             $myData->setScatterSerieWeight($key, 0.7);
         }
 
-        $myData->setAxisName(1, 'Cost [CHF/km]');
+        $myData->setAxisName(1, $cd['y']['description']);
         $myData->setAxisXY(1, AXIS_Y);
         $myData->setAxisPosition(1, AXIS_POSITION_LEFT);
 

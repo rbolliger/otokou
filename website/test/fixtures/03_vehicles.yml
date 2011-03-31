@@ -35,6 +35,12 @@ Vehicle:
   car_gb_noCharges:
     name: car gb_noCharges
     User: user_gb_noCharges
+  car_gs_1:
+    name: car_gs_1
+    User: user_gs
+  car_gs_2:
+    name: car_gs_2
+    User: user_gs
 
   
     
