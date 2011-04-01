@@ -12,7 +12,7 @@ require_once(realpath(dirname(__FILE__) . '/../../lib/vendor/symfony/lib/helper/
 require_once(realpath(dirname(__FILE__) . '/../../lib/vendor/symfony/lib/helper/AssetHelper.php'));
 
 
-$t = new lime_test(7, new lime_output_color());
+$t = new lime_test(8, new lime_output_color());
 
 
 // ->generate()
@@ -39,7 +39,18 @@ $options = array(
 $g = newChart($options);
 $t->cmp_ok($g->generate(), '===', true, '->generate() A cost_per_km chart is generated.');
 
-
+// ->buildCostPerYearChartData()
+sfConfig::set('app_charts_force_generate', true);
+$options = array(
+    'user_id' => $ut->getUserId('user_gs'),
+    'chart_name' => 'cost_per_year',
+    'range_type' => 'distance',
+    'vehicle_display' => 'stacked',
+    'category_display' => 'single',
+    'format' => 'png',
+);
+$g = newChart($options);
+$t->cmp_ok($g->generate(), '===', true, '->generate() A cost_per_year chart is generated.');
 
 // ->display()
 $t->diag('->display()');
