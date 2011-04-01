@@ -304,7 +304,7 @@ class ChartBuilderPChart extends ChartBuilder {
         $x_id = $cd['x']['id'];
         $myData->addPoints($cd['x']['values'], $x_id);
 
-        $myData->setAxisName(0, $cd['x']['label']);
+        $myData->setAxisName(0, $cd['x']['description']);
         $myData->setAxisXY(0, AXIS_X);
         $myData->setAxisPosition(0, AXIS_POSITION_BOTTOM);
 
@@ -342,7 +342,7 @@ class ChartBuilderPChart extends ChartBuilder {
 
         // x-axis
         $x_id = $data['x']['id'];
-        $myData->addPoints($x_dates['labels'], $x_id);
+        $myData->addPoints($data['x']['values'], $x_id);
         $myData->setSerieDescription($x_id, $data['x']['description']);
         $myData->setAbscissa($x_id);
 
@@ -396,11 +396,7 @@ class ChartBuilderPChart extends ChartBuilder {
             $cid = $serie->getCategoryId();
 
             $value = array_sum($amounts[$key]);
-            print_r($vid);
-            echo ', ';
-            print_r($cid);
-            print_r($data);
-            echo '<br />';
+ 
             $data[$vid][$cid] = $value;
         }
 

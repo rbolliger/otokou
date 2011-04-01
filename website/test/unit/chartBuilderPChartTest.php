@@ -8,11 +8,11 @@ sfContext::createInstance($app_configuration);
 
 $ut = new otokouTestFunctional(new sfBrowser());
 
-require_once(realpath(dirname(__FILE__).'/../../lib/vendor/symfony/lib/helper/TagHelper.php'));
-require_once(realpath(dirname(__FILE__).'/../../lib/vendor/symfony/lib/helper/AssetHelper.php'));
+require_once(realpath(dirname(__FILE__) . '/../../lib/vendor/symfony/lib/helper/TagHelper.php'));
+require_once(realpath(dirname(__FILE__) . '/../../lib/vendor/symfony/lib/helper/AssetHelper.php'));
 
 
-$t = new lime_test(6, new lime_output_color());
+$t = new lime_test(7, new lime_output_color());
 
 
 // ->generate()
@@ -26,6 +26,21 @@ $t->cmp_ok($g->generate(), '===', false, '->generate() If the User has no charge
 $g = newChart();
 $t->cmp_ok($g->generate(), '===', true, '->generate() If the User has cars, a chart is generated.');
 
+// ->buildCostPerKmChartData()
+sfConfig::set('app_charts_force_generate', true);
+$options = array(
+    'user_id' => $ut->getUserId('user_gs'),
+    'chart_name' => 'cost_per_km',
+    'range_type' => 'distance',
+    'vehicle_display' => 'stacked',
+    'category_display' => 'single',
+    'format' => 'png',
+);
+$g = newChart($options);
+$t->cmp_ok($g->generate(), '===', true, '->generate() A cost_per_km chart is generated.');
+
+
+
 // ->display()
 $t->diag('->display()');
 $g = newChart(array('user_id' => $ut->getUserId('user_gb_noCars')));
@@ -36,7 +51,6 @@ $t->like($g->display(), '/Not enough data/', '->display() If the User has no cha
 
 $g = newChart();
 $t->like($g->display(), '/<img/', '->display() Even if the User has cars, the chart is displayed in an <img> tag.');
-
 
 function getData($data = array()) {
 
@@ -61,20 +75,20 @@ function getData($data = array()) {
     return array_merge($defaults, $data);
 }
 
-function newChart($data = array(),$options = array(),$attributes = array()) {
+function newChart($data = array(), $options = array(), $attributes = array()) {
 
     $ut = new otokouTestFunctional(new sfBrowser());
 
     $data = array_merge(
                     array(
-                        'user_id'       => $ut->getUserId('user_gb'),
-                        'chart_name'    => 'cost_per_km',
-                        'range_type'    => 'distance',
+                        'user_id' => $ut->getUserId('user_gb'),
+                        'chart_name' => 'cost_per_km',
+                        'range_type' => 'distance',
                         'vehicle_display' => 'stacked',
                         'category_display' => 'single',
-                        'format'        => 'png',
+                        'format' => 'png',
                     ),
                     $data);
 
-    return new ChartBuilderPChart(getData($data),$options,$attributes);
+    return new ChartBuilderPChart(getData($data), $options, $attributes);
 }
