@@ -133,7 +133,6 @@ class chartSourceUtilityTest {
         return $g;
     }
 
-
     public function getCase($vd, $cd) {
 
         if ($vd == 'stacked' && $cd == 'stacked') {
@@ -149,20 +148,47 @@ class chartSourceUtilityTest {
         return $scn;
     }
 
-    public function runTest($t,$scenario, $fname, $x, $y) {
+    public function runTest($t, $scenario, $fname, $x, $y) {
 
 
         $t->diag(sprintf('->%s() scenario %d (%s)', $fname, $key, implode(', ', $scenario)));
         $g = $this->getChartSource($scenario[0], $scenario[1]);
         $data = $g->$fname($scenario[2]);
-        
+
+
+        $t->ok(isset($data['x']), sprintf('->%s() returns a "x" field', $fname));
+        $t->ok(isset($data['x']['id']), sprintf('->%s() returns an id for "x" field', $fname));
+        $t->ok(isset($data['x']['values']), sprintf('->%s() returns values for "x" field', $fname));
+        $t->ok(isset($data['x']['description']), sprintf('->%s() returns a description for "x" field', $fname));
 
         $t->cmp_ok(array_values($data['x']['values']), '==', $x, sprintf('->%s() x-values are ok', $fname));
+
+        $t->ok(isset($data['y']), sprintf('->%s() returns a "y" field', $fname));
+        $t->ok(isset($data['y']['series']), sprintf('->%s() returns a series array for "y" field', $fname));
+        $t->ok(isset($data['y']['description']), sprintf('->%s() returns a description for "x" field', $fname));
+
         $t->cmp_ok(count($data['y']['series']), '===', count($y), sprintf('->%s() y-values series count ok', $fname));
 
-        foreach ($data['y']['series'] as $ykey => $values) {
-            $t->cmp_ok(array_values($data['y']['series'][$ykey]['values']), '==', $y[$ykey], sprintf('->%s() y-values for serie "%d" ok', $fname, $ykey));
+        foreach ($data['y']['series'] as $ykey => $serie) {
+
+            $t->ok(isset($serie['id']), sprintf('->%s() serie %d has an "id"', $fname, $key));
+            $t->ok(isset($serie['label']), sprintf('->%s() serie %d has a "label"', $fname, $key));
+            $t->ok(isset($serie['values']), sprintf('->%s() serie %d has some "values"', $fname, $key));
+
+             $t->cmp_ok(array_values($data['y']['series'][$ykey]['values']), '==', $y[$ykey], sprintf('->%s() y-values for serie "%d" ok', $fname, $ykey));
         }
+
+
+
+
+
+
+        $gy = $data['y']['series'];
+        foreach ($gy as $key => $serie) {
+            
+        }
+
+        return $data;
     }
 
 }

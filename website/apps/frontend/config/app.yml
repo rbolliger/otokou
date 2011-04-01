@@ -20,3 +20,7 @@ all:
 dev:
   charts:
     force_generate: true
+
+test:
+  charts:
+    force_generate: true

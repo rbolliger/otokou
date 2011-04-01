@@ -6,7 +6,7 @@ include dirname(__FILE__) . '/../bootstrap/Doctrine.php';
 
 $ut = new chartSourceUtilityTest();
 
-$t = new lime_test(34, new lime_output_color());
+$t = new lime_test(144, new lime_output_color());
 
 
 $scenarios = array(

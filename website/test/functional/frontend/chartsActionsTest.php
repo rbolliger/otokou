@@ -37,8 +37,8 @@ $browser->
           with('response')->begin()->
             isStatusCode(200)->
             checkElement('img',false)->
-            checkElement('div.col1:contains("Warning")]',false)->
-            checkElement('div.col1:contains("Notice")]',false)->
+            checkElement('body:contains("Warning")]',false)->
+            checkElement('body:contains("Notice")]',false)->
             checkElement('table#filter_values:contains("No elements found")]',true)->
             checkElement('table#query_results:contains("No elements found")]',true)->
           end()->
@@ -76,8 +76,8 @@ $browser->
             end()->
         with('response')->
             begin()->
-                checkElement('div.col1:contains("Warning")]',false)->
-                checkElement('div.col1:contains("Notice")]',false)->
+                checkElement('body:contains("Warning")]',false)->
+                checkElement('body:contains("Notice")]',false)->
             // two vehicles listed, including archived one
                 checkElement('div.charts_filters tr input[name="chart_filters[vehicles_list][]"]',2)->
                 checkElement('#filter_values_vehicles_list:contains("nothing")',true)->
@@ -186,8 +186,8 @@ $browser->
             end()->
         with('response')->
             begin()->
-                checkElement('div.col1:contains("Warning")]',false)->
-                checkElement('div.col1:contains("Notice")]',false)->
+                checkElement('body:contains("Warning")]',false)->
+                checkElement('body:contains("Notice")]',false)->
             // two vehicles listed, including archived one
                 checkElement('div.charts_filters tr input[name="chart_filters[vehicles_list][]"][checked="checked"]',1)->
                 checkElement('div.charts_filters tr input[name="chart_filters[vehicle_display]"][checked="checked"]',1)->
@@ -228,8 +228,8 @@ $browser->
             end()->
         with('response')->
             begin()->
-                checkElement('div.col1:contains("Warning")]',false)->
-                checkElement('div.col1:contains("Notice")]',false)->
+                checkElement('body:contains("Warning")]',false)->
+                checkElement('body:contains("Notice")]',false)->
             // two vehicles listed, including archived one
                 checkElement('table#filter_values:contains("No elements found")]',true)->
                 checkElement('table#query_results:contains("No elements found")]',true)->
@@ -260,8 +260,8 @@ $browser->
           end()->
           with('response')->begin()->
             isStatusCode(200)->
-            checkElement('div.col1:contains("Warning")]',false)->
-            checkElement('div.col1:contains("Notice")]',false)->
+            checkElement('body:contains("Warning")]',false)->
+            checkElement('body:contains("Notice")]',false)->
             checkElement('img',true)->
             checkElement('#filter_values_vehicle_display:contains("single")]',true)->
             checkElement('#filter_values_category_display:contains("stacked")]',true)->
@@ -301,8 +301,8 @@ $browser->
             end()->
         with('response')->begin()->
             isStatusCode(200)->
-            checkElement('div.col1:contains("Warning")]',false)->
-            checkElement('div.col1:contains("Notice")]',false)->
+            checkElement('body:contains("Warning")]',false)->
+            checkElement('body:contains("Notice")]',false)->
             checkElement('img',true)->
             checkElement('#filter_values_vehicles_list:contains("'.$browser->getVehicleId('car-charts-1').'")',true)->
             checkElement('#filter_values_categories_list:contains("'.$browser->getIdForCategory('Tax').', '.$browser->getIdForCategory('Fuel').'")',true)->
@@ -334,8 +334,8 @@ $browser->
                 end()->
             with('response')->
                 begin()->
-                    checkElement('div.col1:contains("Warning")]',false)->
-                    checkElement('div.col1:contains("Notice")]',false)->
+                    checkElement('body:contains("Warning")]',false)->
+                    checkElement('body:contains("Notice")]',false)->
                     checkElement('img',true)->
                     checkElement('#filter_values_vehicle_display:contains("single")]',true)->
                     checkElement('#filter_values_category_display:contains("stacked")]',true)->
@@ -358,8 +358,8 @@ $browser->
                 end()->
             with('response')->
                 begin()->
-                    checkElement('div.col1:contains("Warning")]',false)->
-                    checkElement('div.col1:contains("Notice")]',false)->
+                    checkElement('body:contains("Warning")]',false)->
+                    checkElement('body:contains("Notice")]',false)->
                     checkElement('img',true)->
                     checkElement('#filter_values_vehicle_display:contains("single")]',true)->
                     checkElement('#filter_values_category_display:contains("single")]',true)->
@@ -381,8 +381,8 @@ $browser->
                 end()->
             with('response')->
                 begin()->
-                    checkElement('div.col1:contains("Warning")]',false)->
-                    checkElement('div.col1:contains("Notice")]',false)->
+                    checkElement('body:contains("Warning")]',false)->
+                    checkElement('body:contains("Notice")]',false)->
                     checkElement('img',true)->
                     checkElement('#filter_values_vehicle_display:contains("single")]',true)->
                     checkElement('#filter_values_category_display:contains("stacked")]',true)->
@@ -405,8 +405,8 @@ $browser->
                 end()->
             with('response')->
                 begin()->
-                    checkElement('div.col1:contains("Warning")]',false)->
-                    checkElement('div.col1:contains("Notice")]',false)->
+                    checkElement('body:contains("Warning")]',false)->
+                    checkElement('body:contains("Notice")]',false)->
                     checkElement('img',true)->
                     checkElement('#filter_values_vehicle_display:contains("single")]',true)->
                     checkElement('#filter_values_category_display:contains("stacked")]',true)->
