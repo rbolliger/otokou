@@ -453,12 +453,12 @@ class ChartBuilder {
             $label = $v->getName();
         }
 
-         if ($params['vehicle_display'] == 'single' && $params['category_display'] == 'single') {
+        if ($params['vehicle_display'] == 'single' && $params['category_display'] == 'single') {
 
             $v = Doctrine_Core::getTable('Vehicle')->findOneById($params['vehicle_id']);
             $c = Doctrine_Core::getTable('Category')->findOneById($params['category_id']);
 
-            $label = $v->getName() .' - '. $c->getName();
+            $label = $v->getName() . ' - ' . $c->getName();
         }
 
         if ($params['vehicle_display'] == 'stacked' && $params['category_display'] == 'single') {
@@ -664,8 +664,8 @@ class ChartBuilder {
         }
 
         return $params = array(
-            'list' => $vehicles,
-            'count' => $nb_vehicles,
+    'list' => $vehicles,
+    'count' => $nb_vehicles,
         );
     }
 
@@ -678,26 +678,27 @@ class ChartBuilder {
         // If no categories are specified by the user, we get all categories
         if ($nb_categories == 0) {
             $category_objects = Doctrine_Core::getTable('Category')->findAll(Doctrine_Core::HYDRATE_ARRAY);
-
-            $categories = array();
-            $names = array();
-
-            foreach ($category_objects as $key => $values) {
-                $categories[] = $values['id'];
-                $names[] = $values['name'];
-            }
-            $nb_categories = count($categories);
+        } else {
+            $category_objects = Doctrine_Core::getTable('Category')->createQuery('c')->whereIn('c.id', $categories)
+                            ->execute(array(),Doctrine_Core::HYDRATE_ARRAY);
         }
 
+
+        $categories = array();
+        $names = array();
+
+        foreach ($category_objects as $key => $values) {
+            $categories[] = $values['id'];
+            $names[] = $values['name'];
+        }
+        $nb_categories = count($categories);
+
         return $params = array(
-            'list' => $categories,
-            'count' => $nb_categories,
-            'names' => $names,
+    'list' => $categories,
+    'count' => $nb_categories,
+    'names' => $names,
         );
     }
-
-
-    
 
 }
 
