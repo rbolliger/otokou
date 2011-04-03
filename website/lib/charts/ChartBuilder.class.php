@@ -695,5 +695,39 @@ class ChartBuilder {
         );
     }
 
+    protected function buildCostPerYearChartData() {
+
+        $gs = $this->getChartSource();
+        $data = $gs->buildCostPerYearChartData();
+
+        return $data;
+    }
+
+    protected function buildCostPerKmChartData() {
+
+        $gs = $this->getChartSource();
+        $data = $gs->buildCostPerKmChartData($this->getParameter('range_type'));
+
+        return $data;
+    }
+
+    protected function buildCostPieChartData() {
+
+        // get data series
+        $gs = $this->getChartSource();
+
+        // building chart data
+        $categories = $this->getCategoriesList($this->getParameter('categories_list', null));
+        $vehicles = $this->getVehiclesList($this->getParameter('vehicles_list', null));
+        $options = array(
+            'categories' => $categories,
+            'vehicles' => $vehicles,
+            'vehicle_display' => $this->getParameter('vehicle_display'),
+        );
+        $data = $gs->buildCostPieChartData($options);
+        
+        return $data;
+    }
+
 }
 

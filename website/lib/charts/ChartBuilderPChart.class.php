@@ -295,11 +295,9 @@ class ChartBuilderPChart extends ChartBuilder {
 
     protected function buildCostPerKmChartData() {
 
-        $gs = $this->getChartSource();
+        $cd = parent::buildCostPerKmChartData();
 
         $myData = new pData();
-
-        $cd = $gs->buildCostPerKmChartData($this->getParameter('range_type'));
 
         $x_id = $cd['x']['id'];
         $myData->addPoints($cd['x']['values'], $x_id);
@@ -334,9 +332,7 @@ class ChartBuilderPChart extends ChartBuilder {
 
     protected function buildCostPerYearChartData() {
 
-        $gs = $this->getChartSource();
-
-        $data = $gs->buildCostPerYearChartData();
+        $data = parent::buildCostPerYearChartData();
 
         $myData = new pData();
 
@@ -347,6 +343,7 @@ class ChartBuilderPChart extends ChartBuilder {
         $myData->setAbscissa($x_id);
 
         // Y-axis
+        $gs = $this->getChartSource();
         $y_series = $gs->getSeries();
 
         $myData->setAxisName(0, $data['y']['description']);
@@ -362,21 +359,9 @@ class ChartBuilderPChart extends ChartBuilder {
         return $myData;
     }
 
-    public function buildCostPieChartData() {
+    protected function buildCostPieChartData() {
 
-        // get data series
-        $gs = $this->getChartSource();
-
-
-        // building chart data
-        $categories = $this->getCategoriesList($this->getParameter('categories_list', null));
-        $vehicles   = $this->getVehiclesList($this->getParameter('vehicles_list', null));
-        $options = array(
-            'categories' => $categories,
-            'vehicles'   => $vehicles,
-            'vehicle_display' => $this->getParameter('vehicle_display'),
-        );
-        $data = $gs->buildCostPieChartData($options);
+        $data = parent::buildCostPieChartData();
 
         $myData = new pData();
 
