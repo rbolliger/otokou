@@ -364,66 +364,35 @@ class ChartBuilderPChart extends ChartBuilder {
 
     public function buildCostPieChartData() {
 
-        $myData = new pData();
-
         // get data series
         $gs = $this->getChartSource();
-        $series = $gs->getSeries();
-
-        // get amounts for each serie
-        $amounts = $gs->getSeriesDataByColumn('amount', 'number');
-
-        // list of all the requested categories and vehicles
-        $categories = $this->getCategoriesList();
-        $vehicles = $this->getVehiclesList();
-
-        // initialization: a cell for each initially requested category and vehicle
-        $data = array_combine($categories['list'], array_fill(0, $categories['count'], 0));
-        $data = array_combine($vehicles['list'], array_fill(0, $vehicles['count'], $data));
-
-        // filling $data with the real values
-        $description = array();
-        foreach ($series as $key => $serie) {
-            $vid = $serie->getVehicleId();
-
-            $description[] = count($vid) > 1 ? 'All vehicles' : Doctrine_Core::getTable('Vehicle')->findOneById($vid)->getName();
-
-            // if $vid has more than one element, vehicles are stacked, so we got only one chart
-            if (count($vid) > 1) {
-                $vid = 1;
-            }
-
-            $cid = $serie->getCategoryId();
-
-            $value = array_sum($amounts[$key]);
- 
-            $data[$vid][$cid] = $value;
-        }
 
 
+        // building chart data
+        $categories = $this->getCategoriesList($this->getParameter('categories_list', null));
+        $vehicles   = $this->getVehiclesList($this->getParameter('vehicles_list', null));
+        $options = array(
+            'categories' => $categories,
+            'vehicles'   => $vehicles,
+            'vehicle_display' => $this->getParameter('vehicle_display'),
+        );
+        $data = $gs->buildCostPieChartData($options);
+
+        $myData = new pData();
+
+        $y_series = $data['y']['series'];
         // building chart data for each vehicle
-        $counter = -1;
-        foreach ($data as $key => $value) {
+        foreach ($y_series as $key => $y) {
 
-            $counter++;
-
-            $points = array_values($data[$key]);
-
-            // If all values are VOID, we skip the serie
-            if ($points === array_fill(0, count($points), 0)) {
-                continue;
-            }
-
-
-            $id = $series[$counter]->getId();
-            $myData->addPoints($points, $id);
-            $myData->setSerieDescription($id, $description[$counter]);
-            $myData->setSerieDrawable($id, false); // series will be activated in plotPieChart
+            $myData->addPoints($y['values'], $y['id']);
+            $myData->setSerieDescription($y['id'], $y['label']);
+            $myData->setSerieDrawable($y['id'], false); // series will be activated in plotPieChart
         }
 
+        $x = $data['x'];
         // adding labels
-        $myData->addPoints($categories['names'], 'labels');
-        $myData->setAbscissa('labels');
+        $myData->addPoints($x['values'], $x['id']);
+        $myData->setAbscissa($x['id']);
 
 
         return $myData;

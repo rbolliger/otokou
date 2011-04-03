@@ -646,41 +646,15 @@ class ChartBuilder {
         $this->chart_source = null;
     }
 
-    protected function getVehiclesList() {
-
-        $vehicles = $this->getParameter('vehicles_list', null);
-
-        $nb_vehicles = count($vehicles);
-
-        // If no vehicles are specified by the user, we get all vehicles
-        if (!$nb_vehicles) {
-            $q = Doctrine_Core::getTable('Vehicle')->getVehiclesByUserIdQuery($this->getParameter('user_id'));
-
-            $vehicle_objects = $q->execute(array(), Doctrine_Core::HYDRATE_ARRAY);
-            foreach ($vehicle_objects as $key => $values) {
-                $vehicles[] = $values['id'];
-            }
-            $nb_vehicles = count($vehicles);
-        }
-
-        return $params = array(
-    'list' => $vehicles,
-    'count' => $nb_vehicles,
-        );
-    }
-
-    protected function getCategoriesList() {
-
-        $categories = $this->getParameter('categories_list', null);
-        $nb_categories = count($categories);
+    protected function getCategoriesList($categories = array()) {
 
 
         // If no categories are specified by the user, we get all categories
-        if ($nb_categories == 0) {
+        if (!$categories) {
             $category_objects = Doctrine_Core::getTable('Category')->findAll(Doctrine_Core::HYDRATE_ARRAY);
         } else {
             $category_objects = Doctrine_Core::getTable('Category')->createQuery('c')->whereIn('c.id', $categories)
-                            ->execute(array(),Doctrine_Core::HYDRATE_ARRAY);
+                            ->execute(array(), Doctrine_Core::HYDRATE_ARRAY);
         }
 
 
@@ -693,10 +667,31 @@ class ChartBuilder {
         }
         $nb_categories = count($categories);
 
-        return $params = array(
-    'list' => $categories,
-    'count' => $nb_categories,
-    'names' => $names,
+        return array(
+            'list' => $categories,
+            'count' => $nb_categories,
+            'names' => $names,
+        );
+    }
+
+    protected function getVehiclesList($vehicles = array()) {
+
+        $nb_vehicles = count($vehicles);
+
+        // If no vehicles are specified by the user, we get all vehicles
+        if (!$vehicles) {
+            $q = Doctrine_Core::getTable('Vehicle')->getVehiclesByUserIdQuery($this->getParameter('user_id'));
+
+            $vehicle_objects = $q->execute(array(), Doctrine_Core::HYDRATE_ARRAY);
+            foreach ($vehicle_objects as $key => $values) {
+                $vehicles[] = $values['id'];
+            }
+            $nb_vehicles = count($vehicles);
+        }
+
+        return array(
+            'list' => $vehicles,
+            'count' => $nb_vehicles,
         );
     }
 

@@ -4,7 +4,7 @@ include dirname(__FILE__) . '/../bootstrap/Doctrine.php';
 
 
 
-$ut = new chartSourceUtilityTest();
+$ut = new chartSourceUtilityTest(new sfBrowser());
 
 $t = new lime_test(144, new lime_output_color());
 
@@ -24,12 +24,14 @@ $scenarios = array(
 
 foreach ($scenarios as $key => $scenario) {
 
+    $options = $scenario[2];
+
     $y = getYForScenario($ut, $scenario);
     $x = getXForScenario($ut, $scenario);
 
     $fname = 'buildCostPerKmChartData';
 
-    $g = $ut->runTest($t, $scenario, $fname, $x, $y);
+    $g = $ut->runTest($t, $scenario, $fname, $x, $y, $options);
 
     
 

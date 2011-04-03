@@ -4,7 +4,7 @@ include dirname(__FILE__) . '/../bootstrap/Doctrine.php';
 
 
 
-$ut = new chartSourceUtilityTest();
+$ut = new chartSourceUtilityTest(new sfBrowser());
 
 $t = new lime_test(144, new lime_output_color());
 
@@ -23,8 +23,6 @@ $scenarios = array(
 
 
 foreach ($scenarios as $key => $scenario) {
-//    for ($key = 0; $key < 1; $key++) {
-//        $scenario = $scenarios[$key];
 
     $x = getXForScenario($ut, $scenario);
     $y = getYForScenario($ut, $scenario);

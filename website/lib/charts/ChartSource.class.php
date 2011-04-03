@@ -497,5 +497,98 @@ class ChartSource {
         return $data;
     }
 
+    public function buildCostPieChartData($options = array()) {
+
+        if (!isset($options['categories'])) {
+            throw new sfException('Categories list is required.');
+        }
+
+        if (!isset($options['vehicles'])) {
+            throw new sfException('Vehicles list is required.');
+        }
+
+        if (!isset($options['vehicle_display'])) {
+            throw new sfException('vehicle_display option is required.');
+        }
+
+        $data = array();
+
+        // get amounts for each serie
+        $amounts = $this->getSeriesDataByColumn('amount', 'number');
+
+        // list of all the requested categories and vehicles
+        $categories = $options['categories'];
+        $vehicles = $options['vehicles'];
+        $vehicles_display = $options['vehicle_display'];
+
+        $vid_default = 1;
+
+        // initialization: a cell for each initially requested category and vehicle
+        $values = array_combine($categories['list'], array_fill(0, $categories['count'], 0));
+
+        if ('stacked' == $vehicles_display) {
+            $keys = array_fill(0, $vehicles['count'], $vid_default);
+        } else {
+            $keys = $vehicles['list'];
+        }
+        $values = array_combine($keys, array_fill(0, $vehicles['count'], $values));
+
+        // filling $data with the real values
+        $series = $this->getSeries();
+        $description = array();
+        foreach ($series as $key => $serie) {
+            $vid = $serie->getVehicleId();
+
+            $description[] = count($vid) > 1 ? 'All vehicles' : Doctrine_Core::getTable('Vehicle')->findOneById($vid)->getName();
+
+            // if $vid has more than one element, vehicles are stacked, so we got only one chart
+            if (count($vid) > 1) {
+                $vid = $vid_default;
+            }
+
+            $cid = $serie->getCategoryId();
+            if (count($cid) != 1) {
+                throw new sfException(sprintf('Serie "%s" is defined by more than one category. This is not allowed by this function. Category display must be single.', $serie->getLabel()));
+            }
+
+            $value = array_sum($amounts[$key]);
+            $values[$vid][$cid] = $value;
+        }
+
+        $data['y']['series'] = array();
+        $data['y']['description'] = "Cost allocation [CHF]";
+
+
+        // building chart data for each vehicle
+        $counter = -1;
+        foreach ($values as $key => $value) {
+
+            $counter++;
+
+            $points = array_values($values[$key]);
+
+            // If all values are VOID, we skip the serie
+            if ($points === array_fill(0, count($points), 0)) {
+                continue;
+            }
+
+            $id = $series[$counter]->getId();
+            $data['y']['series'][$counter] = array(
+                'id' => $id,
+                'label' => $description[$counter],
+                'values' => $points,
+            );
+        }
+
+        // adding labels
+        $data['x'] = array(
+            'id' => 'labels',
+            'values' => $categories['names'],
+            'description' => '',
+        );
+
+        return $data;
+    }
+
 }
 
