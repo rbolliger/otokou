@@ -9,8 +9,14 @@ class ChartSource {
 
     protected $parameters = array();
 
-    public function __construct() {
-        
+    public function __construct($parameters) {
+
+        if(func_num_args()<1) {
+            throw new sfException(__CLASS__.' requires an array of parameters as input');
+        }
+
+        $this->addParams($parameters);
+
     }
 
     public function setParam($param, $value) {
@@ -586,6 +592,108 @@ class ChartSource {
             'values' => $categories['names'],
             'description' => '',
         );
+
+        return $data;
+    }
+
+    public function buildTripChartData($unit) {
+
+        $data = array();
+
+
+        $units = array('year', 'month');
+        if (!in_array($unit, $units)) {
+            throw new sfException(sprintf('Unknown unit "%s". Accepted values are %s', $unit, implode(', ', $units)));
+        }
+
+
+        // x-axis
+        $dates = $this->getSeriesDataByColumn('date', 'datetime');
+
+        $x_dates = $this->buildXAxisDataByDateRange($dates, $unit);
+//print_r($x_dates); die();
+        $data['x'] = array(
+            'id' => 'x-axis',
+            'values' => $x_dates['labels'],
+            'description' => $x_dates['description'],
+        );
+
+
+        // Y-axis
+        $kilometers = $this->getSeriesDataByColumn('kilometers', 'number');
+        $y_series = $this->getSeries();
+//print_r($kilometers);die();
+        $title = $unit == 'year' ? "Annual travel [km/year]" : 'Monthly travel [km/month]';
+
+        $data['y']['series'] = array();
+        $data['y']['description'] = $title;
+
+        $y_data = array();
+        foreach ($dates as $skey => $serie) {
+
+            $prev_y = false;
+
+            for ($index = 0; $index < count($x_dates['range']) - 1; $index++) {
+                // removing elements outside the required range
+                $filter = $this->filterValuesOutsideRange($serie, $x_dates['range'][$index], $x_dates['range'][$index + 1]);
+//echo $index.', '.$x_dates['range'][$index].', '.$x_dates['range'][$index+1]."\n";print_r($filter);
+                if (!$filter) {
+                    $y_travel = 0;
+                } else {
+
+                    // getting corresponding y elements
+                    $y_filtered = array_intersect_key($kilometers[$skey], $filter);
+
+                    // set the first value form prev_y, which is not 0, but the lowest distance runned by
+                    // the vehicle. This depends on the filters applied by the user.
+                    if (false === $prev_y) {
+                        $k = array_keys($filter,min($filter));
+                        $m_y = array_intersect_key($y_filtered, $k);
+                        $prev_y = min($m_y);
+                    }
+
+                    $k = array_keys($filter,max($filter));
+                        $m_y = array_intersect_key($y_filtered, $k);
+                        $max = max($m_y);
+
+//                    $k = array_search(max($filter),$filter);
+//                    $max = $y_filtered[$k];
+                    $y_travel = $max - $prev_y;
+
+                    print_r($y_filtered); echo $max.', '.$prev_y.' => '.$y_travel."\n";
+                    $prev_y = $max;
+                }
+
+                $y_data[$skey][$index] = $y_travel;
+
+//                 echo $x_dates['range'][$index].
+//                ' ('.date('Y-m-d',$x_dates['range'][$index]).') => '.
+//                        $x_dates['range'][$index+1].
+//                        ' ('.date('Y-m-d',$x_dates['range'][$index+1]).') => '.
+//                        implode(', ',$filter).' => '.
+//                         implode(', ',$y_filtered).' => '.
+//                         '<b>'.$y_travel.'</b>'.
+//                        "<br \>";
+            }
+
+
+            $id = $y_series[$skey]->getId();
+            $data['y']['series'][$skey] = array(
+                'id' => $id,
+                'label' => $y_series[$skey]->getLabel(),
+                'values' => $y_data[$skey],
+            );
+
+            
+        }
+
+
+//            foreach ($y_data[0] as $cip => $y) {
+//                $x = $x_dates['range'][$cip];
+//
+//                echo date('Y-M-d',$x)." => ".$y."<br \>\n";
+//            }
+//        die();
 
         return $data;
     }

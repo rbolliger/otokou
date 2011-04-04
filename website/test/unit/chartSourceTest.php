@@ -2,13 +2,29 @@
 
 include dirname(__FILE__) . '/../bootstrap/Doctrine.php';
 
+$p = array('test_param' => 123);
 
-$t = new lime_test(26, new lime_output_color());
+$t = new lime_test(28, new lime_output_color());
+
+// ->__construct()
+$t->diag('->__construct()');
+try {
+    $g = new ChartSource();
+    $t->fail('no code should be executed after throwing an exception');
+} catch (Exception $e) {
+    $t->pass('__construct() requires an array of parameters');
+}
+
+// ->getParam()
+$t->diag('->getParam()');
+
+$g = new ChartSource($p);
+$t->cmp_ok($g->getParam('test_param'), '===',123, '->getParam() returns parameters set in the constructor.');
 
 
 // ->setParam()
 $t->diag('->setParam()');
-$g = new ChartSource();
+$g = new ChartSource($p);
 $g->setParam('dfsdf', 'asdfgsdg');
 $t->cmp_ok($g->getParam('dfsdf'), '===', 'asdfgsdg', '->setParam() sets the defined parameter');
 
@@ -21,7 +37,7 @@ $t->cmp_ok($g->getParam('a1234'), '===', '34', '->addParams() allows to set mult
 
 // ->getSeries()
 $t->diag('->getSeries()');
-$gs = new ChartSource();
+$gs = new ChartSource($p);
 try {
     $gs->getSeries();
     $t->fail('no code should be executed after throwing an exception');
@@ -41,7 +57,7 @@ $t->cmp_ok($gs->getSeries(), '===', $series, '->getSeries() returns series set b
 
 // ->getSeriesCount()
 $t->diag('->getSeriesCount()');
-$gs = new ChartSource();
+$gs = new ChartSource($p);
 $t->cmp_ok($gs->getSeriesCount(), '===', null, '->getSeriesCount() returns a value only if raw_data parameter is set');
 
 $series = array();
@@ -54,7 +70,7 @@ $t->cmp_ok($gs->getSeriesCount(), '===', 2, '->getSeriesCount() counts the numbe
 // ->getSeriesDataByColumn()
 $t->diag('->getSeriesDataByColumn()');
 $data = Doctrine_Core::getTable('Charge')->findAll();
-$gs = new ChartSource();
+$gs = new ChartSource($p);
 
 try {
     $gs->getSeriesDataByColumn('kilometers');
@@ -160,7 +176,7 @@ foreach ($c2 as $key => $value) {
 $dates = array_unique(array_merge($d1, $d2));
 sort($dates);
 
-$g = new ChartSource();
+$g = new ChartSource($p);
 $g->setSeries(array($s1, $s2));
 $x_series = $g->getSeriesDataByColumn('date', 'datetime');
 $x = $g->buildXAxisData($x_series);
