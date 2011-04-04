@@ -269,7 +269,8 @@ class ChartBuilder {
      */
     public function buildChartSource() {
 
-        $gs = new ChartSource($this->getParameters());
+        $gs = new ChartSource();
+        $gs->addParams($this->getParameters());
 
         // setting chart parameters
         $gs->addParams($this->getOption('chart_parameters'));

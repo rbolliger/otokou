@@ -9,13 +9,7 @@ class ChartSource {
 
     protected $parameters = array();
 
-    public function __construct($parameters) {
-
-        if(func_num_args()<1) {
-            throw new sfException(__CLASS__.' requires an array of parameters as input');
-        }
-
-        $this->addParams($parameters);
+    public function __construct() {
 
     }
 
