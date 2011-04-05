@@ -217,8 +217,13 @@ class chartSourceUtilityTest extends otokouTestFunctional {
         }
 
 
+        $params = array(
+            'vehicle_display' => $vd,
+            'category_display' => $cd,
+        );
 
         $g = new ChartSource();
+        $g->addParams($params);
         $g->setSeries($series);
 
 
@@ -245,7 +250,6 @@ class chartSourceUtilityTest extends otokouTestFunctional {
 
         $t->diag(sprintf('->%s() scenario (%s)', $fname, implode(', ', $scenario)));
         $g = $this->getChartSource($scenario[0], $scenario[1]);
-
 
         // For some scenarios, the function may not work. This code tests that.
         if (false === $y) {

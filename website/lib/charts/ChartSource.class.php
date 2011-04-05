@@ -600,12 +600,17 @@ class ChartSource {
             throw new sfException(sprintf('Unknown unit "%s". Accepted values are %s', $unit, implode(', ', $units)));
         }
 
+        $cd = $this->getParam('category_display');
+        if ('stacked' !== $cd) {
+            throw new sfException(sprintf('category_display must be set to "stacked" in ' . __METHOD__ . ' The value is set to "%s" ', $cd));
+        }
+
 
         // x-axis
         $dates = $this->getSeriesDataByColumn('date', 'datetime');
 
         $x_dates = $this->buildXAxisDataByDateRange($dates, $unit);
-//print_r($x_dates); die();
+
         $data['x'] = array(
             'id' => 'x-axis',
             'values' => $x_dates['labels'],
@@ -616,7 +621,7 @@ class ChartSource {
         // Y-axis
         $kilometers = $this->getSeriesDataByColumn('kilometers', 'number');
         $y_series = $this->getSeries();
-//print_r($kilometers);die();
+
         $title = $unit == 'year' ? "Annual travel [km/year]" : 'Monthly travel [km/month]';
 
         $data['y']['series'] = array();
@@ -630,7 +635,8 @@ class ChartSource {
             for ($index = 0; $index < count($x_dates['range']) - 1; $index++) {
                 // removing elements outside the required range
                 $filter = $this->filterValuesOutsideRange($serie, $x_dates['range'][$index], $x_dates['range'][$index + 1]);
-//echo $index.', '.$x_dates['range'][$index].', '.$x_dates['range'][$index+1]."\n";print_r($filter);
+
+
                 if (!$filter) {
                     $y_travel = 0;
                 } else {
@@ -638,36 +644,36 @@ class ChartSource {
                     // getting corresponding y elements
                     $y_filtered = array_intersect_key($kilometers[$skey], $filter);
 
+
                     // set the first value form prev_y, which is not 0, but the lowest distance runned by
                     // the vehicle. This depends on the filters applied by the user.
                     if (false === $prev_y) {
-                        $k = array_keys($filter,min($filter));
-                        $m_y = array_intersect_key($y_filtered, $k);
+
+                        $m_y = array();
+                        $min = min($filter);
+                        foreach ($filter as $k => $v) {
+                            if ($v == $min) {
+                                array_push($m_y, $y_filtered[$k]);
+                            }
+                        }
                         $prev_y = min($m_y);
                     }
 
-                    $k = array_keys($filter,max($filter));
-                        $m_y = array_intersect_key($y_filtered, $k);
-                        $max = max($m_y);
+                    $m_y = array();
+                    $max = max($filter);
+                    foreach ($filter as $k => $v) {
+                        if ($v == $max) {
+                            array_push($m_y, $y_filtered[$k]);
+                        }
+                    }
+                    $max = max($m_y);
 
-//                    $k = array_search(max($filter),$filter);
-//                    $max = $y_filtered[$k];
+
                     $y_travel = $max - $prev_y;
-
-                    print_r($y_filtered); echo $max.', '.$prev_y.' => '.$y_travel."\n";
                     $prev_y = $max;
                 }
 
                 $y_data[$skey][$index] = $y_travel;
-
-//                 echo $x_dates['range'][$index].
-//                ' ('.date('Y-m-d',$x_dates['range'][$index]).') => '.
-//                        $x_dates['range'][$index+1].
-//                        ' ('.date('Y-m-d',$x_dates['range'][$index+1]).') => '.
-//                        implode(', ',$filter).' => '.
-//                         implode(', ',$y_filtered).' => '.
-//                         '<b>'.$y_travel.'</b>'.
-//                        "<br \>";
             }
 
 
@@ -677,8 +683,6 @@ class ChartSource {
                 'label' => $y_series[$skey]->getLabel(),
                 'values' => $y_data[$skey],
             );
-
-            
         }
 
 

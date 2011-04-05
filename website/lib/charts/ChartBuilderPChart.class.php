@@ -390,6 +390,16 @@ class ChartBuilderPChart extends ChartBuilder {
             throw new sfException(sprintf('Unknown unit "%s". Accepted values are %s', $unit, implode(', ', $units)));
         }
 
+        $cd = $this->getParameter('category_display',false);
+
+        if (false === $cd) {
+            throw new sfException('Parameter category_display is required by '.__METHOD__);
+        }
+
+        if ('single' == $cd) {
+            throw new sfException(__METHOD__.' only accepts category_display set to "stacked"');
+        }
+
         $gs = $this->getChartSource();
 
         $myData = new pData();
