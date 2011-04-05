@@ -12,7 +12,7 @@ require_once(realpath(dirname(__FILE__) . '/../../lib/vendor/symfony/lib/helper/
 require_once(realpath(dirname(__FILE__) . '/../../lib/vendor/symfony/lib/helper/AssetHelper.php'));
 
 
-$t = new lime_test(9, new lime_output_color());
+$t = new lime_test(10, new lime_output_color());
 
 
 // ->generate()
@@ -64,6 +64,19 @@ $options = array(
 );
 $g = newChart($options);
 $t->cmp_ok($g->generate(), '===', true, '->generate() A trip_annual chart is generated.');
+
+// ->buildTripPerMonthChartData()
+sfConfig::set('app_charts_force_generate', true);
+$options = array(
+    'user_id' => $ut->getUserId('user_gs'),
+    'chart_name' => 'trip_monthly',
+    'range_type' => 'distance',
+    'vehicle_display' => 'single',
+    'category_display' => 'stacked',
+    'format' => 'png',
+);
+$g = newChart($options);
+$t->cmp_ok($g->generate(), '===', true, '->generate() A trip_monthly chart is generated.');
 
 // ->display()
 $t->diag('->display()');
