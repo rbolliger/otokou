@@ -2,7 +2,7 @@
 
 include dirname(__FILE__) . '/../bootstrap/Doctrine.php';
 
-$t = new lime_test(26, new lime_output_color());
+$t = new lime_test(30, new lime_output_color());
 
 
 // ->setParam()
@@ -229,3 +229,101 @@ $x = $g->buildXAxisDataByRangeTypeAndCalculationBase($rt, $bt, $options);
 $t->cmp_ok(count(array_keys($x['base'], -1234)), '===', 1, '->buildXAxisDataByRangeTypeAndCalculationBase() When "check_zeroes" is set to true, zeroes are repalced with the value set in "zero_approx".');
 
 
+// ->buildXAxisDataByDateRange()
+$t->diag('->buildXAxisDataByDateRange()');
+
+$g = new ChartSource();
+
+$dates = array(
+    array('2000-3-5', '2003-7-2'),
+    array('2002-4-12'),
+    array('2003-10-2', '2001-9-3'),
+);
+$unit = 'year';
+$res = array('2000', '2001', '2002', '2003');
+
+test_date_range($t, $g, $dates, $unit, $res);
+
+
+$dates = array(
+    array('2000-3-5', '2000-10-2'),
+    array('2000-6-3'),
+);
+$unit = 'year';
+$res = array('2000');
+
+test_date_range($t, $g, $dates, $unit, $res);
+
+$dates = array(
+    array('2000-3-5', '2002-1-6'),
+    array('2001-1-1'),
+);
+$unit = 'month';
+$res = array(
+    '2000-Mar',
+    '2000-Apr',
+    '2000-May',
+    '2000-Jun',
+    '2000-Jul',
+    '2000-Aug',
+    '2000-Sep',
+    '2000-Oct',
+    '2000-Nov',
+    '2000-Dec',
+    '2001-Jan',
+    '2001-Feb',
+    '2001-Mar',
+    '2001-Apr',
+    '2001-May',
+    '2001-Jun',
+    '2001-Jul',
+    '2001-Aug',
+    '2001-Sep',
+    '2001-Oct',
+    '2001-Nov',
+    '2001-Dec',
+    '2002-Jan',
+);
+
+test_date_range($t, $g, $dates, $unit, $res);
+
+
+$dates = array(
+    array('2000-3-5', '2000-10-2'),
+    array('2000-6-24'),
+);
+$unit = 'month';
+$res = array(
+    '2000-Mar',
+    '2000-Apr',
+    '2000-May',
+    '2000-Jun',
+    '2000-Jul',
+    '2000-Aug',
+    '2000-Sep',
+    '2000-Oct',
+);
+
+test_date_range($t, $g, $dates, $unit, $res);
+
+
+function convert_to_timestamps($dates) {
+
+    $d = array();
+    foreach ($dates as $key => $serie) {
+        foreach ($serie as $dk => $date) {
+            $d[$key][$dk] = strtotime($date);
+        }
+    }
+
+    return $d;
+}
+
+function test_date_range($t, $g, $dates, $unit, $labels) {
+
+    $d = convert_to_timestamps($dates);
+
+    $data = $g->buildXAxisDataByDateRange($d, $unit);
+
+    $t->cmp_ok($data['labels'], '===', $labels, sprintf('->buildXAxisDataByDateRange() retruns the right result with "%s" option', $unit));
+}

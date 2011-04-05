@@ -199,6 +199,11 @@ class ChartSource {
         $date_max = array();
         $date_min = array();
         foreach ($dates as $d) {
+
+            if (!is_array($d)) {
+                throw new sfException(__METHOD__.' expects a two-level array $dates. Single-level array provided.');
+            }
+
             $date_max[] = max($d);
             $date_min[] = min($d);
         }
@@ -215,9 +220,14 @@ class ChartSource {
 
         if ('year' == $unit) {
 
-            $labels = range($year_min, $year_max);
+            $lab = range($year_min, $year_max);
+            
+            $labels = array();
+            foreach ($lab as $l) {
+                $labels[] = (string) $l;
+            }
 
-            foreach (range($year_min, $year_max + 1) as $year) {
+            foreach (range($year_min, $year_max + 1) as $key => $year) {
                 $dates_range[] = strtotime($year . '-1-1');
             }
 
@@ -227,23 +237,24 @@ class ChartSource {
             $month_min = date('m', $date_min);
             $month_max = date('m', $date_max);
 
-
             $years = range($year_min, $year_max);
 
 
             foreach ($years as $key => $year) {
 
-                if ($key == 0) {
+                if ($year_min === $year_max) {
+                    $idx_start = $month_min;
+                    $idx_stop = $month_max;
+                } elseif ($key == 0) {
                     $idx_start = $month_min;
                     $idx_stop = 12;
-                } elseif ($key == count($years) - 1) {
+                } elseif ($key == count($years)-1) {
                     $idx_start = 1;
                     $idx_stop = $month_max;
                 } else {
                     $idx_start = 1;
                     $idx_stop = 12;
                 }
-
 
                 for ($month = $idx_start; $month < $idx_stop + 1; $month++) {
 
