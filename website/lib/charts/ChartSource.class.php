@@ -201,7 +201,7 @@ class ChartSource {
         foreach ($dates as $d) {
 
             if (!is_array($d)) {
-                throw new sfException(__METHOD__.' expects a two-level array $dates. Single-level array provided.');
+                throw new sfException(__METHOD__ . ' expects a two-level array $dates. Single-level array provided.');
             }
 
             $date_max[] = max($d);
@@ -221,7 +221,7 @@ class ChartSource {
         if ('year' == $unit) {
 
             $lab = range($year_min, $year_max);
-            
+
             $labels = array();
             foreach ($lab as $l) {
                 $labels[] = (string) $l;
@@ -248,7 +248,7 @@ class ChartSource {
                 } elseif ($key == 0) {
                     $idx_start = $month_min;
                     $idx_stop = 12;
-                } elseif ($key == count($years)-1) {
+                } elseif ($key == count($years) - 1) {
                     $idx_start = 1;
                     $idx_stop = $month_max;
                 } else {
@@ -695,14 +695,6 @@ class ChartSource {
                 'values' => $y_data[$skey],
             );
         }
-
-
-//            foreach ($y_data[0] as $cip => $y) {
-//                $x = $x_dates['range'][$cip];
-//
-//                echo date('Y-M-d',$x)." => ".$y."<br \>\n";
-//            }
-//        die();
 
         return $data;
     }

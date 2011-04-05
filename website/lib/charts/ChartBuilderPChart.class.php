@@ -385,97 +385,26 @@ class ChartBuilderPChart extends ChartBuilder {
 
     protected function buildTripChartData($unit) {
 
-        $units = array('year', 'month');
-        if (!in_array($unit, $units)) {
-            throw new sfException(sprintf('Unknown unit "%s". Accepted values are %s', $unit, implode(', ', $units)));
-        }
-
-        $cd = $this->getParameter('category_display',false);
-
-        if (false === $cd) {
-            throw new sfException('Parameter category_display is required by '.__METHOD__);
-        }
-
-        if ('single' == $cd) {
-            throw new sfException(__METHOD__.' only accepts category_display set to "stacked"');
-        }
-
-        $gs = $this->getChartSource();
+        $data = parent::buildTripChartData($unit);
 
         $myData = new pData();
 
         // x-axis
-        $dates = $gs->getSeriesDataByColumn('date', 'datetime');
-
-        $x_dates = $gs->buildXAxisDataByDateRange($dates, $unit);
-
-        $x_id = "x-axis";
-        $myData->addPoints($x_dates['labels'], $x_id);
-        $myData->setSerieDescription($x_id, $x_dates['description']);
+        $x_id = $data['x']['id'];
+        $myData->addPoints($data['x']['values'], $x_id);
+        $myData->setSerieDescription($x_id, $data['x']['description']);
         $myData->setAbscissa($x_id);
 
 
         // Y-axis
-        $kilometers = $gs->getSeriesDataByColumn('kilometers', 'number');
-        $y_series = $gs->getSeries();
+        $myData->setAxisName(0, $data['y']['description']);
 
-        $title = $unit == 'year' ? "Annual travel [km/year]" : 'Monthly travel [km/month]';
-        $myData->setAxisName(0, $title);
+        foreach($data['y']['series'] as $key => $serie) {
 
-        $y_data = array();
-        $prev_y = false;
-        foreach ($dates as $skey => $serie) {
-
-            for ($index = 0; $index < count($x_dates['range']) - 1; $index++) {
-                // removing elements outside the required range
-                $filter = $gs->filterValuesOutsideRange($serie, $x_dates['range'][$index], $x_dates['range'][$index + 1]);
-
-
-
-                if (!$filter) {
-                    $y_travel = 0;
-                } else {
-
-                    // getting corresponding y elements
-                    $y_filtered = array_intersect_key($kilometers[$skey], $filter);
-
-                    // set the first value form prev_y, which is not 0, but the lowest distance runned by
-                    // the vehicle. This depends on the filters applied by the user.
-                    if (false === $prev_y) {
-                        $prev_y = min($y_filtered);
-                    }
-
-                    $y_travel = max($y_filtered) - $prev_y;
-                    $prev_y = max($y_filtered);
-                }
-
-                $y_data[$skey][$index] = $y_travel;
-
-//                 echo $x_dates['range'][$index].
-//                ' ('.date('Y-m-d',$x_dates['range'][$index]).') => '.
-//                        $x_dates['range'][$index+1].
-//                        ' ('.date('Y-m-d',$x_dates['range'][$index+1]).') => '.
-//                        implode(', ',$filter).' => '.
-//                         implode(', ',$y_filtered).' => '.
-//                         '<b>'.$y_travel.'</b>'.
-//                        "<br \>";
-            }
-
-
-
-
-            $y_id = $y_series[$skey]->getId();
-            $myData->addPoints($y_data[$skey], $y_id);
-            $myData->setSerieDescription($y_id, $y_series[$skey]->getLabel());
+            $y_id = $serie['id'];
+            $myData->addPoints($serie['values'], $y_id);
+            $myData->setSerieDescription($y_id, $serie['label']);
         }
-
-
-//            foreach ($y_data[0] as $cip => $y) {
-//                $x = $x_dates['range'][$cip];
-//
-//                echo date('Y-M-d',$x)." => ".$y."<br \>\n";
-//            }
-//        die();
 
         return $myData;
     }

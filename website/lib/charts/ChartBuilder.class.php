@@ -726,7 +726,17 @@ class ChartBuilder {
             'vehicle_display' => $this->getParameter('vehicle_display'),
         );
         $data = $gs->buildCostPieChartData($options);
-        
+
+        return $data;
+    }
+
+    protected function buildTripChartData($unit) {
+
+        // get data series
+        $gs = $this->getChartSource();
+
+        $data = $gs->buildTripChartData($unit);
+
         return $data;
     }
 
