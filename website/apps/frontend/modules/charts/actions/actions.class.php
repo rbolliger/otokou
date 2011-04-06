@@ -119,6 +119,22 @@ class chartsActions extends sfActions {
         $this->gb = new ChartBuilderPChart($this->getGBData());
     }
 
+    public function executeConsumptionPerDistance(sfWebRequest $request) {
+
+        $this->setPreviousTemplate('costPerKm');
+        $this->setPreviousAction('consumptionPerDistance');
+        $this->setTemplate('costPerKm');
+
+        $filters = $this->getFilters();
+        $filters = $this->updateFilterFieldIfEmpty($filters, 'vehicle_display', 'single');
+        $filters = $this->updateFilterFieldIfEmpty($filters, 'range_type', 'distance');
+        $this->setFilters($filters);
+        $this->setFilterField('chart_name', 'consumption_per_distance');
+
+        $this->gb = new ChartBuilderPChart($this->getGBData());
+
+    }
+
     public function executeFilter(sfWebRequest $request) {
 
         if ($request->hasParameter('_reset')) {

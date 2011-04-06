@@ -60,6 +60,12 @@ class ChartBuilderPChart extends ChartBuilder {
                 $picture = $this->plotBarChart($picture, $options);
                 break;
 
+            case 'consumption_per_distance':
+
+                $picture = $this->buildPicture($data);
+                $chart = $this->plotScatterChart($picture, $data);
+                break;
+
             default:
 
                 throw new sfException(sprintf('Unknown chart name %s', $name));
@@ -290,9 +296,11 @@ class ChartBuilderPChart extends ChartBuilder {
         return $picture;
     }
 
-    protected function buildCostPerKmChartData() {
+    protected function buildCostPerKmChartData($cd = array()) {
 
-        $cd = parent::buildCostPerKmChartData();
+        if (!$cd) {
+            $cd = parent::buildCostPerKmChartData();
+        }
 
         $this->setOption('title', $cd['title']);
 
@@ -386,6 +394,15 @@ class ChartBuilderPChart extends ChartBuilder {
         return $myData;
     }
 
+    protected function buildConsumptionPerDistanceChartData() {
+
+        $data = parent::buildConsumptionPerDistanceChartData();
+
+        $myData = $this->buildCostPerKmChartData($data);
+
+        return $myData;
+    }
+
     protected function buildTripChartData($unit) {
 
         $data = parent::buildTripChartData($unit);
@@ -404,7 +421,7 @@ class ChartBuilderPChart extends ChartBuilder {
         // Y-axis
         $myData->setAxisName(0, $data['y']['description']);
 
-        foreach($data['y']['series'] as $key => $serie) {
+        foreach ($data['y']['series'] as $key => $serie) {
 
             $y_id = $serie['id'];
             $myData->addPoints($serie['values'], $y_id);

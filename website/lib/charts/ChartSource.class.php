@@ -345,7 +345,6 @@ class ChartSource {
             }
         }
 
-
         $this->setParam('series', $series);
     }
 
@@ -407,49 +406,50 @@ class ChartSource {
 
 
         // Y-axis
-        $y_columns = $this->getSeriesDataByColumn('amount');
 
-        $x_values = $x_data['value'];
-        $x_column = $x_data['x_column'];
+        $cost = $this->buildYAxisDataBySum('amount', $x_data, 'calculateCostSum');
 
-        $y_data = array();
-        $y_series = $this->getSeries();
+//        $y_columns = $this->getSeriesDataByColumn('amount');
+//
+//        $x_values = $x_data['value'];
+//        $x_column = $x_data['x_column'];
+//
+//        $y_data = array();
+//        $y_series = $this->getSeries();
 
-        $data['y']['series'] = array();
+        $data['y']['series'] = $cost;
         $data['y']['description'] = 'Cost [CHF/km]';
-
-
-        foreach ($y_columns as $ykey => $y_values) {
-
-            foreach ($x_values as $bkey => $bound) {
-
-                // removing x elements that are larger than bound
-                $filter = $this->filterValuesLargerThan($x_column[$ykey], $bound);
-
-
-                if (!count($filter)) {
-                    $cost = 0;
-                } else {
-
-                    // getting corresponding y elements
-                    $y_filtered = array_intersect_key($y_values, $filter);
-
-                    $distance = $x_data['base'][$bkey];
-
-                    $cost = array_sum($y_filtered) / $distance;
-                }
-
-                // assigning result to temporary array
-                $y_data[$ykey][$bkey] = $cost;
-            }
-
-
-            $data['y']['series'][$ykey] = array(
-                'id' => $y_series[$ykey]->getId(),
-                'label' => $y_series[$ykey]->getLabel(),
-                'values' => $y_data[$ykey],
-            );
-        }
+//        foreach ($y_columns as $ykey => $y_values) {
+//
+//            foreach ($x_values as $bkey => $bound) {
+//
+//                // removing x elements that are larger than bound
+//                $filter = $this->filterValuesLargerThan($x_column[$ykey], $bound);
+//
+//
+//                if (!count($filter)) {
+//                    $cost = 0;
+//                } else {
+//
+//                    // getting corresponding y elements
+//                    $y_filtered = array_intersect_key($y_values, $filter);
+//
+//                    $distance = $x_data['base'][$bkey];
+//
+//                    $cost = array_sum($y_filtered) / $distance;
+//                }
+//
+//                // assigning result to temporary array
+//                $y_data[$ykey][$bkey] = $cost;
+//            }
+//
+//
+//            $data['y']['series'][$ykey] = array(
+//                'id' => $y_series[$ykey]->getId(),
+//                'label' => $y_series[$ykey]->getLabel(),
+//                'values' => $y_data[$ykey],
+//            );
+//        }
 
 
         return $data;
@@ -703,6 +703,105 @@ class ChartSource {
         }
 
         return $data;
+    }
+
+    public function buildConsumptionPerDistanceChartData($range_type) {
+
+        // checking that the right category is selected
+        $cid = Doctrine_Core::getTable('Category')->findOneByName('Fuel')->getId();
+        $cid = array($cid);
+        if ($cid != $this->getParam('categories_list')) {
+            throw new sfException(sprintf('This function requires that only category "Fuel" is selected. It seems that other categories (on none) are also selected (ids: %s).', implode(', ', $this->getParam('categories_list', array('None')))));
+        }
+
+
+        $data = array();
+        $data['title'] = 'Consumption [l/100km]';
+
+
+        // X-axis
+        $x_data = $this->buildXAxisDataByRangeTypeAndCalculationBase($range_type, 'distance');
+
+        $data['x'] = array(
+            'id' => 'x-axis',
+            'values' => $x_data['value'],
+            'description' => $x_data['label'],
+        );
+
+        // Y-axis
+        $consumption = $this->buildYAxisDataBySum('quantity', $x_data, 'calculateConsumptionPerDistance');
+
+        $data['y']['series'] = $consumption;
+        $data['y']['description'] = 'Consumption [l/100km]';
+
+        return $data;
+    }
+
+    function buildYAxisDataBySum($column, $x_data, $y_eval) {
+
+
+        $y_columns = $this->getSeriesDataByColumn($column);
+
+        $x_values = $x_data['value'];
+        $x_base = $x_data['base'];
+        $x_column = $x_data['x_column'];
+
+        $y_data = array();
+        $y_series = $this->getSeries();
+
+        $y_sum = array();
+
+        foreach ($y_columns as $ykey => $y_values) {
+
+            foreach ($x_values as $bkey => $bound) {
+
+                // removing x elements that are larger than bound
+                $filter = $this->filterValuesLargerThan($x_column[$ykey], $bound);
+
+
+                if (!count($filter)) {
+                    $cost = 0;
+                } else {
+
+                    // getting corresponding y elements
+                    $y_filtered = array_intersect_key($y_values, $filter);
+
+                    $distance = $x_base[$bkey];
+
+                    $cost = $this->$y_eval($y_filtered, $distance);
+                }
+
+                // assigning result to temporary array
+                $y_sum[$ykey][$bkey] = $cost;
+            }
+
+
+            $y_data[$ykey] = array(
+                'id' => $y_series[$ykey]->getId(),
+                'label' => $y_series[$ykey]->getLabel(),
+                'values' => $y_sum[$ykey],
+            );
+        }
+
+        return $y_data;
+    }
+
+    protected function calculateCostSum($costs, $distance) {
+
+        if ($distance == 0) {
+            $distance = 0.01;
+        }
+
+        return array_sum($costs) / $distance;
+    }
+
+    protected function calculateConsumptionPerDistance($consumptions, $distance) {
+
+        if ($distance == 0) {
+            $distance = 0.01;
+        }
+
+        return array_sum($consumptions) / $distance * 100;
     }
 
 }

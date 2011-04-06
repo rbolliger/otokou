@@ -47,6 +47,13 @@ chart_trip_monthly:
   requirements:
     sf_method: [ get ]
 
+chart_consumption_per_distance:
+  url: /:username/charts/consumption/per100km
+  class: otkWithUserRoute
+  param: {module: charts, action: consumptionPerDistance }
+  requirements:
+    sf_method: [ get ]
+
 
 vehicle:
   class: sfDoctrineRouteCollection

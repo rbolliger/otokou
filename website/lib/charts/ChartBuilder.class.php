@@ -78,6 +78,14 @@ class ChartBuilder {
                 $data = $this->buildTripChartData('month');
                 break;
 
+            case 'consumption_per_distance':
+
+                $cid = Doctrine_Core::getTable('Category')->findOneByName('Fuel')->getId();
+                $this->setParameter('categories_list',array($cid));
+
+                $data = $this->buildConsumptionPerDistanceChartData();
+                break;
+
             default:
 
                 throw new sfException(sprintf('Unknown chart name %s', $name));
@@ -365,8 +373,8 @@ class ChartBuilder {
         }
 
 
-        $vl = $this->getVehiclesList();
-        $cl = $this->getCategoriesList();
+        $vl = $this->getVehiclesList($this->getParameter('vehicles_list', array()));
+        $cl = $this->getCategoriesList($this->getParameter('categories_list', array()));
 
         // If no cars, we won't display anything
         if (empty($vl['list'])) {
@@ -790,6 +798,15 @@ class ChartBuilder {
         $gs = $this->getChartSource();
 
         $data = $gs->buildTripChartData($unit);
+
+        return $data;
+    }
+
+    protected function buildConsumptionPerDistanceChartData() {
+
+        $gs = $this->getChartSource();
+
+        $data = $gs->buildConsumptionPerDistanceChartData($this->getParameter('range_type'));
 
         return $data;
     }
