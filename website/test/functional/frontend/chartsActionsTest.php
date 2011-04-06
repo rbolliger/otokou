@@ -362,9 +362,8 @@ $browser->
                     checkElement('body:contains("Notice")]',false)->
                     checkElement('img',true)->
                     checkElement('#filter_values_vehicle_display:contains("single")]',true)->
-                    checkElement('#filter_values_category_display:contains("single")]',true)->
                     checkElement('#filter_values_chart_name:contains("cost_pie")]',true)->
-                    checkElement('table#filter_values tbody tr',3)->
+                    checkElement('table#filter_values tbody tr',2)->
                 end()->
 
         info('6 - Annual travel')->
@@ -385,10 +384,8 @@ $browser->
                     checkElement('body:contains("Notice")]',false)->
                     checkElement('img',true)->
                     checkElement('#filter_values_vehicle_display:contains("single")]',true)->
-                    checkElement('#filter_values_category_display:contains("stacked")]',true)->
-                    checkElement('#filter_values_range_type:contains("date")]',true)->
                     checkElement('#filter_values_chart_name:contains("trip_annual")]',true)->
-                    checkElement('table#filter_values tbody tr',4)->
+                    checkElement('table#filter_values tbody tr',2)->
                 end()->
 
         info('7 - Monthly travel')->
@@ -409,10 +406,8 @@ $browser->
                     checkElement('body:contains("Notice")]',false)->
                     checkElement('img',true)->
                     checkElement('#filter_values_vehicle_display:contains("single")]',true)->
-                    checkElement('#filter_values_category_display:contains("stacked")]',true)->
-                    checkElement('#filter_values_range_type:contains("date")]',true)->
                     checkElement('#filter_values_chart_name:contains("trip_monthly")]',true)->
-                    checkElement('table#filter_values tbody tr',4)->
+                    checkElement('table#filter_values tbody tr',2)->
                 end()
           
 ;

@@ -7,7 +7,7 @@ Chart:
     date_to:
     kilometers_from:
     kilometers_to:
-    range_type: kilometers
+    range_type: distance
     sha: 1231234
     format: png
     chart_name: something
@@ -21,7 +21,7 @@ Chart:
     date_to:
     kilometers_from:
     kilometers_to:
-    range_type: kilometers
+    range_type: distance
     sha: 12312343
     format: png
     chart_name: something
@@ -35,7 +35,7 @@ Chart:
     date_to:
     kilometers_from:
     kilometers_to:
-    range_type: kilometers
+    range_type: distance
     sha: 1231234sdf
     format: png
     chart_name: something
@@ -49,7 +49,7 @@ Chart:
     date_to:
     kilometers_from:
     kilometers_to:
-    range_type: kilometers
+    range_type: distance
     sha: 1231234asdfas
     format: png
     chart_name: something

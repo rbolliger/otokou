@@ -390,6 +390,7 @@ class ChartSource {
     public function buildCostPerKmChartData($range_type) {
 
         $data = array();
+        $data['title'] = 'Relative Cost [CHF/km]';
 
         // X-axis
         $options = array(
@@ -457,6 +458,7 @@ class ChartSource {
     public function buildCostPerYearChartData() {
 
         $data = array();
+        $data['title'] = 'Total Cost [CHF/year]';
 
         // x-axis
         $dates = $this->getSeriesDataByColumn('date', 'datetime');
@@ -523,6 +525,7 @@ class ChartSource {
         }
 
         $data = array();
+        $data['title'] = 'Cost allocation [CHF]';
 
         // get amounts for each serie
         $amounts = $this->getSeriesDataByColumn('amount', 'number');
@@ -615,6 +618,9 @@ class ChartSource {
         if ('stacked' !== $cd) {
             throw new sfException(sprintf('category_display must be set to "stacked" in ' . __METHOD__ . ' The value is set to "%s" ', $cd));
         }
+
+        $title = $unit == 'year' ? 'Annual travel [km/year]' : 'Monthly travel [km/year]';
+        $data['title'] = $title;
 
 
         // x-axis

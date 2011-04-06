@@ -20,16 +20,6 @@ class ChartBuilder {
     protected $chart_source;
     protected $logger;
 
-    public function doDisplay() {
-
-    }
-
-    public function doGenerate() {
-
-        // false because no chart has been generated. true must be returned only if a chart has been generated
-        return false;
-    }
-
     public function __construct(array $parameters, array $options = array(), array $attributes = array()) {
 
         $this->setParameters($parameters);
@@ -41,6 +31,60 @@ class ChartBuilder {
         $this->setAttributes($attributes);
 
         $this->setLogger($this->getOption('logger', sfContext::getInstance()->getLogger()));
+    }
+
+    public function doDisplay() {
+        return 'This function cannot directly plot a chart.';
+    }
+
+    public function doGenerate() {
+
+        $done = true;
+
+        $name = $this->getParameter('chart_name');
+
+        switch ($name) {
+            case 'cost_per_km':
+
+                $data = $this->buildCostPerKmChartData();
+
+                break;
+
+            case 'cost_per_year':
+                $data = $this->buildCostPerYearChartData();
+
+                break;
+
+            case 'cost_pie':
+
+                $this->setParameter('category_display', 'single');
+
+                $data = $this->buildCostPieChartData();
+                break;
+
+            case 'trip_annual':
+
+                $this->setParameter('range_type', 'date');
+                $this->setParameter('category_display', 'stacked');
+
+                $data = $this->buildTripChartData('year');
+                break;
+
+            case 'trip_monthly':
+
+                $this->setParameter('range_type', 'date');
+                $this->setParameter('category_display', 'stacked');
+                
+                $data = $this->buildTripChartData('month');
+                break;
+
+            default:
+
+                throw new sfException(sprintf('Unknown chart name %s', $name));
+                break;
+        }
+
+        return $data;
     }
 
     public function __toString() {
@@ -119,9 +163,19 @@ class ChartBuilder {
         $this->options = array_merge($this->options, $options);
     }
 
+    public function setOption($option,$value) {
+        $this->options[$option] = $value;
+    }
+
     public function setParameters(array $parameters) {
 
         $this->parameters = array_merge($this->getDataDefaults(), $parameters);
+        $this->clearGeneratedElements();
+    }
+
+    public function setParameter($parameter, $value) {
+
+        $this->parameters[$parameter] = $value;
         $this->clearGeneratedElements();
     }
 

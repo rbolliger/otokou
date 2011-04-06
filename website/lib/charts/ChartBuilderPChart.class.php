@@ -11,25 +11,22 @@ class ChartBuilderPChart extends ChartBuilder {
 
     public function doGenerate() {
 
-        $done = true;
+        $data = parent::doGenerate();
 
         $name = $this->getParameter('chart_name');
 
         switch ($name) {
             case 'cost_per_km':
-                $data = $this->buildCostPerKmChartData();
                 $picture = $this->buildPicture($data);
                 $chart = $this->plotScatterChart($picture, $data);
                 break;
 
             case 'cost_per_year':
-                $data = $this->buildCostPerYearChartData();
                 $picture = $this->buildPicture($data);
                 $picture = $this->plotBarChart($picture);
                 break;
 
             case 'cost_pie':
-                $data = $this->buildCostPieChartData();
 
                 $raw_data = $data->getData();
                 // -1 to remove abscissa
@@ -47,13 +44,13 @@ class ChartBuilderPChart extends ChartBuilder {
                 break;
 
             case 'trip_annual':
-                $data = $this->buildTripChartData('year');
+
                 $picture = $this->buildPicture($data);
                 $picture = $this->plotBarChart($picture);
                 break;
 
             case 'trip_monthly':
-                $data = $this->buildTripChartData('month');
+
                 $picture = $this->buildPicture($data);
 
                 $options = array(
@@ -73,7 +70,7 @@ class ChartBuilderPChart extends ChartBuilder {
 
         sfContext::getInstance()->getLogger()->info(sprintf('Rendering chart %s with pChart.', $this->getChartPath()));
 
-        return $done;
+        return true;
     }
 
     protected function buildPicture(pData $data, $options = array()) {
@@ -297,6 +294,8 @@ class ChartBuilderPChart extends ChartBuilder {
 
         $cd = parent::buildCostPerKmChartData();
 
+        $this->setOption('title', $cd['title']);
+
         $myData = new pData();
 
         $x_id = $cd['x']['id'];
@@ -334,6 +333,8 @@ class ChartBuilderPChart extends ChartBuilder {
 
         $data = parent::buildCostPerYearChartData();
 
+        $this->setOption('title', $data['title']);
+
         $myData = new pData();
 
         // x-axis
@@ -363,6 +364,8 @@ class ChartBuilderPChart extends ChartBuilder {
 
         $data = parent::buildCostPieChartData();
 
+        $this->setOption('title', $data['title']);
+
         $myData = new pData();
 
         $y_series = $data['y']['series'];
@@ -386,6 +389,8 @@ class ChartBuilderPChart extends ChartBuilder {
     protected function buildTripChartData($unit) {
 
         $data = parent::buildTripChartData($unit);
+
+        $this->setOption('title', $data['title']);
 
         $myData = new pData();
 

@@ -47,20 +47,13 @@ class chartsActions extends sfActions {
 
 
         $filters = $this->getFilters();
-
         $filters = $this->updateFilterFieldIfEmpty($filters, 'vehicle_display', 'single');
         $filters = $this->updateFilterFieldIfEmpty($filters, 'category_display', 'stacked');
         $filters = $this->updateFilterFieldIfEmpty($filters, 'range_type', 'distance');
-
         $this->setFilters($filters);
-
         $this->setFilterField('chart_name', 'cost_per_km');
         
-
-        $options = array(
-            'title' => 'Relative Cost [CHF/km]',
-        );
-        $this->gb = new ChartBuilderPChart($this->getGBData(),$options);
+        $this->gb = new ChartBuilderPChart($this->getGBData());
 
     }
 
@@ -68,26 +61,16 @@ class chartsActions extends sfActions {
 
         $this->setPreviousTemplate('costPerKm');
         $this->setPreviousAction('costPerYear');
-
+        $this->setTemplate('costPerKm');
 
         $filters = $this->getFilters();
-
         $filters = $this->updateFilterFieldIfEmpty($filters, 'vehicle_display', 'single');
         $filters = $this->updateFilterFieldIfEmpty($filters, 'category_display', 'stacked');
         $filters = $this->updateFilterFieldIfEmpty($filters, 'range_type', 'date');
-
         $this->setFilters($filters);
-
         $this->setFilterField('chart_name', 'cost_per_year');
 
-
-        $options = array(
-            'title' => 'Total Cost [CHF/year]',
-        );
-        $this->gb = new ChartBuilderPChart($this->getGBData(),$options);
-
-
-        $this->setTemplate('costPerKm');
+        $this->gb = new ChartBuilderPChart($this->getGBData());
 
     }
 
@@ -99,20 +82,11 @@ class chartsActions extends sfActions {
 
         // updating filters
         $filters = $this->getFilters();
-
         $filters = $this->updateFilterFieldIfEmpty($filters, 'vehicle_display', 'single');
-
         $this->setFilters($filters);
-
-        $this->setFilterField('category_display', 'single'); // forced
         $this->setFilterField('chart_name', 'cost_pie');
         
-        $options = array(
-            'title' => 'Cost allocation [CHF]',
-        );
-        $this->gb = new ChartBuilderPChart($this->getGBData(),$options);
-
-
+        $this->gb = new ChartBuilderPChart($this->getGBData());
 
     }
 
@@ -124,20 +98,11 @@ class chartsActions extends sfActions {
 
 
         $filters = $this->getFilters();
-
         $filters = $this->updateFilterFieldIfEmpty($filters, 'vehicle_display', 'single');
-
         $this->setFilters($filters);
-
-        $this->setFilterField('range_type', 'date');
         $this->setFilterField('chart_name', 'trip_annual');
-        $this->setFilterField('category_display', 'stacked');
 
-
-        $options = array(
-            'title' => 'Annual travel [km/year]',
-        );
-        $this->gb = new ChartBuilderPChart($this->getGBData(),$options);
+        $this->gb = new ChartBuilderPChart($this->getGBData());
     }
 
     public function executeTripMonthly(sfWebRequest $request) {
@@ -146,22 +111,12 @@ class chartsActions extends sfActions {
         $this->setPreviousAction('tripMonthly');
         $this->setTemplate('costPerKm');
 
-
         $filters = $this->getFilters();
-
         $filters = $this->updateFilterFieldIfEmpty($filters, 'vehicle_display', 'single');
-
         $this->setFilters($filters);
-
-        $this->setFilterField('range_type', 'date');
         $this->setFilterField('chart_name', 'trip_monthly');
-        $this->setFilterField('category_display', 'stacked');
 
-
-        $options = array(
-            'title' => 'Monthly travel [km/year]',
-        );
-        $this->gb = new ChartBuilderPChart($this->getGBData(),$options);
+        $this->gb = new ChartBuilderPChart($this->getGBData());
     }
 
     public function executeFilter(sfWebRequest $request) {
