@@ -10,11 +10,65 @@
  * @author     Raffaele Bolliger
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-class Vehicle extends BaseVehicle
-{
+class Vehicle extends BaseVehicle {
+
     public function toggleArchive() {
         $this->setIsArchived(!$this->getIsArchived());
         $this->save();
     }
-    
+
+    public function getTravelledDistance() {
+
+        $charges = $this->getCharges();
+
+        $dist = array();
+        foreach ($charges as $c) {
+            $dist[] = $c->getKilometers();
+        }
+
+        return max($dist);
+    }
+
+    public function getOverallCost() {
+
+        $charges = $this->getCharges();
+
+        $cost = array();
+        foreach ($charges as $c) {
+            $cost[] = $c->getAmount();
+        }
+
+        return array_sum($cost);
+    }
+
+    public function getCostPerKm() {
+
+        $cost = $this->getOverallCost();
+        $dist = $this->getTravelledDistance();
+
+        if ($dist == 0) {
+            return null;
+        }
+
+        return $cost / $dist;
+    }
+
+    public function getAverageConsumption() {
+
+        $charges = $this->getCharges();
+        $dist = $this->getTravelledDistance();
+
+        $fuelId = Doctrine_Core::getTable('Category')->findOneByName('Fuel')->getId();
+
+        $quantity = array();
+        foreach ($charges as $c) {
+
+            if ($fuelId === $c->getCategoryId()) {
+                $quantity[] = $c->getQuantity();
+            }
+        }
+
+        return array_sum($quantity) / $dist * 100;
+    }
+
 }
