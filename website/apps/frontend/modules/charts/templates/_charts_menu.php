@@ -1,6 +1,7 @@
 <?php
 
 $menu = new ioMenu('charts_menu');
+$menu->addChild('Performance Indicators', '@chart_index');
 $menu->addChild('Costs');
 $menu->addChild('Travel');
 $menu->addChild('Fuel consumption');
