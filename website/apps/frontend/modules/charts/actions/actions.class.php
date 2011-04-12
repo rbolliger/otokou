@@ -14,25 +14,21 @@ class chartsActions extends sfActions {
         parent::preExecute();
 
         $this->filters = new ChartWithUserFormFilter($this->getFilters());
-
     }
 
     public function postExecute() {
         parent::postExecute();
 
-        $this->data = $this->getData();
-
+        $this->debug = $this->getDebugData();
     }
-
 
     public function executeIndex(sfWebRequest $request) {
 
         $this->setPreviousTemplate('index');
         $this->setPreviousAction('index');
 
-        $options = array();
-        $this->gb = new ChartBuilderPChart($this->getGBData(),$options);
 
+        $this->vehicles = $this->getRequestedVehicles();
     }
 
     /**
@@ -52,9 +48,8 @@ class chartsActions extends sfActions {
         $filters = $this->updateFilterFieldIfEmpty($filters, 'range_type', 'distance');
         $this->setFilters($filters);
         $this->setFilterField('chart_name', 'cost_per_km');
-        
-        $this->gb = new ChartBuilderPChart($this->getGBData());
 
+        $this->gb = new ChartBuilderPChart($this->getGBData());
     }
 
     public function executeCostPerYear(sfWebRequest $request) {
@@ -71,7 +66,6 @@ class chartsActions extends sfActions {
         $this->setFilterField('chart_name', 'cost_per_year');
 
         $this->gb = new ChartBuilderPChart($this->getGBData());
-
     }
 
     public function executeCostPie(sfWebRequest $request) {
@@ -85,9 +79,8 @@ class chartsActions extends sfActions {
         $filters = $this->updateFilterFieldIfEmpty($filters, 'vehicle_display', 'single');
         $this->setFilters($filters);
         $this->setFilterField('chart_name', 'cost_pie');
-        
-        $this->gb = new ChartBuilderPChart($this->getGBData());
 
+        $this->gb = new ChartBuilderPChart($this->getGBData());
     }
 
     public function executeTripAnnual(sfWebRequest $request) {
@@ -132,7 +125,6 @@ class chartsActions extends sfActions {
         $this->setFilterField('chart_name', 'consumption_per_distance');
 
         $this->gb = new ChartBuilderPChart($this->getGBData());
-
     }
 
     public function executeFilter(sfWebRequest $request) {
@@ -154,9 +146,15 @@ class chartsActions extends sfActions {
             $this->redirect($this->getPreviousAction());
         }
 
+        // In case of error, we redisplay the filter form with messages
 
         $this->gb = array();
-        $this->setTemplate($this->getPreviousTemplate());
+        $templ = $this->getPreviousTemplate();
+        $this->setTemplate($templ);
+
+        if ('index' == $templ) {
+            $this->vehicles = $this->getRequestedVehicles();
+        }
     }
 
     protected function setFilters(array $filters) {
@@ -170,7 +168,6 @@ class chartsActions extends sfActions {
         $filters[$field] = $value;
 
         $this->setFilters($filters);
-
     }
 
     protected function getFilters() {
@@ -227,9 +224,30 @@ class chartsActions extends sfActions {
         return $this->getUser()->setAttribute('charts.prevAction', $action, 'charts');
     }
 
-    protected function getData() {
+    protected function getDebugData() {
 
-        return $this->getFilters();
+        if (!in_array(sfConfig::get('sf_environment'), array('dev', 'test'))) {
+            return array();
+        }
+
+        $debug = array(
+            'filters' => $this->getFilters(),
+            'gb' => isset($this->gb) ? $this->gb : array(),
+        );
+
+        return $debug;
+    }
+
+    protected function getRequestedVehicles() {
+
+        $filter_vehicles = $this->getFilterValue('vehicles_list');
+        $user_id = $this->getUserId();
+
+        return $vehicles = Doctrine_Core::getTable('Vehicle')->findByUserIdAndVehicleId($user_id, $filter_vehicles);
+    }
+
+    protected function getUserId() {
+        return $this->getUser()->getGuardUser()->getId();
     }
 
     protected function updateFilterFieldIfEmpty($filters, $field, $value) {
@@ -244,30 +262,29 @@ class chartsActions extends sfActions {
     protected function getGBData() {
 
         $data = array(
-            'format'            => 'png',
-            'user_id'           => $this->getUser()->getGuardUser()->getId(),
-            'vehicles_list'     => $this->getFilterValue('vehicles_list'),
-            'vehicle_display'   => $this->getFilterValue('vehicle_display'),
-            'categories_list'   => $this->getFilterValue('categories_list'),
-            'category_display'  => $this->getFilterValue('category_display'),
-            'range_type'        => $this->getFilterValue('range_type'),
-            'date_from'         => $this->getFilterValue('from',null,$this->getFilterValue('date_range')),
-            'date_to'           => $this->getFilterValue('to',null,$this->getFilterValue('date_range')),
-            'kilometers_from'   => $this->getFilterValue('from',null,$this->getFilterValue('kilometers_range')),
-            'kilometers_to'     => $this->getFilterValue('to',null,$this->getFilterValue('kilometers_range')),
-            'chart_name'        => $this->getFilterValue('chart_name'),
+            'format' => 'png',
+            'user_id' => $this->getUserId(),
+            'vehicles_list' => $this->getFilterValue('vehicles_list'),
+            'vehicle_display' => $this->getFilterValue('vehicle_display'),
+            'categories_list' => $this->getFilterValue('categories_list'),
+            'category_display' => $this->getFilterValue('category_display'),
+            'range_type' => $this->getFilterValue('range_type'),
+            'date_from' => $this->getFilterValue('from', null, $this->getFilterValue('date_range')),
+            'date_to' => $this->getFilterValue('to', null, $this->getFilterValue('date_range')),
+            'kilometers_from' => $this->getFilterValue('from', null, $this->getFilterValue('kilometers_range')),
+            'kilometers_to' => $this->getFilterValue('to', null, $this->getFilterValue('kilometers_range')),
+            'chart_name' => $this->getFilterValue('chart_name'),
         );
 
 
         return $data;
     }
 
-    public function getFilterValue($field,$default = null,$filters = null) {
+    public function getFilterValue($field, $default = null, $filters = null) {
 
         $filters = (($filters === null) ? $this->getFilters() : $filters);
 
         return isset($filters[$field]) ? $filters[$field] : $default;
-
     }
 
 }

@@ -17,7 +17,7 @@ class Vehicle extends BaseVehicle {
         $this->save();
     }
 
-    public function getTravelledDistance() {
+    public function getTraveledDistance() {
 
         $charges = $this->getCharges();
 
@@ -52,7 +52,7 @@ class Vehicle extends BaseVehicle {
     public function getCostPerKm() {
 
         $cost = $this->getOverallCost();
-        $dist = $this->getTravelledDistance();
+        $dist = $this->getTraveledDistance();
 
         if ($dist == 0) {
             return null;
@@ -69,7 +69,7 @@ class Vehicle extends BaseVehicle {
             return null;
         }
 
-        $dist = $this->getTravelledDistance();
+        $dist = $this->getTraveledDistance();
 
         $fuelId = Doctrine_Core::getTable('Category')->findOneByName('Fuel')->getId();
 

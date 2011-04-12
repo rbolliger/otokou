@@ -23,4 +23,19 @@ class VehicleTable extends Doctrine_Table {
         return $q;
     }
 
+    public function findByUserIdAndVehicleId($user_id = array(), $vehicle_id = array()) {
+
+        if (!$user_id) {
+            throw new Doctrine_Table_Exception('You must specify a "user_id"');
+        }
+
+        $q = $this->createQuery('v')->andWhere('v.user_id = ?', $user_id);
+
+        if ($vehicle_id) {
+            $q->andWhereIn('v.id', $vehicle_id);
+        }
+        
+        return $q->execute();
+    }
+
 }

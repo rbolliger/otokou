@@ -13,9 +13,10 @@ end_slot();
 ?>
 
 
-<h2>Please, select on the left menu a chart you want to display</h2>
+<h1>Vehicles Performances</h1>
 
+<?php include_partial('vehicles_performances',array('vehicles' => $vehicles)); ?>
 
-<?php include_partial('debug',array('data' => $data,'gb' => $gb)) ?>
+<?php include_partial('debug',array('debug' => $debug)) ?>
 
 

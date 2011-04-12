@@ -1,11 +1,14 @@
 <?php if (in_array(sfConfig::get('sf_environment'), array('dev', 'test'))): ?>
 
 
+<?php $dbg = $sf_data->getRaw('debug'); ?>
+
+
     <h2>Filters values:</h2>
 
     <table class="debug" id="filter_values">
         <tbody>
-    <?php foreach ($data = $sf_data->getRaw('data') as $key => $value) : ?>
+    <?php foreach ($dbg['filters'] as $key => $value) : ?>
 
         <tr>
             <td><?php echo $key ?></td>
@@ -27,7 +30,7 @@
     </tr>
     <?php endforeach; ?>
 
-    <?php if (!$data) : ?>
+    <?php if (!$dbg['filters']) : ?>
             <tr>
                 <td>No elements found</td>
             </tr>
@@ -39,7 +42,8 @@
 
         <table class="debug" id="query_results">
             <tbody>
-<?php foreach ($query_results = (is_object($sf_data->getRaw('gb')) ? $gb->getChartsQueryResults() : $sf_data->getRaw('gb')) as $chart) : ?>
+                <?php $gb = $dbg['gb']; ?>
+<?php foreach ($query_results = (is_object($gb) ? $gb->getChartsQueryResults() : $gb) as $chart) : ?>
 
                 <tr>
                     <td><?php echo $chart->getId() ?></td>

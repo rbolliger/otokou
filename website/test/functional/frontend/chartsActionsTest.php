@@ -41,6 +41,11 @@ $browser->
             checkElement('body:contains("Notice")]',false)->
             checkElement('table#filter_values:contains("No elements found")]',true)->
             checkElement('table#query_results:contains("No elements found")]',true)->
+            checkElement('div.vehicle_statistics',2)->
+            checkElement('div.vehicle_statistics div.overall_cost',2)->
+            checkElement('div.vehicle_statistics div.traveled_distance',2)->
+            checkElement('div.vehicle_statistics div.cost_per_km',2)->
+            checkElement('div.vehicle_statistics div.fuel_consumption',2)->
           end()->
         
         info('2 - Filters')->
@@ -91,6 +96,11 @@ $browser->
                 checkElement('table#query_results tbody tr',1)->
                 checkElement('table#filter_values tbody tr',7)->
                 checkElement('.charts_filters table tbody tr',7)->
+                checkElement('div.vehicle_statistics',2)->
+                checkElement('div.vehicle_statistics div.overall_cost',2)->
+                checkElement('div.vehicle_statistics div.traveled_distance',2)->
+                checkElement('div.vehicle_statistics div.cost_per_km',2)->
+                checkElement('div.vehicle_statistics div.fuel_consumption',2)->
             end()->
         
         
@@ -203,6 +213,11 @@ $browser->
                 checkElement('#filter_values_chart_name:',false)->
                 checkElement('table#query_results tbody tr',1)->
                 checkElement('table#filter_values tbody tr',7)->
+                checkElement('div.vehicle_statistics',1)->
+                checkElement('div.vehicle_statistics div.overall_cost',1)->
+                checkElement('div.vehicle_statistics div.traveled_distance',1)->
+                checkElement('div.vehicle_statistics div.cost_per_km',1)->
+                checkElement('div.vehicle_statistics div.fuel_consumption',1)->
             end()->
          with('doctrine')->
             begin()->
