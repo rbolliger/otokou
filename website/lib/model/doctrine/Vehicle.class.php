@@ -21,6 +21,10 @@ class Vehicle extends BaseVehicle {
 
         $charges = $this->getCharges();
 
+        if (!count($charges)) {
+            return 0;
+        }
+
         $dist = array();
         foreach ($charges as $c) {
             $dist[] = $c->getKilometers();
@@ -32,6 +36,10 @@ class Vehicle extends BaseVehicle {
     public function getOverallCost() {
 
         $charges = $this->getCharges();
+
+        if (!count($charges)) {
+            return 0;
+        }
 
         $cost = array();
         foreach ($charges as $c) {
@@ -56,6 +64,11 @@ class Vehicle extends BaseVehicle {
     public function getAverageConsumption() {
 
         $charges = $this->getCharges();
+
+        if (!count($charges)) {
+            return null;
+        }
+
         $dist = $this->getTravelledDistance();
 
         $fuelId = Doctrine_Core::getTable('Category')->findOneByName('Fuel')->getId();
@@ -66,6 +79,10 @@ class Vehicle extends BaseVehicle {
             if ($fuelId === $c->getCategoryId()) {
                 $quantity[] = $c->getQuantity();
             }
+        }
+
+        if (!count($quantity)) {
+            return null;
         }
 
         return array_sum($quantity) / $dist * 100;
