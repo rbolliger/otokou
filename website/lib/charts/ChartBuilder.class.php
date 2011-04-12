@@ -373,8 +373,8 @@ class ChartBuilder {
         }
 
 
-        $vl = $this->getVehiclesList($this->getParameter('vehicles_list', array()));
-        $cl = $this->getCategoriesList($this->getParameter('categories_list', array()));
+        $vl = self::getVehiclesList($this->getParameter('vehicles_list', array()),$this->getParameter('user_id'));
+        $cl = self::getCategoriesList($this->getParameter('categories_list', array()));
 
         // If no cars, we won't display anything
         if (empty($vl['list'])) {
@@ -709,7 +709,7 @@ class ChartBuilder {
         $this->chart_source = null;
     }
 
-    protected function getCategoriesList($categories = array()) {
+    public static function getCategoriesList($categories = array()) {
 
 
         // If no categories are specified by the user, we get all categories
@@ -737,13 +737,13 @@ class ChartBuilder {
         );
     }
 
-    protected function getVehiclesList($vehicles = array()) {
+    public static function getVehiclesList($vehicles = array(),$user_id) {
 
         $nb_vehicles = count($vehicles);
 
         // If no vehicles are specified by the user, we get all vehicles
         if (!$vehicles) {
-            $q = Doctrine_Core::getTable('Vehicle')->getVehiclesByUserIdQuery($this->getParameter('user_id'));
+            $q = Doctrine_Core::getTable('Vehicle')->getVehiclesByUserIdQuery($user_id);
 
             $vehicle_objects = $q->execute(array(), Doctrine_Core::HYDRATE_ARRAY);
             foreach ($vehicle_objects as $key => $values) {
@@ -780,8 +780,8 @@ class ChartBuilder {
         $gs = $this->getChartSource();
 
         // building chart data
-        $categories = $this->getCategoriesList($this->getParameter('categories_list', null));
-        $vehicles = $this->getVehiclesList($this->getParameter('vehicles_list', null));
+        $categories = self::getCategoriesList($this->getParameter('categories_list', null));
+        $vehicles = self::getVehiclesList($this->getParameter('vehicles_list', null),$this->getParameter('user_id'));
         $options = array(
             'categories' => $categories,
             'vehicles' => $vehicles,
