@@ -2,8 +2,24 @@
 
 class chartSourceUtilityTest extends otokouTestFunctional {
 
-    public function getChartSource($vd, $cd, $categories_names = array()) {
+    public function getBaseScenarios() {
 
+        return array(
+            array('stacked', 'stacked', 'distance'),
+            array('stacked', 'stacked', 'date'),
+            array('single', 'stacked', 'distance'),
+            array('single', 'stacked', 'date'),
+            array('single', 'single', 'distance'),
+            array('single', 'single', 'date'),
+            array('stacked', 'single', 'distance'),
+            array('stacked', 'single', 'date'),
+        );
+    }
+
+    public function getChartSource($scenario, $categories_names = array(), $params = array()) {
+
+        $vd = $scenario[0];
+        $cd = $scenario[1];
         $scn = $this->getCase($vd, $cd);
 
         $defalut_categories = array('Fuel', 'Tax');
@@ -12,17 +28,19 @@ class chartSourceUtilityTest extends otokouTestFunctional {
         switch ($scn) {
             case 1:
 
-                $q1 = Doctrine_Core::getTable('Charge')->createQuery('c')
+                $q = Doctrine_Core::getTable('Charge')->createQuery('c')
                                 ->select('c.*')
                                 ->leftJoin('c.User u')
                                 ->andWhere('u.Username = ?', array('user_gs'));
 
                 if ($categories_names) {
-                    $q1->leftJoin('c.Category ct')
+                    $q->leftJoin('c.Category ct')
                             ->andWhereIn('ct.name', $categories_names);
                 }
 
-                $q1 = $q1->execute();
+                $history = $this->handleLimits($q, $scenario, $params);
+
+                $q = $q->execute();
 
                 $v = Doctrine_Core::getTable('Vehicle')->findByUserId($this->getUserId('user_gs'));
                 $vid = $this->extractIds($v);
@@ -30,7 +48,7 @@ class chartSourceUtilityTest extends otokouTestFunctional {
                 $cid = $this->getCategoriesIdByName($categories_names);
 
                 $series = array(new ChartDataSerie(array(
-                        'raw_data' => $q1,
+                        'raw_data' => $q,
                         'label' => 'all stacked',
                         'id' => 'allstacked',
                         'vehicle_id' => $vid,
@@ -54,8 +72,11 @@ class chartSourceUtilityTest extends otokouTestFunctional {
                                     ->leftJoin('c.Category ct')
                                     ->andWhere('ct.Name = ?', $name)
                                     ->leftJoin('c.User u')
-                                    ->andWhere('u.Username = ?', array('user_gs'))
-                                    ->execute();
+                                    ->andWhere('u.Username = ?', array('user_gs'));
+
+                    $history = $this->handleLimits($q, $scenario, $params);
+
+                    $q = $q->execute();
 
                     $cid = $this->getCategoriesIdByName($name);
 
@@ -91,6 +112,8 @@ class chartSourceUtilityTest extends otokouTestFunctional {
                                 ->andWhereIn('ct.name', $categories_names);
                     }
 
+                    $history = $this->handleLimits($q, $scenario, $params);
+
                     $q = $q->execute();
 
                     $v = Doctrine_Core::getTable('Vehicle')->findOneByName($name);
@@ -124,8 +147,11 @@ class chartSourceUtilityTest extends otokouTestFunctional {
                                         ->leftJoin('c.Category ct')
                                         ->andWhere('ct.Name = ?', $cname)
                                         ->leftJoin('c.User u')
-                                        ->andWhere('u.Username = ?', array('user_gs'))
-                                        ->execute();
+                                        ->andWhere('u.Username = ?', array('user_gs'));
+
+                        $history = $this->handleLimits($q, $scenario, $params);
+
+                        $q = $q->execute();
 
                         $v = Doctrine_Core::getTable('Vehicle')->findOneByName($vname);
                         $vid = $this->extractIds($v);
@@ -158,7 +184,18 @@ class chartSourceUtilityTest extends otokouTestFunctional {
             'vehicle_display' => $vd,
             'category_display' => $cd,
             'categories_list' => $cid,
+            'full_history' => $history,
         );
+
+        if (isset($scenario[3])) {
+            if ('distance' == $scenario[2]) {
+                $params['kilometers_from'] = $scenario[3];
+                $params['kilometers_to'] = $scenario[4];
+            } else {
+                $params['date_from'] = $scenario[3];
+                $params['date_to'] = $scenario[4];
+            }
+        }
 
         $g = new ChartSource();
         $g->addParams($params);
@@ -190,7 +227,7 @@ class chartSourceUtilityTest extends otokouTestFunctional {
 
         $cn = isset($params['categories_names']) ? $params['categories_names'] : array();
 
-        $g = $this->getChartSource($scenario[0], $scenario[1], $cn);
+        $g = $this->getChartSource($scenario, $cn, $params);
 
 // For some scenarios, the function may not work. This code tests that.
         if (false === $y) {
@@ -273,6 +310,25 @@ class chartSourceUtilityTest extends otokouTestFunctional {
         $cid = $this->extractIds($c);
 
         return $cid;
+    }
+
+    protected function handleLimits(Doctrine_Query $q, array $scenario, array $params) {
+
+        // if no limits are set, we return the query
+        if (count($scenario) < 4) {
+            return $q;
+        }
+
+        $field = $scenario[2] == 'date' ? 'date' : 'kilometers';
+
+        $history = $params['full_history'];
+        if (!$history) {
+            $q->addWhere($q->getRootAlias() . '.' . $field . ' >= ?', $scenario[3]);
+        }
+
+        $q->addWhere($q->getRootAlias() . '.' . $field . ' <= ?', $scenario[4]);
+
+        return $history;
     }
 
 }

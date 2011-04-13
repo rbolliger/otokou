@@ -6,36 +6,39 @@ include dirname(__FILE__) . '/../bootstrap/Doctrine.php';
 
 $ut = new chartSourceUtilityTest(new sfBrowser());
 
-$t = new lime_test(144, new lime_output_color());
+$t = new lime_test(288, new lime_output_color());
 
-
-$scenarios = array(
-    array('stacked', 'stacked', 'distance'),
-    array('stacked', 'stacked', 'date'),
-    array('single', 'stacked', 'distance'),
-    array('single', 'stacked', 'date'),
-    array('single', 'single', 'distance'),
-    array('single', 'single', 'date'),
-    array('stacked', 'single', 'distance'),
-    array('stacked', 'single', 'date'),
+$scenarios = array_merge($ut->getBaseScenarios(),
+                array(
+                    array('stacked', 'stacked', 'distance', 50, 456),
+                    array('stacked', 'stacked', 'date', '2011-1-4', '2011-5-1'),
+                    array('single', 'stacked', 'distance', 50, 456),
+                    array('single', 'stacked', 'date', '2011-1-4', '2011-5-1'),
+                    array('single', 'single', 'distance', 50, 456),
+                    array('single', 'single', 'date', '2011-1-4', '2011-5-1'),
+                    array('stacked', 'single', 'distance', 50, 456),
+                    array('stacked', 'single', 'date', '2011-1-4', '2011-5-1'),
+                )
 );
 
 
 
 foreach ($scenarios as $key => $scenario) {
+//    for ($index = 9; $index < 10; $index++) {
+//$scenario = $scenarios[$index];
 
-    $options = $scenario[2];
+$options = $scenario[2];
 
-    $y = getYForScenario($ut, $scenario);
-    $x = getXForScenario($ut, $scenario);
+$y = getYForScenario($ut, $scenario);
+$x = getXForScenario($ut, $scenario);
 
-    $fname = 'buildCostPerKmChartData';
+$fname = 'buildCostPerKmChartData';
 
-    $g = $ut->runTest($t, $scenario, $fname, $x, $y, $options);
+$params = array(
+    'full_history' => true, // this is to define if data must be recovered from the beginning (by ignoring start_limit) or not
+);
 
-    
-
-
+$g = $ut->runTest($t, $scenario, $fname, $x, $y, $options, $params);
 
 }
 
@@ -124,14 +127,22 @@ function getYForScenario($ut, $scenario) {
         }
     }
 
+    $limit = isset($scenario[3]) ? true : false;
+    if ($limit) {
+        // we remove first and last value
+        foreach ($y as $key => $serie) {
+            $y[$key] = array_slice($serie, 1, count($serie) - 2);
+        }
+    }
+
     return $y;
 }
 
-function getXForScenario($ut,$scenario) {
+function getXForScenario($ut, $scenario) {
 
-    $case = $ut->getCase($scenario[0], $scenario[1]);
     $range = $scenario[2];
 
+    $limit = isset($scenario[3]) ? true : false;
 
     if ($range == 'distance') {
         $x = array(
@@ -163,6 +174,11 @@ function getXForScenario($ut,$scenario) {
             1304200800,
             1306879200,
         );
+    }
+
+    if ($limit) {
+        // we remove first and last value
+        $x = array_slice($x, 1, count($x) - 2);
     }
 
     return $x;

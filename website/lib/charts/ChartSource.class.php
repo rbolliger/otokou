@@ -29,7 +29,7 @@ class ChartSource {
         return $data ? count(array_keys($data)) : null;
     }
 
-    public function getSeriesDataByColumn($column, $type='number') {
+    public function getSeriesDataByColumn($column, $type='number', $params = array()) {
 
         if (!in_array($type, array('number', 'datetime'))) {
             throw new sfException(sprintf('Unknown type "%s"', $type));
@@ -38,6 +38,17 @@ class ChartSource {
 
         if (!$column) {
             throw new sfException('No column defined. Cannot get series data!');
+        }
+
+        $min = isset($params['min']) ? $params['min'] : null;
+        $max = isset($params['max']) ? $params['max'] : null;
+        if ('datetime' == $type) {
+            if ($min) {
+                $min = strtotime($min);
+            }
+            if ($max) {
+                $max = strtotime($max);
+            }
         }
 
         $series = $this->getSeries();
@@ -60,6 +71,14 @@ class ChartSource {
 
                 if ('datetime' == $type) {
                     $v = strtotime($v);
+                }
+
+                // filtering values
+                if ($min && $v < $min) {
+                    continue;
+                }
+                if ($max && $v > $max) {
+                    continue;
                 }
 
                 $data[$key] = $v;
@@ -132,9 +151,6 @@ class ChartSource {
         // building x-axis data
         $x_data = $this->buildXAxisData($x_column);
 
-
-
-
         // getting data used as base column. This column is used to compute the chart values.
         if ($axis_params['column'] === $base_params['column']) {
             $base_data = $x_data;
@@ -142,7 +158,6 @@ class ChartSource {
         } else {
 
             $base_column = $this->getSeriesDataByColumn($base_params['column'], $base_params['format']);
-
             $base_data = array();
 
             foreach ($x_data as $key => $value) {
@@ -177,6 +192,22 @@ class ChartSource {
             }
         }
 
+        // filtering data if any limit is set
+        if ($axis_params['min']) {
+            $min_id = min(array_keys($x_data, $axis_params['min']));
+        } else {
+            $min_id = 0;
+        }
+
+        if ($axis_params['max']) {
+            $max_id = max(array_keys($x_data, $axis_params['max']));
+        } else {
+            $max_id = count($x_data);
+        }
+
+        $length = $max_id - $min_id + 1;
+        $x_data = array_slice($x_data, $min_id, $length);
+        $base_data = array_slice($base_data, $min_id, $max_id - $min_id + 1);
 
         $data = array(
             'value' => $x_data,
@@ -288,25 +319,67 @@ class ChartSource {
         );
     }
 
-    protected function getAxisParametersByRangeType($type) {
+    protected function getAxisParametersByRangeType($type, $calculate_limits = true) {
 
         switch ($type) {
             case 'date':
+
+                $min = false;
+                $max = false;
+                if ($calculate_limits) {
+
+                    // lower bound
+                    if ($p = $this->getParam('date_from', false)) {
+                        $min = strtotime($p);
+                    } elseif ($p = $this->getParam('kilometers_from')) {
+                        $min = $this->getDateForDistance($p, 'min');
+                    }
+
+                    // upper bound
+                    if ($p = $this->getParam('date_to', false)) {
+                        $max = strtotime($p);
+                    } elseif ($p = $this->getParam('kilometers_to')) {
+                        $max = $this->getDateForDistance($p, 'max');
+                    }
+                }
 
                 $params = array(
                     'label' => 'Date',
                     'format' => 'datetime',
                     'column' => 'date',
+                    'min' => $min,
+                    'max' => $max,
                 );
 
                 break;
 
             case 'distance':
 
+                $min = false;
+                $max = false;
+                if ($calculate_limits) {
+
+                    // lower bound
+                    if ($p = $this->getParam('kilometers_from', false)) {
+                        $min = $p;
+                    } elseif ($p = $this->getParam('date_from')) {
+                        $min = $this->getDistanceForDate($p, 'min');
+                    }
+
+                    // upper bound
+                    if ($p = $this->getParam('kilometers_to', false)) {
+                        $max = $p;
+                    } elseif ($p = $this->getParam('date_to')) {
+                        $max = $this->getDistanceForDate($p, 'max');
+                    }
+                }
+
                 $params = array(
                     'label' => 'Distance [km]',
                     'format' => 'number',
                     'column' => 'kilometers',
+                    'min' => $min,
+                    'max' => $max,
                 );
 
                 break;
@@ -406,51 +479,10 @@ class ChartSource {
 
 
         // Y-axis
-
         $cost = $this->buildYAxisDataBySum('amount', $x_data, 'calculateCostSum');
-
-//        $y_columns = $this->getSeriesDataByColumn('amount');
-//
-//        $x_values = $x_data['value'];
-//        $x_column = $x_data['x_column'];
-//
-//        $y_data = array();
-//        $y_series = $this->getSeries();
 
         $data['y']['series'] = $cost;
         $data['y']['description'] = 'Cost [CHF/km]';
-//        foreach ($y_columns as $ykey => $y_values) {
-//
-//            foreach ($x_values as $bkey => $bound) {
-//
-//                // removing x elements that are larger than bound
-//                $filter = $this->filterValuesLargerThan($x_column[$ykey], $bound);
-//
-//
-//                if (!count($filter)) {
-//                    $cost = 0;
-//                } else {
-//
-//                    // getting corresponding y elements
-//                    $y_filtered = array_intersect_key($y_values, $filter);
-//
-//                    $distance = $x_data['base'][$bkey];
-//
-//                    $cost = array_sum($y_filtered) / $distance;
-//                }
-//
-//                // assigning result to temporary array
-//                $y_data[$ykey][$bkey] = $cost;
-//            }
-//
-//
-//            $data['y']['series'][$ykey] = array(
-//                'id' => $y_series[$ykey]->getId(),
-//                'label' => $y_series[$ykey]->getLabel(),
-//                'values' => $y_data[$ykey],
-//            );
-//        }
-
 
         return $data;
     }
@@ -742,9 +774,10 @@ class ChartSource {
 
         $y_columns = $this->getSeriesDataByColumn($column);
 
-        $x_values = $x_data['value'];
         $x_base = $x_data['base'];
+        $x_values = $x_data['value'];
         $x_column = $x_data['x_column'];
+
 
         $y_data = array();
         $y_series = $this->getSeries();
@@ -802,6 +835,60 @@ class ChartSource {
         }
 
         return array_sum($consumptions) / $distance * 100;
+    }
+
+    protected function getDateForDistance($dist, $minOrMax) {
+
+        $dates = $this->getSeriesDataByColumn('date', 'datetime');
+        $kilometers = $this->getSeriesDataByColumn('kilometers', 'number');
+
+        $dt = array();
+        foreach ($kilometers as $skey => $serie) {
+
+            $k = array_keys($serie, $dist);
+
+            if ($k) {
+                foreach ($k as $kkey) {
+                    $dt[] = strtotime($dates[$skey][$kkey]);
+                }
+            }
+        }
+
+        if ('max' == $minOrMax) {
+            $value = max($dt);
+        } else {
+            $value = min($dt);
+        }
+
+        return $value;
+    }
+
+    protected function getDistanceForDate($date, $minOrMax) {
+
+        $dates = $this->getSeriesDataByColumn('date', 'datetime');
+        $kilometers = $this->getSeriesDataByColumn('kilometers', 'number');
+
+        $date = strtotime($date);
+
+        $dt = array();
+        foreach ($dates as $skey => $serie) {
+
+            $k = array_keys($serie, $date);
+
+            if ($k) {
+                foreach ($k as $kkey) {
+                    $dt[] = $dates[$skey][$kkey];
+                }
+            }
+        }
+
+        if ('max' == $minOrMax) {
+            $value = max($dt);
+        } else {
+            $value = min($dt);
+        }
+
+        return $value;
     }
 
 }
