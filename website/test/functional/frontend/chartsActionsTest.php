@@ -315,7 +315,7 @@ $browser->
                 isParameter('action','costPerKm')->
             end()->
         with('response')->begin()->
-            isStatusCode(200)->
+            isStatusCode(200)->debug()->
             checkElement('body:contains("Warning")]',false)->
             checkElement('body:contains("Notice")]',false)->
             checkElement('img',true)->

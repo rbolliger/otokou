@@ -2,7 +2,7 @@
 
 include dirname(__FILE__) . '/../bootstrap/Doctrine.php';
 
-$t = new lime_test(30, new lime_output_color());
+$t = new lime_test(31, new lime_output_color());
 
 
 // ->setParam()
@@ -105,6 +105,13 @@ $data = array(1, 2, 3, 4, 5, 6, 7, 8);
 
 $keys = ChartSource::filterValuesLargerThan($data, 5);
 $t->cmp_ok($keys, '===', array(1, 2, 3, 4, 5), '::filterValuesLargerThan() returns the elements of the input array whose value is lower than the given bound');
+
+// ::filterValuesSmallerThan()
+$t->diag('::filterValuesSmallerThan()');
+$data = array(1, 2, 3, 4, 5, 6, 7, 8);
+
+$keys = ChartSource::filterValuesSmallerThan($data, 5);
+$t->cmp_ok($keys, '===', array(5, 6, 7, 8), '::filterValuesSmallerThan() returns the elements of the input array whose value is larger than the given bound');
 
 
 // ::filterValuesDifferentThan()

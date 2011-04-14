@@ -198,13 +198,13 @@ class ChartSource {
 
         // filtering data if any limit is set
         if ($axis_params['min']) {
-            $min_id = min(array_keys($x_data, $axis_params['min']));
+            $min_id = min(array_keys($x_data, min($this->filterValuesSmallerThan($x_data, $axis_params['min']))));
         } else {
             $min_id = 0;
         }
 
         if ($axis_params['max']) {
-            $max_id = max(array_keys($x_data, $axis_params['max']));
+            $max_id = max(array_keys($x_data, max($this->filterValuesLargerThan($x_data, $axis_params['max']))));
         } else {
             $max_id = count($x_data);
         }
@@ -372,14 +372,14 @@ class ChartSource {
                     if ($p = $this->getParam('kilometers_from', false)) {
                         $min = $p;
                     } elseif ($p = $this->getParam('date_from')) {
-                        $min = $this->getDistanceForDate($p, 'min');
+                        $min = $this->getDistanceForDate($p, 'max');
                     }
 
                     // upper bound
                     if ($p = $this->getParam('kilometers_to', false)) {
                         $max = $p;
                     } elseif ($p = $this->getParam('date_to')) {
-                        $max = $this->getDistanceForDate($p, 'max');
+                        $max = $this->getDistanceForDate($p, 'min');
                     }
                 }
 
@@ -434,6 +434,16 @@ class ChartSource {
 
         $filtered_array = array_filter($array, function ($element) use ($bound) {
                             return ($element <= $bound);
+                        });
+
+
+        return $filtered_array;
+    }
+
+    public static function filterValuesSmallerThan($array, $bound) {
+
+        $filtered_array = array_filter($array, function ($element) use ($bound) {
+                            return ($element >= $bound);
                         });
 
 
@@ -496,35 +506,18 @@ class ChartSource {
         return $data;
     }
 
-    public function buildCostPerYearChartData() {
+    public function buildCostPerYearChartData($range_type) {
 
         $data = array();
         $data['title'] = 'Total Cost [CHF/year]';
 
         // x-axis
-        $data['x'] = array(
-            'id' => 'x-axis',
-        );
+        $x_data = $this->buildXAxisDataByRangeTypeAndCalculationBase($range_type, 'date');
+        $x_dates = $this->buildXAxisDataByDateRange(array($x_data['base']), 'year');
 
-        $params = $this->getAxisParametersByRangeType('date');
-
-        $dates = $this->getSeriesDataByColumn('date', 'datetime', $params);
-        if (!$dates) {
-             $data['x']['values'] = array();
-             $data['x']['description'] = array();
-             $data['y']['series'] = array();
-             $data['y']['description'] = array();
-
-             return $data;
-        }
-
-
-        $x_dates = $this->buildXAxisDataByDateRange($dates, 'year');
-
+        $data['x']['id'] = 'x-axis';
         $data['x']['values'] = $x_dates['labels'];
         $data['x']['description'] = $x_dates['description'];
-
-
         // Y-axis
         $data['y']['series'] = array();
         $data['y']['description'] = "Annual costs [CHF/year]";
@@ -533,7 +526,7 @@ class ChartSource {
         $y_series = $this->getSeries();
 
         $y_data = array();
-        foreach ($dates as $skey => $serie) {
+        foreach ($x_data['base_column'] as $skey => $serie) {
 
             for ($index = 0; $index < count($x_dates['range']) - 1; $index++) {
 
@@ -866,10 +859,15 @@ class ChartSource {
         $dt = array();
         foreach ($kilometers as $skey => $serie) {
 
-            $k = array_keys($serie, $dist);
+            if ('max' == $minOrMax) {
+                $filter = $this->filterValuesLargerThan($serie, $dist);
+            } else {
+                $filter = $this->filterValuesSmallerThan($serie, $dist);
+            }
 
-            if ($k) {
-                foreach ($k as $kkey) {
+
+            if ($filter) {
+                foreach ($filter as $kkey => $kvalue) {
                     $dt[] = $dates[$skey][$kkey];
                 }
             }
@@ -894,11 +892,16 @@ class ChartSource {
         $dt = array();
         foreach ($dates as $skey => $serie) {
 
-            $k = array_keys($serie, $date);
+            if ('max' == $minOrMax) {
+                $filter = $this->filterValuesLargerThan($serie, $date);
+            } else {
+                $filter = $this->filterValuesSmallerThan($serie, $date);
+            }
 
-            if ($k) {
-                foreach ($k as $kkey) {
-                    $dt[] = $dates[$skey][$kkey];
+
+            if ($filter) {
+                foreach ($filter as $kkey => $kvalue) {
+                    $dt[] = $kilometers[$skey][$kkey];
                 }
             }
         }

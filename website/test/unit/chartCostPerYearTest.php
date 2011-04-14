@@ -6,19 +6,19 @@ include dirname(__FILE__) . '/../bootstrap/Doctrine.php';
 
 $ut = new chartSourceUtilityTest(new sfBrowser());
 
-$t = new lime_test(252, new lime_output_color());
+$t = new lime_test(288, new lime_output_color());
 
 
 $scenarios = array_merge($ut->getBaseScenarios(),
                 array(
-                    array('stacked', 'stacked', 'distance', 50, 456),
-                    array('stacked', 'stacked', 'date', '2011-1-4', '2011-5-1'),
-                    array('single', 'stacked', 'distance', 50, 456),
-                    array('single', 'stacked', 'date', '2011-1-4', '2011-5-1'),
-                    array('single', 'single', 'distance', 50, 456),
-                    array('single', 'single', 'date', '2011-1-4', '2011-5-1'),
-                    array('stacked', 'single', 'distance', 50, 456),
-                    array('stacked', 'single', 'date', '2011-1-4', '2011-5-1'),
+                    array('stacked', 'stacked', 'distance', 6, 500),
+                    array('stacked', 'stacked', 'date', '2011-1-2', '2012-5-1'),
+                    array('single', 'stacked', 'distance', 6, 500),
+                    array('single', 'stacked', 'date', '2010-1-2', '2011-4-27'),
+                    array('single', 'single', 'distance', 17, 800),
+                    array('single', 'single', 'date', '2011-1-2', '2012-5-1'),
+                    array('stacked', 'single', 'distance', 17, 800),
+                    array('stacked', 'single', 'date', '2010-1-2', '2011-4-27'),
                 )
 );
 
@@ -35,7 +35,9 @@ for ($index = 0; $index < 16; $index++) {
     $x = getXForScenario($ut, $scenario);
     $y = getYForScenario($ut, $scenario);
 
-    $ut->runTest($t, $scenario, 'buildCostPerYearChartData', $x, $y, array(), $params);
+    $options = $scenario[2];
+
+    $ut->runTest($t, $scenario, 'buildCostPerYearChartData', $x, $y, $options, $params);
 }
 
 function getYForScenario($ut, $scenario) {
@@ -46,10 +48,6 @@ function getYForScenario($ut, $scenario) {
     $limit = isset($scenario[3]) ? true : false;
 
 
-    if (isDistanceAndLimits($scenario)) {
-        return array();
-    }
-
     switch ($case) {
         case 1:
 
@@ -58,9 +56,16 @@ function getYForScenario($ut, $scenario) {
                     0 => array(1036),
                 );
             } else {
-                $y = array(
-                    0 => array(1028),
-                );
+
+                if ('distance' == $range) {
+                    $y = array(
+                        0 => array(271),
+                    );
+                } else {
+                    $y = array(
+                        0 => array(1031),
+                    );
+                }
             }
             break;
         case 2:
@@ -71,10 +76,17 @@ function getYForScenario($ut, $scenario) {
                     1 => array(976),
                 );
             } else {
-                $y = array(
-                    0 => array(55),
-                    1 => array(973),
-                );
+                if ('distance' == $range) {
+                    $y = array(
+                        0 => array(55),
+                        1 => array(976),
+                    );
+                } else {
+                    $y = array(
+                        0 => array(60),
+                        1 => array(969),
+                    );
+                }
             }
 
             break;
@@ -87,10 +99,17 @@ function getYForScenario($ut, $scenario) {
                     1 => array(949),
                 );
             } else {
-                $y = array(
-                    0 => array(79),
-                    1 => array(949),
-                );
+                if ('distance' == $range) {
+                    $y = array(
+                        0 => array(87),
+                        1 => array(184),
+                    );
+                } else {
+                    $y = array(
+                        0 => array(80),
+                        1 => array(949),
+                    );
+                }
             }
 
             break;
@@ -105,12 +124,21 @@ function getYForScenario($ut, $scenario) {
                     3 => array(919),
                 );
             } else {
-                $y = array(
-                    0 => array(25),
-                    1 => array(54),
-                    2 => array(30),
-                    3 => array(919),
-                );
+                if ('distance' == $range) {
+                    $y = array(
+                        0 => array(30),
+                        1 => array(57),
+                        2 => array(25),
+                        3 => array(919),
+                    );
+                } else {
+                    $y = array(
+                        0 => array(25),
+                        1 => array(57),
+                        2 => array(30),
+                        3 => array(919),
+                    );
+                }
             }
 
             break;
@@ -125,9 +153,6 @@ function getYForScenario($ut, $scenario) {
 
 function getXForScenario($ut, $scenario) {
 
-    if (isDistanceAndLimits($scenario)) {
-        return array();
-    }
 
     $x = array(
         2011,
