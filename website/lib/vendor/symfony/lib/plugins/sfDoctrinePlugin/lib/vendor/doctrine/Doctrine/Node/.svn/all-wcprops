@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 35
+/!svn/ver/2/trunk/lib/Doctrine/Node
+END
+AdjacencyList.php
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/!svn/ver/2/trunk/lib/Doctrine/Node/AdjacencyList.php
+END
+Exception.php
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/!svn/ver/2/trunk/lib/Doctrine/Node/Exception.php
+END
+NestedSet.php
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/!svn/ver/2/trunk/lib/Doctrine/Node/NestedSet.php
+END
+Interface.php
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/!svn/ver/2/trunk/lib/Doctrine/Node/Interface.php
+END
+MaterializedPath.php
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/!svn/ver/2/trunk/lib/Doctrine/Node/MaterializedPath.php
+END

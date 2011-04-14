@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 37
+/!svn/ver/2/trunk/lib/Doctrine/Record
+END
+Iterator.php
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/!svn/ver/2/trunk/lib/Doctrine/Record/Iterator.php
+END
+Exception.php
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/!svn/ver/2/trunk/lib/Doctrine/Record/Exception.php
+END
+Abstract.php
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/!svn/ver/2/trunk/lib/Doctrine/Record/Abstract.php
+END
+UnknownPropertyException.php
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/2/trunk/lib/Doctrine/Record/UnknownPropertyException.php
+END
+Filter.php
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/!svn/ver/2/trunk/lib/Doctrine/Record/Filter.php
+END
+Listener.php
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/!svn/ver/2/trunk/lib/Doctrine/Record/Listener.php
+END
+Generator.php
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/!svn/ver/2/trunk/lib/Doctrine/Record/Generator.php
+END

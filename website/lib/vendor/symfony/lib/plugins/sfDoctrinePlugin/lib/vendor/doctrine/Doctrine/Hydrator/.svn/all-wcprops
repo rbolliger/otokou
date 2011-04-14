@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/!svn/ver/2/trunk/lib/Doctrine/Hydrator
+END
+ArrayHierarchyDriver.php
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/!svn/ver/2/trunk/lib/Doctrine/Hydrator/ArrayHierarchyDriver.php
+END
+RecordHierarchyDriver.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/2/trunk/lib/Doctrine/Hydrator/RecordHierarchyDriver.php
+END
+ArrayDriver.php
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/!svn/ver/2/trunk/lib/Doctrine/Hydrator/ArrayDriver.php
+END
+RecordDriver.php
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/!svn/ver/2/trunk/lib/Doctrine/Hydrator/RecordDriver.php
+END
+NoneDriver.php
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/!svn/ver/2/trunk/lib/Doctrine/Hydrator/NoneDriver.php
+END
+Exception.php
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/!svn/ver/2/trunk/lib/Doctrine/Hydrator/Exception.php
+END
+Graph.php
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/!svn/ver/2/trunk/lib/Doctrine/Hydrator/Graph.php
+END
+ScalarDriver.php
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/!svn/ver/2/trunk/lib/Doctrine/Hydrator/ScalarDriver.php
+END
+Abstract.php
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/!svn/ver/2/trunk/lib/Doctrine/Hydrator/Abstract.php
+END
+SingleScalarDriver.php
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/2/trunk/lib/Doctrine/Hydrator/SingleScalarDriver.php
+END
+ArrayShallowDriver.php
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/2/trunk/lib/Doctrine/Hydrator/ArrayShallowDriver.php
+END

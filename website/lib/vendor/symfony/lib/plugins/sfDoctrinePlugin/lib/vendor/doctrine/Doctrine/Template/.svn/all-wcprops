@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/!svn/ver/2/trunk/lib/Doctrine/Template
+END
+Searchable.php
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/!svn/ver/2/trunk/lib/Doctrine/Template/Searchable.php
+END
+Versionable.php
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/!svn/ver/2/trunk/lib/Doctrine/Template/Versionable.php
+END
+NestedSet.php
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/!svn/ver/2/trunk/lib/Doctrine/Template/NestedSet.php
+END
+SoftDelete.php
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/!svn/ver/2/trunk/lib/Doctrine/Template/SoftDelete.php
+END
+I18n.php
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/!svn/ver/2/trunk/lib/Doctrine/Template/I18n.php
+END
+Geographical.php
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/!svn/ver/2/trunk/lib/Doctrine/Template/Geographical.php
+END
+Sluggable.php
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/!svn/ver/2/trunk/lib/Doctrine/Template/Sluggable.php
+END
+Timestampable.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/!svn/ver/2/trunk/lib/Doctrine/Template/Timestampable.php
+END

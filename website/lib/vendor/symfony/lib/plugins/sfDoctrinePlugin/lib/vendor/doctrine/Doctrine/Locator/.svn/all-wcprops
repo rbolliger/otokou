@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 38
+/!svn/ver/2/trunk/lib/Doctrine/Locator
+END
+Exception.php
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/!svn/ver/2/trunk/lib/Doctrine/Locator/Exception.php
+END
+Injectable.php
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/!svn/ver/2/trunk/lib/Doctrine/Locator/Injectable.php
+END

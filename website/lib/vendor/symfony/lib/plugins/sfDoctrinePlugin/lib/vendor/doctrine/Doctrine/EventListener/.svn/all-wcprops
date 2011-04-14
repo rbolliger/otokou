@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/!svn/ver/2/trunk/lib/Doctrine/EventListener
+END
+Exception.php
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/!svn/ver/2/trunk/lib/Doctrine/EventListener/Exception.php
+END
+Interface.php
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/!svn/ver/2/trunk/lib/Doctrine/EventListener/Interface.php
+END
+Chain.php
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/!svn/ver/2/trunk/lib/Doctrine/EventListener/Chain.php
+END

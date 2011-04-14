@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/!svn/ver/2/trunk/lib/Doctrine/Node/NestedSet
+END
+PostOrderIterator.php
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/2/trunk/lib/Doctrine/Node/NestedSet/PostOrderIterator.php
+END
+PreOrderIterator.php
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/2/trunk/lib/Doctrine/Node/NestedSet/PreOrderIterator.php
+END
+LevelOrderIterator.php
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/2/trunk/lib/Doctrine/Node/NestedSet/LevelOrderIterator.php
+END

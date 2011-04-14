@@ -1,0 +1,11 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/!svn/ver/2/trunk/lib/Doctrine/Import/Builder
+END
+Exception.php
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/!svn/ver/2/trunk/lib/Doctrine/Import/Builder/Exception.php
+END

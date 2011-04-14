@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 36
+/!svn/ver/2/trunk/lib/Doctrine/Cache
+END
+Driver.php
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/!svn/ver/2/trunk/lib/Doctrine/Cache/Driver.php
+END
+Xcache.php
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/!svn/ver/2/trunk/lib/Doctrine/Cache/Xcache.php
+END
+Array.php
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/!svn/ver/2/trunk/lib/Doctrine/Cache/Array.php
+END
+Exception.php
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/!svn/ver/2/trunk/lib/Doctrine/Cache/Exception.php
+END
+Interface.php
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/!svn/ver/2/trunk/lib/Doctrine/Cache/Interface.php
+END
+Memcache.php
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/!svn/ver/2/trunk/lib/Doctrine/Cache/Memcache.php
+END
+Apc.php
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/!svn/ver/2/trunk/lib/Doctrine/Cache/Apc.php
+END
+Db.php
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/!svn/ver/2/trunk/lib/Doctrine/Cache/Db.php
+END

@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 37
+/!svn/ver/2/trunk/lib/Doctrine/Import
+END
+Exception.php
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/!svn/ver/2/trunk/lib/Doctrine/Import/Exception.php
+END
+Mssql.php
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/!svn/ver/2/trunk/lib/Doctrine/Import/Mssql.php
+END
+Schema.php
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/!svn/ver/2/trunk/lib/Doctrine/Import/Schema.php
+END
+Sqlite.php
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/!svn/ver/2/trunk/lib/Doctrine/Import/Sqlite.php
+END
+Mysql.php
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/!svn/ver/2/trunk/lib/Doctrine/Import/Mysql.php
+END
+Oracle.php
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/!svn/ver/2/trunk/lib/Doctrine/Import/Oracle.php
+END
+Builder.php
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/!svn/ver/2/trunk/lib/Doctrine/Import/Builder.php
+END
+Pgsql.php
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/!svn/ver/2/trunk/lib/Doctrine/Import/Pgsql.php
+END

@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/!svn/ver/2/trunk/lib/Doctrine/Parser/sfYaml
+END
+sfYamlInline.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/!svn/ver/2/trunk/lib/Doctrine/Parser/sfYaml/sfYamlInline.php
+END
+sfYaml.php
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/!svn/ver/2/trunk/lib/Doctrine/Parser/sfYaml/sfYaml.php
+END
+sfYamlDumper.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/!svn/ver/2/trunk/lib/Doctrine/Parser/sfYaml/sfYamlDumper.php
+END
+sfYamlParser.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/!svn/ver/2/trunk/lib/Doctrine/Parser/sfYaml/sfYamlParser.php
+END

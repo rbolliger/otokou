@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/!svn/ver/2/trunk/lib/Doctrine/Sequence
+END
+Exception.php
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/!svn/ver/2/trunk/lib/Doctrine/Sequence/Exception.php
+END
+Mssql.php
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/!svn/ver/2/trunk/lib/Doctrine/Sequence/Mssql.php
+END
+Sqlite.php
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/!svn/ver/2/trunk/lib/Doctrine/Sequence/Sqlite.php
+END
+Mysql.php
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/!svn/ver/2/trunk/lib/Doctrine/Sequence/Mysql.php
+END
+Oracle.php
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/!svn/ver/2/trunk/lib/Doctrine/Sequence/Oracle.php
+END
+Pgsql.php
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/!svn/ver/2/trunk/lib/Doctrine/Sequence/Pgsql.php
+END
+Db2.php
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/!svn/ver/2/trunk/lib/Doctrine/Sequence/Db2.php
+END

@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 38
+/!svn/ver/2/trunk/lib/Doctrine/Adapter
+END
+Mock.php
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/!svn/ver/2/trunk/lib/Doctrine/Adapter/Mock.php
+END
+Exception.php
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/!svn/ver/2/trunk/lib/Doctrine/Adapter/Exception.php
+END
+Interface.php
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/!svn/ver/2/trunk/lib/Doctrine/Adapter/Interface.php
+END
+Statement.php
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/!svn/ver/2/trunk/lib/Doctrine/Adapter/Statement.php
+END
+Oracle.php
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/!svn/ver/2/trunk/lib/Doctrine/Adapter/Oracle.php
+END

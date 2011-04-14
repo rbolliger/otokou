@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 37
+/!svn/ver/2/trunk/lib/Doctrine/Parser
+END
+Json.php
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/!svn/ver/2/trunk/lib/Doctrine/Parser/Json.php
+END
+Exception.php
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/!svn/ver/2/trunk/lib/Doctrine/Parser/Exception.php
+END
+Xml.php
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/!svn/ver/2/trunk/lib/Doctrine/Parser/Xml.php
+END
+Yml.php
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/!svn/ver/2/trunk/lib/Doctrine/Parser/Yml.php
+END
+Serialize.php
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/!svn/ver/2/trunk/lib/Doctrine/Parser/Serialize.php
+END

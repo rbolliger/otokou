@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 34
+/!svn/ver/2/trunk/lib/Doctrine/Cli
+END
+AnsiColorFormatter.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/!svn/ver/2/trunk/lib/Doctrine/Cli/AnsiColorFormatter.php
+END
+Exception.php
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/!svn/ver/2/trunk/lib/Doctrine/Cli/Exception.php
+END
+Formatter.php
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/!svn/ver/2/trunk/lib/Doctrine/Cli/Formatter.php
+END

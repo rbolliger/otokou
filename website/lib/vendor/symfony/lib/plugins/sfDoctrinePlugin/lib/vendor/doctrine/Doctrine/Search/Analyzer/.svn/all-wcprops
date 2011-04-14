@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/!svn/ver/2/trunk/lib/Doctrine/Search/Analyzer
+END
+Exception.php
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/2/trunk/lib/Doctrine/Search/Analyzer/Exception.php
+END
+Interface.php
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/2/trunk/lib/Doctrine/Search/Analyzer/Interface.php
+END
+Standard.php
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/!svn/ver/2/trunk/lib/Doctrine/Search/Analyzer/Standard.php
+END
+Utf8.php
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/!svn/ver/2/trunk/lib/Doctrine/Search/Analyzer/Utf8.php
+END

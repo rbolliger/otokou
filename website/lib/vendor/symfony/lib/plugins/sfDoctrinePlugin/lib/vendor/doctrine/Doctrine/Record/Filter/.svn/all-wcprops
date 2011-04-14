@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/!svn/ver/2/trunk/lib/Doctrine/Record/Filter
+END
+Standard.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/!svn/ver/2/trunk/lib/Doctrine/Record/Filter/Standard.php
+END
+Compound.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/!svn/ver/2/trunk/lib/Doctrine/Record/Filter/Compound.php
+END

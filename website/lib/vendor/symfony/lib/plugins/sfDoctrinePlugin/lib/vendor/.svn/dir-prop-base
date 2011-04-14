@@ -1,0 +1,6 @@
+K 13
+svn:externals
+V 70
+doctrine http://git.doctrine.mirror.svn.symfony-project.com/trunk/lib
+
+END
