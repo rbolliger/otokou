@@ -372,14 +372,14 @@ class ChartSource {
                     if ($p = $this->getParam('kilometers_from', false)) {
                         $min = $p;
                     } elseif ($p = $this->getParam('date_from')) {
-                        $min = $this->getDistanceForDate($p, 'max');
+                        $min = $this->getDistanceForDate($p, 'min');
                     }
 
                     // upper bound
                     if ($p = $this->getParam('kilometers_to', false)) {
                         $max = $p;
                     } elseif ($p = $this->getParam('date_to')) {
-                        $max = $this->getDistanceForDate($p, 'min');
+                        $max = $this->getDistanceForDate($p, 'max');
                     }
                 }
 

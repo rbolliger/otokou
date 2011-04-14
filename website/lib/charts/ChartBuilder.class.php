@@ -761,7 +761,7 @@ class ChartBuilder {
     protected function buildCostPerYearChartData() {
 
         $gs = $this->getChartSource();
-        $data = $gs->buildCostPerYearChartData();
+        $data = $gs->buildCostPerYearChartData($this->getParameter('range_type'));
 
         return $data;
     }

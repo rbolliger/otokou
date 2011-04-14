@@ -27,5 +27,7 @@ test:
       username: root
       password: volantino
       dsn: 'sqlite::memory:'
+      #dsn: 'sqlite:%SF_DATA_DIR%/name_of_your_database.db'
+
 
       

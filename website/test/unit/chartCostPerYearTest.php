@@ -12,13 +12,13 @@ $t = new lime_test(288, new lime_output_color());
 $scenarios = array_merge($ut->getBaseScenarios(),
                 array(
                     array('stacked', 'stacked', 'distance', 6, 500),
-                    array('stacked', 'stacked', 'date', '2011-1-2', '2012-5-1'),
+                    array('stacked', 'stacked', 'date', '2011-01-02', '2012-05-01'),
                     array('single', 'stacked', 'distance', 6, 500),
-                    array('single', 'stacked', 'date', '2010-1-2', '2011-4-27'),
+                    array('single', 'stacked', 'date', '2010-01-02', '2011-04-27'),
                     array('single', 'single', 'distance', 17, 800),
-                    array('single', 'single', 'date', '2011-1-2', '2012-5-1'),
+                    array('single', 'single', 'date', '2011-01-02', '2012-05-01'),
                     array('stacked', 'single', 'distance', 17, 800),
-                    array('stacked', 'single', 'date', '2010-1-2', '2011-4-27'),
+                    array('stacked', 'single', 'date', '2010-01-02', '2011-04-27'),
                 )
 );
 
