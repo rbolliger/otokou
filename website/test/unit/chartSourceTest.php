@@ -111,7 +111,7 @@ $t->diag('::filterValuesSmallerThan()');
 $data = array(1, 2, 3, 4, 5, 6, 7, 8);
 
 $keys = ChartSource::filterValuesSmallerThan($data, 5);
-$t->cmp_ok($keys, '===', array(5, 6, 7, 8), '::filterValuesSmallerThan() returns the elements of the input array whose value is larger than the given bound');
+$t->cmp_ok($keys, '===', array(4 => 5, 5 => 6, 6 => 7, 7 => 8), '::filterValuesSmallerThan() returns the elements of the input array whose value is larger than the given bound');
 
 
 // ::filterValuesDifferentThan()
