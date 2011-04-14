@@ -21,25 +21,22 @@ $scenarios = array_merge($ut->getBaseScenarios(),
                 )
 );
 
-
+$params = array(
+    'full_history' => true, // this is to define if data must be recovered from the beginning (by ignoring start_limit) or not
+);
 
 foreach ($scenarios as $key => $scenario) {
 //    for ($index = 9; $index < 10; $index++) {
 //$scenario = $scenarios[$index];
 
-$options = $scenario[2];
+    $options = $scenario[2];
 
-$y = getYForScenario($ut, $scenario);
-$x = getXForScenario($ut, $scenario);
+    $y = getYForScenario($ut, $scenario);
+    $x = getXForScenario($ut, $scenario);
 
-$fname = 'buildCostPerKmChartData';
+    $fname = 'buildCostPerKmChartData';
 
-$params = array(
-    'full_history' => true, // this is to define if data must be recovered from the beginning (by ignoring start_limit) or not
-);
-
-$g = $ut->runTest($t, $scenario, $fname, $x, $y, $options, $params);
-
+    $g = $ut->runTest($t, $scenario, $fname, $x, $y, $options, $params);
 }
 
 function getYForScenario($ut, $scenario) {
@@ -142,8 +139,6 @@ function getXForScenario($ut, $scenario) {
 
     $range = $scenario[2];
 
-    $limit = isset($scenario[3]) ? true : false;
-
     if ($range == 'distance') {
         $x = array(
             12,
@@ -176,6 +171,7 @@ function getXForScenario($ut, $scenario) {
         );
     }
 
+    $limit = isset($scenario[3]) ? true : false;
     if ($limit) {
         // we remove first and last value
         $x = array_slice($x, 1, count($x) - 2);

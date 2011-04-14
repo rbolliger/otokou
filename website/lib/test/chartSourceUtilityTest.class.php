@@ -255,7 +255,7 @@ class chartSourceUtilityTest extends otokouTestFunctional {
 
         $t->ok(isset($data['y']), sprintf('->%s() returns a "y" field', $fname));
         $t->ok(isset($data['y']['series']), sprintf('->%s() returns a series array for "y" field', $fname));
-        $t->ok(isset($data['y']['description']), sprintf('->%s() returns a description for "x" field', $fname));
+        $t->ok(isset($data['y']['description']), sprintf('->%s() returns a description for "y" field', $fname));
 
         $t->cmp_ok(count($data['y']['series']), '===', count($y), sprintf('->%s() "y-values" series count ok', $fname));
 

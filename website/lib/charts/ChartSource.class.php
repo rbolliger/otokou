@@ -22,6 +22,10 @@ class ChartSource {
         return isset($this->parameters[$param]) ? $this->parameters[$param] : $default;
     }
 
+    public function getParams() {
+        return $this->parameters;
+    }
+
     public function getSeriesCount() {
 
         $data = $this->getParam('series');
@@ -42,18 +46,11 @@ class ChartSource {
 
         $min = isset($params['min']) ? $params['min'] : null;
         $max = isset($params['max']) ? $params['max'] : null;
-        if ('datetime' == $type) {
-            if ($min) {
-                $min = strtotime($min);
-            }
-            if ($max) {
-                $max = strtotime($max);
-            }
-        }
 
         $series = $this->getSeries();
 
         $series_data = array();
+        $values_found = false;
 
         for ($s = 0; $s < count($series); $s++) {
 
@@ -63,12 +60,14 @@ class ChartSource {
 
             $data = array();
             foreach ($raw_data as $key => $charge) {
-
+//foreach ($charge as $field => $value) {
+//    echo $field . ': ' . $value . "\n";
+//}
                 $v = $charge->get($column);
                 if (!$v) {
                     throw new sfException(sprintf('Cannot get a value for column %s for charge id %d', $column, $charge->getId()));
                 }
-
+//echo $v.' -> ';
                 if ('datetime' == $type) {
                     $v = strtotime($v);
                 }
@@ -80,14 +79,19 @@ class ChartSource {
                 if ($max && $v > $max) {
                     continue;
                 }
-
+//echo $min.' : '.$v.' : '.$max."\n";
                 $data[$key] = $v;
+
+                if ($v) {
+                    $values_found = true;
+                }
             }
 
             $series_data[$s] = $data;
         }
 
-        return $series_data;
+
+        return $values_found ? $series_data : false;
     }
 
     public function addParams($params) {
@@ -220,6 +224,11 @@ class ChartSource {
     }
 
     public function buildXAxisDataByDateRange($dates, $unit) {
+
+        if (!$dates) {
+            throw new sfException('No dates provided. Cannot build axis');
+        }
+
 
         $units = array('year', 'month');
         if (!in_array($unit, $units)) {
@@ -493,15 +502,28 @@ class ChartSource {
         $data['title'] = 'Total Cost [CHF/year]';
 
         // x-axis
-        $dates = $this->getSeriesDataByColumn('date', 'datetime');
+        $data['x'] = array(
+            'id' => 'x-axis',
+        );
+
+        $params = $this->getAxisParametersByRangeType('date');
+
+        $dates = $this->getSeriesDataByColumn('date', 'datetime', $params);
+        if (!$dates) {
+             $data['x']['values'] = array();
+             $data['x']['description'] = array();
+             $data['y']['series'] = array();
+             $data['y']['description'] = array();
+
+             return $data;
+        }
+
 
         $x_dates = $this->buildXAxisDataByDateRange($dates, 'year');
 
-        $data['x'] = array(
-            'id' => 'x-axis',
-            'values' => $x_dates['labels'],
-            'description' => $x_dates['description'],
-        );
+        $data['x']['values'] = $x_dates['labels'];
+        $data['x']['description'] = $x_dates['description'];
+
 
         // Y-axis
         $data['y']['series'] = array();
@@ -509,7 +531,6 @@ class ChartSource {
 
         $costs = $this->getSeriesDataByColumn('amount', 'number');
         $y_series = $this->getSeries();
-
 
         $y_data = array();
         foreach ($dates as $skey => $serie) {
@@ -849,7 +870,7 @@ class ChartSource {
 
             if ($k) {
                 foreach ($k as $kkey) {
-                    $dt[] = strtotime($dates[$skey][$kkey]);
+                    $dt[] = $dates[$skey][$kkey];
                 }
             }
         }
