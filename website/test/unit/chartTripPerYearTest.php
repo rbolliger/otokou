@@ -9,16 +9,7 @@ $ut = new chartSourceUtilityTest(new sfBrowser());
 $t = new lime_test(64, new lime_output_color());
 
 
-$scenarios = array(
-    array('stacked', 'stacked', 'distance'),
-    array('stacked', 'stacked', 'date'),
-    array('single', 'stacked', 'distance'),
-    array('single', 'stacked', 'date'),
-    array('single', 'single', 'distance'),
-    array('single', 'single', 'date'),
-    array('stacked', 'single', 'distance'),
-    array('stacked', 'single', 'date'),
-);
+$scenarios = $ut->getBaseScenarios();
 
 
 $options = 'year';
