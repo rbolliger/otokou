@@ -32,10 +32,10 @@ for ($index = 0; $index < 16; $index++) {
 
 function getYForScenario($ut, $scenario, $file) {
 
-    $yaml = $ut->loadResultsFile($file, $scenario);
-    $case = $yaml['case'];
-    $range = $yaml['range'];
-    $limit = $yaml['limit'];
+    $yaml = sfYaml::load($file);
+    $case = $ut->getCase($scenario[0], $scenario[1]);
+    $range = $scenario[2];
+    $limit = isset($scenario[3]) ? 'bounded' : 'unbounded';
 
     $x = $yaml['y']['x'][$case][$limit][$range];
     $y = $yaml['y'][$case][$limit][$range];
@@ -52,10 +52,10 @@ function getYForScenario($ut, $scenario, $file) {
 
 function getXForScenario($ut, $scenario, $file) {
 
-    $yaml = $ut->loadResultsFile($file, $scenario);
-    $case = $yaml['case'];
-    $range = $yaml['range'];
-    $limit = $yaml['limit'];
+    $yaml = sfYaml::load($file);
+    $case = $ut->getCase($scenario[0], $scenario[1]);
+    $range = $scenario[2];
+    $limit = isset($scenario[3]) ? 'bounded' : 'unbounded';
 
     $x = $yaml['x'][$case][$limit][$range];
 

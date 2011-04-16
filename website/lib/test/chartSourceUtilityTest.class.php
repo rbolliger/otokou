@@ -339,18 +339,5 @@ class chartSourceUtilityTest extends otokouTestFunctional {
         return $history;
     }
 
-    public function loadResultsFile($file, $scenario) {
-
-        $case = $this->getCase($scenario[0], $scenario[1]);
-        $range = $scenario[2];
-        $limit = isset($scenario[3]) ? 'bounded' : 'unbounded';
-
-        $yaml = sfYaml::load($file);
-        $yaml['case'] = $case;
-        $yaml['range'] = $range;
-        $yaml['limit'] = $limit;
-
-        return $yaml;
-    }
 
 }

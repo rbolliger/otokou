@@ -15,146 +15,42 @@ $params = array(
     'full_history' => false, // this is to define if data must be recovered from the beginning (by ignoring start_limit) or not
 );
 
-
+$file = dirname(__FILE__) . '/results/chartCostPerYearResults.yml';
 
 //foreach ($scenarios as $key => $scenario) {
 for ($index = 0; $index < 16; $index++) {
     $scenario = $scenarios[$index];
 
-    $x = getXForScenario($ut, $scenario);
-    $y = getYForScenario($ut, $scenario);
+    $x = getXForScenario($ut, $scenario, $file);
+    $y = getYForScenario($ut, $scenario, $file);
 
     $options = $scenario[2];
 
     $ut->runTest($t, $scenario, 'buildCostPerYearChartData', $x, $y, $options, $params);
 }
 
-function getYForScenario($ut, $scenario) {
+function getYForScenario($ut, $scenario, $file) {
 
+    $yaml = sfYaml::load($file);
     $case = $ut->getCase($scenario[0], $scenario[1]);
     $range = $scenario[2];
+    $limit = isset($scenario[3]) ? 'bounded' : 'unbounded';
 
-    $limit = isset($scenario[3]) ? true : false;
+    $y = $yaml['y'][$case][$limit][$range];
 
-
-    switch ($case) {
-        case 1:
-
-            if (!$limit) {
-                $y = array(
-                    0 => array(1036),
-                );
-            } else {
-
-                if ('distance' == $range) {
-                    $y = array(
-                        0 => array(271),
-                    );
-                } else {
-                    $y = array(
-                        0 => array(1031),
-                    );
-                }
-            }
-            break;
-        case 2:
-
-            if (!$limit) {
-                $y = array(
-                    0 => array(60),
-                    1 => array(976),
-                );
-            } else {
-                if ('distance' == $range) {
-                    $y = array(
-                        0 => array(55),
-                        1 => array(976),
-                    );
-                } else {
-                    $y = array(
-                        0 => array(60),
-                        1 => array(969),
-                    );
-                }
-            }
-
-            break;
-
-        case 3:
-
-            if (!$limit) {
-                $y = array(
-                    0 => array(87),
-                    1 => array(949),
-                );
-            } else {
-                if ('distance' == $range) {
-                    $y = array(
-                        0 => array(87),
-                        1 => array(184),
-                    );
-                } else {
-                    $y = array(
-                        0 => array(80),
-                        1 => array(949),
-                    );
-                }
-            }
-
-            break;
-
-        case 4:
-
-            if (!$limit) {
-                $y = array(
-                    0 => array(30),
-                    1 => array(57),
-                    2 => array(30),
-                    3 => array(919),
-                );
-            } else {
-                if ('distance' == $range) {
-                    $y = array(
-                        0 => array(30),
-                        1 => array(57),
-                        2 => array(25),
-                        3 => array(919),
-                    );
-                } else {
-                    $y = array(
-                        0 => array(25),
-                        1 => array(57),
-                        2 => array(30),
-                        3 => array(919),
-                    );
-                }
-            }
-
-            break;
-
-        default:
-            throw new sfException(sprintf('Unknown case %d', $case));
-            break;
-    }
 
     return $y;
 }
 
-function getXForScenario($ut, $scenario) {
+function getXForScenario($ut, $scenario, $file) {
 
+    $yaml = sfYaml::load($file);
+    $case = $ut->getCase($scenario[0], $scenario[1]);
+    $range = $scenario[2];
+    $limit = isset($scenario[3]) ? 'bounded' : 'unbounded';
 
-    $x = array(
-        2011,
-    );
+    $x = $yaml['x'];
 
     return $x;
-}
-
-function isDistanceAndLimits($scenario) {
-    if ('distance' == $scenario[2] && isset($scenario[3])) {
-        return true;
-    }
-
-    return false;
 }
 

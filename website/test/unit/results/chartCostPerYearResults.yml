@@ -1,0 +1,68 @@
+x:
+  0: 2011
+
+y:
+  1:
+    unbounded:
+      distance:
+        0:  [1036]
+      date:
+        0:  [1036]
+    bounded:
+      distance:
+        0:  [271]
+      date:
+        0:  [1031]
+  2:
+    unbounded:
+      distance:
+        0:  [60]
+        1:  [976]
+      date:
+        0:  [60]
+        1:  [976]
+    bounded:
+      distance:
+        0:  [55]
+        1:  [976]
+      date:
+        0:  [60]
+        1:  [969]
+  3:
+    unbounded:
+      distance:
+        0:  [87]
+        1:  [949]
+      date:
+        0:   [87]
+        1:  [949]
+    bounded:
+      distance:
+        0:  [87]
+        1:  [184]
+      date:
+        0:  [80]
+        1:  [949]
+  4:
+    unbounded:
+      distance:
+        0:  [30]
+        1:  [57]
+        2:  [30]
+        3:  [919]
+      date:
+        0:  [30]
+        1:  [57]
+        2:  [30]
+        3:  [919]
+    bounded:
+      distance:
+        0:  [30]
+        1:  [57]
+        2:  [25]
+        3:  [919]
+      date:
+        0:  [25]
+        1:  [57]
+        2:  [30]
+        3:  [919]
