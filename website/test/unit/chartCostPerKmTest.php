@@ -14,28 +14,28 @@ $params = array(
     'full_history' => true, // this is to define if data must be recovered from the beginning (by ignoring start_limit) or not
 );
 
+$file = dirname(__FILE__) . '/results/chartCostPerKmResults.yml';
+
 //foreach ($scenarios as $key => $scenario) {
 for ($index = 0; $index < 16; $index++) {
     $scenario = $scenarios[$index];
 
     $options = $scenario[2];
 
-    $y = getYForScenario($ut, $scenario);
-    $x = getXForScenario($ut, $scenario);
+    $y = getYForScenario($ut, $scenario, $file);
+    $x = getXForScenario($ut, $scenario, $file);
 
     $fname = 'buildCostPerKmChartData';
 
     $g = $ut->runTest($t, $scenario, $fname, $x, $y, $options, $params);
 }
 
-function getYForScenario($ut, $scenario) {
+function getYForScenario($ut, $scenario, $file) {
 
-
-    $case = $ut->getCase($scenario[0], $scenario[1]);
-    $range = $scenario[2];
-    $limit = isset($scenario[3]) ? 'bounded' : 'unbounded';
-
-    $yaml = sfYaml::load(dirname(__FILE__) . '/results/chartCostPerKmResults.yml');
+    $yaml = $ut->loadResultsFile($file, $scenario);
+    $case = $yaml['case'];
+    $range = $yaml['range'];
+    $limit = $yaml['limit'];
 
     $x = $yaml['y']['x'][$case][$limit][$range];
     $y = $yaml['y'][$case][$limit][$range];
@@ -47,24 +47,15 @@ function getYForScenario($ut, $scenario) {
         }
     }
 
-//    $limit = isset($scenario[3]) ? true : false;
-//    if ($limit) {
-//        // we remove first and last value
-//        foreach ($y as $key => $serie) {
-//            $y[$key] = array_slice($serie, 1, count($serie) - 2);
-//        }
-//    }
-
     return $y;
 }
 
-function getXForScenario($ut, $scenario) {
+function getXForScenario($ut, $scenario, $file) {
 
-    $case = $ut->getCase($scenario[0], $scenario[1]);
-    $range = $scenario[2];
-    $limit = isset($scenario[3]) ? 'bounded' : 'unbounded';
-
-    $yaml = sfYaml::load(dirname(__FILE__) . '/results/chartCostPerKmResults.yml');
+    $yaml = $ut->loadResultsFile($file, $scenario);
+    $case = $yaml['case'];
+    $range = $yaml['range'];
+    $limit = $yaml['limit'];
 
     $x = $yaml['x'][$case][$limit][$range];
 
