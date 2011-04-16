@@ -13,6 +13,14 @@ class chartSourceUtilityTest extends otokouTestFunctional {
             array('single', 'single', 'date'),
             array('stacked', 'single', 'distance'),
             array('stacked', 'single', 'date'),
+            array('stacked', 'stacked', 'distance', 6, 500),
+            array('stacked', 'stacked', 'date', '2011-01-02', '2012-05-01'),
+            array('single', 'stacked', 'distance', 6, 500),
+            array('single', 'stacked', 'date', '2010-01-02', '2011-04-27'),
+            array('single', 'single', 'distance', 17, 800),
+            array('single', 'single', 'date', '2011-01-02', '2012-05-01'),
+            array('stacked', 'single', 'distance', 17, 800),
+            array('stacked', 'single', 'date', '2010-01-02', '2011-04-27'),
         );
     }
 

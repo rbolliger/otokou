@@ -9,18 +9,7 @@ $ut = new chartSourceUtilityTest(new sfBrowser());
 $t = new lime_test(288, new lime_output_color());
 
 
-$scenarios = array_merge($ut->getBaseScenarios(),
-                array(
-                    array('stacked', 'stacked', 'distance', 6, 500),
-                    array('stacked', 'stacked', 'date', '2011-01-02', '2012-05-01'),
-                    array('single', 'stacked', 'distance', 6, 500),
-                    array('single', 'stacked', 'date', '2010-01-02', '2011-04-27'),
-                    array('single', 'single', 'distance', 17, 800),
-                    array('single', 'single', 'date', '2011-01-02', '2012-05-01'),
-                    array('stacked', 'single', 'distance', 17, 800),
-                    array('stacked', 'single', 'date', '2010-01-02', '2011-04-27'),
-                )
-);
+$scenarios = $ut->getBaseScenarios();
 
 $params = array(
     'full_history' => false, // this is to define if data must be recovered from the beginning (by ignoring start_limit) or not
