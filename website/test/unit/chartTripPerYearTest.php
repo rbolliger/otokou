@@ -6,7 +6,7 @@ include dirname(__FILE__) . '/../bootstrap/Doctrine.php';
 
 $ut = new chartSourceUtilityTest(new sfBrowser());
 
-$t = new lime_test(64, new lime_output_color());
+$t = new lime_test(128, new lime_output_color());
 
 
 $scenarios = $ut->getBaseScenarios();
@@ -14,13 +14,18 @@ $scenarios = $ut->getBaseScenarios();
 
 $options = 'year';
 
+$params = array(
+    'full_history' => false, // this is to define if data must be recovered from the beginning (by ignoring start_limit) or not
+);
 
-foreach ($scenarios as $key => $scenario) {
+//foreach ($scenarios as $key => $scenario) {
+for ($index = 0; $index < 16; $index++) {
+    $scenario = $scenarios[$index];
 
     $x = getXForScenario($ut, $scenario);
     $y = getYForScenario($ut, $scenario);
 
-    $ut->runTest($t, $scenario, 'buildTripChartData', $x, $y, $options);
+    $ut->runTest($t, $scenario, 'buildTripChartData', $x, $y, $options, $params);
 }
 
 function getYForScenario($ut, $scenario) {

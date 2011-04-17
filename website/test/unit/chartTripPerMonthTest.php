@@ -15,7 +15,7 @@ $scenarios = $ut->getBaseScenarios();
 $options = 'month';
 
 $params = array(
-    'full_history' => true, // this is to define if data must be recovered from the beginning (by ignoring start_limit) or not
+    'full_history' => false, // this is to define if data must be recovered from the beginning (by ignoring start_limit) or not
 );
 
 //foreach ($scenarios as $key => $scenario) {
@@ -45,6 +45,14 @@ function getYForScenario($ut, $scenario) {
             $y = array(
                 0 => array(-88, 111, 333, -406, 20, 330),
             );
+
+
+            if ($limit && 'date' == $range) {
+                $y = array(
+                    0 => array(-312, 111, 333, -406, 20, 330),
+                );
+            }
+
             break;
 
         case 3:
