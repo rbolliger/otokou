@@ -570,6 +570,7 @@ class ChartSource {
             throw new sfException('vehicle_display option is required.');
         }
 
+
         $data = array();
         $data['title'] = 'Cost allocation [CHF]';
 
@@ -612,7 +613,7 @@ class ChartSource {
             }
 
             $value = array_sum($amounts[$key]);
-            $values[$vid][$cid] = $value;
+            $values[$vid][$cid[0]] = $value;
         }
 
         $data['y']['series'] = array();

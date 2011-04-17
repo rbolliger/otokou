@@ -25,5 +25,3 @@ $autoload->register();
 // lime
 include $configuration->getSymfonyLibDir().'/vendor/lime/lime.php';
 
-
-

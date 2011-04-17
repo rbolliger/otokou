@@ -6,7 +6,7 @@ include dirname(__FILE__) . '/../bootstrap/Doctrine.php';
 
 $ut = new chartSourceUtilityTest(new sfBrowser());
 
-$t = new lime_test(64, new lime_output_color());
+$t = new lime_test(128, new lime_output_color());
 
 
 $scenarios = $ut->getBaseScenarios();
@@ -17,23 +17,29 @@ $options = array(
     'user_id' => $ut->getUserId('user_gs'),
 );
 
-foreach ($scenarios as $key => $scenario) {
+$params = array(
+    'full_history' => false, // this is to define if data must be recovered from the beginning (by ignoring start_limit) or not
+);
+
+//foreach ($scenarios as $key => $scenario) {
+for ($index = 0; $index < 16; $index++) {
+    $scenario = $scenarios[$index];
 
     $y = getYForScenario($ut, $scenario);
     $x = getXForScenario($ut, $scenario);
 
     $fname = 'buildCostPieChartData';
 
-    $options = array_merge($options,array('vehicle_display' => $scenario[0]));
+    $options = array_merge($options, array('vehicle_display' => $scenario[0]));
 
-    $g = $ut->runTest($t, $scenario, $fname, $x, $y, $options);
+    $g = $ut->runTest($t, $scenario, $fname, $x, $y, $options, $params);
 }
 
 function getYForScenario($ut, $scenario) {
 
     $case = $ut->getCase($scenario[0], $scenario[1]);
     $range = $scenario[2];
-
+    $limit = isset($scenario[3]) ? true : false;
 
     // categories
 //    [0] => Fuel
@@ -54,18 +60,44 @@ function getYForScenario($ut, $scenario) {
             break;
         case 2:
 
-            $y = array(
-                0 => array(60,0,0,976,0,0,0),
-            );
+            if (!$limit) {
+                $y = array(
+                    0 => array(60, 0, 0, 976, 0, 0, 0),
+                );
+            } else {
+                if ('distance' == $range) {
+                    $y = array(
+                        0 => array(55, 0, 0, 976, 0, 0, 0),
+                    );
+                } else {
+                    $y = array(
+                        0 => array(60, 0, 0, 969, 0, 0, 0),
+                    );
+                }
+            }
 
             break;
 
         case 4:
 
-            $y = array(
-                0 => array(30,0,0,57,0,0,0),
-                1 => array(30,0,0,919,0,0,0),
-            );
+            if (!$limit) {
+                $y = array(
+                    0 => array(30, 0, 0, 57, 0, 0, 0),
+                    1 => array(30, 0, 0, 919, 0, 0, 0),
+                );
+            } else {
+                if ('distance' == $range) {
+                    $y = array(
+                        0 => array(30, 0, 0, 57, 0, 0, 0),
+                        1 => array(25, 0, 0, 919, 0, 0, 0),
+                    );
+                } else {
+                    $y = array(
+                        0 => array(25, 0, 0, 57, 0, 0, 0),
+                        1 => array(30, 0, 0, 919, 0, 0, 0),
+                    );
+                }
+            }
 
             break;
 
