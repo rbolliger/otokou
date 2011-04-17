@@ -32,6 +32,7 @@ function getYForScenario($ut, $scenario) {
 
     $case = $ut->getCase($scenario[0], $scenario[1]);
     $range = $scenario[2];
+    $limit = isset($scenario[3]) ? true : false;
 
     switch ($case) {
         case 2:
@@ -44,6 +45,13 @@ function getYForScenario($ut, $scenario) {
             $y = array(
                 0 => array(300),
             );
+
+            if ($limit && 'date' == $range) {
+                $y = array(
+                    0 => array(76),
+                );
+            }
+
             break;
 
         case 3:
@@ -52,6 +60,10 @@ function getYForScenario($ut, $scenario) {
                 0 => array(300),
                 1 => array(132),
             );
+
+            if ($limit && 'date' == $range) {
+                $y[0] = array(-50);
+            }
 
             break;
 
