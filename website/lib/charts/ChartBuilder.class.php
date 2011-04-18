@@ -212,7 +212,7 @@ class ChartBuilder {
         $coll = $this->getChartsQueryResults();
 
         // Ensuring that at most one element is retrieved
-        if (count($coll) == 0) {
+        if (!count($coll)) {
 
             $chart = $this->saveNewChart();
         }

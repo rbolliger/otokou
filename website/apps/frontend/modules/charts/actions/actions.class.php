@@ -46,6 +46,7 @@ class chartsActions extends sfActions {
         $filters = $this->updateFilterFieldIfEmpty($filters, 'vehicle_display', 'single');
         $filters = $this->updateFilterFieldIfEmpty($filters, 'category_display', 'stacked');
         $filters = $this->updateFilterFieldIfEmpty($filters, 'range_type', 'distance');
+        $filters = $this->setTypicalRanges($filters);
         $this->setFilters($filters);
         $this->setFilterField('chart_name', 'cost_per_km');
 
@@ -62,6 +63,7 @@ class chartsActions extends sfActions {
         $filters = $this->updateFilterFieldIfEmpty($filters, 'vehicle_display', 'single');
         $filters = $this->updateFilterFieldIfEmpty($filters, 'category_display', 'stacked');
         $filters = $this->updateFilterFieldIfEmpty($filters, 'range_type', 'date');
+        $filters = $this->setTypicalRanges($filters);
         $this->setFilters($filters);
         $this->setFilterField('chart_name', 'cost_per_year');
 
@@ -77,6 +79,7 @@ class chartsActions extends sfActions {
         // updating filters
         $filters = $this->getFilters();
         $filters = $this->updateFilterFieldIfEmpty($filters, 'vehicle_display', 'single');
+        $filters = $this->setTypicalRanges($filters);
         $this->setFilters($filters);
         $this->setFilterField('chart_name', 'cost_pie');
 
@@ -92,6 +95,7 @@ class chartsActions extends sfActions {
 
         $filters = $this->getFilters();
         $filters = $this->updateFilterFieldIfEmpty($filters, 'vehicle_display', 'single');
+        $filters = $this->setTypicalRanges($filters);
         $this->setFilters($filters);
         $this->setFilterField('chart_name', 'trip_annual');
 
@@ -106,6 +110,7 @@ class chartsActions extends sfActions {
 
         $filters = $this->getFilters();
         $filters = $this->updateFilterFieldIfEmpty($filters, 'vehicle_display', 'single');
+        $filters = $this->setTypicalRanges($filters);
         $this->setFilters($filters);
         $this->setFilterField('chart_name', 'trip_monthly');
 
@@ -121,6 +126,7 @@ class chartsActions extends sfActions {
         $filters = $this->getFilters();
         $filters = $this->updateFilterFieldIfEmpty($filters, 'vehicle_display', 'single');
         $filters = $this->updateFilterFieldIfEmpty($filters, 'range_type', 'distance');
+        $filters = $this->setTypicalRanges($filters);
         $this->setFilters($filters);
         $this->setFilterField('chart_name', 'consumption_per_distance');
 
@@ -251,11 +257,11 @@ class chartsActions extends sfActions {
     }
 
     protected function updateFilterFieldIfEmpty($filters, $field, $value) {
-
+        print_r($filters);
         if (!isset($filters[$field])) {
             $filters[$field] = $value;
         }
-
+        print_r($filters);
         return $filters;
     }
 
@@ -285,6 +291,22 @@ class chartsActions extends sfActions {
         $filters = (($filters === null) ? $this->getFilters() : $filters);
 
         return isset($filters[$field]) ? $filters[$field] : $default;
+    }
+
+    protected function setTypicalRanges($filters) {
+
+        if (!isset($filters['kilometers_range'])) {
+            $filters['kilometers_range'] = array();
+        }
+
+        if (!isset($filters['date_range'])) {
+            $filters['date_range'] = array();
+        }
+
+        $filters['kilometers_range'] = $this->updateFilterFieldIfEmpty($filters['kilometers_range'], 'from', 0);
+        $filters['date_range'] = $this->updateFilterFieldIfEmpty($filters['date_range'], 'to', date('Y-m-d', time()));
+
+        return $filters;
     }
 
 }
