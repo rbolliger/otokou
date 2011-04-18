@@ -242,15 +242,6 @@ class ChartBuilder {
             return $done;
         }
 
-        if (!$this->chart_source) {
-            $done = $this->getChartSource();
-        }
-
-        if (!$done) {
-
-            return $done;
-        }
-
         if (!$this->doForceGenerate()) {
             $this->getLogger()->info(sprintf('Chart %s picture does not exist exist. Generating it.', $this->getChartPath('system')));
         } else {
@@ -649,13 +640,18 @@ class ChartBuilder {
 
     protected function buildChargeQuery($vehicles = array(), $categories = array()) {
 
+        $full_history = $this->getParameter('full_history', 'nothing');
+        if ('nothing' === $full_history) {
+            throw new sfException('Parameter "full_history" is required');
+        }
+
         $q = Doctrine_Query::create()->from('Charge c')->select('c.*');
 
 
         $q->andWhere('c.user_id = ?', $this->getParameter('user_id'));
 
 
-        if ($p = $this->getParameter('date_from')) {
+        if (!$full_history && $p = $this->getParameter('date_from')) {
             $q->andWhere('c.date >= ?', $p);
         }
 
@@ -663,7 +659,7 @@ class ChartBuilder {
             $q->andWhere('c.date <= ?', $p);
         }
 
-        if ($p = $this->getParameter('kilometers_from')) {
+        if (!$full_history && $p = $this->getParameter('kilometers_from')) {
             $q->andWhere('c.kilometers >= ?', $p);
         }
 
@@ -760,7 +756,13 @@ class ChartBuilder {
 
     protected function buildCostPerYearChartData() {
 
+        $this->setParameter('full_history', false);
+
         $gs = $this->getChartSource();
+        if (!$gs) {
+            return $gs;
+        }
+        
         $data = $gs->buildCostPerYearChartData($this->getParameter('range_type'));
 
         return $data;
@@ -768,7 +770,13 @@ class ChartBuilder {
 
     protected function buildCostPerKmChartData() {
 
+        $this->setParameter('full_history', true);
+
         $gs = $this->getChartSource();
+        if (!$gs) {
+            return $gs;
+        }
+
         $data = $gs->buildCostPerKmChartData($this->getParameter('range_type'));
 
         return $data;
@@ -776,8 +784,13 @@ class ChartBuilder {
 
     protected function buildCostPieChartData() {
 
+        $this->setParameter('full_history', false);
+
         // get data series
         $gs = $this->getChartSource();
+        if (!$gs) {
+            return $gs;
+        }
 
         // building chart data
         $categories = self::getCategoriesList($this->getParameter('categories_list', null));
@@ -794,8 +807,13 @@ class ChartBuilder {
 
     protected function buildTripChartData($unit) {
 
+        $this->setParameter('full_history', false);
+
         // get data series
         $gs = $this->getChartSource();
+        if (!$gs) {
+            return $gs;
+        }
 
         $data = $gs->buildTripChartData($unit);
 
@@ -804,7 +822,12 @@ class ChartBuilder {
 
     protected function buildConsumptionPerDistanceChartData() {
 
+        $this->setParameter('full_history', true);
+
         $gs = $this->getChartSource();
+        if (!$gs) {
+            return $gs;
+        }
 
         $data = $gs->buildConsumptionPerDistanceChartData($this->getParameter('range_type'));
 

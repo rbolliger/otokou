@@ -12,6 +12,9 @@ class ChartBuilderPChart extends ChartBuilder {
     public function doGenerate() {
 
         $data = parent::doGenerate();
+        if(!$data){
+            return $data;
+        }
 
         $name = $this->getParameter('chart_name');
 
@@ -301,6 +304,9 @@ class ChartBuilderPChart extends ChartBuilder {
         if (!$cd) {
             $cd = parent::buildCostPerKmChartData();
         }
+        if(!$cd){
+            return $cd;
+        }
 
         $this->setOption('title', $cd['title']);
 
@@ -340,6 +346,9 @@ class ChartBuilderPChart extends ChartBuilder {
     protected function buildCostPerYearChartData() {
 
         $data = parent::buildCostPerYearChartData();
+        if(!$data){
+            return $data;
+        }
 
         $this->setOption('title', $data['title']);
 
@@ -371,6 +380,9 @@ class ChartBuilderPChart extends ChartBuilder {
     protected function buildCostPieChartData() {
 
         $data = parent::buildCostPieChartData();
+        if(!$data){
+            return $data;
+        }
 
         $this->setOption('title', $data['title']);
 
@@ -397,6 +409,9 @@ class ChartBuilderPChart extends ChartBuilder {
     protected function buildConsumptionPerDistanceChartData() {
 
         $data = parent::buildConsumptionPerDistanceChartData();
+        if(!$data){
+            return $data;
+        }
 
         $myData = $this->buildCostPerKmChartData($data);
 
@@ -406,6 +421,9 @@ class ChartBuilderPChart extends ChartBuilder {
     protected function buildTripChartData($unit) {
 
         $data = parent::buildTripChartData($unit);
+        if(!$data){
+            return $data;
+        }
 
         $this->setOption('title', $data['title']);
 

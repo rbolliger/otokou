@@ -8,7 +8,7 @@ sfContext::createInstance($app_configuration);
 $ut = new otokouTestFunctional(new sfBrowser());
 
 
-$t = new lime_test(56, new lime_output_color());
+$t = new lime_test(58, new lime_output_color());
 
 
 // ->getQuery()
@@ -23,7 +23,6 @@ $t->isa_ok($gb->getQuery(), 'Doctrine_Query', '->getQuery() returns a Doctrine_Q
 // These tests are based on the chart_gb_1 to chart_gb_4 fixtures
 $t->diag('->getChartsQueryResults()');
 
-
 $gb = newChart();
 $qr = $gb->getChartsQueryResults();
 $t->isa_ok($qr, 'Doctrine_Collection', 'getChartsQueryResults() returns A Doctrine_Collection');
@@ -36,7 +35,6 @@ $data = array(
 $gb = newChart($data);
 $t->isa_ok($gb->getChartsQueryResults(), 'Doctrine_Collection', 'getChartsQueryResults() returns a Doctrine_Collection object if the requested object is found in DB');
 $t->cmp_ok($gb->getChartsQueryResults()->count(), '==', 1, 'getChartsQueryResults() retrieves only entries matching EXACTLY the requested parameters');
-
 
 
 // ->retrieveOrCreate()
@@ -133,10 +131,13 @@ $t->cmp_ok($path, '==', $g->getChartPath(), 'The chart is built from the base pa
 
 // ->buildChartSource()
 $t->diag('->buildChartSource()');
-$g = newChart();
+$params = array(
+    'full_history' => false,
+);
+$g = newChart($params);
 $t->cmp_ok($g->buildChartSource(), '===', true, '->buildChartSource returns "true" if a ChartSource object can be built');
 
-$g = newChart(array('user_id' => $ut->getUserId('user_gb_noCars')));
+$g = newChart(array('user_id' => $ut->getUserId('user_gb_noCars'),'full_history' => false));
 $t->cmp_ok($g->buildChartSource(), '===', false, '->buildChartSource returns "false" if a ChartSource object cannot be built');
 
 
@@ -154,6 +155,7 @@ $t->diag('->getChartSourceData()');
 $params = array(
     'categories_list' => array($ut->getIdForCategory('Tax'), $ut->getIdForCategory('Fuel')),
     'vehicles_list' => array($ut->getVehicleId('car-gb-1'),$ut->getVehicleId('car-gb-2'),$ut->getVehicleId('car-gb-3')),
+    'full_history' => false,
 );
 $g = newChart($params);
 $data = $g->getChartSourceData('stacked', 'stacked');
@@ -175,6 +177,7 @@ $t->diag('->getChartSourceData() when vehicles_list and categories_list are empt
 $params = array(
     'categories_list' => array(),
     'vehicles_list' => array(),
+    'full_history' => false,
 );
 $g = newChart($params);
 
@@ -194,6 +197,36 @@ $t->cmp_ok(count(array_keys($data)), '<=', count($v),'->getChartSourceData() ret
 
 $data = $g->getChartSourceData('single', 'single');
 $t->cmp_ok(count(array_keys($data)), '<=', count($c)*count($v),'->getChartSourceData() returns a number of data series corresponding to the number of vehicles multiplied by the number of categories');
+
+
+$t->diag('->getChartSourceData(), "full_history" parameter');
+$params = array(
+    'user_id'           => array($ut->getUserId('user_gs')),
+    'category_display'  => 'stacked',
+    'vehicle_display'   => 'stacked',
+    'full_history'      => false,
+    'kilometers_from'   => 300,
+    'kilometers_to'     => 500,
+    'full_history'      => false,
+);
+$gb = newChart($params);
+$data = $gb->getChartSourceData('stacked','stacked');
+$rawData = $data[0]->getRawData();
+$t->cmp_ok($rawData->count(), '==', 4, 'getChartsQueryResults() When "full_history" is set to "false", the function retrieves only charges in the given range (dates or distances).');
+
+$params = array(
+    'user_id'           => array($ut->getUserId('user_gs')),
+    'category_display'  => 'stacked',
+    'vehicle_display'   => 'stacked',
+    'full_history'      => true,
+    'kilometers_from'   => 300,
+    'kilometers_to'     => 500,
+);
+$gb = newChart($params);
+$data = $gb->getChartSourceData('stacked','stacked');
+$rawData = $data[0]->getRawData();
+$t->cmp_ok($rawData->count(), '==', 11, 'getChartsQueryResults() When "full_history" is set to "true", the function ignores the starting limit of the range and retrieves the full history of charges.');
+
 
 
 // ->checkPath()
@@ -293,7 +326,7 @@ $t->cmp_ok($g->getLogger(), '===', $logger, '->setLogger() allows to define a cu
 
 // ->generate()
 $t->diag('->generate()');
-$g = newChart(array('user_id' => $ut->getUserId('user_gb_noCars')));
+$g = newChart(array('user_id' => $ut->getUserId('user_gb_noCars'),'full_history' => false));
 $t->cmp_ok($g->generate(), '===', false, 'If the User has no cars, the chart cannot be generated.');
 
 $g = newChart();
@@ -316,6 +349,11 @@ $t->cmp_ok($g->doForceGenerate(), '===', false, '->doForceGenerate() returns fal
 
 sfConfig::set('app_charts_force_generate', true);
 $t->cmp_ok($g->doForceGenerate(), '===', true, '->doForceGenerate() returns the value set in app_charts_force_generate');
+
+
+
+
+
 
 function getData($data = array()) {
 
@@ -351,7 +389,8 @@ function newChart($data = array(),$options = array(),$attributes = array()) {
                         'category_display'  => 'stacked',
                         'range_type'        => 'distance',
                         'format'            => 'png',
-                        'chart_name'        => 'cost_per_km',
+                        'chart_name'        => 'cost_per_year',
+                        //'full_history'      => 'false',
                     ),
                     $data);
 

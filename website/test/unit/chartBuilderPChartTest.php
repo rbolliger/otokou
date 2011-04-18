@@ -138,6 +138,7 @@ function newChart($data = array(), $options = array(), $attributes = array()) {
                         'vehicle_display' => 'stacked',
                         'category_display' => 'single',
                         'format' => 'png',
+                        'full_history' => true,
                     ),
                     $data);
 
