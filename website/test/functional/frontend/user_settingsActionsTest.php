@@ -137,8 +137,17 @@ $browser->
                 begin()->
                     isParameter('module','vehicle')->
                     isParameter('action','index')->
+                end()->
+        click('Edit',array(), array('position' => 1))->
+            with('request')->
+                begin()->
+                    isParameter('module','vehicle')->
+                    isParameter('action','edit')->
+                end()->
+            with('response')->
+                begin()->
+                    checkElement('div.sf_admin_form_row',2)-> // only Name and isArchived must appear
                 end()
-        
         
 
 ;

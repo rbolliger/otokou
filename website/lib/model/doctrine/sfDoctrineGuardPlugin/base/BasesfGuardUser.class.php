@@ -26,6 +26,7 @@
  * @property Doctrine_Collection $Charges
  * @property Doctrine_Collection $Vehicles
  * @property Doctrine_Collection $Charts
+ * @property Doctrine_Collection $Reports
  * 
  * @method string                getFirstName()             Returns the current record's "first_name" value
  * @method string                getLastName()              Returns the current record's "last_name" value
@@ -48,6 +49,7 @@
  * @method Doctrine_Collection   getCharges()               Returns the current record's "Charges" collection
  * @method Doctrine_Collection   getVehicles()              Returns the current record's "Vehicles" collection
  * @method Doctrine_Collection   getCharts()                Returns the current record's "Charts" collection
+ * @method Doctrine_Collection   getReports()               Returns the current record's "Reports" collection
  * @method sfGuardUser           setFirstName()             Sets the current record's "first_name" value
  * @method sfGuardUser           setLastName()              Sets the current record's "last_name" value
  * @method sfGuardUser           setEmailAddress()          Sets the current record's "email_address" value
@@ -69,6 +71,7 @@
  * @method sfGuardUser           setCharges()               Sets the current record's "Charges" collection
  * @method sfGuardUser           setVehicles()              Sets the current record's "Vehicles" collection
  * @method sfGuardUser           setCharts()                Sets the current record's "Charts" collection
+ * @method sfGuardUser           setReports()               Sets the current record's "Reports" collection
  * 
  * @package    otokou
  * @subpackage model
@@ -181,6 +184,10 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
              'foreign' => 'user_id'));
 
         $this->hasMany('Chart as Charts', array(
+             'local' => 'id',
+             'foreign' => 'user_id'));
+
+        $this->hasMany('Report as Reports', array(
              'local' => 'id',
              'foreign' => 'user_id'));
 

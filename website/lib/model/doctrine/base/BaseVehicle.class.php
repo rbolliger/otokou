@@ -13,23 +13,29 @@
  * @property Doctrine_Collection $Charges
  * @property Doctrine_Collection $Charts
  * @property Doctrine_Collection $ChartVehicles
+ * @property Doctrine_Collection $Reports
+ * @property Doctrine_Collection $ReportVehicles
  * 
- * @method integer             getId()            Returns the current record's "id" value
- * @method string              getName()          Returns the current record's "name" value
- * @method integer             getUserId()        Returns the current record's "user_id" value
- * @method boolean             getIsArchived()    Returns the current record's "is_archived" value
- * @method sfGuardUser         getUser()          Returns the current record's "User" value
- * @method Doctrine_Collection getCharges()       Returns the current record's "Charges" collection
- * @method Doctrine_Collection getCharts()        Returns the current record's "Charts" collection
- * @method Doctrine_Collection getChartVehicles() Returns the current record's "ChartVehicles" collection
- * @method Vehicle             setId()            Sets the current record's "id" value
- * @method Vehicle             setName()          Sets the current record's "name" value
- * @method Vehicle             setUserId()        Sets the current record's "user_id" value
- * @method Vehicle             setIsArchived()    Sets the current record's "is_archived" value
- * @method Vehicle             setUser()          Sets the current record's "User" value
- * @method Vehicle             setCharges()       Sets the current record's "Charges" collection
- * @method Vehicle             setCharts()        Sets the current record's "Charts" collection
- * @method Vehicle             setChartVehicles() Sets the current record's "ChartVehicles" collection
+ * @method integer             getId()             Returns the current record's "id" value
+ * @method string              getName()           Returns the current record's "name" value
+ * @method integer             getUserId()         Returns the current record's "user_id" value
+ * @method boolean             getIsArchived()     Returns the current record's "is_archived" value
+ * @method sfGuardUser         getUser()           Returns the current record's "User" value
+ * @method Doctrine_Collection getCharges()        Returns the current record's "Charges" collection
+ * @method Doctrine_Collection getCharts()         Returns the current record's "Charts" collection
+ * @method Doctrine_Collection getChartVehicles()  Returns the current record's "ChartVehicles" collection
+ * @method Doctrine_Collection getReports()        Returns the current record's "Reports" collection
+ * @method Doctrine_Collection getReportVehicles() Returns the current record's "ReportVehicles" collection
+ * @method Vehicle             setId()             Sets the current record's "id" value
+ * @method Vehicle             setName()           Sets the current record's "name" value
+ * @method Vehicle             setUserId()         Sets the current record's "user_id" value
+ * @method Vehicle             setIsArchived()     Sets the current record's "is_archived" value
+ * @method Vehicle             setUser()           Sets the current record's "User" value
+ * @method Vehicle             setCharges()        Sets the current record's "Charges" collection
+ * @method Vehicle             setCharts()         Sets the current record's "Charts" collection
+ * @method Vehicle             setChartVehicles()  Sets the current record's "ChartVehicles" collection
+ * @method Vehicle             setReports()        Sets the current record's "Reports" collection
+ * @method Vehicle             setReportVehicles() Sets the current record's "ReportVehicles" collection
  * 
  * @package    otokou
  * @subpackage model
@@ -79,6 +85,15 @@ abstract class BaseVehicle extends sfDoctrineRecord
              'foreign' => 'chart_id'));
 
         $this->hasMany('ChartVehicle as ChartVehicles', array(
+             'local' => 'id',
+             'foreign' => 'vehicle_id'));
+
+        $this->hasMany('Report as Reports', array(
+             'refClass' => 'ReportVehicle',
+             'local' => 'vehicle_id',
+             'foreign' => 'report_id'));
+
+        $this->hasMany('ReportVehicle as ReportVehicles', array(
              'local' => 'id',
              'foreign' => 'vehicle_id'));
 

@@ -119,3 +119,42 @@ ChartCategory:
     Category:
       foreignAlias: ChartVehicles
       onDelete: CASCADE
+
+Report:
+  actAs: [Timestampable]
+  columns:
+    id: { type: integer, notnull: true, primary: true, autoincrement: true }
+    user_id: {type: integer, notnull: true }
+    date_from: {type: date }
+    date_to: {type: date }
+    kilometers_from:  { type: double }
+    kilometers_to:  { type: double }
+    sha: {type: string(40), notnull: true, unique: true}
+
+  relations:
+    Vehicles:
+      onDelete: CASCADE
+      foreignAlias: Reports
+      class: Vehicle
+      refClass: ReportVehicle
+    User:
+      class: sfGuardUser
+      local: user_id
+      onDelete: CASCADE
+      foreignAlias: Reports
+
+ReportVehicle:
+  columns:
+    report_id:
+      type: integer
+      primary: true
+    vehicle_id:
+      type: integer
+      primary: true
+  relations:
+    Report:
+      foreignAlias: ReportVehicles
+      onDelete: CASCADE
+    Vehicle:
+      foreignAlias: ReportVehicles
+      onDelete: CASCADE
