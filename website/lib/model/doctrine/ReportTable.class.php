@@ -28,4 +28,18 @@ class ReportTable extends Doctrine_Table
                 ->orderBy('r.created_at ASC')
                 ->execute();
     }
+
+    public static function findByUserAndVehicleSlug($params) {
+
+        $username = $params['username'];
+        $vehicle_slug = $params['slug'];
+
+        return self::getInstance()->createQuery('r')
+                ->leftJoin('r.User u')
+                ->andWhere('u.username = ?',$username)
+                ->leftJoin('r.Vehicles v')
+                ->andWhere('v.slug = ?',$vehicle_slug)
+                ->orderBy('r.created_at ASC')
+                ->execute();
+    }
 }

@@ -24,7 +24,8 @@ class reportActions extends otkWithOwnerActions {
     }
 
     public function executeListForVehicle(sfWebRequest $request) {
-        
+
+        $this->reports = $this->getRoute()->getObjects();
     }
 
 }

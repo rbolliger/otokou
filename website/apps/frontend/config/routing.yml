@@ -101,6 +101,7 @@ reports_list:
   options:
     model:      Report
     type:       list
+    method:     findByUserAndVehicleSlug
 
 report_show:
   class: otkWithUserDoctrineRoute
@@ -121,6 +122,14 @@ report_pdf:
   options:
     model:      Report
     type:       object
+
+report_create:
+  class: otkWithUserRoute
+  url: /:username/report/new
+  param: {module: report, action: new }
+  requirements:
+    sf_method: get
+
 
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
