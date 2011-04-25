@@ -8,7 +8,7 @@ generator:
     singular:              ~
     plural:                ~
     with_doctrine_route:   true
-    actions_base_class:    sfActions
+    actions_base_class:    otkWithOwnerActions
     route_prefix:          vehicle
 
     config:

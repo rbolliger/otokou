@@ -9,7 +9,7 @@ generator:
     plural:                ~
     route_prefix:          charge
     with_doctrine_route:   true
-    actions_base_class:    sfActions
+    actions_base_class:    otkWithOwnerActions
 
     config:
       actions: ~
