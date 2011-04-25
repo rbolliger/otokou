@@ -7,32 +7,38 @@
  * 
  * @property integer $id
  * @property integer $user_id
+ * @property varchar $name
  * @property date $date_from
  * @property date $date_to
  * @property double $kilometers_from
  * @property double $kilometers_to
  * @property string $sha
+ * @property bool $is_new
  * @property Doctrine_Collection $Vehicles
  * @property sfGuardUser $User
  * @property Doctrine_Collection $ReportVehicles
  * 
  * @method integer             getId()              Returns the current record's "id" value
  * @method integer             getUserId()          Returns the current record's "user_id" value
+ * @method varchar             getName()            Returns the current record's "name" value
  * @method date                getDateFrom()        Returns the current record's "date_from" value
  * @method date                getDateTo()          Returns the current record's "date_to" value
  * @method double              getKilometersFrom()  Returns the current record's "kilometers_from" value
  * @method double              getKilometersTo()    Returns the current record's "kilometers_to" value
  * @method string              getSha()             Returns the current record's "sha" value
+ * @method bool                getIsNew()           Returns the current record's "is_new" value
  * @method Doctrine_Collection getVehicles()        Returns the current record's "Vehicles" collection
  * @method sfGuardUser         getUser()            Returns the current record's "User" value
  * @method Doctrine_Collection getReportVehicles()  Returns the current record's "ReportVehicles" collection
  * @method Report              setId()              Sets the current record's "id" value
  * @method Report              setUserId()          Sets the current record's "user_id" value
+ * @method Report              setName()            Sets the current record's "name" value
  * @method Report              setDateFrom()        Sets the current record's "date_from" value
  * @method Report              setDateTo()          Sets the current record's "date_to" value
  * @method Report              setKilometersFrom()  Sets the current record's "kilometers_from" value
  * @method Report              setKilometersTo()    Sets the current record's "kilometers_to" value
  * @method Report              setSha()             Sets the current record's "sha" value
+ * @method Report              setIsNew()           Sets the current record's "is_new" value
  * @method Report              setVehicles()        Sets the current record's "Vehicles" collection
  * @method Report              setUser()            Sets the current record's "User" value
  * @method Report              setReportVehicles()  Sets the current record's "ReportVehicles" collection
@@ -56,6 +62,10 @@ abstract class BaseReport extends sfDoctrineRecord
              'type' => 'integer',
              'notnull' => true,
              ));
+        $this->hasColumn('name', 'varchar', null, array(
+             'type' => 'varchar',
+             'notnull' => true,
+             ));
         $this->hasColumn('date_from', 'date', null, array(
              'type' => 'date',
              ));
@@ -73,6 +83,11 @@ abstract class BaseReport extends sfDoctrineRecord
              'notnull' => true,
              'unique' => true,
              'length' => 40,
+             ));
+        $this->hasColumn('is_new', 'bool', null, array(
+             'type' => 'bool',
+             'notnull' => true,
+             'default' => true,
              ));
     }
 
@@ -96,6 +111,9 @@ abstract class BaseReport extends sfDoctrineRecord
 
         $timestampable0 = new Doctrine_Template_Timestampable(array(
              ));
+        $sluggable0 = new Doctrine_Template_Sluggable(array(
+             ));
         $this->actAs($timestampable0);
+        $this->actAs($sluggable0);
     }
 }

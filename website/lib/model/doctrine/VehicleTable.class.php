@@ -38,4 +38,14 @@ class VehicleTable extends Doctrine_Table {
         return $q->execute();
     }
 
+    public function findByUsernameAndSortByArchived($username) {
+
+        return $this
+                ->createQuery('v')
+                ->leftJoin('v.User u')
+                ->andWhere('u.username = ?',$username)
+                ->orderBy('v.is_archived DESC, v.created_at DESC')
+                ->execute();
+    }
+
 }

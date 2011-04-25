@@ -17,31 +17,40 @@ abstract class BaseReportForm extends BaseFormDoctrine
     $this->setWidgets(array(
       'id'              => new sfWidgetFormInputHidden(),
       'user_id'         => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('User'), 'add_empty' => false)),
+      'name'            => new sfWidgetFormInputText(),
       'date_from'       => new sfWidgetFormDate(),
       'date_to'         => new sfWidgetFormDate(),
       'kilometers_from' => new sfWidgetFormInputText(),
       'kilometers_to'   => new sfWidgetFormInputText(),
       'sha'             => new sfWidgetFormInputText(),
+      'is_new'          => new sfWidgetFormInputText(),
       'created_at'      => new sfWidgetFormDateTime(),
       'updated_at'      => new sfWidgetFormDateTime(),
+      'slug'            => new sfWidgetFormInputText(),
       'vehicles_list'   => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'Vehicle')),
     ));
 
     $this->setValidators(array(
       'id'              => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'user_id'         => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('User'))),
+      'name'            => new sfValidatorPass(),
       'date_from'       => new sfValidatorDate(array('required' => false)),
       'date_to'         => new sfValidatorDate(array('required' => false)),
       'kilometers_from' => new sfValidatorPass(array('required' => false)),
       'kilometers_to'   => new sfValidatorPass(array('required' => false)),
       'sha'             => new sfValidatorString(array('max_length' => 40)),
+      'is_new'          => new sfValidatorPass(array('required' => false)),
       'created_at'      => new sfValidatorDateTime(),
       'updated_at'      => new sfValidatorDateTime(),
+      'slug'            => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'vehicles_list'   => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'Vehicle', 'required' => false)),
     ));
 
     $this->validatorSchema->setPostValidator(
-      new sfValidatorDoctrineUnique(array('model' => 'Report', 'column' => array('sha')))
+      new sfValidatorAnd(array(
+        new sfValidatorDoctrineUnique(array('model' => 'Report', 'column' => array('sha'))),
+        new sfValidatorDoctrineUnique(array('model' => 'Report', 'column' => array('slug'))),
+      ))
     );
 
     $this->widgetSchema->setNameFormat('report[%s]');

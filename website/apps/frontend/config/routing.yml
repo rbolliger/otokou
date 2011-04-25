@@ -80,6 +80,48 @@ charge:
     model_methods:
        list:              getAllByUser
 
+
+report_index:
+  class: otkWithUserDoctrineRoute
+  url: /:username/reports
+  param: {module: report, action: index }
+  requirements:
+    sf_method: get
+  options:
+    model:      Report
+    type:       list
+    method:     findNewByUser
+
+reports_list:
+  class: otkWithUserDoctrineRoute
+  url: /:username/reports/:slug
+  param: {module: report, action: listForVehicle }
+  requirements:
+    sf_method: get
+  options:
+    model:      Report
+    type:       list
+
+report_show:
+  class: otkWithUserDoctrineRoute
+  url: /:username/report/show/:slug
+  param: {module: report, action: show }
+  requirements:
+    sf_method: get
+  options:
+    model:      Report
+    type:       object
+
+report_pdf:
+  class: otkWithUserDoctrineRoute
+  url: /:username/report/pdf/:slug
+  param: {module: report, action: pdf }
+  requirements:
+    sf_method: get
+  options:
+    model:      Report
+    type:       object
+
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 

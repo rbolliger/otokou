@@ -16,4 +16,16 @@ class ReportTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Report');
     }
+
+    public static function findNewByUser($params) {
+
+        $username = $params['username'];
+
+        return self::getInstance()->createQuery('r')
+                ->leftJoin('r.User u')
+                ->andWhere('u.username = ?',$username)
+                ->andWhere('r.is_new = ?',true)
+                ->orderBy('r.created_at ASC')
+                ->execute();
+    }
 }

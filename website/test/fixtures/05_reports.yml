@@ -1,0 +1,18 @@
+Report:
+  report_user_gs_1:
+    User:             user_gs
+    Vehicles:         [car_gs_1]
+    kilometers_from:  0
+    kilometers_to:    100
+    is_new:           true
+    sha:              report_user_gs_1
+    name:            "0-100 km - Car gs 1"
+
+  report_user_gs_2:
+    User:             user_gs
+    Vehicles:         [car_gs_1]
+    kilometers_from:  0
+    kilometers_to:    101
+    is_new:           false
+    sha:              report_user_gs_2
+    name:            "0-101 km - Car gs 1"

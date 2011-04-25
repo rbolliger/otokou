@@ -12,4 +12,5 @@
  */
 class Report extends BaseReport
 {
+
 }

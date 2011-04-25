@@ -18,7 +18,13 @@ class reportActions extends otkWithOwnerActions {
      * @param sfRequest $request A request object
      */
     public function executeIndex(sfWebRequest $request) {
-        $this->vehicles = $this->getRoute()->getObjects();
+
+        $this->reports = $this->getRoute()->getObjects();
+
+    }
+
+    public function executeListForVehicle(sfWebRequest $request) {
+        
     }
 
 }
