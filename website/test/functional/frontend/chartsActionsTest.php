@@ -37,10 +37,10 @@ $browser->
           with('response')->begin()->
             isStatusCode(200)->
             checkElement('img',false)->
-            checkElement('body:contains("Warning")]',false)->
-            checkElement('body:contains("Notice")]',false)->
-            checkElement('table#filter_values:contains("No elements found")]',true)->
-            checkElement('table#query_results:contains("No elements found")]',true)->
+            checkElement('body:contains("Warning")',false)->
+            checkElement('body:contains("Notice")',false)->
+            checkElement('table#filter_values:contains("No elements found")',true)->
+            checkElement('table#query_results:contains("No elements found")',true)->
             checkElement('div.vehicle_statistics',2)->
             checkElement('div.vehicle_statistics div.overall_cost',2)->
             checkElement('div.vehicle_statistics div.traveled_distance',2)->
