@@ -2,7 +2,7 @@
 
 class reportComponents extends sfComponents {
 
-    public function executeVehiclesMenu() {
+    public function executeReportsMenu() {
 
         $username = $this->getUser()->getGuardUser()->getUsername();
 

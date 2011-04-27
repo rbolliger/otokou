@@ -1,6 +1,6 @@
 <?php
 slot('leftcol');
-include_component('report', 'vehiclesMenu');
+include_component('report', 'reportsMenu');
 end_slot();
 ?>
 
