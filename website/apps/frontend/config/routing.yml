@@ -123,12 +123,19 @@ report_pdf:
     model:      Report
     type:       object
 
-report_create:
+report_new:
   class: otkWithUserRoute
   url: /:username/report/new
   param: {module: report, action: new }
   requirements:
     sf_method: get
+
+report_create:
+  class: otkWithUserRoute
+  url: /:username/report/create
+  param: {module: report, action: create }
+  requirements:
+    sf_method: post
 
 
 # You can find more information about this file on the symfony website:

@@ -13,4 +13,35 @@
 class Report extends BaseReport
 {
 
+    public function  setUp() {
+        parent::setUp();
+
+        $sluggable1 = new Doctrine_Template_Sluggable(array(
+             'name' => 'sha',
+             'alias' => 'sha',
+             'unique' => true,
+             'canUpdate' => false,
+             'indexName' => 'hashable',
+             'type' => 'string',
+             'length' => 40,
+             'fields' =>
+             array(
+              0 => 'user_id',
+              1 => 'name',
+              2 => 'date_from',
+              3 => 'date_to',
+              4 => 'kilometers_from',
+              5 => 'kilometers_to',
+              6 => 'Vehicles',
+             ),
+             'builder' =>
+             array(
+              0 => 'otkHasher',
+              1 => 'hash',
+             ),
+             ));
+
+        $this->actAs($sluggable1);
+    }
+
 }

@@ -12,7 +12,6 @@
  * @property date $date_to
  * @property double $kilometers_from
  * @property double $kilometers_to
- * @property string $sha
  * @property bool $is_new
  * @property Doctrine_Collection $Vehicles
  * @property sfGuardUser $User
@@ -25,7 +24,6 @@
  * @method date                getDateTo()          Returns the current record's "date_to" value
  * @method double              getKilometersFrom()  Returns the current record's "kilometers_from" value
  * @method double              getKilometersTo()    Returns the current record's "kilometers_to" value
- * @method string              getSha()             Returns the current record's "sha" value
  * @method bool                getIsNew()           Returns the current record's "is_new" value
  * @method Doctrine_Collection getVehicles()        Returns the current record's "Vehicles" collection
  * @method sfGuardUser         getUser()            Returns the current record's "User" value
@@ -37,7 +35,6 @@
  * @method Report              setDateTo()          Sets the current record's "date_to" value
  * @method Report              setKilometersFrom()  Sets the current record's "kilometers_from" value
  * @method Report              setKilometersTo()    Sets the current record's "kilometers_to" value
- * @method Report              setSha()             Sets the current record's "sha" value
  * @method Report              setIsNew()           Sets the current record's "is_new" value
  * @method Report              setVehicles()        Sets the current record's "Vehicles" collection
  * @method Report              setUser()            Sets the current record's "User" value
@@ -78,12 +75,6 @@ abstract class BaseReport extends sfDoctrineRecord
         $this->hasColumn('kilometers_to', 'double', null, array(
              'type' => 'double',
              ));
-        $this->hasColumn('sha', 'string', 40, array(
-             'type' => 'string',
-             'notnull' => true,
-             'unique' => true,
-             'length' => 40,
-             ));
         $this->hasColumn('is_new', 'bool', null, array(
              'type' => 'bool',
              'notnull' => true,
@@ -109,9 +100,12 @@ abstract class BaseReport extends sfDoctrineRecord
              'local' => 'id',
              'foreign' => 'report_id'));
 
-        $timestampable0 = new Doctrine_Template_Timestampable(array(
-             ));
+        $timestampable0 = new Doctrine_Template_Timestampable();
         $sluggable0 = new Doctrine_Template_Sluggable(array(
+             'name' => 'slug',
+             'unique' => true,
+             'canUpdate' => false,
+             'indexName' => 'sluggable',
              ));
         $this->actAs($timestampable0);
         $this->actAs($sluggable0);

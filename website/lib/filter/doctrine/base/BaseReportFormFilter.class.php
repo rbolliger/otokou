@@ -19,11 +19,11 @@ abstract class BaseReportFormFilter extends BaseFormFilterDoctrine
       'date_to'         => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
       'kilometers_from' => new sfWidgetFormFilterInput(),
       'kilometers_to'   => new sfWidgetFormFilterInput(),
-      'sha'             => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'is_new'          => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'created_at'      => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
       'updated_at'      => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
       'slug'            => new sfWidgetFormFilterInput(),
+      'sha'             => new sfWidgetFormFilterInput(),
       'vehicles_list'   => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'Vehicle')),
     ));
 
@@ -34,11 +34,11 @@ abstract class BaseReportFormFilter extends BaseFormFilterDoctrine
       'date_to'         => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDateTime(array('required' => false)))),
       'kilometers_from' => new sfValidatorPass(array('required' => false)),
       'kilometers_to'   => new sfValidatorPass(array('required' => false)),
-      'sha'             => new sfValidatorPass(array('required' => false)),
       'is_new'          => new sfValidatorPass(array('required' => false)),
       'created_at'      => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
       'updated_at'      => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
       'slug'            => new sfValidatorPass(array('required' => false)),
+      'sha'             => new sfValidatorPass(array('required' => false)),
       'vehicles_list'   => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'Vehicle', 'required' => false)),
     ));
 
@@ -84,11 +84,11 @@ abstract class BaseReportFormFilter extends BaseFormFilterDoctrine
       'date_to'         => 'Date',
       'kilometers_from' => 'Text',
       'kilometers_to'   => 'Text',
-      'sha'             => 'Text',
       'is_new'          => 'Text',
       'created_at'      => 'Date',
       'updated_at'      => 'Date',
       'slug'            => 'Text',
+      'sha'             => 'Text',
       'vehicles_list'   => 'ManyKey',
     );
   }

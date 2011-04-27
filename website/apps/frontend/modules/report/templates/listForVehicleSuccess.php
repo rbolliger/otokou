@@ -15,7 +15,7 @@ end_slot();
 
         No reports available <br>
 
-<?php echo link_to('Create', '@report_create') ?>  a new custom report.
+<?php echo link_to('Create', '@report_new') ?>  a new custom report.
 
 <?php endif; ?>
 

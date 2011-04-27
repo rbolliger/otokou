@@ -94,4 +94,122 @@ info('1 - Security')->
             ->checkElement('ul.reports_list li.report_old',1)
         ->end()
 
+
+->info('4 - Creation of a new custom report')
+        ->get('/user_gs/report/new')
+            ->with('request')
+            ->begin()
+                ->isParameter('module', 'report')
+                ->isParameter('action', 'new')
+            ->end()
+            ->with('response')
+                ->begin()
+                    ->isStatusCode(200)
+                    ->checkElement('h2:contains("Vehicles")',true)
+                    ->checkElement('ul.vehicles_menu li.vehicle_archived',1)
+                    ->checkElement('ul.vehicles_menu li.vehicle_active',1)
+                    ->checkElement('h1:contains("Create a new custom report")',true)
+                    ->checkElement('div.report_form form',true)
+                    ->checkElement('div.report_form form table tbody tr',4)
+                ->end()
+       ->click('Create', array())
+                ->with('form')
+                    ->begin()
+                        ->hasErrors(2)
+                        ->isError('name', '/required/')
+                        ->isError('vehicles_list', '/required/')
+                    ->end()
+                ->with('request')
+                    ->begin()
+                        ->isParameter('module', 'report')
+                        ->isParameter('action', 'create')
+                    ->end()
+        ->click('Create', array('report' =>
+            array(
+                'name' => 'Custom report',
+                'date_range' => array('from' => date('Y-m-d',time())),
+                'kilometers_range' => array('from' => 0),
+                'vehicles_list' => array(
+                    $browser->getVehicleId('car2')
+                )
+                )))
+                ->with('form')
+                    ->begin()
+                        ->hasErrors(3)
+                        ->isError('date_range', '/Only one/')
+                        ->isError('kilometers_range', '/Only one/')
+                        ->isError('vehicles_list', '/invalid/')
+                    ->end()
+        ->click('Create', array('report' =>
+            array(
+                'name' => 'Custom report',
+                'date_range' => array('from' => date('Y-m-d'), 'to' => ''),
+                'kilometers_range' => array('from' => '', 'to' => 10000),
+                'vehicles_list' => array(
+                    $browser->getVehicleId('car-gs-1')
+                        )
+                    )))
+                ->with('form')
+                    ->begin()
+                        ->hasErrors(false)
+                    ->end()
+                ->with('request')
+                    ->begin()
+                        ->isParameter('module', 'report')
+                        ->isParameter('action', 'create')
+                    ->end()
+                ->with('doctrine')
+                    ->begin()
+                        ->check('Report',
+                                Doctrine_Core::getTable('Report')->createQuery('r')
+                                    ->andWhere('r.name LIKE ?','Custom report')
+                                    ->andWhere('r.date_from = ?',date('Y-m-d'))
+                                    ->andWhere('kilometers_to = ?', 10000)
+                                    ->leftJoin('r.Vehicles v')
+                                    ->andWhereIn('v.id',array($browser->getVehicleId('car-gs-1')))
+                                 ,1)
+                    ->end()
+                ->with('response')
+                    ->begin()
+                        ->isRedirected(true)
+                        ->followRedirect()
+                    ->end()
+                ->with('request')
+                    ->begin()
+                        ->isParameter('module', 'report')
+                        ->isParameter('action', 'show')
+                    ->end()
+                ->with('response')
+                    ->begin()
+                        ->isStatusCode(200)
+                    ->end()
+        ->get('/user_gs/report/new')
+        ->click('Create', array('report' =>
+            array(
+                'name' => 'Custom report',
+                'vehicles_list' => array(
+                    $browser->getVehicleId('car-gs-1')
+                )
+             )))  // testing which defaults values are set in "from" and "to" ranges
+                ->with('form')
+                    ->begin()
+                        ->hasErrors(false)
+                    ->end()
+                ->with('response')
+                    ->begin()
+                        ->isRedirected(true)
+                        ->followRedirect()
+                    ->end()
+                ->with('doctrine')
+                    ->begin()
+                        ->check('Report',
+                                Doctrine_Core::getTable('Report')->createQuery('r')
+                                    ->andWhere('r.name LIKE ?','Custom report')
+                                    ->andWhere('r.date_to = ?',date('Y-m-d'))
+                                    ->andWhere('kilometers_from = ?', 0)
+                                    ->leftJoin('r.Vehicles v')
+                                    ->andWhereIn('v.id',array($browser->getVehicleId('car-gs-1')))
+                                ,1)
+                    ->end()
+            
         ;

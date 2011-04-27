@@ -121,17 +121,23 @@ ChartCategory:
       onDelete: CASCADE
 
 Report:
-  actAs: [Timestampable, Sluggable]
+  actAs:
+    Timestampable:
+    Sluggable: 
+      name: 	slug
+      unique: 	true
+      canUpdate: 	false
+      indexName: 	sluggable
+
   columns:
     id: { type: integer, notnull: true, primary: true, autoincrement: true }
-    user_id: {type: integer, notnull: true }
+    user_id: {type: integer, notnull: true}
     name: {type: varchar, notnull: true}
     date_from: {type: date }
     date_to: {type: date }
     kilometers_from:  { type: double }
     kilometers_to:  { type: double }
-    sha: {type: string(40), notnull: true, unique: true}
-    is_new: {type: bool, notnull: true, default:true}
+    is_new: {type: bool, notnull: true, default: true}
 
   relations:
     Vehicles:

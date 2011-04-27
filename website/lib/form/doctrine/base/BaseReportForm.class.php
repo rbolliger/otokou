@@ -22,11 +22,11 @@ abstract class BaseReportForm extends BaseFormDoctrine
       'date_to'         => new sfWidgetFormDate(),
       'kilometers_from' => new sfWidgetFormInputText(),
       'kilometers_to'   => new sfWidgetFormInputText(),
-      'sha'             => new sfWidgetFormInputText(),
       'is_new'          => new sfWidgetFormInputText(),
       'created_at'      => new sfWidgetFormDateTime(),
       'updated_at'      => new sfWidgetFormDateTime(),
       'slug'            => new sfWidgetFormInputText(),
+      'sha'             => new sfWidgetFormInputText(),
       'vehicles_list'   => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'Vehicle')),
     ));
 
@@ -38,18 +38,18 @@ abstract class BaseReportForm extends BaseFormDoctrine
       'date_to'         => new sfValidatorDate(array('required' => false)),
       'kilometers_from' => new sfValidatorPass(array('required' => false)),
       'kilometers_to'   => new sfValidatorPass(array('required' => false)),
-      'sha'             => new sfValidatorString(array('max_length' => 40)),
       'is_new'          => new sfValidatorPass(array('required' => false)),
       'created_at'      => new sfValidatorDateTime(),
       'updated_at'      => new sfValidatorDateTime(),
       'slug'            => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'sha'             => new sfValidatorString(array('max_length' => 40, 'required' => false)),
       'vehicles_list'   => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'Vehicle', 'required' => false)),
     ));
 
     $this->validatorSchema->setPostValidator(
       new sfValidatorAnd(array(
-        new sfValidatorDoctrineUnique(array('model' => 'Report', 'column' => array('sha'))),
         new sfValidatorDoctrineUnique(array('model' => 'Report', 'column' => array('slug'))),
+        new sfValidatorDoctrineUnique(array('model' => 'Report', 'column' => array('sha'))),
       ))
     );
 
