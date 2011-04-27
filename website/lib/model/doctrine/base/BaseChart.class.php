@@ -14,7 +14,6 @@
  * @property double $kilometers_from
  * @property double $kilometers_to
  * @property string $range_type
- * @property string $sha
  * @property string $format
  * @property string $chart_name
  * @property Doctrine_Collection $Vehicles
@@ -31,7 +30,6 @@
  * @method double              getKilometersFrom()   Returns the current record's "kilometers_from" value
  * @method double              getKilometersTo()     Returns the current record's "kilometers_to" value
  * @method string              getRangeType()        Returns the current record's "range_type" value
- * @method string              getSha()              Returns the current record's "sha" value
  * @method string              getFormat()           Returns the current record's "format" value
  * @method string              getChartName()        Returns the current record's "chart_name" value
  * @method Doctrine_Collection getVehicles()         Returns the current record's "Vehicles" collection
@@ -47,7 +45,6 @@
  * @method Chart               setKilometersFrom()   Sets the current record's "kilometers_from" value
  * @method Chart               setKilometersTo()     Sets the current record's "kilometers_to" value
  * @method Chart               setRangeType()        Sets the current record's "range_type" value
- * @method Chart               setSha()              Sets the current record's "sha" value
  * @method Chart               setFormat()           Sets the current record's "format" value
  * @method Chart               setChartName()        Sets the current record's "chart_name" value
  * @method Chart               setVehicles()         Sets the current record's "Vehicles" collection
@@ -98,12 +95,6 @@ abstract class BaseChart extends sfDoctrineRecord
              'type' => 'string',
              'length' => 20,
              ));
-        $this->hasColumn('sha', 'string', 40, array(
-             'type' => 'string',
-             'notnull' => true,
-             'unique' => true,
-             'length' => 40,
-             ));
         $this->hasColumn('format', 'string', 5, array(
              'type' => 'string',
              'length' => 5,
@@ -138,8 +129,31 @@ abstract class BaseChart extends sfDoctrineRecord
              'local' => 'id',
              'foreign' => 'chart_id'));
 
-        $timestampable0 = new Doctrine_Template_Timestampable(array(
+        $timestampable0 = new Doctrine_Template_Timestampable();
+        $sluggable0 = new Doctrine_Template_Sluggable(array(
+             'name' => 'sha',
+             'unique' => true,
+             'canUpdate' => false,
+             'indexName' => 'hashable',
+             'type' => 'string',
+             'length' => 40,
+             'fields' => 
+             array(
+              0 => 'vehicle_display',
+              1 => 'user_id',
+              2 => 'category_display',
+              3 => 'date_from',
+              4 => 'date_to',
+              5 => 'kilometers_from',
+              6 => 'kilometers_to',
+              7 => 'range_type',
+              8 => 'format',
+              9 => 'chart_name',
+              10 => 'Vehicles',
+              11 => 'Categories',
+             ),
              ));
         $this->actAs($timestampable0);
+        $this->actAs($sluggable0);
     }
 }

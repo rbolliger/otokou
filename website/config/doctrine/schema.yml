@@ -56,7 +56,16 @@ sfGuardUser:
 
 
 Chart:
-  actAs: [Timestampable]
+  actAs:
+    Timestampable:
+    Sluggable:
+      name:   sha
+      unique: true
+      canUpdate: false
+      indexName:  hashable
+      type:   string
+      length: 40
+      fields: [vehicle_display, user_id, category_display, date_from, date_to, kilometers_from, kilometers_to, range_type, format, chart_name, Vehicles, Categories]
   columns:
     id: { type: integer, notnull: true, primary: true, autoincrement: true }
     vehicle_display: {type: string(20) }
@@ -67,7 +76,6 @@ Chart:
     kilometers_from:  { type: double }
     kilometers_to:  { type: double }
     range_type: {type: string(20)}
-    sha: {type: string(40), notnull: true, unique: true}
     format: {type: string(5)}
     chart_name: {type: string(40)}
 
