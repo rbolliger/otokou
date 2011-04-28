@@ -8,6 +8,7 @@ class reportComponents extends sfComponents {
 
         $this->vehicles = Doctrine::getTable('Vehicle')
                         ->findByUsernameAndSortByArchived($username);
-    }
+
+        }
 
 }
