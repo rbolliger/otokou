@@ -44,6 +44,8 @@ info('1 - Security')->
             ->checkElement('ul.vehicles_menu li.vehicle_active',1)
             ->checkElement('h2:contains("Custom reports")',true)
             ->checkElement('ul.custom_reports_menu li.vehicle_active',1)
+            ->checkElement('h2:contains("Create a new report")',true)
+            ->checkElement('ul.report_new li.vehicle_active',1)
             ->checkElement('body:contains("No new reports available")',true)
         ->end()
     ->logout()
