@@ -7,6 +7,7 @@
             <td>From</td>
             <td>To</td>
             <td>Vehicles</td>
+            <td>Actions</td>
 
         </tr>
     </thead>
@@ -50,6 +51,9 @@
                     }
                 }
                 ?>
+            </td>
+            <td>
+                <?php echo link_to(image_tag('icons/delete'),'@report_delete?slug='.$report->getSlug(),array('method' => 'delete', 'confirm' => 'Are you sure?', 'absolute' => true))?>
             </td>
         </tr>
         <?php endforeach; ?>

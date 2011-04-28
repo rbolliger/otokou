@@ -92,10 +92,10 @@ report_index:
     type:       list
     method:     findNewByUser
 
-reports_list:
+reports_list_vehicle:
   class: otkWithUserDoctrineRoute
   url: /:username/reports/vehicle/:slug
-  param: {module: report, action: listForVehicle }
+  param: {module: report, action: listVehicle }
   requirements:
     sf_method: get
   options:
@@ -103,10 +103,10 @@ reports_list:
     type:       list
     method:     findByUserAndVehicleSlug
 
-reports_custom_list:
+reports_list_custom:
   class: otkWithUserDoctrineRoute
   url: /:username/reports/custom
-  param: {module: report, action: customList }
+  param: {module: report, action: listCustom }
   requirements:
     sf_method: get
   options:
@@ -120,6 +120,16 @@ report_show:
   param: {module: report, action: show }
   requirements:
     sf_method: get
+  options:
+    model:      Report
+    type:       object
+
+report_delete:
+  class: otkWithUserDoctrineRoute
+  url: /:username/report/delete/:slug
+  param: {module: report, action: delete }
+  requirements:
+    sf_method:  delete
   options:
     model:      Report
     type:       object

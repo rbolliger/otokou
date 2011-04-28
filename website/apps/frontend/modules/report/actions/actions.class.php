@@ -20,16 +20,16 @@ class reportActions extends otkWithOwnerActions {
         $this->reports = $this->getRoute()->getObjects();
     }
 
-    public function executeListForVehicle(sfWebRequest $request) {
+    public function executeListVehicle(sfWebRequest $request) {
 
         $this->reports = $this->getRoute()->getObjects();
     }
 
-    public function executeCustomList(sfWebRequest $request) {
+    public function executeListCustom(sfWebRequest $request) {
 
         $this->reports = $this->getRoute()->getObjects();
 
-        $this->setTemplate('listForVehicle');
+        $this->setTemplate('listVehicle');
     }
 
     public function executeNew(sfWebRequest $request) {
@@ -45,8 +45,37 @@ class reportActions extends otkWithOwnerActions {
         $this->setTemplate('new');
     }
 
+    public function executeDelete(sfWebRequest $request) {
+        $request->checkCSRFProtection();
+
+        $object = $this->getRoute()->getObject();
+
+        if ($object->isCustom()) {
+            $redirect = '@reports_list_custom';
+        } else {
+            $vehicles = $object->getVehicles();
+            $slug = $vehicles[0]->getSlug();
+            $redirect = '@reports_list_vehicle?slug=' . $slug;
+        }
+
+        if ($object->delete()) {
+            $this->getUser()->setFlash('notice', 'The report was deleted successfully.');
+        }
+
+        $this->redirect($redirect);
+    }
+
     public function executeShow(sfWebRequest $request) {
         
+    }
+
+    public function checkCSRFProtection() {
+        $form = new BaseForm();
+        $form->bind($form->isCSRFProtected() ? array($form->getCSRFFieldName() => $this->getParameter($form->getCSRFFieldName())) : array());
+
+        if (!$form->isValid()) {
+            throw $form->getErrorSchema();
+        }
     }
 
     protected function processForm(sfWebRequest $request, sfForm $form) {

@@ -6,7 +6,7 @@
 foreach ($vehicles as $vehicle) {
 
     $class = $vehicle->getIsArchived() ? 'vehicle_archived' : 'vehicle_active';
-    $menu->addChild($vehicle->getName(), '@reports_list?slug=' . $vehicle->getSlug(),array('class' => $class));
+    $menu->addChild($vehicle->getName(), '@reports_list_vehicle?slug=' . $vehicle->getSlug(),array('class' => $class));
 } ?>
 
 
@@ -15,7 +15,7 @@ foreach ($vehicles as $vehicle) {
 <h2>Custom reports</h2>
 
 <?php $menu2 = new ioMenu(array('class' => 'custom_reports_menu')); ?>
-<?php $menu2->addChild('Custom reports', '@reports_custom_list',array('class' => 'vehicle_active')); ?>
+<?php $menu2->addChild('Custom reports', '@reports_list_custom',array('class' => 'vehicle_active')); ?>
 <?php echo $menu2->render(); ?>
 
 

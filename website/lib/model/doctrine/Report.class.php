@@ -54,4 +54,9 @@ class Report extends BaseReport {
         $invoker->setNumVehicles(count($vehicles));
     }
 
+    public function isCustom() {
+
+        return $this->getNumVehicles() > 1 ? true : false;
+    }
+
 }
