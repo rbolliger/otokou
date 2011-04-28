@@ -228,11 +228,11 @@ class chartsActions extends otkWithOwnerActions {
     }
 
     protected function updateFilterFieldIfEmpty($filters, $field, $value) {
-        print_r($filters);
+
         if (!isset($filters[$field])) {
             $filters[$field] = $value;
         }
-        print_r($filters);
+        
         return $filters;
     }
 
