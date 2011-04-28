@@ -13,6 +13,7 @@
  * @property double $kilometers_from
  * @property double $kilometers_to
  * @property bool $is_new
+ * @property integer $num_vehicles
  * @property Doctrine_Collection $Vehicles
  * @property sfGuardUser $User
  * @property Doctrine_Collection $ReportVehicles
@@ -25,6 +26,7 @@
  * @method double              getKilometersFrom()  Returns the current record's "kilometers_from" value
  * @method double              getKilometersTo()    Returns the current record's "kilometers_to" value
  * @method bool                getIsNew()           Returns the current record's "is_new" value
+ * @method integer             getNumVehicles()     Returns the current record's "num_vehicles" value
  * @method Doctrine_Collection getVehicles()        Returns the current record's "Vehicles" collection
  * @method sfGuardUser         getUser()            Returns the current record's "User" value
  * @method Doctrine_Collection getReportVehicles()  Returns the current record's "ReportVehicles" collection
@@ -36,6 +38,7 @@
  * @method Report              setKilometersFrom()  Sets the current record's "kilometers_from" value
  * @method Report              setKilometersTo()    Sets the current record's "kilometers_to" value
  * @method Report              setIsNew()           Sets the current record's "is_new" value
+ * @method Report              setNumVehicles()     Sets the current record's "num_vehicles" value
  * @method Report              setVehicles()        Sets the current record's "Vehicles" collection
  * @method Report              setUser()            Sets the current record's "User" value
  * @method Report              setReportVehicles()  Sets the current record's "ReportVehicles" collection
@@ -79,6 +82,10 @@ abstract class BaseReport extends sfDoctrineRecord
              'type' => 'bool',
              'notnull' => true,
              'default' => true,
+             ));
+        $this->hasColumn('num_vehicles', 'integer', null, array(
+             'type' => 'integer',
+             'notnull' => true,
              ));
     }
 

@@ -39,6 +39,19 @@ class ReportTable extends Doctrine_Table
                 ->andWhere('u.username = ?',$username)
                 ->leftJoin('r.Vehicles v')
                 ->andWhere('v.slug = ?',$vehicle_slug)
+                ->andWhere('r.num_vehicles = ?',1)
+                ->orderBy('r.created_at ASC')
+                ->execute();
+    }
+
+    public static function findCustomReportsByUser($params) {
+
+        $username = $params['username'];
+
+        return self::getInstance()->createQuery('r')
+                ->leftJoin('r.User u')
+                ->andWhere('u.username = ?',$username)
+                ->andWhere('r.num_vehicles > ?',1)
                 ->orderBy('r.created_at ASC')
                 ->execute();
     }

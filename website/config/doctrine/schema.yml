@@ -146,6 +146,7 @@ Report:
     kilometers_from:  { type: double }
     kilometers_to:  { type: double }
     is_new: {type: bool, notnull: true, default: true}
+    num_vehicles: {type: integer, notnull: true}
 
   relations:
     Vehicles:

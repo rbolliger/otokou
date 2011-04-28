@@ -10,38 +10,48 @@
  * @author     Raffaele Bolliger
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
-class Report extends BaseReport
-{
+class Report extends BaseReport {
 
-    public function  setUp() {
+    public function setUp() {
         parent::setUp();
 
         $sluggable1 = new Doctrine_Template_Sluggable(array(
-             'name' => 'sha',
-             'alias' => 'sha',
-             'unique' => true,
-             'canUpdate' => false,
-             'indexName' => 'hashable',
-             'type' => 'string',
-             'length' => 40,
-             'fields' =>
-             array(
-              0 => 'user_id',
-              1 => 'name',
-              2 => 'date_from',
-              3 => 'date_to',
-              4 => 'kilometers_from',
-              5 => 'kilometers_to',
-              6 => 'Vehicles',
-             ),
-             'builder' =>
-             array(
-              0 => 'otkHasher',
-              1 => 'hash',
-             ),
-             ));
+                    'name' => 'sha',
+                    'alias' => 'sha',
+                    'unique' => true,
+                    'canUpdate' => false,
+                    'indexName' => 'hashable',
+                    'type' => 'string',
+                    'length' => 40,
+                    'fields' =>
+                    array(
+                        0 => 'user_id',
+                        1 => 'name',
+                        2 => 'date_from',
+                        3 => 'date_to',
+                        4 => 'kilometers_from',
+                        5 => 'kilometers_to',
+                        6 => 'Vehicles',
+                    ),
+                    'builder' =>
+                    array(
+                        0 => 'otkHasher',
+                        1 => 'hash',
+                    ),
+                ));
 
         $this->actAs($sluggable1);
+    }
+
+    public function preSave($event) {
+
+        parent::preSave($event);
+
+        $invoker = $event->getInvoker();
+
+        $vehicles = $invoker->getVehicles();
+
+        $invoker->setNumVehicles(count($vehicles));
     }
 
 }

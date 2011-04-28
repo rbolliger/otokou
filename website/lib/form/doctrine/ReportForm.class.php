@@ -17,7 +17,8 @@ class ReportForm extends BaseReportForm {
                 $this['updated_at'],
                 $this['sha'],
                 $this['is_new'],
-                $this['slug']
+                $this['slug'],
+                $this['num_vehicles']
         );
 
         $this->validatorSchema['name'] = new sfValidatorString(array('max_length' => 255, 'required' => true));
