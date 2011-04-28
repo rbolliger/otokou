@@ -94,7 +94,7 @@ report_index:
 
 reports_list:
   class: otkWithUserDoctrineRoute
-  url: /:username/reports/:slug
+  url: /:username/reports/vehicle/:slug
   param: {module: report, action: listForVehicle }
   requirements:
     sf_method: get
@@ -102,6 +102,17 @@ reports_list:
     model:      Report
     type:       list
     method:     findByUserAndVehicleSlug
+
+reports_custom_list:
+  class: otkWithUserDoctrineRoute
+  url: /:username/reports/custom
+  param: {module: report, action: customList }
+  requirements:
+    sf_method: get
+  options:
+    model:      Report
+    type:       list
+    method:     findCustomReportsByUser
 
 report_show:
   class: otkWithUserDoctrineRoute

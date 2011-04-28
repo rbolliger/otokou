@@ -25,6 +25,13 @@ class reportActions extends otkWithOwnerActions {
         $this->reports = $this->getRoute()->getObjects();
     }
 
+    public function executeCustomList(sfWebRequest $request) {
+
+        $this->reports = $this->getRoute()->getObjects();
+
+        $this->setTemplate('listForVehicle');
+    }
+
     public function executeNew(sfWebRequest $request) {
 
         $this->form = new ReportEmbeddedUserForm();
