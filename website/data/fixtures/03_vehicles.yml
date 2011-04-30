@@ -11,4 +11,16 @@ Vehicle:
   astra:
     name: Opel Astra Caravan 1.6
     User: franz
+
+  corsa:
+    name: Opel Corsa 1.2 16V Young
+    User: franz
+
+  kadett:
+    name: Opel Kadett Caravan 1.4i LS
+    User: franz
+
+  peugeot:
+    name: Peugeot 309 Profil
+    User: franz
     

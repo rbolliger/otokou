@@ -1,0 +1,5601 @@
+Charge:
+  franz_kadett_1:
+    User: franz
+    Vehicle: kadett
+    date: '1990-02-22'
+    comment: Acquisto
+    kilometers: 0
+    amount: 16830
+    Category: purchase
+  franz_kadett_2:
+    User: franz
+    Vehicle: kadett
+    date: '1990-03-05'
+    comment: 'Circolazione (quota parte ''90)'
+    kilometers: 0
+    amount: 218.3
+    Category: taxes
+  franz_kadett_3:
+    User: franz
+    Vehicle: kadett
+    date: '1990-03-05'
+    comment: Benzina
+    kilometers: 0
+    amount: 40
+    Category: fuel
+    quantity: 40.4
+  franz_kadett_4:
+    User: franz
+    Vehicle: kadett
+    date: '1990-03-15'
+    comment: Benzina
+    kilometers: 460
+    amount: 20
+    Category: fuel
+    quantity: 20.2
+  franz_kadett_5:
+    User: franz
+    Vehicle: kadett
+    date: '1990-03-15'
+    comment: 'Vignetta 90'
+    kilometers: 460
+    amount: 30
+    Category: taxes
+  franz_kadett_6:
+    User: franz
+    Vehicle: kadett
+    date: '1990-03-16'
+    comment: Benzina
+    kilometers: 545
+    amount: 24.5
+    Category: fuel
+    quantity: 26.1
+  franz_kadett_7:
+    User: franz
+    Vehicle: kadett
+    date: '1990-03-23'
+    comment: Benzina
+    kilometers: 1084
+    amount: 200
+    Category: fuel
+    quantity: 35
+  franz_kadett_8:
+    User: franz
+    Vehicle: kadett
+    date: '1990-03-24'
+    comment: 'Servizio 1000 km'
+    kilometers: 1134
+    amount: 71.5
+    Category: maintenance
+  franz_kadett_9:
+    User: franz
+    Vehicle: kadett
+    date: '1990-03-30'
+    comment: Benzina
+    kilometers: 1508
+    amount: 20
+    Category: fuel
+    quantity: 20.2
+  franz_kadett_10:
+    User: franz
+    Vehicle: kadett
+    date: '1990-04-03'
+    comment: Benzina
+    kilometers: 1808
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_11:
+    User: franz
+    Vehicle: kadett
+    date: '1990-04-05'
+    comment: Benzina
+    kilometers: 2195
+    amount: 30
+    Category: fuel
+    quantity: 30.3
+  franz_kadett_12:
+    User: franz
+    Vehicle: kadett
+    date: '1990-04-12'
+    comment: Benzina
+    kilometers: 2601
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_13:
+    User: franz
+    Vehicle: kadett
+    date: '1990-04-17'
+    comment: Benzina
+    kilometers: 2976
+    amount: 20
+    Category: fuel
+    quantity: 20.2
+  franz_kadett_14:
+    User: franz
+    Vehicle: kadett
+    date: '1990-04-19'
+    comment: Benzina
+    kilometers: 3241
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_15:
+    User: franz
+    Vehicle: kadett
+    date: '1990-04-23'
+    comment: Benzina
+    kilometers: 3652
+    amount: 20
+    Category: fuel
+    quantity: 20.2
+  franz_kadett_16:
+    User: franz
+    Vehicle: kadett
+    date: '1990-04-25'
+    comment: Benzina
+    kilometers: 3934
+    amount: 0
+    Category: fuel
+    quantity: 40
+  franz_kadett_17:
+    User: franz
+    Vehicle: kadett
+    date: '1990-04-29'
+    comment: Benzina
+    kilometers: 4514
+    amount: 30
+    Category: fuel
+    quantity: 29.7
+  franz_kadett_18:
+    User: franz
+    Vehicle: kadett
+    date: '1990-04-30'
+    comment: 'Assicurazione (quota parte ''90)'
+    kilometers: 4562
+    amount: 272.75
+    Category: insurance
+  franz_kadett_19:
+    User: franz
+    Vehicle: kadett
+    date: '1990-05-05'
+    comment: Benzina
+    kilometers: 4966
+    amount: 30
+    Category: fuel
+    quantity: 30.3
+  franz_kadett_20:
+    User: franz
+    Vehicle: kadett
+    date: '1990-05-11'
+    comment: Benzina
+    kilometers: 5313
+    amount: 200
+    Category: fuel
+    quantity: 30
+  franz_kadett_21:
+    User: franz
+    Vehicle: kadett
+    date: '1990-05-14'
+    comment: Benzina
+    kilometers: 5743
+    amount: 20
+    Category: fuel
+    quantity: 20.2
+  franz_kadett_22:
+    User: franz
+    Vehicle: kadett
+    date: '1990-05-22'
+    comment: Benzina
+    kilometers: 6031
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_23:
+    User: franz
+    Vehicle: kadett
+    date: '1990-05-28'
+    comment: Benzina
+    kilometers: 6440
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_24:
+    User: franz
+    Vehicle: kadett
+    date: '1990-05-31'
+    comment: 'Assicurazione 2° sem. 90'
+    kilometers: 0
+    amount: 489.6
+    Category: insurance
+  franz_kadett_25:
+    User: franz
+    Vehicle: kadett
+    date: '1990-06-06'
+    comment: Benzina
+    kilometers: 6894
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_26:
+    User: franz
+    Vehicle: kadett
+    date: '1990-06-15'
+    comment: Benzina
+    kilometers: 7273
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_27:
+    User: franz
+    Vehicle: kadett
+    date: '1990-06-20'
+    comment: 'Servizio 7500 km'
+    kilometers: 7530
+    amount: 89.5
+    Category: maintenance
+  franz_kadett_28:
+    User: franz
+    Vehicle: kadett
+    date: '1990-06-22'
+    comment: Benzina
+    kilometers: 7678
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_29:
+    User: franz
+    Vehicle: kadett
+    date: '1990-06-28'
+    comment: Benzina
+    kilometers: 8131
+    amount: 20
+    Category: fuel
+    quantity: 20.6
+  franz_kadett_30:
+    User: franz
+    Vehicle: kadett
+    date: '1990-07-04'
+    comment: Benzina
+    kilometers: 8386
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_31:
+    User: franz
+    Vehicle: kadett
+    date: '1990-07-05'
+    comment: 'Multa carburante autostrada'
+    kilometers: 8434
+    amount: 200
+    Category: fines
+  franz_kadett_32:
+    User: franz
+    Vehicle: kadett
+    date: '1990-07-13'
+    comment: Benzina
+    kilometers: 8798
+    amount: 0
+    Category: fuel
+    quantity: 35
+  franz_kadett_33:
+    User: franz
+    Vehicle: kadett
+    date: '1990-07-18'
+    comment: Benzina
+    kilometers: 9242
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_34:
+    User: franz
+    Vehicle: kadett
+    date: '1990-07-26'
+    comment: Benzina
+    kilometers: 9720
+    amount: 20
+    Category: fuel
+    quantity: 19.8
+  franz_kadett_35:
+    User: franz
+    Vehicle: kadett
+    date: '1990-07-31'
+    comment: Benzina
+    kilometers: 9945
+    amount: 0
+    Category: fuel
+    quantity: 39
+  franz_kadett_36:
+    User: franz
+    Vehicle: kadett
+    date: '1990-08-16'
+    comment: Benzina
+    kilometers: 10431
+    amount: 30
+    Category: fuel
+    quantity: 29.5
+  franz_kadett_37:
+    User: franz
+    Vehicle: kadett
+    date: '1990-08-26'
+    comment: Benzina
+    kilometers: 10846
+    amount: 20
+    Category: fuel
+    quantity: 18.5
+  franz_kadett_38:
+    User: franz
+    Vehicle: kadett
+    date: '1990-08-30'
+    comment: Benzina
+    kilometers: 11140
+    amount: 0
+    Category: fuel
+    quantity: 20
+  franz_kadett_39:
+    User: franz
+    Vehicle: kadett
+    date: '1990-09-03'
+    comment: Benzina
+    kilometers: 11397
+    amount: 0
+    Category: fuel
+    quantity: 21
+  franz_kadett_40:
+    User: franz
+    Vehicle: kadett
+    date: '1990-09-07'
+    comment: Benzina
+    kilometers: 11648
+    amount: 0
+    Category: fuel
+    quantity: 20
+  franz_kadett_41:
+    User: franz
+    Vehicle: kadett
+    date: '1990-09-14'
+    comment: Benzina
+    kilometers: 11891
+    amount: 200
+    Category: fuel
+    quantity: 30
+  franz_kadett_42:
+    User: franz
+    Vehicle: kadett
+    date: '1990-09-19'
+    comment: Benzina
+    kilometers: 12314
+    amount: 0
+    Category: fuel
+    quantity: 20
+  franz_kadett_43:
+    User: franz
+    Vehicle: kadett
+    date: '1990-09-28'
+    comment: Benzina
+    kilometers: 12598
+    amount: 0
+    Category: fuel
+    quantity: 17.1
+  franz_kadett_44:
+    User: franz
+    Vehicle: kadett
+    date: '1990-09-30'
+    comment: Benzina
+    kilometers: 12811
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_45:
+    User: franz
+    Vehicle: kadett
+    date: '1990-10-07'
+    comment: Benzina
+    kilometers: 13113
+    amount: 30
+    Category: fuel
+    quantity: 30
+  franz_kadett_46:
+    User: franz
+    Vehicle: kadett
+    date: '1990-10-13'
+    comment: Benzina
+    kilometers: 13631
+    amount: 10
+    Category: fuel
+    quantity: 8.3
+  franz_kadett_47:
+    User: franz
+    Vehicle: kadett
+    date: '1990-10-15'
+    comment: Benzina
+    kilometers: 13708
+    amount: 0
+    Category: fuel
+    quantity: 20
+  franz_kadett_48:
+    User: franz
+    Vehicle: kadett
+    date: '1990-10-22'
+    comment: Benzina
+    kilometers: 13957
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_49:
+    User: franz
+    Vehicle: kadett
+    date: '1990-10-24'
+    comment: Benzina
+    kilometers: 14392
+    amount: 0
+    Category: fuel
+    quantity: 20
+  franz_kadett_50:
+    User: franz
+    Vehicle: kadett
+    date: '1990-10-31'
+    comment: Benzina
+    kilometers: 14632
+    amount: 0
+    Category: fuel
+    quantity: 40
+  franz_kadett_51:
+    User: franz
+    Vehicle: kadett
+    date: '1990-11-03'
+    comment: 'Servizio 15''000 km'
+    kilometers: 14826
+    amount: 273
+    Category: maintenance
+  franz_kadett_52:
+    User: franz
+    Vehicle: kadett
+    date: '1990-11-08'
+    comment: Benzina
+    kilometers: 15115
+    amount: 30
+    Category: fuel
+    quantity: 27.5
+  franz_kadett_53:
+    User: franz
+    Vehicle: kadett
+    date: '1990-11-14'
+    comment: Benzina
+    kilometers: 15543
+    amount: 200
+    Category: fuel
+    quantity: 30
+  franz_kadett_54:
+    User: franz
+    Vehicle: kadett
+    date: '1990-11-20'
+    comment: Benzina
+    kilometers: 15936
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_55:
+    User: franz
+    Vehicle: kadett
+    date: '1990-11-27'
+    comment: Benzina
+    kilometers: 16355
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_56:
+    User: franz
+    Vehicle: kadett
+    date: '1990-11-30'
+    comment: 'Gomme neve (4 pezzi)'
+    kilometers: 16633
+    amount: 440
+    Category: accessories
+  franz_kadett_57:
+    User: franz
+    Vehicle: kadett
+    date: '1990-12-01'
+    comment: Benzina
+    kilometers: 16736
+    amount: 30
+    Category: fuel
+    quantity: 29.1
+  franz_kadett_58:
+    User: franz
+    Vehicle: kadett
+    date: '1990-12-04'
+    comment: Benzina
+    kilometers: 17101
+    amount: 20
+    Category: fuel
+    quantity: 19.5
+  franz_kadett_59:
+    User: franz
+    Vehicle: kadett
+    date: '1990-12-06'
+    comment: Lavaggio
+    kilometers: 17244
+    amount: 6
+    Category: maintenance
+  franz_kadett_60:
+    User: franz
+    Vehicle: kadett
+    date: '1990-12-08'
+    comment: Benzina
+    kilometers: 17392
+    amount: 30
+    Category: fuel
+    quantity: 30.3
+  franz_kadett_61:
+    User: franz
+    Vehicle: kadett
+    date: '1990-12-14'
+    comment: Benzina
+    kilometers: 17717
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_62:
+    User: franz
+    Vehicle: kadett
+    date: '1990-12-22'
+    comment: Benzina
+    kilometers: 18130
+    amount: 30
+    Category: fuel
+    quantity: 31.2
+  franz_kadett_63:
+    User: franz
+    Vehicle: kadett
+    date: '1990-12-24'
+    comment: Lavaggio
+    kilometers: 18251
+    amount: 6
+    Category: maintenance
+  franz_kadett_64:
+    User: franz
+    Vehicle: kadett
+    date: '1990-12-27'
+    comment: 'Assicurazione 1° sem 91'
+    kilometers: 0
+    amount: 489.6
+    Category: insurance
+  franz_kadett_65:
+    User: franz
+    Vehicle: kadett
+    date: '1991-01-02'
+    comment: Benzina
+    kilometers: 18513
+    amount: 20
+    Category: fuel
+    quantity: 19.8
+  franz_kadett_66:
+    User: franz
+    Vehicle: kadett
+    date: '1991-01-09'
+    comment: Benzina
+    kilometers: 18777
+    amount: 0
+    Category: fuel
+    quantity: 40
+  franz_kadett_67:
+    User: franz
+    Vehicle: kadett
+    date: '1991-01-15'
+    comment: Benzina
+    kilometers: 19279
+    amount: 0
+    Category: fuel
+    quantity: 40
+  franz_kadett_68:
+    User: franz
+    Vehicle: kadett
+    date: '1991-01-23'
+    comment: Benzina
+    kilometers: 19788
+    amount: 20
+    Category: fuel
+    quantity: 19.6
+  franz_kadett_69:
+    User: franz
+    Vehicle: kadett
+    date: '1991-01-26'
+    comment: Benzina
+    kilometers: 20027
+    amount: 37
+    Category: fuel
+    quantity: 39.8
+  franz_kadett_70:
+    User: franz
+    Vehicle: kadett
+    date: '1991-01-27'
+    comment: Lavaggio
+    kilometers: 20083
+    amount: 6
+    Category: maintenance
+  franz_kadett_71:
+    User: franz
+    Vehicle: kadett
+    date: '1991-01-28'
+    comment: 'Benzina e vignetta 91'
+    kilometers: 20140
+    amount: 230
+    Category: taxes
+  franz_kadett_72:
+    User: franz
+    Vehicle: kadett
+    date: '1991-01-31'
+    comment: 'Circolazione 91'
+    kilometers: 20472
+    amount: 257
+    Category: taxes
+  franz_kadett_73:
+    User: franz
+    Vehicle: kadett
+    date: '1991-02-01'
+    comment: Benzina
+    kilometers: 20501
+    amount: 20
+    Category: fuel
+    quantity: 20.4
+  franz_kadett_74:
+    User: franz
+    Vehicle: kadett
+    date: '1991-02-02'
+    comment: Benzina
+    kilometers: 20839
+    amount: 35
+    Category: fuel
+    quantity: 37.2
+  franz_kadett_75:
+    User: franz
+    Vehicle: kadett
+    date: '1991-02-11'
+    comment: Benzina
+    kilometers: 21322
+    amount: 0
+    Category: fuel
+    quantity: 40
+  franz_kadett_76:
+    User: franz
+    Vehicle: kadett
+    date: '1991-02-19'
+    comment: Benzina
+    kilometers: 21828
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_77:
+    User: franz
+    Vehicle: kadett
+    date: '1991-02-23'
+    comment: Benzina
+    kilometers: 22206
+    amount: 20
+    Category: fuel
+    quantity: 19.8
+  franz_kadett_78:
+    User: franz
+    Vehicle: kadett
+    date: '1991-02-26'
+    comment: Benzina
+    kilometers: 22496
+    amount: 0
+    Category: fuel
+    quantity: 35
+  franz_kadett_79:
+    User: franz
+    Vehicle: kadett
+    date: '1991-03-02'
+    comment: 'Piccolo servizio'
+    kilometers: 22832
+    amount: 135
+    Category: taxes
+  franz_kadett_80:
+    User: franz
+    Vehicle: kadett
+    date: '1991-03-05'
+    comment: Benzina
+    kilometers: 22939
+    amount: 0
+    Category: fuel
+    quantity: 40
+  franz_kadett_81:
+    User: franz
+    Vehicle: kadett
+    date: '1991-03-13'
+    comment: Benzina
+    kilometers: 23449
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_82:
+    User: franz
+    Vehicle: kadett
+    date: '1991-03-20'
+    comment: Benzina
+    kilometers: 23845
+    amount: 0
+    Category: fuel
+    quantity: 42
+  franz_kadett_83:
+    User: franz
+    Vehicle: kadett
+    date: '1991-03-23'
+    comment: Benzina
+    kilometers: 24836
+    amount: 30
+    Category: fuel
+    quantity: 30
+  franz_kadett_84:
+    User: franz
+    Vehicle: kadett
+    date: '1991-03-28'
+    comment: 'Multa carburante autostrada'
+    kilometers: 24450
+    amount: 200
+    Category: fines
+  franz_kadett_85:
+    User: franz
+    Vehicle: kadett
+    date: '1991-04-03'
+    comment: Benzina
+    kilometers: 24785
+    amount: 0
+    Category: fuel
+    quantity: 45
+  franz_kadett_86:
+    User: franz
+    Vehicle: kadett
+    date: '1991-04-07'
+    comment: Benzina
+    kilometers: 25380
+    amount: 20
+    Category: fuel
+    quantity: 19.8
+  franz_kadett_87:
+    User: franz
+    Vehicle: kadett
+    date: '1991-04-09'
+    comment: Benzina
+    kilometers: 25626
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_88:
+    User: franz
+    Vehicle: kadett
+    date: '1991-04-15'
+    comment: Benzina
+    kilometers: 26017
+    amount: 0
+    Category: fuel
+    quantity: 35
+  franz_kadett_89:
+    User: franz
+    Vehicle: kadett
+    date: '1991-04-19'
+    comment: 'Cambio gomme'
+    kilometers: 26322
+    amount: 166
+    Category: maintenance
+  franz_kadett_90:
+    User: franz
+    Vehicle: kadett
+    date: '1991-04-20'
+    comment: Benzina
+    kilometers: 26409
+    amount: 20
+    Category: fuel
+    quantity: 20.2
+  franz_kadett_91:
+    User: franz
+    Vehicle: kadett
+    date: '1991-04-24'
+    comment: Benzina
+    kilometers: 26694
+    amount: 30
+    Category: fuel
+    quantity: 29.4
+  franz_kadett_92:
+    User: franz
+    Vehicle: kadett
+    date: '1991-04-28'
+    comment: Benzina
+    kilometers: 27019
+    amount: 30
+    Category: fuel
+    quantity: 30.3
+  franz_kadett_93:
+    User: franz
+    Vehicle: kadett
+    date: '1991-05-03'
+    comment: Benzina
+    kilometers: 27443
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_94:
+    User: franz
+    Vehicle: kadett
+    date: '1991-05-10'
+    comment: Benzina
+    kilometers: 27856
+    amount: 0
+    Category: fuel
+    quantity: 35
+  franz_kadett_95:
+    User: franz
+    Vehicle: kadett
+    date: '1991-05-16'
+    comment: Benzina
+    kilometers: 28372
+    amount: 200
+    Category: fuel
+    quantity: 35
+  franz_kadett_96:
+    User: franz
+    Vehicle: kadett
+    date: '1991-05-23'
+    comment: Benzina
+    kilometers: 28800
+    amount: 30
+    Category: fuel
+    quantity: 30
+  franz_kadett_97:
+    User: franz
+    Vehicle: kadett
+    date: '1991-05-28'
+    comment: Benzina
+    kilometers: 29110
+    amount: 30
+    Category: fuel
+    quantity: 29.4
+  franz_kadett_98:
+    User: franz
+    Vehicle: kadett
+    date: '1991-05-31'
+    comment: Benzina
+    kilometers: 29655
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_99:
+    User: franz
+    Vehicle: kadett
+    date: '1991-06-06'
+    comment: Benzina
+    kilometers: 30068
+    amount: 20
+    Category: fuel
+    quantity: 19.6
+  franz_kadett_100:
+    User: franz
+    Vehicle: kadett
+    date: '1991-06-10'
+    comment: Benzina
+    kilometers: 30308
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_101:
+    User: franz
+    Vehicle: kadett
+    date: '1991-06-14'
+    comment: 'Servizio 30''000 km'
+    kilometers: 30695
+    amount: 347.3
+    Category: maintenance
+  franz_kadett_102:
+    User: franz
+    Vehicle: kadett
+    date: '1991-06-16'
+    comment: Benzina
+    kilometers: 30752
+    amount: 40
+    Category: fuel
+    quantity: 39.2
+  franz_kadett_103:
+    User: franz
+    Vehicle: kadett
+    date: '1991-06-28'
+    comment: 'Assicurazione 2° sem 91'
+    kilometers: 0
+    amount: 489.6
+    Category: insurance
+  franz_kadett_104:
+    User: franz
+    Vehicle: kadett
+    date: '1991-06-29'
+    comment: 'Benzina (Italia)'
+    kilometers: 32150
+    amount: 60
+    Category: fuel
+    quantity: 40.5
+  franz_kadett_105:
+    User: franz
+    Vehicle: kadett
+    date: '1991-07-13'
+    comment: 'Benzina (Italia)'
+    kilometers: 32716
+    amount: 60
+    Category: fuel
+    quantity: 40.3
+  franz_kadett_106:
+    User: franz
+    Vehicle: kadett
+    date: '1991-07-22'
+    comment: Benzina
+    kilometers: 33316
+    amount: 0
+    Category: fuel
+    quantity: 15
+  franz_kadett_107:
+    User: franz
+    Vehicle: kadett
+    date: '1991-07-26'
+    comment: Benzina
+    kilometers: 33594
+    amount: 30
+    Category: fuel
+    quantity: 29.4
+  franz_kadett_108:
+    User: franz
+    Vehicle: kadett
+    date: '1991-08-04'
+    comment: Benzina
+    kilometers: 34009
+    amount: 30
+    Category: fuel
+    quantity: 29.1
+  franz_kadett_109:
+    User: franz
+    Vehicle: kadett
+    date: '1991-08-14'
+    comment: Benzina
+    kilometers: 34429
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_110:
+    User: franz
+    Vehicle: kadett
+    date: '1991-08-22'
+    comment: Benzina
+    kilometers: 34923
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_111:
+    User: franz
+    Vehicle: kadett
+    date: '1991-08-26'
+    comment: Benzina
+    kilometers: 35416
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_112:
+    User: franz
+    Vehicle: kadett
+    date: '1991-09-01'
+    comment: Benzina
+    kilometers: 35782
+    amount: 30
+    Category: fuel
+    quantity: 29.1
+  franz_kadett_113:
+    User: franz
+    Vehicle: kadett
+    date: '1991-09-09'
+    comment: Benzina
+    kilometers: 36240
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_114:
+    User: franz
+    Vehicle: kadett
+    date: '1991-09-13'
+    comment: Benzina
+    kilometers: 36660
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_115:
+    User: franz
+    Vehicle: kadett
+    date: '1991-09-19'
+    comment: Benzina
+    kilometers: 37096
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_116:
+    User: franz
+    Vehicle: kadett
+    date: '1991-09-25'
+    comment: Benzina
+    kilometers: 37468
+    amount: 0
+    Category: fuel
+    quantity: 35
+  franz_kadett_117:
+    User: franz
+    Vehicle: kadett
+    date: '1991-10-02'
+    comment: 'Servizio 37''500 km'
+    kilometers: 37789
+    amount: 91
+    Category: maintenance
+  franz_kadett_118:
+    User: franz
+    Vehicle: kadett
+    date: '1991-10-04'
+    comment: Benzina
+    kilometers: 37937
+    amount: 20
+    Category: fuel
+    quantity: 19.2
+  franz_kadett_119:
+    User: franz
+    Vehicle: kadett
+    date: '1991-10-11'
+    comment: Benzina
+    kilometers: 38188
+    amount: 30
+    Category: fuel
+    quantity: 28.6
+  franz_kadett_120:
+    User: franz
+    Vehicle: kadett
+    date: '1991-10-18'
+    comment: Benzina
+    kilometers: 38523
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_121:
+    User: franz
+    Vehicle: kadett
+    date: '1991-10-25'
+    comment: Benzina
+    kilometers: 38886
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_122:
+    User: franz
+    Vehicle: kadett
+    date: '1991-11-08'
+    comment: Benzina
+    kilometers: 39290
+    amount: 20.25
+    Category: fuel
+    quantity: 19.5
+  franz_kadett_123:
+    User: franz
+    Vehicle: kadett
+    date: '1991-11-22'
+    comment: Benzina
+    kilometers: 39522
+    amount: 30
+    Category: fuel
+    quantity: 29.1
+  franz_kadett_124:
+    User: franz
+    Vehicle: kadett
+    date: '1991-12-02'
+    comment: Benzina
+    kilometers: 39881
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_125:
+    User: franz
+    Vehicle: kadett
+    date: '1991-12-06'
+    comment: Benzina
+    kilometers: 40199
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_126:
+    User: franz
+    Vehicle: kadett
+    date: '1991-12-14'
+    comment: Benzina
+    kilometers: 40595
+    amount: 30
+    Category: fuel
+    quantity: 29.7
+  franz_kadett_127:
+    User: franz
+    Vehicle: kadett
+    date: '1991-12-21'
+    comment: 'Montato gomme neve'
+    kilometers: 40925
+    amount: 48
+    Category: maintenance
+  franz_kadett_128:
+    User: franz
+    Vehicle: kadett
+    date: '1991-12-21'
+    comment: Benzina
+    kilometers: 40942
+    amount: 30
+    Category: fuel
+    quantity: 29.7
+  franz_kadett_129:
+    User: franz
+    Vehicle: kadett
+    date: '1991-12-24'
+    comment: 'Assicurazione 1° sem. 92'
+    kilometers: 0
+    amount: 512.9
+    Category: insurance
+  franz_kadett_130:
+    User: franz
+    Vehicle: kadett
+    date: '1991-12-27'
+    comment: Benzina
+    kilometers: 41298
+    amount: 30
+    Category: fuel
+    quantity: 30.6
+  franz_kadett_131:
+    User: franz
+    Vehicle: kadett
+    date: '1992-01-09'
+    comment: Benzina
+    kilometers: 41678
+    amount: 0
+    Category: fuel
+    quantity: 35
+  franz_kadett_132:
+    User: franz
+    Vehicle: kadett
+    date: '1992-01-21'
+    comment: Benzina
+    kilometers: 42196
+    amount: 0
+    Category: fuel
+    quantity: 40
+  franz_kadett_133:
+    User: franz
+    Vehicle: kadett
+    date: '1992-01-27'
+    comment: Benzina
+    kilometers: 42702
+    amount: 20
+    Category: fuel
+    quantity: 20.2
+  franz_kadett_134:
+    User: franz
+    Vehicle: kadett
+    date: '1992-01-31'
+    comment: 'Benzina e vignetta 92'
+    kilometers: 42957
+    amount: 230
+    Category: taxes
+  franz_kadett_135:
+    User: franz
+    Vehicle: kadett
+    date: '1992-02-10'
+    comment: Benzina
+    kilometers: 43350
+    amount: 0
+    Category: fuel
+    quantity: 40
+  franz_kadett_136:
+    User: franz
+    Vehicle: kadett
+    date: '1992-02-19'
+    comment: Benzina
+    kilometers: 43684
+    amount: 25
+    Category: fuel
+    quantity: 25.3
+  franz_kadett_137:
+    User: franz
+    Vehicle: kadett
+    date: '1992-02-26'
+    comment: Benzina
+    kilometers: 44269
+    amount: 30
+    Category: fuel
+    quantity: 30
+  franz_kadett_138:
+    User: franz
+    Vehicle: kadett
+    date: '1992-02-28'
+    comment: 'Circolazione 92'
+    kilometers: 44300
+    amount: 257
+    Category: taxes
+  franz_kadett_139:
+    User: franz
+    Vehicle: kadett
+    date: '1992-03-07'
+    comment: Benzina
+    kilometers: 44657
+    amount: 30
+    Category: fuel
+    quantity: 30
+  franz_kadett_140:
+    User: franz
+    Vehicle: kadett
+    date: '1992-03-16'
+    comment: 'Servizio 45''000 km'
+    kilometers: 45017
+    amount: 399.2
+    Category: maintenance
+  franz_kadett_141:
+    User: franz
+    Vehicle: kadett
+    date: '1992-03-18'
+    comment: Benzina
+    kilometers: 45039
+    amount: 20
+    Category: fuel
+    quantity: 20
+  franz_kadett_142:
+    User: franz
+    Vehicle: kadett
+    date: '1992-03-25'
+    comment: Benzina
+    kilometers: 45301
+    amount: 0
+    Category: fuel
+    quantity: 35
+  franz_kadett_143:
+    User: franz
+    Vehicle: kadett
+    date: '1992-04-01'
+    comment: Benzina
+    kilometers: 45780
+    amount: 30
+    Category: fuel
+    quantity: 30
+  franz_kadett_144:
+    User: franz
+    Vehicle: kadett
+    date: '1992-04-07'
+    comment: Benzina
+    kilometers: 46103
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_145:
+    User: franz
+    Vehicle: kadett
+    date: '1992-04-13'
+    comment: Benzina
+    kilometers: 46436
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_146:
+    User: franz
+    Vehicle: kadett
+    date: '1992-04-21'
+    comment: Benzina
+    kilometers: 46971
+    amount: 0
+    Category: fuel
+    quantity: 45
+  franz_kadett_147:
+    User: franz
+    Vehicle: kadett
+    date: '1992-04-29'
+    comment: Benzina
+    kilometers: 47565
+    amount: 200
+    Category: fuel
+    quantity: 35
+  franz_kadett_148:
+    User: franz
+    Vehicle: kadett
+    date: '1992-05-08'
+    comment: Benzina
+    kilometers: 48009
+    amount: 0
+    Category: fuel
+    quantity: 35
+  franz_kadett_149:
+    User: franz
+    Vehicle: kadett
+    date: '1992-05-15'
+    comment: Benzina
+    kilometers: 48420
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_150:
+    User: franz
+    Vehicle: kadett
+    date: '1992-05-20'
+    comment: Benzina
+    kilometers: 48882
+    amount: 20
+    Category: fuel
+    quantity: 19.4
+  franz_kadett_151:
+    User: franz
+    Vehicle: kadett
+    date: '1992-05-25'
+    comment: Benzina
+    kilometers: 49104
+    amount: 0
+    Category: fuel
+    quantity: 35
+  franz_kadett_152:
+    User: franz
+    Vehicle: kadett
+    date: '1992-06-04'
+    comment: Benzina
+    kilometers: 49574
+    amount: 20
+    Category: fuel
+    quantity: 19.4
+  franz_kadett_153:
+    User: franz
+    Vehicle: kadett
+    date: '1992-06-07'
+    comment: Benzina
+    kilometers: 49811
+    amount: 0
+    Category: fuel
+    quantity: 40
+  franz_kadett_154:
+    User: franz
+    Vehicle: kadett
+    date: '1992-06-16'
+    comment: Benzina
+    kilometers: 50332
+    amount: 200
+    Category: fuel
+    quantity: 35
+  franz_kadett_155:
+    User: franz
+    Vehicle: kadett
+    date: '1992-06-16'
+    comment: 'Assicurazione 2° sem. 92'
+    kilometers: 50332
+    amount: 512.9
+    Category: insurance
+  franz_kadett_156:
+    User: franz
+    Vehicle: kadett
+    date: '1992-06-19'
+    comment: Benzina
+    kilometers: 50712
+    amount: 36
+    Category: fuel
+    quantity: 34.8
+  franz_kadett_157:
+    User: franz
+    Vehicle: kadett
+    date: '1992-06-20'
+    comment: 'Benzina (Italia)'
+    kilometers: 51157
+    amount: 12.75
+    Category: fuel
+    quantity: 10
+  franz_kadett_158:
+    User: franz
+    Vehicle: kadett
+    date: '1992-06-27'
+    comment: 'Benzina (Italia)'
+    kilometers: 51380
+    amount: 25.5
+    Category: fuel
+    quantity: 19.8
+  franz_kadett_159:
+    User: franz
+    Vehicle: kadett
+    date: '1992-06-29'
+    comment: 'Benzina (Italia)'
+    kilometers: 51466
+    amount: 32.3
+    Category: fuel
+    quantity: 25.8
+  franz_kadett_160:
+    User: franz
+    Vehicle: kadett
+    date: '1992-07-05'
+    comment: 'Benzina (Italia)'
+    kilometers: 52012
+    amount: 17
+    Category: fuel
+    quantity: 13.2
+  franz_kadett_161:
+    User: franz
+    Vehicle: kadett
+    date: '1992-07-06'
+    comment: Benzina
+    kilometers: 52196
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_162:
+    User: franz
+    Vehicle: kadett
+    date: '1992-07-11'
+    comment: 'servizio 52''500 km'
+    kilometers: 52478
+    amount: 79.5
+    Category: maintenance
+  franz_kadett_163:
+    User: franz
+    Vehicle: kadett
+    date: '1992-07-14'
+    comment: Benzina
+    kilometers: 52589
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_164:
+    User: franz
+    Vehicle: kadett
+    date: '1992-07-21'
+    comment: Benzina
+    kilometers: 52916
+    amount: 30
+    Category: fuel
+    quantity: 30
+  franz_kadett_165:
+    User: franz
+    Vehicle: kadett
+    date: '1992-08-03'
+    comment: Benzina
+    kilometers: 53357
+    amount: 30
+    Category: fuel
+    quantity: 28.8
+  franz_kadett_166:
+    User: franz
+    Vehicle: kadett
+    date: '1992-08-12'
+    comment: Benzina
+    kilometers: 53699
+    amount: 30
+    Category: fuel
+    quantity: 28.9
+  franz_kadett_167:
+    User: franz
+    Vehicle: kadett
+    date: '1992-08-15'
+    comment: Benzina
+    kilometers: 54110
+    amount: 20
+    Category: fuel
+    quantity: 19.8
+  franz_kadett_168:
+    User: franz
+    Vehicle: kadett
+    date: '1992-08-16'
+    comment: Benzina
+    kilometers: 54481
+    amount: 30
+    Category: fuel
+    quantity: 30.3
+  franz_kadett_169:
+    User: franz
+    Vehicle: kadett
+    date: '1992-08-25'
+    comment: Benzina
+    kilometers: 54885
+    amount: 30
+    Category: fuel
+    quantity: 30.6
+  franz_kadett_170:
+    User: franz
+    Vehicle: kadett
+    date: '1992-08-26'
+    comment: Benzina
+    kilometers: 55300
+    amount: 20
+    Category: fuel
+    quantity: 20.2
+  franz_kadett_171:
+    User: franz
+    Vehicle: kadett
+    date: '1992-08-29'
+    comment: Benzina
+    kilometers: 55616
+    amount: 30
+    Category: fuel
+    quantity: 30.6
+  franz_kadett_172:
+    User: franz
+    Vehicle: kadett
+    date: '1992-09-02'
+    comment: Benzina
+    kilometers: 56046
+    amount: 30
+    Category: fuel
+    quantity: 30.3
+  franz_kadett_173:
+    User: franz
+    Vehicle: kadett
+    date: '1992-09-05'
+    comment: 'Cambio gomme 2 pezzi'
+    kilometers: 56250
+    amount: 220
+    Category: maintenance
+  franz_kadett_174:
+    User: franz
+    Vehicle: kadett
+    date: '1992-09-06'
+    comment: Benzina
+    kilometers: 56420
+    amount: 20
+    Category: fuel
+    quantity: 19.8
+  franz_kadett_175:
+    User: franz
+    Vehicle: kadett
+    date: '1992-09-08'
+    comment: Benzina
+    kilometers: 56683
+    amount: 30
+    Category: fuel
+    quantity: 30.3
+  franz_kadett_176:
+    User: franz
+    Vehicle: kadett
+    date: '1992-09-12'
+    comment: Benzina
+    kilometers: 57037
+    amount: 30
+    Category: fuel
+    quantity: 30.9
+  franz_kadett_177:
+    User: franz
+    Vehicle: kadett
+    date: '1992-09-19'
+    comment: Benzina
+    kilometers: 57466
+    amount: 35
+    Category: fuel
+    quantity: 35.7
+  franz_kadett_178:
+    User: franz
+    Vehicle: kadett
+    date: '1992-09-27'
+    comment: Benzina
+    kilometers: 57932
+    amount: 20
+    Category: fuel
+    quantity: 20.5
+  franz_kadett_179:
+    User: franz
+    Vehicle: kadett
+    date: '1992-09-30'
+    comment: Benzina
+    kilometers: 58254
+    amount: 200
+    Category: fuel
+    quantity: 30
+  franz_kadett_180:
+    User: franz
+    Vehicle: kadett
+    date: '1992-10-06'
+    comment: Benzina
+    kilometers: 58624
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_181:
+    User: franz
+    Vehicle: kadett
+    date: '1992-10-11'
+    comment: Benzina
+    kilometers: 58953
+    amount: 30
+    Category: fuel
+    quantity: 31.2
+  franz_kadett_182:
+    User: franz
+    Vehicle: kadett
+    date: '1992-10-17'
+    comment: Benzina
+    kilometers: 59364
+    amount: 20
+    Category: fuel
+    quantity: 20.2
+  franz_kadett_183:
+    User: franz
+    Vehicle: kadett
+    date: '1992-10-21'
+    comment: Benzina
+    kilometers: 59564
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_184:
+    User: franz
+    Vehicle: kadett
+    date: '1992-10-28'
+    comment: Benzina
+    kilometers: 56975
+    amount: 0
+    Category: fuel
+    quantity: 24
+  franz_kadett_185:
+    User: franz
+    Vehicle: kadett
+    date: '1992-11-01'
+    comment: Benzina
+    kilometers: 60288
+    amount: 30
+    Category: fuel
+    quantity: 33
+  franz_kadett_186:
+    User: franz
+    Vehicle: kadett
+    date: '1992-11-04'
+    comment: Benzina
+    kilometers: 60658
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_187:
+    User: franz
+    Vehicle: kadett
+    date: '1992-11-06'
+    comment: 'Servizio 60''000 km'
+    kilometers: 60826
+    amount: 397.4
+    Category: maintenance
+  franz_kadett_188:
+    User: franz
+    Vehicle: kadett
+    date: '1992-11-11'
+    comment: Benzina
+    kilometers: 61030
+    amount: 20
+    Category: fuel
+    quantity: 22
+  franz_kadett_189:
+    User: franz
+    Vehicle: kadett
+    date: '1992-11-14'
+    comment: Benzina
+    kilometers: 61308
+    amount: 30
+    Category: fuel
+    quantity: 33
+  franz_kadett_190:
+    User: franz
+    Vehicle: kadett
+    date: '1992-11-18'
+    comment: Benzina
+    kilometers: 61684
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_191:
+    User: franz
+    Vehicle: kadett
+    date: '1992-11-25'
+    comment: Benzina
+    kilometers: 62082
+    amount: 0
+    Category: fuel
+    quantity: 25
+  franz_kadett_192:
+    User: franz
+    Vehicle: kadett
+    date: '1992-11-30'
+    comment: Benzina
+    kilometers: 62385
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_193:
+    User: franz
+    Vehicle: kadett
+    date: '1992-12-04'
+    comment: 'Cambio gomme inverno'
+    kilometers: 62550
+    amount: 37
+    Category: maintenance
+  franz_kadett_194:
+    User: franz
+    Vehicle: kadett
+    date: '1992-12-09'
+    comment: Benzina
+    kilometers: 62736
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_195:
+    User: franz
+    Vehicle: kadett
+    date: '1992-12-12'
+    comment: Lavaggio
+    kilometers: 63155
+    amount: 7
+    Category: maintenance
+  franz_kadett_196:
+    User: franz
+    Vehicle: kadett
+    date: '1992-12-12'
+    comment: Benzina
+    kilometers: 63159
+    amount: 35
+    Category: fuel
+    quantity: 36.8
+  franz_kadett_197:
+    User: franz
+    Vehicle: kadett
+    date: '1992-12-21'
+    comment: Benzina
+    kilometers: 63651
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_198:
+    User: franz
+    Vehicle: kadett
+    date: '1992-12-24'
+    comment: Lavaggio
+    kilometers: 64010
+    amount: 7
+    Category: maintenance
+  franz_kadett_199:
+    User: franz
+    Vehicle: kadett
+    date: '1992-12-24'
+    comment: Benzina
+    kilometers: 64036
+    amount: 35
+    Category: fuel
+    quantity: 36.4
+  franz_kadett_200:
+    User: franz
+    Vehicle: kadett
+    date: '1992-12-24'
+    comment: 'Assicurazione 1° sem. 93'
+    kilometers: 64036
+    amount: 558.3
+    Category: insurance
+  franz_kadett_201:
+    User: franz
+    Vehicle: kadett
+    date: '1993-01-08'
+    comment: Benzina
+    kilometers: 64439
+    amount: 30
+    Category: fuel
+    quantity: 33.7
+  franz_kadett_202:
+    User: franz
+    Vehicle: kadett
+    date: '1993-01-08'
+    comment: Lavaggio
+    kilometers: 64439
+    amount: 9.5
+    Category: maintenance
+  franz_kadett_203:
+    User: franz
+    Vehicle: kadett
+    date: '1993-01-18'
+    comment: Benzina
+    kilometers: 64822
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_204:
+    User: franz
+    Vehicle: kadett
+    date: '1993-01-21'
+    comment: Benzina
+    kilometers: 65338
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_205:
+    User: franz
+    Vehicle: kadett
+    date: '1993-01-28'
+    comment: 'Vignetta 93'
+    kilometers: 65650
+    amount: 30
+    Category: taxes
+  franz_kadett_206:
+    User: franz
+    Vehicle: kadett
+    date: '1993-01-28'
+    comment: 'Circolazione 93'
+    kilometers: 65650
+    amount: 257
+    Category: taxes
+  franz_kadett_207:
+    User: franz
+    Vehicle: kadett
+    date: '1993-01-29'
+    comment: Benzina
+    kilometers: 65741
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_208:
+    User: franz
+    Vehicle: kadett
+    date: '1993-02-05'
+    comment: Benzina
+    kilometers: 66126
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_209:
+    User: franz
+    Vehicle: kadett
+    date: '1993-02-12'
+    comment: Benzina
+    kilometers: 66452
+    amount: 30
+    Category: fuel
+    quantity: 29.4
+  franz_kadett_210:
+    User: franz
+    Vehicle: kadett
+    date: '1993-02-18'
+    comment: Benzina
+    kilometers: 66961
+    amount: 10
+    Category: fuel
+    quantity: 10.1
+  franz_kadett_211:
+    User: franz
+    Vehicle: kadett
+    date: '1993-02-22'
+    comment: Benzina
+    kilometers: 67078
+    amount: 30
+    Category: fuel
+    quantity: 30.3
+  franz_kadett_212:
+    User: franz
+    Vehicle: kadett
+    date: '1993-03-01'
+    comment: Benzina
+    kilometers: 67457
+    amount: 10
+    Category: fuel
+    quantity: 10.1
+  franz_kadett_213:
+    User: franz
+    Vehicle: kadett
+    date: '1993-03-03'
+    comment: Benzina
+    kilometers: 67582
+    amount: 200
+    Category: fuel
+    quantity: 30
+  franz_kadett_214:
+    User: franz
+    Vehicle: kadett
+    date: '1993-03-08'
+    comment: 'Piccolo servizio e CO'
+    kilometers: 67960
+    amount: 82.5
+    Category: taxes
+  franz_kadett_215:
+    User: franz
+    Vehicle: kadett
+    date: '1993-03-09'
+    comment: Benzina
+    kilometers: 67967
+    amount: 0
+    Category: fuel
+    quantity: 41
+  franz_kadett_216:
+    User: franz
+    Vehicle: kadett
+    date: '1993-03-21'
+    comment: Benzina
+    kilometers: 68509
+    amount: 20
+    Category: fuel
+    quantity: 20.4
+  franz_kadett_217:
+    User: franz
+    Vehicle: kadett
+    date: '1993-03-26'
+    comment: Benzina
+    kilometers: 68773
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_218:
+    User: franz
+    Vehicle: kadett
+    date: '1993-03-31'
+    comment: Benzina
+    kilometers: 69189
+    amount: 10
+    Category: fuel
+    quantity: 6.4
+  franz_kadett_219:
+    User: franz
+    Vehicle: kadett
+    date: '1993-03-31'
+    comment: Benzina
+    kilometers: 69311
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_220:
+    User: franz
+    Vehicle: kadett
+    date: '1993-04-06'
+    comment: Benzina
+    kilometers: 69764
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_221:
+    User: franz
+    Vehicle: kadett
+    date: '1993-04-13'
+    comment: Benzina
+    kilometers: 70172
+    amount: 200
+    Category: fuel
+    quantity: 30
+  franz_kadett_222:
+    User: franz
+    Vehicle: kadett
+    date: '1993-04-18'
+    comment: Benzina
+    kilometers: 70539
+    amount: 40
+    Category: fuel
+    quantity: 33.3
+  franz_kadett_223:
+    User: franz
+    Vehicle: kadett
+    date: '1993-04-21'
+    comment: Benzina
+    kilometers: 71032
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_224:
+    User: franz
+    Vehicle: kadett
+    date: '1993-04-24'
+    comment: 'Cambio gomme estate'
+    kilometers: 71280
+    amount: 29
+    Category: maintenance
+  franz_kadett_225:
+    User: franz
+    Vehicle: kadett
+    date: '1993-04-25'
+    comment: Benzina
+    kilometers: 71488
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_226:
+    User: franz
+    Vehicle: kadett
+    date: '1993-05-01'
+    comment: Benzina
+    kilometers: 71853
+    amount: 30
+    Category: fuel
+    quantity: 25
+  franz_kadett_227:
+    User: franz
+    Vehicle: kadett
+    date: '1993-05-05'
+    comment: Benzina
+    kilometers: 72168
+    amount: 30
+    Category: fuel
+    quantity: 25
+  franz_kadett_228:
+    User: franz
+    Vehicle: kadett
+    date: '1993-05-12'
+    comment: Benzina
+    kilometers: 72525
+    amount: 30
+    Category: fuel
+    quantity: 25
+  franz_kadett_229:
+    User: franz
+    Vehicle: kadett
+    date: '1993-05-15'
+    comment: Benzina
+    kilometers: 72851
+    amount: 30
+    Category: fuel
+    quantity: 25
+  franz_kadett_230:
+    User: franz
+    Vehicle: kadett
+    date: '1993-05-23'
+    comment: Benzina
+    kilometers: 73210
+    amount: 30
+    Category: fuel
+    quantity: 25
+  franz_kadett_231:
+    User: franz
+    Vehicle: kadett
+    date: '1993-05-26'
+    comment: Benzina
+    kilometers: 73568
+    amount: 30
+    Category: fuel
+    quantity: 25
+  franz_kadett_232:
+    User: franz
+    Vehicle: kadett
+    date: '1993-06-02'
+    comment: Benzina
+    kilometers: 73948
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_233:
+    User: franz
+    Vehicle: kadett
+    date: '1993-06-07'
+    comment: Benzina
+    kilometers: 74301
+    amount: 40
+    Category: fuel
+    quantity: 33.3
+  franz_kadett_234:
+    User: franz
+    Vehicle: kadett
+    date: '1993-06-09'
+    comment: Benzina
+    kilometers: 74818
+    amount: 40
+    Category: fuel
+    quantity: 33.1
+  franz_kadett_235:
+    User: franz
+    Vehicle: kadett
+    date: '1993-06-14'
+    comment: 'Servizio 75''000 km'
+    kilometers: 75032
+    amount: 406.3
+    Category: maintenance
+  franz_kadett_236:
+    User: franz
+    Vehicle: kadett
+    date: '1993-06-18'
+    comment: Benzina
+    kilometers: 75244
+    amount: 200
+    Category: fuel
+    quantity: 39.4
+  franz_kadett_237:
+    User: franz
+    Vehicle: kadett
+    date: '1993-06-18'
+    comment: 'Assicurazione 2° sem. 93'
+    kilometers: 75244
+    amount: 558
+    Category: insurance
+  franz_kadett_238:
+    User: franz
+    Vehicle: kadett
+    date: '1993-06-21'
+    comment: 'Benzina (Italia)'
+    kilometers: 75823
+    amount: 558.3
+    Category: fuel
+    quantity: 32
+  franz_kadett_239:
+    User: franz
+    Vehicle: kadett
+    date: '1993-07-02'
+    comment: 'Benzina (Italia)'
+    kilometers: 76200
+    amount: 50
+    Category: fuel
+    quantity: 32.2
+  franz_kadett_240:
+    User: franz
+    Vehicle: kadett
+    date: '1993-07-03'
+    comment: 'Benzina (Italia)'
+    kilometers: 76678
+    amount: 10
+    Category: fuel
+    quantity: 6.4
+  franz_kadett_241:
+    User: franz
+    Vehicle: kadett
+    date: '1993-07-05'
+    comment: Benzina
+    kilometers: 76816
+    amount: 20
+    Category: fuel
+    quantity: 16.4
+  franz_kadett_242:
+    User: franz
+    Vehicle: kadett
+    date: '1993-07-08'
+    comment: Benzina
+    kilometers: 76984
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_243:
+    User: franz
+    Vehicle: kadett
+    date: '1993-07-12'
+    comment: Benzina
+    kilometers: 77472
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_244:
+    User: franz
+    Vehicle: kadett
+    date: '1993-07-17'
+    comment: Benzina
+    kilometers: 77937
+    amount: 30
+    Category: fuel
+    quantity: 25.4
+  franz_kadett_245:
+    User: franz
+    Vehicle: kadett
+    date: '1993-07-21'
+    comment: Benzina
+    kilometers: 78282
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_246:
+    User: franz
+    Vehicle: kadett
+    date: '1993-07-28'
+    comment: Benzina
+    kilometers: 78699
+    amount: 30
+    Category: fuel
+    quantity: 24.6
+  franz_kadett_247:
+    User: franz
+    Vehicle: kadett
+    date: '1993-07-31'
+    comment: Benzina
+    kilometers: 79030
+    amount: 30
+    Category: fuel
+    quantity: 25.2
+  franz_kadett_248:
+    User: franz
+    Vehicle: kadett
+    date: '1993-08-02'
+    comment: 'Controllo sospensioni, geometria'
+    kilometers: 0
+    amount: 100
+    Category: taxes
+  franz_kadett_249:
+    User: franz
+    Vehicle: kadett
+    date: '1993-08-06'
+    comment: Benzina
+    kilometers: 79398
+    amount: 0
+    Category: fuel
+    quantity: 35
+  franz_kadett_250:
+    User: franz
+    Vehicle: kadett
+    date: '1993-08-16'
+    comment: Benzina
+    kilometers: 79906
+    amount: 200
+    Category: fuel
+    quantity: 5.3
+  franz_kadett_251:
+    User: franz
+    Vehicle: kadett
+    date: '1993-08-17'
+    comment: Benzina
+    kilometers: 79962
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_252:
+    User: franz
+    Vehicle: kadett
+    date: '1993-08-24'
+    comment: Benzina
+    kilometers: 80387
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_253:
+    User: franz
+    Vehicle: kadett
+    date: '1993-08-30'
+    comment: Benzina
+    kilometers: 80797
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_254:
+    User: franz
+    Vehicle: kadett
+    date: '1993-09-06'
+    comment: Benzina
+    kilometers: 81248
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_255:
+    User: franz
+    Vehicle: kadett
+    date: '1993-09-12'
+    comment: 'Contr. cinghia dist. e pompa acqua'
+    kilometers: 81605
+    amount: 387
+    Category: taxes
+  franz_kadett_256:
+    User: franz
+    Vehicle: kadett
+    date: '1993-09-14'
+    comment: Benzina
+    kilometers: 81689
+    amount: 0
+    Category: fuel
+    quantity: 30.1
+  franz_kadett_257:
+    User: franz
+    Vehicle: kadett
+    date: '1993-09-17'
+    comment: Benzina
+    kilometers: 82139
+    amount: 0
+    Category: fuel
+    quantity: 26.5
+  franz_kadett_258:
+    User: franz
+    Vehicle: kadett
+    date: '1993-09-19'
+    comment: Benzina
+    kilometers: 82490
+    amount: 20
+    Category: fuel
+    quantity: 17
+  franz_kadett_259:
+    User: franz
+    Vehicle: kadett
+    date: '1993-09-21'
+    comment: Benzina
+    kilometers: 82753
+    amount: 10
+    Category: fuel
+    quantity: 8.7
+  franz_kadett_260:
+    User: franz
+    Vehicle: kadett
+    date: '1993-09-22'
+    comment: 'Cambio olio'
+    kilometers: 82815
+    amount: 77.5
+    Category: maintenance
+  franz_kadett_261:
+    User: franz
+    Vehicle: kadett
+    date: '1993-09-23'
+    comment: Benzina
+    kilometers: 82890
+    amount: 20
+    Category: fuel
+    quantity: 17.3
+  franz_kadett_262:
+    User: franz
+    Vehicle: kadett
+    date: '1993-09-27'
+    comment: Benzina
+    kilometers: 83122
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_263:
+    User: franz
+    Vehicle: kadett
+    date: '1993-10-03'
+    comment: Benzina
+    kilometers: 83442
+    amount: 40
+    Category: fuel
+    quantity: 36.4
+  franz_kadett_264:
+    User: franz
+    Vehicle: kadett
+    date: '1993-10-06'
+    comment: Benzina
+    kilometers: 84024
+    amount: 30
+    Category: fuel
+    quantity: 27
+  franz_kadett_265:
+    User: franz
+    Vehicle: kadett
+    date: '1993-10-13'
+    comment: Benzina
+    kilometers: 84364
+    amount: 30
+    Category: fuel
+    quantity: 27
+  franz_kadett_266:
+    User: franz
+    Vehicle: kadett
+    date: '1993-10-19'
+    comment: Benzina
+    kilometers: 84687
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_267:
+    User: franz
+    Vehicle: kadett
+    date: '1993-10-19'
+    comment: 'Cambiato freni'
+    kilometers: 84698
+    amount: 332
+    Category: maintenance
+  franz_kadett_268:
+    User: franz
+    Vehicle: kadett
+    date: '1993-10-25'
+    comment: Benzina
+    kilometers: 85081
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_269:
+    User: franz
+    Vehicle: kadett
+    date: '1993-10-27'
+    comment: Benzina
+    kilometers: 85422
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_270:
+    User: franz
+    Vehicle: kadett
+    date: '1993-11-01'
+    comment: Benzina
+    kilometers: 85755
+    amount: 30
+    Category: fuel
+    quantity: 27.3
+  franz_kadett_271:
+    User: franz
+    Vehicle: kadett
+    date: '1993-11-08'
+    comment: Benzina
+    kilometers: 86102
+    amount: 0
+    Category: fuel
+    quantity: 25.6
+  franz_kadett_272:
+    User: franz
+    Vehicle: kadett
+    date: '1993-11-09'
+    comment: 'Riparazione scappamento'
+    kilometers: 86108
+    amount: 108.5
+    Category: maintenance
+  franz_kadett_273:
+    User: franz
+    Vehicle: kadett
+    date: '1993-11-14'
+    comment: Benzina
+    kilometers: 86407
+    amount: 35
+    Category: fuel
+    quantity: 30.2
+  franz_kadett_274:
+    User: franz
+    Vehicle: kadett
+    date: '1993-11-20'
+    comment: Benzina
+    kilometers: 86760
+    amount: 30
+    Category: fuel
+    quantity: 26.8
+  franz_kadett_275:
+    User: franz
+    Vehicle: kadett
+    date: '1993-11-25'
+    comment: Benzina
+    kilometers: 87073
+    amount: 30
+    Category: fuel
+    quantity: 26.5
+  franz_kadett_276:
+    User: franz
+    Vehicle: kadett
+    date: '1993-11-30'
+    comment: Benzina
+    kilometers: 87435
+    amount: 10
+    Category: fuel
+    quantity: 8.8
+  franz_kadett_277:
+    User: franz
+    Vehicle: kadett
+    date: '1993-12-02'
+    comment: Benzina
+    kilometers: 87501
+    amount: 0
+    Category: fuel
+    quantity: 35
+  franz_kadett_278:
+    User: franz
+    Vehicle: kadett
+    date: '1993-12-07'
+    comment: Benzina
+    kilometers: 87931
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_279:
+    User: franz
+    Vehicle: kadett
+    date: '1993-12-15'
+    comment: Benzina
+    kilometers: 88311
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_280:
+    User: franz
+    Vehicle: kadett
+    date: '1993-12-21'
+    comment: 'Cambio gomme (2 da neve)'
+    kilometers: 88675
+    amount: 220
+    Category: maintenance
+  franz_kadett_281:
+    User: franz
+    Vehicle: kadett
+    date: '1993-12-22'
+    comment: Benzina
+    kilometers: 88682
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_282:
+    User: franz
+    Vehicle: kadett
+    date: '1993-12-27'
+    comment: Lavaggio
+    kilometers: 89008
+    amount: 9.5
+    Category: maintenance
+  franz_kadett_283:
+    User: franz
+    Vehicle: kadett
+    date: '1993-12-27'
+    comment: 'Assicurazione1° sem. 94'
+    kilometers: 0
+    amount: 558.3
+    Category: insurance
+  franz_kadett_284:
+    User: franz
+    Vehicle: kadett
+    date: '1993-12-27'
+    comment: Benzina
+    kilometers: 89021
+    amount: 35
+    Category: fuel
+    quantity: 31.5
+  franz_kadett_285:
+    User: franz
+    Vehicle: kadett
+    date: '1994-01-11'
+    comment: Benzina
+    kilometers: 89363
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_286:
+    User: franz
+    Vehicle: kadett
+    date: '1994-01-14'
+    comment: Benzina
+    kilometers: 89773
+    amount: 0
+    Category: fuel
+    quantity: 25
+  franz_kadett_287:
+    User: franz
+    Vehicle: kadett
+    date: '1994-01-20'
+    comment: 'Servizio 90''000 km'
+    kilometers: 90064
+    amount: 527.5
+    Category: maintenance
+  franz_kadett_288:
+    User: franz
+    Vehicle: kadett
+    date: '1994-01-21'
+    comment: Benzina
+    kilometers: 90111
+    amount: 200
+    Category: fuel
+    quantity: 35
+  franz_kadett_289:
+    User: franz
+    Vehicle: kadett
+    date: '1994-01-30'
+    comment: Benzina
+    kilometers: 90508
+    amount: 30
+    Category: fuel
+    quantity: 27
+  franz_kadett_290:
+    User: franz
+    Vehicle: kadett
+    date: '1994-02-02'
+    comment: Benzina
+    kilometers: 90850
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_291:
+    User: franz
+    Vehicle: kadett
+    date: '1994-02-02'
+    comment: 'Circolazione 94'
+    kilometers: 90850
+    amount: 257
+    Category: taxes
+  franz_kadett_292:
+    User: franz
+    Vehicle: kadett
+    date: '1994-02-10'
+    comment: Benzina
+    kilometers: 91247
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_293:
+    User: franz
+    Vehicle: kadett
+    date: '1900-01-14'
+    comment: Benzina
+    kilometers: 91586
+    amount: 30
+    Category: fuel
+    quantity: 27
+  franz_kadett_294:
+    User: franz
+    Vehicle: kadett
+    date: '1994-02-22'
+    comment: Benzina
+    kilometers: 91917
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_295:
+    User: franz
+    Vehicle: kadett
+    date: '1994-02-28'
+    comment: Benzina
+    kilometers: 92278
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_296:
+    User: franz
+    Vehicle: kadett
+    date: '1994-03-07'
+    comment: Benzina
+    kilometers: 92699
+    amount: 0
+    Category: fuel
+    quantity: 25
+  franz_kadett_297:
+    User: franz
+    Vehicle: kadett
+    date: '1994-03-11'
+    comment: Benzina
+    kilometers: 93043
+    amount: 20
+    Category: fuel
+    quantity: 17.7
+  franz_kadett_298:
+    User: franz
+    Vehicle: kadett
+    date: '1994-03-15'
+    comment: Benzina
+    kilometers: 93252
+    amount: 200
+    Category: fuel
+    quantity: 30
+  franz_kadett_299:
+    User: franz
+    Vehicle: kadett
+    date: '1994-03-23'
+    comment: Benzina
+    kilometers: 93687
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_300:
+    User: franz
+    Vehicle: kadett
+    date: '1994-03-29'
+    comment: Benzina
+    kilometers: 94069
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_301:
+    User: franz
+    Vehicle: kadett
+    date: '1994-04-08'
+    comment: Benzina
+    kilometers: 94467
+    amount: 0
+    Category: fuel
+    quantity: 36
+  franz_kadett_302:
+    User: franz
+    Vehicle: kadett
+    date: '1994-04-14'
+    comment: Benzina
+    kilometers: 0
+    amount: 35
+    Category: fuel
+    quantity: 31.1
+  franz_kadett_303:
+    User: franz
+    Vehicle: kadett
+    date: '1994-04-19'
+    comment: Benzina
+    kilometers: 95376
+    amount: 20
+    Category: fuel
+    quantity: 16.1
+  franz_kadett_304:
+    User: franz
+    Vehicle: kadett
+    date: '1994-04-21'
+    comment: Benzina
+    kilometers: 95626
+    amount: 10
+    Category: fuel
+    quantity: 8.4
+  franz_kadett_305:
+    User: franz
+    Vehicle: kadett
+    date: '1994-04-21'
+    comment: Benzina
+    kilometers: 95646
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_306:
+    User: franz
+    Vehicle: kadett
+    date: '1994-04-29'
+    comment: Benzina
+    kilometers: 96125
+    amount: 0
+    Category: fuel
+    quantity: 20
+  franz_kadett_307:
+    User: franz
+    Vehicle: kadett
+    date: '1994-04-30'
+    comment: 'Cambio gomme (2 pezzi)'
+    kilometers: 96145
+    amount: 184
+    Category: maintenance
+  franz_kadett_308:
+    User: franz
+    Vehicle: kadett
+    date: '1994-05-03'
+    comment: Benzina
+    kilometers: 96390
+    amount: 20
+    Category: fuel
+    quantity: 17.1
+  franz_kadett_309:
+    User: franz
+    Vehicle: kadett
+    date: '1994-05-06'
+    comment: Benzina
+    kilometers: 96593
+    amount: 200
+    Category: fuel
+    quantity: 30
+  franz_kadett_310:
+    User: franz
+    Vehicle: kadett
+    date: '1994-05-11'
+    comment: Benzina
+    kilometers: 97068
+    amount: 0
+    Category: fuel
+    quantity: 35
+  franz_kadett_311:
+    User: franz
+    Vehicle: kadett
+    date: '1994-05-19'
+    comment: Benzina
+    kilometers: 97504
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_312:
+    User: franz
+    Vehicle: kadett
+    date: '1994-05-19'
+    comment: 'Servizio 95''000 km e scappamento'
+    kilometers: 97533
+    amount: 329.7
+    Category: maintenance
+  franz_kadett_313:
+    User: franz
+    Vehicle: kadett
+    date: '1994-05-25'
+    comment: Benzina
+    kilometers: 97911
+    amount: 30
+    Category: fuel
+    quantity: 26
+  franz_kadett_314:
+    User: franz
+    Vehicle: kadett
+    date: '1994-05-31'
+    comment: Benzina
+    kilometers: 98248
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_315:
+    User: franz
+    Vehicle: kadett
+    date: '1994-06-06'
+    comment: Benzina
+    kilometers: 98660
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_316:
+    User: franz
+    Vehicle: kadett
+    date: '1994-06-10'
+    comment: Benzina
+    kilometers: 99087
+    amount: 30
+    Category: fuel
+    quantity: 25
+  franz_kadett_317:
+    User: franz
+    Vehicle: kadett
+    date: '1994-06-13'
+    comment: Benzina
+    kilometers: 99483
+    amount: 0
+    Category: fuel
+    quantity: 12
+  franz_kadett_318:
+    User: franz
+    Vehicle: kadett
+    date: '1994-06-15'
+    comment: Benzina
+    kilometers: 99602
+    amount: 210
+    Category: fuel
+    quantity: 8.5
+  franz_kadett_319:
+    User: franz
+    Vehicle: kadett
+    date: '1994-06-16'
+    comment: Benzina
+    kilometers: 99748
+    amount: 20
+    Category: fuel
+    quantity: 17
+  franz_kadett_320:
+    User: franz
+    Vehicle: kadett
+    date: '1994-06-19'
+    comment: Benzina
+    kilometers: 100001
+    amount: 20
+    Category: fuel
+    quantity: 16.9
+  franz_kadett_321:
+    User: franz
+    Vehicle: kadett
+    date: '1994-06-24'
+    comment: Benzina
+    kilometers: 100281
+    amount: 30
+    Category: fuel
+    quantity: 26
+  franz_kadett_322:
+    User: franz
+    Vehicle: kadett
+    date: '1994-06-29'
+    comment: Benzina
+    kilometers: 100572
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_323:
+    User: franz
+    Vehicle: kadett
+    date: '1994-06-30'
+    comment: Benzina
+    kilometers: 101019
+    amount: 30.05
+    Category: fuel
+    quantity: 25.7
+  franz_kadett_324:
+    User: franz
+    Vehicle: kadett
+    date: '1994-06-30'
+    comment: 'Assicurazione 2° sem. 94'
+    kilometers: 100850
+    amount: 558.3
+    Category: insurance
+  franz_kadett_325:
+    User: franz
+    Vehicle: kadett
+    date: '1994-07-07'
+    comment: Benzina
+    kilometers: 101433
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_326:
+    User: franz
+    Vehicle: kadett
+    date: '1994-07-12'
+    comment: Benzina
+    kilometers: 101905
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_327:
+    User: franz
+    Vehicle: kadett
+    date: '1994-07-19'
+    comment: Benzina
+    kilometers: 102253
+    amount: 40
+    Category: fuel
+    quantity: 34.2
+  franz_kadett_328:
+    User: franz
+    Vehicle: kadett
+    date: '1994-07-23'
+    comment: Benzina
+    kilometers: 102757
+    amount: 30
+    Category: fuel
+    quantity: 35.6
+  franz_kadett_329:
+    User: franz
+    Vehicle: kadett
+    date: '1994-07-27'
+    comment: Benzina
+    kilometers: 103187
+    amount: 40
+    Category: fuel
+    quantity: 34.2
+  franz_kadett_330:
+    User: franz
+    Vehicle: kadett
+    date: '1994-07-30'
+    comment: Benzina
+    kilometers: 103633
+    amount: 20
+    Category: fuel
+    quantity: 16.7
+  franz_kadett_331:
+    User: franz
+    Vehicle: kadett
+    date: '1994-08-04'
+    comment: Benzina
+    kilometers: 103934
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_332:
+    User: franz
+    Vehicle: kadett
+    date: '1994-08-09'
+    comment: Benzina
+    kilometers: 104360
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_333:
+    User: franz
+    Vehicle: kadett
+    date: '1994-08-15'
+    comment: Benzina
+    kilometers: 104719
+    amount: 30
+    Category: fuel
+    quantity: 24.6
+  franz_kadett_334:
+    User: franz
+    Vehicle: kadett
+    date: '1994-08-22'
+    comment: 'Serviz. 105''000 km e freni ant.'
+    kilometers: 104967
+    amount: 1064.9
+    Category: maintenance
+  franz_kadett_335:
+    User: franz
+    Vehicle: kadett
+    date: '1994-08-24'
+    comment: Benzina
+    kilometers: 105055
+    amount: 20
+    Category: fuel
+    quantity: 17.4
+  franz_kadett_336:
+    User: franz
+    Vehicle: kadett
+    date: '1994-08-30'
+    comment: Benzina
+    kilometers: 105294
+    amount: 0
+    Category: fuel
+    quantity: 20
+  franz_kadett_337:
+    User: franz
+    Vehicle: kadett
+    date: '1994-09-04'
+    comment: Benzina
+    kilometers: 105533
+    amount: 30
+    Category: fuel
+    quantity: 25.6
+  franz_kadett_338:
+    User: franz
+    Vehicle: kadett
+    date: '1994-09-09'
+    comment: Benzina
+    kilometers: 105976
+    amount: 20
+    Category: fuel
+    quantity: 16.5
+  franz_kadett_339:
+    User: franz
+    Vehicle: kadett
+    date: '1994-09-12'
+    comment: Benzina
+    kilometers: 106173
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_340:
+    User: franz
+    Vehicle: kadett
+    date: '1994-09-17'
+    comment: Benzina
+    kilometers: 106610
+    amount: 30
+    Category: fuel
+    quantity: 26.4
+  franz_kadett_341:
+    User: franz
+    Vehicle: kadett
+    date: '1994-09-21'
+    comment: Benzina
+    kilometers: 106977
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_342:
+    User: franz
+    Vehicle: kadett
+    date: '1994-09-28'
+    comment: 'Rifatto freni anteriori'
+    kilometers: 107328
+    amount: 0
+    Category: maintenance
+  franz_kadett_343:
+    User: franz
+    Vehicle: kadett
+    date: '1994-09-29'
+    comment: Benzina
+    kilometers: 107394
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_344:
+    User: franz
+    Vehicle: kadett
+    date: '1994-10-04'
+    comment: Benzina
+    kilometers: 107805
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_345:
+    User: franz
+    Vehicle: kadett
+    date: '1994-10-09'
+    comment: Benzina
+    kilometers: 108225
+    amount: 30
+    Category: fuel
+    quantity: 26.1
+  franz_kadett_346:
+    User: franz
+    Vehicle: kadett
+    date: '1994-10-13'
+    comment: Benzina
+    kilometers: 108625
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_347:
+    User: franz
+    Vehicle: kadett
+    date: '1994-10-18'
+    comment: Benzina
+    kilometers: 109063
+    amount: 0
+    Category: fuel
+    quantity: 25
+  franz_kadett_348:
+    User: franz
+    Vehicle: kadett
+    date: '1994-10-19'
+    comment: 'Multa zona pedonale'
+    kilometers: 0
+    amount: 50
+    Category: fines
+  franz_kadett_349:
+    User: franz
+    Vehicle: kadett
+    date: '1994-10-21'
+    comment: Benzina
+    kilometers: 109362
+    amount: 20
+    Category: fuel
+    quantity: 17.4
+  franz_kadett_350:
+    User: franz
+    Vehicle: kadett
+    date: '1994-10-24'
+    comment: Benzina
+    kilometers: 109615
+    amount: 20
+    Category: fuel
+    quantity: 17.2
+  franz_kadett_351:
+    User: franz
+    Vehicle: kadett
+    date: '1994-10-27'
+    comment: Benzina
+    kilometers: 109843
+    amount: 0
+    Category: fuel
+    quantity: 35
+  franz_kadett_352:
+    User: franz
+    Vehicle: kadett
+    date: '1994-10-28'
+    comment: 'Multa radar'
+    kilometers: 109907
+    amount: 100
+    Category: fines
+  franz_kadett_353:
+    User: franz
+    Vehicle: kadett
+    date: '1994-11-01'
+    comment: Benzina
+    kilometers: 110310
+    amount: 30
+    Category: fuel
+    quantity: 26.7
+  franz_kadett_354:
+    User: franz
+    Vehicle: kadett
+    date: '1994-11-05'
+    comment: Benzina
+    kilometers: 110688
+    amount: 20
+    Category: fuel
+    quantity: 17.6
+  franz_kadett_355:
+    User: franz
+    Vehicle: kadett
+    date: '1994-11-08'
+    comment: Benzina
+    kilometers: 110878
+    amount: 0
+    Category: fuel
+    quantity: 35
+  franz_kadett_356:
+    User: franz
+    Vehicle: kadett
+    date: '1994-11-12'
+    comment: Benzina
+    kilometers: 111426
+    amount: 30
+    Category: fuel
+    quantity: 26.4
+  franz_kadett_357:
+    User: franz
+    Vehicle: kadett
+    date: '1994-11-14'
+    comment: Guarnizione
+    kilometers: 111463
+    amount: 0
+    Category: maintenance
+  franz_kadett_358:
+    User: franz
+    Vehicle: kadett
+    date: '1994-11-19'
+    comment: Benzina
+    kilometers: 111753
+    amount: 30
+    Category: fuel
+    quantity: 26.4
+  franz_kadett_359:
+    User: franz
+    Vehicle: kadett
+    date: '1994-11-23'
+    comment: Benzina
+    kilometers: 112124
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_360:
+    User: franz
+    Vehicle: kadett
+    date: '1994-11-28'
+    comment: Benzina
+    kilometers: 112483
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_361:
+    User: franz
+    Vehicle: kadett
+    date: '1994-11-29'
+    comment: 'Multa radar'
+    kilometers: 112610
+    amount: 100
+    Category: fines
+  franz_kadett_362:
+    User: franz
+    Vehicle: kadett
+    date: '1994-11-30'
+    comment: 'Cambio olio e misuratore aria'
+    kilometers: 112752
+    amount: 267
+    Category: maintenance
+  franz_kadett_363:
+    User: franz
+    Vehicle: kadett
+    date: '1994-12-02'
+    comment: Benzina
+    kilometers: 112969
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_364:
+    User: franz
+    Vehicle: kadett
+    date: '1994-12-03'
+    comment: 'Cambio gomme'
+    kilometers: 113076
+    amount: 45
+    Category: maintenance
+  franz_kadett_365:
+    User: franz
+    Vehicle: kadett
+    date: '1994-12-11'
+    comment: Benzina
+    kilometers: 113407
+    amount: 30
+    Category: fuel
+    quantity: 26.7
+  franz_kadett_366:
+    User: franz
+    Vehicle: kadett
+    date: '1994-12-15'
+    comment: Benzina
+    kilometers: 113779
+    amount: 0
+    Category: fuel
+    quantity: 15
+  franz_kadett_367:
+    User: franz
+    Vehicle: kadett
+    date: '1994-12-17'
+    comment: Benzina
+    kilometers: 113957
+    amount: 30
+    Category: fuel
+    quantity: 26.1
+  franz_kadett_368:
+    User: franz
+    Vehicle: kadett
+    date: '1994-12-23'
+    comment: Benzina
+    kilometers: 114321
+    amount: 200
+    Category: fuel
+    quantity: 40
+  franz_kadett_369:
+    User: franz
+    Vehicle: kadett
+    date: '1994-12-27'
+    comment: 'Assicurazione 1° sem 95'
+    kilometers: 114150
+    amount: 371.5
+    Category: insurance
+  franz_kadett_370:
+    User: franz
+    Vehicle: kadett
+    date: '1994-12-31'
+    comment: Benzina
+    kilometers: 114837
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_371:
+    User: franz
+    Vehicle: kadett
+    date: '1995-01-02'
+    comment: Lavaggio
+    kilometers: 114944
+    amount: 10
+    Category: maintenance
+  franz_kadett_372:
+    User: franz
+    Vehicle: kadett
+    date: '1995-01-02'
+    comment: 'Vignetta 95'
+    kilometers: 114944
+    amount: 40
+    Category: taxes
+  franz_kadett_373:
+    User: franz
+    Vehicle: kadett
+    date: '1995-01-08'
+    comment: Benzina
+    kilometers: 115212
+    amount: 20
+    Category: fuel
+    quantity: 17.5
+  franz_kadett_374:
+    User: franz
+    Vehicle: kadett
+    date: '1995-01-11'
+    comment: Benzina
+    kilometers: 115465
+    amount: 30.5
+    Category: fuel
+    quantity: 27.1
+  franz_kadett_375:
+    User: franz
+    Vehicle: kadett
+    date: '1995-01-16'
+    comment: Benzina
+    kilometers: 115818
+    amount: 30
+    Category: fuel
+    quantity: 26.7
+  franz_kadett_376:
+    User: franz
+    Vehicle: kadett
+    date: '1995-01-19'
+    comment: Benzina
+    kilometers: 116219
+    amount: 20
+    Category: fuel
+    quantity: 17.2
+  franz_kadett_377:
+    User: franz
+    Vehicle: kadett
+    date: '1995-01-21'
+    comment: Benzina
+    kilometers: 116438
+    amount: 25
+    Category: fuel
+    quantity: 21.6
+  franz_kadett_378:
+    User: franz
+    Vehicle: kadett
+    date: '1995-01-25'
+    comment: Benzina
+    kilometers: 116754
+    amount: 0
+    Category: fuel
+    quantity: 35
+  franz_kadett_379:
+    User: franz
+    Vehicle: kadett
+    date: '1995-01-29'
+    comment: Benzina
+    kilometers: 117172
+    amount: 30
+    Category: fuel
+    quantity: 26.4
+  franz_kadett_380:
+    User: franz
+    Vehicle: kadett
+    date: '1995-01-29'
+    comment: Lavaggio
+    kilometers: 117172
+    amount: 10
+    Category: maintenance
+  franz_kadett_381:
+    User: franz
+    Vehicle: kadett
+    date: '1995-02-01'
+    comment: 'Multa senso vietato (Pte Tresa)'
+    kilometers: 117401
+    amount: 45
+    Category: fines
+  franz_kadett_382:
+    User: franz
+    Vehicle: kadett
+    date: '1995-02-01'
+    comment: 'Circolazione 95'
+    kilometers: 117401
+    amount: 257
+    Category: taxes
+  franz_kadett_383:
+    User: franz
+    Vehicle: kadett
+    date: '1995-02-03'
+    comment: Benzina
+    kilometers: 117566
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_384:
+    User: franz
+    Vehicle: kadett
+    date: '1995-02-07'
+    comment: Benzina
+    kilometers: 117948
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_385:
+    User: franz
+    Vehicle: kadett
+    date: '1995-02-12'
+    comment: Benzina
+    kilometers: 118369
+    amount: 30
+    Category: fuel
+    quantity: 26.4
+  franz_kadett_386:
+    User: franz
+    Vehicle: kadett
+    date: '1995-02-16'
+    comment: Benzina
+    kilometers: 118767
+    amount: 0
+    Category: fuel
+    quantity: 10
+  franz_kadett_387:
+    User: franz
+    Vehicle: kadett
+    date: '1995-02-16'
+    comment: Benzina
+    kilometers: 118905
+    amount: 20
+    Category: fuel
+    quantity: 17.6
+  franz_kadett_388:
+    User: franz
+    Vehicle: kadett
+    date: '1995-02-19'
+    comment: Benzina
+    kilometers: 119158
+    amount: 30
+    Category: fuel
+    quantity: 26.4
+  franz_kadett_389:
+    User: franz
+    Vehicle: kadett
+    date: '1995-02-24'
+    comment: Benzina
+    kilometers: 119520
+    amount: 20
+    Category: fuel
+    quantity: 17.2
+  franz_kadett_390:
+    User: franz
+    Vehicle: kadett
+    date: '1995-02-26'
+    comment: Benzina
+    kilometers: 119789
+    amount: 30
+    Category: fuel
+    quantity: 26.4
+  franz_kadett_391:
+    User: franz
+    Vehicle: kadett
+    date: '1995-03-03'
+    comment: Benzina
+    kilometers: 120136
+    amount: 20
+    Category: fuel
+    quantity: 17.2
+  franz_kadett_392:
+    User: franz
+    Vehicle: kadett
+    date: '1995-03-06'
+    comment: Benzina
+    kilometers: 120373
+    amount: 20
+    Category: fuel
+    quantity: 17.2
+  franz_kadett_393:
+    User: franz
+    Vehicle: kadett
+    date: '1995-03-10'
+    comment: Benzina
+    kilometers: 120521
+    amount: 200
+    Category: fuel
+    quantity: 30
+  franz_kadett_394:
+    User: franz
+    Vehicle: kadett
+    date: '1995-03-13'
+    comment: 'Servizio 120''000 km + CO'
+    kilometers: 120810
+    amount: 398
+    Category: taxes
+  franz_kadett_395:
+    User: franz
+    Vehicle: kadett
+    date: '1995-03-16'
+    comment: Benzina
+    kilometers: 120991
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_396:
+    User: franz
+    Vehicle: kadett
+    date: '1995-03-21'
+    comment: Benzina
+    kilometers: 121429
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_397:
+    User: franz
+    Vehicle: kadett
+    date: '1995-03-26'
+    comment: Benzina
+    kilometers: 121826
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_398:
+    User: franz
+    Vehicle: kadett
+    date: '1995-04-02'
+    comment: Benzina
+    kilometers: 122246
+    amount: 30
+    Category: fuel
+    quantity: 26.4
+  franz_kadett_399:
+    User: franz
+    Vehicle: kadett
+    date: '1995-04-03'
+    comment: 'Cambio gomme estate'
+    kilometers: 122279
+    amount: 380
+    Category: maintenance
+  franz_kadett_400:
+    User: franz
+    Vehicle: kadett
+    date: '1995-04-09'
+    comment: Benzina
+    kilometers: 122615
+    amount: 30
+    Category: fuel
+    quantity: 26.4
+  franz_kadett_401:
+    User: franz
+    Vehicle: kadett
+    date: '1995-04-14'
+    comment: Benzina
+    kilometers: 122887
+    amount: 30
+    Category: fuel
+    quantity: 26.4
+  franz_kadett_402:
+    User: franz
+    Vehicle: kadett
+    date: '1995-04-19'
+    comment: Benzina
+    kilometers: 123352
+    amount: 30
+    Category: fuel
+    quantity: 24.8
+  franz_kadett_403:
+    User: franz
+    Vehicle: kadett
+    date: '1995-04-20'
+    comment: Benzina
+    kilometers: 123733
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_404:
+    User: franz
+    Vehicle: kadett
+    date: '1995-04-23'
+    comment: Benzina
+    kilometers: 124143
+    amount: 30
+    Category: fuel
+    quantity: 26.4
+  franz_kadett_405:
+    User: franz
+    Vehicle: kadett
+    date: '1995-04-30'
+    comment: Benzina
+    kilometers: 124493
+    amount: 0
+    Category: fuel
+    quantity: 25
+  franz_kadett_406:
+    User: franz
+    Vehicle: kadett
+    date: '1995-05-05'
+    comment: Benzina
+    kilometers: 124875
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_407:
+    User: franz
+    Vehicle: kadett
+    date: '1995-05-09'
+    comment: Benzina
+    kilometers: 125321
+    amount: 30
+    Category: fuel
+    quantity: 26.4
+  franz_kadett_408:
+    User: franz
+    Vehicle: kadett
+    date: '1995-05-10'
+    comment: Benzina
+    kilometers: 125742
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_409:
+    User: franz
+    Vehicle: kadett
+    date: '1995-05-14'
+    comment: Benzina
+    kilometers: 126213
+    amount: 35
+    Category: fuel
+    quantity: 31.5
+  franz_kadett_410:
+    User: franz
+    Vehicle: kadett
+    date: '1995-05-16'
+    comment: Benzina
+    kilometers: 126665
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_411:
+    User: franz
+    Vehicle: kadett
+    date: '1995-05-20'
+    comment: Benzina
+    kilometers: 127134
+    amount: 30
+    Category: fuel
+    quantity: 26.4
+  franz_kadett_412:
+    User: franz
+    Vehicle: kadett
+    date: '1995-05-25'
+    comment: Benzina
+    kilometers: 127435
+    amount: 30
+    Category: fuel
+    quantity: 26.4
+  franz_kadett_413:
+    User: franz
+    Vehicle: kadett
+    date: '1995-05-29'
+    comment: 'Cambio olio, montato radio'
+    kilometers: 127689
+    amount: 240.9
+    Category: maintenance
+  franz_kadett_414:
+    User: franz
+    Vehicle: kadett
+    date: '1995-05-31'
+    comment: Benzina
+    kilometers: 127863
+    amount: 35
+    Category: fuel
+    quantity: 30.1
+  franz_kadett_415:
+    User: franz
+    Vehicle: kadett
+    date: '1995-06-05'
+    comment: Benzina
+    kilometers: 128317
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_416:
+    User: franz
+    Vehicle: kadett
+    date: '1995-06-08'
+    comment: Benzina
+    kilometers: 128732
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_417:
+    User: franz
+    Vehicle: kadett
+    date: '1995-06-16'
+    comment: Benzina
+    kilometers: 129196
+    amount: 0
+    Category: fuel
+    quantity: 25
+  franz_kadett_418:
+    User: franz
+    Vehicle: kadett
+    date: '1995-06-20'
+    comment: Benzina
+    kilometers: 129471
+    amount: 230
+    Category: fuel
+    quantity: 25.9
+  franz_kadett_419:
+    User: franz
+    Vehicle: kadett
+    date: '1995-06-24'
+    comment: Benzina
+    kilometers: 129801
+    amount: 20
+    Category: fuel
+    quantity: 18.3
+  franz_kadett_420:
+    User: franz
+    Vehicle: kadett
+    date: '1995-06-24'
+    comment: Benzina
+    kilometers: 129804
+    amount: 21.4
+    Category: fuel
+    quantity: 19.5
+  franz_kadett_421:
+    User: franz
+    Vehicle: kadett
+    date: '1995-06-30'
+    comment: 'Assicurazione 2° sem. 95'
+    kilometers: 129950
+    amount: 371.5
+    Category: insurance
+  franz_kadett_422:
+    User: franz
+    Vehicle: kadett
+    date: '1995-07-08'
+    comment: Benzina
+    kilometers: 130385
+    amount: 36
+    Category: fuel
+    quantity: 28.8
+  franz_kadett_423:
+    User: franz
+    Vehicle: kadett
+    date: '1995-07-08'
+    comment: Benzina
+    kilometers: 130783
+    amount: 20
+    Category: fuel
+    quantity: 18.7
+  franz_kadett_424:
+    User: franz
+    Vehicle: kadett
+    date: '1995-07-12'
+    comment: Benzina
+    kilometers: 131012
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_425:
+    User: franz
+    Vehicle: kadett
+    date: '1995-07-19'
+    comment: Benzina
+    kilometers: 131523
+    amount: 30
+    Category: fuel
+    quantity: 26.6
+  franz_kadett_426:
+    User: franz
+    Vehicle: kadett
+    date: '1995-07-24'
+    comment: Benzina
+    kilometers: 131908
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_427:
+    User: franz
+    Vehicle: kadett
+    date: '1995-07-30'
+    comment: Benzina
+    kilometers: 132344
+    amount: 400
+    Category: fuel
+    quantity: 36.5
+  franz_kadett_428:
+    User: franz
+    Vehicle: kadett
+    date: '1995-08-10'
+    comment: Benzina
+    kilometers: 132855
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_429:
+    User: franz
+    Vehicle: kadett
+    date: '1995-08-18'
+    comment: Benzina
+    kilometers: 133233
+    amount: 30
+    Category: fuel
+    quantity: 26.6
+  franz_kadett_430:
+    User: franz
+    Vehicle: kadett
+    date: '1995-08-26'
+    comment: Benzina
+    kilometers: 133569
+    amount: 30
+    Category: fuel
+    quantity: 27.4
+  franz_kadett_431:
+    User: franz
+    Vehicle: kadett
+    date: '1995-08-31'
+    comment: Benzina
+    kilometers: 134047
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_432:
+    User: franz
+    Vehicle: kadett
+    date: '1995-09-06'
+    comment: Benzina
+    kilometers: 134488
+    amount: 0
+    Category: fuel
+    quantity: 27
+  franz_kadett_433:
+    User: franz
+    Vehicle: kadett
+    date: '1995-09-10'
+    comment: Benzina
+    kilometers: 134898
+    amount: 40
+    Category: fuel
+    quantity: 35
+  franz_kadett_434:
+    User: franz
+    Vehicle: kadett
+    date: '1995-09-18'
+    comment: 'Servizio 135''000 km + vari'
+    kilometers: 135266
+    amount: 1122.8
+    Category: maintenance
+  franz_kadett_435:
+    User: franz
+    Vehicle: kadett
+    date: '1995-09-19'
+    comment: Benzina
+    kilometers: 135329
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_436:
+    User: franz
+    Vehicle: kadett
+    date: '1995-09-26'
+    comment: Benzina
+    kilometers: 235751
+    amount: 200
+    Category: fuel
+    quantity: 30
+  franz_kadett_437:
+    User: franz
+    Vehicle: kadett
+    date: '1995-10-01'
+    comment: 'Guarnizione scappamento'
+    kilometers: 136168
+    amount: 56.35
+    Category: maintenance
+  franz_kadett_438:
+    User: franz
+    Vehicle: kadett
+    date: '1995-10-04'
+    comment: Benzina
+    kilometers: 136204
+    amount: 20
+    Category: fuel
+    quantity: 18.3
+  franz_kadett_439:
+    User: franz
+    Vehicle: kadett
+    date: '1995-10-08'
+    comment: Benzina
+    kilometers: 136464
+    amount: 30
+    Category: fuel
+    quantity: 26.6
+  franz_kadett_440:
+    User: franz
+    Vehicle: kadett
+    date: '1995-10-14'
+    comment: Benzina
+    kilometers: 136873
+    amount: 35
+    Category: fuel
+    quantity: 32.9
+  franz_kadett_441:
+    User: franz
+    Vehicle: kadett
+    date: '1995-10-19'
+    comment: Benzina
+    kilometers: 137297
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_442:
+    User: franz
+    Vehicle: kadett
+    date: '1995-10-25'
+    comment: Benzina
+    kilometers: 137691
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_443:
+    User: franz
+    Vehicle: kadett
+    date: '1995-10-31'
+    comment: Benzina
+    kilometers: 138132
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_444:
+    User: franz
+    Vehicle: kadett
+    date: '1995-11-02'
+    comment: Benzina
+    kilometers: 138381
+    amount: 29.5
+    Category: fuel
+    quantity: 28.1
+  franz_kadett_445:
+    User: franz
+    Vehicle: kadett
+    date: '1995-11-06'
+    comment: Benzina
+    kilometers: 138983
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_446:
+    User: franz
+    Vehicle: kadett
+    date: '1995-11-13'
+    comment: Benzina
+    kilometers: 139375
+    amount: 230
+    Category: fuel
+    quantity: 27.4
+  franz_kadett_447:
+    User: franz
+    Vehicle: kadett
+    date: '1995-11-17'
+    comment: Benzina
+    kilometers: 139754
+    amount: 30
+    Category: fuel
+    quantity: 27.4
+  franz_kadett_448:
+    User: franz
+    Vehicle: kadett
+    date: '1995-11-22'
+    comment: Benzina
+    kilometers: 140197
+    amount: 30
+    Category: fuel
+    quantity: 27.5
+  franz_kadett_449:
+    User: franz
+    Vehicle: kadett
+    date: '1995-11-25'
+    comment: 'Cambio gomme'
+    kilometers: 140489
+    amount: 240
+    Category: maintenance
+  franz_kadett_450:
+    User: franz
+    Vehicle: kadett
+    date: '1995-11-27'
+    comment: Benzina
+    kilometers: 140541
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_451:
+    User: franz
+    Vehicle: kadett
+    date: '1995-11-30'
+    comment: Benzina
+    kilometers: 140997
+    amount: 30
+    Category: fuel
+    quantity: 27.4
+  franz_kadett_452:
+    User: franz
+    Vehicle: kadett
+    date: '1995-12-05'
+    comment: Benzina
+    kilometers: 141346
+    amount: 30
+    Category: fuel
+    quantity: 27.5
+  franz_kadett_453:
+    User: franz
+    Vehicle: kadett
+    date: '1995-12-10'
+    comment: Benzina
+    kilometers: 141716
+    amount: 20
+    Category: fuel
+    quantity: 18.3
+  franz_kadett_454:
+    User: franz
+    Vehicle: kadett
+    date: '1995-12-11'
+    comment: Benzina
+    kilometers: 141992
+    amount: 30
+    Category: fuel
+    quantity: 27.4
+  franz_kadett_455:
+    User: franz
+    Vehicle: kadett
+    date: '1995-12-15'
+    comment: Benzina
+    kilometers: 142441
+    amount: 30
+    Category: fuel
+    quantity: 27.4
+  franz_kadett_456:
+    User: franz
+    Vehicle: kadett
+    date: '1995-12-20'
+    comment: Benzina
+    kilometers: 142776
+    amount: 35
+    Category: fuel
+    quantity: 32
+  franz_kadett_457:
+    User: franz
+    Vehicle: kadett
+    date: '1995-12-20'
+    comment: 'Cambio olio'
+    kilometers: 142857
+    amount: 54.3
+    Category: maintenance
+  franz_kadett_458:
+    User: franz
+    Vehicle: kadett
+    date: '1995-12-24'
+    comment: Benzina
+    kilometers: 143227
+    amount: 30
+    Category: fuel
+    quantity: 27.3
+  franz_kadett_459:
+    User: franz
+    Vehicle: kadett
+    date: '1995-12-29'
+    comment: Benzina
+    kilometers: 143627
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_460:
+    User: franz
+    Vehicle: kadett
+    date: '1996-01-04'
+    comment: 'Contr. imp. el. e guarniz. testa'
+    kilometers: 143986
+    amount: 201.3
+    Category: taxes
+  franz_kadett_461:
+    User: franz
+    Vehicle: kadett
+    date: '1996-01-04'
+    comment: Benzina
+    kilometers: 144040
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_462:
+    User: franz
+    Vehicle: kadett
+    date: '1996-01-10'
+    comment: Benzina
+    kilometers: 144437
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_463:
+    User: franz
+    Vehicle: kadett
+    date: '1996-01-17'
+    comment: Benzina
+    kilometers: 144865
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_464:
+    User: franz
+    Vehicle: kadett
+    date: '1996-01-24'
+    comment: Benzina
+    kilometers: 145273
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_kadett_465:
+    User: franz
+    Vehicle: kadett
+    date: '1996-01-27'
+    comment: Benzina
+    kilometers: 145654
+    amount: 40
+    Category: fuel
+    quantity: 36.7
+  franz_kadett_466:
+    User: franz
+    Vehicle: kadett
+    date: '1996-01-29'
+    comment: 'Vignetta ''96'
+    kilometers: 145960
+    amount: 40
+    Category: taxes
+  franz_kadett_467:
+    User: franz
+    Vehicle: kadett
+    date: '1996-01-30'
+    comment: 'Circolazione ''96'
+    kilometers: 146060
+    amount: 257
+    Category: taxes
+  franz_kadett_468:
+    User: franz
+    Vehicle: kadett
+    date: '1996-01-30'
+    comment: 'Assicurazione 1° sem. 96'
+    kilometers: 146060
+    amount: 381.6
+    Category: insurance
+  franz_kadett_469:
+    User: franz
+    Vehicle: kadett
+    date: '1996-02-02'
+    comment: Benzina
+    kilometers: 146151
+    amount: 30
+    Category: fuel
+    quantity: 27.4
+  franz_kadett_470:
+    User: franz
+    Vehicle: kadett
+    date: '1996-02-07'
+    comment: Benzina
+    kilometers: 146502
+    amount: 40
+    Category: fuel
+    quantity: 36.5
+  franz_kadett_471:
+    User: franz
+    Vehicle: kadett
+    date: '1996-02-14'
+    comment: Benzina
+    kilometers: 147004
+    amount: 30
+    Category: fuel
+    quantity: 27.2
+  franz_kadett_472:
+    User: franz
+    Vehicle: kadett
+    date: '1996-02-19'
+    comment: 'Cambiato marmitta'
+    kilometers: 147208
+    amount: 272.65
+    Category: maintenance
+  franz_kadett_473:
+    User: franz
+    Vehicle: kadett
+    date: '1996-02-21'
+    comment: Benzina
+    kilometers: 147306
+    amount: 40
+    Category: fuel
+    quantity: 35.7
+  franz_kadett_474:
+    User: franz
+    Vehicle: kadett
+    date: '1996-03-01'
+    comment: Benzina
+    kilometers: 147832
+    amount: 30
+    Category: fuel
+    quantity: 26.9
+  franz_kadett_475:
+    User: franz
+    Vehicle: kadett
+    date: '1996-03-05'
+    comment: Benzina
+    kilometers: 148201
+    amount: 30
+    Category: fuel
+    quantity: 36.7
+  franz_kadett_476:
+    User: franz
+    Vehicle: kadett
+    date: '1996-03-10'
+    comment: Benzina
+    kilometers: 148525
+    amount: 30
+    Category: fuel
+    quantity: 26.4
+  franz_kadett_477:
+    User: franz
+    Vehicle: kadett
+    date: '1996-03-18'
+    comment: Benzina
+    kilometers: 148964
+    amount: 30
+    Category: fuel
+    quantity: 26.5
+  franz_kadett_478:
+    User: franz
+    Vehicle: kadett
+    date: '1996-03-25'
+    comment: Benzina
+    kilometers: 149328
+    amount: 40
+    Category: fuel
+    quantity: 34.6
+  franz_kadett_479:
+    User: franz
+    Vehicle: kadett
+    date: '1996-04-02'
+    comment: Benzina
+    kilometers: 149818
+    amount: 40
+    Category: fuel
+    quantity: 34.6
+  franz_kadett_480:
+    User: franz
+    Vehicle: kadett
+    date: '1996-04-10'
+    comment: 'Servizio 150''000 km'
+    kilometers: 150164
+    amount: 353.25
+    Category: maintenance
+  franz_kadett_481:
+    User: franz
+    Vehicle: kadett
+    date: '1996-04-12'
+    comment: Benzina
+    kilometers: 150245
+    amount: 30
+    Category: fuel
+    quantity: 25.4
+  franz_kadett_482:
+    User: franz
+    Vehicle: kadett
+    date: '1996-04-16'
+    comment: Benzina
+    kilometers: 150674
+    amount: 30
+    Category: fuel
+    quantity: 25.3
+  franz_kadett_483:
+    User: franz
+    Vehicle: kadett
+    date: '1996-04-18'
+    comment: 'Cambio gomme'
+    kilometers: 150805
+    amount: 34
+    Category: maintenance
+  franz_kadett_484:
+    User: franz
+    Vehicle: kadett
+    date: '1996-04-20'
+    comment: Benzina
+    kilometers: 151003
+    amount: 40
+    Category: fuel
+    quantity: 35.1
+  franz_kadett_485:
+    User: franz
+    Vehicle: kadett
+    date: '1996-04-29'
+    comment: Benzina
+    kilometers: 151556
+    amount: 35
+    Category: fuel
+    quantity: 29.5
+  franz_kadett_486:
+    User: franz
+    Vehicle: kadett
+    date: '1996-05-02'
+    comment: Benzina
+    kilometers: 151985
+    amount: 35
+    Category: fuel
+    quantity: 29.5
+  franz_kadett_487:
+    User: franz
+    Vehicle: kadett
+    date: '1996-05-07'
+    comment: Benzina
+    kilometers: 152382
+    amount: 30
+    Category: fuel
+    quantity: 25.3
+  franz_kadett_488:
+    User: franz
+    Vehicle: kadett
+    date: '1996-05-13'
+    comment: Benzina
+    kilometers: 152908
+    amount: 30
+    Category: fuel
+    quantity: 25.2
+  franz_kadett_489:
+    User: franz
+    Vehicle: kadett
+    date: '1996-05-15'
+    comment: Benzina
+    kilometers: 153260
+    amount: 20
+    Category: fuel
+    quantity: 16.4
+  franz_kadett_490:
+    User: franz
+    Vehicle: kadett
+    date: '1996-05-19'
+    comment: Benzina
+    kilometers: 153625
+    amount: 40
+    Category: fuel
+    quantity: 33.5
+  franz_kadett_491:
+    User: franz
+    Vehicle: kadett
+    date: '1996-05-23'
+    comment: Benzina
+    kilometers: 154106
+    amount: 20
+    Category: fuel
+    quantity: 16.7
+  franz_kadett_492:
+    User: franz
+    Vehicle: kadett
+    date: '1996-05-27'
+    comment: Benzina
+    kilometers: 154375
+    amount: 30
+    Category: fuel
+    quantity: 25.1
+  franz_kadett_493:
+    User: franz
+    Vehicle: kadett
+    date: '1996-06-01'
+    comment: Benzina
+    kilometers: 154723
+    amount: 20
+    Category: fuel
+    quantity: 16.4
+  franz_kadett_494:
+    User: franz
+    Vehicle: kadett
+    date: '1996-06-04'
+    comment: Benzina
+    kilometers: 154942
+    amount: 30
+    Category: fuel
+    quantity: 25.1
+  franz_kadett_495:
+    User: franz
+    Vehicle: kadett
+    date: '1996-06-08'
+    comment: Benzina
+    kilometers: 155351
+    amount: 30
+    Category: fuel
+    quantity: 25.5
+  franz_kadett_496:
+    User: franz
+    Vehicle: kadett
+    date: '1996-06-15'
+    comment: Benzina
+    kilometers: 155804
+    amount: 35
+    Category: fuel
+    quantity: 30.6
+  franz_kadett_497:
+    User: franz
+    Vehicle: kadett
+    date: '1996-06-23'
+    comment: Benzina
+    kilometers: 156262
+    amount: 30
+    Category: fuel
+    quantity: 26.2
+  franz_kadett_498:
+    User: franz
+    Vehicle: kadett
+    date: '1996-06-29'
+    comment: Benzina
+    kilometers: 156618
+    amount: 44
+    Category: fuel
+    quantity: 38.8
+  franz_kadett_499:
+    User: franz
+    Vehicle: kadett
+    date: '1996-06-29'
+    comment: 'Assicurazione 2° sem. 96'
+    kilometers: 156618
+    amount: 388.6
+    Category: insurance
+  franz_kadett_500:
+    User: franz
+    Vehicle: kadett
+    date: '1996-07-13'
+    comment: Benzina
+    kilometers: 157225
+    amount: 57.4
+    Category: fuel
+    quantity: 38.6
+  franz_kadett_501:
+    User: franz
+    Vehicle: kadett
+    date: '1996-07-15'
+    comment: 'Cambio olio'
+    kilometers: 157710
+    amount: 50
+    Category: maintenance
+  franz_kadett_502:
+    User: franz
+    Vehicle: kadett
+    date: '1996-07-18'
+    comment: Benzina
+    kilometers: 157866
+    amount: 30
+    Category: fuel
+    quantity: 25.8
+  franz_kadett_503:
+    User: franz
+    Vehicle: kadett
+    date: '1996-07-24'
+    comment: Benzina
+    kilometers: 158283
+    amount: 20
+    Category: fuel
+    quantity: 16.2
+  franz_kadett_504:
+    User: franz
+    Vehicle: kadett
+    date: '1996-07-29'
+    comment: Benzina
+    kilometers: 158556
+    amount: 30
+    Category: fuel
+    quantity: 25.7
+  franz_kadett_505:
+    User: franz
+    Vehicle: kadett
+    date: '1996-08-07'
+    comment: Benzina
+    kilometers: 158948
+    amount: 30
+    Category: fuel
+    quantity: 26.2
+  franz_kadett_506:
+    User: franz
+    Vehicle: kadett
+    date: '1996-08-13'
+    comment: Benzina
+    kilometers: 159299
+    amount: 30
+    Category: fuel
+    quantity: 26.2
+  franz_kadett_507:
+    User: franz
+    Vehicle: kadett
+    date: '1996-08-17'
+    comment: Benzina
+    kilometers: 159652
+    amount: 20
+    Category: fuel
+    quantity: 16.7
+  franz_kadett_508:
+    User: franz
+    Vehicle: kadett
+    date: '1996-08-22'
+    comment: Benzina
+    kilometers: 159949
+    amount: 30
+    Category: fuel
+    quantity: 26
+  franz_kadett_509:
+    User: franz
+    Vehicle: kadett
+    date: '1996-08-26'
+    comment: Collaudo
+    kilometers: 160059
+    amount: 60
+    Category: taxes
+  franz_kadett_510:
+    User: franz
+    Vehicle: kadett
+    date: '1996-08-26'
+    comment: 'Lavaggio telaio e motore'
+    kilometers: 160059
+    amount: 90
+    Category: maintenance
+  franz_kadett_511:
+    User: franz
+    Vehicle: kadett
+    date: '1996-08-28'
+    comment: Benzina
+    kilometers: 160392
+    amount: 30
+    Category: fuel
+    quantity: 26
+  franz_kadett_512:
+    User: franz
+    Vehicle: kadett
+    date: '1996-08-31'
+    comment: Benzina
+    kilometers: 160734
+    amount: 30
+    Category: fuel
+    quantity: 26
+  franz_kadett_513:
+    User: franz
+    Vehicle: kadett
+    date: '1996-09-04'
+    comment: Benzina
+    kilometers: 161168
+    amount: 30
+    Category: fuel
+    quantity: 26
+  franz_kadett_514:
+    User: franz
+    Vehicle: kadett
+    date: '1996-09-10'
+    comment: Benzina
+    kilometers: 161620
+    amount: 30
+    Category: fuel
+    quantity: 25.5
+  franz_kadett_515:
+    User: franz
+    Vehicle: kadett
+    date: '1996-09-16'
+    comment: Benzina
+    kilometers: 161977
+    amount: 30
+    Category: fuel
+    quantity: 25.3
+  franz_kadett_516:
+    User: franz
+    Vehicle: kadett
+    date: '1996-09-24'
+    comment: Benzina
+    kilometers: 162399
+    amount: 30
+    Category: fuel
+    quantity: 25.3
+  franz_kadett_517:
+    User: franz
+    Vehicle: kadett
+    date: '1996-09-28'
+    comment: Benzina
+    kilometers: 162626
+    amount: 35
+    Category: fuel
+    quantity: 29.2
+  franz_kadett_518:
+    User: franz
+    Vehicle: kadett
+    date: '1996-10-01'
+    comment: Benzina
+    kilometers: 163202
+    amount: 30
+    Category: fuel
+    quantity: 25.3
+  franz_kadett_519:
+    User: franz
+    Vehicle: kadett
+    date: '1996-10-03'
+    comment: Benzina
+    kilometers: 163680
+    amount: 30
+    Category: fuel
+    quantity: 23.5
+  franz_kadett_520:
+    User: franz
+    Vehicle: kadett
+    date: '1996-10-06'
+    comment: Benzina
+    kilometers: 163944
+    amount: 30
+    Category: fuel
+    quantity: 25.3
+  franz_kadett_521:
+    User: franz
+    Vehicle: kadett
+    date: '1996-10-15'
+    comment: Benzina
+    kilometers: 164448
+    amount: 35
+    Category: fuel
+    quantity: 29.3
+  franz_kadett_522:
+    User: franz
+    Vehicle: kadett
+    date: '1996-10-21'
+    comment: Benzina
+    kilometers: 164859
+    amount: 20
+    Category: fuel
+    quantity: 16.4
+  franz_kadett_523:
+    User: franz
+    Vehicle: kadett
+    date: '1996-10-24'
+    comment: Benzina
+    kilometers: 165055
+    amount: 30
+    Category: fuel
+    quantity: 24.7
+  franz_kadett_524:
+    User: franz
+    Vehicle: kadett
+    date: '1996-10-29'
+    comment: 'Cambio olio, piccolo servizio'
+    kilometers: 165368
+    amount: 96.4
+    Category: taxes
+  franz_kadett_525:
+    User: franz
+    Vehicle: kadett
+    date: '1996-10-30'
+    comment: Benzina
+    kilometers: 165420
+    amount: 30
+    Category: fuel
+    quantity: 25.1
+  franz_kadett_526:
+    User: franz
+    Vehicle: kadett
+    date: '1996-11-04'
+    comment: Benzina
+    kilometers: 165770
+    amount: 30
+    Category: fuel
+    quantity: 26.8
+  franz_kadett_527:
+    User: franz
+    Vehicle: kadett
+    date: '1996-11-11'
+    comment: Benzina
+    kilometers: 166158
+    amount: 30
+    Category: fuel
+    quantity: 25.2
+  franz_kadett_528:
+    User: franz
+    Vehicle: kadett
+    date: '1996-11-19'
+    comment: Benzina
+    kilometers: 166512
+    amount: 20
+    Category: fuel
+    quantity: 16.8
+  franz_kadett_529:
+    User: franz
+    Vehicle: kadett
+    date: '1996-11-25'
+    comment: Benzina
+    kilometers: 166749
+    amount: 30
+    Category: fuel
+    quantity: 25.2
+  franz_kadett_530:
+    User: franz
+    Vehicle: kadett
+    date: '1996-11-25'
+    comment: 'Gomme neve (2 nuove, 2 cambio)'
+    kilometers: 166788
+    amount: 206
+    Category: maintenance
+  franz_kadett_531:
+    User: franz
+    Vehicle: kadett
+    date: '1996-12-04'
+    comment: Benzina
+    kilometers: 167061
+    amount: 30
+    Category: fuel
+    quantity: 25.2
+  franz_kadett_532:
+    User: franz
+    Vehicle: kadett
+    date: '1996-12-12'
+    comment: Benzina
+    kilometers: 167470
+    amount: 30
+    Category: fuel
+    quantity: 24.8
+  franz_kadett_533:
+    User: franz
+    Vehicle: kadett
+    date: '1996-12-22'
+    comment: Benzina
+    kilometers: 167804
+    amount: 30
+    Category: fuel
+    quantity: 25.2
+  franz_kadett_534:
+    User: franz
+    Vehicle: kadett
+    date: '1996-12-31'
+    comment: 'Assicurazione 1° sem. 97'
+    kilometers: 167950
+    amount: 359
+    Category: insurance
+  franz_kadett_535:
+    User: franz
+    Vehicle: kadett
+    date: '1997-01-09'
+    comment: Benzina
+    kilometers: 168131
+    amount: 30
+    Category: fuel
+    quantity: 25.6
+  franz_kadett_536:
+    User: franz
+    Vehicle: kadett
+    date: '1997-01-17'
+    comment: Benzina
+    kilometers: 168507
+    amount: 30
+    Category: fuel
+    quantity: 24.7
+  franz_kadett_537:
+    User: franz
+    Vehicle: kadett
+    date: '1997-01-30'
+    comment: Benzina
+    kilometers: 168847
+    amount: 30.05
+    Category: fuel
+    quantity: 24.3
+  franz_kadett_538:
+    User: franz
+    Vehicle: kadett
+    date: '1997-01-31'
+    comment: 'Circolazione 97'
+    kilometers: 168861
+    amount: 270
+    Category: taxes
+  franz_kadett_539:
+    User: franz
+    Vehicle: kadett
+    date: '1997-02-06'
+    comment: 'Vignetta 97'
+    kilometers: 169175
+    amount: 40
+    Category: taxes
+  franz_kadett_540:
+    User: franz
+    Vehicle: kadett
+    date: '1997-02-06'
+    comment: Benzina
+    kilometers: 169175
+    amount: 30
+    Category: fuel
+    quantity: 24.3
+  franz_kadett_541:
+    User: franz
+    Vehicle: kadett
+    date: '1997-02-16'
+    comment: Benzina
+    kilometers: 169507
+    amount: 10
+    Category: fuel
+    quantity: 7.9
+  franz_kadett_542:
+    User: franz
+    Vehicle: kadett
+    date: '1997-02-17'
+    comment: Benzina
+    kilometers: 169608
+    amount: 30
+    Category: fuel
+    quantity: 24.3
+  franz_kadett_543:
+    User: franz
+    Vehicle: kadett
+    date: '1997-02-27'
+    comment: Benzina
+    kilometers: 169952
+    amount: 30
+    Category: fuel
+    quantity: 24.7
+  franz_kadett_544:
+    User: franz
+    Vehicle: kadett
+    date: '1997-03-13'
+    comment: Benzina
+    kilometers: 170297
+    amount: 30
+    Category: fuel
+    quantity: 24.7
+  franz_kadett_545:
+    User: franz
+    Vehicle: kadett
+    date: '1997-03-20'
+    comment: CO
+    kilometers: 170550
+    amount: 50
+    Category: taxes
+  franz_kadett_546:
+    User: franz
+    Vehicle: kadett
+    date: '1997-03-25'
+    comment: Benzina
+    kilometers: 170659
+    amount: 30
+    Category: fuel
+    quantity: 24.7
+  franz_kadett_547:
+    User: franz
+    Vehicle: kadett
+    date: '1997-04-05'
+    comment: 'Cambio gomme'
+    kilometers: 170960
+    amount: 36
+    Category: maintenance
+  franz_kadett_548:
+    User: franz
+    Vehicle: kadett
+    date: '1997-04-07'
+    comment: Benzina
+    kilometers: 170994
+    amount: 30
+    Category: fuel
+    quantity: 25.1
+  franz_kadett_549:
+    User: franz
+    Vehicle: kadett
+    date: '1997-04-15'
+    comment: 'Riparazione 2 cuffie anteriori'
+    kilometers: 171270
+    amount: 208.75
+    Category: maintenance
+  franz_kadett_550:
+    User: franz
+    Vehicle: kadett
+    date: '1997-04-29'
+    comment: Benzina
+    kilometers: 171693
+    amount: 30
+    Category: fuel
+    quantity: 25.4
+  franz_kadett_551:
+    User: franz
+    Vehicle: kadett
+    date: '1997-05-07'
+    comment: Benzina
+    kilometers: 171399
+    amount: 30
+    Category: fuel
+    quantity: 25.4
+  franz_kadett_552:
+    User: franz
+    Vehicle: kadett
+    date: '1997-05-19'
+    comment: Benzina
+    kilometers: 172040
+    amount: 30
+    Category: fuel
+    quantity: 25.7
+  franz_kadett_553:
+    User: franz
+    Vehicle: kadett
+    date: '1997-05-31'
+    comment: Benzina
+    kilometers: 172462
+    amount: 30
+    Category: fuel
+    quantity: 27.5
+  franz_kadett_554:
+    User: franz
+    Vehicle: kadett
+    date: '1997-06-10'
+    comment: Benzina
+    kilometers: 172855
+    amount: 30.05
+    Category: fuel
+    quantity: 24.8
+  franz_kadett_555:
+    User: franz
+    Vehicle: kadett
+    date: '1997-06-12'
+    comment: 'Olio, pastiglie anteriori'
+    kilometers: 172920
+    amount: 385.85
+    Category: maintenance
+  franz_kadett_556:
+    User: franz
+    Vehicle: kadett
+    date: '1997-06-23'
+    comment: Benzina
+    kilometers: 173211
+    amount: 30
+    Category: fuel
+    quantity: 24.7
+  franz_kadett_557:
+    User: franz
+    Vehicle: kadett
+    date: '1997-07-01'
+    comment: 'Assicurazione 2° sem. 97'
+    kilometers: 173500
+    amount: 377.4
+    Category: insurance
+  franz_kadett_558:
+    User: franz
+    Vehicle: kadett
+    date: '1997-07-04'
+    comment: Benzina
+    kilometers: 173600
+    amount: 30
+    Category: fuel
+    quantity: 25.6
+  franz_kadett_559:
+    User: franz
+    Vehicle: kadett
+    date: '1997-07-14'
+    comment: Benzina
+    kilometers: 173929
+    amount: 30
+    Category: fuel
+    quantity: 25.6
+  franz_kadett_560:
+    User: franz
+    Vehicle: kadett
+    date: '1997-07-31'
+    comment: Benzina
+    kilometers: 174286
+    amount: 20
+    Category: fuel
+    quantity: 16.5
+  franz_kadett_561:
+    User: franz
+    Vehicle: kadett
+    date: '1997-08-11'
+    comment: Benzina
+    kilometers: 174527
+    amount: 30
+    Category: fuel
+    quantity: 24.4
+  franz_kadett_562:
+    User: franz
+    Vehicle: kadett
+    date: '1997-08-16'
+    comment: Benzina
+    kilometers: 174735
+    amount: 20
+    Category: fuel
+    quantity: 17.3
+  franz_kadett_563:
+    User: franz
+    Vehicle: kadett
+    date: '1997-08-27'
+    comment: Benzina
+    kilometers: 175113
+    amount: 20
+    Category: fuel
+    quantity: 16.1
+  franz_kadett_564:
+    User: franz
+    Vehicle: kadett
+    date: '1997-08-27'
+    comment: 'Riparazione gomma'
+    kilometers: 175130
+    amount: 20
+    Category: maintenance
+  franz_kadett_565:
+    User: franz
+    Vehicle: kadett
+    date: '1997-09-03'
+    comment: 'Rimborso tessera benzina'
+    kilometers: 175398
+    amount: 30
+    Category: fuel
+    quantity: 24.2
+  franz_kadett_566:
+    User: franz
+    Vehicle: kadett
+    date: '1997-09-15'
+    comment: Benzina
+    kilometers: 175757
+    amount: 30
+    Category: fuel
+    quantity: 24.2
+  franz_kadett_567:
+    User: franz
+    Vehicle: kadett
+    date: '1997-10-10'
+    comment: Benzina
+    kilometers: 176144
+    amount: 30
+    Category: fuel
+    quantity: 24.4
+  franz_kadett_568:
+    User: franz
+    Vehicle: kadett
+    date: '1997-10-13'
+    comment: Benzina
+    kilometers: 176542
+    amount: 30
+    Category: fuel
+    quantity: 24.2
+  franz_kadett_569:
+    User: franz
+    Vehicle: kadett
+    date: '1997-10-23'
+    comment: Benzina
+    kilometers: 176912
+    amount: 30
+    Category: fuel
+    quantity: 24.2
+  franz_kadett_570:
+    User: franz
+    Vehicle: kadett
+    date: '1997-10-25'
+    comment: 'Controllo promozionale gratis'
+    kilometers: 176989
+    amount: 0
+    Category: taxes
+  franz_kadett_571:
+    User: franz
+    Vehicle: kadett
+    date: '1997-11-01'
+    comment: Benzina
+    kilometers: 177238
+    amount: 30
+    Category: fuel
+    quantity: 24.2
+  franz_kadett_572:
+    User: franz
+    Vehicle: kadett
+    date: '1997-11-10'
+    comment: Benzina
+    kilometers: 177556
+    amount: 30
+    Category: fuel
+    quantity: 24.4
+  franz_kadett_573:
+    User: franz
+    Vehicle: kadett
+    date: '1997-11-20'
+    comment: Benzina
+    kilometers: 177914
+    amount: 30
+    Category: fuel
+    quantity: 24.4
+  franz_kadett_574:
+    User: franz
+    Vehicle: kadett
+    date: '1997-11-24'
+    comment: Benzina
+    kilometers: 178243
+    amount: 30
+    Category: fuel
+    quantity: 24.4
+  franz_kadett_575:
+    User: franz
+    Vehicle: kadett
+    date: '1997-12-01'
+    comment: Benzina
+    kilometers: 178591
+    amount: 30
+    Category: fuel
+    quantity: 24.8
+  franz_kadett_576:
+    User: franz
+    Vehicle: kadett
+    date: '1997-12-14'
+    comment: Benzina
+    kilometers: 178949
+    amount: 30
+    Category: fuel
+    quantity: 24.8
+  franz_kadett_577:
+    User: franz
+    Vehicle: kadett
+    date: '1997-12-22'
+    comment: Benzina
+    kilometers: 179307
+    amount: 30
+    Category: fuel
+    quantity: 25.2
+  franz_kadett_578:
+    User: franz
+    Vehicle: kadett
+    date: '1997-12-31'
+    comment: 'Assicurazione 1° sem. 98'
+    kilometers: 179500
+    amount: 377.4
+    Category: insurance
+  franz_kadett_579:
+    User: franz
+    Vehicle: kadett
+    date: '1998-01-09'
+    comment: Benzina
+    kilometers: 179661
+    amount: 30
+    Category: fuel
+    quantity: 25.2
+  franz_kadett_580:
+    User: franz
+    Vehicle: kadett
+    date: '1998-01-16'
+    comment: Benzina
+    kilometers: 180006
+    amount: 30
+    Category: fuel
+    quantity: 25.3
+  franz_kadett_581:
+    User: franz
+    Vehicle: kadett
+    date: '1998-01-21'
+    comment: 'Servizio 180''000 km'
+    kilometers: 180220
+    amount: 440.8
+    Category: maintenance
+  franz_kadett_582:
+    User: franz
+    Vehicle: kadett
+    date: '1998-01-27'
+    comment: Benzina
+    kilometers: 180345
+    amount: 30
+    Category: fuel
+    quantity: 25.4
+  franz_kadett_583:
+    User: franz
+    Vehicle: kadett
+    date: '1998-02-01'
+    comment: 'Vignetta 98'
+    kilometers: 180600
+    amount: 40
+    Category: taxes
+  franz_kadett_584:
+    User: franz
+    Vehicle: kadett
+    date: '1998-02-05'
+    comment: Benzina
+    kilometers: 180694
+    amount: 30
+    Category: fuel
+    quantity: 25.4
+  franz_kadett_585:
+    User: franz
+    Vehicle: kadett
+    date: '1998-02-11'
+    comment: 'Bilanciamento ruote'
+    kilometers: 180980
+    amount: 20
+    Category: maintenance
+  franz_kadett_586:
+    User: franz
+    Vehicle: kadett
+    date: '1998-02-13'
+    comment: Benzina
+    kilometers: 181042
+    amount: 30
+    Category: fuel
+    quantity: 25.4
+  franz_kadett_587:
+    User: franz
+    Vehicle: kadett
+    date: '1998-02-24'
+    comment: Benzina
+    kilometers: 181399
+    amount: 30
+    Category: fuel
+    quantity: 25
+  franz_kadett_588:
+    User: franz
+    Vehicle: kadett
+    date: '1998-02-28'
+    comment: 'Circolazione 98'
+    kilometers: 181500
+    amount: 271
+    Category: taxes
+  franz_kadett_589:
+    User: franz
+    Vehicle: kadett
+    date: '1998-03-04'
+    comment: Benzina
+    kilometers: 181749
+    amount: 30
+    Category: fuel
+    quantity: 25
+  franz_kadett_590:
+    User: franz
+    Vehicle: kadett
+    date: '1998-03-14'
+    comment: Benzina
+    kilometers: 182104
+    amount: 30
+    Category: fuel
+    quantity: 26.3
+  franz_kadett_591:
+    User: franz
+    Vehicle: kadett
+    date: '1998-03-26'
+    comment: Benzina
+    kilometers: 182466
+    amount: 30
+    Category: fuel
+    quantity: 26.4
+  franz_kadett_592:
+    User: franz
+    Vehicle: kadett
+    date: '1998-04-04'
+    comment: Benzina
+    kilometers: 182829
+    amount: 30
+    Category: fuel
+    quantity: 26
+  franz_kadett_593:
+    User: franz
+    Vehicle: kadett
+    date: '1998-04-13'
+    comment: Benzina
+    kilometers: 183171
+    amount: 30
+    Category: fuel
+    quantity: 24
+  franz_kadett_594:
+    User: franz
+    Vehicle: kadett
+    date: '1998-04-21'
+    comment: Benzina
+    kilometers: 183536
+    amount: 30.15
+    Category: fuel
+    quantity: 25
+  franz_kadett_595:
+    User: franz
+    Vehicle: kadett
+    date: '1998-04-30'
+    comment: Benzina
+    kilometers: 183870
+    amount: 30
+    Category: fuel
+    quantity: 25.6
+  franz_kadett_596:
+    User: franz
+    Vehicle: kadett
+    date: '1998-05-09'
+    comment: Benzina
+    kilometers: 184236
+    amount: 30
+    Category: fuel
+    quantity: 25.6
+  franz_kadett_597:
+    User: franz
+    Vehicle: kadett
+    date: '1998-05-18'
+    comment: Benzina
+    kilometers: 184633
+    amount: 30
+    Category: fuel
+    quantity: 25.6
+  franz_kadett_598:
+    User: franz
+    Vehicle: kadett
+    date: '1998-05-27'
+    comment: Benzina
+    kilometers: 185032
+    amount: 30
+    Category: fuel
+    quantity: 26.8
+  franz_kadett_599:
+    User: franz
+    Vehicle: kadett
+    date: '1998-06-08'
+    comment: Benzina
+    kilometers: 185433
+    amount: 30
+    Category: fuel
+    quantity: 26.3
+  franz_kadett_600:
+    User: franz
+    Vehicle: kadett
+    date: '1998-06-19'
+    comment: Benzina
+    kilometers: 185814
+    amount: 30
+    Category: fuel
+    quantity: 20.1
+  franz_kadett_601:
+    User: franz
+    Vehicle: kadett
+    date: '1998-06-27'
+    comment: Benzina
+    kilometers: 186178
+    amount: 30
+    Category: fuel
+    quantity: 26.1
+  franz_kadett_602:
+    User: franz
+    Vehicle: kadett
+    date: '1998-06-30'
+    comment: 'Assicurazione 2° sem. 98'
+    kilometers: 186250
+    amount: 377.4
+    Category: insurance
+  franz_kadett_603:
+    User: franz
+    Vehicle: kadett
+    date: '1998-07-07'
+    comment: Benzina
+    kilometers: 186557
+    amount: 30
+    Category: fuel
+    quantity: 26.1
+  franz_kadett_604:
+    User: franz
+    Vehicle: kadett
+    date: '1998-07-19'
+    comment: Benzina
+    kilometers: 186929
+    amount: 30
+    Category: fuel
+    quantity: 26.1
+  franz_kadett_605:
+    User: franz
+    Vehicle: kadett
+    date: '1998-07-27'
+    comment: '1 camera d''aria'
+    kilometers: 187170
+    amount: 20
+    Category: maintenance
+  franz_kadett_606:
+    User: franz
+    Vehicle: kadett
+    date: '1998-07-30'
+    comment: Benzina
+    kilometers: 187282
+    amount: 30
+    Category: fuel
+    quantity: 25.8
+  franz_kadett_607:
+    User: franz
+    Vehicle: kadett
+    date: '1998-08-10'
+    comment: Benzina
+    kilometers: 187637
+    amount: 30
+    Category: fuel
+    quantity: 26.1
+  franz_kadett_608:
+    User: franz
+    Vehicle: kadett
+    date: '1998-08-13'
+    comment: 'Cambio olio'
+    kilometers: 187867
+    amount: 30
+    Category: maintenance
+  franz_kadett_609:
+    User: franz
+    Vehicle: kadett
+    date: '1998-08-17'
+    comment: Benzina
+    kilometers: 187994
+    amount: 30
+    Category: fuel
+    quantity: 26.1
+  franz_kadett_610:
+    User: franz
+    Vehicle: kadett
+    date: '1998-08-31'
+    comment: Benzina
+    kilometers: 188385
+    amount: 30
+    Category: fuel
+    quantity: 26
+  franz_kadett_611:
+    User: franz
+    Vehicle: kadett
+    date: '1998-09-11'
+    comment: Benzina
+    kilometers: 188780
+    amount: 30
+    Category: fuel
+    quantity: 26.5
+  franz_kadett_612:
+    User: franz
+    Vehicle: kadett
+    date: '1998-09-18'
+    comment: Benzina
+    kilometers: 189182
+    amount: 30
+    Category: fuel
+    quantity: 26.3
+  franz_kadett_613:
+    User: franz
+    Vehicle: kadett
+    date: '1998-09-25'
+    comment: Benzina
+    kilometers: 189575
+    amount: 30
+    Category: fuel
+    quantity: 26.3
+  franz_kadett_614:
+    User: franz
+    Vehicle: kadett
+    date: '1998-10-05'
+    comment: Benzina
+    kilometers: 189952
+    amount: 30
+    Category: fuel
+    quantity: 26.3
+  franz_kadett_615:
+    User: franz
+    Vehicle: kadett
+    date: '1998-10-13'
+    comment: Benzina
+    kilometers: 190318
+    amount: 30
+    Category: fuel
+    quantity: 26.3
+  franz_kadett_616:
+    User: franz
+    Vehicle: kadett
+    date: '1998-10-24'
+    comment: Benzina
+    kilometers: 190735
+    amount: 30
+    Category: fuel
+    quantity: 26.3
+  franz_kadett_617:
+    User: franz
+    Vehicle: kadett
+    date: '1998-11-04'
+    comment: Benzina
+    kilometers: 191080
+    amount: 30
+    Category: fuel
+    quantity: 26.3
+  franz_kadett_618:
+    User: franz
+    Vehicle: kadett
+    date: '1998-11-14'
+    comment: Benzina
+    kilometers: 191471
+    amount: 30
+    Category: fuel
+    quantity: 26.5
+  franz_kadett_619:
+    User: franz
+    Vehicle: kadett
+    date: '1998-11-25'
+    comment: Benzina
+    kilometers: 191847
+    amount: 30
+    Category: fuel
+    quantity: 26.6
+  franz_kadett_620:
+    User: franz
+    Vehicle: kadett
+    date: '1998-11-28'
+    comment: '4 gomme neve'
+    kilometers: 191944
+    amount: 300
+    Category: accessories
+  franz_kadett_621:
+    User: franz
+    Vehicle: kadett
+    date: '1998-11-28'
+    comment: '1 camera d''aria'
+    kilometers: 191944
+    amount: 20
+    Category: maintenance
+  franz_kadett_622:
+    User: franz
+    Vehicle: kadett
+    date: '1998-12-10'
+    comment: Benzina
+    kilometers: 192197
+    amount: 30
+    Category: fuel
+    quantity: 27
+  franz_kadett_623:
+    User: franz
+    Vehicle: kadett
+    date: '1998-12-22'
+    comment: Benzina
+    kilometers: 192567
+    amount: 30.05
+    Category: fuel
+    quantity: 27.1
+  franz_kadett_624:
+    User: franz
+    Vehicle: kadett
+    date: '1998-12-30'
+    comment: 'Assicurazione 99 (3 mesi)'
+    kilometers: 192700
+    amount: 188.7
+    Category: insurance
+  franz_kadett_625:
+    User: franz
+    Vehicle: kadett
+    date: '1999-01-09'
+    comment: Benzina
+    kilometers: 192933
+    amount: 30
+    Category: fuel
+    quantity: 27
+  franz_kadett_626:
+    User: franz
+    Vehicle: kadett
+    date: '1999-01-09'
+    comment: 'Vignetta 99'
+    kilometers: 192933
+    amount: 40
+    Category: taxes
+  franz_kadett_627:
+    User: franz
+    Vehicle: kadett
+    date: '1999-01-24'
+    comment: Benzina
+    kilometers: 193302
+    amount: 30
+    Category: fuel
+    quantity: 27
+  franz_kadett_628:
+    User: franz
+    Vehicle: kadett
+    date: '1999-02-05'
+    comment: Benzina
+    kilometers: 193645
+    amount: 30
+    Category: fuel
+    quantity: 27
+  franz_kadett_629:
+    User: franz
+    Vehicle: kadett
+    date: '1999-02-13'
+    comment: Benzina
+    kilometers: 194014
+    amount: 30
+    Category: fuel
+    quantity: 27
+  franz_kadett_630:
+    User: franz
+    Vehicle: kadett
+    date: '1999-02-19'
+    comment: Benzina
+    kilometers: 194381
+    amount: 30
+    Category: fuel
+    quantity: 27
+  franz_kadett_631:
+    User: franz
+    Vehicle: kadett
+    date: '1999-02-26'
+    comment: 'Circolazione 99 (3 mesi)'
+    kilometers: 194450
+    amount: 65
+    Category: taxes
+  franz_kadett_632:
+    User: franz
+    Vehicle: kadett
+    date: '1999-02-26'
+    comment: 'Servizio 195''000 km'
+    kilometers: 194580
+    amount: 167.7
+    Category: maintenance
+  franz_kadett_633:
+    User: franz
+    Vehicle: kadett
+    date: '1999-03-02'
+    comment: Benzina
+    kilometers: 194719
+    amount: 30
+    Category: fuel
+    quantity: 27
+  franz_kadett_634:
+    User: franz
+    Vehicle: kadett
+    date: '1999-03-23'
+    comment: Benzina
+    kilometers: 195083
+    amount: 30
+    Category: fuel
+    quantity: 16.6
+  franz_kadett_635:
+    User: franz
+    Vehicle: kadett
+    date: '1999-03-25'
+    comment: Vendita
+    kilometers: 195103
+    amount: 1000
+    Category: purchase

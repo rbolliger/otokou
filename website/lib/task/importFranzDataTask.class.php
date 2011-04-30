@@ -49,7 +49,7 @@ EOF;
         $vehicle = isset($options['Vehicle']) ? $options['Vehicle'] : 'astra';
 
 
-        $fixture_file = isset($options['fixture']) ? $options[$fixture] : $this->getFixtureFile('11_' . $user . '_' . $vehicle);
+        $fixture_file = isset($options['fixture']) ? $options['fixture'] : $this->getFixtureFile('11_' . $user . '_' . $vehicle);
         $fixture_file = sfConfig::get('sf_data_dir') . DIRECTORY_SEPARATOR . $fixture_file;
 
         if (file_exists($fixture_file)) {
@@ -83,7 +83,6 @@ EOF;
             $fixtures[$fname] = $s;
 
             $this->log(sprintf('Read line %d', $id));
-
         }
 
 
@@ -146,12 +145,10 @@ EOF;
             }
 
             $c['quantity'] = $q;
-
         }
 
         return $c;
     }
-
 
     protected function parseCategory($param) {
 
@@ -179,7 +176,9 @@ EOF;
         if ($this->contains($param, array(
                     'circolazione',
                     'tass',
-                    'vignetta'
+                    'vignetta',
+                    'collaudo',
+                    'CO',
                 ))) {
 
             return 'taxes';
@@ -202,6 +201,16 @@ EOF;
                     'blocco',
                     'carroz',
                     'vari',
+                    'riparazion',
+                    'guarniz',
+                    'cinghia',
+                    'freni',
+                    'marmitta',
+                    'bilanciamento',
+                    'camera',
+                    'calotta',
+                    'liquido',
+                    'candele',
                 ))) {
 
             return 'maintenance';
