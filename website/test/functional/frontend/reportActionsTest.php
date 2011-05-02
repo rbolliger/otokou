@@ -409,8 +409,8 @@ $browser
             ->checkElement('h2:contains("Custom reports")',true)
             ->checkElement('ul.custom_reports_menu li.vehicle_active',1)
             ->checkElement('h2:contains("Create a new report")',true)
-            ->checkElement('h1.contains("Overall performances")',1)
-            ->checkElement('h2:contains("Car gs")',1)
+            ->checkElement('h1:contains("Overall performances")',1)
+            ->checkElement('h2:contains("car_gs")',1)
             ->checkElement('h1:contains("Costs")',1)
             ->checkElement('h2:contains("Cost per kilometer")',1)
             ->checkElement('h2:contains("Annual cost")',1)
@@ -420,7 +420,7 @@ $browser
             ->checkElement('h2:contains("Monthly travel")',1)
             ->checkElement('h1:contains("Consumptions")',1)
             ->checkElement('h2:contains("Fuel")',1)
-            ->checkElement('body img',6)->debug()
+            ->checkElement('body img',6)
         ->end()
 
         ;

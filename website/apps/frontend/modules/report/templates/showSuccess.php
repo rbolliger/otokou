@@ -18,3 +18,10 @@ end_slot();
 <p>The cost per kilometer is calculated by considering the charges registered over the entire life of the vehicle(s).</p>
 
 <?php echo $sf_data->getRaw('cost_per_km'); ?>
+
+
+<h2>Annual cost</h2>
+
+<p>The annual cost is calculated by considering the charges registered during the range (date and/or distance) specified for this report.</p>
+
+<?php echo $sf_data->getRaw('cost_annual'); ?>
