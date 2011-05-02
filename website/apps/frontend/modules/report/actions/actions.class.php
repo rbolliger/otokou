@@ -86,6 +86,30 @@ class reportActions extends otkWithOwnerActions {
             'chart_name' => 'cost_per_year',
         );
         $this->cost_annual = $this->newChart($r,$data);
+
+        $data = array(
+            'range_type' => 'date',
+            'chart_name' => 'cost_pie',
+        );
+        $this->cost_allocation = $this->newChart($r,$data);
+
+        $data = array(
+            'range_type' => 'date',
+            'chart_name' => 'trip_annual',
+        );
+        $this->travel_annual = $this->newChart($r,$data);
+
+        $data = array(
+            'range_type' => 'date',
+            'chart_name' => 'trip_monthly',
+        );
+        $this->travel_monthly = $this->newChart($r,$data);
+
+        $data = array(
+            'range_type' => $rt,
+            'chart_name' => 'consumption_per_distance',
+        );
+        $this->consumption_fuel = $this->newChart($r,$data);
     }
 
     public function checkCSRFProtection() {
@@ -165,10 +189,9 @@ class reportActions extends otkWithOwnerActions {
 
         $params = array_merge(
                 array(
-                    'user_id' => $this->getUserId(),
                     'vehicles_list' => $report->getVehicles()->getPrimaryKeys(),
                     ),
-                $params
+                $this->getGBData($params)
                 );
 
         $params = $this->apply_range($report, $params);

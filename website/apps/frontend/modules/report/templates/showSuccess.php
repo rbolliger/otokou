@@ -25,3 +25,31 @@ end_slot();
 <p>The annual cost is calculated by considering the charges registered during the range (date and/or distance) specified for this report.</p>
 
 <?php echo $sf_data->getRaw('cost_annual'); ?>
+
+
+<h2>Costs allocation</h2>
+
+<p>The annual cost is calculated by considering the charges registered during the range (date and/or distance) specified for this report.</p>
+
+<?php echo $sf_data->getRaw('cost_allocation'); ?>
+
+
+<h1>Travel</h1>
+
+<h2>Annual travel</h2>
+
+<p>The annual cost is calculated by considering the charges registered during the range (date and/or distance) specified for this report.</p>
+
+<?php echo $sf_data->getRaw('travel_annual'); ?>
+
+<h2>Monthly travel</h2>
+
+<p>The annual cost is calculated by considering the charges registered during the range (date and/or distance) specified for this report.</p>
+
+<?php echo $sf_data->getRaw('travel_monthly'); ?>
+
+<h1>Fuel consumption</h1>
+
+<p>The fuel consumption is calculated by considering the charges registered over the entire life of the vehicle(s).</p>
+
+<?php echo $sf_data->getRaw('consumption_fuel'); ?>
