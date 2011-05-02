@@ -66,7 +66,21 @@ class reportActions extends otkWithOwnerActions {
     }
 
     public function executeShow(sfWebRequest $request) {
-        
+
+        $r = $this->getRoute()->getObject();
+
+        $this->report = $r;
+
+
+        $data = array(
+            'vehicles_list' => $r->getVehicles()->getPrimaryKeys(),
+            'range_type' => 'distance',
+            'chart_name' => 'cost_per_km',
+            'user_id' => $this->getUserId(),
+        );
+        $data = $this->apply_range($r, $data);
+
+        $this->cost_per_km = new ChartBuilderPChart($data);
     }
 
     public function checkCSRFProtection() {
@@ -81,6 +95,7 @@ class reportActions extends otkWithOwnerActions {
     protected function processForm(sfWebRequest $request, sfForm $form) {
         $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
         if ($form->isValid()) {
+
             try {
                 $report = $form->save();
             } catch (Doctrine_Validator_Exception $e) {
@@ -101,6 +116,44 @@ class reportActions extends otkWithOwnerActions {
         } else {
             $this->getUser()->setFlash('error', 'The item has not been saved due to some errors.', false);
         }
+    }
+
+    protected function getGBData($inputs = array()) {
+
+        $data = array(
+            'format' => 'png',
+            'user_id' => $this->getUserId(),
+            'vehicle_display' => 'single',
+            'category_display' => 'stacked',
+            'range_type' => 'distance',
+        );
+
+        return array_merge($data, $inputs);
+    }
+
+    protected function getUserId() {
+        return $this->getUser()->getGuardUser()->getId();
+    }
+
+    protected function apply_range(Report $report, $params) {
+
+        if ($report->getDateFrom()) {
+            $params['date_from'] = $report->getDateFrom();
+        }
+
+        if ($report->getDateTo()) {
+            $params['date_to'] = $report->getDateTo();
+        }
+
+        if ($report->getKilometersFrom()) {
+            $params['kilometers_from'] = $report->getKilometersFrom();
+        }
+
+        if ($report->getKilometersTo()) {
+            $params['kilometers_to'] = $report->getKilometersTo();
+        }
+
+        return $params;
     }
 
 }

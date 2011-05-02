@@ -107,12 +107,14 @@ class ChartFormFilter extends BaseChartFormFilter {
                     'from_date' => new sfWidgetFormJQueryDate(array(
                         'config' => '{changeMonth: true, changeYear: true, yearRange: \'-25:+5\'}',
                         'image' => '/images/calendar.png',
-                        'date_widget' => $widget
+                        'date_widget' => $widget,
+                        'default' => null,
                     )),
                     'to_date' => new sfWidgetFormJQueryDate(array(
                         'config' => '{changeMonth: true, changeYear: true, yearRange: \'-25:+5\'}',
                         'image' => '/images/calendar.png',
-                        'date_widget' => $widget
+                        'date_widget' => $widget,
+                        'default' => null,
                     )),
                     'with_empty' => false,
                     'template' => 'from %from_date% to %to_date%',

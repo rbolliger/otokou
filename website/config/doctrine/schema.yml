@@ -66,6 +66,7 @@ Chart:
       type:   string
       length: 40
       fields: [vehicle_display, user_id, category_display, date_from, date_to, kilometers_from, kilometers_to, range_type, format, chart_name, Vehicles, Categories]
+      builder: [otkHasher, hash]
   columns:
     id: { type: integer, notnull: true, primary: true, autoincrement: true }
     vehicle_display: {type: string(20) }

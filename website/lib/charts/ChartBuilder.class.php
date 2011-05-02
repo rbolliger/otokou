@@ -97,7 +97,7 @@ class ChartBuilder {
 
     public function __toString() {
 
-        $this->display();
+        return $this->display();
     }
 
     public function setLogger(sfLogger $logger) {

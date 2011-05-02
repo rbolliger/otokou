@@ -6,34 +6,44 @@ $browser = new otokouTestFunctional(new sfBrowser());
 $browser->loadData();
 $browser->setTester('doctrine', 'sfTesterDoctrine');
 
-$browser->
-info('1 - Security')->
-        get('/ruf/reports')->
-            with('request')->begin()->
-                isParameter('module', 'report')->
-                isParameter('action', 'index')->
-            end()->
-            with('response')->begin()->
-                isStatusCode(401)->
-            end()->
-        login('user_gs', 'user')->
-        get('/reports')->
-            with('response')->begin()->
-                isStatusCode(404)->
-            end()->
-        get('/ruf/reports')->
-            with('response')->begin()->
-                isStatusCode(403)->
-            end()->
-        get('/user_gs/reports')->
-            with('request')->begin()->
-                isParameter('module', 'report')->
-                isParameter('action', 'index')->
-            end()
+$browser
+->info('1 - Security')
+        ->info('1.1 - No access without login')
+        ->get('/ruf/reports')
+            ->with('request')
+                ->begin()
+                    ->isParameter('module', 'report')
+                    ->isParameter('action', 'index')
+                ->end()
+            ->with('response')
+                ->begin()
+                    ->isStatusCode(401)
+                ->end()
+        ->info('1.2 - Username is required in route')
+        ->login('user_gs', 'user')
+        ->get('/reports')
+            ->with('response')
+            ->begin()
+                ->isStatusCode(404)
+            ->end()
+        ->info('1.3 - A user can only access his resources')
+        ->get('/ruf/reports')
+            ->with('response')
+            ->begin()
+                ->isStatusCode(403)
+            ->end()
+        ->info('Correct request')
+        ->get('/user_gs/reports')
+            ->with('request')
+                ->begin()
+                    ->isParameter('module', 'report')
+                    ->isParameter('action', 'index')
+                ->end()
         ->logout()
 
 
 ->info('2 - Index')
+    ->info('2.1 - A user only sees his reports')
     ->login('ruf', 'admin@1')
     ->get('/ruf/reports')
         ->with('response')
@@ -129,6 +139,7 @@ info('1 - Security')->
 
 
 ->info('4 - Creation of a new custom report')
+        ->info('4.1 - "New" form')
         ->get('/user_gs/report/new')
             ->with('request')
             ->begin()
@@ -147,7 +158,8 @@ info('1 - Security')->
                     ->checkElement('div.report_form form',true)
                     ->checkElement('div.report_form form table tbody tr',4)
                 ->end()
-       ->click('Create', array())
+        ->info('4.2 - Form errors - required fields')
+        ->click('Create', array())
                 ->with('form')
                     ->begin()
                         ->hasErrors(2)
@@ -159,6 +171,7 @@ info('1 - Security')->
                         ->isParameter('module', 'report')
                         ->isParameter('action', 'create')
                     ->end()
+        ->info('4.3 - Form errors - ranges and vehicles list')
         ->click('Create', array('report' =>
             array(
                 'name' => 'Custom report',
@@ -175,6 +188,7 @@ info('1 - Security')->
                         ->isError('kilometers_range', '/Only one/')
                         ->isError('vehicles_list', '/invalid/')
                     ->end()
+        ->info('4.4 - Form ok')
         ->click('Create', array('report' =>
             array(
                 'name' => 'Custom report',
@@ -196,7 +210,8 @@ info('1 - Security')->
                 ->with('doctrine')
                     ->begin()
                         ->check('Report',
-                                Doctrine_Core::getTable('Report')->createQuery('r')
+                                Doctrine_Core::getTable('Report')
+                                    ->createQuery('r')
                                     ->andWhere('r.name LIKE ?','Custom report')
                                     ->andWhere('r.date_from = ?',date('Y-m-d'))
                                     ->andWhere('kilometers_to = ?', 10000)
@@ -218,6 +233,7 @@ info('1 - Security')->
                     ->begin()
                         ->isStatusCode(200)
                     ->end()
+        ->info('4.5 - Default values for form')
         ->get('/user_gs/report/new')
         ->click('Create', array('report' =>
             array(
@@ -238,7 +254,8 @@ info('1 - Security')->
                 ->with('doctrine')
                     ->begin()
                         ->check('Report',
-                                Doctrine_Core::getTable('Report')->createQuery('r')
+                                Doctrine_Core::getTable('Report')
+                                    ->createQuery('r')
                                     ->andWhere('r.name LIKE ?','Custom report')
                                     ->andWhere('r.date_to = ?',date('Y-m-d'))
                                     ->andWhere('kilometers_from = ?', 0)
@@ -268,7 +285,8 @@ info('1 - Security')->
              ->with('doctrine')
                     ->begin()
                         ->check('Report',
-                                Doctrine_Core::getTable('Report')->createQuery('r')
+                                Doctrine_Core::getTable('Report')
+                                    ->createQuery('r')
                                     ->andWhere('r.name LIKE ?','Custom report delete vehicle 1')
                                     ->andWhere('r.date_from = ?',date('Y-m-d'))
                                     ->andWhere('kilometers_to = ?', 10000)
@@ -300,7 +318,8 @@ info('1 - Security')->
              ->with('doctrine')
                     ->begin()
                         ->check('Report',
-                                Doctrine_Core::getTable('Report')->createQuery('r')
+                                Doctrine_Core::getTable('Report')
+                                    ->createQuery('r')
                                     ->andWhere('r.name LIKE ?','Custom report delete vehicle 1')
                                     ->andWhere('r.date_from = ?',date('Y-m-d'))
                                     ->andWhere('kilometers_to = ?', 10000)
@@ -330,7 +349,8 @@ info('1 - Security')->
              ->with('doctrine')
                     ->begin()
                         ->check('Report',
-                                Doctrine_Core::getTable('Report')->createQuery('r')
+                                Doctrine_Core::getTable('Report')
+                                    ->createQuery('r')
                                     ->andWhere('r.name LIKE ?','Custom report delete vehicle 2')
                                     ->andWhere('r.date_from = ?',date('Y-m-d'))
                                     ->andWhere('kilometers_to = ?', 10000)
@@ -362,7 +382,8 @@ info('1 - Security')->
              ->with('doctrine')
                     ->begin()
                         ->check('Report',
-                                Doctrine_Core::getTable('Report')->createQuery('r')
+                                Doctrine_Core::getTable('Report')
+                                    ->createQuery('r')
                                     ->andWhere('r.name LIKE ?','Custom report delete vehicle 2')
                                     ->andWhere('r.date_from = ?',date('Y-m-d'))
                                     ->andWhere('kilometers_to = ?', 10000)
@@ -370,4 +391,36 @@ info('1 - Security')->
                                     ->andWhereIn('v.id',array($browser->getVehicleId('car-gs-1'),$browser->getVehicleId('car-gs-2')))
                                  ,false)
                     ->end()
+
+->info('6 - Show action')
+->info('6.1 - Single vehicle')
+->get('/user_gs/report/show/0-100-km-car-gs-1')
+    ->with('request')
+        ->begin()
+            ->isParameter('module', 'report')
+            ->isParameter('action', 'show')
+        ->end()
+    ->with('response')
+        ->begin()
+            ->isStatusCode(200)
+            ->checkElement('h2:contains("Vehicles")',true)
+            ->checkElement('ul.vehicles_menu li.vehicle_archived',1)
+            ->checkElement('ul.vehicles_menu li.vehicle_active',1)
+            ->checkElement('h2:contains("Custom reports")',true)
+            ->checkElement('ul.custom_reports_menu li.vehicle_active',1)
+            ->checkElement('h2:contains("Create a new report")',true)
+            ->checkElement('h1.contains("Overall performances")',1)
+            ->checkElement('h2:contains("Car gs")',1)
+            ->checkElement('h1:contains("Costs")',1)
+            ->checkElement('h2:contains("Cost per kilometer")',1)
+            ->checkElement('h2:contains("Annual cost")',1)
+            ->checkElement('h2:contains("Costs allocation")',1)
+            ->checkElement('h1:contains("Travel")',1)
+            ->checkElement('h2:contains("Annual travel")',1)
+            ->checkElement('h2:contains("Monthly travel")',1)
+            ->checkElement('h1:contains("Consumptions")',1)
+            ->checkElement('h2:contains("Fuel")',1)
+            ->checkElement('body img',6)->debug()
+        ->end()
+
         ;

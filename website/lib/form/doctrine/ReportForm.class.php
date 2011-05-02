@@ -131,36 +131,37 @@ class ReportForm extends BaseReportForm {
         $values = parent::processValues($values);
 
         // converting ranges to DB fields
-       if (isset($values['date_range']['from'])) {
-           $values['date_from'] = $values['date_range']['from'];
-       }
+        if (isset($values['date_range']['from'])) {
+            $values['date_from'] = $values['date_range']['from'];
+        }
 
-       if (isset($values['date_range']['to'])) {
-           $values['date_to'] = $values['date_range']['to'];
-       }
+        if (isset($values['date_range']['to'])) {
+            $values['date_to'] = $values['date_range']['to'];
+        }
 
-       unset($values['date_range']);
+        unset($values['date_range']);
 
-       if (isset($values['kilometers_range']['from'])) {
-           $values['kilometers_from'] = $values['kilometers_range']['from'];
-       }
+        if (isset($values['kilometers_range']['from'])) {
+            $values['kilometers_from'] = $values['kilometers_range']['from'];
+        }
 
-       if (isset($values['kilometers_range']['to'])) {
-           $values['kilometers_to'] = $values['kilometers_range']['to'];
-       }
+        if (isset($values['kilometers_range']['to'])) {
+            $values['kilometers_to'] = $values['kilometers_range']['to'];
+        }
 
-       unset($values['kilometers_range']);
+        unset($values['kilometers_range']);
 
-       // setting default values to range fields
-       if (!isset($values['date_from']) && !isset($values['kilometers_from'])) {
-           $values['kilometers_from'] = 0; // vehicle origin
-       }
+        // setting default values to range fields
+        if (!isset($values['date_from']) && !isset($values['kilometers_from'])) {
+            $values['kilometers_from'] = 0; // vehicle origin
+        }
 
-       if (!isset($values['date_to']) && !isset($values['kilometers_to'])) {
-           $values['date_to'] = date('Y-m-d'); // today
-       }
+        if (!isset($values['date_to']) && !isset($values['kilometers_to'])) {
+            $values['date_to'] = date('Y-m-d'); // today
+        }
 
-       return $values;
+        return $values;
     }
 
+    
 }

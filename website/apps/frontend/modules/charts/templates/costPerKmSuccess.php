@@ -16,5 +16,3 @@ end_slot();
 <?php if($gb) { echo $gb->display(); } ?>
 
 <?php include_partial('debug',array('debug' => $debug)) ?>
-
-

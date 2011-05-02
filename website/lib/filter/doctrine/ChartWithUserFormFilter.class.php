@@ -23,11 +23,6 @@ class ChartWithUserFormFilter extends ChartFormFilter {
         $this->widgetSchema['vehicles_list']->setOption('query', $q);
         $this->validatorSchema['vehicles_list']->setOption('query', $q);
 
-
-
-        
-
-
     }
 
     protected function getUserId() {

@@ -152,6 +152,11 @@ abstract class BaseChart extends sfDoctrineRecord
               10 => 'Vehicles',
               11 => 'Categories',
              ),
+             'builder' => 
+             array(
+              0 => 'otkHasher',
+              1 => 'hash',
+             ),
              ));
         $this->actAs($timestampable0);
         $this->actAs($sluggable0);

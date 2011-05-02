@@ -46,7 +46,7 @@ class chartsActions extends otkWithOwnerActions {
         $filters = $this->updateFilterFieldIfEmpty($filters, 'vehicle_display', 'single');
         $filters = $this->updateFilterFieldIfEmpty($filters, 'category_display', 'stacked');
         $filters = $this->updateFilterFieldIfEmpty($filters, 'range_type', 'distance');
-        $filters = $this->setTypicalRanges($filters);
+        
         $this->setFilters($filters);
         $this->setFilterField('chart_name', 'cost_per_km');
 
@@ -63,7 +63,6 @@ class chartsActions extends otkWithOwnerActions {
         $filters = $this->updateFilterFieldIfEmpty($filters, 'vehicle_display', 'single');
         $filters = $this->updateFilterFieldIfEmpty($filters, 'category_display', 'stacked');
         $filters = $this->updateFilterFieldIfEmpty($filters, 'range_type', 'date');
-        $filters = $this->setTypicalRanges($filters);
         $this->setFilters($filters);
         $this->setFilterField('chart_name', 'cost_per_year');
 
@@ -79,7 +78,6 @@ class chartsActions extends otkWithOwnerActions {
         // updating filters
         $filters = $this->getFilters();
         $filters = $this->updateFilterFieldIfEmpty($filters, 'vehicle_display', 'single');
-        $filters = $this->setTypicalRanges($filters);
         $this->setFilters($filters);
         $this->setFilterField('chart_name', 'cost_pie');
 
@@ -95,7 +93,6 @@ class chartsActions extends otkWithOwnerActions {
 
         $filters = $this->getFilters();
         $filters = $this->updateFilterFieldIfEmpty($filters, 'vehicle_display', 'single');
-        $filters = $this->setTypicalRanges($filters);
         $this->setFilters($filters);
         $this->setFilterField('chart_name', 'trip_annual');
 
@@ -110,7 +107,6 @@ class chartsActions extends otkWithOwnerActions {
 
         $filters = $this->getFilters();
         $filters = $this->updateFilterFieldIfEmpty($filters, 'vehicle_display', 'single');
-        $filters = $this->setTypicalRanges($filters);
         $this->setFilters($filters);
         $this->setFilterField('chart_name', 'trip_monthly');
 
@@ -126,7 +122,6 @@ class chartsActions extends otkWithOwnerActions {
         $filters = $this->getFilters();
         $filters = $this->updateFilterFieldIfEmpty($filters, 'vehicle_display', 'single');
         $filters = $this->updateFilterFieldIfEmpty($filters, 'range_type', 'distance');
-        $filters = $this->setTypicalRanges($filters);
         $this->setFilters($filters);
         $this->setFilterField('chart_name', 'consumption_per_distance');
 
@@ -177,7 +172,7 @@ class chartsActions extends otkWithOwnerActions {
     }
 
     protected function getFilters() {
-        return $this->getUser()->getAttribute('charts.filters', $this->getFilterDefaults(), 'charts');
+       return $this->getUser()->getAttribute('charts.filters', $this->getFilterDefaults(), 'charts');
     }
 
     protected function getFilterDefaults() {
@@ -253,6 +248,8 @@ class chartsActions extends otkWithOwnerActions {
             'chart_name' => $this->getFilterValue('chart_name'),
         );
 
+        $data = $this->setTypicalRanges($data);
+
 
         return $data;
     }
@@ -266,16 +263,13 @@ class chartsActions extends otkWithOwnerActions {
 
     protected function setTypicalRanges($filters) {
 
-        if (!isset($filters['kilometers_range'])) {
-            $filters['kilometers_range'] = array();
+        if (!isset($filters['date_from']) && !isset($filters['kilometers_from'])) {
+            $filters['kilometers_from'] = 0;
         }
 
-        if (!isset($filters['date_range'])) {
-            $filters['date_range'] = array();
+        if (!isset($filters['date_to']) && !isset($filters['kilometers_to'])) {
+            $filters['date_to'] = date('Y-m-d');
         }
-
-        $filters['kilometers_range'] = $this->updateFilterFieldIfEmpty($filters['kilometers_range'], 'from', 0);
-        $filters['date_range'] = $this->updateFilterFieldIfEmpty($filters['date_range'], 'to', date('Y-m-d', time()));
 
         return $filters;
     }

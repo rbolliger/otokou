@@ -198,7 +198,13 @@ class ChartSource {
 
         // filtering data if any limit is set
         if ($axis_params['min']) {
-            $min_id = min(array_keys($x_data, min($this->filterValuesSmallerThan($x_data, $axis_params['min']))));
+
+            $f = $this->filterValuesSmallerThan($x_data, $axis_params['min']);
+            if ($f) {
+                $min_id = min(array_keys($x_data, min($f)));
+            } else {
+                $min_id = 0;
+            }
         } else {
             $min_id = 0;
         }
@@ -900,11 +906,15 @@ class ChartSource {
             }
 
 
-            if ($filter) {
+            if (count($filter)) {
                 foreach ($filter as $kkey => $kvalue) {
                     $dt[] = $kilometers[$skey][$kkey];
                 }
             }
+        }
+
+        if (!count($dt)) {
+            return false;
         }
 
         if ('max' == $minOrMax) {
