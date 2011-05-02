@@ -282,7 +282,7 @@ $browser->
             checkElement('#filter_values_category_display:contains("stacked")]',true)->
             checkElement('#filter_values_chart_name:contains("cost_per_km")]',true)->
             checkElement('#filter_values_range_type:contains("distance")]',true)->
-            checkElement('table#filter_values tbody tr',6)->
+            checkElement('table#filter_values tbody tr',4)->
           end()->
           with('doctrine')->
             begin()->
@@ -356,7 +356,7 @@ $browser->
                     checkElement('#filter_values_category_display:contains("stacked")]',true)->
                     checkElement('#filter_values_chart_name:contains("cost_per_year")]',true)->
                     checkElement('#filter_values_range_type:contains("date")]',true)->
-                    checkElement('table#filter_values tbody tr',6)->
+                    checkElement('table#filter_values tbody tr',4)->
                 end()->
 
         info('5 - Cost pie')->
@@ -378,7 +378,7 @@ $browser->
                     checkElement('img',true)->
                     checkElement('#filter_values_vehicle_display:contains("single")]',true)->
                     checkElement('#filter_values_chart_name:contains("cost_pie")]',true)->
-                    checkElement('table#filter_values tbody tr',4)->
+                    checkElement('table#filter_values tbody tr',2)->
                 end()->
 
         info('6 - Annual travel')->
@@ -400,7 +400,7 @@ $browser->
                     checkElement('img',true)->
                     checkElement('#filter_values_vehicle_display:contains("single")]',true)->
                     checkElement('#filter_values_chart_name:contains("trip_annual")]',true)->
-                    checkElement('table#filter_values tbody tr',4)->
+                    checkElement('table#filter_values tbody tr',2)->
                 end()->
 
         info('7 - Monthly travel')->
@@ -422,7 +422,7 @@ $browser->
                     checkElement('img',true)->
                     checkElement('#filter_values_vehicle_display:contains("single")]',true)->
                     checkElement('#filter_values_chart_name:contains("trip_monthly")]',true)->
-                    checkElement('table#filter_values tbody tr',4)->
+                    checkElement('table#filter_values tbody tr',2)->
                 end()
           
 ;
