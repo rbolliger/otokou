@@ -6,6 +6,7 @@ class ChartBuilderPChart extends ChartBuilder {
 
 
         $path = str_replace('images/', '', $this->getChartPath('web'));
+
         return image_tag($path, $this->getAttributes());
     }
 

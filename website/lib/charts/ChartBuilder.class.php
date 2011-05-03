@@ -694,7 +694,7 @@ class ChartBuilder {
         unset(
                 $defaults['created_at'],
                 $defaults['updated_at'],
-                $defaults['sha'],
+                $defaults['slug'],
                 $defaults['id']
         );
 

@@ -29,22 +29,22 @@ end_slot();
 
 <h2>Costs allocation</h2>
 
-<p>The annual cost is calculated by considering the charges registered during the range (date and/or distance) specified for this report.</p>
+<p>The cost allocation is calculated by considering the charges registered during the range (date and/or distance) specified for this report.</p>
 
-<?php echo $sf_data->getRaw('cost_allocation'); ?>
+<?php $d =  $sf_data->getRaw('cost_allocation'); echo $d->display(); ?>
 
 
 <h1>Travel</h1>
 
 <h2>Annual travel</h2>
 
-<p>The annual cost is calculated by considering the charges registered during the range (date and/or distance) specified for this report.</p>
+<p>The annual travel is calculated by considering the charges registered during the range (date and/or distance) specified for this report.</p>
 
-<?php echo $sf_data->getRaw('travel_annual'); ?>
+<?php  $d = $sf_data->getRaw('travel_annual'); echo $d->display();?>
 
 <h2>Monthly travel</h2>
 
-<p>The annual cost is calculated by considering the charges registered during the range (date and/or distance) specified for this report.</p>
+<p>The monthly travel is calculated by considering the charges registered during the range (date and/or distance) specified for this report.</p>
 
 <?php echo $sf_data->getRaw('travel_monthly'); ?>
 

@@ -92,15 +92,14 @@ class reportActions extends otkWithOwnerActions {
             'chart_name' => 'cost_pie',
         );
         $this->cost_allocation = $this->newChart($r,$data);
-
         $data = array(
-            'range_type' => 'date',
+            //'range_type' => 'date',
             'chart_name' => 'trip_annual',
         );
         $this->travel_annual = $this->newChart($r,$data);
 
         $data = array(
-            'range_type' => 'date',
+            //'range_type' => 'date',
             'chart_name' => 'trip_monthly',
         );
         $this->travel_monthly = $this->newChart($r,$data);
