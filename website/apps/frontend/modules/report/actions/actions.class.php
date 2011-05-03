@@ -69,6 +69,9 @@ class reportActions extends otkWithOwnerActions {
 
         $r = $this->getRoute()->getObject();
 
+        $r->setIsNew(false);
+        $r->save();
+
         $this->report = $r;
 
         $nv = count($r->getVehicles()->getPrimaryKeys());
