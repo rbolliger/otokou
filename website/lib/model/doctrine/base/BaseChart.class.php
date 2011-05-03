@@ -131,12 +131,12 @@ abstract class BaseChart extends sfDoctrineRecord
 
         $timestampable0 = new Doctrine_Template_Timestampable();
         $sluggable0 = new Doctrine_Template_Sluggable(array(
-             'name' => 'sha',
+             'name' => 'slug',
              'unique' => true,
-             'canUpdate' => false,
+             'canUpdate' => true,
              'indexName' => 'hashable',
              'type' => 'string',
-             'length' => 40,
+             'length' => 128,
              'fields' => 
              array(
               0 => 'vehicle_display',
@@ -151,11 +151,6 @@ abstract class BaseChart extends sfDoctrineRecord
               9 => 'chart_name',
               10 => 'Vehicles',
               11 => 'Categories',
-             ),
-             'builder' => 
-             array(
-              0 => 'otkHasher',
-              1 => 'hash',
              ),
              ));
         $this->actAs($timestampable0);

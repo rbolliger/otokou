@@ -18,7 +18,7 @@ class Chart extends BaseChart {
     }
 
     public function getChartName() {
-        return $this->getSha() . '.' . $this->getChartFormat();
+        return $this->getHash() . '.' . $this->getChartFormat();
     }
 
     public function getChartFormat() {
@@ -79,6 +79,10 @@ class Chart extends BaseChart {
             $fs = new sfFilesystem(new sfEventDispatcher());
             $fs->remove($path);
         }
+    }
+
+    public function getHash() {
+        return sha1($this->getSlug());
     }
 
 }
