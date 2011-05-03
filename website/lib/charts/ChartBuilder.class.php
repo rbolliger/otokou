@@ -74,14 +74,14 @@ class ChartBuilder {
 
                 $this->setParameter('range_type', 'date');
                 $this->setParameter('category_display', 'stacked');
-                
+
                 $data = $this->buildTripChartData('month');
                 break;
 
             case 'consumption_per_distance':
 
                 $cid = Doctrine_Core::getTable('Category')->findOneByName('Fuel')->getId();
-                $this->setParameter('categories_list',array($cid));
+                $this->setParameter('categories_list', array($cid));
 
                 $data = $this->buildConsumptionPerDistanceChartData();
                 break;
@@ -113,7 +113,6 @@ class ChartBuilder {
         $done = $this->generate();
 
         if ($done) {
-
             return $this->doDisplay();
         } else {
             return 'Not enough data do draw a chart. Please, change some criteria.';
@@ -171,7 +170,7 @@ class ChartBuilder {
         $this->options = array_merge($this->options, $options);
     }
 
-    public function setOption($option,$value) {
+    public function setOption($option, $value) {
         $this->options[$option] = $value;
     }
 
@@ -364,7 +363,7 @@ class ChartBuilder {
         }
 
 
-        $vl = self::getVehiclesList($this->getParameter('vehicles_list', array()),$this->getParameter('user_id'));
+        $vl = self::getVehiclesList($this->getParameter('vehicles_list', array()), $this->getParameter('user_id'));
         $cl = self::getCategoriesList($this->getParameter('categories_list', array()));
 
         // If no cars, we won't display anything
@@ -551,7 +550,14 @@ class ChartBuilder {
             }
         }
 
-        $chart->save();
+        try {
+            $chart->save();
+        } catch (Exception $exc) {
+            $sfe = new sfException();
+            throw $sfe->createFromException($exc);
+        }
+
+
 
         $this->chart = $chart;
 
@@ -570,6 +576,7 @@ class ChartBuilder {
             'kilometers_to',
             'range_type',
             'format',
+            'chart_name',
         );
 
         $foreign = array(
@@ -733,7 +740,7 @@ class ChartBuilder {
         );
     }
 
-    public static function getVehiclesList($vehicles = array(),$user_id) {
+    public static function getVehiclesList($vehicles = array(), $user_id) {
 
         $nb_vehicles = count($vehicles);
 
@@ -762,7 +769,7 @@ class ChartBuilder {
         if (!$gs) {
             return $gs;
         }
-        
+
         $data = $gs->buildCostPerYearChartData($this->getParameter('range_type'));
 
         return $data;
@@ -794,7 +801,7 @@ class ChartBuilder {
 
         // building chart data
         $categories = self::getCategoriesList($this->getParameter('categories_list', null));
-        $vehicles = self::getVehiclesList($this->getParameter('vehicles_list', null),$this->getParameter('user_id'));
+        $vehicles = self::getVehiclesList($this->getParameter('vehicles_list', null), $this->getParameter('user_id'));
         $options = array(
             'categories' => $categories,
             'vehicles' => $vehicles,

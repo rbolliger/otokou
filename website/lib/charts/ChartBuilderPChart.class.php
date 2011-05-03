@@ -48,7 +48,7 @@ class ChartBuilderPChart extends ChartBuilder {
 
             case 'trip_annual':
 
-                $picture = $this->buildPicture($data);
+                $picture = $this->buildPicture($data); 
                 $picture = $this->plotBarChart($picture);
                 break;
 

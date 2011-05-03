@@ -47,7 +47,7 @@
 
                 <tr>
                     <td><?php echo $chart->getId() ?></td>
-                    <td><?php echo $chart->getSha() ?></td>
+                    <td><?php echo $chart->getHash() ?></td>
                 </tr>
 
     <?php endforeach; ?>

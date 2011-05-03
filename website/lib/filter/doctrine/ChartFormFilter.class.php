@@ -14,7 +14,7 @@ class ChartFormFilter extends BaseChartFormFilter {
 
         // Removing some fields
         unset(
-                $this['sha'],
+                $this['slug'],
                 $this['format'],
                 $this['created_at'],
                 $this['updated_at'],

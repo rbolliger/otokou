@@ -28,7 +28,7 @@ abstract class BaseChartForm extends BaseFormDoctrine
       'chart_name'       => new sfWidgetFormInputText(),
       'created_at'       => new sfWidgetFormDateTime(),
       'updated_at'       => new sfWidgetFormDateTime(),
-      'sha'              => new sfWidgetFormInputText(),
+      'slug'             => new sfWidgetFormInputText(),
       'vehicles_list'    => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'Vehicle')),
       'categories_list'  => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'Category')),
     ));
@@ -47,13 +47,13 @@ abstract class BaseChartForm extends BaseFormDoctrine
       'chart_name'       => new sfValidatorString(array('max_length' => 40, 'required' => false)),
       'created_at'       => new sfValidatorDateTime(),
       'updated_at'       => new sfValidatorDateTime(),
-      'sha'              => new sfValidatorString(array('max_length' => 40, 'required' => false)),
+      'slug'             => new sfValidatorString(array('max_length' => 128, 'required' => false)),
       'vehicles_list'    => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'Vehicle', 'required' => false)),
       'categories_list'  => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'Category', 'required' => false)),
     ));
 
     $this->validatorSchema->setPostValidator(
-      new sfValidatorDoctrineUnique(array('model' => 'Chart', 'column' => array('sha')))
+      new sfValidatorDoctrineUnique(array('model' => 'Chart', 'column' => array('slug')))
     );
 
     $this->widgetSchema->setNameFormat('chart[%s]');

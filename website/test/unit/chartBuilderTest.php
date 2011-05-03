@@ -97,7 +97,7 @@ $t->cmp_ok($gb->getChartFormat(), '==', 'png', 'The format can be specified for 
 // ->getChartName()
 $t->diag('->getChartName()');
 $g = newChart();
-$name = $g->getChart()->getSha() . '.' . $g->getChartFormat();
+$name = $g->getChart()->getHash() . '.' . $g->getChartFormat();
 $t->cmp_ok($name, '==', $g->getChartName(), 'The name of the chart is built from the sha key and the format');
 
 
@@ -364,7 +364,7 @@ function getData($data = array()) {
     unset(
             $defaults['created_at'],
             $defaults['updated_at'],
-            $defaults['sha'],
+            $defaults['slug'],
             $defaults['id']
     );
 

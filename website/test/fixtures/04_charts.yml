@@ -9,7 +9,7 @@ Chart:
     kilometers_to:
     range_type: distance
     format: png
-    chart_name: something
+    chart_name: cost_per_year
     Categories: [taxes, fuel]
 
   chart_gb_2:
@@ -48,6 +48,6 @@ Chart:
     kilometers_to:
     range_type: distance
     format: png
-    chart_name: something
+    chart_name: cost_per_year
     Categories: [taxes, fuel]
     Vehicles: [car_gb_1]
