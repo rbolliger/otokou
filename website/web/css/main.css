@@ -187,7 +187,37 @@ li.last
 {
     float:right;
 }
- 
 
 
+div.vehicle_statistics > div.data
+{
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
+    margin: 5px;
+    padding: 6px;
+    text-align: center;
+    display: block;
+    float: left;
+}
 
+div.vehicle_statistics > div.data > div.description
+{
+    font-size: 1.5em;
+}
+
+div.vehicle_statistics > div.data > div.value
+{
+    font-size: 2.5em;
+    font-weight: bold;
+}
+
+div.vehicle_statistics > div.data > div.unit
+{
+    font-size: 1.3em;
+}
+
+.end_float
+{
+    clear: both;
+}
