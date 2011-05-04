@@ -18,4 +18,6 @@ Category:
   fines:
     name: Fine
     comment: speed, parking, ...
-  
+  maintenance:
+    name: Maintenance
+    comment: Checks, tires changes, ...

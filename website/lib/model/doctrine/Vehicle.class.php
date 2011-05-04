@@ -19,18 +19,23 @@ class Vehicle extends BaseVehicle {
 
     public function getTraveledDistance() {
 
-        $charges = $this->getCharges();
+        $c = $this->getLastChargeByRange('distance');
 
-        if (!count($charges)) {
+        if (!$c) {
             return 0;
         }
 
-        $dist = array();
-        foreach ($charges as $c) {
-            $dist[] = $c->getKilometers();
+        return $c->getKilometers();
+    }
+
+    public function getInitialDistance() {
+
+        $c = $this->getFirstChargeByRange('distance');
+        if (!$c) {
+            return null;
         }
 
-        return max($dist);
+        return $c->getKilometers();
     }
 
     public function getOverallCost() {
@@ -52,13 +57,18 @@ class Vehicle extends BaseVehicle {
     public function getCostPerKm() {
 
         $cost = $this->getOverallCost();
-        $dist = $this->getTraveledDistance();
+        $max_dist = $this->getTraveledDistance();
 
-        if ($dist == 0) {
+        if ($max_dist == 0) {
             return null;
         }
 
-        return $cost / $dist;
+        $min_dist = $this->getInitialDistance();
+        if (!$min_dist) {
+            return null;
+        }
+
+        return $cost / ($max_dist - $min_dist);
     }
 
     public function getAverageConsumption() {
@@ -69,7 +79,12 @@ class Vehicle extends BaseVehicle {
             return null;
         }
 
-        $dist = $this->getTraveledDistance();
+        $max_dist = $this->getTraveledDistance();
+        $min_dist = $this->getInitialDistance();
+        if (!$min_dist || $max_dist == 0) {
+            return null;
+        }
+
 
         $fuelId = Doctrine_Core::getTable('Category')->findOneByName('Fuel')->getId();
 
@@ -85,7 +100,50 @@ class Vehicle extends BaseVehicle {
             return null;
         }
 
-        return array_sum($quantity) / $dist * 100;
+        return array_sum($quantity) / ($max_dist - $min_dist) * 100;
+    }
+
+    public function getFirstChargeByRange($range) {
+
+        return $this->getChargeByRangeAndCriteria($range, array('minOrMax' => 'min'));
+    }
+
+    public function getLastChargeByRange($range) {
+
+        return $this->getChargeByRangeAndCriteria($range, array('minOrMax' => 'max'));
+    }
+
+    protected function getChargeByRangeAndCriteria($range, $criteria = array()) {
+
+        $ranges = array('date', 'distance');
+
+        if (!in_array($range, $ranges)) {
+            throw new Doctrine_Exception('Unknown range ' . $range . ' in ' . __METHOD__);
+        }
+        $column = $range == 'date' ? 'date' : 'kilometers';
+
+        if (!isset($criteria['minOrMax'])) {
+            throw new Doctrine_Exception('minOrMax is required in criteria in ' . __METHOD__);
+        }
+
+        $minOrMax = $criteria['minOrMax'];
+        if (!in_array($minOrMax, array('min', 'max'))) {
+            throw new Doctrine_Exception('Unknown minOrMax value ' . $minOrMax . ' in ' . __METHOD__);
+        }
+
+        $q = Doctrine_Core::getTable('Charge')
+                        ->createQuery('c')
+                        ->addSelect('c.*')
+                        ->andWhere('c.vehicle_id = ?', $this->getId());
+
+        $qs = $q->createSubquery()
+                        ->addFrom('Charge cs')
+                        ->addSelect($minOrMax . '(cs.' . $column . ')')
+                        ->andWhere('cs.vehicle_id = ' . $this->getId());
+
+        $q->andWhere('c.' . $column . '= (' . $qs->getDql() . ')');
+
+        return $q->execute()->getFirst();
     }
 
 }
