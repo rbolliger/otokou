@@ -306,8 +306,7 @@ info('4 - List filters')->
                 begin()->
                     check('Charge',
                             Doctrine_Core::getTable('Charge')->createQuery('a')
-                                ->orWhere('a.category_id = ?',$browser->getIdForCategory('Insurance'))
-                                ->orWhere('a.category_id = ?',$browser->getIdForCategory('Tax'))
+                                ->WhereIn('a.category_id',array($browser->getIdForCategory('Insurance'),$browser->getIdForCategory('Tax')))
                                 ->andWhere('a.user_id = ?',$browser->getUserId('ruf'))
                             ,8)->
                 end()->
@@ -327,8 +326,7 @@ info('4 - List filters')->
                 begin()->
                     check('Charge',
                             Doctrine_Core::getTable('Charge')->createQuery('a')
-                                ->orWhere('a.category_id = ?',$browser->getIdForCategory('Insurance'))
-                                ->orWhere('a.category_id = ?',$browser->getIdForCategory('Fuel'))
+                                ->WhereIn('a.category_id',array($browser->getIdForCategory('Insurance'),$browser->getIdForCategory('Fuel')))
                                 ->andWhere('a.user_id = ?',$browser->getUserId('ruf'))
                             ,10)->
                 end()->
