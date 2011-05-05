@@ -17,7 +17,7 @@ $params = array(
 $file = dirname(__FILE__) . '/results/chartCostPerKmResults.yml';
 
 //foreach ($scenarios as $key => $scenario) {
-for ($index = 0; $index < 16; $index++) {
+for ($index = 0; $index < 8; $index++) {
     $scenario = $scenarios[$index];
 
     $options = $scenario[2];
