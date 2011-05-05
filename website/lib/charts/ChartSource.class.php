@@ -60,14 +60,12 @@ class ChartSource {
 
             $data = array();
             foreach ($raw_data as $key => $charge) {
-//foreach ($charge as $field => $value) {
-//    echo $field . ': ' . $value . "\n";
-//}
+
                 $v = $charge->get($column);
                 if (!$v) {
                     throw new sfException(sprintf('Cannot get a value for column %s for charge id %d', $column, $charge->getId()));
                 }
-//echo $v.' -> ';
+
                 if ('datetime' == $type) {
                     $v = strtotime($v);
                 }
@@ -79,7 +77,7 @@ class ChartSource {
                 if ($max && $v > $max) {
                     continue;
                 }
-//echo $min.' : '.$v.' : '.$max."\n";
+
                 $data[$key] = $v;
 
                 if ($v) {
@@ -151,6 +149,13 @@ class ChartSource {
         // getting data for x-axis column
         $x_column = $this->getSeriesDataByColumn($axis_params['column'], $axis_params['format']);
 
+        $x_limits = array();
+        foreach ($x_column as $key => $serie) {
+            $x_limits[$key] = array(
+                'min' => min($serie),
+                'max' => max($serie),
+            );
+        }
 
         // building x-axis data
         $x_data = $this->buildXAxisData($x_column);
@@ -159,9 +164,19 @@ class ChartSource {
         if ($axis_params['column'] === $base_params['column']) {
             $base_data = $x_data;
             $base_column = $x_column;
+            $base_limits = $x_limits;
         } else {
 
             $base_column = $this->getSeriesDataByColumn($base_params['column'], $base_params['format']);
+
+            $base_limits = array();
+            foreach ($base_column as $key => $serie) {
+                $base_limits[$key] = array(
+                    'min' => min($serie),
+                    'max' => max($serie),
+                );
+            }
+
             $base_data = array();
 
             foreach ($x_data as $key => $value) {
@@ -224,6 +239,8 @@ class ChartSource {
             'base' => $base_data,
             'x_column' => $x_column,
             'base_column' => $base_column,
+            'x_limits' => $x_limits,
+            'base_limits' => $base_limits,
         );
 
         return array_merge($data, $axis_params);
@@ -798,6 +815,7 @@ class ChartSource {
         $x_base = $x_data['base'];
         $x_values = $x_data['value'];
         $x_column = $x_data['x_column'];
+        $x_limits = $x_data['x_limits'];
 
 
         $y_data = array();
@@ -813,8 +831,8 @@ class ChartSource {
                 $filter = $this->filterValuesLargerThan($x_column[$ykey], $bound);
 
 
-                if (!count($filter)) {
-                    $cost = 0;
+                if (!count($filter) || $bound > $x_limits[$ykey]['max']) {
+                    $cost = null;
                 } else {
 
                     // getting corresponding y elements

@@ -200,14 +200,14 @@ $charges = array(
         array('car_gs_2', 'user_gs', 'fuel', '2006-01-10', 12, 5, 254),
         array('car_gs_2', 'user_gs', 'fuel', '2006-02-15', 123, 11, 123),
         array('car_gs_2', 'user_gs', 'fuel', '2006-03-19', 456, 14, 654),
-        array('car_gs_2', 'user_gs', 'insurance', '2006-01-04', 324, 65),
+        array('car_gs_2', 'user_gs', 'maintenance', '2006-01-04', 324, 65),
         array('car_gs_2', 'user_gs', 'taxes', '2008-02-06', 65, 89),
-        array('car_gs_2', 'user_gs', 'fines', '2008-03-09', 654, 765),
+        array('car_gs_2', 'user_gs', 'maintenance', '2008-03-09', 654, 765),
         array('car_gs_3', 'user_gs', 'fuel', '2011-01-10', 80000, 50, 35),
         array('car_gs_3', 'user_gs', 'fuel', '2011-02-15', 83000, 80, 50),
         array('car_gs_3', 'user_gs', 'fuel', '2011-03-19', 81500, 100, 70),
-        array('car_gs_3', 'user_gs', 'purchase', '2011-01-04', 79954, 65),
-        array('car_gs_3', 'user_gs', 'insurance', '2011-02-06', 81756, 89),
+        array('car_gs_3', 'user_gs', 'maintenance', '2011-01-04', 79954, 65),
+        array('car_gs_3', 'user_gs', 'taxes', '2011-02-06', 81756, 89),
         array('car_gs_3', 'user_gs', 'maintenance', '2011-03-09', 82547, 112),
     );
 foreach ($charges as $key => $charge): ?>

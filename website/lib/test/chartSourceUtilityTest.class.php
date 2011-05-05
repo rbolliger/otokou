@@ -30,8 +30,8 @@ class chartSourceUtilityTest extends otokouTestFunctional {
         $cd = $scenario[1];
         $scn = $this->getCase($vd, $cd);
 
-        $defalut_categories = array('Fuel', 'Tax');
-        $default_vehicles = array('car_gs_1', 'car_gs_2');
+        $defalut_categories = array('Fuel', 'Tax','Maintenance');
+        $default_vehicles = array('car_gs_1', 'car_gs_2','car_gs_3');
 
         switch ($scn) {
             case 1:
