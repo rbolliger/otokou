@@ -328,8 +328,17 @@ class ChartBuilderPChart extends ChartBuilder {
 
         foreach ($cd['y']['series'] as $key => $serie) {
 
+            $values = $cd['y']['series'][$key]['values'];
+
+            foreach ($values as $k => $v) {
+                if (null === $v) {
+                    $values[$k] = VOID;
+                }
+            }
+
+
             $y_id = $cd['y']['series'][$key]['id'];
-            $myData->addPoints($cd['y']['series'][$key]['values'], $y_id);
+            $myData->addPoints($values, $y_id);
             $myData->setSerieOnAxis($y_id, 1);
 
             $myData->setScatterSerie($x_id, $y_id, $key);
