@@ -870,7 +870,7 @@ class ChartSource {
     protected function calculateCostSum($costs, $distance) {
 
         if ($distance == 0) {
-            $distance = 0.01;
+            return null;
         }
 
         return array_sum($costs) / $distance;

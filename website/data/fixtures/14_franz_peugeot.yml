@@ -577,7 +577,7 @@ Charge:
     Vehicle: peugeot
     date: '1993-12-07'
     comment: CO
-    kilometers: 0
+    kilometers: 95577
     amount: 48
     Category: taxes
   franz_peugeot_67:
@@ -603,7 +603,7 @@ Charge:
     Vehicle: peugeot
     date: '1993-12-27'
     comment: Assicurazione
-    kilometers: 0
+    kilometers: 96096
     amount: 345.5
     Category: insurance
   franz_peugeot_70:
@@ -629,7 +629,7 @@ Charge:
     Vehicle: peugeot
     date: '1994-01-21'
     comment: Vignetta
-    kilometers: 0
+    kilometers: 96565
     amount: 30
     Category: taxes
   franz_peugeot_73:
@@ -637,7 +637,7 @@ Charge:
     Vehicle: peugeot
     date: '1994-02-02'
     comment: Circolazione
-    kilometers: 0
+    kilometers: 96565
     amount: 264
     Category: taxes
   franz_peugeot_74:
