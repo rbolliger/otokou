@@ -13,7 +13,7 @@ class ChartBuilderPChart extends ChartBuilder {
     public function doGenerate() {
 
         $data = parent::doGenerate();
-        if(!$data){
+        if (!$data) {
             return $data;
         }
 
@@ -49,7 +49,7 @@ class ChartBuilderPChart extends ChartBuilder {
 
             case 'trip_annual':
 
-                $picture = $this->buildPicture($data); 
+                $picture = $this->buildPicture($data);
                 $picture = $this->plotBarChart($picture);
                 break;
 
@@ -305,7 +305,7 @@ class ChartBuilderPChart extends ChartBuilder {
         if (!$cd) {
             $cd = parent::buildCostPerKmChartData();
         }
-        if(!$cd){
+        if (!$cd) {
             return $cd;
         }
 
@@ -328,14 +328,7 @@ class ChartBuilderPChart extends ChartBuilder {
 
         foreach ($cd['y']['series'] as $key => $serie) {
 
-            $values = $cd['y']['series'][$key]['values'];
-
-            foreach ($values as $k => $v) {
-                if (null === $v) {
-                    $values[$k] = VOID;
-                }
-            }
-
+            $values = $this->filterNulls($cd['y']['series'][$key]['values']);
 
             $y_id = $cd['y']['series'][$key]['id'];
             $myData->addPoints($values, $y_id);
@@ -356,7 +349,7 @@ class ChartBuilderPChart extends ChartBuilder {
     protected function buildCostPerYearChartData() {
 
         $data = parent::buildCostPerYearChartData();
-        if(!$data){
+        if (!$data) {
             return $data;
         }
 
@@ -379,8 +372,10 @@ class ChartBuilderPChart extends ChartBuilder {
         $y_data = array();
         foreach ($y_series as $skey => $serie) {
 
+            $values = $this->filterNulls($data['y']['series'][$skey]['values']);
+
             $y_id = $data['y']['series'][$skey]['id'];
-            $myData->addPoints($data['y']['series'][$skey]['values'], $y_id);
+            $myData->addPoints($values, $y_id);
             $myData->setSerieDescription($y_id, $data['y']['series'][$skey]['label']);
         }
 
@@ -390,7 +385,7 @@ class ChartBuilderPChart extends ChartBuilder {
     protected function buildCostPieChartData() {
 
         $data = parent::buildCostPieChartData();
-        if(!$data){
+        if (!$data) {
             return $data;
         }
 
@@ -402,7 +397,9 @@ class ChartBuilderPChart extends ChartBuilder {
         // building chart data for each vehicle
         foreach ($y_series as $key => $y) {
 
-            $myData->addPoints($y['values'], $y['id']);
+            $values = $this->filterNulls($y['values']);
+
+            $myData->addPoints($values, $y['id']);
             $myData->setSerieDescription($y['id'], $y['label']);
             $myData->setSerieDrawable($y['id'], false); // series will be activated in plotPieChart
         }
@@ -419,7 +416,7 @@ class ChartBuilderPChart extends ChartBuilder {
     protected function buildConsumptionPerDistanceChartData() {
 
         $data = parent::buildConsumptionPerDistanceChartData();
-        if(!$data){
+        if (!$data) {
             return $data;
         }
 
@@ -431,7 +428,7 @@ class ChartBuilderPChart extends ChartBuilder {
     protected function buildTripChartData($unit) {
 
         $data = parent::buildTripChartData($unit);
-        if(!$data){
+        if (!$data) {
             return $data;
         }
 
@@ -451,12 +448,25 @@ class ChartBuilderPChart extends ChartBuilder {
 
         foreach ($data['y']['series'] as $key => $serie) {
 
+            $values = $this->filterNulls($serie['values']);
+
             $y_id = $serie['id'];
-            $myData->addPoints($serie['values'], $y_id);
+            $myData->addPoints($values, $y_id);
             $myData->setSerieDescription($y_id, $serie['label']);
         }
 
         return $myData;
+    }
+
+    protected function filterNulls($values) {
+
+        foreach ($values as $k => $v) {
+            if (null === $v) {
+                $values[$k] = VOID;
+            }
+        }
+
+        return $values;
     }
 
 }
