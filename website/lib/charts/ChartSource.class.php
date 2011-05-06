@@ -847,7 +847,7 @@ class ChartSource {
                     // getting corresponding y elements
                     $y_filtered = array_intersect_key($y_values, $filter);
 
-                    $distance = $x_base[$bkey];
+                    $distance = $x_base[$bkey]-$x_base[0];
 
                     $cost = $this->$y_eval($y_filtered, $distance);
                 }

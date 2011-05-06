@@ -43,7 +43,12 @@ function getYForScenario($ut, $scenario, $file) {
 
     foreach ($y as $ykey => $serie) {
         foreach ($serie as $skey => $value) {
-            $y[$ykey][$skey] = $value / $x[$skey];
+            $dist = $x[$skey] - $x[0];
+            if ($dist == 0) {
+                $y[$ykey][$skey] = null;
+            } else {
+                $y[$ykey][$skey] = $value / ($dist);
+            }
         }
     }
 
