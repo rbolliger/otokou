@@ -15,7 +15,7 @@ class chartSourceUtilityTest extends otokouTestFunctional {
             array('stacked', 'single', 'date'),
             array('stacked', 'stacked', 'distance', 70, 500),
             array('stacked', 'stacked', 'date', '2006-01-05', '2012-05-01'),
-            array('single', 'stacked', 'distance', 6, 90000),
+            array('single', 'stacked', 'distance', 6, 82000),
             array('single', 'stacked', 'date', '2008-03-02', '2011-04-27'),
             array('single', 'single', 'distance', 200, 80001),
             array('single', 'single', 'date', '2006-03-02', '2009-05-01'),
@@ -30,7 +30,7 @@ class chartSourceUtilityTest extends otokouTestFunctional {
         $cd = $scenario[1];
         $scn = $this->getCase($vd, $cd);
 
-        $defalut_categories = array('Fuel', 'Tax','Maintenance');
+        $defalut_categories = array('Fuel', 'Tax', 'Maintenance');
         $default_vehicles = array('car_gs_1', 'car_gs_2','car_gs_3');
 
         switch ($scn) {

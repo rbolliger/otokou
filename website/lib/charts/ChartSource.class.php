@@ -151,10 +151,17 @@ class ChartSource {
 
         $x_limits = array();
         foreach ($x_column as $key => $serie) {
-            $x_limits[$key] = array(
-                'min' => min($serie),
-                'max' => max($serie),
-            );
+            if ($serie) {
+                $x_limits[$key] = array(
+                    'min' => min($serie),
+                    'max' => max($serie),
+                );
+            } else {
+                $x_limits[$key] = array(
+                    'min' => null,
+                    'max' => null,
+                );
+            }
         }
 
         // building x-axis data
@@ -164,18 +171,19 @@ class ChartSource {
         if ($axis_params['column'] === $base_params['column']) {
             $base_data = $x_data;
             $base_column = $x_column;
-            $base_limits = $x_limits;
+//            $base_limits = $x_limits;
         } else {
 
             $base_column = $this->getSeriesDataByColumn($base_params['column'], $base_params['format']);
 
-            $base_limits = array();
-            foreach ($base_column as $key => $serie) {
-                $base_limits[$key] = array(
-                    'min' => min($serie),
-                    'max' => max($serie),
-                );
-            }
+//            $base_limits = array();
+//            foreach ($base_column as $key => $serie) {
+//                $min = ($base_type == 'distance') ? $this->getDateForDistance($x_limits['min'], 'min') : $this->getDistanceForDate($date, $minOrMax),
+//                $base_limits[$key] = array(
+//                    'min' => ,
+//                    'max' => max($serie),
+//                );
+//            }
 
             $base_data = array();
 
@@ -240,7 +248,7 @@ class ChartSource {
             'x_column' => $x_column,
             'base_column' => $base_column,
             'x_limits' => $x_limits,
-            'base_limits' => $base_limits,
+//            'base_limits' => $base_limits,
         );
 
         return array_merge($data, $axis_params);
@@ -832,7 +840,8 @@ class ChartSource {
 
 
                 if (!count($filter) || $bound > $x_limits[$ykey]['max']) {
-                    $cost = null;
+                    $cost = null; 
+
                 } else {
 
                     // getting corresponding y elements

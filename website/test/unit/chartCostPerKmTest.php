@@ -6,7 +6,7 @@ include dirname(__FILE__) . '/../bootstrap/Doctrine.php';
 
 $ut = new chartSourceUtilityTest(new sfBrowser());
 
-$t = new lime_test(288, new lime_output_color());
+$t = new lime_test(400, new lime_output_color());
 
 $scenarios = $ut->getBaseScenarios();
 
@@ -17,7 +17,7 @@ $params = array(
 $file = dirname(__FILE__) . '/results/chartCostPerKmResults.yml';
 
 //foreach ($scenarios as $key => $scenario) {
-for ($index = 0; $index < 8; $index++) {
+for ($index = 0; $index < 16; $index++) {
     $scenario = $scenarios[$index];
 
     $options = $scenario[2];
