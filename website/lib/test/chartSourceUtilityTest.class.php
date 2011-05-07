@@ -332,9 +332,8 @@ class chartSourceUtilityTest extends otokouTestFunctional {
         $history = $params['full_history'];
         if (!$history) {
             $q->andWhere($q->getRootAlias() . '.' . $field . ' >= ?', $scenario[3]);
-        }
-
-        $q->andWhere($q->getRootAlias() . '.' . $field . ' <= ?', $scenario[4]);
+            $q->andWhere($q->getRootAlias() . '.' . $field . ' <= ?', $scenario[4]);
+        }    
 
         return $history;
     }

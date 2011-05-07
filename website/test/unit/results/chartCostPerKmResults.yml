@@ -94,12 +94,12 @@ y:
         2:      [65,65,65,65,65,830,830,830,830,895,895,895,895,895,1007,1007,1011,1014]
     bounded:
       distance:
-        0:      [5,5,5,10,21,32,46,46,46,60,NULL]
-        1:      [50,139,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL]
+        0:      [5,5,5,10,21,32,46,46,46,60,60]
+        1:      [50,139,139,139,139,139,139,139,139,139,139]
         2:      [NULL,NULL,4,4,4,4,4,69,72,72,837]
       date:
-        0:      [NULL,5,16,30,NULL,NULL]
-        1:      [NULL,NULL,NULL,NULL,89,NULL]
+        0:      [NULL,5,16,30,30,30]
+        1:      [NULL,NULL,NULL,NULL,89,89]
         2:      [65,65,65,65,65,830]
   3:
     unbounded:
@@ -117,7 +117,7 @@ y:
         1:      [5,5,94,94,94,105,105,105,170,170,184,949,NULL,NULL,NULL,NULL]
         2:      [NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,65,115,215,304]
       date:
-        0:      [NULL,14,64,69,69,69,80,NULL,NULL,NULL,NULL]
+        0:      [NULL,14,64,69,69,69,80,80,80,80,80]
         1:      [949,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL]
         2:      [NULL,NULL,NULL,NULL,65,115,115,204,284,396,496]
   4:
@@ -152,7 +152,7 @@ y:
         5:      [NULL,NULL,65,65,65,830,NULL,NULL]
         6:      [NULL,NULL,NULL,NULL,NULL,NULL,NULL,50]
         7:      [NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL]
-        8:      [NULL,NULL,NULL,NULL,NULL,NULL,65,NULL]
+        8:      [NULL,NULL,NULL,NULL,NULL,NULL,65,65]
       date:
         0:      [NULL,NULL,NULL]
         1:      [NULL,NULL,NULL]
