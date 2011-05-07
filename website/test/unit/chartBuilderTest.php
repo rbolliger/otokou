@@ -225,7 +225,7 @@ $params = array(
 $gb = newChart($params);
 $data = $gb->getChartSourceData('stacked','stacked');
 $rawData = $data[0]->getRawData();
-$t->cmp_ok($rawData->count(), '==', 11, 'getChartsQueryResults() When "full_history" is set to "true", the function ignores the starting limit of the range and retrieves the full history of charges.');
+$t->cmp_ok($rawData->count(), '==', 18, 'getChartsQueryResults() When "full_history" is set to "true", the function ignores the starting limit of the range and retrieves the full history of charges.');
 
 
 

@@ -662,7 +662,7 @@ class ChartBuilder {
             $q->andWhere('c.date >= ?', $p);
         }
 
-        if ($p = $this->getParameter('date_to')) {
+        if (!$full_history && $p = $this->getParameter('date_to')) {
             $q->andWhere('c.date <= ?', $p);
         }
 
@@ -670,7 +670,7 @@ class ChartBuilder {
             $q->andWhere('c.kilometers >= ?', $p);
         }
 
-        if ($p = $this->getParameter('kilometers_to')) {
+        if (!$full_history && $p = $this->getParameter('kilometers_to')) {
             $q->andWhere('c.kilometers <= ?', $p);
         }
 
