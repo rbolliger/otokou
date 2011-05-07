@@ -44,8 +44,8 @@ class ChartSource {
             throw new sfException('No column defined. Cannot get series data!');
         }
 
-        $min = isset($params['min']) ? $params['min'] : null;
-        $max = isset($params['max']) ? $params['max'] : null;
+//        $min = isset($params['min']) ? $params['min'] : null;
+//        $max = isset($params['max']) ? $params['max'] : null;
 
         $series = $this->getSeries();
 
@@ -70,13 +70,13 @@ class ChartSource {
                     $v = strtotime($v);
                 }
 
-                // filtering values
-                if ($min && $v < $min) {
-                    continue;
-                }
-                if ($max && $v > $max) {
-                    continue;
-                }
+//                // filtering values
+//                if ($min && $v < $min) {
+//                    continue;
+//                }
+//                if ($max && $v > $max) {
+//                    continue;
+//                }
 
                 $data[$key] = $v;
 
@@ -143,47 +143,48 @@ class ChartSource {
 
 
         // getting axis parameters
-        $axis_params = $this->getAxisParametersByRangeType($range_type);
+        $x_params = $this->getAxisParametersByRangeType($range_type);
         $base_params = $this->getAxisParametersByRangeType($base_type);
 
         // getting data for x-axis column
-        $x_column = $this->getSeriesDataByColumn($axis_params['column'], $axis_params['format']);
+        $x_column = $this->getSeriesDataByColumn($x_params['column'], $x_params['format']);
 
-        $x_limits = array();
-        foreach ($x_column as $key => $serie) {
-            if ($serie) {
-                $x_limits[$key] = array(
-                    'min' => min($serie),
-                    'max' => max($serie),
-                );
-            } else {
-                $x_limits[$key] = array(
-                    'min' => null,
-                    'max' => null,
-                );
-            }
-        }
+        // getting maxium and minimum value for each serie
+        $x_limits = $this->calcualteLimitsForSeriers($x_column);
 
         // building x-axis data
         $x_data = $this->buildXAxisData($x_column);
 
         // getting data used as base column. This column is used to compute the chart values.
-        if ($axis_params['column'] === $base_params['column']) {
+        if ($x_params['column'] === $base_params['column']) {
             $base_data = $x_data;
             $base_column = $x_column;
-//            $base_limits = $x_limits;
+            $base_limits = $x_limits;
         } else {
 
             $base_column = $this->getSeriesDataByColumn($base_params['column'], $base_params['format']);
 
-//            $base_limits = array();
-//            foreach ($base_column as $key => $serie) {
-//                $min = ($base_type == 'distance') ? $this->getDateForDistance($x_limits['min'], 'min') : $this->getDistanceForDate($date, $minOrMax),
-//                $base_limits[$key] = array(
-//                    'min' => ,
-//                    'max' => max($serie),
-//                );
-//            }
+            // getting limits corresponding to x-axis limits
+            $base_limits = array();
+            $entries = array('min', 'max');
+            foreach ($base_column as $key => $serie) {
+
+                $x_c = $x_column[$key];
+                if (!$x_c) {
+                    $base_limits[$key]['min'] = null;
+                    $base_limits[$key]['max'] = null;
+                } else {
+
+                    foreach ($entries as $entry) {
+                        // finding the position of the minimum
+                        $k = array_keys($x_c, $x_limits[$key][$entry]);
+                        $values = array_intersect_key($serie, array_combine($k, $k));
+
+                        $base_limits[$key][$entry] = call_user_func($entry, $values);
+                    }
+                }
+            }
+
 
             $base_data = array();
 
@@ -209,6 +210,9 @@ class ChartSource {
         }
 
 
+
+
+
         // looking for data == 0 and changing its value
         if (isset($options['check_zeroes']) && $options['check_zeroes'] == true) {
 
@@ -220,9 +224,9 @@ class ChartSource {
         }
 
         // filtering data if any limit is set
-        if ($axis_params['min']) {
+        if ($x_params['min']) {
 
-            $f = $this->filterValuesSmallerThan($x_data, $axis_params['min']);
+            $f = $this->filterValuesSmallerThan($x_data, $x_params['min']);
             if ($f) {
                 $min_id = min(array_keys($x_data, min($f)));
             } else {
@@ -232,8 +236,8 @@ class ChartSource {
             $min_id = 0;
         }
 
-        if ($axis_params['max']) {
-            $max_id = max(array_keys($x_data, max($this->filterValuesLargerThan($x_data, $axis_params['max']))));
+        if ($x_params['max']) {
+            $max_id = max(array_keys($x_data, max($this->filterValuesLargerThan($x_data, $x_params['max']))));
         } else {
             $max_id = count($x_data);
         }
@@ -248,10 +252,10 @@ class ChartSource {
             'x_column' => $x_column,
             'base_column' => $base_column,
             'x_limits' => $x_limits,
-//            'base_limits' => $base_limits,
+            'base_limits' => $base_limits,
         );
 
-        return array_merge($data, $axis_params);
+        return array_merge($data, $x_params);
     }
 
     public function buildXAxisDataByDateRange($dates, $unit) {
@@ -824,14 +828,16 @@ class ChartSource {
         $x_values = $x_data['value'];
         $x_column = $x_data['x_column'];
         $x_limits = $x_data['x_limits'];
-
+        $base_limits = $x_data['base_limits'];
 
         $y_data = array();
         $y_series = $this->getSeries();
 
         $y_sum = array();
-
+//print_r($x_data);
         foreach ($y_columns as $ykey => $y_values) {
+
+            $base_0 = $base_limits[$ykey]['min'];
 
             foreach ($x_values as $bkey => $bound) {
 
@@ -840,14 +846,13 @@ class ChartSource {
 
 
                 if (!count($filter) || $bound > $x_limits[$ykey]['max']) {
-                    $cost = null; 
-
+                    $cost = null;
                 } else {
 
                     // getting corresponding y elements
                     $y_filtered = array_intersect_key($y_values, $filter);
-
-                    $distance = $x_base[$bkey]-$x_base[0];
+//print_r($y_filtered); echo "distance: ".$x_base[$bkey].' - '.$base_0."\n";
+                    $distance = $x_base[$bkey] - $base_0;
 
                     $cost = $this->$y_eval($y_filtered, $distance);
                 }
@@ -951,6 +956,26 @@ class ChartSource {
         }
 
         return $value;
+    }
+
+    protected function calcualteLimitsForSeriers($series) {
+
+        $limits = array();
+        foreach ($series as $key => $serie) {
+            if (count($serie)) {
+                $limits[$key] = array(
+                    'min' => min($serie),
+                    'max' => max($serie),
+                );
+            } else {
+                $limits[$key] = array(
+                    'min' => null,
+                    'max' => null,
+                );
+            }
+        }
+
+        return $limits;
     }
 
 }

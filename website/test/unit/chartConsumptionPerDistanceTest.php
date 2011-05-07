@@ -18,7 +18,7 @@ $params = array(
 );
 
 
-for ($index =0; $index < 16; $index++) {
+for ($index =0; $index < 2; $index++) {
     $scenario = $scenarios[$index];
 
     $options = $scenario[2];

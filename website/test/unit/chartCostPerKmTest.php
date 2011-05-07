@@ -42,8 +42,11 @@ function getYForScenario($ut, $scenario, $file) {
 
 
     foreach ($y as $ykey => $serie) {
+
+        $x_first = $yaml['y']['x'][$case]['first'][$range][$ykey];
+
         foreach ($serie as $skey => $value) {
-            $dist = $x[$skey] - $x[0];
+            $dist = $x[$skey] - $x_first;
             if ($dist == 0) {
                 $y[$ykey][$skey] = null;
             } else {
