@@ -6,7 +6,7 @@ include dirname(__FILE__) . '/../../lib/test/chartSourceUtilityTest.class.php';
 
 $ut = new chartSourceUtilityTest(new sfBrowser());
 
-$t = new lime_test(240, new lime_output_color());
+$t = new lime_test(272, new lime_output_color());
 
 $file = dirname(__FILE__) . '/results/chartConsumptionPerDistanceResults.yml';
 
@@ -18,7 +18,7 @@ $params = array(
 );
 
 
-for ($index =0; $index < 2; $index++) {
+for ($index = 0; $index < 16; $index++) {
     $scenario = $scenarios[$index];
 
     $options = $scenario[2];
@@ -40,15 +40,19 @@ function getYForScenario($ut, $scenario, $file) {
 
     $x = $yaml['y']['x'][$case][$limit][$range];
     $y = $yaml['y'][$case][$limit][$range];
-
+//print_r($x);
+//print_r($y);
     foreach ($y as $ykey => $serie) {
-        foreach ($serie as $skey => $value) {
-            $dist = $x[$skey];
-            if ($dist == 0) {
-                $dist = 0.01;
-            }
 
-            $y[$ykey][$skey] = $value / $dist * 100;
+        $x_first = $yaml['y']['x'][$case]['first'][$range][$ykey];
+
+        foreach ($serie as $skey => $value) {
+            $dist = $x[$skey] - $x_first;
+            if ($dist == 0) {
+                $y[$ykey][$skey] = null;
+            } else {
+                $y[$ykey][$skey] = $value / $dist * 100;
+            }
         }
     }
 

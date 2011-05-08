@@ -884,7 +884,7 @@ class ChartSource {
     protected function calculateConsumptionPerDistance($consumptions, $distance) {
 
         if ($distance == 0) {
-            $distance = 0.01;
+            return null;
         }
 
         return array_sum($consumptions) / $distance * 100;
