@@ -1,7 +1,7 @@
 <?php
 
 include dirname(__FILE__) . '/../bootstrap/Doctrine.php';
-
+include dirname(__FILE__) . '/../../lib/test/chartSourceUtilityTest.class.php';
 
 
 $ut = new chartSourceUtilityTest(new sfBrowser());

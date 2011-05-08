@@ -1,6 +1,7 @@
 <?php
 
 include dirname(__FILE__) . '/../bootstrap/Doctrine.php';
+include dirname(__FILE__) . '/../../lib/test/otokouTestFunctional.class.php';
 
 $app_configuration = ProjectConfiguration::getApplicationConfiguration('frontend', 'test', true);
 sfContext::createInstance($app_configuration);

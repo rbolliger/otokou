@@ -1,6 +1,7 @@
 <?php
 
 include(dirname(__FILE__) . '/../../bootstrap/functional.php');
+include dirname(__FILE__) . '/../../../lib/test/otokouTestFunctional.class.php';
 
 $browser = new otokouTestFunctional(new sfBrowser());
 $browser->loadData();

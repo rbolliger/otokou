@@ -1,5 +1,6 @@
 <?php
 include dirname(__FILE__) . '/../bootstrap/Doctrine.php';
+include dirname(__FILE__) . '/../../../lib/test/otokouTestFunctional.class.php';
 
 $ut = new otokouTestFunctional(new sfBrowser());
 
