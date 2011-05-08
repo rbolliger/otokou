@@ -1,6 +1,11 @@
 <?php
+//class chartSourceUtilityTest extends otokouTestFunctional {
+class chartSourceUtilityTest {
 
-class chartSourceUtilityTest extends otokouTestFunctional {
+
+    public function  __construct() {
+        $this->utility = new otkTestUtility();
+    }
 
     public function getBaseScenarios() {
 
@@ -338,5 +343,10 @@ class chartSourceUtilityTest extends otokouTestFunctional {
         return $history;
     }
 
+
+    public function getUserId($username, $throw = true) {
+
+        return $this->utility->getUserId($username,$throw);
+    }
 
 }

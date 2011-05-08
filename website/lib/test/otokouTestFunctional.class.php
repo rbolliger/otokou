@@ -7,6 +7,12 @@
  */
 class otokouTestFunctional extends sfTestFunctional {
 
+    public function __construct(sfBrowserBase $browser, lime_test $lime = null, $testers = array()) {
+        parent::__construct($browser, $lime, $testers);
+
+        $this->utility = new otkTestUtility();
+    }
+
     public function loadData() {
 
         Doctrine::loadData(sfConfig::get('sf_test_dir') . '/fixtures');
@@ -15,14 +21,8 @@ class otokouTestFunctional extends sfTestFunctional {
     }
 
     public function getIdForCategory($category, $throw = true) {
-        $c = Doctrine_Core::getTable('Category')->findOneByName($category);
 
-        if (!$c && $throw) {
-            throw new sfException(sprintf('Cannot find any category with name %s', $category));
-        } elseif (!$c && !$throw) {
-            return null;
-        }
-        return $c->getId();
+        return $this->utility->getIdForCategory($category, $throw);
     }
 
     public function login($username = 'ruf', $password = 'admin@1') {
@@ -54,14 +54,14 @@ class otokouTestFunctional extends sfTestFunctional {
         $this->
                 with('response')->
                 begin()->
-                    isRedirected()->
-                    followRedirect()->
+                isRedirected()->
+                followRedirect()->
                 end()->
                 with('request')->
-                    begin()->
-                        isParameter('module','homepage')->
-                        isParameter('action','index')->
-                    end()
+                begin()->
+                isParameter('module', 'homepage')->
+                isParameter('action', 'index')->
+                end()
         ;
 
 
@@ -69,45 +69,19 @@ class otokouTestFunctional extends sfTestFunctional {
     }
 
     public function getUserId($username, $throw = true) {
-        $v = Doctrine_Core::getTable('sfGuardUser')->findOneByUsername($username);
-
-        if (!$v && $throw) {
-            throw new sfException(sprintf('Cannot find any user with username %s', $username));
-        } elseif (!$v && !$throw) {
-            return null;
-        }
-
-        return $v->getId();
+        
+        return $this->utility->getUserId($username,$throw);
     }
 
     public function getVehicleId($name, $throw = true) {
 
-        $v = Doctrine_Core::getTable('Vehicle')->findOneBySlug($name);
-
-        if (!$v && $throw) {
-            throw new sfException(sprintf('Cannot find any vehicle with slug %s', $name));
-        } elseif (!$v && !$throw) {
-            return null;
-        }
-
-        return $v->getId();
+        return $this->utility->getVehicleId($name, $throw);
     }
 
     public function getOneChargeByParams($params = array()) {
 
-        if (!$params) {
-            throw new sfException('At least one parameter must be specified');
-        }
-
-        $q = Doctrine_Core::getTable('Charge')->createQuery('c');
-
-        foreach ($params as $key => $value) {
-            $q->andWhere('c.' . $key . ' = ?', $value);
-        }
-
-        return $q->fetchOne();
+        return $this->utility->getOneChargeByParams($params);
     }
 
 }
 
-?>
