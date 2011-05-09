@@ -44,9 +44,13 @@ $browser->
             checkElement('table#query_results:contains("No elements found")',true)->
             checkElement('div.vehicle_statistics',2)->
             checkElement('div.vehicle_statistics div.overall_cost',2)->
+            checkElement('div.vehicle_statistics div.overall_cost div.value','/\d+\.\d\d/',array('position' => 1))->
             checkElement('div.vehicle_statistics div.traveled_distance',2)->
+            checkElement('div.vehicle_statistics div.traveled_distance div.value','/\d+\.\d\d/',array('position' => 1))->
             checkElement('div.vehicle_statistics div.cost_per_km',2)->
+            checkElement('div.vehicle_statistics div.cost_per_km div.value','/\d+\.\d\d/',array('position' => 1))->
             checkElement('div.vehicle_statistics div.fuel_consumption',2)->
+            checkElement('div.vehicle_statistics div.fuel_consumption div.value','/\d+\.\d\d/',array('position' => 1))->
           end()->
         
         info('2 - Filters')->
