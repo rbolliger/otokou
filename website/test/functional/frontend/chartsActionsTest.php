@@ -403,7 +403,7 @@ $browser->
                     checkElement('body:contains("Warning")]',false)->
                     checkElement('body:contains("Notice")]',false)->
                     checkElement('img',true)->
-                    checkElement('#filter_values_vehicle_display:contains("single")]',true)->
+                    checkElement('#filter_values_range_type:contains("date")]',true)->
                     checkElement('#filter_values_chart_name:contains("trip_annual")]',true)->
                     checkElement('table#filter_values tbody tr',2)->
                 end()->
@@ -425,7 +425,7 @@ $browser->
                     checkElement('body:contains("Warning")]',false)->
                     checkElement('body:contains("Notice")]',false)->
                     checkElement('img',true)->
-                    checkElement('#filter_values_vehicle_display:contains("single")]',true)->
+                    checkElement('#filter_values_range_type:contains("date")]',true)->
                     checkElement('#filter_values_chart_name:contains("trip_monthly")]',true)->
                     checkElement('table#filter_values tbody tr',2)->
                 end()

@@ -64,18 +64,26 @@ class ChartBuilder {
 
             case 'trip_annual':
 
-                $this->setParameter('range_type', 'date');
+                //$this->setParameter('range_type', 'date');
                 $this->setParameter('category_display', 'stacked');
 
-                $data = $this->buildTripChartData('year');
+                $options = array(
+                   'range_type' => $this->getParameter('range_type'),
+                   'unit'       => 'year',
+                );
+                $data = $this->buildTripChartData($options);
                 break;
 
             case 'trip_monthly':
 
-                $this->setParameter('range_type', 'date');
+                //$this->setParameter('range_type', 'date');
                 $this->setParameter('category_display', 'stacked');
 
-                $data = $this->buildTripChartData('month');
+                $options = array(
+                   'range_type' => $this->getParameter('range_type'),
+                   'unit'       => 'month',
+                );
+                $data = $this->buildTripChartData($options);
                 break;
 
             case 'consumption_per_distance':
@@ -812,7 +820,7 @@ class ChartBuilder {
         return $data;
     }
 
-    protected function buildTripChartData($unit) {
+    protected function buildTripChartData($options) {
 
         $this->setParameter('full_history', false);
 
@@ -822,7 +830,7 @@ class ChartBuilder {
             return $gs;
         }
 
-        $data = $gs->buildTripChartData($unit);
+        $data = $gs->buildTripChartData($options);
 
         return $data;
     }

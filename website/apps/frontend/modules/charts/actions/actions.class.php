@@ -92,7 +92,7 @@ class chartsActions extends otkWithOwnerActions {
 
 
         $filters = $this->getFilters();
-        $filters = $this->updateFilterFieldIfEmpty($filters, 'vehicle_display', 'single');
+        $filters = $this->updateFilterFieldIfEmpty($filters, 'range_type', 'date');
         $this->setFilters($filters);
         $this->setFilterField('chart_name', 'trip_annual');
 
@@ -106,7 +106,7 @@ class chartsActions extends otkWithOwnerActions {
         $this->setTemplate('costPerKm');
 
         $filters = $this->getFilters();
-        $filters = $this->updateFilterFieldIfEmpty($filters, 'vehicle_display', 'single');
+        $filters = $this->updateFilterFieldIfEmpty($filters, 'range_type', 'date');
         $this->setFilters($filters);
         $this->setFilterField('chart_name', 'trip_monthly');
 

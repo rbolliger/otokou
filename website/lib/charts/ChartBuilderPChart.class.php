@@ -425,9 +425,9 @@ class ChartBuilderPChart extends ChartBuilder {
         return $myData;
     }
 
-    protected function buildTripChartData($unit) {
+    protected function buildTripChartData($options) {
 
-        $data = parent::buildTripChartData($unit);
+        $data = parent::buildTripChartData($options);
         if (!$data) {
             return $data;
         }

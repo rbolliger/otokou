@@ -547,7 +547,7 @@ class ChartSource {
         $data['title'] = 'Total Cost [CHF/year]';
 
         // x-axis
-        $x_data = $this->buildXAxisDataByRangeTypeAndCalculationBase($range_type, 'date'); 
+        $x_data = $this->buildXAxisDataByRangeTypeAndCalculationBase($range_type, 'date');
         $x_dates = $this->buildXAxisDataByDateRange(array($x_data['base']), 'year');
 
         $data['x']['id'] = 'x-axis';
@@ -686,10 +686,12 @@ class ChartSource {
         return $data;
     }
 
-    public function buildTripChartData($unit) {
+    public function buildTripChartData($options) {
 
         $data = array();
 
+        $range_type = $options['range_type'];
+        $unit = $options['unit'];
 
         $units = array('year', 'month');
         if (!in_array($unit, $units)) {
@@ -706,9 +708,8 @@ class ChartSource {
 
 
         // x-axis
-        $dates = $this->getSeriesDataByColumn('date', 'datetime');
-
-        $x_dates = $this->buildXAxisDataByDateRange($dates, $unit);
+        $x_data = $this->buildXAxisDataByRangeTypeAndCalculationBase($range_type, 'date');
+        $x_dates = $this->buildXAxisDataByDateRange(array($x_data['base']), $unit);
 
         $data['x'] = array(
             'id' => 'x-axis',
@@ -726,15 +727,16 @@ class ChartSource {
         $data['y']['series'] = array();
         $data['y']['description'] = $title;
 
+
         $y_data = array();
-        foreach ($dates as $skey => $serie) {
+        foreach ($x_data['base_column'] as $skey => $serie) {
 
             $prev_y = false;
 
             for ($index = 0; $index < count($x_dates['range']) - 1; $index++) {
-                // removing elements outside the required range
-                $filter = $this->filterValuesOutsideRange($serie, $x_dates['range'][$index], $x_dates['range'][$index + 1]);
 
+                // removing x elements that are larger than bound
+                $filter = $this->filterValuesOutsideRange($serie, $x_dates['range'][$index], $x_dates['range'][$index + 1]);
 
                 if (!$filter) {
                     $y_travel = 0;
@@ -742,39 +744,30 @@ class ChartSource {
 
                     // getting corresponding y elements
                     $y_filtered = array_intersect_key($kilometers[$skey], $filter);
-
-
+//print_r($filter); print_r($y_filtered);
                     // set the first value form prev_y, which is not 0, but the lowest distance runned by
                     // the vehicle. This depends on the filters applied by the user.
                     if (false === $prev_y) {
 
-                        $m_y = array();
-                        $min = min($filter);
-                        foreach ($filter as $k => $v) {
-                            if ($v == $min) {
-                                array_push($m_y, $y_filtered[$k]);
-                            }
-                        }
-                        $prev_y = min($m_y);
-                    }
-
-                    $m_y = array();
-                    $max = max($filter);
-                    foreach ($filter as $k => $v) {
-                        if ($v == $max) {
-                            array_push($m_y, $y_filtered[$k]);
+                        if ('date' == $range_type) {
+                            $prev_y = $this->getTripBound($filter, 'min', $y_filtered);
+                        } else {
+                            $prev_y = $this->getTripBound($y_filtered, 'min', $y_filtered);
                         }
                     }
-                    $max = max($m_y);
 
-
+                    if ('date' == $range_type) {
+                        $max = $this->getTripBound($filter, 'max', $y_filtered);
+                    } else {
+                        $max = $this->getTripBound($y_filtered, 'max', $y_filtered);
+                    }
+//echo $prev_y." => ".$max."\n";
                     $y_travel = $max - $prev_y;
                     $prev_y = $max;
                 }
 
                 $y_data[$skey][$index] = $y_travel;
             }
-
 
             $id = $y_series[$skey]->getId();
             $data['y']['series'][$skey] = array(
@@ -976,6 +969,22 @@ class ChartSource {
         }
 
         return $limits;
+    }
+
+    protected function getTripBound($array, $minOrMax, $y_filtered) {
+
+        if (!in_array($minOrMax, array('min', 'max'))) {
+            throw new sfException('Unknown minOrMax value ' . $minOrMax);
+        }
+
+        $m_y = array();
+        $bound = call_user_func($minOrMax, $array);
+        foreach ($array as $k => $v) {
+            if ($v == $bound) {
+                array_push($m_y, $y_filtered[$k]);
+            }
+        }
+        return call_user_func($minOrMax, $m_y);
     }
 
 }
