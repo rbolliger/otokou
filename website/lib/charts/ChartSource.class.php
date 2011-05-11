@@ -547,7 +547,7 @@ class ChartSource {
         $data['title'] = 'Total Cost [CHF/year]';
 
         // x-axis
-        $x_data = $this->buildXAxisDataByRangeTypeAndCalculationBase($range_type, 'date');
+        $x_data = $this->buildXAxisDataByRangeTypeAndCalculationBase($range_type, 'date'); 
         $x_dates = $this->buildXAxisDataByDateRange(array($x_data['base']), 'year');
 
         $data['x']['id'] = 'x-axis';

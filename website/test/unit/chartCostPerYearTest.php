@@ -6,7 +6,7 @@ include dirname(__FILE__) . '/../../lib/test/chartSourceUtilityTest.class.php';
 
 $ut = new chartSourceUtilityTest(new sfBrowser());
 
-$t = new lime_test(288, new lime_output_color());
+$t = new lime_test(400, new lime_output_color());
 
 
 $scenarios = $ut->getBaseScenarios();
@@ -49,7 +49,7 @@ function getXForScenario($ut, $scenario, $file) {
     $range = $scenario[2];
     $limit = isset($scenario[3]) ? 'bounded' : 'unbounded';
 
-    $x = $yaml['x'];
+    $x = $yaml['x'][$case][$limit][$range];
 
     return $x;
 }
