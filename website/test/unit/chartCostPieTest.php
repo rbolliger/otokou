@@ -6,7 +6,8 @@ include dirname(__FILE__) . '/../../lib/test/chartSourceUtilityTest.class.php';
 
 $ut = new chartSourceUtilityTest(new sfBrowser());
 
-$t = new lime_test(128, new lime_output_color());
+$t = new lime_test(136, new lime_output_color());
+
 
 
 $scenarios = $ut->getBaseScenarios();
@@ -49,6 +50,8 @@ function getYForScenario($ut, $scenario) {
 //    [4] => Accessory
 //    [5] => Insurance
 //    [6] => Fine
+//    [7] => Maintenance
+
 
 
     switch ($case) {
@@ -62,16 +65,16 @@ function getYForScenario($ut, $scenario) {
 
             if (!$limit) {
                 $y = array(
-                    0 => array(60, 0, 0, 976, 0, 0, 0),
+                    0 => array(290, 0, 0, 228, 0, 0, 0, 1014),
                 );
             } else {
                 if ('distance' == $range) {
                     $y = array(
-                        0 => array(55, 0, 0, 976, 0, 0, 0),
+                        0 => array(55, 0, 0, 139, 0, 0, 0, 837),
                     );
                 } else {
                     $y = array(
-                        0 => array(60, 0, 0, 969, 0, 0, 0),
+                        0 => array(30, 0, 0, 89, 0, 0, 0, 830),
                     );
                 }
             }
@@ -82,19 +85,20 @@ function getYForScenario($ut, $scenario) {
 
             if (!$limit) {
                 $y = array(
-                    0 => array(30, 0, 0, 57, 0, 0, 0),
-                    1 => array(30, 0, 0, 919, 0, 0, 0),
+                    0 => array(30, 0, 0, 50, 0, 0, 0, 7),
+                    1 => array(30, 0, 0, 89, 0, 0, 0, 830),
+                    2 => array(230, 0, 0, 89, 0, 0, 0, 177),
                 );
             } else {
                 if ('distance' == $range) {
                     $y = array(
-                        0 => array(30, 0, 0, 57, 0, 0, 0),
-                        1 => array(25, 0, 0, 919, 0, 0, 0),
+                        0 => array(25, 0, 0, 0, 0, 0, 0, 3),
+                        1 => array(14, 0, 0, 0, 0, 0, 0, 830),
+                        2 => array(50, 0, 0, 0, 0, 0, 0, 65),
                     );
                 } else {
                     $y = array(
-                        0 => array(25, 0, 0, 57, 0, 0, 0),
-                        1 => array(30, 0, 0, 919, 0, 0, 0),
+                        1 => array(14, 0, 0, 89, 0, 0, 0, 765),
                     );
                 }
             }
