@@ -206,7 +206,7 @@ Charge:
     Vehicle: kadett
     date: '1990-05-31'
     comment: 'Assicurazione 2° sem. 90'
-    kilometers: 0
+    kilometers: 6440
     amount: 489.6
     Category: insurance
   franz_kadett_25:
@@ -559,7 +559,7 @@ Charge:
     Vehicle: kadett
     date: '1990-12-27'
     comment: 'Assicurazione 1° sem 91'
-    kilometers: 0
+    kilometers: 18251
     amount: 489.6
     Category: insurance
   franz_kadett_65:
@@ -902,7 +902,7 @@ Charge:
     Vehicle: kadett
     date: '1991-06-28'
     comment: 'Assicurazione 2° sem 91'
-    kilometers: 0
+    kilometers: 30752
     amount: 489.6
     Category: insurance
   franz_kadett_104:
@@ -1133,7 +1133,7 @@ Charge:
     Vehicle: kadett
     date: '1991-12-24'
     comment: 'Assicurazione 1° sem. 92'
-    kilometers: 0
+    kilometers: 40942
     amount: 512.9
     Category: insurance
   franz_kadett_130:
@@ -1621,7 +1621,7 @@ Charge:
     Vehicle: kadett
     date: '1992-10-28'
     comment: Benzina
-    kilometers: 56975
+    kilometers: 59975
     amount: 0
     Category: fuel
     quantity: 24
@@ -2185,7 +2185,7 @@ Charge:
     Vehicle: kadett
     date: '1993-08-02'
     comment: 'Controllo sospensioni, geometria'
-    kilometers: 0
+    kilometers: 79030
     amount: 100
     Category: taxes
   franz_kadett_249:
@@ -2492,8 +2492,8 @@ Charge:
     User: franz
     Vehicle: kadett
     date: '1993-12-27'
-    comment: 'Assicurazione1° sem. 94'
-    kilometers: 0
+    comment: 'Assicurazione 1° sem. 94'
+    kilometers: 89008
     amount: 558.3
     Category: insurance
   franz_kadett_284:
@@ -2661,7 +2661,7 @@ Charge:
     Vehicle: kadett
     date: '1994-04-14'
     comment: Benzina
-    kilometers: 0
+    kilometers: 94922
     amount: 35
     Category: fuel
     quantity: 31.1
@@ -3070,7 +3070,7 @@ Charge:
     Vehicle: kadett
     date: '1994-10-19'
     comment: 'Multa zona pedonale'
-    kilometers: 0
+    kilometers: 109063
     amount: 50
     Category: fines
   franz_kadett_349:
@@ -3845,7 +3845,7 @@ Charge:
     Vehicle: kadett
     date: '1995-09-26'
     comment: Benzina
-    kilometers: 235751
+    kilometers: 135751
     amount: 200
     Category: fuel
     quantity: 30

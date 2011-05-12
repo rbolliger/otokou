@@ -1162,7 +1162,7 @@ Charge:
   franz_corsa_136:
     User: franz
     Vehicle: corsa
-    date: '2001-01-04'
+    date: '2001-10-04'
     comment: Benzina
     kilometers: 33271
     amount: 40
