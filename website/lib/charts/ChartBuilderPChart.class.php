@@ -277,6 +277,7 @@ class ChartBuilderPChart extends ChartBuilder {
             "SubTickAlpha" => 100,
             "DrawArrows" => false,
             "CycleBackground" => false,
+            "LabelRotation" => 90,
         );
         $Settings = array_merge($Settings, $options);
         $picture->drawScale($Settings);
