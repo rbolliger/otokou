@@ -69,8 +69,10 @@ class reportActions extends otkWithOwnerActions {
 
         $r = $this->getRoute()->getObject();
 
-        $r->setIsNew(false);
-        $r->save();
+        if ($r->getIsNew()) {
+            $r->setIsNew(false);
+            $r->save();
+        }
 
         $this->report = $r;
 
@@ -82,36 +84,36 @@ class reportActions extends otkWithOwnerActions {
             'range_type' => $rt,
             'chart_name' => 'cost_per_km',
         );
-        $this->cost_per_km = $this->newChart($r,$data);
+        $this->cost_per_km = $this->newChart($r, $data);
 
         $data = array(
             'range_type' => 'date',
             'chart_name' => 'cost_per_year',
         );
-        $this->cost_annual = $this->newChart($r,$data);
+        $this->cost_annual = $this->newChart($r, $data);
 
         $data = array(
             'range_type' => 'date',
             'chart_name' => 'cost_pie',
         );
-        $this->cost_allocation = $this->newChart($r,$data);
+        $this->cost_allocation = $this->newChart($r, $data);
         $data = array(
             //'range_type' => 'date',
             'chart_name' => 'trip_annual',
         );
-        $this->travel_annual = $this->newChart($r,$data);
+        $this->travel_annual = $this->newChart($r, $data);
 
         $data = array(
             //'range_type' => 'date',
             'chart_name' => 'trip_monthly',
         );
-        $this->travel_monthly = $this->newChart($r,$data);
+        $this->travel_monthly = $this->newChart($r, $data);
 
         $data = array(
             'range_type' => $rt,
             'chart_name' => 'consumption_per_distance',
         );
-        $this->consumption_fuel = $this->newChart($r,$data);
+        $this->consumption_fuel = $this->newChart($r, $data);
     }
 
     public function checkCSRFProtection() {
@@ -190,16 +192,15 @@ class reportActions extends otkWithOwnerActions {
     protected function newChart($report, $params) {
 
         $params = array_merge(
-                array(
-                    'vehicles_list' => $report->getVehicles()->getPrimaryKeys(),
-                    ),
-                $this->getGBData($params)
-                );
+                        array(
+                            'vehicles_list' => $report->getVehicles()->getPrimaryKeys(),
+                        ),
+                        $this->getGBData($params)
+        );
 
         $params = $this->apply_range($report, $params);
 
         return new ChartBuilderPChart($params);
-
     }
 
 }

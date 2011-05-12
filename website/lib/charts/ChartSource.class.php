@@ -365,17 +365,17 @@ class ChartSource {
                 if ($calculate_limits) {
 
                     // lower bound
-                    if ($p = $this->getParam('date_from', false)) {
-                        $min = strtotime($p);
-                    } elseif ($p = $this->getParam('kilometers_from')) {
-                        $min = $this->getDateForDistance($p, 'min');
+                    if (false !== $this->getParam('date_from', false)) {
+                        $min = strtotime($this->getParam('date_from'));
+                    } elseif (false !== $this->getParam('kilometers_from',false)) {
+                        $min = $this->getDateForDistance($this->getParam('kilometers_from'), 'min');
                     }
 
                     // upper bound
-                    if ($p = $this->getParam('date_to', false)) {
-                        $max = strtotime($p);
-                    } elseif ($p = $this->getParam('kilometers_to')) {
-                        $max = $this->getDateForDistance($p, 'max');
+                    if (false !== $this->getParam('date_to', false)) {
+                        $max = strtotime($this->getParam('date_to'));
+                    } elseif (false !== $this->getParam('kilometers_to',false)) {
+                        $max = $this->getDateForDistance($this->getParam('kilometers_to'), 'max');
                     }
                 }
 
@@ -396,17 +396,17 @@ class ChartSource {
                 if ($calculate_limits) {
 
                     // lower bound
-                    if ($p = $this->getParam('kilometers_from', false)) {
-                        $min = $p;
-                    } elseif ($p = $this->getParam('date_from')) {
-                        $min = $this->getDistanceForDate($p, 'min');
+                    if (false !== $this->getParam('kilometers_from', false)) {
+                        $min = $this->getParam('kilometers_from');
+                    } elseif (false !== $this->getParam('date_from',false)) {
+                        $min = $this->getDistanceForDate($this->getParam('date_from'), 'min');
                     }
 
                     // upper bound
-                    if ($p = $this->getParam('kilometers_to', false)) {
-                        $max = $p;
-                    } elseif ($p = $this->getParam('date_to')) {
-                        $max = $this->getDistanceForDate($p, 'max');
+                    if (false !== $this->getParam('kilometers_to', false)) {
+                        $max = $this->getParam('kilometers_to');
+                    } elseif (false !== $this->getParam('date_to',false)) {
+                        $max = $this->getDistanceForDate($this->getParam('date_to'), 'max');
                     }
                 }
 

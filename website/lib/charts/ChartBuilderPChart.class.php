@@ -314,6 +314,7 @@ class ChartBuilderPChart extends ChartBuilder {
             return $cd;
         }
 
+
         $this->setOption('title', $cd['title']);
 
         $myData = new pData();
