@@ -52,4 +52,4 @@ end_slot();
 
 <p>The fuel consumption is calculated by considering the charges registered over the entire life of the vehicle(s).</p>
 
-<?php echo $sf_data->getRaw('consumption_fuel'); ?>
+<?php $r = $sf_data->getRaw('consumption_fuel');echo $r->display(); ?>

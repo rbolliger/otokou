@@ -70,14 +70,6 @@ class ChartSource {
                     $v = strtotime($v);
                 }
 
-//                // filtering values
-//                if ($min && $v < $min) {
-//                    continue;
-//                }
-//                if ($max && $v > $max) {
-//                    continue;
-//                }
-
                 $data[$key] = $v;
 
                 if ($v) {

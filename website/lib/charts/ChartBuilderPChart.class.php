@@ -148,23 +148,28 @@ class ChartBuilderPChart extends ChartBuilder {
 
         $picture->setShadow(TRUE, array("X" => 1, "Y" => 1, "R" => 0, "G" => 0, "B" => 0, "Alpha" => 10));
 
-        $myScatter->drawScatterLineChart();
-        //$myScatter->drawScatterPlotChart();
+        // if we have at least one y-serie
+        $pd = $data->getData();
+        if (count($pd['Series']) > 1) {
+            $myScatter->drawScatterLineChart();
+            //$myScatter->drawScatterPlotChart();
 
-        $Config = array(
-            "FontName" => sfConfig::get('sf_web_dir') . "/fonts/Ubuntu-R.ttf",
-            "FontSize" => 6,
-            "FontR" => 40,
-            "FontG" => 40,
-            "FontB" => 43,
-            "Margin" => 6,
-            "Alpha" => 100,
-            "BoxSize" => 5,
-            "Style" => LEGEND_NOBORDER,
-            "Mode" => LEGEND_VERTICAL,
-            "Family" => LEGEND_FAMILY_LINE,
-        );
-        $myScatter->drawScatterLegend(655, 50, $Config);
+
+            $Config = array(
+                "FontName" => sfConfig::get('sf_web_dir') . "/fonts/Ubuntu-R.ttf",
+                "FontSize" => 6,
+                "FontR" => 40,
+                "FontG" => 40,
+                "FontB" => 43,
+                "Margin" => 6,
+                "Alpha" => 100,
+                "BoxSize" => 5,
+                "Style" => LEGEND_NOBORDER,
+                "Mode" => LEGEND_VERTICAL,
+                "Family" => LEGEND_FAMILY_LINE,
+            );
+            $myScatter->drawScatterLegend(655, 50, $Config);
+        }
     }
 
     protected function plotPieChart(pImage $picture, pData $data, $options = array()) {
@@ -329,6 +334,10 @@ class ChartBuilderPChart extends ChartBuilder {
         foreach ($cd['y']['series'] as $key => $serie) {
 
             $values = $this->filterNulls($cd['y']['series'][$key]['values']);
+            if (!$values) {
+                continue;
+            }
+
 
             $y_id = $cd['y']['series'][$key]['id'];
             $myData->addPoints($values, $y_id);
@@ -373,6 +382,9 @@ class ChartBuilderPChart extends ChartBuilder {
         foreach ($y_series as $skey => $serie) {
 
             $values = $this->filterNulls($data['y']['series'][$skey]['values']);
+            if (!$values) {
+                continue;
+            }
 
             $y_id = $data['y']['series'][$skey]['id'];
             $myData->addPoints($values, $y_id);
@@ -398,6 +410,9 @@ class ChartBuilderPChart extends ChartBuilder {
         foreach ($y_series as $key => $y) {
 
             $values = $this->filterNulls($y['values']);
+            if (!$values) {
+                continue;
+            }
 
             $myData->addPoints($values, $y['id']);
             $myData->setSerieDescription($y['id'], $y['label']);
@@ -449,6 +464,9 @@ class ChartBuilderPChart extends ChartBuilder {
         foreach ($data['y']['series'] as $key => $serie) {
 
             $values = $this->filterNulls($serie['values']);
+            if (!$values) {
+                continue;
+            }
 
             $y_id = $serie['id'];
             $myData->addPoints($values, $y_id);
@@ -460,10 +478,19 @@ class ChartBuilderPChart extends ChartBuilder {
 
     protected function filterNulls($values) {
 
+        $not_null = 0;
         foreach ($values as $k => $v) {
             if (null === $v) {
                 $values[$k] = VOID;
+                continue;
             }
+
+            $not_null++;
+        }
+
+        // if all values are VOID, we return false
+        if ($not_null == 0) {
+            return false;
         }
 
         return $values;
