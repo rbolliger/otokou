@@ -24,3 +24,4 @@ dev:
 test:
   charts:
     force_generate: true
+    base_path: /functional/charts

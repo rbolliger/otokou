@@ -106,12 +106,12 @@ $t->cmp_ok($name, '==', $g->getChartName(), 'The name of the chart is built from
 // ->getChartBasePath()
 $t->diag('->getChartBasePath()');
 
-sfConfig::clear('app_chart_base_path');
+sfConfig::clear('app_charts_base_path');
 $gb = newChart();
 $t->cmp_ok($gb->getChartBasePath(), '==', 'charts', 'By default, base path is charts');
 
-sfConfig::set('app_chart_base_path', '/charts/static');
-$t->cmp_ok($gb->getChartBasePath(), '==', 'charts/static', 'The user can set the path in app_chart_base_path');
+sfConfig::set('app_charts_base_path', '/charts/static');
+$t->cmp_ok($gb->getChartBasePath(), '==', 'charts/static', 'The user can set the path in app_charts_base_path');
 
 try
 {
@@ -233,7 +233,7 @@ $t->cmp_ok($rawData->count(), '==', 18, 'getChartsQueryResults() When "full_hist
 // ->checkPath()
 $t->diag('checkPath()');
 $path = '/test';
-sfConfig::set('app_chart_base_path',$path);
+sfConfig::set('app_charts_base_path',$path);
 sfConfig::set('sf_root_dir',realpath(dirname(__FILE__).'/../..'));
 sfConfig::set('sf_web_dir',  sfConfig::get('sf_root_dir').'/web');
 $fullpath = sfConfig::get('sf_web_dir').'/images'.$path;

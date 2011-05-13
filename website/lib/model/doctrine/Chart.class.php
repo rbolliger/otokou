@@ -34,7 +34,7 @@ class Chart extends BaseChart {
 
     public function getChartBasePath($type = 'web') {
 
-        $path = sfConfig::get('app_chart_base_path', '/charts');
+        $path = sfConfig::get('app_charts_base_path', '/charts');
 
 
         switch ($type) {

@@ -118,9 +118,59 @@ class ChartBuilderPChart extends ChartBuilder {
 
         $myScatter = new pScatter($picture, $data);
 
+//        // calculationg limits
+//        $axis_id = 1;
+//        $rd = $data->getData();
+//        $series = $rd['Series'];
+//        $x = $series['x-axis']['Data'];
+//        $median = array();
+//        $percentil_u = array();
+//        $percentil_l = array();
+//        foreach ($series as $key => $serie) {
+//
+//            if ('x-axis' == $key) {
+//                continue;
+//            }
+//
+////            $avg[] = $data->getSerieAverage($key);
+////            $median[] = $data->getSeriePercentile($key, 50);
+//            $percentil_u[] = $data->getSeriePercentile($key, 95);
+//            $percentil_l[] = $data->getSeriePercentile($key, 5);
+//
+//
+////            $max_p[] = max($percentil);
+////            $min_p[] = min($percentil);
+//        }
+//
+////        $margin = sfConfig::get('chart_y_axis_margin_ratio', 1.5);
+//
+////        $ub = max($median) + $margin * (max($percentil_u) - max($median));
+////        $lb = min($median) - $margin * (min($median) - min($percentil_u));
+//        if (count($percentil_u)) {
+//            $ub = max($percentil_u);
+//            $lb = min($percentil_l);
+//        } else {
+//            // no series available
+//            $ub = 100;
+//            $lb = 0;
+//        }
+//
+////        print_r($median);
+////        print_r($percentil_l);
+////        print_r($percentil_u);
+////        print_r($ub);
+////        print_r($lb);
+//        $AxisBoundaries = array(
+//            0 => array("Min" => $x[0], "Max" => max($x)),
+//            1 => array("Min" => $lb, "Max" => $ub),
+//        );
+//print_r($AxisBoundaries);
+
         $Settings = array(
             "Pos" => SCALE_POS_LEFTRIGHT,
             "Mode" => SCALE_MODE_FLOATING,
+//            "Mode" => SCALE_MODE_MANUAL,
+//            "ManualScale" => $AxisBoundaries,
             "DrawXLines" => FALSE,
             "DrawYLines" => ALL,
             "GridTicks" => 1,
