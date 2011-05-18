@@ -1,3 +1,4 @@
+
 chart_index:
   url: /:username/charts
   class: otkWithUserRoute

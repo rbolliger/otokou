@@ -2,3 +2,5 @@
 cache/*
 log/*
 web/images/charts
+web/pdf
+web/functional

@@ -492,5 +492,15 @@ $browser
             ->checkElement('body img',6)
         ->end()
 
-
+->info('7 - Pdf')
+->get('/user_gs/report/pdf/0-1000-km-car-gs-1-and-car-gs-2')
+    ->with('request')
+        ->begin()
+            ->isParameter('module', 'report')
+            ->isParameter('action', 'pdf')
+        ->end()
+    ->with('response')
+        ->begin()
+            ->isStatusCode(200)
+            ->isHeader('content-type', 'application/pdf')
         ;

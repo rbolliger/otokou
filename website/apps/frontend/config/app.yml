@@ -16,12 +16,20 @@ all:
   charts:
     force_generate: false    # force generation of charts at each request
 
+  report:
+    dir_name:  pdf
+    force_generate: false
 
 dev:
   charts:
+    force_generate: true
+  report:
     force_generate: true
 
 test:
   charts:
     force_generate: true
     base_path: /functional/charts
+  report:
+    dir_name:  functional/pdf
+    force_generate: true

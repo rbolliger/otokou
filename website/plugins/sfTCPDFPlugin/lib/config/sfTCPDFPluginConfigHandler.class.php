@@ -156,10 +156,10 @@ class sfTCPDFPluginConfigHandler extends sfYamlConfigHandler
         case 'K_BLANK_IMAGE':
           if (empty($value))
           {
-            $value = K_PATH_MAIN. 'images/';
+            $value = K_PATH_MAIN. 'images/_blang.png';
           }
 
-          define('K_BLANK_IMAGE', K_PATH_IMAGES.'_blank.png');
+          define('K_BLANK_IMAGE', $value);
           break;
 
         default:

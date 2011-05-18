@@ -108,7 +108,7 @@ class sfTCPDF extends TCPDF
    * @return mixed
    */
   public function __get($name)
-  {
+  {print_r($this->userData);
     if (array_key_exists($name, $this->userData))
     {
       return $this->userData[$name];
