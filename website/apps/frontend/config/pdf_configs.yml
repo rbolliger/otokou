@@ -14,6 +14,7 @@ default:
 #  K_PATH_CACHE: <?php echo sfConfig::get('sf_cache_dir') ?>
 #  K_PATH_URL_CACHE:
   K_PATH_IMAGES: <?php echo sfConfig::get('sf_web_dir')."/images/\n" ?>
+  # K_PATH_URL_IMAGES: 
 #  K_BLANK_IMAGE: "_blank.png"
 
   # Other parameters  ##########################################################

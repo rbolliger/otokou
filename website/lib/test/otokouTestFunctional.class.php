@@ -83,5 +83,11 @@ class otokouTestFunctional extends sfTestFunctional {
         return $this->utility->getOneChargeByParams($params);
     }
 
+
+    public function rmDirTree($directory) {
+
+        return $this->utility->rmDirTree($directory);
+    }
+
 }
 

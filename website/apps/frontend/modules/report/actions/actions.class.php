@@ -91,7 +91,7 @@ class reportActions extends otkWithOwnerActions {
         $file = sfConfig::get('sf_web_dir') . DIRECTORY_SEPARATOR . $web_file;
 
         if (!file_exists($file) || sfConfig::get('app_report_force_generate')) {
-            $this->generatePdf($r, $web_file);
+            $this->generatePdf($r, $file);
         }
 
         // disbale the layout
@@ -180,7 +180,7 @@ class reportActions extends otkWithOwnerActions {
         return $params;
     }
 
-    protected function newChart($report, $params) {
+    protected function newChart($report, $params, $options = array(), $attributes = array()) {
 
         $params = array_merge(
                         array(
@@ -191,7 +191,7 @@ class reportActions extends otkWithOwnerActions {
 
         $params = $this->apply_range($report, $params);
 
-        return new ChartBuilderPChart($params);
+        return new ChartBuilderPChart($params, $options, $attributes);
     }
 
     protected function generatePdf(Report $report, $filename) {
@@ -251,13 +251,17 @@ class reportActions extends otkWithOwnerActions {
         $pdf->writeHTML($html, true, false, true, false, '');
 
         $counter = 0;
-        $charts = $this->getCharts($report);
+        $options = array();
+        $attributes = array(
+            'absolute' => true,
+        );
+        $charts = $this->getCharts($report,$options,$attributes);
         $nc = count($charts);
         foreach ($charts as $c) {
 
             $counter++;
 
-            $html = $this->getPartial('report/chart', array('chart' => $c));
+            $html = $this->getPartial('report/chart', array('chart' => $c)); 
             $pdf->writeHTML($html, true, false, true, false, '');
 
             if ($counter < $nc) {
@@ -270,9 +274,10 @@ class reportActions extends otkWithOwnerActions {
         $pdf->Output($filename, 'F');
     }
 
-    protected function getCharts(Report $report) {
+    protected function getCharts(Report $report, $options = array(), $attributes = array()) {
 
         $charts = array();
+        
 
         $nv = count($report->getVehicles()->getPrimaryKeys());
 
@@ -285,7 +290,7 @@ class reportActions extends otkWithOwnerActions {
         );
         $charts['cost_per_km'] = array(
             'title' => 'Cost per kilometer',
-            'chart' => $this->newChart($report, $data),
+            'chart' => $this->newChart($report, $data, $options, $attributes),
             'comment' => 'The cost per kilometer is calculated by considering the charges registered over the entire life of the vehicle(s).',
         );
 
@@ -296,7 +301,7 @@ class reportActions extends otkWithOwnerActions {
         );
         $charts['cost_annual'] = array(
             'title' => 'Annual cost',
-            'chart' => $this->newChart($report, $data),
+            'chart' => $this->newChart($report, $data, $options, $attributes),
             'comment' => 'The annual cost is calculated by considering the charges registered during the range (date and/or distance) specified for this report.',
         );
 
@@ -307,7 +312,7 @@ class reportActions extends otkWithOwnerActions {
         );
         $charts['cost_allocation'] = array(
             'title' => 'Costs allocation',
-            'chart' => $this->newChart($report, $data),
+            'chart' => $this->newChart($report, $data, $options, $attributes),
             'comment' => 'The cost allocation is calculated by considering the charges registered during the range (date and/or distance) specified for this report.',
         );
 
@@ -317,7 +322,7 @@ class reportActions extends otkWithOwnerActions {
         );
         $charts['travel_annual'] = array(
             'title' => 'Annual travel',
-            'chart' => $this->newChart($report, $data),
+            'chart' => $this->newChart($report, $data, $options, $attributes),
             'comment' => 'The annual travel is calculated by considering the charges registered during the range (date and/or distance) specified for this report.',
         );
 
@@ -327,7 +332,7 @@ class reportActions extends otkWithOwnerActions {
         );
         $charts['travel_monthly'] = array(
             'title' => 'Monthly travel',
-            'chart' => $this->newChart($report, $data),
+            'chart' => $this->newChart($report, $data, $options, $attributes),
             'comment' => 'The monthly travel is calculated by considering the charges registered during the range (date and/or distance) specified for this report.',
         );
 
@@ -338,7 +343,7 @@ class reportActions extends otkWithOwnerActions {
         );
         $charts['consumption_fuel'] = array(
             'title' => 'Fuel consumption',
-            'chart' => $this->newChart($report, $data),
+            'chart' => $this->newChart($report, $data, $options, $attributes),
             'comment' => 'The fuel consumption is calculated by considering the charges registered over the entire life of the vehicle(s).',
         );
 

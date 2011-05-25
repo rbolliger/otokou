@@ -3,6 +3,12 @@
 include(dirname(__FILE__) . '/../../bootstrap/functional.php');
 include dirname(__FILE__) . '/../../../lib/test/otokouTestFunctional.class.php';
 
+// creating temporarry folder
+$pdf_dir = sfConfig::get('sf_web_dir').'/functional/pdf';
+
+$fs = new sfFilesystem();
+$fs->mkdirs($pdf_dir);
+
 $browser = new otokouTestFunctional(new sfBrowser());
 $browser->loadData();
 $browser->setTester('doctrine', 'sfTesterDoctrine');
@@ -504,3 +510,8 @@ $browser
             ->isStatusCode(200)
             ->isHeader('content-type', 'application/pdf')
         ;
+
+
+
+// removing created paths
+$browser->rmDirTree($pdf_dir);

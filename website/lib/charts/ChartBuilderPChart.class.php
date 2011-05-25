@@ -5,7 +5,7 @@ class ChartBuilderPChart extends ChartBuilder {
     public function doDisplay() {
 
 
-        $path = str_replace('images/', '', $this->getChartPath('web'));
+        $path = str_replace('/images/', '', $this->getChartPath('web'));
 
         return image_tag($path, $this->getAttributes());
     }
