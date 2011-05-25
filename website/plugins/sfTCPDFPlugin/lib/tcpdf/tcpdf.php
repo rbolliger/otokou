@@ -20961,7 +20961,7 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 				}
 				break;
 			}
-			case 'img': {
+			case 'img': { 
 				if (isset($tag['attribute']['src'])) {
 					// replace relative path with real server path
 					if (($tag['attribute']['src'][0] == '/') AND !empty($_SERVER['DOCUMENT_ROOT']) AND ($_SERVER['DOCUMENT_ROOT'] != '/')) {
@@ -20975,7 +20975,7 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 					$testscrtype = @parse_url($tag['attribute']['src']);
 					if (!isset($testscrtype['query']) OR empty($testscrtype['query'])) {
 						// convert URL to server path
-						$tag['attribute']['src'] = str_replace(K_PATH_URL, K_PATH_MAIN, $tag['attribute']['src']);
+						$tag['attribute']['src'] = str_replace(K_PATH_URL_IMAGES, K_PATH_IMAGES, $tag['attribute']['src']);
 					}
 					if (!isset($tag['width'])) {
 						$tag['width'] = 0;

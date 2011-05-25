@@ -153,6 +153,14 @@ class sfTCPDFPluginConfigHandler extends sfYamlConfigHandler
           define('K_PATH_IMAGES', $value);
           break;
 
+        case 'K_PATH_URL_IMAGES':
+          if (empty($value))
+          {
+            $value = K_PATH_URL. 'images/';
+          }
+          define('K_PATH_URL_IMAGES', $value);
+          break;
+
         case 'K_BLANK_IMAGE':
           if (empty($value))
           {
@@ -225,7 +233,8 @@ class sfTCPDFPluginConfigHandler extends sfYamlConfigHandler
       'K_PATH_FONTS', 
       'K_PATH_CACHE', 
       'K_PATH_URL_CACHE', 
-      'K_PATH_IMAGES', 
+      'K_PATH_IMAGES',
+      'K_PATH_URL_IMAGES',
       'K_BLANK_IMAGE', 
       'PDF_PAGE_FORMAT',
       'PDF_PAGE_ORIENTATION',

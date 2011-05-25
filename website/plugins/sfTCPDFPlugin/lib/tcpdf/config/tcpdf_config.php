@@ -89,9 +89,14 @@ if (!defined('K_TCPDF_EXTERNAL_CONFIG')) {
 	define ('K_PATH_URL_CACHE', K_PATH_URL.'cache/');
 
 	/**
-	 *images directory
+	 *images directory (full path)
 	 */
 	define ('K_PATH_IMAGES', K_PATH_MAIN.'images/');
+
+        /**
+	 *images directory (url)
+	 */
+	define ('K_PATH_URL_IMAGES', K_PATH_URL.'images/');
 
 	/**
 	 * blank image

@@ -13,7 +13,8 @@ default:
   K_PATH_FONTS: 
   K_PATH_CACHE: 
   K_PATH_URL_CACHE: 
-  K_PATH_IMAGES: 
+  K_PATH_IMAGES:
+  K_PATH_URL_IMAGES: 
   K_BLANK_IMAGE:
 
   # Other parameters  ##########################################################
