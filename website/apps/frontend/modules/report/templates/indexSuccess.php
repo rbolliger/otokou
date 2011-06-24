@@ -8,9 +8,9 @@ end_slot();
 
 <h1>Available reports</h1>
 
-<?php include_partial('reports_list', array('categories' => $vehicles)) ?>
+<?php include_partial('reports_list_vehicle', array('categories' => $vehicles)) ?>
 
-<?php include_partial('reports_custom_list', array('custom' => $custom)) ?>
+<?php include_partial('reports_list_custom', array('custom' => $custom)) ?>
 
 <?php else : ?>
 
