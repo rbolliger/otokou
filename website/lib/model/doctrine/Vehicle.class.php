@@ -132,18 +132,40 @@ class Vehicle extends BaseVehicle {
         }
 
         $q = Doctrine_Core::getTable('Charge')
-                        ->createQuery('c')
-                        ->addSelect('c.*')
-                        ->andWhere('c.vehicle_id = ?', $this->getId());
+                ->createQuery('c')
+                ->addSelect('c.*')
+                ->andWhere('c.vehicle_id = ?', $this->getId());
 
         $qs = $q->createSubquery()
-                        ->addFrom('Charge cs')
-                        ->addSelect($minOrMax . '(cs.' . $column . ')')
-                        ->andWhere('cs.vehicle_id = ' . $this->getId());
+                ->addFrom('Charge cs')
+                ->addSelect($minOrMax . '(cs.' . $column . ')')
+                ->andWhere('cs.vehicle_id = ' . $this->getId());
 
         $q->andWhere('c.' . $column . '= (' . $qs->getDql() . ')');
 
         return $q->execute()->getFirst();
+    }
+
+    public function getOwnReports($max = 5) {
+
+        $q = Doctrine_Query::create()
+                ->from('Report r')
+                ->leftJoin('r.Vehicles v')
+                ->andWhere('v.id = ?', $this->getId())
+                ->andWhere('r.num_vehicles = ?', 1)
+                ->limit($max);
+
+        return Doctrine_Core::getTable('Report')->getOrderedReports($q);
+    }
+
+    public function countReports() {
+        $q = Doctrine_Query::create()
+                ->from('Report r')
+                ->leftJoin('r.Vehicles v')
+                ->andWhere('v.id = ?', $this->getId())
+                ->andWhere('r.num_vehicles = ?', 1);
+
+        return Doctrine_Core::getTable('Report')->countOrderedReports($q);
     }
 
 }

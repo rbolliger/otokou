@@ -5,15 +5,20 @@ end_slot();
 ?>
 
 
-<?php if (count($reports)) : ?>
+<?php if (count($vehicle)) : ?>
 
-    <h1>Available Reports</h1>
+    <h1>Available Reports for vehicle "<?php echo $vehicle ?>"</h1>
 
-<?php include_partial('reports_list', array('reports' => $reports)); ?>
-    
+    <table class="reports_list">
+        <tbody>
+        <?php foreach ($vehicle->getOwnReports(1000) as $report) : ?>
+        <?php include_partial('report/report_properties', array('report' => $report)); ?>
+        <?php endforeach; ?>
+        </tbody>
+    </table>    
 <?php else : ?>
 
-        No reports available <br>
+                No reports available.<br>
 
 <?php echo link_to('Create', '@report_new') ?>  a new custom report.
 

@@ -19,6 +19,7 @@ all:
   report:
     dir_name:  pdf
     force_generate: false
+    max_on_index: 3
 
 dev:
   charts:

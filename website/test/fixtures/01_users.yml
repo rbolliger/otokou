@@ -80,6 +80,14 @@ sfGuardUser:
     username:       user_gs
     password:       user
     is_super_admin: false
+
+  user_reports:
+    first_name:     User_reports
+    last_name:      reports
+    email_address:  user_reports@gmail.com
+    username:       user_reports
+    password:       user
+    is_super_admin: false
     
 
 sfGuardGroup:

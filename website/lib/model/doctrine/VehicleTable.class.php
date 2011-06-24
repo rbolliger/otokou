@@ -34,18 +34,75 @@ class VehicleTable extends Doctrine_Table {
         if ($vehicle_id) {
             $q->andWhereIn('v.id', $vehicle_id);
         }
-        
+
         return $q->execute();
     }
 
     public function findByUsernameAndSortByArchived($username) {
 
-        return $this
-                ->createQuery('v')
-                ->leftJoin('v.User u')
-                ->andWhere('u.username = ?',$username)
-                ->orderBy('v.is_archived DESC, v.created_at DESC')
-                ->execute();
+        $q = $this->createQuery('v');
+
+        $q = $this->addSortByArchivedAndCreatedAt($q);
+        $q = $this->addUsernameQuery($q, $username);
+
+        return $q->execute();
+    }
+
+    public function findWithReports($params) {
+
+        $q = $this->createQuery('v')
+                        ->select('v.*');
+
+        $q = self::getInstance()->addWithSingleReportQuery($q);
+
+        $q = $this->addSortByArchivedAndCreatedAt($q);
+
+        $q = $this->addUsernameQuery($q, $params['username']);
+
+        return $q->execute();
+    }
+
+    public function findBySlugWithReports($params) {
+
+        $q = $this->createQuery('v')
+                        ->select('v.*');
+
+        $q = self::getInstance()->addWithSingleReportQuery($q);
+
+        $q = $this->addSortByArchivedAndCreatedAt($q);
+
+        $q = $this->addUsernameQuery($q, $params['username']);
+
+        $q->andWhere('v.slug = ?',$params['slug']);
+
+        return $q->execute();
+    }
+
+    protected function addUsernameQuery(Doctrine_Query $q, $username) {
+
+        $root = $q->getRootAlias();
+
+        $q->leftJoin($root . '.User u')
+                ->andWhere('u.username = ?', $username);
+
+        return $q;
+    }
+
+    protected function addSortByArchivedAndCreatedAt(Doctrine_Query $q) {
+
+        $root = $q->getRootAlias();
+
+        return $q->orderBy($root . '.is_archived DESC, ' . $root . '.created_at DESC');
+    }
+
+    protected function addWithSingleReportQuery(Doctrine_Query $q) {
+
+        $root = $q->getRootAlias();
+
+        $q->innerJoin($root . '.Reports r')
+                ->addWhere('r.num_vehicles = 1');
+
+        return $q;
     }
 
 }

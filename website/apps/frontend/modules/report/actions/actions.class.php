@@ -17,19 +17,25 @@ class reportActions extends otkWithOwnerActions {
      */
     public function executeIndex(sfWebRequest $request) {
 
-        $this->reports = $this->getRoute()->getObjects();
+        $this->vehicles = $this->getRoute()->getObjects();
+
+        $this->custom = Doctrine_Core::getTable('Report')->findCustomReportsByUser(
+                array('username' => $request->getParameter('username'),
+                        'max' => sfConfig::get('app_report_max_on_index'),
+                    ));
     }
 
     public function executeListVehicle(sfWebRequest $request) {
 
-        $this->reports = $this->getRoute()->getObjects();
+        $v = $this->getRoute()->getObjects();
+        $this->vehicle = count($v) ? $v[0] : $v;
+
     }
 
     public function executeListCustom(sfWebRequest $request) {
 
-        $this->reports = $this->getRoute()->getObjects();
+        $this->custom = $this->getRoute()->getObjects();
 
-        $this->setTemplate('listVehicle');
     }
 
     public function executeNew(sfWebRequest $request) {

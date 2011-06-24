@@ -89,9 +89,9 @@ report_index:
   requirements:
     sf_method: get
   options:
-    model:      Report
+    model:      Vehicle
     type:       list
-    method:     findNewByUser
+    method:   findWithReports
 
 reports_list_vehicle:
   class: otkWithUserDoctrineRoute
@@ -100,9 +100,9 @@ reports_list_vehicle:
   requirements:
     sf_method: get
   options:
-    model:      Report
+    model:      Vehicle
     type:       list
-    method:     findByUserAndVehicleSlug
+    method:     findBySlugWithReports
 
 reports_list_custom:
   class: otkWithUserDoctrineRoute
