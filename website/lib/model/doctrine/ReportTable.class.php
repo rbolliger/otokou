@@ -97,9 +97,9 @@ class ReportTable extends Doctrine_Table {
                     ->from('Report r');
         }
 
-        $alias = $q->getRootAlias();
+        //$alias = $q->getRootAlias();
 
-        $q->addOrderBy('r.is_new DESC, r.created_at DESC');
+        $q->addOrderBy('r.is_new ASC, r.created_at DESC');
 
         return $q;
     }

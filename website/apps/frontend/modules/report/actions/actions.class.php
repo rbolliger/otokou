@@ -20,22 +20,29 @@ class reportActions extends otkWithOwnerActions {
         $this->vehicles = $this->getRoute()->getObjects();
 
         $this->custom = Doctrine_Core::getTable('Report')->findCustomReportsByUser(
-                array('username' => $request->getParameter('username'),
-                        'max' => sfConfig::get('app_report_max_on_index'),
-                    ));
+                        array('username' => $request->getParameter('username'),
+                            'max' => sfConfig::get('app_report_max_on_index'),
+                ));
     }
 
     public function executeListVehicle(sfWebRequest $request) {
 
-        $v = $this->getRoute()->getObjects();
-        $this->vehicle = count($v) ? $v[0] : $v;
+        $this->vehicle = $this->getRoute()->getObject();
 
+
+
+        $this->pager = new sfDoctrinePager(
+                        'Report',
+                        sfConfig::get('app_report_max_on_list')
+        );
+        $this->pager->setQuery($this->vehicle->getOwnReportsQuery());
+        $this->pager->setPage($request->getParameter('page', 1));
+        $this->pager->init();
     }
 
     public function executeListCustom(sfWebRequest $request) {
 
         $this->custom = $this->getRoute()->getObjects();
-
     }
 
     public function executeNew(sfWebRequest $request) {
@@ -189,10 +196,9 @@ class reportActions extends otkWithOwnerActions {
     protected function newChart($report, $params, $options = array(), $attributes = array()) {
 
         $params = array_merge(
-                        array(
-                            'vehicles_list' => $report->getVehicles()->getPrimaryKeys(),
-                        ),
-                        $this->getGBData($params)
+                array(
+            'vehicles_list' => $report->getVehicles()->getPrimaryKeys(),
+                ), $this->getGBData($params)
         );
 
         $params = $this->apply_range($report, $params);
@@ -261,13 +267,13 @@ class reportActions extends otkWithOwnerActions {
         $attributes = array(
             'absolute' => true,
         );
-        $charts = $this->getCharts($report,$options,$attributes);
+        $charts = $this->getCharts($report, $options, $attributes);
         $nc = count($charts);
         foreach ($charts as $c) {
 
             $counter++;
 
-            $html = $this->getPartial('report/chart', array('chart' => $c)); 
+            $html = $this->getPartial('report/chart', array('chart' => $c));
             $pdf->writeHTML($html, true, false, true, false, '');
 
             if ($counter < $nc) {
@@ -283,7 +289,7 @@ class reportActions extends otkWithOwnerActions {
     protected function getCharts(Report $report, $options = array(), $attributes = array()) {
 
         $charts = array();
-        
+
 
         $nv = count($report->getVehicles()->getPrimaryKeys());
 

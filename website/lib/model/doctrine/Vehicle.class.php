@@ -148,24 +148,28 @@ class Vehicle extends BaseVehicle {
 
     public function getOwnReports($max = 5) {
 
-        $q = Doctrine_Query::create()
-                ->from('Report r')
-                ->leftJoin('r.Vehicles v')
-                ->andWhere('v.id = ?', $this->getId())
-                ->andWhere('r.num_vehicles = ?', 1)
+        $q = $this->getOwnReportsQuery()
                 ->limit($max);
 
-        return Doctrine_Core::getTable('Report')->getOrderedReports($q);
+        return $q->execute();
     }
 
     public function countReports() {
+        
+        $q = $this->getOwnReportsQuery();
+
+        return $q->count();
+    }
+
+    public function getOwnReportsQuery() {
+
         $q = Doctrine_Query::create()
                 ->from('Report r')
                 ->leftJoin('r.Vehicles v')
                 ->andWhere('v.id = ?', $this->getId())
                 ->andWhere('r.num_vehicles = ?', 1);
-
-        return Doctrine_Core::getTable('Report')->countOrderedReports($q);
+        
+        return Doctrine_Core::getTable('Report')->addOrderedReportsQuery($q);
     }
 
 }

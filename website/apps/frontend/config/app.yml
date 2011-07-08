@@ -20,6 +20,7 @@ all:
     dir_name:  pdf
     force_generate: false
     max_on_index: 3
+    max_on_list: 20
 
 dev:
   charts:

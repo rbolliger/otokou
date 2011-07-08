@@ -171,11 +171,12 @@ $browser
             ->checkElement('ul.custom_reports_menu li.vehicle_active',1)
             ->checkElement('body:contains("No reports available")',false)
             ->checkElement('table.reports_list',true)
-            ->checkElement('table.reports_list tbody tr',10)
-            ->checkElement('table.reports_list tbody tr.report_new',0)
-            ->checkElement('table.reports_list tbody tr.report_old',10)
-            ->checkElement('pagination',true)
+            ->checkElement('table.reports_list tbody tr',20)
+            ->checkElement('table.reports_list tbody tr.report_new',15)
+            ->checkElement('table.reports_list tbody tr.report_old',5)
+            ->checkElement('div.pagination',true)
         ->end()
+                
 
 ->info('3.2 - Custom reports')
     ->logout()

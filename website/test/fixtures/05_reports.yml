@@ -23,12 +23,12 @@ Report:
     is_new:           true
     name:            "0-1000 km - Car gs 1 and Car gs 2"
 
-<?php for ($i = 0; $i <= 20; $i++): ?>
+<?php for ($i = 0; $i <= 30; $i++): ?>
   report_ur_<?php echo $i ?>:
     User:             user_reports
     Vehicles:         [car_reports_1]
     kilometers_from:  <?php echo 2*$i - rand(0,3*$i)."\n" ?>
-    kilometers_to:    <?php echo 2*$i^2 - 2*rand(0,3*$i)."\n" ?>
-    is_new:           false
+    kilometers_to:    <?php echo 2*$i^2 - 2*rand(0,3*$i)."\n" ?> 
+    is_new:           <?php $v = $i % 2 ? 'true' : 'false'; echo $v."\n" ?>
     name:            "user_reports n.<?php echo $i ?>"
 <?php endfor; ?>

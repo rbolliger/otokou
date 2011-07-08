@@ -5,17 +5,19 @@ end_slot();
 ?>
 
 
-<?php if (count($vehicle)) : ?>
+<?php if ($pager->getNbResults()) : ?>
 
     <h1>Available Reports for vehicle "<?php echo $vehicle ?>"</h1>
-
+    
     <table class="reports_list">
         <tbody>
-        <?php foreach ($vehicle->getOwnReports(1000) as $report) : ?>
+        <?php foreach ($pager->getResults() as $report) : ?>
         <?php include_partial('report/report_properties', array('report' => $report)); ?>
         <?php endforeach; ?>
         </tbody>
-    </table>    
+    </table>   
+    
+    <?php include_partial('report/pagination', array('pager' => $pager, 'url' => '@reports_list_vehicle?slug='.$vehicle->getSlug())); ?>
 <?php else : ?>
 
                 No reports available.<br>

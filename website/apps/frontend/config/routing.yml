@@ -101,8 +101,8 @@ reports_list_vehicle:
     sf_method: get
   options:
     model:      Vehicle
-    type:       list
-    method:     findBySlugWithReports
+    type:       object
+    #method:     findBySlug
 
 reports_list_custom:
   class: otkWithUserDoctrineRoute
