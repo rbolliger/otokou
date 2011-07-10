@@ -50,7 +50,7 @@ class ReportTable extends Doctrine_Table {
     public static function findCustomReportsByUser($params) {
 
         $username = $params['username'];
-        $max = $params['max'] ? $params['max'] : 10;
+        $max = isset($params['max']) ? $params['max'] : 10;
 
         $q = self::getInstance()->createQuery('r')
                 ->andWhere('r.num_vehicles > ?', 1)
