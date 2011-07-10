@@ -11,7 +11,10 @@
             </tbody>
         </table>
         <?php 
-        $q = Doctrine_Core::getTable('Report')->addUsernameQuery($sf_user->getGuardUser()->getUsername());
+        
+        $q = Doctrine_Core::getTable('Report')
+                ->addUsernameQuery($sf_user->getGuardUser()->getUsername())
+                        ->andWhere('r.num_vehicles > ?',1);
         if (($count = Doctrine_Core::getTable('Report')->countOrderedReports($q) - sfConfig::get('app_report_max_on_index')) > 0): ?>
             <div class="more_reports">
                 and <?php echo link_to($count, '@reports_list_custom') ?>

@@ -200,6 +200,7 @@ $browser
             ->checkElement('table.reports_list tbody tr',1)
             ->checkElement('table.reports_list tbody tr.report_new',1)
             ->checkElement('table.reports_list tbody tr.report_old',0)
+            ->checkElement('div.pagination',false)
         ->end()
 
 
@@ -476,9 +477,10 @@ $browser
         ->end()
     ->with('response')
       ->begin()
-            ->checkElement('table.reports_list',true)
+            ->checkElement('table.reports_list',2)
             ->checkElement('table.reports_list tbody tr',4)
             ->checkElement('table.reports_list tbody tr.report_new',2)
+            ->checkElement('div.more_reports',1)
       ->end()
 ->click('0-100 km - Car gs 1')
     ->with('request')
