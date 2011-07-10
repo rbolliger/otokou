@@ -1,7 +1,7 @@
 10
 
 dir
-32517
+32745
 http://svn.symfony-project.com/branches/1.4/lib/plugins/sfPropelPlugin/test/functional/fixtures/lib/model
 http://svn.symfony-project.com
 
@@ -94,40 +94,6 @@ has-props
 
 489
 
-MovieI18nPeer.php
-file
-
-
-
-
-2011-04-14T09:37:43.828753Z
-870fed1c3ddb9600c91b74dcafb15c50
-2008-04-05T00:43:40.436058Z
-8315
-dwhittle
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-180
-
 MoviePeer.php
 file
 
@@ -162,17 +128,17 @@ has-props
 
 167
 
-ProductPeer.php
+MovieI18nPeer.php
 file
 
 
 
 
-2011-04-14T09:37:43.835726Z
-5995946c2b8b6e9e8436af345a54f7de
-2009-11-12T11:07:44.003356Z
-23810
-Kris.Wallsmith
+2011-04-14T09:37:43.828753Z
+870fed1c3ddb9600c91b74dcafb15c50
+2008-04-05T00:43:40.436058Z
+8315
+dwhittle
 has-props
 
 
@@ -194,7 +160,7 @@ has-props
 
 
 
-196
+180
 
 ProductI18nPeer.php
 file
@@ -229,6 +195,40 @@ has-props
 
 
 209
+
+ProductPeer.php
+file
+
+
+
+
+2011-04-14T09:37:43.835726Z
+5995946c2b8b6e9e8436af345a54f7de
+2009-11-12T11:07:44.003356Z
+23810
+Kris.Wallsmith
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+196
 
 ArticlePeer.php
 file
@@ -332,40 +332,6 @@ has-props
 
 182
 
-AuthorArticle.php
-file
-
-
-
-
-2011-04-14T09:37:43.853997Z
-84104dc3b0cad1dac2d6ac5d8bc44a88
-2007-09-24T07:24:56.317144Z
-5248
-dwhittle
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-460
-
 BookPeer.php
 file
 
@@ -399,6 +365,40 @@ has-props
 
 
 164
+
+AuthorArticle.php
+file
+
+
+
+
+2011-04-14T09:37:43.853997Z
+84104dc3b0cad1dac2d6ac5d8bc44a88
+2007-09-24T07:24:56.317144Z
+5248
+dwhittle
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+460
 
 Category.php
 file
@@ -468,40 +468,6 @@ has-props
 
 170
 
-Movie.php
-file
-
-
-
-
-2011-04-14T09:37:43.869713Z
-66eee5d20a1e880cc7154083caa5f275
-2008-04-05T00:43:40.436058Z
-8315
-dwhittle
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-141
-
 MovieI18n.php
 file
 
@@ -535,6 +501,40 @@ has-props
 
 
 154
+
+Movie.php
+file
+
+
+
+
+2011-04-14T09:37:43.869713Z
+66eee5d20a1e880cc7154083caa5f275
+2008-04-05T00:43:40.436058Z
+8315
+dwhittle
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+141
 
 Product.php
 file

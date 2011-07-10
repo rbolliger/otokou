@@ -1,15 +1,15 @@
 10
 
 dir
-32517
+32745
 http://svn.symfony-project.com/branches/1.4/lib
 http://svn.symfony-project.com
 
 
 
-2011-03-30T16:09:00.559397Z
-32415
-Kris.Wallsmith\x0a
+2011-07-09T09:41:59.395941Z
+32741
+fabien
 has-props
 
 
@@ -77,25 +77,25 @@ dir
 command
 dir
 
-i18n
+test
 dir
 
 helper
 dir
 
-test
-dir
-
-log
+i18n
 dir
 
 plugins
 dir
 
-filter
+log
 dir
 
 addon
+dir
+
+filter
 dir
 
 routing
@@ -113,10 +113,10 @@ dir
 config
 dir
 
-action
+util
 dir
 
-util
+action
 dir
 
 user

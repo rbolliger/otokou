@@ -1,7 +1,7 @@
 K 25
 svn:wc:ra_dav:version-url
 V 37
-/!svn/ver/31928/branches/1.4/lib/view
+/!svn/ver/32699/branches/1.4/lib/view
 END
 sfPHPView.class.php
 K 25
@@ -19,7 +19,7 @@ sfViewCacheManager.class.php
 K 25
 svn:wc:ra_dav:version-url
 V 66
-/!svn/ver/30031/branches/1.4/lib/view/sfViewCacheManager.class.php
+/!svn/ver/32699/branches/1.4/lib/view/sfViewCacheManager.class.php
 END
 sfViewParameterHolder.class.php
 K 25

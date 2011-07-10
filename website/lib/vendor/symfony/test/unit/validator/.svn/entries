@@ -1,15 +1,15 @@
 10
 
 dir
-32517
+32745
 http://svn.symfony-project.com/branches/1.4/test/unit/validator
 http://svn.symfony-project.com
 
 
 
-2009-12-01T00:19:33.871860Z
-24628
-Kris.Wallsmith
+2011-07-01T06:55:58.830612Z
+32698
+fabien
 
 
 
@@ -25,43 +25,6 @@ Kris.Wallsmith
 
 
 ee427ae8-e902-0410-961c-c3ed070cd9f9
-
-i18n
-dir
-
-sfValidatorChoiceTest.php
-file
-
-
-
-
-2011-04-14T09:37:12.430083Z
-3e95cb31b907884aaf095539d6a827a1
-2009-11-08T11:50:39.948877Z
-23691
-FabianLange
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-3028
 
 sfValidatorDateRangeTest.php
 file
@@ -97,17 +60,17 @@ has-props
 
 2255
 
-sfValidatorCallbackTest.php
+sfValidatorChoiceTest.php
 file
 
 
 
 
-2011-04-14T09:37:12.434963Z
-3dac9479aec9b799fc77b90590ba2bfd
-2009-06-25T06:35:13.766150Z
-19531
-fabien
+2011-04-14T09:37:12.430083Z
+3e95cb31b907884aaf095539d6a827a1
+2009-11-08T11:50:39.948877Z
+23691
+FabianLange
 has-props
 
 
@@ -129,7 +92,10 @@ has-props
 
 
 
-1875
+3028
+
+i18n
+dir
 
 sfValidatorDateTimeTest.php
 file
@@ -165,6 +131,40 @@ has-props
 
 880
 
+sfValidatorCallbackTest.php
+file
+
+
+
+
+2011-04-14T09:37:12.434963Z
+3dac9479aec9b799fc77b90590ba2bfd
+2009-06-25T06:35:13.766150Z
+19531
+fabien
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1875
+
 sfValidatorIntegerTest.php
 file
 
@@ -198,40 +198,6 @@ has-props
 
 
 2533
-
-sfValidatorTimeTest.php
-file
-
-
-
-
-2011-04-14T09:37:12.444551Z
-b39c16852f19b8f1d1a93d5624f90e4a
-2009-11-12T11:07:44.003356Z
-23810
-Kris.Wallsmith
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-4782
 
 sfValidatorCSRFTokenTest.php
 file
@@ -267,6 +233,40 @@ has-props
 
 1300
 
+sfValidatorTimeTest.php
+file
+
+
+
+
+2011-04-14T09:37:12.444551Z
+b39c16852f19b8f1d1a93d5624f90e4a
+2009-11-12T11:07:44.003356Z
+23810
+Kris.Wallsmith
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4782
+
 sfValidatorSchemaTest.php
 file
 
@@ -300,40 +300,6 @@ has-props
 
 
 18599
-
-sfValidatorUrlTest.php
-file
-
-
-
-
-2011-04-14T09:37:12.455106Z
-4c7f28eb2445b9df0a2588c6e98a48a1
-2009-09-18T14:09:53.947134Z
-22149
-Kris.Wallsmith
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1508
 
 sfValidatorAndTest.php
 file
@@ -369,14 +335,48 @@ has-props
 
 4845
 
-sfValidatorStringTest.php
+sfValidatorUrlTest.php
 file
 
 
 
 
-2011-04-14T09:37:12.460441Z
-aa33c166e725949dfa03315228bc93c9
+2011-04-14T09:37:12.455106Z
+4c7f28eb2445b9df0a2588c6e98a48a1
+2009-09-18T14:09:53.947134Z
+22149
+Kris.Wallsmith
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1508
+
+sfValidatorPassTest.php
+file
+
+
+
+
+2011-04-14T09:37:12.465588Z
+5d9f9632f25347965265c499881acc9c
 2009-06-25T06:35:13.766150Z
 19531
 fabien
@@ -401,7 +401,7 @@ has-props
 
 
 
-2284
+560
 
 sfValidatorSchemaFilterTest.php
 file
@@ -437,14 +437,14 @@ has-props
 
 1585
 
-sfValidatorPassTest.php
+sfValidatorStringTest.php
 file
 
 
 
 
-2011-04-14T09:37:12.465588Z
-5d9f9632f25347965265c499881acc9c
+2011-04-14T09:37:12.460441Z
+aa33c166e725949dfa03315228bc93c9
 2009-06-25T06:35:13.766150Z
 19531
 fabien
@@ -469,7 +469,7 @@ has-props
 
 
 
-560
+2284
 
 sfValidatorSchemaCompareTest.php
 file
@@ -579,10 +579,10 @@ file
 
 
 
-2011-04-14T09:37:12.478003Z
-4846e2e68ffce0337333347a39d295f6
-2009-06-25T06:35:13.766150Z
-19531
+2011-07-10T18:20:48.152406Z
+9608f9c9929eed1c1a1722c13bca81a0
+2011-06-15T18:32:02.549028Z
+32653
 fabien
 has-props
 
@@ -605,7 +605,7 @@ has-props
 
 
 
-9870
+9918
 
 sfValidatorRegexTest.php
 file
@@ -783,10 +783,10 @@ file
 
 
 
-2011-04-14T09:37:12.498430Z
-4d7d7a1dbfae97fa1a153de53f85fb1b
-2009-06-25T06:35:13.766150Z
-19531
+2011-07-10T18:20:48.167070Z
+5ceb713c5697fc7cf634e80483fb3145
+2011-07-01T06:55:58.830612Z
+32698
 fabien
 has-props
 
@@ -809,7 +809,7 @@ has-props
 
 
 
-4731
+4816
 
 sfValidatorEmailTest.php
 file

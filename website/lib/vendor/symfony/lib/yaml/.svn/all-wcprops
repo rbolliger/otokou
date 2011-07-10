@@ -1,7 +1,7 @@
 K 25
 svn:wc:ra_dav:version-url
 V 48
-/!svn/ver/31562/components/yaml/branches/1.0/lib
+/!svn/ver/32636/components/yaml/branches/1.0/lib
 END
 sfYamlInline.php
 K 25
@@ -25,5 +25,5 @@ sfYamlParser.php
 K 25
 svn:wc:ra_dav:version-url
 V 65
-/!svn/ver/31562/components/yaml/branches/1.0/lib/sfYamlParser.php
+/!svn/ver/32636/components/yaml/branches/1.0/lib/sfYamlParser.php
 END

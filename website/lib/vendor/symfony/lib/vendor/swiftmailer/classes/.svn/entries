@@ -1,14 +1,14 @@
 10
 
 dir
-32517
+32745
 http://svn.symfony-project.com/branches/1.4/lib/vendor/swiftmailer/classes
 http://svn.symfony-project.com
 
 
 
-2009-11-10T13:44:02.224175Z
-23762
+2011-06-29T16:28:46.746816Z
+32677
 fabien
 
 
@@ -32,10 +32,10 @@ file
 
 
 
-2011-04-14T09:38:02.081884Z
-e046a867184ca2fd25689409d5885b4c
-2009-09-13T15:30:06.022864Z
-21985
+2011-07-10T18:20:49.009189Z
+f015c6a812c8cdb4f79fa1c8e6fac5d5
+2011-06-29T16:28:46.746816Z
+32677
 fabien
 
 
@@ -58,7 +58,7 @@ fabien
 
 
 
-1149
+1136
 
 Swift
 dir

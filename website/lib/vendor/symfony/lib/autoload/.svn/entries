@@ -1,15 +1,15 @@
 10
 
 dir
-32517
+32745
 http://svn.symfony-project.com/branches/1.4/lib/autoload
 http://svn.symfony-project.com
 
 
 
-2011-03-30T16:09:00.559397Z
-32415
-Kris.Wallsmith\x0a
+2011-07-01T07:13:51.513628Z
+32705
+fabien
 
 
 
@@ -32,11 +32,11 @@ file
 
 
 
-2011-04-14T09:37:26.829715Z
-bf6381098e05177cde5eabac81262f32
-2011-03-30T16:09:00.559397Z
-32415
-Kris.Wallsmith\x0a
+2011-07-10T18:20:48.442784Z
+becf921ec01acfdcfda127694e690753
+2011-07-01T07:13:51.513628Z
+32705
+fabien
 has-props
 
 
