@@ -27,7 +27,6 @@ abstract class BaseReportForm extends BaseFormDoctrine
       'created_at'      => new sfWidgetFormDateTime(),
       'updated_at'      => new sfWidgetFormDateTime(),
       'slug'            => new sfWidgetFormInputText(),
-      'sha'             => new sfWidgetFormInputText(),
       'vehicles_list'   => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'Vehicle')),
     ));
 
@@ -44,15 +43,11 @@ abstract class BaseReportForm extends BaseFormDoctrine
       'created_at'      => new sfValidatorDateTime(),
       'updated_at'      => new sfValidatorDateTime(),
       'slug'            => new sfValidatorString(array('max_length' => 255, 'required' => false)),
-      'sha'             => new sfValidatorString(array('max_length' => 40, 'required' => false)),
       'vehicles_list'   => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'Vehicle', 'required' => false)),
     ));
 
     $this->validatorSchema->setPostValidator(
-      new sfValidatorAnd(array(
-        new sfValidatorDoctrineUnique(array('model' => 'Report', 'column' => array('slug'))),
-        new sfValidatorDoctrineUnique(array('model' => 'Report', 'column' => array('sha'))),
-      ))
+      new sfValidatorDoctrineUnique(array('model' => 'Report', 'column' => array('slug')))
     );
 
     $this->widgetSchema->setNameFormat('report[%s]');
