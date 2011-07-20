@@ -1,8 +1,15 @@
-<?php
-slot('leftcol');
-include_component('report', 'reportsMenu');
-end_slot();
-?>
+<?php slot('leftcol'); ?>
+<h2>Download</h2>
+
+<div class="report_download">
+    <ul>
+        <li><?php echo link_to('Download as pdf','@report_pdf?slug='.$report->getSlug()); ?></li>
+    </ul>
+</div>
+
+
+<?php include_component('report', 'reportsMenu'); ?>
+<?php end_slot(); ?>
 
 
 <h1>Overall performances</h1>
