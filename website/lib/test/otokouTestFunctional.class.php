@@ -11,8 +11,10 @@ class otokouTestFunctional extends sfTestFunctional {
         parent::__construct($browser, $lime, $testers);
 
         $this->utility = new otkTestUtility();
+        
     }
-
+    
+  
     public function loadData() {
 
         Doctrine::loadData(sfConfig::get('sf_test_dir') . '/fixtures');
@@ -88,6 +90,7 @@ class otokouTestFunctional extends sfTestFunctional {
 
         return $this->utility->rmDirTree($directory);
     }
+    
 
 }
 

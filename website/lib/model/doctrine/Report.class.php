@@ -31,5 +31,27 @@ class Report extends BaseReport {
      public function getHash() {
         return sha1($this->getSlug());
     }
+    
+    public function getPdfFileName() {
+        
+        return $this->getHash().'.pdf';  
+    }
+    
+    public function getPdfWebPath() {
+        return sfConfig::get('app_report_dir_name');
+    }
+    
+    public function getPdfFileWebPath() {
+        return $this->getPdfWebPath() . '/' . $this->getPdfFileName();
+    }
+    
+    public function getPdfSystemPath() {
+        return sfConfig::get('sf_web_dir') . DIRECTORY_SEPARATOR . str_replace('/', DIRECTORY_SEPARATOR, $this->getPdfWebPath());
+    }
+    
+    public function getPdfFileFullPath() {
+        return $this->getPdfSystemPath(). DIRECTORY_SEPARATOR .$this->getPdfFileName();
+    }
+    
 
 }
