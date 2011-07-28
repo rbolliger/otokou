@@ -8,7 +8,7 @@ class sfGuardUserAccountForm extends sfGuardUserForm
       
       parent::configure();
       
-      $this->useFields(array('first_name','last_name','email_address'));
+      $this->useFields(array('first_name','last_name','email_address','api_key'));
       
 
   }

@@ -53,6 +53,8 @@ sfGuardUser:
   columns:
     list_max_per_page:
       type: string(5)
+    api_key: 
+      type: string(10)
 
 
 Chart:
