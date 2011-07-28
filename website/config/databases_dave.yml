@@ -1,0 +1,33 @@
+all:
+  doctrine:
+    class: sfDoctrineDatabase
+    param:
+      attributes:
+        default_table_charset: utf8
+        default_table_collate: utf8_general_ci
+
+dev:
+  doctrine:
+    param:
+      dsn: 'mysql:host=localhost;dbname=otokou_test'
+      username: root
+      password:
+
+prod:
+  doctrine:
+    param:
+      dsn: 'mysql:host=localhost;dbname=otokou_test'
+      username: root
+      password:
+
+test:
+  doctrine:
+    param:
+      #dsn: 'mysql:host=localhost;dbname=otokou_test'
+      username: root
+      password:
+      dsn: 'sqlite::memory:'
+      #dsn: 'sqlite:%SF_DATA_DIR%/name_of_your_database.db'
+
+
+      
