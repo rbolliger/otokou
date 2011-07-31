@@ -223,6 +223,9 @@ user_settings_otokou:
   requirements:
     sf_method: [get,post,put]
 
+api:
+  url: /api
+  param: {module: api, action: index }
 
 # default rules
 homepage:
