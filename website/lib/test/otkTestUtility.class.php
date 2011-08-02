@@ -12,20 +12,6 @@
  */
 class otkTestUtility {
 
-    public function __construct() {
-
-        // build all temporary folders required to run tests
-        $fs = new sfFilesystem();
-        $fs->mkdirs($this->getPdfDir());
-    }
-
-    public function __destruct() {
-
-        // remove temporary folders
-        $pdf_dir = $this->getPdfDir();
-        sfToolkit::clearDirectory($pdf_dir);
-        rmdir($pdf_dir);
-    }
 
     public function getUserId($username, $throw = true) {
         $v = Doctrine_Core::getTable('sfGuardUser')->findOneByUsername($username);
@@ -93,10 +79,7 @@ class otkTestUtility {
             rmdir($dir);
         }
     }
-    
-     public function getPdfDir() {
-        return sfConfig::get('sf_web_dir') . DIRECTORY_SEPARATOR .sfConfig::get('app_report_dir_name');
-    }
+
 
 }
 
