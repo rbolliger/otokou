@@ -12,7 +12,7 @@
  */
 class Report extends BaseReport {
 
-    protected $chart_builder = '';
+    protected $chart_builder = null;
 
     public function preSave($event) {
 
@@ -55,14 +55,13 @@ class Report extends BaseReport {
         return $this->getPdfSystemPath() . DIRECTORY_SEPARATOR . $this->getPdfFileName();
     }
 
-    public function generatePdf(sfApplicationConfiguration $configuration, $chartBuilder, $filename) {
+    public function generatePdf(sfContext $context, $chartBuilder, $file) {
 
         // definition of chart builder class
         $this->setChartBuilder($chartBuilder);
 
         // creation of a context
-        $context = sfContext::createInstance($configuration);
-        $configuration->loadHelpers('Partial');
+        $context->getConfiguration()->loadHelpers('Partial');
         $context->getRequest()->setRequestFormat('html');
 
 
@@ -141,7 +140,7 @@ class Report extends BaseReport {
 
 
         // Close and output PDF document
-        $pdf->Output($filename, 'F');
+        $pdf->Output($file, 'F');
     }
 
     public function defineCharts($options = array(), $attributes = array()) {
@@ -222,6 +221,10 @@ class Report extends BaseReport {
 
     public function defineChart($params, $options = array(), $attributes = array()) {
 
+        if (!$this->chart_builder) {
+            throw new sfException('No Chart Builder class set. Please, use $this->setChartBuilder($cb) to define the class name');
+        }
+
         $params = array_merge(
                 array(
             'vehicles_list' => $this->getVehicles()->getPrimaryKeys(),
@@ -229,10 +232,6 @@ class Report extends BaseReport {
         );
 
         $params = $this->setRange($params);
-
-        if (!$this->chart_builder) {
-            throw new sfException('No Chart Builder class set. Please, use $this->setChartBuilder($cb) to define the class name');
-        }
 
 
         return new $this->chart_builder($params, $options, $attributes);

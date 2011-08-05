@@ -103,11 +103,10 @@ class reportActions extends otkWithOwnerActions {
             $r->save();
         }
 
-        $web_file = $r->getPdfWebPath();
-        $file = $r->getPdfFileFullPAth(); 
+        $file = $r->getPdfFileFullPath(); 
 
         if (!file_exists($file) || sfConfig::get('app_report_force_generate')) {
-            $r->generatePdf($this->getContext()->getConfiguration(), 'ChartBuilderPChart', $file);
+            $r->generatePdf($this->getContext(), 'ChartBuilderPChart', $file);
         }
 
         // disbale the layout
@@ -116,7 +115,7 @@ class reportActions extends otkWithOwnerActions {
         $response = $this->getResponse();
 
         // return the binary pdf dat directly in the response as if serving a static pdf file
-        $response->setHttpHeader('Content-Disposition', 'attachment; filename="' . $web_file . '"');
+        $response->setHttpHeader('Content-Disposition', 'attachment; filename="' . $r->getSlug() . '"');
         $response->setContentType('application/pdf');
         $response->setContent(file_get_contents($file));
 
