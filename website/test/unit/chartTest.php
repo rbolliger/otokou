@@ -78,7 +78,7 @@ $g = new Chart();
 $g->setUserId($ut->getUserId('ruf'));
 $g->save();
 $id = $g->getId();
-$path = $g->getChartPath('system');
+$path = $g->getChartFileSystemPath();
 $fs = new sfFilesystem(new sfEventDispatcher());
 $fs->touch($path);
 

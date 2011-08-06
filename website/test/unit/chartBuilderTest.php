@@ -9,7 +9,7 @@ sfContext::createInstance($app_configuration);
 $ut = new otokouTestFunctional(new sfBrowser());
 
 
-$t = new lime_test(58, new lime_output_color());
+$t = new lime_test(59, new lime_output_color());
 
 
 // ->getQuery()
@@ -124,10 +124,15 @@ catch (Exception $e)
 }
 
 
-$t->diag('-> getChartPath()');
+$t->diag('-> getChartFileWebPath()');
 $g = newChart();
-$path = $g->getChartBasePath() . '/' . $g->getChartName();
-$t->cmp_ok($path, '==', $g->getChartPath(), 'The chart is built from the base path and the chart name');
+$path = $g->getChartsWebPath() . '/' . $g->getChartName();
+$t->cmp_ok($path, '==', $g->getChartFileWebPath(), 'The chart web path is built from a base path and the chart name');
+
+$t->diag('-> getChartFileSystemPath()');
+$g = newChart();
+$path = $g->getChartsSystemPath() . '/' . $g->getChartName();
+$t->cmp_ok($path, '==', $g->getChartFileSystemPath(), 'The chart system path is built from a base path and the chart name');
 
 
 // ->buildChartSource()
@@ -267,10 +272,10 @@ $t->cmp_ok($g->chartSourceIsAvailable(), '===', false, 'Chart source file is not
 
 
 $fs = new sfFilesystem();
-$fs->touch($g->getChartPath('system'));
+$fs->touch($g->getChartFileSystemPath());
 $t->cmp_ok($g->chartSourceIsAvailable(), '===', true, 'Chart source file is found, if it exists');
-$fs->remove($g->getChartPath('system'));
-$fs->remove($g->getChartBasePath('system'));
+$fs->remove($g->getChartFileSystemPath());
+$fs->remove($g->getChartsSystemPath());
 
 // ->getAttributes()
 $t->diag('->getAttributes()');

@@ -5,7 +5,7 @@ class ChartBuilderPChart extends ChartBuilder {
     public function doDisplay() {
 
 
-        $path = str_replace('/images/', '', $this->getChartPath('web'));
+        $path = str_replace('/images/', '', $this->getChartFileWebPath());
 
         return image_tag($path, $this->getAttributes());
     }
@@ -76,9 +76,9 @@ class ChartBuilderPChart extends ChartBuilder {
                 break;
         }
 
-        $picture->render($this->getChartPath('system'));
+        $picture->render($this->getChartFileSystemPath());
 
-        sfContext::getInstance()->getLogger()->info(sprintf('Rendering chart %s with pChart.', $this->getChartPath()));
+        $this->getLogger()->info(sprintf('Rendering chart %s with pChart.', $this->getChartFileSystemPath()));
 
         return true;
     }

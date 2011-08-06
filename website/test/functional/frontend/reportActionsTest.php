@@ -3,7 +3,7 @@
 include(dirname(__FILE__) . '/../../bootstrap/functional.php');
 include dirname(__FILE__) . '/../../../lib/test/otokouTestFunctional.class.php';
 
-// creating temporarry folder
+// creating temporary folder
 $pdf_dir = sfConfig::get('sf_web_dir') . '/functional/pdf';
 
 $fs = new sfFilesystem();

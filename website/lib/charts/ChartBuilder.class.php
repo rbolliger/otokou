@@ -21,7 +21,7 @@ class ChartBuilder {
     protected $logger;
 
     public function __construct(array $parameters, array $options = array(), array $attributes = array()) {
-
+       
         $this->setParameters($parameters);
 
 
@@ -30,7 +30,7 @@ class ChartBuilder {
 
         $this->setAttributes($attributes);
 
-        $this->setLogger($this->getOption('logger', sfContext::getInstance()->getLogger()));
+        $this->setLogger($this->getOption('logger', new sfNoLogger(new sfEventDispatcher())));
     }
 
     public function doDisplay() {
@@ -142,14 +142,24 @@ class ChartBuilder {
         return $this->attributes;
     }
 
-    public function getChartPath($type = 'web') {
+    public function getChartWebPath() {
 
-        return $this->getChart()->getChartPath($type);
+        return $this->getChart()->getChartFileWebPath();
+    }
+    
+    public function getChartFileSystemPath() {
+
+        return $this->getChart()->getChartFileSystemPath();
+    }
+    
+    public function getChartFileWebPath() {
+
+        return $this->getChart()->getChartFileWebPath();
     }
 
-    public function getChartBasePath($type = 'web') {
+    public function getChartsSystemPath() {
 
-        return $this->getChart()->getChartBasePath($type);
+        return $this->getChart()->getChartsSystemPath();
     }
 
     public function getChartName() {
@@ -244,15 +254,15 @@ class ChartBuilder {
 
         // If the source is already available, we stop here
         if ($this->chartSourceIsAvailable() && !$this->doForceGenerate()) {
-            $this->getLogger()->info(sprintf('Chart %s exists. Skipping generation.', $this->getChartPath('system')));
+            $this->getLogger()->info(sprintf('Chart %s exists. Skipping generation.',$this->getChartFileSystemPath()));
 
             return $done;
         }
 
         if (!$this->doForceGenerate()) {
-            $this->getLogger()->info(sprintf('Chart %s picture does not exist exist. Generating it.', $this->getChartPath('system')));
+            $this->getLogger()->info(sprintf('Chart %s picture does not exist exist. Generating it.',$this->getChartFileSystemPath()));
         } else {
-            $this->getLogger()->info(sprintf('Chart %s generation was forced or file does not exist. File is generated.', $this->getChartPath('system')));
+            $this->getLogger()->info(sprintf('Chart %s generation was forced or file does not exist. File is generated.',$this->getChartFileSystemPath()));
         }
 
 
@@ -265,9 +275,9 @@ class ChartBuilder {
         $this->getChart();
 
         // Checking that the base path exists
-        $this->checkPath($this->getChartBasePath('system'));
+        $this->checkPath($this->getChartsSystemPath());
 
-        return $this->checkPath($this->getChartPath('system'), false);
+        return $this->checkPath($this->getChartFileSystemPath(), false);
     }
 
     public function checkPath($path, $create = true) {

@@ -130,9 +130,15 @@ class Report extends BaseReport {
 
             $counter++;
 
-            $html = get_partial('report/chart', array('chart' => $c));
-            $pdf->writeHTML($html, true, false, true, false, '');
+            //$html = get_partial('report/chart', array('chart' => $c));
+            //$pdf->writeHTML($html, true, false, true, false, '');
 
+            $html = '<h2>'. $c['title'].'</h2><p>'.$c['comment'].'</p>';
+            $pdf->writeHTML($html);
+            
+            $c['chart']->generate();
+            $pdf->Image($c['chart']->getChartFileSystemPath());
+            
             if ($counter < $nc) {
                 $pdf->AddPage();
             }
