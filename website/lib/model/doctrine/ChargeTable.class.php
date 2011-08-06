@@ -20,7 +20,6 @@ class ChargeTable extends Doctrine_Table
     public static function getAllByUser($user_id)
     {
         
-        sfContext::getInstance()->getLogger()->info('sdgsdfgsfg');
         return $this->createQuery('c')
                 ->where('c.user_id = ?',$user_id)
                 ->execute();
@@ -35,6 +34,14 @@ class ChargeTable extends Doctrine_Table
     $q->andWhere('v.is_archived = ?',false);
  
     return $q;
+  }
+  
+  public function getAllByUserAndVehiclesQuery($user_id,$vehicles_ids) {
+      
+      return $this->createQuery('c')
+              ->addWhere('c.user_id = ?',$user_id)
+              ->leftJoin('c.Vehicle v')
+              ->andWhereIn('v.id', $vehicles_ids);
   }
 
     

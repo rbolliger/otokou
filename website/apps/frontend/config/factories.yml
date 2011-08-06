@@ -22,6 +22,7 @@ test:
   mailer:
     param:
       delivery_strategy: none
+        
 
 dev:
   mailer:
@@ -50,4 +51,3 @@ all:
       delivery_strategy: realtime
       transport:
         class: Swift_SendmailTransport
-        

@@ -15,6 +15,7 @@ all:
 
   charts:
     force_generate: false    # force generation of charts at each request
+    base_path: charts
 
   report:
     dir_name:  pdf

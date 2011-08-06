@@ -11,12 +11,7 @@
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
 class Chart extends BaseChart {
-
-    public function getChartPath($type = 'web') {
-
-        return $this->getChartBasePath($type) . '/' . $this->getChartName();
-    }
-    
+   
     public function getChartFileWebPath() {
 
         return $this->getChartsWebPath() . '/' . $this->getChartName();
@@ -66,38 +61,6 @@ class Chart extends BaseChart {
 
         return $format;
     }
-
-//    public function getChartBasePath($type = 'web') {
-//
-//        $path = sfConfig::get('app_charts_base_path', '/charts');
-//
-//
-//        switch ($type) {
-//            case 'web':
-//                $path = ($path[0] == '/' ? substr($path, 1) : $path);
-//
-//                break;
-//
-//            case 'system':
-//                $path = ($path[0] == '/' ? $path : '/' . $path);
-//
-//                // adding "images" folder
-//                $path = '/' . sfConfig::get('sf_web_images_dir_name', 'images') . $path;
-//
-//                $path = $this->convertToSystemPath($path);
-//
-//                $path = sfConfig::get('sf_web_dir') . $path;
-//
-//
-//                break;
-//
-//            default:
-//
-//                throw new sfException('Unknown option ' . $type);
-//        }
-//
-//        return $path;
-//    }
 
     protected function convertToSystemPath($path) {
 

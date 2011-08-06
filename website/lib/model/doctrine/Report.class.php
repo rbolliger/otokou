@@ -54,8 +54,23 @@ class Report extends BaseReport {
     public function getPdfFileFullPath() {
         return $this->getPdfSystemPath() . DIRECTORY_SEPARATOR . $this->getPdfFileName();
     }
-
+    
     public function generatePdf(sfContext $context, $chartBuilder, $file) {
+        
+        if ($this->hasCharges()) {
+            
+            $this->doGeneratePdf($context, $chartBuilder, $file);
+            
+            return true;
+        } else {
+            return false;
+        }
+        
+    }
+
+
+
+    protected function doGeneratePdf(sfContext $context, $chartBuilder, $file) {
 
         // definition of chart builder class
         $this->setChartBuilder($chartBuilder);
@@ -284,6 +299,37 @@ class Report extends BaseReport {
     public function getChartBuilder() {
 
         return $this->chart_builder;
+    }
+    
+    
+    public function countCharges() {
+        $q = Doctrine_Core::getTable('Charge')
+                ->getAllByUserAndVehiclesQuery($this->getUserId(),$this->getVehicles()->getPrimaryKeys());
+        
+        if (null !== $this->getDateFrom()) {
+            $q->addWhere('c.date >= ?',$this->getDateFrom());
+        }
+        
+        if (null !== $this->getDateTo()) {
+            $q->addWhere('c.date < ?',$this->getDateTo());
+        }
+        
+        if (null !== $this->getKilometersFrom()) {
+            $q->addWhere('c.kilometers >= ?',$this->getKilometersFrom());
+        }
+        
+        if (null !== $this->getKilometersTo()) {
+            $q->addWhere('c.kilometers < ?',$this->getKilometersTo());
+        }
+        
+        return $q->count();
+        
+    }
+    
+    
+    public function hasCharges() {
+        
+        return $this->countCharges() > 0 ? true : false;                      
     }
 
 }
