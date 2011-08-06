@@ -13,6 +13,7 @@ class ChartBuilderPChart extends ChartBuilder {
     public function doGenerate() {
 
         $data = parent::doGenerate();
+        
         if (!$data) {
             return $data;
         }

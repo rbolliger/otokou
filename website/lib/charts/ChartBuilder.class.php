@@ -42,7 +42,7 @@ class ChartBuilder {
         $done = true;
 
         $name = $this->getParameter('chart_name');
-
+               
         switch ($name) {
             case 'cost_per_km':
 
@@ -142,9 +142,9 @@ class ChartBuilder {
         return $this->attributes;
     }
 
-    public function getChartWebPath() {
+    public function getChartsWebPath() {
 
-        return $this->getChart()->getChartFileWebPath();
+        return $this->getChart()->getChartsWebPath();
     }
     
     public function getChartFileSystemPath() {
@@ -450,7 +450,7 @@ class ChartBuilder {
             $q = $this->buildChargeQuery($vid, $cid);
 
             $charges = $q->execute();
-
+ 
             if (!count($charges)) {
                 continue;
             }
@@ -797,7 +797,7 @@ class ChartBuilder {
 
         $this->setParameter('full_history', true);
 
-        $gs = $this->getChartSource();
+        $gs = $this->getChartSource(); 
         if (!$gs) {
             return $gs;
         }

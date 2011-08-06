@@ -9,7 +9,7 @@ sfContext::createInstance($app_configuration);
 $ut = new otokouTestFunctional(new sfBrowser());
 
 
-$t = new lime_test(59, new lime_output_color());
+$t = new lime_test(60, new lime_output_color());
 
 
 // ->getQuery()
@@ -104,24 +104,24 @@ $t->cmp_ok($name, '==', $g->getChartName(), 'The name of the chart is built from
 
 
 // ->getChartBasePath()
-$t->diag('->getChartBasePath()');
+$t->diag('->getChartsWebPath()');
 
 sfConfig::clear('app_charts_base_path');
 $gb = newChart();
-$t->cmp_ok($gb->getChartBasePath(), '==', 'charts', 'By default, base path is charts');
+$t->cmp_ok($gb->getChartsWebPath(), '==', 'charts', 'By default, base path is charts');
 
 sfConfig::set('app_charts_base_path', '/charts/static');
-$t->cmp_ok($gb->getChartBasePath(), '==', 'charts/static', 'The user can set the path in app_charts_base_path');
+$t->cmp_ok($gb->getChartsWebPath(), '==', 'charts/static', 'The user can set the path in app_charts_base_path');
 
-try
-{
-  $gb->getChartBasePath('sdgdfgxdf');
-  $t->fail('no code should be executed after throwing an exception');
-}
-catch (Exception $e)
-{
-  $t->pass('Only "web" and "system" are possible types');
-}
+$t->diag('->getChartsSystemPath()');
+
+sfConfig::clear('app_charts_base_path');
+$gb = newChart();
+$t->cmp_ok($gb->getChartsSystemPath(), '==', sfConfig::get('sf_web_dir').'/images/charts', 'By default, base path is charts');
+
+sfConfig::set('app_charts_base_path', '/charts/static');
+$t->cmp_ok($gb->getChartsSystemPath(), '==', sfConfig::get('sf_web_dir').'/images/charts/static', 'The user can set the path in app_charts_base_path');
+
 
 
 $t->diag('-> getChartFileWebPath()');
@@ -243,21 +243,21 @@ sfConfig::set('sf_root_dir',realpath(dirname(__FILE__).'/../..'));
 sfConfig::set('sf_web_dir',  sfConfig::get('sf_root_dir').'/web');
 $fullpath = sfConfig::get('sf_web_dir').'/images'.$path;
 $g  = newChart();
-$exist = $g->checkPath($g->getChartBasePath('system'));
-$t->ok(file_exists($fullpath), '->checkPath() checks that a path exists. If not, the path is created');
+$exist = $g->checkPath($g->getChartsSystemPath());
+$t->ok(file_exists($fullpath), '->getChartsSystemPath() checks that a path exists. If not, the path is created');
 
 if ($exist) {
 $fs = new sfFilesystem();
 $fs->remove($fullpath);
 }
 
-$g->checkPath($g->getChartBasePath('system'),false);
-$t->ok(!file_exists(sfConfig::get('sf_web_dir').$path), '->checkPath() accepts a "create" option. If set to false, the path is not created, if not found.');
+$g->checkPath($g->getChartsSystemPath(),false);
+$t->ok(!file_exists(sfConfig::get('sf_web_dir').$path), '->getChartsSystemPath() accepts a "create" option. If set to false, the path is not created, if not found.');
 
 
 try
 {
-  $g->checkPath($g->getChartBasePath('web'));
+  $g->checkPath($g->getChartsWebPath());
   $t->fail('no code should be executed after throwing an exception');
 }
 catch (Exception $e)
@@ -322,10 +322,10 @@ $t->cmp_ok($g->getParameter('hjkfghkd'), '===', 'arasd', '->setParameter() creat
 // ->getLogger()
 $t->diag('->getLogger()');
 $g = newChart();
-$t->cmp_ok($g->getLogger(), '===', sfContext::getInstance()->getLogger(), 'The default logger is set by the application');
+$t->isa_ok($g->getLogger(), 'sfNoLogger', 'The default logger is sfNoLogger');
 
 // ->setLogger()
-$logger = new sfNoLogger(new sfEventDispatcher());
+$logger = new sfVarLogger(new sfEventDispatcher());
 $g->setLogger($logger);
 $t->cmp_ok($g->getLogger(), '===', $logger, '->setLogger() allows to define a custom logger');
 
