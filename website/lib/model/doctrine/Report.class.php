@@ -306,23 +306,37 @@ class Report extends BaseReport {
         $q = Doctrine_Core::getTable('Charge')
                 ->getAllByUserAndVehiclesQuery($this->getUserId(),$this->getVehicles()->getPrimaryKeys());
         
+        
+        $values = $this->objectRangesToArray();
+        
+        $q = Doctrine_Core::getTable('Charge')->addRangeQuery($q,$values);
+        
+        return $q->count();
+        
+    }
+    
+    
+    public function objectRangesToArray() {
+        
+        $values = array();
         if (null !== $this->getDateFrom()) {
-            $q->addWhere('c.date >= ?',$this->getDateFrom());
+            $values['date_from'] = $this->getDateFrom();
         }
         
         if (null !== $this->getDateTo()) {
-            $q->addWhere('c.date < ?',$this->getDateTo());
+            $values['date_to'] = $this->getDateTo();
         }
         
         if (null !== $this->getKilometersFrom()) {
-            $q->addWhere('c.kilometers >= ?',$this->getKilometersFrom());
+            $values['kilometers_from'] = $this->getKilometersFrom();
         }
         
         if (null !== $this->getKilometersTo()) {
-            $q->addWhere('c.kilometers < ?',$this->getKilometersTo());
+            $values['kilometers_to'] = $this->getKilometersTo();
         }
         
-        return $q->count();
+        return $values;
+        
         
     }
     

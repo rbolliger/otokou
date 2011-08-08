@@ -104,5 +104,6 @@ class VehicleTable extends Doctrine_Table {
 
         return $q;
     }
+    
 
 }

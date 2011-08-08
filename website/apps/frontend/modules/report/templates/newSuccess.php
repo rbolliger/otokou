@@ -10,9 +10,6 @@ end_slot();
 <h1>Create a new custom report</h1>
 
 <div class="report_form">
-    <?php if ($form->hasGlobalErrors()): ?>
-    <?php echo $form->renderGlobalErrors() ?>
-    <?php endif; ?>
 
     <?php echo $form->renderFormTag(url_for('@report_create')) ?>
         <table><tbody>

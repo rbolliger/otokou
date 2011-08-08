@@ -242,17 +242,48 @@ $browser
                 )))
         ->with('form')
         ->begin()
-        ->hasErrors(3)
-        ->isError('date_range', '/Only one/')
-        ->isError('kilometers_range', '/Only one/')
+        ->hasErrors(2)
+        ->hasGlobalError('/Only one/')
         ->isError('vehicles_list', '/invalid/')
         ->end()
-        ->info('4.4 - Form ok')
+        ->info('4.4 - No charges related to the defined range')
         ->click('Create', array('report' =>
             array(
                 'name' => 'Custom report',
-                'date_range' => array('from' => date('Y-m-d'), 'to' => ''),
-                'kilometers_range' => array('from' => '', 'to' => 10000),
+                'date_range' => array('from' => null, 'to' => null),
+                'kilometers_range' => array('from' => 4, 'to' => 5),
+                'vehicles_list' => array(
+                    $browser->getVehicleId('car-gs-1')
+                )
+                )))
+        ->with('form')
+        ->begin()
+        ->hasErrors(1)
+        ->hasGlobalError('/No charges/')
+        ->end()
+        ->info('4.5 - Form errors - user_id')
+        ->click('Create', array('report' =>
+            array(
+                'name' => 'Custom report',
+                'user_id' => $browser->getUserId('ruf'),
+                'date_range' => array('from' => null, 'to' => date('Y-m-d')),
+                'kilometers_range' => array('from' => 0, 'to' => null),
+                'vehicles_list' => array(
+                    $browser->getVehicleId('car-gs-1')
+                )
+                )))
+        ->with('form')
+        ->begin()
+        ->hasErrors(1)
+        ->hasGlobalError('/User/')
+        ->end()
+        ->info('4.6 - Form ok')
+        ->click('Create', array('report' =>
+            array(
+                'name' => 'Custom report',
+                'user_id' => $browser->getUserId('user_gs'),
+                'date_range' => array('from' => '', 'to' => date('Y-m-d')),
+                'kilometers_range' => array('from' => 220, 'to' => ''),
                 'vehicles_list' => array(
                     $browser->getVehicleId('car-gs-1')
                 )
@@ -271,8 +302,8 @@ $browser
         ->check('Report', Doctrine_Core::getTable('Report')
                 ->createQuery('r')
                 ->andWhere('r.name LIKE ?', 'Custom report')
-                ->andWhere('r.date_from = ?', date('Y-m-d'))
-                ->andWhere('kilometers_to = ?', 10000)
+                ->andWhere('r.date_to = ?', date('Y-m-d'))
+                ->andWhere('kilometers_from = ?', 220)
                 ->leftJoin('r.Vehicles v')
                 ->andWhereIn('v.id', array($browser->getVehicleId('car-gs-1')))
                 , 1)
@@ -291,7 +322,7 @@ $browser
         ->begin()
         ->isStatusCode(200)
         ->end()
-        ->info('4.5 - Default values for form')
+        ->info('4.7 - Default values for form')
         ->get('/user_gs/report/new')
         ->click('Create', array('report' =>
             array(
@@ -326,8 +357,8 @@ $browser
         ->click('Create', array('report' =>
             array(
                 'name' => 'Custom report delete vehicle 1',
-                'date_range' => array('from' => date('Y-m-d'), 'to' => ''),
-                'kilometers_range' => array('from' => '', 'to' => 10000),
+                'date_range' => array('from' => '', 'to' => date('Y-m-d')),
+                'kilometers_range' => array('from' => 30, 'to' => ''),
                 'vehicles_list' => array(
                     $browser->getVehicleId('car-gs-1')
                 )
@@ -343,8 +374,8 @@ $browser
         ->check('Report', Doctrine_Core::getTable('Report')
                 ->createQuery('r')
                 ->andWhere('r.name LIKE ?', 'Custom report delete vehicle 1')
-                ->andWhere('r.date_from = ?', date('Y-m-d'))
-                ->andWhere('kilometers_to = ?', 10000)
+                ->andWhere('r.date_to = ?', date('Y-m-d'))
+                ->andWhere('kilometers_from = ?', 30)
                 ->leftJoin('r.Vehicles v')
                 ->andWhereIn('v.id', array($browser->getVehicleId('car-gs-1')))
                 , 1)
@@ -386,8 +417,8 @@ $browser
         ->click('Create', array('report' =>
             array(
                 'name' => 'Custom report delete vehicle 2',
-                'date_range' => array('from' => date('Y-m-d'), 'to' => ''),
-                'kilometers_range' => array('from' => '', 'to' => 10000),
+                'date_range' => array('from' => '', 'to' => date('Y-m-d')),
+                'kilometers_range' => array('from' => 300, 'to' => ''),
                 'vehicles_list' => array(
                     $browser->getVehicleId('car-gs-1'),
                     $browser->getVehicleId('car-gs-2'),
@@ -404,8 +435,8 @@ $browser
         ->check('Report', Doctrine_Core::getTable('Report')
                 ->createQuery('r')
                 ->andWhere('r.name LIKE ?', 'Custom report delete vehicle 2')
-                ->andWhere('r.date_from = ?', date('Y-m-d'))
-                ->andWhere('kilometers_to = ?', 10000)
+                ->andWhere('r.date_to = ?', date('Y-m-d'))
+                ->andWhere('kilometers_from = ?', 300)
                 ->leftJoin('r.Vehicles v')
                 ->andWhereIn('v.id', array($browser->getVehicleId('car-gs-1'), $browser->getVehicleId('car-gs-2')))
                 , 1)
@@ -544,6 +575,7 @@ $browser
         ->checkElement('h2:contains("Monthly travel")', 1)
         ->checkElement('h1:contains("Fuel consumption")', 1)
         ->checkElement('body img', 6)
+        ->checkElement('body:contains("Not enough data")',false)
         ->end()
         ->info('7 - Pdf')
         ->get('/user_gs/report/pdf/0-1000-km-car-gs-1-and-car-gs-2')

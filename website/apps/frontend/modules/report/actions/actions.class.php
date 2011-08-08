@@ -46,12 +46,18 @@ class reportActions extends otkWithOwnerActions {
     }
 
     public function executeNew(sfWebRequest $request) {
+        
+        $report = $this->newReport();
 
-        $this->form = new ReportEmbeddedUserForm();
+        //$this->form = new ReportEmbeddedUserForm();
+        $this->form = new ReportForm($report);
     }
 
     public function executeCreate(sfWebRequest $request) {
-        $this->form = new ReportEmbeddedUserForm();
+//        $this->form = new ReportEmbeddedUserForm();
+        
+        $report = $this->newReport();
+        $this->form = new ReportForm($report);
 
         $this->processForm($request, $this->form);
 
@@ -106,9 +112,14 @@ class reportActions extends otkWithOwnerActions {
         $file = $r->getPdfFileFullPath(); 
 
         if (!file_exists($file) || sfConfig::get('app_report_force_generate')) {
-            $r->generatePdf($this->getContext(), 'ChartBuilderPChart', $file);
+            $status = $r->generatePdf($this->getContext(), 'ChartBuilderPChart', $file);
         }
 
+        if (!$status) {
+
+            return sfView::SUCCESS;
+        }
+        
         // disbale the layout
         $this->setLayout(false);
 
@@ -156,6 +167,16 @@ class reportActions extends otkWithOwnerActions {
         } else {
             $this->getUser()->setFlash('error', 'The item has not been saved due to some errors.', false);
         }
+    }
+    
+    
+    protected function newReport() {
+        
+        $report = new Report();
+        $report->setUserId($this->getUser()->getGuardUser()->getId());
+        
+        return $report;
+        
     }
 
 }

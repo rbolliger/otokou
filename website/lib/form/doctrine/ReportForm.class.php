@@ -13,31 +13,33 @@ class ReportForm extends BaseReportForm {
     public function configure() {
 
         unset(
-                $this['created_at'],
-                $this['updated_at'],
-                $this['sha'],
-                $this['is_new'],
-                $this['slug'],
-                $this['num_vehicles']
+                $this['created_at'], $this['updated_at'], $this['sha'], $this['is_new'], $this['slug'], $this['num_vehicles']
         );
+
+        $this->widgetSchema['user_id'] = new sfWidgetFormInputHidden();
+        $this->validatorSchema['user_id'] = new sfValidatorChoice(array('choices' => array($this->getUserId()), 'required' => true));
 
         $this->validatorSchema['name'] = new sfValidatorString(array('max_length' => 255, 'required' => true));
         $this->widgetSchema->moveField('name', sfWidgetFormSchema::FIRST);
 
+        $q = Doctrine_Core::getTable('Vehicle')
+                ->createQuery('v')
+                ->where('v.user_id = ?', $this->getUserId());
+
         $this->widgetSchema['vehicles_list']->setOptions(
-                array_merge($this->widgetSchema['vehicles_list']->getOptions(),
-                        array(
-                            'expanded' => true,
-                            'multiple' => true,
-                            'label' => 'Vehicles',
-                            'add_empty' => false,
+                array_merge($this->widgetSchema['vehicles_list']->getOptions(), array(
+                    'expanded' => true,
+                    'multiple' => true,
+                    'label' => 'Vehicles',
+                    'add_empty' => false,
+                    'query' => $q,
                 )));
 
         $this->validatorSchema['vehicles_list']->setOptions(
-                array_merge($this->validatorSchema['vehicles_list']->getOptions(),
-                        array(
-                            'required' => true,
-                            'multiple' => true
+                array_merge($this->validatorSchema['vehicles_list']->getOptions(), array(
+                    'required' => true,
+                    'multiple' => true,
+                    'query' => $q,
                 )));
 
 
@@ -45,8 +47,7 @@ class ReportForm extends BaseReportForm {
 
 // Dates range
         unset(
-                $this['date_from'],
-                $this['date_to']
+                $this['date_from'], $this['date_to']
         );
 
         $years = range(date('Y') - 25, date('Y') + 5);
@@ -82,8 +83,7 @@ class ReportForm extends BaseReportForm {
 
 // Kilometers range
         unset(
-                $this['kilometers_from'],
-                $this['kilometers_to']
+                $this['kilometers_from'], $this['kilometers_to']
         );
 
         $this->widgetSchema['kilometers_range'] = new sfWidgetFormFilterDate(array(
@@ -102,14 +102,16 @@ class ReportForm extends BaseReportForm {
 
         $this->mergePostValidator(new sfValidatorCallback(array('callback' => array($this, 'checkDateAndKilometersFrom'))));
         $this->mergePostValidator(new sfValidatorCallback(array('callback' => array($this, 'checkDateAndKilometersTo'))));
+        $this->mergePostValidator(new sfValidatorCallback(array(
+                    'callback' => array($this, 'checkNumberCharges'),
+                    'arguments' => $this->validatorSchema,
+                )));
     }
 
     public function checkDateAndKilometersFrom($validator, $values) {
 
         if (isset($values['date_range']['from']) && isset($values['kilometers_range']['from'])) {
-            $error = new sfValidatorError($validator, 'Only one field between "date from" and "kilometers from" can be defined.');
-
-            throw new sfValidatorErrorSchema($validator, array('date_range' => $error, 'kilometers_range' => $error));
+            throw new sfValidatorError($validator, 'Only one field between "date from" and "kilometers from" can be defined.');
         }
 
         return $values;
@@ -118,9 +120,38 @@ class ReportForm extends BaseReportForm {
     public function checkDateAndKilometersTo($validator, $values) {
 
         if (isset($values['date_range']['to']) && isset($values['kilometers_range']['to'])) {
-            $error = new sfValidatorError($validator, 'Only one field between "date to" and "kilometers to" can be defined.');
+            throw new sfValidatorError($validator, 'Only one field between "date to" and "kilometers to" can be defined.');
+        }
 
-            throw new sfValidatorErrorSchema($validator, array('date_range' => $error, 'kilometers_range' => $error));
+        return $values;
+    }
+
+    public function checkNumberCharges($validator, $values, $arguments) {
+
+
+
+        try {
+
+            // checking if user_id or vehicles_list pass the validation
+            $v = $arguments['user_id']->clean($values['user_id']);
+            $v = $arguments['vehicles_list']->clean($values['vehicles_list']);
+        } catch (Exception $exc) {
+
+            // if we are here, there were validation errors. So we don't check if the range is ok.
+            return $values;
+        }
+
+
+        $pv = $this->processValues($values);
+
+        $q = Doctrine_Core::getTable('Charge')->getAllByUserAndVehiclesQuery($pv['user_id'], $pv['vehicles_list']);
+        $q = Doctrine_core::getTable('Charge')->addRangeQuery($q, $pv);
+
+        $count = $q->count();
+
+        if ($count == 0) {
+
+            throw new sfValidatorError($validator, 'No charges can be retrieved within the range defined in this form. Please define another range.');
         }
 
         return $values;
@@ -163,5 +194,9 @@ class ReportForm extends BaseReportForm {
         return $values;
     }
 
-    
+    protected function getUserId() {
+
+        return $this->getObject()->get('user_id');
+    }
+
 }

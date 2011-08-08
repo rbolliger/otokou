@@ -103,5 +103,8 @@ class ReportTable extends Doctrine_Table {
 
         return $q;
     }
+    
+    
+   
 
 }

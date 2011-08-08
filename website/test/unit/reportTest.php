@@ -80,7 +80,7 @@ $report->setName('report_test_2');
 $report->setUserId($ut->getUserId('user_gs'));
 $report->setVehicles($vehicles_query->execute());
 $report->setKilometersFrom(70);
-$report->save();
+
 
 $context = sfContext::createInstance($configuration);
 
@@ -132,7 +132,6 @@ $report = new Report();
 $report->setName('report_test_3');
 $report->setUserId($ut->getUserId('user_reports'));
 $report->setVehicles($vehicles_query->execute());
-$report->save();
 
 
 $t->diag('countCharges()');

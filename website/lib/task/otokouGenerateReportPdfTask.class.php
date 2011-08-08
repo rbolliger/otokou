@@ -61,7 +61,15 @@ EOF;
 
         $this->log('Creating a new Report entry in DB...');
 
-        $form = new ReportForm();
+        $user = Doctrine_Core::getTable('sfGuardUser')->findOneByUsername($arguments['username']);
+        if (!$user) {
+            throw new sfException('Cannot find any user with username "' . $arguments['username'] . '"');
+        }
+        
+        $r = new Report();
+        $r->setUser($user);
+        
+        $form = new ReportForm($r);
 
         $data = $this->prepareDataForForm($form, $arguments, $options);
 
@@ -92,6 +100,7 @@ EOF;
 
             $this->log('...done. File saved in ' . $report->getPdfFileFullPath());
         } else {
+            
             $this->log('...failed. Report has not been generated because no charges have been registered for the requested range.');
         }
         
@@ -100,13 +109,8 @@ EOF;
 
     protected function prepareDataForForm(sfForm $form, $arguments = array(), $options = array()) {
 
-        $user = Doctrine_Core::getTable('sfGuardUser')->findOneByUsername($arguments['username']);
-        if (!$user) {
-            throw new sfException('Cannot find any user with username "' . $arguments['username'] . '"');
-        }
-
         $data = array(
-            'user_id' => $user->getId(),
+            'user_id' => $form->getObject()->getUserId(),
             'name' => $arguments['name'],
             'vehicles_list' => $this->parseVehicles($arguments['vehicles']),
             'date_range' => array(
