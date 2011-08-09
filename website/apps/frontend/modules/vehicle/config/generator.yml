@@ -30,7 +30,7 @@ generator:
       filter:  
         class: false
       form:    
-        class: VehicleEmbeddedUserForm
+        class: VehicleForm
       edit:    
         title: Edit vehicle %%name%%
       new:     

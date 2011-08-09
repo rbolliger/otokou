@@ -87,5 +87,27 @@ class vehicleActions extends autoVehicleActions {
 
         return $user->getId();
     }
+    
+     public function executeNew(sfWebRequest $request) {
+        $charge = new Vehicle();
+        $charge->setUserId($this->getUserIdFromRouteOrSession());
+        
+        $this->form = $this->configuration->getForm($charge);
+        $this->vehicle = $charge;
+    }
+
+    public function executeCreate(sfWebRequest $request) {
+        
+        $charge = new Vehicle();
+        $charge->setUserId($this->getUserIdFromRouteOrSession());
+        
+        $this->form = $this->configuration->getForm($charge);
+        $this->vehicle = $charge;
+
+
+        $this->processForm($request, $this->form);
+
+        $this->setTemplate('new');
+    }
 
 }
