@@ -41,7 +41,7 @@ generator:
           comment:
             help: Any text put as comment
       form:    
-        class: ChargeEmbeddedUserForm
+        class: ChargeForm
       edit:    
         title: Edit charge "%%category%%" done at %%kilometers%% kilometers
         

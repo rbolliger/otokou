@@ -31,7 +31,6 @@ class chargeActions extends autoChargeActions {
         $this->configuration->setUserId($this->getUserIdFromRouteOrSession());
     }
 
-
     protected function getUserIdFromRouteOrSession() {
 
         $username = $this->getUsernameFromRouteOrSession();
@@ -101,6 +100,28 @@ class chargeActions extends autoChargeActions {
         parent::executeFilter($request);
 
         $this->pager->form = new PaginationMaxPerPageForm($this->getUser(), $this->getMaxPerPageOptions(), false);
+    }
+
+    public function executeNew(sfWebRequest $request) {
+        $charge = new Charge();
+        $charge->setUserId($this->getUserIdFromRouteOrSession());
+        
+        $this->form = $this->configuration->getForm($charge);
+        $this->charge = $charge;
+    }
+
+    public function executeCreate(sfWebRequest $request) {
+        
+        $charge = new Charge();
+        $charge->setUserId($this->getUserIdFromRouteOrSession());
+        
+        $this->form = $this->configuration->getForm($charge);
+        $this->charge = $charge;
+
+
+        $this->processForm($request, $this->form);
+
+        $this->setTemplate('new');
     }
 
 }

@@ -17,6 +17,9 @@ class ChargeForm extends BaseChargeForm {
                 $this['created_at'], $this['updated_at']
         );
 
+        $this->widgetSchema['user_id'] = new sfWidgetFormInputHidden();
+        $this->validatorSchema['user_id'] = new sfValidatorChoice(array('choices' => array($this->getUserId()), 'required' => true));
+
 
         $this->validatorSchema['kilometers'] = new sfValidatorAnd(array(
                     $this->validatorSchema['kilometers'],
@@ -38,23 +41,23 @@ class ChargeForm extends BaseChargeForm {
                     'image' => '/images/calendar.png',
                     'date_widget' => $widget
                 ));
-        
-        
+
+
         $q = Doctrine_Core::getTable($this->getRelatedModelName('Vehicle'))
                 ->createQuery('v')
-                ->andWhere('v.user_id = ?',$this->getObject()->getUserId())
-                ->andWhere('v.is_archived = ?',false);
-         
+                ->andWhere('v.user_id = ?', $this->getObject()->getUserId())
+                ->andWhere('v.is_archived = ?', false);
+
         $this->widgetSchema['vehicle_id'] = new sfWidgetFormDoctrineChoice(array(
-            'model'         => $this->getRelatedModelName('Vehicle'),
-            'add_empty'     => false,
-            'query'  => $q,
-            ));
-        
+                    'model' => $this->getRelatedModelName('Vehicle'),
+                    'add_empty' => false,
+                    'query' => $q,
+                ));
+
         $this->validatorSchema['vehicle_id'] = new sfValidatorDoctrineChoice(array(
-            'model'         => $this->getRelatedModelName('Vehicle'),
-            'query'  => $q,
-            ));
+                    'model' => $this->getRelatedModelName('Vehicle'),
+                    'query' => $q,
+                ));
 
 
         $this->validatorSchema['quantity'] = new sfValidatorNumber(array('required' => false, 'min' => 0));
@@ -83,6 +86,10 @@ class ChargeForm extends BaseChargeForm {
         // password is correct, return the clean values
         return $values;
     }
-    
-  
+
+    protected function getUserId() {
+
+        return $this->getObject()->get('user_id');
+    }
+
 }
