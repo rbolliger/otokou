@@ -23,7 +23,7 @@ class VehicleTable extends Doctrine_Table {
         return $q;
     }
 
-    public function findByUserIdAndVehicleId($user_id = array(), $vehicle_id = array()) {
+    public function findByUserIdAndVehicleId($user_id = null, $vehicle_id = array()) {
 
         if (!$user_id) {
             throw new Doctrine_Table_Exception('You must specify a "user_id"');
@@ -103,6 +103,20 @@ class VehicleTable extends Doctrine_Table {
                 ->addWhere('r.num_vehicles = 1');
 
         return $q;
+    }
+    
+    public function findArchivedByUserId($id = null) {
+        
+        if (!$id) {
+            throw new sfDoctrineException('id must be provided');
+        }
+        
+        return $this->createQuery('v')
+                ->addWhere('v.user_id = ?', $id)
+                ->andWhere('v.is_archived = ?', false)
+                ->leftJoin('v.User u')
+                ->execute();
+        
     }
     
 

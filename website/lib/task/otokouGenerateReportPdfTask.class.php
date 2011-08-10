@@ -59,8 +59,6 @@ EOF;
 
     protected function createReportObject($arguments = array(), $options = array()) {
 
-        $this->log('Creating a new Report entry in DB...');
-
         $user = Doctrine_Core::getTable('sfGuardUser')->findOneByUsername($arguments['username']);
         if (!$user) {
             throw new sfException('Cannot find any user with username "' . $arguments['username'] . '"');
@@ -75,7 +73,6 @@ EOF;
 
         $this->processForm($form, $data);
 
-        $this->log('...done');
 
         return $form->getObject();
     }
@@ -183,31 +180,3 @@ EOF;
 
 }
 
-/*
-  protected function execute($arguments = array(), $options = array())
-  {
-
- 
-    // create a context, and load the helper
-    $context = sfContext::createInstance($this->configuration);
-    $this->configuration->loadHelpers('Partial');
- 
-    // create the message
-    $message = $this->getMailer()->compose('no-reply@domain.com', 'me@domain.com', 'Subject Line');
- 
-    // generate HTML part
-    $context->getRequest()->setRequestFormat('html');
-    $html  = get_partial('radius/overusage', array('results' => $results));
-    $message->setBody($html, 'text/html');
- 
-    // generate plain text part
-    $context->getRequest()->setRequestFormat('txt');
-    $plain = get_partial('radius/overusage', array('results' => $results));
-    $message->addPart($plain, 'text/plain');
- 
-    // send the message
-    $this->getMailer()->send($message);
-  }
- * 
- * 
- */
