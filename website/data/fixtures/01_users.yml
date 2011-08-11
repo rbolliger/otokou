@@ -6,6 +6,7 @@ sfGuardUser:
     username:       ruf
     password:       admin@1
     is_super_admin: true
+    api_key:        rt5674asd0
     Groups:         [Group_admin]
 
   franz:
@@ -15,6 +16,7 @@ sfGuardUser:
     username:       franz
     password:       1234
     is_super_admin: false
+    api_key:        rori123456
 
 sfGuardGroup:
   Group_admin:

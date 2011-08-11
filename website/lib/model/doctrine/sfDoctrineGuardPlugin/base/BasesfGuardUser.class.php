@@ -17,6 +17,7 @@
  * @property timestamp $last_login
  * @property string $validate
  * @property string $list_max_per_page
+ * @property string $api_key
  * @property Doctrine_Collection $Groups
  * @property Doctrine_Collection $Permissions
  * @property Doctrine_Collection $sfGuardUserPermission
@@ -40,6 +41,7 @@
  * @method timestamp             getLastLogin()             Returns the current record's "last_login" value
  * @method string                getValidate()              Returns the current record's "validate" value
  * @method string                getListMaxPerPage()        Returns the current record's "list_max_per_page" value
+ * @method string                getApiKey()                Returns the current record's "api_key" value
  * @method Doctrine_Collection   getGroups()                Returns the current record's "Groups" collection
  * @method Doctrine_Collection   getPermissions()           Returns the current record's "Permissions" collection
  * @method Doctrine_Collection   getSfGuardUserPermission() Returns the current record's "sfGuardUserPermission" collection
@@ -62,6 +64,7 @@
  * @method sfGuardUser           setLastLogin()             Sets the current record's "last_login" value
  * @method sfGuardUser           setValidate()              Sets the current record's "validate" value
  * @method sfGuardUser           setListMaxPerPage()        Sets the current record's "list_max_per_page" value
+ * @method sfGuardUser           setApiKey()                Sets the current record's "api_key" value
  * @method sfGuardUser           setGroups()                Sets the current record's "Groups" collection
  * @method sfGuardUser           setPermissions()           Sets the current record's "Permissions" collection
  * @method sfGuardUser           setSfGuardUserPermission() Sets the current record's "sfGuardUserPermission" collection
@@ -135,6 +138,10 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
         $this->hasColumn('list_max_per_page', 'string', 5, array(
              'type' => 'string',
              'length' => 5,
+             ));
+        $this->hasColumn('api_key', 'string', 10, array(
+             'type' => 'string',
+             'length' => 10,
              ));
 
 
