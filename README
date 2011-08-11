@@ -6,7 +6,7 @@
 5) create the following files:
 - website/config/ProjectConfiguration.class.php
 - website/config/databases.yml
-- website/config/ChartSource.class.php
+- lib/charts/ChartSource.class.php
 - website/web/backend.php
 - website/web/index.php
 by renaming the files with the same name but with an "_original" suffix and by adapting them to your development environment.
