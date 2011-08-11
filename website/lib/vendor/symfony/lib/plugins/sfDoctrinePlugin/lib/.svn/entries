@@ -1,14 +1,14 @@
 10
 
 dir
-32745
+32903
 http://svn.symfony-project.com/branches/1.4/lib/plugins/sfDoctrinePlugin/lib
 http://svn.symfony-project.com
 
 
 
-2011-07-09T09:24:03.504533Z
-32740
+2011-08-05T07:53:57.100277Z
+32892
 fabien
 
 
@@ -35,10 +35,10 @@ dir
 validator
 dir
 
-generator
+debug
 dir
 
-debug
+generator
 dir
 
 routing
@@ -60,6 +60,9 @@ database
 dir
 
 cli
+dir
+
+mailer
 dir
 
 sfDoctrineException.class.php
@@ -95,9 +98,6 @@ has-props
 
 
 656
-
-mailer
-dir
 
 record
 dir

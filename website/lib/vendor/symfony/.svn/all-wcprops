@@ -1,7 +1,7 @@
 K 25
 svn:wc:ra_dav:version-url
 V 28
-/!svn/ver/32741/branches/1.4
+/!svn/ver/32892/branches/1.4
 END
 LICENSE
 K 25
@@ -19,7 +19,7 @@ CHANGELOG
 K 25
 svn:wc:ra_dav:version-url
 V 38
-/!svn/ver/32700/branches/1.4/CHANGELOG
+/!svn/ver/32884/branches/1.4/CHANGELOG
 END
 COPYRIGHT
 K 25

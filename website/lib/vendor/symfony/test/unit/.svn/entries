@@ -1,7 +1,7 @@
 10
 
 dir
-32745
+32903
 http://svn.symfony-project.com/branches/1.4/test/unit
 http://svn.symfony-project.com
 
@@ -179,22 +179,22 @@ dir
 command
 dir
 
-test
+i18n
 dir
 
 helper
 dir
 
-i18n
+test
 dir
 
 log
 dir
 
-addon
+filter
 dir
 
-filter
+addon
 dir
 
 routing

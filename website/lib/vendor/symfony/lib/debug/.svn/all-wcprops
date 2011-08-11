@@ -1,7 +1,7 @@
 K 25
 svn:wc:ra_dav:version-url
 V 38
-/!svn/ver/31254/branches/1.4/lib/debug
+/!svn/ver/32890/branches/1.4/lib/debug
 END
 sfWebDebugPanelMemory.class.php
 K 25
@@ -37,7 +37,7 @@ sfWebDebug.class.php
 K 25
 svn:wc:ra_dav:version-url
 V 59
-/!svn/ver/31254/branches/1.4/lib/debug/sfWebDebug.class.php
+/!svn/ver/32890/branches/1.4/lib/debug/sfWebDebug.class.php
 END
 sfWebDebugPanel.class.php
 K 25

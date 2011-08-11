@@ -1,15 +1,15 @@
 10
 
 dir
-32745
+32903
 http://svn.symfony-project.com/branches/1.4/lib/plugins/sfDoctrinePlugin/lib/generator
 http://svn.symfony-project.com
 
 
 
-2010-05-28T16:56:42.614556Z
-29661
-Kris.Wallsmith
+2011-08-05T07:53:57.100277Z
+32892
+fabien
 
 
 
@@ -66,11 +66,11 @@ file
 
 
 
-2011-04-14T09:37:37.396095Z
-16194deda492d47e92b0637d1569a28e
-2010-05-28T16:56:42.614556Z
-29661
-Kris.Wallsmith
+2011-08-11T20:28:08.107539Z
+330e40dac575859f46bd3c5993a5511c
+2011-08-05T07:53:57.100277Z
+32892
+fabien
 has-props
 
 
@@ -92,7 +92,7 @@ has-props
 
 
 
-18933
+19033
 
 sfDoctrineColumn.class.php
 file
