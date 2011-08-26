@@ -460,13 +460,13 @@ info('5 - Pagination')->
         get('/user4/charge')-> 
             with('response')->
                     begin()->
-                        checkElement('div.sf_admin_list tbody tr',3)->
+                        checkElement('div.sf_admin_list tbody tr',5)->
                     end()->
             with('doctrine')->
                     begin()->
                         check('sfGuardUser', array(
                               'username'     => 'user4',
-                              'list_max_per_page' => 3,
+                              'list_max_per_page' => 5,
                             ),true)->
                     end()->
         
@@ -474,10 +474,23 @@ info('5 - Pagination')->
         click('a[href*="page=2"]')->
         with('response')->
                     begin()->
-                        checkElement('div.sf_admin_list tbody tr',3)->
+                        checkElement('div.sf_admin_list tbody tr',5)->
                     end()->
         
-        info('  5.5 - Changing the number of elements returns to page 1 and displays the requested number of elements')->
+        info('  5.5 - If the number of elements is changed, the value is saved in user\s settings')->
+        post('/user4/charge/maxPerPage/action', array('max_per_page' => 3))->
+            with('request')->
+                begin()->
+                    isParameter('action','maxPerPage')->
+                    isParameter('max_per_page',3)->
+                end()->
+            with('response')->
+                    begin()->
+                        isRedirected(false)->
+                        checkElement('ul.error_list:contains(Invalid)',true)->
+                    end()->
+            
+        
         post('/user4/charge/maxPerPage/action', array('max_per_page' => 1000))->
             with('request')->
                 begin()->
@@ -491,10 +504,19 @@ info('5 - Pagination')->
                     end()->
             with('response')->
                 begin()->
+                    checkElement('ul.error_list:contains(Invalid)',false)->
                     checkElement('div.sf_admin_list tbody tr',81)->
                     checkElement('select#max_per_page option[selected="selected"][value=1000]',1)->
                     checkElement('.sf_admin_pagination a[href*="page=2"]',false)->
                 end()->
+           with('doctrine')->
+                    begin()->
+                        check('sfGuardUser', array(
+                              'username'     => 'user4',
+                              'list_max_per_page' => 1000,
+                            ),true)->
+                    end()->
+        info('  5.6 - Changing the number of elements returns to page 1 and displays the requested number of elements')->
         post('/user4/charge/maxPerPage/action', array('max_per_page' => 50))->
             with('request')->
                 begin()->

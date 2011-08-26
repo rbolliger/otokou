@@ -31,7 +31,13 @@ class PaginationMaxPerPageForm extends sfForm
   */
  public function save()
  {
-   $this->user->setAttribute(self::getMaxPerPageName(), $this->getValue('max_per_page'));
+     $user = $this->user;
+     $max = $this->getValue('max_per_page');
+     
+   $user->setAttribute(self::getMaxPerPageName(), $max);
+   
+  $user->getGuardUser()->setListMaxPerPage($max);
+  $user->getGuardUser()->save();
  }
 
  /**

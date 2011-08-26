@@ -31,7 +31,7 @@ sfGuardUser:
     username:       user4
     password:       user4
     is_super_admin: false
-    list_max_per_page: 3
+    list_max_per_page: 5
     
   user_charts:
     first_name:     User
