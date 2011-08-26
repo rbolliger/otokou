@@ -1,7 +1,7 @@
 10
 
 dir
-32903
+32951
 http://svn.symfony-project.com/branches/1.4/lib/test/w3/TR/xhtml-modularization/DTD
 http://svn.symfony-project.com
 
@@ -196,40 +196,6 @@ Kris.Wallsmith
 
 1683
 
-xhtml-text-1.mod
-file
-
-
-
-
-2011-04-14T09:37:30.622101Z
-5d2b98cbaa962c1eb13119ba1278a0b8
-2009-10-27T13:42:38.759478Z
-23380
-Kris.Wallsmith
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1793
-
 xhtml-struct-1.mod
 file
 
@@ -263,6 +229,40 @@ Kris.Wallsmith
 
 
 3910
+
+xhtml-text-1.mod
+file
+
+
+
+
+2011-04-14T09:37:30.622101Z
+5d2b98cbaa962c1eb13119ba1278a0b8
+2009-10-27T13:42:38.759478Z
+23380
+Kris.Wallsmith
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1793
 
 xhtml-edit-1.mod
 file
@@ -400,40 +400,6 @@ Kris.Wallsmith
 
 1851
 
-xhtml-framework-1.mod
-file
-
-
-
-
-2011-04-14T09:37:30.630861Z
-487681cc58c0927e6b5bb9a89c37bd59
-2009-10-27T13:42:38.759478Z
-23380
-Kris.Wallsmith
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-3135
-
 xhtml-link-1.mod
 file
 
@@ -467,6 +433,40 @@ Kris.Wallsmith
 
 
 2198
+
+xhtml-framework-1.mod
+file
+
+
+
+
+2011-04-14T09:37:30.630861Z
+487681cc58c0927e6b5bb9a89c37bd59
+2009-10-27T13:42:38.759478Z
+23380
+Kris.Wallsmith
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3135
 
 xhtml-csismap-1.mod
 file
