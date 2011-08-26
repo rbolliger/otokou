@@ -212,17 +212,6 @@ user_settings_account:
   requirements:
     sf_method: [get,post,put]
   
-user_settings_otokou:
-  url: /:username/settings/otokou
-  param: {module: user_settings, action: otokou}
-  class: otkWithUserDoctrineRoute
-  options:
-    model: sfGuardUser
-    type: object
-    allow_empty: false
-  requirements:
-    sf_method: [get,post,put]
-
 api:
   url: /api
   param: {module: api, action: index }
