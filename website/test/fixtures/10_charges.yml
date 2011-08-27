@@ -135,7 +135,7 @@ Charge:
 
 <?php for ($i = 100; $i <= 130; $i++): ?>
   Charge_<?php echo $i ?>:
-    Vehicle: touran
+    Vehicle: car_user3
     User: user3
     Category: fuel
     date: '2011-01-03'
@@ -147,7 +147,7 @@ Charge:
 
 <?php for ($i = 200; $i <= 280; $i++): ?>
   Charge_<?php echo $i ?>:
-    Vehicle: touran
+    Vehicle: car_user4
     User: user4
     Category: taxes
     date: '2011-01-03'

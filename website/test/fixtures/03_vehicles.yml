@@ -9,6 +9,12 @@ Vehicle:
   car3:
     name: car3
     User: user2
+  car_user3:
+    name: car_user_3
+    User: user3
+  car_user4:
+    name: car_user_4
+    User: user4
   car_vehicle_1:
     name: car vehicle 1
     User: user_vehicle
