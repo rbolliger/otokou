@@ -32,8 +32,11 @@ class ChargeForm extends BaseChargeForm {
                 ));
 
 
+        $years = range(1970, date('Y') + 2);
+        
         $widget = new sfWidgetFormDate(array(
                     'format' => '%day%/%month%/%year%',
+                    'years'  => array_combine($years, $years),
                 ));
 
         $this->widgetSchema['date'] = new sfWidgetFormJQueryDate(array(

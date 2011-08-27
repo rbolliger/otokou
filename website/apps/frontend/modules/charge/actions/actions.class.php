@@ -105,6 +105,7 @@ class chargeActions extends autoChargeActions {
     public function executeNew(sfWebRequest $request) {
         $charge = new Charge();
         $charge->setUserId($this->getUserIdFromRouteOrSession());
+        $charge->setDate(date('Y-m-d'));
         
         $this->form = $this->configuration->getForm($charge);
         $this->charge = $charge;

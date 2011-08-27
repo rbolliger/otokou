@@ -26,6 +26,13 @@ $browser->
                         isParameter('module', 'charge')->
                         isParameter('action', 'new')->
                     end()->
+                with('response')->
+                    begin()-> 
+                        checkElement('select#charge_date_day option[selected="selected"]',date('d'))->
+                        checkElement('select#charge_date_month option[selected="selected"]',date('m'))->
+                        checkElement('select#charge_date_year option[selected="selected"]',date('Y'))->
+                        checkElement('select#charge_date_year:contains(1970)',true)->
+                    end()->
             click('Save', getFormData($browser, array('category_id' => $fuelId, 'quantity' => null)))->
                 with('form')->
                     begin()->
@@ -533,10 +540,18 @@ info('5 - Pagination')->
                     checkElement('div.sf_admin_list tbody tr',50)->
                     checkElement('select#max_per_page option[selected="selected"][value=50]',1)->
                     checkElement('.sf_admin_pagination a[href*="page=2"]',true)->
-                end()
+                end()->
                 
-
-        
+info('6 - Edit')->
+        get('/user4/charge/'.
+                    $browser->getOneChargeByParams(array('user_id' => $browser->getUserId('user4')))->getId().'/edit')->
+             with('response')->
+                    begin()->
+                        checkElement('select#charge_date_day option[selected="selected"]','03')->
+                        checkElement('select#charge_date_month option[selected="selected"]','01')->
+                        checkElement('select#charge_date_year option[selected="selected"]','2011')->
+                        checkElement('select#charge_date_year:contains(1970)',true)->
+                    end()        
         
         
         ;
