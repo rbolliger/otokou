@@ -62,6 +62,8 @@ class chargeActions extends autoChargeActions {
 
         $this->setTemplate('index');
         $this->pager->form = $form;
+        
+        $this->sumAmount = $this->getSumAmount();
     }
 
     protected function getMaxPerPageOptions() {
@@ -93,6 +95,10 @@ class chargeActions extends autoChargeActions {
         parent::executeIndex($request);
 
         $this->pager->form = new PaginationMaxPerPageForm($this->getUser(), $this->getMaxPerPageOptions(), false);
+
+       
+
+        $this->sumAmount = $this->getSumAmount();
     }
 
     public function executeFilter(sfWebRequest $request) {
@@ -100,22 +106,24 @@ class chargeActions extends autoChargeActions {
         parent::executeFilter($request);
 
         $this->pager->form = new PaginationMaxPerPageForm($this->getUser(), $this->getMaxPerPageOptions(), false);
+        
+        $this->sumAmount = $this->getSumAmount();
     }
 
     public function executeNew(sfWebRequest $request) {
         $charge = new Charge();
         $charge->setUserId($this->getUserIdFromRouteOrSession());
         $charge->setDate(date('Y-m-d'));
-        
+
         $this->form = $this->configuration->getForm($charge);
         $this->charge = $charge;
     }
 
     public function executeCreate(sfWebRequest $request) {
-        
+
         $charge = new Charge();
         $charge->setUserId($this->getUserIdFromRouteOrSession());
-        
+
         $this->form = $this->configuration->getForm($charge);
         $this->charge = $charge;
 
@@ -123,6 +131,21 @@ class chargeActions extends autoChargeActions {
         $this->processForm($request, $this->form);
 
         $this->setTemplate('new');
+    }
+    
+    protected function getSumAmount() {
+        
+        // calculating sum of all charges
+        $a = clone $this->pager->getQuery();
+        $rootAlias = $a->getRootAlias();
+        $a->removeDQLqueryPart('limit');
+        $a->removeDQLqueryPart('offset');
+        $a->select('SUM(' . $rootAlias . '.amount) as sum');
+        $r = $a->fetchOne();
+
+        return $r->getSum();
+        
+        
     }
 
 }

@@ -453,6 +453,7 @@ info('5 - Pagination')->
                 begin()->
                     checkElement('div.max_per_page',true)->
                     checkElement('div.sf_admin_pagination',true)->
+                    checkElement('div#charges_sum_amount','/3565/')->
                 end()->
         
         info('  5.2 - By default, charges list show 20 elements')->
@@ -468,6 +469,7 @@ info('5 - Pagination')->
             with('response')->
                     begin()->
                         checkElement('div.sf_admin_list tbody tr',5)->
+                        checkElement('div#charges_sum_amount','/19440/')->
                     end()->
             with('doctrine')->
                     begin()->
@@ -482,6 +484,7 @@ info('5 - Pagination')->
         with('response')->
                     begin()->
                         checkElement('div.sf_admin_list tbody tr',5)->
+                        checkElement('div#charges_sum_amount','/19440/')->
                     end()->
         
         info('  5.5 - If the number of elements is changed, the value is saved in user\s settings')->
@@ -495,6 +498,7 @@ info('5 - Pagination')->
                     begin()->
                         isRedirected(false)->
                         checkElement('ul.error_list:contains(Invalid)',true)->
+                        checkElement('div#charges_sum_amount','/19440/')->
                     end()->
             
         
