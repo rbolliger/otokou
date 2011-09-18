@@ -3,7 +3,7 @@
 
 
 <?php slot('leftcol');  ?>
-<div id="charges_sum_amount">Total amount: <?php echo $sumAmount; ?> CHF</div>
+<?php include_partial('charge/sum_amount', array('amounts' => $sumAmount)); ?>
 <?php end_slot(); ?>
 
 <div id="sf_admin_container">

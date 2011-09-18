@@ -77,6 +77,7 @@ class chargeActions extends autoChargeActions {
         $options = array(
             'max_per_page_name' => 'charge_list_max_per_page',
             'max_per_page_choices' => array(
+                5,
                 10,
                 20,
                 50,
@@ -95,8 +96,6 @@ class chargeActions extends autoChargeActions {
         parent::executeIndex($request);
 
         $this->pager->form = new PaginationMaxPerPageForm($this->getUser(), $this->getMaxPerPageOptions(), false);
-
-       
 
         $this->sumAmount = $this->getSumAmount();
     }
@@ -140,10 +139,33 @@ class chargeActions extends autoChargeActions {
         $rootAlias = $a->getRootAlias();
         $a->removeDQLqueryPart('limit');
         $a->removeDQLqueryPart('offset');
-        $a->select('SUM(' . $rootAlias . '.amount) as sum');
-        $r = $a->fetchOne();
+        $a->addSelect('SUM('.$rootAlias.'.amount) as sum');
+        
+        $r1 = $a->fetchOne();
 
-        return $r->getSum();
+  
+        // calculating sum of charges of this page
+        $b = clone $this->pager->getQuery();
+        $rootAlias = $b->getRootAlias();
+        $b->addSelect($rootAlias.'.id');
+        
+        // MySQL doesn't seems to like subqueries with LIMIT. So we recover ids by executing the subquery separately.
+        $charges = $b->execute();
+        $ids = array();
+        foreach ($charges as $charge) {
+            $ids[] = $charge->getId();
+        }
+        
+        $params = $b->getParams();
+        
+        $sum_b = Doctrine_Core::getTable('Charge')->createQuery('b')
+                ->addSelect('b.id, SUM(b.amount) as sum')
+                ->andWhereIn('b.id', $ids);
+
+        $r2 = $sum_b->fetchOne();
+        
+
+        return array('amount_total' => $r1->getSum(), 'amount_page' =>$r2->getSum());
         
         
     }
