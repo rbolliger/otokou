@@ -17,15 +17,18 @@ class Vehicle extends BaseVehicle {
         $this->save();
     }
 
-    public function getTraveledDistance() {
-
-        $c = $this->getLastChargeByRange('distance');
-
-        if (!$c) {
+    public function getTraveledDistance() {  
+        
+        $id = $this->getInitialDistance();
+        $fd = $this->getFinalDistance();
+        
+        if (!$id || !$fd) {
+            
             return 0;
         }
+        
 
-        return $c->getKilometers();
+        return $fd -  $id;
     }
 
     public function getInitialDistance() {
@@ -36,6 +39,18 @@ class Vehicle extends BaseVehicle {
         }
 
         return $c->getKilometers();
+    }
+    
+    public function getFinalDistance() {
+
+       $lc = $this->getLastChargeByRange('distance');
+
+        if (!$lc) {
+            return null;
+        }
+        
+        return $lc->getKilometers();
+        
     }
 
     public function getOverallCost() {
@@ -57,18 +72,16 @@ class Vehicle extends BaseVehicle {
     public function getCostPerKm() {
 
         $cost = $this->getOverallCost();
-        $max_dist = $this->getTraveledDistance();
+        
+        $td = $this->getTraveledDistance();
 
-        if ($max_dist == 0) {
+        if ($td == 0) {
             return null;
         }
 
-        $min_dist = $this->getInitialDistance();
-        if (!$min_dist) {
-            return null;
-        }
+       
 
-        return $cost / ($max_dist - $min_dist);
+        return $cost / $td;
     }
 
     public function getAverageConsumption() {
@@ -78,10 +91,10 @@ class Vehicle extends BaseVehicle {
         if (!count($charges)) {
             return null;
         }
-
-        $max_dist = $this->getTraveledDistance();
-        $min_dist = $this->getInitialDistance();
-        if (!$min_dist || $max_dist == 0) {
+        
+        $td = $this->getTraveledDistance();
+        
+        if (!$td) {
             return null;
         }
 
@@ -100,7 +113,7 @@ class Vehicle extends BaseVehicle {
             return null;
         }
 
-        return array_sum($quantity) / ($max_dist - $min_dist) * 100;
+        return array_sum($quantity) / $td * 100;
     }
 
     public function getFirstChargeByRange($range) {

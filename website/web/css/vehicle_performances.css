@@ -28,6 +28,11 @@ div.vehicle_statistics > div.data > div.description
     font-size: 1.5em;
 }
 
+div.vehicle_statistics > div.data > div.comment
+{
+    font-size: 1em;
+}
+
 div.vehicle_statistics > div.data > div.value
 {
     font-size: 2.5em;

@@ -4,7 +4,7 @@ include dirname(__FILE__) . '/../../lib/test/otokouTestFunctional.class.php';
 
 $ut = new otokouTestFunctional(new sfBrowser());
 
-$t = new lime_test(22, new lime_output_color());
+$t = new lime_test(26, new lime_output_color());
 
 /**
  * New vehicle
@@ -24,11 +24,16 @@ $t->cmp_ok($v->getLastChargeByRange('distance')->getKilometers(), '==', 400, '->
 
 // ->getTraveledDistance()
 $t->diag('->getTraveledDistance()');
-$t->cmp_ok($v->getTraveledDistance(), '==', 400, '->getTraveledDistance() returns the maximum travelled distance of a vehicle');
+$t->cmp_ok($v->getTraveledDistance(), '==', 350, '->getTraveledDistance() returns distance travelled by the vehicle since purchase');
 
 // ->getInitialDistance()
 $t->diag('->getInitialDistance()');
 $t->cmp_ok($v->getInitialDistance(), '==', 50, '->getInitialDistance() returns the minimum distance travelled and registered with the fist charge');
+
+// ->getFinalDistance()
+$t->diag('->getFinalDistance()');
+$t->cmp_ok($v->getFinalDistance(), '==', 400, '->getFinalDistance() returns the maximum distance travelled and registered with the last charge');
+
 
 // ->getOverallCost()
 $t->diag('->getOverallCost()');
@@ -62,11 +67,16 @@ $t->cmp_ok($v->getLastChargeByRange('distance')->getKilometers(), '==', 83000, '
 
 // ->getTraveledDistance()
 $t->diag('->getTraveledDistance()');
-$t->cmp_ok($v->getTraveledDistance(), '==', 83000, '->getTraveledDistance() returns the maximum travelled distance of a vehicle');
+$t->cmp_ok($v->getTraveledDistance(), '==', 83000-79954, '->getTraveledDistance() returns the distance travelled by the vehicle since purchase');
 
 // ->getInitialDistance()
 $t->diag('->getInitialDistance()');
 $t->cmp_ok($v->getInitialDistance(), '==', 79954, '->getInitialDistance() returns the minimum distance travelled and registered with the fist charge');
+
+// ->getFinalDistance()
+$t->diag('->getFinalDistance()');
+$t->cmp_ok($v->getFinalDistance(), '==', 83000, '->getFinalDistance() returns the maximum distance travelled and registered with the last charge');
+
 
 // ->getOverallCost()
 $t->diag('->getOverallCost()');
@@ -90,6 +100,16 @@ $v = Doctrine_Core::getTable('Vehicle')->findOneByName('car gb_noCharges');
 // ->getTraveledDistance()
 $t->diag('->getTraveledDistance()');
 $t->cmp_ok($v->getTraveledDistance(), '==', 0, '->getTraveledDistance() returns "0" if the vehicles has not charges');
+
+// ->getInitialDistance()
+$t->diag('->getInitialDistance()');
+$t->cmp_ok($v->getInitialDistance(), '===', null, '->getInitialDistance() returns "null" if the vehicles has not charges');
+
+
+// ->getFinalDistance()
+$t->diag('->getFinalDistance()');
+$t->cmp_ok($v->getFinalDistance(), '===', null, '->getFinalDistance() returns "null" if the vehicles has not charges');
+
 
 // ->getOverallCost()
 $t->diag('->getOverallCost()');
