@@ -11,6 +11,8 @@
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
 class Vehicle extends BaseVehicle {
+    
+    protected $charge_bouds = array();
 
     public function toggleArchive() {
         $this->setIsArchived(!$this->getIsArchived());
@@ -143,6 +145,12 @@ class Vehicle extends BaseVehicle {
         if (!in_array($minOrMax, array('min', 'max'))) {
             throw new Doctrine_Exception('Unknown minOrMax value ' . $minOrMax . ' in ' . __METHOD__);
         }
+               
+        if (isset($this->charge_bouds[$column][$minOrMax])) {
+            
+            return $this->charge_bouds[$column][$minOrMax];
+        }
+        
 
         $q = Doctrine_Core::getTable('Charge')
                 ->createQuery('c')
@@ -155,8 +163,13 @@ class Vehicle extends BaseVehicle {
                 ->andWhere('cs.vehicle_id = ' . $this->getId());
 
         $q->andWhere('c.' . $column . '= (' . $qs->getDql() . ')');
+        
+        $res = $q->execute()->getFirst();
+        
+        $this->charge_bouds[$column][$minOrMax] = $res;
+        
 
-        return $q->execute()->getFirst();
+        return $res;
     }
 
     public function getOwnReports($max = 5) {
