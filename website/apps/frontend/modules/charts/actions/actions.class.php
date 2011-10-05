@@ -214,9 +214,19 @@ class chartsActions extends otkWithOwnerActions {
 
         $filter_vehicles = $this->getFilterValue('vehicles_list');
         $user_id = $this->getUserId();
+        
+        $q = Doctrine_Core::getTable('Vehicle')->createQuery('v')
+                ->andWhere('v.user_id = ?',$user_id)
+                ->leftJoin('v.Charges c');
+        
+        if (count($filter_vehicles)) {
+            $q->andWhereIn('v.id',$filter_vehicles);
+        }
+        
+ 
+        return $q->execute();
 
-        return $vehicles = Doctrine_Core::getTable('Vehicle')->findByUserIdAndVehicleId($user_id, $filter_vehicles);
-    }
+       }
 
     protected function getUserId() {
         return $this->getUser()->getGuardUser()->getId();

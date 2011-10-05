@@ -23,21 +23,6 @@ class VehicleTable extends Doctrine_Table {
         return $q;
     }
 
-    public function findByUserIdAndVehicleId($user_id = null, $vehicle_id = array()) {
-
-        if (!$user_id) {
-            throw new Doctrine_Table_Exception('You must specify a "user_id"');
-        }
-
-        $q = $this->createQuery('v')->andWhere('v.user_id = ?', $user_id);
-
-        if ($vehicle_id) {
-            $q->andWhereIn('v.id', $vehicle_id);
-        }
-
-        return $q->execute();
-    }
-
     public function findByUsernameAndSortByArchived($username) {
 
         $q = $this->createQuery('v');
@@ -84,6 +69,16 @@ class VehicleTable extends Doctrine_Table {
 
         $q->leftJoin($root . '.User u')
                 ->andWhere('u.username = ?', $username);
+
+        return $q;
+    }
+    
+    protected function addUserIdQuery(Doctrine_Query $q, $id) {
+
+        $root = $q->getRootAlias();
+
+        $q->leftJoin($root . '.User u')
+                ->andWhere('u.id = ?', $id);
 
         return $q;
     }
