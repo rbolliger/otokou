@@ -370,6 +370,7 @@ $browser->
             isParameter('module', 'charts')->
             isParameter('action', 'costPie')->
           end()->
+        with('response')->debug()->end()->
         call('/user_charts/charts/filter?_reset','post',array('_with_csrf' => true))->
             with('response')->
                 begin()->
