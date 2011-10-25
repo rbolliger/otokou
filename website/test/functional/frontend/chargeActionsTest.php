@@ -395,8 +395,23 @@ info('4 - List filters')->
                 begin()->
                     checkElement('div.sf_admin_list tbody tr',16)->
                 end()->
+        info('  4.5 - When no charges can be found, the sums are null')->
+        click('Filter',array(
+            'charge_filters' => array(
+                'kilometers' => array('from' => 1001, 'to' => 1002))))->
+            with('response')->
+                begin()->
+                    isRedirected()->
+                    followRedirect()->
+                end()->
+            with('response')->
+                begin()->
+                    checkElement('div.sf_admin_list tbody tr',0)->
+                    checkElement('div#charges_sum_amount_total','/All pages: 0 CHF/')->
+                    checkElement('div#charges_sum_amount_page','/This page: 0 CHF/')->
+                end()->
 
-        info('  4.5 - Comments search')->
+        info('  4.6 - Comments search')->
         call('/ruf/charge/filter/action?_reset','post',array('_with_csrf' => true))->
             with('response')->
                 begin()->
@@ -428,7 +443,7 @@ info('4 - List filters')->
                             ,4)->
                 end()->
 
-           info('  4.6 - Filters deletion after logout and change user')->
+           info('  4.7 - Filters deletion after logout and change user')->
            logout()->
            with('user')->
             begin()->
