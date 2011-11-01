@@ -270,7 +270,7 @@ class chartSourceUtilityTest {
         $t->ok(isset($data['y']['series']), sprintf('->%s() returns a series array for "y" field', $fname));
         $t->ok(isset($data['y']['description']), sprintf('->%s() returns a description for "y" field', $fname));
 
-        $t->cmp_ok(count($data['y']['series']), '===', count($y), sprintf('->%s() "y-values" series count ok', $fname));
+        $t->cmp_ok(count($data['y']['series']), '===', count($y), sprintf('->%s() "y-values" has "%d" serie%s', $fname, count($y),count($y)===1? '' : 's'));
 
         foreach ($data['y']['series'] as $key => $serie) {
 
