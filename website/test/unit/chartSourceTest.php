@@ -99,33 +99,37 @@ $series = $gs->getSeriesDataByColumn('kilometers');
 $t->cmp_ok(count(array_keys($series)), '===', 3, '->getSeriesDataByColumn() returns a data serie for each raw data serie stored.');
 $t->cmp_ok(array(count($series[0]), count($series[1]), count($series[2])), '===', array(count($data), count($data), count($data)), '->getSeriesDataByColumn() returns a value for each element in raw_data');
 
-// ::filterValuesLargerThan()
-$t->diag('::filterValuesLargerThan()');
+// ->filterValuesLargerThan()
+$t->diag('->filterValuesLargerThan()');
 $data = array(1, 2, 3, 4, 5, 6, 7, 8);
 
-$keys = ChartSource::filterValuesLargerThan($data, 5);
-$t->cmp_ok($keys, '===', array(1, 2, 3, 4, 5), '::filterValuesLargerThan() returns the elements of the input array whose value is lower than the given bound');
+$cs = new ChartSource();
+$keys = $cs->filterValuesLargerThan($data, 5);
+$t->cmp_ok($keys, '===', array(1, 2, 3, 4, 5), '->filterValuesLargerThan() returns the elements of the input array whose value is lower than the given bound');
 
-// ::filterValuesSmallerThan()
-$t->diag('::filterValuesSmallerThan()');
+// ->filterValuesSmallerThan()
+$t->diag('->filterValuesSmallerThan()');
 $data = array(1, 2, 3, 4, 5, 6, 7, 8);
 
-$keys = ChartSource::filterValuesSmallerThan($data, 5);
+$cs = new ChartSource();
+$keys = $cs->filterValuesSmallerThan($data, 5);
 $t->cmp_ok($keys, '===', array(4 => 5, 5 => 6, 6 => 7, 7 => 8), '::filterValuesSmallerThan() returns the elements of the input array whose value is larger than the given bound');
 
 
-// ::filterValuesDifferentThan()
-$t->diag('::filterValuesDifferentThan()');
+// ->filterValuesDifferentThan()
+$t->diag('->filterValuesDifferentThan()');
 $data = array(1, 1.1, 0.9, 2, 3, 1, 1);
 
-$keys = ChartSource::filterValuesDifferentThan($data, 1);
+$cs = new ChartSource();
+$keys = $cs->filterValuesDifferentThan($data, 1);
 $t->cmp_ok($keys, '===', array(0 => 1, 5 => 1, 6 => 1), '::filterValuesDifferentThan() returns the elements of the input array whose value is equal than the given bound');
 
-// ::filterValuesOutsideRange
-$t->diag('::filterValuesOutsideRange()');
+// ->filterValuesOutsideRange
+$t->diag('->filterValuesOutsideRange()');
 $data = array(1, 2, 3, 4, 5, 6, 7, 1, 3, 4);
 
-$keys = ChartSource::filterValuesOutsideRange($data, 1, 4);
+$cs = new ChartSource();
+$keys = $cs->filterValuesOutsideRange($data, 1, 4);
 $t->cmp_ok($keys, '===', array(0 => 1, 1 => 2, 2 => 3, 7 => 1, 8 => 3), '::filterValuesOutsideRange() returns the elements of the input array whose value is equal or larger than the lower bound and lower of the upper bound');
 
 
