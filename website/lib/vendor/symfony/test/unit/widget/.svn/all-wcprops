@@ -1,7 +1,7 @@
 K 25
 svn:wc:ra_dav:version-url
 V 45
-/!svn/ver/31927/branches/1.4/test/unit/widget
+/!svn/ver/33032/branches/1.4/test/unit/widget
 END
 sfWidgetFormInputHiddenTest.php
 K 25
@@ -9,29 +9,29 @@ svn:wc:ra_dav:version-url
 V 77
 /!svn/ver/23881/branches/1.4/test/unit/widget/sfWidgetFormInputHiddenTest.php
 END
-sfWidgetFormDateTest.php
-K 25
-svn:wc:ra_dav:version-url
-V 70
-/!svn/ver/31927/branches/1.4/test/unit/widget/sfWidgetFormDateTest.php
-END
 sfWidgetFormTextareaTest.php
 K 25
 svn:wc:ra_dav:version-url
 V 74
 /!svn/ver/23881/branches/1.4/test/unit/widget/sfWidgetFormTextareaTest.php
 END
-sfWidgetFormSelectTest.php
+sfWidgetFormDateTest.php
 K 25
 svn:wc:ra_dav:version-url
-V 72
-/!svn/ver/24012/branches/1.4/test/unit/widget/sfWidgetFormSelectTest.php
+V 70
+/!svn/ver/31927/branches/1.4/test/unit/widget/sfWidgetFormDateTest.php
 END
 sfWidgetFormTest.php
 K 25
 svn:wc:ra_dav:version-url
 V 66
 /!svn/ver/24137/branches/1.4/test/unit/widget/sfWidgetFormTest.php
+END
+sfWidgetFormSelectTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/!svn/ver/24012/branches/1.4/test/unit/widget/sfWidgetFormSelectTest.php
 END
 sfWidgetFormSchemaFormatterListTest.php
 K 25
@@ -75,17 +75,17 @@ svn:wc:ra_dav:version-url
 V 83
 /!svn/ver/24015/branches/1.4/test/unit/widget/sfWidgetFormInputFileEditableTest.php
 END
-sfWidgetFormDateRangeTest.php
-K 25
-svn:wc:ra_dav:version-url
-V 75
-/!svn/ver/24015/branches/1.4/test/unit/widget/sfWidgetFormDateRangeTest.php
-END
 sfWidgetFormChoiceTest.php
 K 25
 svn:wc:ra_dav:version-url
 V 72
 /!svn/ver/29309/branches/1.4/test/unit/widget/sfWidgetFormChoiceTest.php
+END
+sfWidgetFormDateRangeTest.php
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/24015/branches/1.4/test/unit/widget/sfWidgetFormDateRangeTest.php
 END
 sfWidgetTest.php
 K 25

@@ -1,7 +1,7 @@
 K 25
 svn:wc:ra_dav:version-url
 V 65
-/!svn/ver/27747/branches/1.4/lib/plugins/sfPropelPlugin/lib/addon
+/!svn/ver/33137/branches/1.4/lib/plugins/sfPropelPlugin/lib/addon
 END
 sfPropelManyToMany.class.php
 K 25
@@ -43,5 +43,5 @@ sfPropelData.class.php
 K 25
 svn:wc:ra_dav:version-url
 V 88
-/!svn/ver/23881/branches/1.4/lib/plugins/sfPropelPlugin/lib/addon/sfPropelData.class.php
+/!svn/ver/33137/branches/1.4/lib/plugins/sfPropelPlugin/lib/addon/sfPropelData.class.php
 END

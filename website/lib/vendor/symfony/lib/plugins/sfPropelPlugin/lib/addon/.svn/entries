@@ -1,15 +1,15 @@
 10
 
 dir
-32951
+33171
 http://svn.symfony-project.com/branches/1.4/lib/plugins/sfPropelPlugin/lib/addon
 http://svn.symfony-project.com
 
 
 
-2010-02-08T18:02:19.568173Z
-27747
-Kris.Wallsmith
+2011-10-18T13:05:25.872456Z
+33137
+fabien
 
 
 
@@ -236,11 +236,11 @@ file
 
 
 
-2011-04-14T09:37:45.678926Z
-2e9173d19428cf0103f446c5013b08b0
-2009-11-12T11:07:44.003356Z
-23810
-Kris.Wallsmith
+2011-11-01T17:37:39.484891Z
+02998c8a02fe302dfbde10bdb5c8faf7
+2011-10-18T13:05:25.872456Z
+33137
+fabien
 has-props
 
 
@@ -262,5 +262,5 @@ has-props
 
 
 
-16148
+16248
 

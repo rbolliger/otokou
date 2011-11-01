@@ -1,14 +1,14 @@
 10
 
 dir
-32951
+33171
 http://svn.symfony-project.com/branches/1.4/lib/widget
 http://svn.symfony-project.com
 
 
 
-2011-07-27T07:07:00.079307Z
-32835
+2011-09-20T15:31:20.091363Z
+33053
 fabien
 
 
@@ -26,39 +26,8 @@ fabien
 
 ee427ae8-e902-0410-961c-c3ed070cd9f9
 
-sfWidgetFormInputText.class.php
-file
-
-
-
-
-2011-04-14T09:37:23.515295Z
-8735df24227032673440f39054d434c5
-2010-08-25T12:33:33.652175Z
-30762
-fabien
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-954
+i18n
+dir
 
 sfWidgetFormSelectMany.class.php
 file
@@ -94,8 +63,39 @@ has-props
 
 1002
 
-i18n
-dir
+sfWidgetFormInputText.class.php
+file
+
+
+
+
+2011-04-14T09:37:23.515295Z
+8735df24227032673440f39054d434c5
+2010-08-25T12:33:33.652175Z
+30762
+fabien
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+954
 
 sfWidgetFormFilterInput.class.php
 file
@@ -199,40 +199,6 @@ has-props
 
 1013
 
-sfWidgetFormDate.class.php
-file
-
-
-
-
-2011-04-14T09:37:23.531827Z
-829e789729c4568bd5f9238e9a29f3d4
-2010-08-25T12:33:33.652175Z
-30762
-fabien
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-5067
-
 sfWidgetFormTextarea.class.php
 file
 
@@ -267,16 +233,16 @@ has-props
 
 1562
 
-sfWidgetForm.class.php
+sfWidgetFormDate.class.php
 file
 
 
 
 
-2011-04-14T09:37:23.536446Z
-82948eda766e83c0289396673ab24185
-2009-11-18T13:12:40.498957Z
-24137
+2011-04-14T09:37:23.531827Z
+829e789729c4568bd5f9238e9a29f3d4
+2010-08-25T12:33:33.652175Z
+30762
 fabien
 has-props
 
@@ -299,7 +265,7 @@ has-props
 
 
 
-9130
+5067
 
 sfWidgetFormSelect.class.php
 file
@@ -334,6 +300,40 @@ has-props
 
 
 3164
+
+sfWidgetForm.class.php
+file
+
+
+
+
+2011-04-14T09:37:23.536446Z
+82948eda766e83c0289396673ab24185
+2009-11-18T13:12:40.498957Z
+24137
+fabien
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+9130
 
 sfWidgetFormSchemaFormatterList.class.php
 file
@@ -613,10 +613,10 @@ file
 
 
 
-2011-04-14T09:37:23.557270Z
-a5f8c3e6a5c40a1797155bf3e7edddf5
-2010-08-25T12:33:33.652175Z
-30762
+2011-11-01T17:37:38.954530Z
+942e28e633294518800333d969ad5ac4
+2011-09-20T15:31:20.091363Z
+33053
 fabien
 has-props
 
@@ -639,7 +639,7 @@ has-props
 
 
 
-2779
+2760
 
 sfWidgetFormChoice.class.php
 file

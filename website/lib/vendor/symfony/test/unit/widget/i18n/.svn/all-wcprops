@@ -1,7 +1,7 @@
 K 25
 svn:wc:ra_dav:version-url
 V 50
-/!svn/ver/28050/branches/1.4/test/unit/widget/i18n
+/!svn/ver/33032/branches/1.4/test/unit/widget/i18n
 END
 sfWidgetFormI18nDateTimeTest.php
 K 25
@@ -19,7 +19,7 @@ sfWidgetFormI18nChoiceCountryTest.php
 K 25
 svn:wc:ra_dav:version-url
 V 88
-/!svn/ver/28050/branches/1.4/test/unit/widget/i18n/sfWidgetFormI18nChoiceCountryTest.php
+/!svn/ver/33032/branches/1.4/test/unit/widget/i18n/sfWidgetFormI18nChoiceCountryTest.php
 END
 sfWidgetFormI18nChoiceLanguageTest.php
 K 25

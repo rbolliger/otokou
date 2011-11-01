@@ -1,14 +1,14 @@
 10
 
 dir
-32951
+33171
 http://svn.symfony-project.com/branches/1.4/lib/task/project
 http://svn.symfony-project.com
 
 
 
-2011-07-01T12:54:40.846433Z
-32707
+2011-10-08T21:02:31.752957Z
+33125
 fabien
 
 
@@ -202,10 +202,10 @@ file
 
 
 
-2011-04-14T09:37:26.475409Z
-d2eb8158fe9e1ca5e1417cee3f26fbc9
-2009-11-14T14:58:38.254908Z
-23922
+2011-11-01T17:37:38.989967Z
+f28f6f812b42b22e00b3ff11a9cdeddf
+2011-10-08T21:02:31.752957Z
+33125
 fabien
 has-props
 

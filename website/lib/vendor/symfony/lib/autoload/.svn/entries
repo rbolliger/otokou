@@ -1,14 +1,14 @@
 10
 
 dir
-32951
+33171
 http://svn.symfony-project.com/branches/1.4/lib/autoload
 http://svn.symfony-project.com
 
 
 
-2011-08-05T07:33:57.652053Z
-32889
+2011-10-27T05:26:39.680388Z
+33160
 fabien
 
 
@@ -32,10 +32,10 @@ file
 
 
 
-2011-08-11T20:28:08.053479Z
-c8b31e9d32c082e11dac062a4c31cd3d
-2011-08-05T07:33:57.652053Z
-32889
+2011-11-01T17:37:39.052493Z
+79952dc87a8df517ce2601c589de4b9d
+2011-10-27T05:26:39.680388Z
+33160
 fabien
 has-props
 

@@ -1,7 +1,7 @@
 K 25
 svn:wc:ra_dav:version-url
 V 40
-/!svn/ver/30008/branches/1.4/lib/command
+/!svn/ver/33151/branches/1.4/lib/command
 END
 sfAnsiColorFormatter.class.php
 K 25
@@ -37,7 +37,7 @@ sfCommandApplication.class.php
 K 25
 svn:wc:ra_dav:version-url
 V 71
-/!svn/ver/23881/branches/1.4/lib/command/sfCommandApplication.class.php
+/!svn/ver/33151/branches/1.4/lib/command/sfCommandApplication.class.php
 END
 sfCommandArgumentsException.class.php
 K 25

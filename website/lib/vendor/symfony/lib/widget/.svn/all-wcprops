@@ -1,19 +1,19 @@
 K 25
 svn:wc:ra_dav:version-url
 V 39
-/!svn/ver/32835/branches/1.4/lib/widget
-END
-sfWidgetFormSelectMany.class.php
-K 25
-svn:wc:ra_dav:version-url
-V 72
-/!svn/ver/30762/branches/1.4/lib/widget/sfWidgetFormSelectMany.class.php
+/!svn/ver/33053/branches/1.4/lib/widget
 END
 sfWidgetFormInputText.class.php
 K 25
 svn:wc:ra_dav:version-url
 V 71
 /!svn/ver/30762/branches/1.4/lib/widget/sfWidgetFormInputText.class.php
+END
+sfWidgetFormSelectMany.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/!svn/ver/30762/branches/1.4/lib/widget/sfWidgetFormSelectMany.class.php
 END
 sfWidgetFormFilterInput.class.php
 K 25
@@ -33,29 +33,29 @@ svn:wc:ra_dav:version-url
 V 73
 /!svn/ver/30762/branches/1.4/lib/widget/sfWidgetFormInputHidden.class.php
 END
-sfWidgetFormTextarea.class.php
-K 25
-svn:wc:ra_dav:version-url
-V 70
-/!svn/ver/30762/branches/1.4/lib/widget/sfWidgetFormTextarea.class.php
-END
 sfWidgetFormDate.class.php
 K 25
 svn:wc:ra_dav:version-url
 V 66
 /!svn/ver/30762/branches/1.4/lib/widget/sfWidgetFormDate.class.php
 END
-sfWidgetFormSelect.class.php
+sfWidgetFormTextarea.class.php
 K 25
 svn:wc:ra_dav:version-url
-V 68
-/!svn/ver/30762/branches/1.4/lib/widget/sfWidgetFormSelect.class.php
+V 70
+/!svn/ver/30762/branches/1.4/lib/widget/sfWidgetFormTextarea.class.php
 END
 sfWidgetForm.class.php
 K 25
 svn:wc:ra_dav:version-url
 V 62
 /!svn/ver/24137/branches/1.4/lib/widget/sfWidgetForm.class.php
+END
+sfWidgetFormSelect.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/30762/branches/1.4/lib/widget/sfWidgetFormSelect.class.php
 END
 sfWidgetFormSchemaFormatterList.class.php
 K 25
@@ -109,7 +109,7 @@ sfWidgetFormDateRange.class.php
 K 25
 svn:wc:ra_dav:version-url
 V 71
-/!svn/ver/30762/branches/1.4/lib/widget/sfWidgetFormDateRange.class.php
+/!svn/ver/33053/branches/1.4/lib/widget/sfWidgetFormDateRange.class.php
 END
 sfWidgetFormChoice.class.php
 K 25

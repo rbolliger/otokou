@@ -1,19 +1,19 @@
 K 25
 svn:wc:ra_dav:version-url
 V 69
-/!svn/ver/29661/branches/1.4/lib/plugins/sfPropelPlugin/lib/generator
+/!svn/ver/33137/branches/1.4/lib/plugins/sfPropelPlugin/lib/generator
 END
 sfPropelFormGenerator.class.php
 K 25
 svn:wc:ra_dav:version-url
 V 101
-/!svn/ver/29661/branches/1.4/lib/plugins/sfPropelPlugin/lib/generator/sfPropelFormGenerator.class.php
+/!svn/ver/33137/branches/1.4/lib/plugins/sfPropelPlugin/lib/generator/sfPropelFormGenerator.class.php
 END
 sfPropelFormFilterGenerator.class.php
 K 25
 svn:wc:ra_dav:version-url
 V 107
-/!svn/ver/24392/branches/1.4/lib/plugins/sfPropelPlugin/lib/generator/sfPropelFormFilterGenerator.class.php
+/!svn/ver/33137/branches/1.4/lib/plugins/sfPropelPlugin/lib/generator/sfPropelFormFilterGenerator.class.php
 END
 sfPropelGenerator.class.php
 K 25
