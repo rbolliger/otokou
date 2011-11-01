@@ -7,8 +7,8 @@
  */
 class ChartSource {
 
-	private $funtion_parameter = null;
-	private $funtion_parameter_2 = null;
+	private $function_parameter = null;
+	private $function_parameter_2 = null;
 
     protected $parameters = array();
 
@@ -609,9 +609,10 @@ class ChartSource {
         $vehicles_display = $options['vehicle_display'];
 
         $vid_default = 1;
-
+        $default_value = 0.001; // we put 0.001 to avoid problems with pChart, which removes zeroes
+        
         // initialization: a cell for each initially requested category and vehicle
-        $values = array_combine($categories['list'], array_fill(0, $categories['count'], 0));
+        $values = array_combine($categories['list'], array_fill(0, $categories['count'], $default_value));
 
         if ('stacked' == $vehicles_display) {
             $keys = array_fill(0, $vehicles['count'], $vid_default);
@@ -639,6 +640,11 @@ class ChartSource {
             }
 
             $value = array_sum($amounts[$key]);
+            
+            if ($value === 0) {
+                $value = $default_value;
+            }
+            
             $values[$vid][$cid[0]] = $value;
         }
 
@@ -655,7 +661,7 @@ class ChartSource {
             $points = array_values($values[$key]);
 
             // If all values are VOID, we skip the serie
-            if ($points === array_fill(0, count($points), 0)) {
+            if ($points === array_fill(0, count($points), $default_value)) {
                 continue;
             }
 

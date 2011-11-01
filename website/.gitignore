@@ -7,7 +7,6 @@ web/functional
 web/images/functional
 config/ProjectConfiguration.class.php
 config/databases.yml
-lib/charts/ChartSource.class.php
 web/backend.php
 web/index.php
 
