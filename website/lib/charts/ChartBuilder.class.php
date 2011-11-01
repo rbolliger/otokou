@@ -819,10 +819,8 @@ class ChartBuilder {
 
         // building chart data
         $categories = self::getCategoriesList($this->getParameter('categories_list', null));
-        $vehicles = self::getVehiclesList($this->getParameter('vehicles_list', null), $this->getParameter('user_id'));
         $options = array(
             'categories' => $categories,
-            'vehicles' => $vehicles,
             'vehicle_display' => $this->getParameter('vehicle_display'),
         );
         $data = $gs->buildCostPieChartData($options);

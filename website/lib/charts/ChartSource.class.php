@@ -460,39 +460,39 @@ class ChartSource {
     }
 
 	private function largerThan($var) {
-		return($var <= $this->funtion_parameter);
+		return($var <= $this->function_parameter);
 	}
 	
     public function filterValuesLargerThan($array, $value) {		
-		$this->funtion_parameter = $value;
+		$this->function_parameter = $value;
         return array_filter($array, array($this, "largerThan"));
     }
 
 	private function smallerThan($var) {
-		return($var >= $this->funtion_parameter);
+		return($var >= $this->function_parameter);
 	}
 	
     public function filterValuesSmallerThan($array, $value) {
-		$this->funtion_parameter = $value;
+		$this->function_parameter = $value;
         return array_filter($array, array($this, "smallerThan"));
     }
 
 	private function differentThan($var) {
-		return($var == $this->funtion_parameter);
+		return($var == $this->function_parameter);
 	}
 	
     public function filterValuesDifferentThan($array, $value) {
-		$this->funtion_parameter = $value;
+		$this->function_parameter = $value;
         return array_filter($array, array($this, "differentThan"));
     }
 
 	private function outsideRange($var) {
-		return($var < $this->funtion_parameter_2 && $var >= $this->funtion_parameter);
+		return($var < $this->function_parameter_2 && $var >= $this->function_parameter);
 	}
 	
     public function filterValuesOutsideRange($array, $min, $max) {
-		$this->funtion_parameter = $min;
-		$this->funtion_parameter_2 = $max;
+		$this->function_parameter = $min;
+		$this->function_parameter_2 = $max;
 		return array_filter($array, array($this, "outsideRange"));
     }
 
@@ -588,13 +588,12 @@ class ChartSource {
             throw new sfException('Categories list is required.');
         }
 
-        if (!isset($options['vehicles'])) {
-            throw new sfException('Vehicles list is required.');
-        }
 
         if (!isset($options['vehicle_display'])) {
             throw new sfException('vehicle_display option is required.');
         }
+        
+        $series = $this->getSeries();
 
 
         $data = array();
@@ -602,10 +601,9 @@ class ChartSource {
 
         // get amounts for each serie
         $amounts = $this->getSeriesDataByColumn('amount', 'number');
-
+        
         // list of all the requested categories and vehicles
         $categories = $options['categories'];
-        $vehicles = $options['vehicles'];
         $vehicles_display = $options['vehicle_display'];
 
         $vid_default = 1;
@@ -615,14 +613,17 @@ class ChartSource {
         $values = array_combine($categories['list'], array_fill(0, $categories['count'], $default_value));
 
         if ('stacked' == $vehicles_display) {
-            $keys = array_fill(0, $vehicles['count'], $vid_default);
+            $keys = array_fill(0, count($series), $vid_default);
         } else {
-            $keys = $vehicles['list'];
+            $keys = array();
+            foreach ($series as $serie) {
+                $keys[] = $serie->getVehicleId();
+            }
         }
-        $values = array_combine($keys, array_fill(0, $vehicles['count'], $values));
+        $values = array_combine($keys, array_fill(0, count($series), $values));
 
         // filling $data with the real values
-        $series = $this->getSeries();
+        
         $description = array();
         foreach ($series as $key => $serie) {
             $vid = $serie->getVehicleId();
@@ -661,7 +662,7 @@ class ChartSource {
             $points = array_values($values[$key]);
 
             // If all values are VOID, we skip the serie
-            if ($points === array_fill(0, count($points), $default_value)) {
+            if ($points == array_fill(0, count($points), $default_value)) {
                 continue;
             }
 
@@ -672,6 +673,7 @@ class ChartSource {
                 'values' => $points,
             );
         }
+        
 
         // adding labels
         $data['x'] = array(

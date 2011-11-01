@@ -33,7 +33,7 @@ class ChartBuilderPChart extends ChartBuilder {
 
             case 'cost_pie':
 
-                $raw_data = $data->getData();
+                $raw_data = $data->getData(); 
                 // -1 to remove abscissa
                 $n_series = count($raw_data['Series']) - 1;
 
@@ -44,7 +44,7 @@ class ChartBuilderPChart extends ChartBuilder {
                     'legend_height' => 0,
                     'x_label_height' => 0,
                 );
-                $picture = $this->buildPicture($data, $options);
+                $picture = $this->buildPicture($data, $options); 
                 $pie = $this->plotPieChart($picture, $data, $options);
                 break;
 

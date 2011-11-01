@@ -393,7 +393,7 @@
          $Settings = $SliceColors[$SliceID];
          if ( $Border )
           { $Settings["R"]+= 30; $Settings["G"]+= 30; $Settings["B"]+= 30;; }
-  
+
          $Angle = $SliceAngle[$SliceID][1];
          $Xc = cos(($Angle-90)*PI/180) * $Radius + $X;
          $Yc = sin(($Angle-90)*PI/180) * $Radius*$SkewFactor + $Y;
