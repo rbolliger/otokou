@@ -145,8 +145,12 @@ class ChartFormFilter extends BaseChartFormFilter {
         $this->validatorSchema['kilometers_range'] = new sfValidatorDateRange(array(
                     'required' => false,
                     'from_date' => new sfValidatorNumber(array('required' => false)),
-                    'to_date' => new sfValidatorNumber(array('required' => false))
-                ));
+                    'to_date' => new sfValidatorNumber(array('required' => false)),                   
+                ),
+                array(
+                    'invalid' => 'Please, define a valid range', 
+                )
+                );
 
 
         // Display options
