@@ -1,0 +1,32 @@
+/* 
+    Document   : menus
+    Created on : Nov 4, 2011, 2:28:19 PM
+    Author     : Raffaele Bolliger <raffaele.bolliger at gmail.com>
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+ul.menu 
+{
+  list-style: none;
+padding: 0;
+margin: 0;  
+}
+
+
+ul.menu li
+{
+float: left;
+margin: 0 0.15em;
+}
+
+li.first
+{
+    padding-left: 1em;
+}
+
+li.last
+{
+    padding-right: 1em;
+}
+
