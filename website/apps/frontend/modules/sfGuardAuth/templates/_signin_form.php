@@ -2,9 +2,7 @@
 
 <form action="<?php echo url_for('@sf_guard_signin') ?>" method="post">
   <table>
-    <tbody>
-      <?php echo $form ?>
-    </tbody>
+    
     <tfoot>
       <tr>
         <td colspan="2">
@@ -21,5 +19,8 @@
         </td>
       </tr>
     </tfoot>
+    <tbody>
+      <?php echo $form ?>
+    </tbody>
   </table>
 </form>

@@ -6,13 +6,16 @@ default:
     content-type: text/html
 
   metas:
-    #title:        symfony project
-    #description:  symfony project
-    #keywords:     symfony, project
+    title:        Otokou
+    description:  A tool to track vehicle expenses
+    keywords:     otokou, vehicle, cost, statistics, charts
     #language:     en
-    #robots:       index, follow
+    robots:       index, follow
+    viewport:     width=device-width, initial-scale=1.0
 
-  stylesheets:    [main.css]
+
+  #stylesheets:    [main.css]
+  stylesheets:    [foundation/globals.css, foundation/grid.css, foundation/typography.css, foundation/ui.css, foundation/mobile.css]
 
   javascripts:    []
 
