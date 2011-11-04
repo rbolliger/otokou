@@ -10,7 +10,7 @@ echo $menu->render();
 ?>
 </div>
 
-<div class="four columns offset-by-two">
+<div class="two columns offset-by-four">
 <?php
 
 $menu = new ioMenu(array('id' => 'topmenu2'));
