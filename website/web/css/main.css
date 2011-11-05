@@ -1,24 +1,24 @@
+body {
+    background-color: #EAEAEA;
+}
+
 .row {
     max-width: 100%;
 }
 
 #header {
     background-color: #363636;
-    height: 60px;
-    line-height: 40px;  
-    
+    height: 5rem;    
 }
 
-#header li {
+#header li, #footer li {
     display: inline;
     padding: 10px;
     vertical-align: middle;
-    
 }
 
-#header a {
+#header a, #footer a {
     color: #fefefe;
-    font-size: 16px;
     font-size: 1.6rem;
 }
 
@@ -29,4 +29,36 @@
 #header li.current {
     font-weight: bold;
     background-color: #484848;
+}
+
+#title {
+    padding-top: 20 px;
+    padding-bottom: 30px;
+}
+
+html, body {
+height: 100%;
+}
+#content {
+min-height: 100%;
+height: auto !important;
+height: 100%;
+margin: 0 auto -4em;
+}
+#footer, .push {
+height: 4em;
+}
+
+#footer {
+    background-color: #AB3B37;
+}
+
+
+#header li.current {
+    font-weight: bold;
+}
+
+
+a {
+    color: #386398;
 }
