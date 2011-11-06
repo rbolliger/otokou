@@ -7,7 +7,7 @@ end_slot();
 
 <?php
 
-slot('rightcol');
+slot('leftcol');
 include_partial('filters', array('filters' => $filters));
 end_slot();
 ?>

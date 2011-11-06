@@ -29,13 +29,15 @@
 
 
     <body>
+
         <div id="content">
+
             <div id="header" class="container">
                 <div class="row">
                     <?php include_partial('global/topmenu'); ?>
                 </div>
             </div>
-            
+
             <div id="title" class="container">
                 <div class="row">
                     <?php include_partial('global/title'); ?>
@@ -45,46 +47,32 @@
             <div class="container">
                 <div class="row">
 
-                    <div class="four columns">
-                        <?php if (has_slot('leftcol')): ?>
+                    <?php if (has_slot('leftcol')): ?>
+                        <div class="four columns">
                             <?php include_slot('leftcol') ?>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if (has_slot('leftcol')): ?>
+                        <div class="eight columns">
                         <?php else: ?>
-                        <div>&nbsp;</div>
-                        <?php endif; ?>
-
-                        <?php if (has_slot('rightcol')): ?>
-                            <?php include_slot('rightcol') ?>
-                        <?php else: ?>
-                            <h3>Right column</h3>
-                        <?php endif; ?>
+                            <div class="eight columns centered">
+                            <?php endif; ?>
+                                
+                            <?php echo $sf_content ?>
+                        </div>
                     </div>
+                </div>
 
-                    <div class="eight columns">
-                        <?php if ($sf_user->hasFlash('notice')): ?>
-                            <div class="flash_notice">
-                                <?php echo $sf_user->getFlash('notice') ?>
-                            </div>
-                        <?php endif ?>
-
-                        <?php if ($sf_user->hasFlash('error')): ?>
-                            <div class="flash_error">
-                                <?php echo $sf_user->getFlash('error') ?>
-                            </div>
-                        <?php endif ?>
+                <div class="push"></div>
+            </div>
 
 
-                        <?php echo $sf_content ?>
-                    </div>
-
+            <div id="footer" class="container">
+                <div class="row">
+                    <?php include_partial('global/footer'); ?>
                 </div>
             </div>
-            <div class="push"></div>
-        </div>
-        <div id="footer" class="container">
-            <div class="row">
-                <?php include_partial('global/footer'); ?>
-            </div>
-        </div>
-            
+
     </body>
 </html>
