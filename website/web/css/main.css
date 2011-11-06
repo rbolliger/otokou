@@ -13,8 +13,17 @@ body {
 
 #header li, #footer li {
     display: inline;
-    padding: 10px;
+    padding: 0px 10px;
     vertical-align: middle;
+}
+
+#header li {
+    height: 5rem;
+    line-height: 5rem;
+}
+
+#header li.current {
+    font-weight: bold;
 }
 
 #header a, #footer a {
@@ -32,7 +41,7 @@ body {
 }
 
 #title {
-    padding-top: 20 px;
+    padding-top: 10px;
     padding-bottom: 30px;
 }
 
@@ -53,10 +62,12 @@ height: 4em;
     background-color: #AB3B37;
 }
 
-
-#header li.current {
-    font-weight: bold;
+#footer li {
+    height: 4em;
+    line-height: 4em;
+    vertical-align: middle;
 }
+
 
 
 a {

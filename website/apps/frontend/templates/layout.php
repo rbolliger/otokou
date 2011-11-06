@@ -49,7 +49,7 @@
                         <?php if (has_slot('leftcol')): ?>
                             <?php include_slot('leftcol') ?>
                         <?php else: ?>
-                            <h3>Left column</h3>
+                        <div>&nbsp;</div>
                         <?php endif; ?>
 
                         <?php if (has_slot('rightcol')): ?>
