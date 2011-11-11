@@ -1,5 +1,10 @@
 body {
     background-color: #EAEAEA;
+    color:#1d1d1d;
+}
+
+h1, h2, h3, h4, h5, h6 { 
+    color: #363636;
 }
 
 .row {
@@ -72,4 +77,21 @@ height: 4em;
 
 a {
     color: #386398;
+}
+
+
+
+#sf_admin_bar, #charges_sum_amount {
+  float: none;
+  margin-left: 0px;
+  margin-top: 20px;
+}
+
+table tbody tr {
+    border-bottom: 2px solid #EAEAEA;
+    
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #fefefe;
 }

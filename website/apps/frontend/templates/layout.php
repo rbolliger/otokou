@@ -48,13 +48,13 @@
                 <div class="row">
 
                     <?php if (has_slot('leftcol')): ?>
-                        <div class="four columns">
+                        <div class="three columns">
                             <?php include_slot('leftcol') ?>
                         </div>
                     <?php endif; ?>
 
                     <?php if (has_slot('leftcol')): ?>
-                        <div class="eight columns">
+                        <div class="nine columns">
                         <?php else: ?>
                             <div class="eight columns centered">
                             <?php endif; ?>

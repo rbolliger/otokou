@@ -10,6 +10,7 @@ generator:
     route_prefix:          charge
     with_doctrine_route:   true
     actions_base_class:    otkWithOwnerActions
+    #css:                   admin_gen.css
 
     config:
       actions: ~
@@ -33,6 +34,7 @@ generator:
           date:
             date_format: EEEE d MMM y
         table_method: retrieveAdminChargeList
+        title:  List of registered charges
         
       filter:  
         display: [vehicle_id, category_id, date, kilometers, amount, quantity, comment]
