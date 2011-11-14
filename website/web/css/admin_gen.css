@@ -1,0 +1,40 @@
+/* 
+    Document   : admin_gen
+    Created on : Nov 11, 2011, 6:12:16 PM
+    Author     : Raffaele Bolliger <raffaele.bolliger at gmail.com>
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+
+#sf_admin_container th {
+    background-color: #FEFEFE;
+    margin-bottom: 5px;
+    border-bottom: 10px solid #EAEAEA;
+    border-top: 10px solid #EAEAEA;
+    margin-bottom: 3px;
+}
+
+#sf_admin_container tr
+{
+  border-left: 0;
+  border-right: 0;
+}
+
+#sf_admin_container tr:hover
+{
+  background-color: #FEFEFE;
+}
+
+#sf_admin_container a {
+    color: #AB3B37;
+}
+
+#sf_admin_container a:hover
+{
+  color: #AB3B37;
+}
+
+#sf_admin_container label {
+    color: #1d1d1d;
+}

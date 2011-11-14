@@ -8,7 +8,7 @@
         //echo 'Show';
 
         echo $pager->form['max_per_page']->render(array('onchange' => 'this.form.submit()'));
-        echo $pager->form['max_per_page']->renderLabel('items per page');
+        echo $pager->form['max_per_page']->renderLabel('Items per page');
         echo $pager->form['max_per_page']->renderError();
         ?>
         <noscript><input type="submit" value="Submit" /></noscript>

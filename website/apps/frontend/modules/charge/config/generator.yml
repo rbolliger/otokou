@@ -10,7 +10,6 @@ generator:
     route_prefix:          charge
     with_doctrine_route:   true
     actions_base_class:    otkWithOwnerActions
-    #css:                   admin_gen.css
 
     config:
       actions: ~
@@ -29,7 +28,7 @@ generator:
           <b>%%=amount%% CHF</b><br />
           <i>%%category%%</i>  %%quantity%% registered at <i>%%date%%</i> (%%kilometers%% km) for car <b>%%vehicle%%</b><br />
           %%comment%%
-        display:  [amount, category, _quantity, date, kilometers, comment]
+        display:  [amount, _quantity, date, kilometers, comment]
         fields:
           date:
             date_format: EEEE d MMM y
