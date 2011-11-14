@@ -407,8 +407,8 @@ info('4 - List filters')->
             with('response')->
                 begin()->
                     checkElement('div.sf_admin_list tbody tr',0)->
-                    checkElement('div#charges_sum_amount_total','/All pages: 0 CHF/')->
-                    checkElement('div#charges_sum_amount_page','/This page: 0 CHF/')->
+                    checkElement('div#charges_sum_amount_total','/For all pages: 0 CHF/')->
+                    checkElement('div#charges_sum_amount_page','/For this page: 0 CHF/')->
                 end()->
 
         info('  4.6 - Comments search')->
@@ -469,8 +469,8 @@ info('5 - Pagination')->
                     checkElement('div.max_per_page',true)->
                     checkElement('select#max_per_page option[selected="selected"][value=20]',1)->
                     checkElement('div.sf_admin_pagination',true)->
-                    checkElement('div#charges_sum_amount_total','/3565/')->
-                    checkElement('div#charges_sum_amount_page','/2190/')->
+                    checkElement('div#charges_sum_amount_total','/3,565.0/')->
+                    checkElement('div#charges_sum_amount_page','/2,190.0/')->
                 end()->
         
         info('  5.2 - By default, charges list show 20 elements')->
@@ -487,8 +487,8 @@ info('5 - Pagination')->
                     begin()->
                         checkElement('div.sf_admin_list tbody tr',5)->
                         checkElement('select#max_per_page option[selected="selected"][value=5]',1)->
-                        checkElement('div#charges_sum_amount_total','/19440/')->
-                        checkElement('div#charges_sum_amount_page','/1010/')->
+                        checkElement('div#charges_sum_amount_total','/19,440.0/')->
+                        checkElement('div#charges_sum_amount_page','/1,010.0/')->
                     end()->
             with('doctrine')->
                     begin()->
@@ -504,8 +504,8 @@ info('5 - Pagination')->
                     begin()->
                         checkElement('div.sf_admin_list tbody tr',5)->
                         checkElement('select#max_per_page option[selected="selected"][value=5]',1)->
-                        checkElement('div#charges_sum_amount_total','/19440/')->
-                        checkElement('div#charges_sum_amount_page','/1035/')->
+                        checkElement('div#charges_sum_amount_total','/19,440.0/')->
+                        checkElement('div#charges_sum_amount_page','/1,035.0/')->
                     end()->
         
         info('  5.5 - If the number of elements is changed, the value is saved in user\s settings')->
@@ -521,8 +521,8 @@ info('5 - Pagination')->
                         checkElement('ul.error_list:contains(Invalid)',true)->
                         checkElement('select#max_per_page option[selected="selected"]',false)->
                         checkElement('div.sf_admin_list tbody tr',5)->
-                        checkElement('div#charges_sum_amount_total','/19440/')->
-                        checkElement('div#charges_sum_amount_page','/1035/')->
+                        checkElement('div#charges_sum_amount_total','/19,440.0/')->
+                        checkElement('div#charges_sum_amount_page','/1,035.0/')->
                     end()->
        
         post('/user4/charge/maxPerPage/action', array('max_per_page' => 10))->
@@ -542,8 +542,8 @@ info('5 - Pagination')->
                     checkElement('div.sf_admin_list tbody tr',10)->
                     checkElement('select#max_per_page option[selected="selected"][value=10]',1)->
                     checkElement('.sf_admin_pagination a[href*="page=2"]',true)->
-                    checkElement('div#charges_sum_amount_total','/19440/')->
-                        checkElement('div#charges_sum_amount_page','/2045/')->
+                    checkElement('div#charges_sum_amount_total','/19,440.0/')->
+                        checkElement('div#charges_sum_amount_page','/2,045.0/')->
                 end()->
            with('doctrine')->
                     begin()->
@@ -570,8 +570,8 @@ info('5 - Pagination')->
                     checkElement('div.sf_admin_list tbody tr',81)->
                     checkElement('select#max_per_page option[selected="selected"][value=1000]',1)->
                     checkElement('.sf_admin_pagination a[href*="page=2"]',false)->
-                    checkElement('div#charges_sum_amount_total','/19440/')->
-                        checkElement('div#charges_sum_amount_page','/19440/')->
+                    checkElement('div#charges_sum_amount_total','/19,440.0/')->
+                        checkElement('div#charges_sum_amount_page','/19,440.0/')->
                 end()->
            with('doctrine')->
                     begin()->

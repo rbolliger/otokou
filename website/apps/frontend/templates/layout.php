@@ -44,7 +44,7 @@
                 </div>
             </div>
 
-            <div class="container">
+            <div id="main" class="container">
                 <div class="row">
 
                     <?php if (has_slot('leftcol')): ?>

@@ -37,7 +37,7 @@ $browser->
           end()->
           with('response')->begin()->
             isStatusCode(200)->
-            checkElement('img',false)->
+            checkElement('div#main img',false)->
             checkElement('body:contains("Warning")',false)->
             checkElement('body:contains("Notice")',false)->
             checkElement('table#filter_values:contains("No elements found")',true)->
