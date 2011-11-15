@@ -4,3 +4,6 @@
 [submodule "website/lib/vendor/zurb_foundation"]
 	path = website/lib/vendor/zurb_foundation
 	url = git://github.com/zurb/foundation.git
+[submodule "vendors/zurb_foundation"]
+	path = vendors/zurb_foundation
+	url = git://github.com/zurb/foundation.git
