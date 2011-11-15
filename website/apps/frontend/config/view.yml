@@ -15,7 +15,7 @@ default:
 
 
   #stylesheets:    [main.css]
-  stylesheets:    [foundation/globals.css, foundation/grid.css, foundation/typography.css, foundation/ui.css, foundation/mobile.css, main.css, menus.css, admin_gen.css]
+  stylesheets:    [../sfZurbFoundationPlugin/css/globals.css, ../sfZurbFoundationPlugin/css/grid.css, ../sfZurbFoundationPlugin/css/typography.css, ../sfZurbFoundationPlugin/css/ui.css, ../sfZurbFoundationPlugin/css/mobile.css, main.css, menus.css, admin_gen.css]
 
   javascripts:    []
 

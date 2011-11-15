@@ -1,0 +1,7 @@
+# sfZurbFoundation plugin #
+
+The `sfZurbFoundation` is a symfony plugin that packages the Zurb Foundation css frameowrk. The framework is defined by the authors with these words:
+
+> An easy to use, powerful, and flexible framework for building prototypes and production code on any kind of device. 
+
+For more information and to learn how to sue the framework, see the [Foundation Homepage](http://foundation.zurb.com/).
