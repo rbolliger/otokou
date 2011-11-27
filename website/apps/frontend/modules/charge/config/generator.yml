@@ -10,6 +10,7 @@ generator:
     route_prefix:          charge
     with_doctrine_route:   true
     actions_base_class:    otkWithOwnerActions
+    css:                    admin_default.css
 
     config:
       actions: ~
