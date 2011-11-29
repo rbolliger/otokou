@@ -5,16 +5,20 @@
 <?php slot('leftcol'); ?>
 <?php include_partial('charge/sum_amount', array('amounts' => $sumAmount)); ?>
 
-<div id="sf_admin_bar">
-    <h3>Filter results</h3>
-    <?php include_partial('charge/filters', array('form' => $filters, 'configuration' => $configuration)) ?>
-</div>
+
 <?php end_slot(); ?>
 
 <div id="sf_admin_container">
     <h1><?php echo __('List of registered charges', array(), 'messages') ?></h1>
 
     <?php include_partial('charge/flashes') ?>
+
+
+    <div id="sf_admin_bar">
+        <h3>Filter results</h3>
+        <?php include_partial('charge/filters', array('form' => $filters, 'configuration' => $configuration)) ?>
+    </div>
+
 
     <div id="sf_admin_header">
         <?php include_partial('charge/list_header', array('pager' => $pager)) ?>

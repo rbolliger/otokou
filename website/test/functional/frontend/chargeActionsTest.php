@@ -11,6 +11,9 @@ $browser->setTester('doctrine', 'sfTesterDoctrine');
 
 $fuelId = $browser->getIdForCategory('Fuel');
 
+
+$browser->test()->is(sfConfig::get('app_list_nb_links'), 5);
+
 $browser->      
 
         
@@ -598,6 +601,107 @@ info('5 - Pagination')->
                     checkElement('select#max_per_page option[selected="selected"][value=50]',1)->
                     checkElement('.sf_admin_pagination a[href*="page=2"]',true)->
                 end()->
+        
+        info('  5.7 Pagination links: page 1')->
+        post('/user4/charge/maxPerPage/action', array('max_per_page' => 5))->
+           with('request')->
+                begin()->
+                    isParameter('action','maxPerPage')->
+                    isParameter('max_per_page',5)->
+                end()->
+            with('response')->
+                    begin()->
+                        isRedirected()->
+                        followRedirect()->
+                    end()->
+            with('response')->
+                begin()->
+                    checkElement('div.sf_admin_list tbody tr',5)->
+                    checkElement('select#max_per_page option[selected="selected"][value=5]',1)->
+                    checkElement('.sf_admin_pagination a:contains("Previous")',false)-> 
+                    checkElement('.sf_admin_pagination span[class="thepage"]',"1")->
+                    checkElement('.sf_admin_pagination span:contains(...)',1)->
+                    checkElement('.sf_admin_pagination span:contains(|)',1)->
+                    checkElement('.sf_admin_pagination a[href$="page=1"]',false)->
+                    checkElement('.sf_admin_pagination a[href$="page=2"]',true)->
+                    checkElement('.sf_admin_pagination a[href$="page=3"]',true)->
+                    checkElement('.sf_admin_pagination a[href$="page=4"]',true)->
+                    checkElement('.sf_admin_pagination a[href$="page=5"]',true)->
+                    checkElement('.sf_admin_pagination a[href$="page=6"]',false)->
+                    checkElement('.sf_admin_pagination a[href$="page=17"]',1)->
+                    checkElement('.sf_admin_pagination a:contains(Next)',true)->
+                end()->
+        info('  5.8 Pagination links: page 3')->
+        click('a[href*="page=3"]')->
+            with('response')->
+                begin()->
+                    checkElement('.sf_admin_pagination a:contains("Previous")',true)->
+                    checkElement('.sf_admin_pagination span[class="thepage"]',"3")->
+                    checkElement('.sf_admin_pagination span:contains(...)',1)->
+                    checkElement('.sf_admin_pagination span:contains(|)',2)->
+                    checkElement('.sf_admin_pagination a[href$="page=1"]',1)->
+                    checkElement('.sf_admin_pagination a[href$="page=2"]',true)->
+                    checkElement('.sf_admin_pagination a[href$="page=3"]',false)->
+                    checkElement('.sf_admin_pagination a[href$="page=4"]',true)->
+                    checkElement('.sf_admin_pagination a[href$="page=5"]',true)->
+                    checkElement('.sf_admin_pagination a[href$="page=6"]',false)->
+                    checkElement('.sf_admin_pagination a[href$="page=17"]',1)->
+                    checkElement('.sf_admin_pagination a:contains(Next)',true)->
+                end()->
+        info('  5.9 Pagination links: page 8')->
+        get('user4/charge?page=8')->
+            with('response')->
+                begin()->
+                    checkElement('.sf_admin_pagination a:contains("Previous")',true)->
+                    checkElement('.sf_admin_pagination span[class="thepage"]',"8")->
+                    checkElement('.sf_admin_pagination span:contains(...)',2)->
+                    checkElement('.sf_admin_pagination span:contains(|)',2)->
+                    checkElement('.sf_admin_pagination a[href$="page=1"]',1)->
+                    checkElement('.sf_admin_pagination a[href$="page=5"]',false)->
+                    checkElement('.sf_admin_pagination a[href$="page=6"]',true)->
+                    checkElement('.sf_admin_pagination a[href$="page=7"]',true)->
+                    checkElement('.sf_admin_pagination a[href$="page=8"]',false)->
+                    checkElement('.sf_admin_pagination a[href$="page=9"]',true)->
+                    checkElement('.sf_admin_pagination a[href$="page=10"]',true)->
+                    checkElement('.sf_admin_pagination a[href$="page=11"]',false)->
+                    checkElement('.sf_admin_pagination a[href$="page=17"]',1)->
+                    checkElement('.sf_admin_pagination a:contains(Next)',true)->
+                end()->
+        info('  5.10 Pagination links: page 15')->
+        get('user4/charge?page=15')->
+            with('response')->
+                begin()->
+                    checkElement('.sf_admin_pagination a:contains("Previous")',true)-> 
+                    checkElement('.sf_admin_pagination span[class="thepage"]',"15")->
+                    checkElement('.sf_admin_pagination span:contains(...)',1)->
+                    checkElement('.sf_admin_pagination span:contains(|)',2)->
+                    checkElement('.sf_admin_pagination a[href$="page=1"]',1)->
+                    checkElement('.sf_admin_pagination a[href$="page=12"]',false)->
+                    checkElement('.sf_admin_pagination a[href$="page=13"]',true)->
+                    checkElement('.sf_admin_pagination a[href$="page=14"]',true)->
+                    checkElement('.sf_admin_pagination a[href$="page=15"]',false)->
+                    checkElement('.sf_admin_pagination a[href$="page=16"]',true)->
+                    checkElement('.sf_admin_pagination a[href$="page=17"]',1)->
+                    checkElement('.sf_admin_pagination a:contains(Next)',true)->
+                end()->
+        info('  5.11 Pagination links: page 17')->
+        get('user4/charge?page=17')->
+            with('response')->
+                begin()->
+                    checkElement('.sf_admin_pagination a:contains("Previous")',true)->
+                    checkElement('.sf_admin_pagination span[class="thepage"]',"17")->
+                    checkElement('.sf_admin_pagination span:contains(...)',1)->
+                    checkElement('.sf_admin_pagination span:contains(|)',1)->
+                    checkElement('.sf_admin_pagination a[href$="page=1"]',1)->
+                    checkElement('.sf_admin_pagination a[href$="page=12"]',false)->
+                    checkElement('.sf_admin_pagination a[href$="page=13"]',true)->
+                    checkElement('.sf_admin_pagination a[href$="page=14"]',true)->
+                    checkElement('.sf_admin_pagination a[href$="page=15"]',true)->
+                    checkElement('.sf_admin_pagination a[href$="page=16"]',true)->
+                    checkElement('.sf_admin_pagination a[href$="page=17"]',false)->
+                    checkElement('.sf_admin_pagination a:contains(Next)',false)->
+                end()->
+        
                 
 info('6 - Edit')->
         get('/user4/charge/'.

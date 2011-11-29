@@ -117,6 +117,25 @@
   float: right;
 }
 
+.sf_admin_pagination a, .sf_admin_pagination span.dots {
+    padding-right: 0.3em;
+    padding-left: 0.3em;
+    font-size: 1em;
+}
+
+.sf_admin_pagination span.thepage {
+    background-color: #AB3B37;
+    color: white;  
+    font-weight: bold;
+    padding-right: 0.3em;
+    padding-left: 0.3em;
+    font-size: 1em;
+}
+
+.sf_admin_pagination a:hover {
+    font-weight: bold; 
+}
+
 #sf_admin_container ul.sf_admin_td_actions
 {
   margin: 0;

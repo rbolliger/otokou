@@ -48,7 +48,7 @@
                 <div class="row">
 
                     <?php if (has_slot('leftcol')): ?>
-                        <div class="three columns">
+                        <div class="two columns">
                             <?php include_slot('leftcol') ?>
                         </div>
                     <?php endif; ?>

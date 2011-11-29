@@ -12,6 +12,8 @@ all:
     #success_signin_url:      @my_route?param=value # the plugin use the referer as default
     success_signout_url:     homepage/index         # the plugin use the referer as default
 
+  list:
+    nb_links: 5;
 
   charts:
     force_generate: false    # force generation of charts at each request
