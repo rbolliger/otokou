@@ -26,7 +26,7 @@ generator:
       list:    
         layout:  stacked
         params:  |
-          <b>%%=amount%% CHF</b><br />
+          <b>%%=amount%% CHF</b>&nbsp;
           <i>%%category%%</i>  %%quantity%% registered at <i>%%date%%</i> (%%kilometers%% km) for car <b>%%vehicle%%</b><br />
           %%comment%%
         display:  [amount, _quantity, date, kilometers, comment]
