@@ -15,8 +15,10 @@
 
 
     <div id="sf_admin_bar">
-        <h3>Filter results</h3>
-        <?php include_partial('charge/filters', array('form' => $filters, 'configuration' => $configuration)) ?>
+        <a href="#" id="button"> &gt; Filter results</a>
+        <div id="filters">
+            <?php include_partial('charge/filters', array('form' => $filters, 'configuration' => $configuration)) ?>
+        </div>
     </div>
 
 

@@ -294,3 +294,8 @@
   text-align: center;
 }
 
+a#button {
+    line-height: 1.25;
+    font-size: 2.3rem;
+    margin-bottom: 3px;
+}
