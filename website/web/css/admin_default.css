@@ -30,19 +30,29 @@
 #sf_admin_container td, #sf_admin_container th
 {
   border: 0;
-  border-bottom: 1px solid #ddd;
-  border-top: 1px solid #ddd;
+  border-bottom: 2px solid #EAEAEA;
+  border-top: 2px solid #EAEAEA;
   text-align: left;
   vertical-align: top;
 }
 
+#sf_admin_container thead th {
+    padding: 3px 5px;
+    border-bottom: 5px solid #EAEAEA;
+    font-size: 13px;
+}
+
+#sf_admin_container tfoot th {
+    padding: 3px 5px;
+    border-top: 5px solid #EAEAEA;
+}
+
+
 #sf_admin_container tr
 {
   background-color: #fff;
-  border-left: 1px solid #ddd;
-  border-right: 1px solid #ddd;
-  border-left: 0;
-  border-right: 0;
+  border-left: 1px solid #EAEAEA;
+  border-right: 1px solid #EAEAEA;
 }
 
 #sf_admin_container ul.error_list
@@ -169,6 +179,10 @@
 
 #sf_admin_header ul li form {
     display:inline;
+}
+
+#sf_admin_header ul li form label {
+    padding-left: 5px;
 }
 
 #sf_admin_container ul.sf_admin_actions li a,
