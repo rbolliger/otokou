@@ -50,6 +50,10 @@ h1, h2, h3, h4, h5, h6 {
     padding-bottom: 30px;
 }
 
+#title img {
+    max-width: 200px;
+}
+
 html, body {
 height: 100%;
 }
