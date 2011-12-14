@@ -1,7 +1,7 @@
 10
 
 dir
-2
+3
 http://git.doctrine.mirror.svn.symfony-project.com/trunk/lib/Doctrine/Query
 http://git.doctrine.mirror.svn.symfony-project.com
 
@@ -165,40 +165,6 @@ fabien
 Filter
 dir
 
-From.php
-file
-
-
-
-
-2011-04-14T09:41:45.850151Z
-0f7e6b24c4e9f0e196fd8535b6911373
-2011-03-28T13:44:03.954872Z
-2
-fabien
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-3017
-
 Abstract.php
 file
 
@@ -233,14 +199,14 @@ fabien
 
 67287
 
-Part.php
+From.php
 file
 
 
 
 
-2011-04-14T09:41:45.884459Z
-a31f0e4dd666a97d18f2075fa6c5e34b
+2011-04-14T09:41:45.850151Z
+0f7e6b24c4e9f0e196fd8535b6911373
 2011-03-28T13:44:03.954872Z
 2
 fabien
@@ -265,41 +231,7 @@ fabien
 
 
 
-2087
-
-Orderby.php
-file
-
-
-
-
-2011-04-14T09:41:45.880018Z
-26cfe5bc36ba438725740ee93ec4855d
-2011-03-28T13:44:03.954872Z
-2
-fabien
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-8224
+3017
 
 JoinCondition.php
 file
@@ -335,6 +267,74 @@ fabien
 
 5880
 
+Orderby.php
+file
+
+
+
+
+2011-04-14T09:41:45.880018Z
+26cfe5bc36ba438725740ee93ec4855d
+2011-03-28T13:44:03.954872Z
+2
+fabien
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+8224
+
+Part.php
+file
+
+
+
+
+2011-04-14T09:41:45.884459Z
+a31f0e4dd666a97d18f2075fa6c5e34b
+2011-03-28T13:44:03.954872Z
+2
+fabien
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2087
+
 Registry.php
 file
 
@@ -369,40 +369,6 @@ fabien
 
 2771
 
-Tokenizer.php
-file
-
-
-
-
-2011-04-14T09:41:46.001559Z
-1f327e90a77599392fc9e5abc8a56292
-2011-03-28T13:44:03.954872Z
-2
-fabien
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-16392
-
 Where.php
 file
 
@@ -436,6 +402,40 @@ fabien
 
 
 6971
+
+Tokenizer.php
+file
+
+
+
+
+2011-04-14T09:41:46.001559Z
+1f327e90a77599392fc9e5abc8a56292
+2011-03-28T13:44:03.954872Z
+2
+fabien
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+16392
 
 Having.php
 file

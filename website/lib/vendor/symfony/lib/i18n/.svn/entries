@@ -1,14 +1,14 @@
 10
 
 dir
-33171
+33263
 http://svn.symfony-project.com/branches/1.4/lib/i18n
 http://svn.symfony-project.com
 
 
 
-2011-07-09T09:41:59.395941Z
-32741
+2011-12-12T16:30:59.562501Z
+33251
 fabien
 
 
@@ -25,40 +25,6 @@ fabien
 
 
 ee427ae8-e902-0410-961c-c3ed070cd9f9
-
-sfMessageSource_XLIFF.class.php
-file
-
-
-
-
-2011-04-14T09:37:30.047904Z
-5fd0ff3b6a0de39d672a99c48435f935
-2009-11-12T11:07:44.003356Z
-23810
-Kris.Wallsmith
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-11663
 
 sfMessageFormat.class.php
 file
@@ -94,6 +60,40 @@ has-props
 
 6846
 
+sfMessageSource_XLIFF.class.php
+file
+
+
+
+
+2011-04-14T09:37:30.047904Z
+5fd0ff3b6a0de39d672a99c48435f935
+2009-11-12T11:07:44.003356Z
+23810
+Kris.Wallsmith
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+11663
+
 sfCultureInfo.class.php
 file
 
@@ -127,9 +127,6 @@ has-props
 
 
 22468
-
-Gettext
-dir
 
 sfNumberFormat.class.php
 file
@@ -165,17 +162,20 @@ has-props
 
 9205
 
+Gettext
+dir
+
 sfChoiceFormat.class.php
 file
 
 
 
 
-2011-04-14T09:37:30.065512Z
-416a9a3ba508b0e81b9619708be977b3
-2009-11-12T11:07:44.003356Z
-23810
-Kris.Wallsmith
+2011-12-14T20:58:44.863933Z
+3133dffe92ce24f24bde998650e5bffe
+2011-12-12T16:30:59.562501Z
+33251
+fabien
 has-props
 
 
@@ -307,10 +307,10 @@ file
 
 
 
-2011-04-14T09:37:30.077606Z
-f2778ca693776006880a08203a13b242
-2008-11-27T11:18:39.447017Z
-13401
+2011-12-14T20:58:44.867584Z
+b487951985de4b4dc3ef06dc7848cce2
+2011-12-12T15:50:45.947339Z
+33249
 fabien
 has-props
 
@@ -333,7 +333,7 @@ has-props
 
 
 
-4025
+4102
 
 sfNumberFormatInfo.class.php
 file

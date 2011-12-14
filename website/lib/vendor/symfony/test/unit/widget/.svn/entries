@@ -1,7 +1,7 @@
 10
 
 dir
-33171
+33263
 http://svn.symfony-project.com/branches/1.4/test/unit/widget
 http://svn.symfony-project.com
 
@@ -63,40 +63,6 @@ has-props
 
 631
 
-sfWidgetFormTextareaTest.php
-file
-
-
-
-
-2011-04-14T09:37:12.095650Z
-0440beb12263e1a1b2caa876a345f5cc
-2009-06-25T06:35:13.766150Z
-19531
-fabien
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1102
-
 sfWidgetFormDateTest.php
 file
 
@@ -131,16 +97,16 @@ has-props
 
 8370
 
-sfWidgetFormTest.php
+sfWidgetFormTextareaTest.php
 file
 
 
 
 
-2011-04-14T09:37:12.101231Z
-885484a0ef8be495408fa46a37653142
-2009-11-18T13:12:40.498957Z
-24137
+2011-04-14T09:37:12.095650Z
+0440beb12263e1a1b2caa876a345f5cc
+2009-06-25T06:35:13.766150Z
+19531
 fabien
 has-props
 
@@ -163,7 +129,7 @@ has-props
 
 
 
-6062
+1102
 
 sfWidgetFormSelectTest.php
 file
@@ -198,6 +164,40 @@ has-props
 
 
 6872
+
+sfWidgetFormTest.php
+file
+
+
+
+
+2011-04-14T09:37:12.101231Z
+885484a0ef8be495408fa46a37653142
+2009-11-18T13:12:40.498957Z
+24137
+fabien
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+6062
 
 sfWidgetFormSchemaFormatterListTest.php
 file
@@ -437,40 +437,6 @@ has-props
 
 2946
 
-sfWidgetFormChoiceTest.php
-file
-
-
-
-
-2011-04-14T09:37:12.127507Z
-56f92c062e204d106d2a11a0fb833f7f
-2010-04-29T07:41:57.056468Z
-29309
-bschussek
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-5420
-
 sfWidgetFormDateRangeTest.php
 file
 
@@ -504,6 +470,40 @@ has-props
 
 
 1428
+
+sfWidgetFormChoiceTest.php
+file
+
+
+
+
+2011-04-14T09:37:12.127507Z
+56f92c062e204d106d2a11a0fb833f7f
+2010-04-29T07:41:57.056468Z
+29309
+bschussek
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+5420
 
 sfWidgetTest.php
 file

@@ -1,7 +1,7 @@
 K 25
 svn:wc:ra_dav:version-url
 V 39
-/!svn/ver/32639/branches/1.4/lib/config
+/!svn/ver/33226/branches/1.4/lib/config
 END
 sfAutoloadConfigHandler.class.php
 K 25
@@ -9,17 +9,17 @@ svn:wc:ra_dav:version-url
 V 73
 /!svn/ver/24062/branches/1.4/lib/config/sfAutoloadConfigHandler.class.php
 END
-sfViewConfigHandler.class.php
-K 25
-svn:wc:ra_dav:version-url
-V 69
-/!svn/ver/23881/branches/1.4/lib/config/sfViewConfigHandler.class.php
-END
 sfProjectConfiguration.class.php
 K 25
 svn:wc:ra_dav:version-url
 V 72
 /!svn/ver/27191/branches/1.4/lib/config/sfProjectConfiguration.class.php
+END
+sfViewConfigHandler.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/23881/branches/1.4/lib/config/sfViewConfigHandler.class.php
 END
 sfSimpleYamlConfigHandler.class.php
 K 25
@@ -27,17 +27,17 @@ svn:wc:ra_dav:version-url
 V 75
 /!svn/ver/23881/branches/1.4/lib/config/sfSimpleYamlConfigHandler.class.php
 END
-sfConfigHandler.class.php
-K 25
-svn:wc:ra_dav:version-url
-V 65
-/!svn/ver/23881/branches/1.4/lib/config/sfConfigHandler.class.php
-END
 sfDefineEnvironmentConfigHandler.class.php
 K 25
 svn:wc:ra_dav:version-url
 V 82
 /!svn/ver/23881/branches/1.4/lib/config/sfDefineEnvironmentConfigHandler.class.php
+END
+sfConfigHandler.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/23881/branches/1.4/lib/config/sfConfigHandler.class.php
 END
 sfConfig.class.php
 K 25
@@ -81,17 +81,17 @@ svn:wc:ra_dav:version-url
 V 78
 /!svn/ver/23881/branches/1.4/lib/config/sfPluginConfigurationGeneric.class.php
 END
-sfYamlConfigHandler.class.php
-K 25
-svn:wc:ra_dav:version-url
-V 69
-/!svn/ver/23881/branches/1.4/lib/config/sfYamlConfigHandler.class.php
-END
 sfPluginConfiguration.class.php
 K 25
 svn:wc:ra_dav:version-url
 V 71
 /!svn/ver/23881/branches/1.4/lib/config/sfPluginConfiguration.class.php
+END
+sfYamlConfigHandler.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/23881/branches/1.4/lib/config/sfYamlConfigHandler.class.php
 END
 sfCacheConfigHandler.class.php
 K 25
@@ -115,13 +115,13 @@ sfFactoryConfigHandler.class.php
 K 25
 svn:wc:ra_dav:version-url
 V 72
-/!svn/ver/23881/branches/1.4/lib/config/sfFactoryConfigHandler.class.php
+/!svn/ver/33226/branches/1.4/lib/config/sfFactoryConfigHandler.class.php
 END
 sfApplicationConfiguration.class.php
 K 25
 svn:wc:ra_dav:version-url
 V 76
-/!svn/ver/29526/branches/1.4/lib/config/sfApplicationConfiguration.class.php
+/!svn/ver/33214/branches/1.4/lib/config/sfApplicationConfiguration.class.php
 END
 sfSecurityConfigHandler.class.php
 K 25

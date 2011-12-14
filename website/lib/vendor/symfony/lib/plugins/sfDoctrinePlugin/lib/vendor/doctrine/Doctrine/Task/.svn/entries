@@ -1,7 +1,7 @@
 10
 
 dir
-2
+3
 http://git.doctrine.mirror.svn.symfony-project.com/trunk/lib/Doctrine/Task
 http://git.doctrine.mirror.svn.symfony-project.com
 
@@ -128,40 +128,6 @@ fabien
 
 2886
 
-Exception.php
-file
-
-
-
-
-2011-04-14T09:41:40.024962Z
-74ac6f302abef4eeab14b1d331ffde7d
-2011-03-28T13:44:03.954872Z
-2
-fabien
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1402
-
 CreateTables.php
 file
 
@@ -195,6 +161,40 @@ fabien
 
 
 1873
+
+Exception.php
+file
+
+
+
+
+2011-04-14T09:41:40.024962Z
+74ac6f302abef4eeab14b1d331ffde7d
+2011-03-28T13:44:03.954872Z
+2
+fabien
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1402
 
 DumpData.php
 file
@@ -230,40 +230,6 @@ fabien
 
 2426
 
-GenerateModelsDb.php
-file
-
-
-
-
-2011-04-14T09:41:40.029985Z
-decca1bf38c654fa7f67a4c94c28c107
-2011-03-28T13:44:03.954872Z
-2
-fabien
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-2209
-
 GenerateMigration.php
 file
 
@@ -298,14 +264,14 @@ fabien
 
 2115
 
-CreateDb.php
+GenerateModelsDb.php
 file
 
 
 
 
-2011-04-14T09:41:40.033989Z
-54eb0ce27c5496efb778274f3e331d5c
+2011-04-14T09:41:40.029985Z
+decca1bf38c654fa7f67a4c94c28c107
 2011-03-28T13:44:03.954872Z
 2
 fabien
@@ -330,7 +296,7 @@ fabien
 
 
 
-2000
+2209
 
 LoadData.php
 file
@@ -366,14 +332,14 @@ fabien
 
 2136
 
-DropDb.php
+CreateDb.php
 file
 
 
 
 
-2011-04-14T09:41:40.037342Z
-abee6680df7265bf333969f9ecb66a0f
+2011-04-14T09:41:40.033989Z
+54eb0ce27c5496efb778274f3e331d5c
 2011-03-28T13:44:03.954872Z
 2
 fabien
@@ -398,7 +364,7 @@ fabien
 
 
 
-2323
+2000
 
 GenerateSql.php
 file
@@ -434,6 +400,40 @@ fabien
 
 2386
 
+DropDb.php
+file
+
+
+
+
+2011-04-14T09:41:40.037342Z
+abee6680df7265bf333969f9ecb66a0f
+2011-03-28T13:44:03.954872Z
+2
+fabien
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2323
+
 BuildAllReload.php
 file
 
@@ -468,40 +468,6 @@ fabien
 
 2392
 
-GenerateMigrationsDiff.php
-file
-
-
-
-
-2011-04-14T09:41:40.051779Z
-c015bd27da765b6560edad84497e1891
-2011-03-28T13:44:03.954872Z
-2
-fabien
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-2682
-
 Dql.php
 file
 
@@ -535,6 +501,40 @@ fabien
 
 
 2696
+
+GenerateMigrationsDiff.php
+file
+
+
+
+
+2011-04-14T09:41:40.051779Z
+c015bd27da765b6560edad84497e1891
+2011-03-28T13:44:03.954872Z
+2
+fabien
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2682
 
 GenerateModelsYaml.php
 file

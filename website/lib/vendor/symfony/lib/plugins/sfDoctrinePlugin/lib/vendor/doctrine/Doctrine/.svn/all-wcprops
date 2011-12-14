@@ -1,7 +1,7 @@
 K 25
 svn:wc:ra_dav:version-url
 V 30
-/!svn/ver/2/trunk/lib/Doctrine
+/!svn/ver/3/trunk/lib/Doctrine
 END
 Parser.php
 K 25
@@ -99,17 +99,17 @@ svn:wc:ra_dav:version-url
 V 41
 /!svn/ver/2/trunk/lib/Doctrine/Export.php
 END
-Validator.php
-K 25
-svn:wc:ra_dav:version-url
-V 44
-/!svn/ver/2/trunk/lib/Doctrine/Validator.php
-END
 Inflector.php
 K 25
 svn:wc:ra_dav:version-url
 V 44
 /!svn/ver/2/trunk/lib/Doctrine/Inflector.php
+END
+Validator.php
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/!svn/ver/2/trunk/lib/Doctrine/Validator.php
 END
 EventListener.php
 K 25
@@ -141,23 +141,23 @@ svn:wc:ra_dav:version-url
 V 41
 /!svn/ver/2/trunk/lib/Doctrine/Column.php
 END
-Pager.php
-K 25
-svn:wc:ra_dav:version-url
-V 40
-/!svn/ver/2/trunk/lib/Doctrine/Pager.php
-END
 Exception.php
 K 25
 svn:wc:ra_dav:version-url
 V 44
 /!svn/ver/2/trunk/lib/Doctrine/Exception.php
 END
-Connection.php
+Pager.php
 K 25
 svn:wc:ra_dav:version-url
-V 45
-/!svn/ver/2/trunk/lib/Doctrine/Connection.php
+V 40
+/!svn/ver/2/trunk/lib/Doctrine/Pager.php
+END
+Tree.php
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/!svn/ver/2/trunk/lib/Doctrine/Tree.php
 END
 Expression.php
 K 25
@@ -165,11 +165,11 @@ svn:wc:ra_dav:version-url
 V 45
 /!svn/ver/2/trunk/lib/Doctrine/Expression.php
 END
-Tree.php
+Connection.php
 K 25
 svn:wc:ra_dav:version-url
-V 39
-/!svn/ver/2/trunk/lib/Doctrine/Tree.php
+V 45
+/!svn/ver/2/trunk/lib/Doctrine/Connection.php
 END
 Hook.php
 K 25

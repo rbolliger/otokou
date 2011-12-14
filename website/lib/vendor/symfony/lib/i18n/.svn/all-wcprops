@@ -1,19 +1,19 @@
 K 25
 svn:wc:ra_dav:version-url
 V 37
-/!svn/ver/32741/branches/1.4/lib/i18n
-END
-sfMessageSource_XLIFF.class.php
-K 25
-svn:wc:ra_dav:version-url
-V 69
-/!svn/ver/23881/branches/1.4/lib/i18n/sfMessageSource_XLIFF.class.php
+/!svn/ver/33251/branches/1.4/lib/i18n
 END
 sfMessageFormat.class.php
 K 25
 svn:wc:ra_dav:version-url
 V 63
 /!svn/ver/24622/branches/1.4/lib/i18n/sfMessageFormat.class.php
+END
+sfMessageSource_XLIFF.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/23881/branches/1.4/lib/i18n/sfMessageSource_XLIFF.class.php
 END
 sfCultureInfo.class.php
 K 25
@@ -31,7 +31,7 @@ sfChoiceFormat.class.php
 K 25
 svn:wc:ra_dav:version-url
 V 62
-/!svn/ver/23881/branches/1.4/lib/i18n/sfChoiceFormat.class.php
+/!svn/ver/33251/branches/1.4/lib/i18n/sfChoiceFormat.class.php
 END
 sfMessageSource_File.class.php
 K 25
@@ -55,7 +55,7 @@ sfMessageSource_Aggregate.class.php
 K 25
 svn:wc:ra_dav:version-url
 V 73
-/!svn/ver/23881/branches/1.4/lib/i18n/sfMessageSource_Aggregate.class.php
+/!svn/ver/33249/branches/1.4/lib/i18n/sfMessageSource_Aggregate.class.php
 END
 sfNumberFormatInfo.class.php
 K 25
@@ -81,17 +81,17 @@ svn:wc:ra_dav:version-url
 V 68
 /!svn/ver/23881/branches/1.4/lib/i18n/sfDateTimeFormatInfo.class.php
 END
-sfDateFormat.class.php
-K 25
-svn:wc:ra_dav:version-url
-V 60
-/!svn/ver/23881/branches/1.4/lib/i18n/sfDateFormat.class.php
-END
 sfMessageSource_SQLite.class.php
 K 25
 svn:wc:ra_dav:version-url
 V 70
 /!svn/ver/23881/branches/1.4/lib/i18n/sfMessageSource_SQLite.class.php
+END
+sfDateFormat.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/23881/branches/1.4/lib/i18n/sfDateFormat.class.php
 END
 sfMessageSource_Database.class.php
 K 25

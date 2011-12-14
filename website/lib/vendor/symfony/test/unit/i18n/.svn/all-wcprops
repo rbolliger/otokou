@@ -1,7 +1,7 @@
 K 25
 svn:wc:ra_dav:version-url
 V 43
-/!svn/ver/29521/branches/1.4/test/unit/i18n
+/!svn/ver/33251/branches/1.4/test/unit/i18n
 END
 dataTest.php
 K 25
@@ -13,7 +13,7 @@ sfChoiceFormatTest.php
 K 25
 svn:wc:ra_dav:version-url
 V 66
-/!svn/ver/23881/branches/1.4/test/unit/i18n/sfChoiceFormatTest.php
+/!svn/ver/33251/branches/1.4/test/unit/i18n/sfChoiceFormatTest.php
 END
 sfMessageSource_FileTest.php
 K 25

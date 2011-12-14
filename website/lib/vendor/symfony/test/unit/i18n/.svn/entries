@@ -1,14 +1,14 @@
 10
 
 dir
-33171
+33263
 http://svn.symfony-project.com/branches/1.4/test/unit/i18n
 http://svn.symfony-project.com
 
 
 
-2010-05-19T11:47:56.347450Z
-29521
+2011-12-12T16:30:59.562501Z
+33251
 fabien
 
 
@@ -66,10 +66,10 @@ file
 
 
 
-2011-04-14T09:37:14.297737Z
-4c6f355a33736dc61a4027ddcacdc8fe
-2009-06-25T06:35:13.766150Z
-19531
+2011-12-14T20:58:44.482747Z
+39dfddcbe0338c2eb1605f19b56a6e58
+2011-12-12T16:30:59.562501Z
+33251
 fabien
 has-props
 
@@ -92,7 +92,7 @@ has-props
 
 
 
-6088
+6286
 
 sfMessageSource_FileTest.php
 file

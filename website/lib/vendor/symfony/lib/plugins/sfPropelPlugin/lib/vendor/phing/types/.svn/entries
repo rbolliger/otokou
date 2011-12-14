@@ -1,7 +1,7 @@
 10
 
 dir
-1354
+1387
 http://phing.mirror.svn.symfony-project.com/tags/2.3.3/classes/phing/types
 http://phing.mirror.svn.symfony-project.com
 
@@ -162,40 +162,6 @@ has-props
 
 14570
 
-PhingFilterReader.php
-file
-
-
-
-
-2011-04-14T09:38:18.874644Z
-5e28252f9cb83291c64951bd93d81e2d
-2007-12-20T15:44:58.929962Z
-325
-hans
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-4301
-
 Reference.php
 file
 
@@ -229,6 +195,40 @@ has-props
 
 
 1883
+
+PhingFilterReader.php
+file
+
+
+
+
+2011-04-14T09:38:18.874644Z
+5e28252f9cb83291c64951bd93d81e2d
+2007-12-20T15:44:58.929962Z
+325
+hans
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4301
 
 TokenSource.php
 file
@@ -332,40 +332,6 @@ has-props
 
 1283
 
-DataType.php
-file
-
-
-
-
-2011-04-14T09:38:18.903793Z
-22d6d0d2b855c626d39f578367d15dce
-2006-09-14T20:19:08.286051Z
-123
-mrook
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-6161
-
 FileList.php
 file
 
@@ -399,6 +365,40 @@ has-props
 
 
 6573
+
+DataType.php
+file
+
+
+
+
+2011-04-14T09:38:18.903793Z
+22d6d0d2b855c626d39f578367d15dce
+2006-09-14T20:19:08.286051Z
+123
+mrook
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+6161
 
 defaults.properties
 file

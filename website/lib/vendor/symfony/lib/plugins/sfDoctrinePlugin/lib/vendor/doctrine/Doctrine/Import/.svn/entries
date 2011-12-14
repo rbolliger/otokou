@@ -1,14 +1,14 @@
 10
 
 dir
-2
+3
 http://git.doctrine.mirror.svn.symfony-project.com/trunk/lib/Doctrine/Import
 http://git.doctrine.mirror.svn.symfony-project.com
 
 
 
-2011-03-28T13:44:03.954872Z
-2
+2011-11-09T06:59:32.273152Z
+3
 fabien
 
 
@@ -273,10 +273,10 @@ file
 
 
 
-2011-04-14T09:41:37.708703Z
-675125df67c2e468f2f562dca2aa081b
-2011-03-28T13:44:03.954872Z
-2
+2011-12-14T20:59:03.388362Z
+6b78f88affd3d132ce75c548a7b881f7
+2011-11-09T06:59:32.273152Z
+3
 fabien
 
 
@@ -299,5 +299,5 @@ fabien
 
 
 
-14459
+14456
 
