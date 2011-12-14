@@ -151,17 +151,23 @@
   font-size: 90%;
 }
 
-#sf_admin_container ul.sf_admin_actions
+#sf_admin_container ul.sf_admin_actions,
+#sf_admin_header ul
 {
   margin: 10px 0;
   list-style-type: none;
 }
 
-#sf_admin_container ul.sf_admin_actions li
+#sf_admin_container ul.sf_admin_actions li,
+#sf_admin_header ul li
 {
   list-style-type: none;
   display: inline;
   margin-right: 10px;
+}
+
+#sf_admin_header ul li form {
+    display:inline;
 }
 
 #sf_admin_container ul.sf_admin_actions li a,
@@ -174,6 +180,7 @@
 #sf_admin_container ul li.sf_admin_action_new a
 {
   background: url(../../sfDoctrinePlugin/images/new.png) no-repeat 0 0;
+  padding-left: 20px;
 }
 
 #sf_admin_container ul li.sf_admin_action_delete a
@@ -294,8 +301,13 @@
   text-align: center;
 }
 
-a#button {
-    line-height: 1.25;
-    font-size: 2.3rem;
-    margin-bottom: 3px;
+#filters_button {
+    background: url(/images/filter-icon.png) no-repeat 0 0;
+    padding-left: 20px;
+}
+
+#sf_admin_max_per_page {
+    background: url(/images/list.png) no-repeat 0 0;
+    background-size:16px 16px;
+    padding-left: 20px;
 }

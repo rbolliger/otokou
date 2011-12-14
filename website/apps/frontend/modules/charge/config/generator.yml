@@ -35,6 +35,7 @@ generator:
             date_format: EEEE d MMM y
         table_method: retrieveAdminChargeList
         title:  List of registered charges
+        sort: [date, desc]
         
       filter:  
         display: [vehicle_id, category_id, date, kilometers, amount, quantity, comment]

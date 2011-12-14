@@ -469,7 +469,7 @@ info('5 - Pagination')->
         get('/user3/charge')->        
             with('response')->
                 begin()->
-                    checkElement('div.max_per_page',true)->
+                    checkElement('form.max_per_page',true)->
                     checkElement('select#max_per_page option[selected="selected"][value=20]',1)->
                     checkElement('div.sf_admin_pagination',true)->
                     checkElement('div#charges_sum_amount_total','/3,565.0/')->
