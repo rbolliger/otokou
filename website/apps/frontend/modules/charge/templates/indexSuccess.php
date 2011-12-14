@@ -7,17 +7,19 @@
 <?php end_slot(); ?>
 
 <div id="sf_admin_container">
-    <h1><?php echo __('List of registered charges', array(), 'messages') ?></h1>
+    <?php slot('content_title'); ?>
+        <h1><?php echo __('List of registered charges', array(), 'messages') ?></h1>
+    <?php end_slot(); ?>
 
     <?php include_partial('charge/flashes') ?>
 
 
-    
-       
-        <div id="filters">
-            <?php include_partial('charge/filters', array('form' => $filters, 'configuration' => $configuration)) ?>
-        </div>
-    
+
+
+    <div id="filters">
+        <?php include_partial('charge/filters', array('form' => $filters, 'configuration' => $configuration)) ?>
+    </div>
+
 
 
     <div id="sf_admin_header">

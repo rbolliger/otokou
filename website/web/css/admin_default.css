@@ -108,8 +108,9 @@
 
 #sf_admin_bar
 {
-  float: right;
-  margin-left: 20px;
+  float: none;
+  margin-left: 0px;
+  margin-top: 20px;
 }
 
 .sf_admin_pagination

@@ -46,6 +46,12 @@
 
             <div id="main" class="container">
                 <div class="row">
+                    
+                    <?php if (has_slot('content_title')): ?>
+                        <div class="ten columns offset-by-one content_title">
+                            <?php include_slot('content_title') ?>
+                        </div>
+                    <?php endif; ?>
 
                     <?php if (has_slot('leftcol')): ?>
                         <div class="two columns">

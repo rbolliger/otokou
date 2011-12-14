@@ -13,7 +13,7 @@ h1, h2, h3, h4, h5, h6 {
 
 #header {
     background-color: #363636;
-    height: 5rem;    
+    height: 4em;    
 }
 
 #header li, #footer li {
@@ -23,27 +23,23 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #header li {
-    height: 5rem;
-    line-height: 5rem;
+    height: 4em;
+    line-height: 4em;
 }
 
 #header li.current {
-    font-weight: bold;
+    background-color: #484848;
 }
 
 #header a, #footer a {
     color: #fefefe;
-    font-size: 1.6rem;
+    font-size: 1.4em;
 }
 
 #header li:hover {
     background-color: #484848;
 }
 
-#header li.current {
-    font-weight: bold;
-    background-color: #484848;
-}
 
 #title {
     padding-top: 10px;
@@ -77,19 +73,10 @@ height: 4em;
     vertical-align: middle;
 }
 
-
-
 a {
     color: #AB3B37;
 }
 
-
-
-#sf_admin_bar, #charges_sum_amount {
-  float: none;
-  margin-left: 0px;
-  margin-top: 20px;
-}
 
 table tbody tr {
     border-bottom: 2px solid #EAEAEA;
@@ -98,4 +85,8 @@ table tbody tr {
 
 table tbody tr:nth-child(even) {
     background-color: #fefefe;
+}
+
+.content_title {
+    margin-bottom: 20px;
 }

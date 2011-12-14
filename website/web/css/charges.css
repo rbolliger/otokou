@@ -1,0 +1,16 @@
+/* 
+    Document   : charges
+    Created on : Dec 14, 2011, 10:59:04 PM
+    Author     : Raffaele Bolliger <raffaele.bolliger at gmail.com>
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+#charges_sum_amount {
+    background-color: white;
+    border: 1px solid #DDD;
+    padding: 10px;
+    margin-bottom: 20px;
+    margin-top: 50px;
+}
+
