@@ -211,8 +211,10 @@
 
 #sf_admin_container ul li.sf_admin_action_new a
 {
-  background: url(../../sfDoctrinePlugin/images/new.png) no-repeat 0 0;
+  background: url(/images/new.png) no-repeat 0 0;
+  background-size: 12px 12px;
   padding-left: 20px;
+  vertical-align: middle;
 }
 
 #sf_admin_container ul li.sf_admin_action_delete a
