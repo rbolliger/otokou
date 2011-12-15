@@ -15,7 +15,14 @@ default:
 
 
   #stylesheets:    [main.css]
-  stylesheets:    [../sfZurbFoundationPlugin/css/globals.css, ../sfZurbFoundationPlugin/css/grid.css, ../sfZurbFoundationPlugin/css/typography.css, ../sfZurbFoundationPlugin/css/ui.css, ../sfZurbFoundationPlugin/css/mobile.css, main.css, menus.css]
+  stylesheets:    
+    - ../sfZurbFoundationPlugin/css/globals.css
+    - ../sfZurbFoundationPlugin/css/grid.css
+    - ../sfZurbFoundationPlugin/css/typography.css
+    - ../sfZurbFoundationPlugin/css/ui.css
+    - ../sfZurbFoundationPlugin/css/mobile.css
+    - main.css
+    - menus.css
 
   javascripts:    []
 
