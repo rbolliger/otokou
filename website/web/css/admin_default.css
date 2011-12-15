@@ -350,3 +350,47 @@
     background-size:16px 16px;
     padding-left: 20px;
 }
+
+#sf_admin_container .sf_admin_filter {
+    background-color: #fff;
+    border: 2px solid #DDD;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+#sf_admin_container .sf_admin_filter table {
+    margin: 0px;
+    border: none;
+}
+
+#sf_admin_container .sf_admin_filter  tr {
+    border: none;
+    border-left: none;
+    border-right: none;
+}
+
+#sf_admin_container .sf_admin_filter td, #sf_admin_container .sf_admin_filter th {
+    border-top: 0px;
+    border-bottom: 1px solid #EAEAEA;
+}
+
+#sf_admin_container .sf_admin_filter tfoot td {
+    border-top: 0px;
+    border-bottom: 0px;
+    padding-top: 10px;
+}
+
+#sf_admin_container .sf_admin_filter input[type="submit"] {
+    padding: 0.8em 1em;
+    font-size: 1em;
+    background-color: #AB3B37;
+    color: white;  
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}
+
+#sf_admin_container .sf_admin_filter input[type="submit"]:hover {
+    background-color: #F75550;
+}
+
