@@ -162,6 +162,13 @@
   font-size: 90%;
 }
 
+#sf_admin_header {
+    background-color: #FFF;
+    padding: 3px; 
+    border: 1px solid #DDD;
+    margin-bottom: 10px;
+}
+
 #sf_admin_container ul.sf_admin_actions,
 #sf_admin_header ul
 {
@@ -175,6 +182,8 @@
   list-style-type: none;
   display: inline;
   margin-right: 10px;
+  font-size: 15px;
+    
 }
 
 #sf_admin_header ul li form {
