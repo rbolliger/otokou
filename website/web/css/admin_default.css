@@ -162,11 +162,19 @@
   font-size: 90%;
 }
 
-#sf_admin_header {
+#sf_admin_header, #sf_admin_container ul.sf_admin_actions {
     background-color: #FFF;
     padding: 3px; 
     border: 1px solid #DDD;
+}
+
+#sf_admin_header {
     margin-bottom: 10px;
+}
+
+#sf_admin_container ul.sf_admin_actions {
+    margin-top: 10px;
+    padding: 5px; 
 }
 
 #sf_admin_container ul.sf_admin_actions,
