@@ -107,3 +107,7 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background-color: #F75550;
 }
+
+input[type="text"] {
+    padding: 3px;
+}

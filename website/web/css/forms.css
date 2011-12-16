@@ -6,3 +6,30 @@
         Purpose of the stylesheet follows.
 */
 
+input[type="submit"] {
+    padding: 0.4em 1em;
+    font-size: 1em;
+    background-color: #AB3B37;
+    color: white;  
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    border-radius: 0.3em;  
+    -moz-border-radius: 0.3em;  
+    -webkit-border-radius: 0.3em;  
+}
+
+input[type="submit"]:hover, input[type="submit"]:focus {
+    background-color: #F75550;
+}
+
+input[type="text"] {
+    padding: 5px;
+    border: solid 1px #DDD;
+    margin: 5px;
+}
+
+input[type="text"]:focus {
+    border: solid 2px #363636;
+    margin: 4px;
+}
