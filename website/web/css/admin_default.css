@@ -381,17 +381,5 @@
     padding-top: 10px;
 }
 
-#sf_admin_container .sf_admin_filter input[type="submit"] {
-    padding: 0.8em ;
-    font-size: 1em;
-    background-color: #AB3B37;
-    color: white;  
-    font-weight: bold;
-    border: none;
-    cursor: pointer;
-}
 
-#sf_admin_container .sf_admin_filter input[type="submit"]:hover {
-    background-color: #F75550;
-}
 

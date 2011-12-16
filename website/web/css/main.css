@@ -90,3 +90,20 @@ table tbody tr:nth-child(even) {
 .content_title {
     margin-bottom: 20px;
 }
+
+input[type="submit"] {
+    padding: 0.4em 1em;
+    font-size: 1em;
+    background-color: #AB3B37;
+    color: white;  
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    border-radius: 0.3em;  
+    -moz-border-radius: 0.3em;  
+    -webkit-border-radius: 0.3em;  
+}
+
+input[type="submit"]:hover {
+    background-color: #F75550;
+}
