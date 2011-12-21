@@ -40,5 +40,14 @@ textarea:focus {
 .ui-datepicker-trigger {
     margin-left: 5px;
     margin-right: 5px;
-    
+    vertical-align: top;    
+}
+
+select {
+    padding: 3px;
+    font-size: 12px;
+    border: solid 1px #DDD;
+    background-color: #EAEAEA;
+    -moz-border-radius: 0.3em;  
+    -webkit-border-radius: 0.3em;  
 }
