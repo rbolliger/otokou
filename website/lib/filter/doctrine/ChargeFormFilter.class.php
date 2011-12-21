@@ -23,10 +23,8 @@ class ChargeFormFilter extends BaseChargeFormFilter {
 
 
         $widget = new sfWidgetFormDate(array(
-                    'format' => '%day%/%month%/%year%',
+                    'format' => '%day%-%month%-%year%',
                 ));
-
-
 
         $this->widgetSchema['date'] = new sfWidgetFormFilterDate(array(
                     'from_date' => new sfWidgetFormJQueryDate(array(
@@ -40,10 +38,10 @@ class ChargeFormFilter extends BaseChargeFormFilter {
                         'date_widget' => $widget
                     )),
                     'with_empty' => false,
-                    'template' => 'from %from_date% to %to_date%',
+                    'template' => '<span>from %from_date% to %to_date%</span>',
                 ))
         ;
-
+        
         $this->validatorSchema['date'] = new sfValidatorDateRange(
                         array(
                             'required' => false,
@@ -51,7 +49,7 @@ class ChargeFormFilter extends BaseChargeFormFilter {
                             'to_date' => new sfValidatorDate(array('required' => false))
                 ));
 
-        
+
         $this->widgetSchema['kilometers'] = new sfWidgetFormFilterDate(array(
                     'from_date' => new sfWidgetFormInput(array('default' => null)),
                     'to_date' => new sfWidgetFormInput(array('default' => null)),

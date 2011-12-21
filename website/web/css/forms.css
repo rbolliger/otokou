@@ -36,3 +36,9 @@ textarea:focus {
     border: solid 2px #363636;
     margin: 4px;
 }
+
+.ui-datepicker-trigger {
+    margin-left: 5px;
+    margin-right: 5px;
+    
+}
