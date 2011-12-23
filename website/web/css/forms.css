@@ -41,6 +41,7 @@ textarea:focus {
     margin-left: 5px;
     margin-right: 5px;
     vertical-align: top;    
+    cursor: pointer;
 }
 
 select {
@@ -48,6 +49,7 @@ select {
     font-size: 12px;
     border: solid 1px #DDD;
     background-color: #EAEAEA;
-    -moz-border-radius: 0.3em;  
-    -webkit-border-radius: 0.3em;  
+    -moz-border-radius: 2px;  
+    -webkit-border-radius: 2px;  
+    cursor: pointer;
 }
