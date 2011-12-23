@@ -22,7 +22,7 @@
 
 
 
-    <div id="sf_admin_header">
+    <div id="sf_admin_actions_menu">
         <ul>
             <li> <a href="#" id="filters_button"> Filter results</a></li>
             <?php include_partial('charge/list_actions', array('helper' => $helper)) ?>
