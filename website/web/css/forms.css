@@ -53,3 +53,7 @@ select {
     -webkit-border-radius: 2px;  
     cursor: pointer;
 }
+
+input[type="checkbox"] {
+    cursor: pointer;
+}
