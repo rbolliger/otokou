@@ -60,18 +60,18 @@
 {
     margin: 0;
     margin-bottom: 7px;
-    color: #d33;
+    color: #AB3B37;
     border: none;
-    background-color: #f33;
+    background-color: transparent;
 }
 
 #sf_admin_container ul.error_list li
 {
     padding: 4px;
-    padding-left: 25px;
+    padding-left: 28px;
     list-style: none;
-    color: #fff;
-    background: url(../../sfDoctrinePlugin/images/error.png) no-repeat 4px 4px;
+    color: #AB3B37;
+    background: url(/images/error.png) no-repeat 4px 4px;
 }
 
 #sf_admin_container tr:hover
@@ -222,6 +222,7 @@
     background: url(/images/new.png) no-repeat 0 0;
     background-size: 12px 12px;
     padding-left: 16px;
+    background-position-y: center;
 }
 
 #sf_admin_container ul li.sf_admin_action_delete a
@@ -252,12 +253,15 @@
 #sf_admin_container .error
 {
     margin: 4px 0;
-    padding: 4px 4px 4px 30px;
-    background: url(../../sfDoctrinePlugin/images/error.png) no-repeat 10px 4px;
+    padding: 10px 4px 10px 35px;
+    background: url(/images/error-white.png) no-repeat 10px 4px;
     border-top: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
-    background-color: #f33;
+    background-color: #AB3B37;
     color: #fff;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    background-position-y: center;
 }
 
 #sf_admin_container .sf_admin_row_0 td
@@ -334,7 +338,7 @@
 
 #sf_admin_container .errors input, #sf_admin_container .errors select
 {
-    border: 1px solid #f22;
+    border: 1px solid #EAEAEA;
 }
 
 #sf_admin_container .sf_admin_list .sf_admin_boolean
