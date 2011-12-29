@@ -154,7 +154,7 @@ $browser->
         info('5- Dropdown menus')->
         
         info('  5.1 - Charges list (filters)')->
-        get('/user_vehicle/charge')->
+        get('/user_vehicle/charge?filters_appearance=show')->
             with('response')->
                 begin()->
                     checkElement('.sf_admin_filter_field_vehicle_id ul li',1)->

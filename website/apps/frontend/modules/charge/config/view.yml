@@ -2,7 +2,7 @@ all:
   javascripts: 
       - jquery-1.4.4.min.js
       - jquery-ui-1.8.8.custom.min.js
-      - jquery_slideToggle.js
+      #- jquery_slideToggle.js
   stylesheets: 
       - smoothness/jquery-ui-1.8.8.custom.css
       - forms.css

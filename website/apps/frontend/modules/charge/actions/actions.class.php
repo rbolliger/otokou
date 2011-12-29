@@ -59,6 +59,7 @@ class chargeActions extends autoChargeActions {
 
         $this->pager = $this->getPager();
         $this->sort = $this->getSort();
+        $this->filters_appearance = $this->getFiltersAppearance();
 
         $this->setTemplate('index');
         $this->pager->form = $form;
@@ -95,9 +96,16 @@ class chargeActions extends autoChargeActions {
 
         parent::executeIndex($request);
 
+        // filters appearance
+        if ($request->getParameter('filters_appearance') && in_array($request->getParameter('filters_appearance'), array('hidden', 'show'))) {
+            $this->setFiltersAppearance($request->getParameter('filters_appearance'));
+        }
+
         $this->pager->form = new PaginationMaxPerPageForm($this->getUser(), $this->getMaxPerPageOptions(), false);
 
         $this->sumAmount = $this->getSumAmount();
+
+        $this->filters_appearance = $this->getFiltersAppearance();
     }
 
     public function executeFilter(sfWebRequest $request) {
@@ -107,6 +115,8 @@ class chargeActions extends autoChargeActions {
         $this->pager->form = new PaginationMaxPerPageForm($this->getUser(), $this->getMaxPerPageOptions(), false);
 
         $this->sumAmount = $this->getSumAmount();
+        
+        $this->filters_appearance = $this->getFiltersAppearance();
     }
 
     public function executeNew(sfWebRequest $request) {
@@ -142,9 +152,9 @@ class chargeActions extends autoChargeActions {
         $a->addSelect('SUM(' . $rootAlias . '.amount) as sum');
 
         $r1 = $a->fetchOne();
-        
+
         if ($r1->getSum()) {
-          $r1_sum =  $r1->getSum(); 
+            $r1_sum = $r1->getSum();
         } else {
             $r1_sum = 0;
         }
@@ -178,6 +188,14 @@ class chargeActions extends autoChargeActions {
 
 
         return array('amount_total' => $r1_sum, 'amount_page' => $r2_sum);
+    }
+
+    protected function setFiltersAppearance($appearance) {
+        $this->getUser()->setAttribute('charge.filters_appearance', $appearance, 'admin_module');
+    }
+
+    protected function getFiltersAppearance() {
+        return $this->getUser()->getAttribute('charge.filters_appearance', 'hidden', 'admin_module');
     }
 
 }

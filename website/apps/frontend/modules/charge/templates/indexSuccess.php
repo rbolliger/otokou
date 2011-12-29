@@ -8,7 +8,7 @@
 
 <div id="sf_admin_container">
     <?php slot('content_title'); ?>
-        <h1><?php echo __('List of registered charges', array(), 'messages') ?></h1>
+    <h1><?php echo __('List of registered charges', array(), 'messages') ?></h1>
     <?php end_slot(); ?>
 
     <?php include_partial('charge/flashes') ?>
@@ -17,14 +17,20 @@
 
 
     <div id="filters">
-        <?php include_partial('charge/filters', array('form' => $filters, 'configuration' => $configuration)) ?>
+        <?php if ('show' === $filters_appearance) : ?>
+            <?php include_partial('charge/filters', array('form' => $filters, 'configuration' => $configuration)) ?>
+        <?php endif; ?>
     </div>
 
 
 
     <div id="sf_admin_actions_menu">
         <ul>
-            <li> <a href="#" id="filters_button"> Filter results</a></li>
+            <?php if ('show' === $filters_appearance) : ?>
+                <li> <?php echo link_to('Hide filters', '@charge?filters_appearance=hidden', array('id' => "filters_button")); ?></li>
+            <?php else : ?>
+                <li> <?php echo link_to('Show filters', '@charge?filters_appearance=show', array('id' => "filters_button")); ?></li>
+            <?php endif; ?>
             <?php include_partial('charge/list_actions', array('helper' => $helper)) ?>
             <li><?php include_partial('charge/list_header', array('pager' => $pager)) ?></li>
         </ul>
