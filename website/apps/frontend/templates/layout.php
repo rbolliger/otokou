@@ -54,7 +54,7 @@
                     <?php endif; ?>
 
                     <?php if (has_slot('leftcol')): ?>
-                        <div class="two columns">
+                        <div class="two  columns">
                             <?php include_slot('leftcol') ?>
                         </div>
                     <?php endif; ?>

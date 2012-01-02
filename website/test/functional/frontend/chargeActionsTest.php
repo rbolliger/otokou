@@ -410,8 +410,8 @@ info('4 - List filters')->
             with('response')->
                 begin()->
                     checkElement('div.sf_admin_list tbody tr',0)->
-                    checkElement('div#charges_sum_amount_total','/For all pages: 0 CHF/')->
-                    checkElement('div#charges_sum_amount_page','/For this page: 0 CHF/')->
+                    checkElement('div#charges_sum_amount_total','/All pages: 0 CHF/')->
+                    checkElement('div#charges_sum_amount_page','/This page: 0 CHF/')->
                 end()->
 
         info('  4.6 - Comments search')->
