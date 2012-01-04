@@ -8,9 +8,11 @@
 
 #charges_sum_amount {
     background-color: white;
-    border: 1px solid #DDD;
+    border: 2px solid #DDD;
     padding: 10px;
     margin-bottom: 20px;
     margin-top: 50px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
 }
 
