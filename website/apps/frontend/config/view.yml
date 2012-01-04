@@ -23,6 +23,7 @@ default:
     - ../sfZurbFoundationPlugin/css/mobile.css
     - main.css
     - menus.css
+    - forms.css
 
   javascripts:    []
 

@@ -54,13 +54,13 @@
                     <?php endif; ?>
 
                     <?php if (has_slot('leftcol')): ?>
-                        <div class="two  columns">
+                        <div class="three  columns">
                             <?php include_slot('leftcol') ?>
                         </div>
                     <?php endif; ?>
 
                     <?php if (has_slot('leftcol')): ?>
-                        <div class="nine columns">
+                        <div class="eight columns">
                         <?php else: ?>
                             <div class="eight columns centered">
                             <?php endif; ?>

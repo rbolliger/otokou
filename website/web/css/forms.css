@@ -25,13 +25,16 @@ input[type="submit"]:focus {
 }
 
 input[type="text"],
+input[type="password"],
 textarea {
     padding: 5px;
     border: solid 1px #DDD;
     margin: 5px;
+    background-color: #EAEAEA;
 }
 
 input[type="text"]:focus,
+input[type="password"]:focus,
 textarea:focus {
     border: solid 2px #363636;
     margin: 4px;
@@ -56,4 +59,17 @@ select {
 
 input[type="checkbox"] {
     cursor: pointer;
+}
+
+form th {
+    vertical-align: middle;
+}
+
+form label {
+   display: inline;
+    padding: 0 1em 3px 0;
+    padding-left: 5px;
+    text-align: left;
+    color: #1d1d1d;
+    font-weight: normal !important; 
 }

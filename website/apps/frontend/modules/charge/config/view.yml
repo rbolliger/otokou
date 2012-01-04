@@ -5,7 +5,6 @@ all:
       #- jquery_slideToggle.js
   stylesheets: 
       - smoothness/jquery-ui-1.8.8.custom.css
-      - forms.css
       - admin_default.css
       - charges.css
       
