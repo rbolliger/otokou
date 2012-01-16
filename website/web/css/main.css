@@ -15,19 +15,20 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #header {
-    background-color: #363636;
-    height: 4em;    
+    background-color: #363636;  
 }
 
 #header li, #footer li {
-    display: inline;
+    margin: 0 0.15em;
     padding: 0px 10px;
-    vertical-align: middle;
 }
 
 #header li {
+
+    font-size: 1.4em;
     height: 4em;
     line-height: 4em;
+
 }
 
 #header li.current {
@@ -36,7 +37,6 @@ h1, h2, h3, h4, h5, h6 {
 
 #header a, #footer a {
     color: #fefefe;
-    font-size: 1.4em;
     text-decoration: none;
 }
 
@@ -75,6 +75,7 @@ html, body {
     height: 4em;
     line-height: 4em;
     vertical-align: middle;
+    font-size: 1.2em;
 }
 
 a {

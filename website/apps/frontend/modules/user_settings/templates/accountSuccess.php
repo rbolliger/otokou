@@ -2,6 +2,8 @@
 <?php include_partial('user_settings_menu'); ?>
 <?php end_slot() ?>
 
+<h1>User Settings</h1>
+
 <?php use_stylesheets_for_form($form) ?>
 <?php use_javascripts_for_form($form) ?>
 

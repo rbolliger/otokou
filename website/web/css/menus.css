@@ -6,28 +6,49 @@
         Purpose of the stylesheet follows.
 */
 
-ul.menu 
+ul.hor-menu 
 {
-  list-style: none;
-padding: 0;
-margin: 0;  
+    list-style: none;
+    padding: 0;
+    margin: 0;  
 }
 
 
-ul.menu li
+ul.hor-menu li
 {
-list-style: none;
-float: left;
-margin: 0 0.15em;
+    list-style: none;
+    float: left;  
+    display: inline;
+    vertical-align: middle;
 }
 
-li.first
+li.hor-menu.first
 {
     padding-left: 1em;
 }
 
-li.last
+li.hor-menu.last
 {
     padding-right: 1em;
 }
 
+ul.vert-menu 
+{
+    list-style: none;
+    padding: 0;
+    margin: 0; 
+    background-color: white;
+    border: 2px solid #DDD;
+    padding: 10px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+
+ul.vert-menu li
+{
+    list-style: none;
+    font-size: 1.3em;
+    padding-bottom: 0.4em;
+    margin: 0;
+}
