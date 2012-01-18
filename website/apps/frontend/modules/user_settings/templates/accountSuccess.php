@@ -7,7 +7,7 @@
 <?php use_stylesheets_for_form($form) ?>
 <?php use_javascripts_for_form($form) ?>
 
-<div class="sf_admin_form">
+<div id="user_settings_form" class="box">
 <?php echo $form->renderFormTag(url_for('@user_settings_account')) ?>
   <table>
     <?php echo $form ?>
@@ -19,3 +19,6 @@
   </table>
 </form>
 </div>
+
+
+    

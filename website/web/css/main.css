@@ -84,6 +84,7 @@ a {
 
 table {
     border: none;
+    margin: 0px;
 }
 
 table tbody tr {
@@ -127,4 +128,28 @@ table tbody tr:nth-child(even) {
     display: block;
     float:right;
     margin-right: 5px;
+}
+
+.box {
+    border: 1px solid #ddd;
+    background-color: #fff;
+    padding: 5px;
+}
+
+#user_settings_form tr {
+    border-bottom: 1px dotted #DDD;
+    text-align: left;
+}
+
+#user_settings_form th {
+    width: 20%;    
+}
+
+#user_settings_form tr:last-of-type {
+    border-bottom: none;    
+}
+
+#user_settings_form tr:last-of-type input[type="submit"]{
+    margin-top: 10px; 
+    margin-bottom: 10px; 
 }
