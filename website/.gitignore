@@ -10,3 +10,4 @@ config/databases.yml
 web/backend.php
 web/index.php
 
+*.netbeans-base

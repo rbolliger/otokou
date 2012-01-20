@@ -2,7 +2,7 @@ generator:
   class: sfDoctrineGenerator
   param:
     model_class:           Charge
-    theme:                 admin
+    theme:                 otokouAdmin
     non_verbose_templates: true
     with_show:             false
     singular:              ~
@@ -10,7 +10,8 @@ generator:
     route_prefix:          charge
     with_doctrine_route:   true
     actions_base_class:    otkWithOwnerActions
-    css:                    false
+    #cannot put admin_default.css here because it must appear in last position
+    css:                   none  
 
     config:
       actions: ~
