@@ -2,7 +2,7 @@ generator:
   class: sfDoctrineGenerator
   param:
     model_class:           Vehicle
-    theme:                 admin
+    theme:                 otokouAdmin
     non_verbose_templates: true
     with_show:             false
     singular:              ~
@@ -10,6 +10,8 @@ generator:
     with_doctrine_route:   true
     actions_base_class:    otkWithOwnerActions
     route_prefix:          vehicle
+    #cannot put admin_default.css here because it must appear in last position
+    css:                   none  
 
     config:
       actions: ~
@@ -17,7 +19,7 @@ generator:
         name:
           help: Define an explicit name for the vehicle.
         is_archived:
-           help: You can archive vehicles you don't use anymore. Its data still remain available.
+           help: By archiving the vehicle, it won't appear anymore in charges, charts and reports lists. Its data still remain available.
            label: Is archived?
       list:   
         display: [=name, is_archived]
