@@ -13,6 +13,8 @@ require_once(dirname(__FILE__).'/../lib/Base<?php echo ucfirst($this->moduleName
  */
 abstract class <?php echo $this->getGeneratedModuleName() ?>Actions extends <?php echo $this->getActionsBaseClass()."\n" ?>
 {
+
+
   public function preExecute()
   {
     $this->dispatcher->connect('admin.pre_execute', array($this, 'addUserToConfig'));  
@@ -31,6 +33,8 @@ abstract class <?php echo $this->getGeneratedModuleName() ?>Actions extends <?ph
     parent::preExecute();
     
     $this->dispatcher->connect('admin.build_query', array($this, 'addUserFilter'));
+    
+    $this->to_slots = array();
   }
   
   

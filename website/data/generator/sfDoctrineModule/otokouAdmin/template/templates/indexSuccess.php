@@ -1,6 +1,9 @@
 [?php use_helper('I18N', 'Date') ?]
 [?php include_partial('<?php echo $this->getModuleName() ?>/assets') ?]
 
+
+[?php include_partial('<?php echo $this->getModuleName() ?>/slots',array('to_slots' => $to_slots)) ?]
+
 <div id="sf_admin_container">
     
    [?php slot('content_title'); ?]
@@ -8,6 +11,8 @@
    [?php end_slot(); ?]
 
   [?php include_partial('<?php echo $this->getModuleName() ?>/flashes') ?]
+  
+  
 
   <?php if ($this->configuration->hasFilterForm()): ?>
   <div id="filters">
