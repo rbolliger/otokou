@@ -19,11 +19,13 @@
   
    <div id="sf_admin_actions_menu">
         <ul>
+            <?php if ($this->configuration->hasFilterForm()): ?>
             [?php if ('show' === $filters_appearance) : ?]
                 <li> [?php echo link_to('Hide filters', '@<?php echo $this->getUrlForAction('list') ?>?filters_appearance=hidden', array('id' => "filters_button")); ?]</li>
             [?php else : ?]
                 <li> [?php echo link_to('Show filters', '@<?php echo $this->getUrlForAction('list') ?>?filters_appearance=show', array('id' => "filters_button")); ?]</li>
             [?php endif; ?]
+            <?php endif; ?>
             [?php include_partial('<?php echo $this->getModuleName() ?>/list_actions', array('helper' => $helper)) ?]
             <li>[?php include_partial('<?php echo $this->getModuleName() ?>/list_header', array('pager' => $pager)) ?]</li>
         </ul>
