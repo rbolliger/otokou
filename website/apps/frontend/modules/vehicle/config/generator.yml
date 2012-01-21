@@ -34,6 +34,6 @@ generator:
       form:    
         class: VehicleForm
       edit:    
-        title: Edit vehicle %%name%%
+        title: Edit %%name%%
       new:     
         title: Add a new vehicle
