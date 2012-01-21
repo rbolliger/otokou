@@ -17,21 +17,21 @@ class chargeActions extends autoChargeActions {
 
         parent::executeMaxPerPage($request);
 
-        $this->sumAmount = $this->getSumAmount();
+        $this->to_slots = $this->getToSlots();
     }
 
     public function executeIndex(sfWebRequest $request) {
 
         parent::executeIndex($request);
 
-        $this->sumAmount = $this->getSumAmount();
+        $this->to_slots = $this->getToSlots();
     }
 
     public function executeFilter(sfWebRequest $request) {
 
         parent::executeFilter($request);
 
-        $this->sumAmount = $this->getSumAmount();
+        $this->to_slots = $this->getToSlots();
     }
 
     public function executeNew(sfWebRequest $request) {
@@ -88,6 +88,12 @@ class chargeActions extends autoChargeActions {
 
 
         return array('amount_total' => $r1_sum, 'amount_page' => $r2_sum);
+    }
+    
+    public function getToSlots() {
+        return array(
+            'leftcol' => $this->getSumAmount(),
+        );
     }
 
 }
