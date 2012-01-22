@@ -35,6 +35,8 @@ $browser->
                         checkElement('select#charge_date_month option[selected="selected"]',date('m'))->
                         checkElement('select#charge_date_year option[selected="selected"]',date('Y'))->
                         checkElement('select#charge_date_year:contains(1970)',true)->
+                        checkElement('#charge_new_menu',true)->
+                        checkElement('#charge_new_menu li:contains("Add a new vehicle")',true)->
                     end()->
             click('Save', getFormData($browser, array('category_id' => $fuelId, 'quantity' => null)))->
                 with('form')->
