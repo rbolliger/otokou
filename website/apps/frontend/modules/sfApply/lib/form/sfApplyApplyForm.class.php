@@ -6,25 +6,16 @@ class sfApplyApplyForm extends sfGuardUserForm {
 
     public function configure() {
         parent::configure();
-
+        
         // We're making a new user or editing the user who is
         // logged in. In neither case is it appropriate for
         // the user to get to pick an existing userid. The user
         // also doesn't get to modify the validate field which
         // is part of how their account is verified by email.
-
-        unset($this['user_id'],
-              $this['validate'],
-              $this['algorithm'],
-              $this['salt'],
-              $this['is_active'],
-              $this['is_super_admin'],
-              $this['last_login'],
-              $this['created_at'],
-              $this['updated_at'],
-              $this['groups_list'],
-              $this['permissions_list']
-                );
+       
+        unset($this['user_id']);
+        
+        $this->useFields(array('username','first_name','last_name','password','email_address'));
 
         // Add username and password fields which we'll manage
         // on our own. Before you ask, I experimented with separately 
@@ -58,7 +49,7 @@ class sfApplyApplyForm extends sfGuardUserForm {
         ));
 
         $this->widgetSchema->setNameFormat('sfApplyApply[%s]');
-        $this->widgetSchema->setFormFormatterName('list');
+        //$this->widgetSchema->setFormFormatterName('list');
 
         
 

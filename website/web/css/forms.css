@@ -6,7 +6,7 @@
         Purpose of the stylesheet follows.
 */
 
-input[type="submit"] {
+input[type="submit"], .button {
     padding: 0.4em 1em;
     font-size: 1em;
     background-color: #AB3B37;
@@ -20,7 +20,10 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover,
-input[type="submit"]:focus {
+input[type="submit"]:focus,
+.button:hover,
+.button:focus
+{
     background-color: #F75550;
 }
 

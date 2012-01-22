@@ -22,8 +22,8 @@
     background-color: #FEFEFE;
     white-space: nowrap;
     margin-bottom: 5px;
-    border-bottom: 10px solid #EAEAEA;
-    border-top: 10px solid #EAEAEA;
+/*    border-bottom: 10px solid #EAEAEA;
+    border-top: 10px solid #EAEAEA;*/
     margin-bottom: 3px;
 }
 
@@ -316,7 +316,8 @@
     float: none !important;
 }
 
-#sf_admin_container .sf_admin_form_row
+#sf_admin_container .sf_admin_form_row,
+#sf_admin_container tr
 {
     clear: both;
     padding: 5px;

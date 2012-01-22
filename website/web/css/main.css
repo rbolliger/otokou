@@ -136,6 +136,15 @@ table tbody tr:nth-child(even) {
     padding: 5px;
 }
 
+.bigbox,
+.sf_apply_notice,
+.sf_apply
+{
+    background-color: #fff;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
 #user_settings_form tr {
     border-bottom: 1px dotted #DDD;
     text-align: left;
@@ -153,3 +162,9 @@ table tbody tr:nth-child(even) {
     margin-top: 10px; 
     margin-bottom: 10px; 
 }
+
+
+#sf_apply_apply_form th {
+    width: 20%;
+}
+
