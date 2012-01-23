@@ -48,7 +48,19 @@ ul.vert-menu
 ul.vert-menu li
 {
     list-style: none;
-    font-size: 1.3em;
-    padding-bottom: 0.4em;
+    font-size: 1.1em;
+    line-height: 26px;
     margin: 0;
+    border-bottom: 1px dashed #DDD;
+    background: url(/images/menu_icon.png) no-repeat 4px 9px;
+    padding-left: 16px;
+}
+
+ul.vert-menu li.last {
+    border-bottom: none;
+}
+
+ul.vert-menu li.current {
+    font-weight: bold;
+    background: url(/images/menu_icon_current.png) no-repeat 4px 9px;
 }
