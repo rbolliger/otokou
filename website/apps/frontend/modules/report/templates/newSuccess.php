@@ -7,12 +7,15 @@ end_slot();
 <?php use_stylesheets_for_form($form) ?>
 <?php use_javascripts_for_form($form) ?>
 
+<?php slot('content_title') ?>
 <h1>Create a new custom report</h1>
+<?php end_slot(); ?>
+
 
 <div class="report_form">
 
     <?php echo $form->renderFormTag(url_for('@report_create')) ?>
-        <table><tbody>
+    <table><tbody>
             <?php echo $form ?>
         </tbody>
         <tfoot>
