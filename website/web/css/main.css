@@ -4,7 +4,7 @@ body {
     font-family: Geneva, "Lucida Sans" "Lucida Grande", "Lucida Sans Unicode", Verdana, sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6 { 
+h1, h2, h3, h4, h5, h6, .vert-menu li { 
     color: #363636;
     font-family: Georgia, Times, "Times New Roman", serif;
 
