@@ -59,7 +59,9 @@ ul.vert-menu li ul.menu_level_1 li
     font-weight: normal;
 }
 
-ul.vert-menu li.last {
+ul.vert-menu li.last,
+ul.vert-menu li ul.menu_level_1 li.last
+{
     border-bottom: none;
 }
 
