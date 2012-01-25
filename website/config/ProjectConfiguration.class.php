@@ -13,5 +13,14 @@ class ProjectConfiguration extends sfProjectConfiguration
     $this->enablePlugins('sfFormExtraPlugin');
     $this->enablePlugins('sfDoctrineApplyPlugin'); 
     $this->enablePlugins('sfTCPDFPlugin');
+    $this->enablePlugins('sfTaskExtraPlugin');
+    $this->enablePlugins('sfZurbFoundationPlugin');
+    
+    
+    // changing webDir if on donax
+    if ($_SERVER['HTTP_HOST'] == 'otokou.donax.ch') {
+      $this->setWebDir($this->getRootDir().'/..');
+    } 
+
   }
 }

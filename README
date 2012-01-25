@@ -3,10 +3,8 @@
 2) git submodule init
 3) git submodule update
 4) Edit otokou/website/config/databases.yml
-5) create the following files:
-- website/config/ProjectConfiguration.class.php
+5) Rename the appropriate database_*.yml to the following file:
 - website/config/databases.yml
-- website/web/backend.php
-- website/web/index.php
-by renaming the files with the same name but with an "_original" suffix and by adapting them to your development environment.
+(by renaming the files with the same name but with an "_original" suffix and by adapting them to your development environment).
 6) php symfony doctrine:build --all --and-load
+7) php symfony plugin:publish-assets

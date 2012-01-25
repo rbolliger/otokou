@@ -1,13 +1,9 @@
-#config/databases.yml
 cache/*
 log/*
 web/images/charts
 web/pdf
 web/functional
 web/images/functional
-config/ProjectConfiguration.class.php
 config/databases.yml
-web/backend.php
-web/index.php
 
 *.netbeans-base

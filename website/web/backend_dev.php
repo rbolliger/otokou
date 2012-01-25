@@ -7,7 +7,11 @@
 //  die('You are not allowed to access this file. Check '.basename(__FILE__).' for more information.');
 //}
 
-require_once(dirname(__FILE__).'/../config/ProjectConfiguration.class.php');
+if ($_SERVER['HTTP_HOST'] == 'otokou.donax.ch') {
+    require_once(dirname(__FILE__) . '/otokou/config/ProjectConfiguration.class.php');
+} else {
+    require_once(dirname(__FILE__) . '/../config/ProjectConfiguration.class.php');
+}
 
 $configuration = ProjectConfiguration::getApplicationConfiguration('backend', 'dev', true);
 sfContext::createInstance($configuration)->dispatch();
