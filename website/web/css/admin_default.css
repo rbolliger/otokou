@@ -243,7 +243,8 @@
 
 #sf_admin_container ul li.sf_admin_action_pdf a
 {
-    background: url(Simages/icons/page_white_acrobat.png) no-repeat 0 0;
+    background: url(/images/icons/page_white_acrobat.png) no-repeat 0 0;
+    background-position-y: center;
 }
 
 #sf_admin_container .notice
