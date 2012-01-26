@@ -1,4 +1,7 @@
 all:
   javascripts: [jquery-1.4.4.min.js, jquery-ui-1.8.8.custom.min.js]
-  stylesheets: [smoothness/jquery-ui-1.8.8.custom.css, vehicle_performances]
+  stylesheets: 
+    - smoothness/jquery-ui-1.8.8.custom.css
+    - admin_default.css
+    - vehicle_performances
   

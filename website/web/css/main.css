@@ -161,3 +161,11 @@ table tbody tr:nth-child(even) {
     width: 20%;
 }
 
+h2.report_category_title {
+    margin-top: 15px;
+}
+
+#report_container {
+    margin-bottom: 30px;
+}
+

@@ -1,6 +1,5 @@
 <tr class="<?php echo $report->getIsNew() ? 'report_new' : 'report_old' ?>">
     <td><?php echo $report->getIsNew() ? image_tag('icons/star') : '&nbsp;' ?></td>
-    <td><?php echo link_to(image_tag('icons/page_white_acrobat'), '@report_pdf?slug=' . $report->getSlug()) ?></td>
     <td><?php echo link_to($report->getName(), '@report_show?slug=' . $report->getSlug()); ?></td>
 
 
@@ -41,6 +40,17 @@
     </td>
 
     <td>
-        <?php echo link_to(image_tag('icons/delete'), '@report_delete?slug=' . $report->getSlug(), array('method' => 'delete', 'confirm' => 'Are you sure?', 'absolute' => true)) ?>
+        <ul class="sf_admin_td_actions">
+            <li class="sf_admin_action_pdf">
+                <?php echo link_to(image_tag('icons/page_white_acrobat') . " pdf", '@report_pdf?slug=' . $report->getSlug()) ?>  
+            </li>
+            <li class="sf_admin_action_delete">
+                <?php echo link_to("delete", '@report_delete?slug=' . $report->getSlug(), array('method' => 'delete', 'confirm' => 'Are you sure?', 'absolute' => true)) ?>
+            </li>
+        </ul>
+    </td>
+
+    <td>
+
     </td>
 </tr>

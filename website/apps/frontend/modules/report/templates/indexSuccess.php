@@ -10,9 +10,15 @@ end_slot();
 
 <?php if (count($vehicles) || count($custom)) : ?>
 
-    <?php include_partial('reports_list_vehicle', array('categories' => $vehicles)) ?>
+    <div id="sf_admin_container">
+        <div id="report_container">
 
-    <?php include_partial('reports_list_custom', array('custom' => $custom)) ?>
+            <?php include_partial('reports_list_vehicle', array('categories' => $vehicles)) ?>
+
+            <?php include_partial('reports_list_custom', array('custom' => $custom)) ?>
+
+        </div>
+    </div>  
 
 <?php else : ?>
 
