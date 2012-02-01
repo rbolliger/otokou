@@ -88,8 +88,12 @@ class apiRR {
 	}
 	
 	private function decomposeRequest() {
-		// $components = str_getcsv($this->decryptedRequest);  // php 5.3.0
-		$components = split(",", $this->decryptedRequest)
+		if (version_compare(PHP_VERSION, '5.3.0') >= 0) {
+			$components = str_getcsv($this->decryptedRequest);
+		}
+		else {
+			$components = split(",", $this->decryptedRequest);
+		}
 		
 		if (sizeof($components) < 2 && sizeof($components) > 3) {
 			$this->errorCode = '120';
