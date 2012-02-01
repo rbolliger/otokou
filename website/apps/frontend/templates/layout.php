@@ -15,7 +15,7 @@
         <?php include_stylesheets() ?>
 
         <!--[if lt IE 9]>
-            <link rel="stylesheet" type="text/css" media="screen" href=""/css/../sfZurbFoundationPlugin/css/ie.css">
+            <link rel="stylesheet" type="text/css" media="screen" href="/css/../sfZurbFoundationPlugin/css/ie.css">
     <![endif]-->
 
         <!-- IE Fix for HTML5 Tags -->
