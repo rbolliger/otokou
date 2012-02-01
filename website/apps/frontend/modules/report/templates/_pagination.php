@@ -1,35 +1,49 @@
-<?php if ($pager->haveToPaginate()): ?>
-  <div class="pagination">
-    <a href="<?php echo url_for($url) ?>?page=1">
-      <img src="/images/first.png" alt="First page" title="First page" />
-    </a>
+<?php $nb_links = sfConfig::get('app_list_nb_links'); ?>
+
+<div class="sf_admin_pagination">
+    
+ <?php if ($pager->getPage() > 1) : ?>
+        <a href="<?php echo url_for($url) ?>?page=<?php echo $pager->getPreviousPage() ?>">
+            &lt;&lt; Previous 
+        </a>  
+        <span class="separator">|</span>
+ <?php endif; ?>   
  
-    <a href="<?php echo url_for($url) ?>?page=<?php echo $pager->getPreviousPage() ?>">
-      <img src="/images/previous.png" alt="Previous page" title="Previous page" />
-    </a>
- 
-    <?php foreach ($pager->getLinks() as $page): ?>
-      <?php if ($page == $pager->getPage()): ?>
-        <?php echo $page ?>
-      <?php else: ?>
-        <a href="<?php echo url_for($url) ?>?page=<?php echo $page ?>"><?php echo $page ?></a>
-      <?php endif; ?>
+ <?php if ($pager->getPage() > 1 + floor($nb_links / 2)) : ?>
+        <a href="<?php echo url_for($url) ?>?page=1">
+            1 
+        </a> 
+    <?php endif; ?>
+
+    <?php if ($pager->getPage() > 2 + floor($nb_links / 2)) : ?>
+        <span class="dots"> ...  </span>
+    <?php endif; ?>
+
+
+    <?php foreach ($pager->getLinks($nb_links) as $page): ?>
+        <?php if ($page == $pager->getPage()): ?>
+            <span class="thepage"><?php echo $page ?></span> 
+        <?php else: ?>
+            <a href="<?php echo url_for($url) ?>?page=<?php echo $page ?>"><?php echo $page ?></a>
+        <?php endif; ?>
+
     <?php endforeach; ?>
+
+    <?php if ($pager->getPage() < $pager->getLastPage() - floor($nb_links / 2) - 1) : ?>
+        <span class="dots"> ...  </span>
+    <?php endif; ?>
+
+    <?php if ($pager->getPage() < $pager->getLastPage() - floor($nb_links / 2)) : ?>
+        <a href="<?php echo url_for($url) ?>?page=<?php echo $pager->getLastPage() ?>">
+            <?php echo $pager->getLastPage() ?>
+        </a>
+    <?php endif; ?>
+
+    <?php if ($pager->getPage() < $pager->getLastPage()) : ?>
+        <span class="separator">|</span>
+        <a href="<?php echo url_for($url) ?>?page=<?php echo $pager->getNextPage() ?>">
+            Next &gt;&gt;
+        </a>
+    <?php endif; ?>
  
-    <a href="<?php echo url_for($url) ?>?page=<?php echo $pager->getNextPage() ?>">
-      <img src="/images/next.png" alt="Next page" title="Next page" />
-    </a>
- 
-    <a href="<?php echo url_for($url) ?>?page=<?php echo $pager->getLastPage() ?>">
-      <img src="/images/last.png" alt="Last page" title="Last page" />
-    </a>
-  </div>
-<?php endif; ?>
- 
-<div class="pagination_desc">
-  <strong><?php echo count($pager) ?></strong> reports available
- 
-  <?php if ($pager->haveToPaginate()): ?>
-    - page <strong><?php echo $pager->getPage() ?>/<?php echo $pager->getLastPage() ?></strong>
-  <?php endif; ?>
 </div>

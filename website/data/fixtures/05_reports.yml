@@ -1,10 +1,10 @@
 Report:
-<?php for ($i = 0; $i <= 10; $i++): ?>
+<?php for ($i = 0; $i <= 25; $i++): ?>
   report_franz_kadett_<?php echo $i ?>:
     User:             franz
     Vehicles:         [kadett]
-    kilometers_from:  <?php echo 2*$i - rand(0,3*$i)."\n" ?>
-    kilometers_to:    <?php echo 2*$i^2 - 2*rand(0,3*$i)."\n" ?> 
+    kilometers_from:  <?php echo max(0,2*$i - rand(0,3*$i))."\n" ?>
+    kilometers_to:    <?php echo max(1,2*$i^2 - 2*rand(0,3*$i))."\n" ?> 
     is_new:           <?php $v = $i % 2 ? 'true' : 'false'; echo $v."\n" ?>
     name:            "franz_kadett n.<?php echo $i ?>"
 <?php endfor; ?>
@@ -13,8 +13,8 @@ Report:
   report_franz_astra_<?php echo $i ?>:
     User:             franz
     Vehicles:         [astra]
-    kilometers_from:  <?php echo 2*$i - rand(0,3*$i)."\n" ?>
-    kilometers_to:    <?php echo 2*$i^2 - 2*rand(0,3*$i)."\n" ?> 
+    kilometers_from:  <?php echo max(0,2*$i - rand(0,3*$i))."\n" ?>
+    kilometers_to:    <?php echo max(1,2*$i^2 - 2*rand(0,3*$i))."\n" ?> 
     is_new:           <?php $v = $i % 2 ? 'true' : 'false'; echo $v."\n" ?>
     name:            "franz_astra n.<?php echo $i ?>"
 <?php endfor; ?>
@@ -24,8 +24,8 @@ Report:
   report_franz_custom_<?php echo $i ?>:
     User:             franz
     Vehicles:         [astra, corsa]
-    kilometers_from:  <?php echo 2*$i - rand(0,3*$i)."\n" ?>
-    kilometers_to:    <?php echo 2*$i^2 - 2*rand(0,3*$i)."\n" ?> 
+    kilometers_from:  <?php echo max(0,2*$i - rand(0,3*$i))."\n" ?>
+    kilometers_to:    <?php echo max(1,2*$i^2 - 2*rand(0,3*$i))."\n" ?> 
     is_new:           <?php $v = $i % 2 ? 'true' : 'false'; echo $v."\n" ?>
     name:            "franz_custom n.<?php echo $i ?>"
 <?php endfor; ?>
