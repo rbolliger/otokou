@@ -63,7 +63,7 @@ class apiRR {
 		if ($this->rawRequest == '' ) {	
 			$this->errorCode = '110';
 			$this->errorMessage = 'Empty String';
-			$this->isError = true;			
+			$this->isError = true;
 		}
 		
 		if (!$this->isError) {
@@ -80,7 +80,7 @@ class apiRR {
 			
 		$this->composeResponse();
 		
-		$this->encryptResponse();	
+		$this->encryptResponse();
 	}
 	
 	private function decryptRequest() {
@@ -88,12 +88,17 @@ class apiRR {
 	}
 	
 	private function decomposeRequest() {
-		$components = str_getcsv($this->decryptedRequest);
+		if (version_compare(PHP_VERSION, '5.3.0') >= 0) {
+			$components = str_getcsv($this->decryptedRequest);
+		}
+		else {
+			$components = split(",", $this->decryptedRequest);
+		}
 		
 		if (sizeof($components) < 2 && sizeof($components) > 3) {
 			$this->errorCode = '120';
 			$this->errorMessage = 'Unknow Request Format';
-			$this->isError = true;				
+			$this->isError = true;
 		}
 		else {
 			if ($components[0] == 'get_user') {
