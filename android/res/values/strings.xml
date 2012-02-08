@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, Main!</string>
+    <string name="app_name">Otokou</string>
+    <string name="main_menu_user_preferences">Preferences</string>
+    <string name="main_menu_add_charge">Add Charge</string>
+    <string name="main_menu_exit">Exit</string>
+    <string-array name="charge_categories">
+        <item>Fuel</item>
+        <item>Initial Investment</item>
+        <item>Leasing</item>
+        <item>Tax</item>
+        <item>Accessory</item>
+        <item>Insurance</item>
+        <item>Fine</item>
+        <item>Maintenance</item>
+    </string-array>
+</resources>
