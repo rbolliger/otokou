@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="txt_vehicle_text">Vehicle</string>
+    <string name="txt_charge_category_text">Category</string>
+    <string name="txt_date_text">Date</string>
+    <string name="txt_kilometers_text">Kilometers</string>
+    <string name="txt_amount_text">Amount</string>
+    <string name="txt_comment_text">Comment</string>
+    <string name="txt_quantity_text">Quantity</string>
+    <string name="btn_add_text">Add</string>
+    <string-array name="charge_categories">
+        <item>Fuel</item>
+        <item>Initial Investment</item>
+        <item>Leasing</item>
+        <item>Tax</item>
+        <item>Accessory</item>
+        <item>Insurance</item>
+        <item>Fine</item>
+        <item>Maintenance</item>
+    </string-array>
+</resources>
