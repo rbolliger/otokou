@@ -1,6 +1,12 @@
 package com.bl457xor.app.otokou;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.io.StreamCorruptedException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -42,6 +48,37 @@ public class OtokouUser implements Serializable{
 	
 	@Override
 	public String toString() {
-		return firstName+" "+lastName+" ("+userID+")";	
+		return firstName+" "+lastName;	
+	}
+	
+	public static OtokouUser OtokouUserFromByteArray(byte[] byteArray) {
+		try {
+			ByteArrayInputStream b = new ByteArrayInputStream(byteArray);
+			ObjectInputStream o = new ObjectInputStream(b);
+			return (OtokouUser)o.readObject();
+		} catch (StreamCorruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public byte[] toByteArray() {
+		try {
+	        ByteArrayOutputStream b = new ByteArrayOutputStream();
+	        ObjectOutputStream o = new ObjectOutputStream(b);
+	        o.writeObject(this);
+	        return b.toByteArray();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

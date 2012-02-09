@@ -5,7 +5,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" 
+        android:layout_height="wrap_content" 
         android:orientation="vertical" >
         
         <TextView
@@ -50,7 +50,8 @@
         <EditText
             android:id="@+id/edtKilometers"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:hint="@string/etxt_kilometers_hint" >
 
             <requestFocus />
         </EditText>
@@ -64,7 +65,8 @@
         <EditText
             android:id="@+id/edtAmount"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:hint="@string/etxt_amount_hint" />
 
         <TextView
             android:id="@+id/txtComment"
@@ -75,7 +77,8 @@
         <EditText
             android:id="@+id/edtComment"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:hint="@string/etxt_comment_hint" />
 
         <TextView
             android:id="@+id/txtQuantity"
@@ -86,7 +89,8 @@
         <EditText
             android:id="@+id/edtQuantity"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:hint="@string/etxt_quantity_hint" />
 
         <Button
             android:id="@+id/btnAdd"

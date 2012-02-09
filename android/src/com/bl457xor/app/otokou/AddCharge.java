@@ -1,14 +1,11 @@
 package com.bl457xor.app.otokou;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.StreamCorruptedException;
 import java.util.ArrayList;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
@@ -18,8 +15,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 public class AddCharge extends Activity {
-	// general constants
-	public static final String OTOKOU_API_URL = "http://otokou.donax.ch/api";
+	// onOptionsItemSelected menu ids constants
+	public static final int MENU_ID_ADD_CHARGE = 2002;
+	public static final int MENU_ID_BACK = 2100;
 	
 	OtokouUser otokouUser;
 	ArrayList<OtokouVehicle> vehicles = new ArrayList<OtokouVehicle>();
@@ -35,46 +33,24 @@ public class AddCharge extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_charge);
-        
-		byte[] otokouUserBytes = getIntent().getExtras().getByteArray("user");
-		int vehiclesNumber = getIntent().getExtras().getInt("vehiclesNumber");
-		
-		for (int i=0; i<vehiclesNumber; i++) {
-			try {
-				byte[] vehiclesBytes = getIntent().getExtras().getByteArray("vehicle_"+i);
-				ByteArrayInputStream b = new ByteArrayInputStream(vehiclesBytes);
-				ObjectInputStream o = new ObjectInputStream(b);
-				vehicles.add((OtokouVehicle)o.readObject());
-			} catch (StreamCorruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}			
-
-		try {
-			ByteArrayInputStream b2 = new ByteArrayInputStream(otokouUserBytes);
-			ObjectInputStream o2 = new ObjectInputStream(b2);
-			otokouUser = (OtokouUser)o2.readObject();
-		} catch (StreamCorruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+              
+		retrieveDataFromExtras();
 		
 		initializeUI();
     }
     
+	private void retrieveDataFromExtras() {
+		// TODO check extras loaded correctly
+		
+		int vehiclesNumber = getIntent().getExtras().getInt("vehiclesNumber");
+		
+		for (int i=0; i<vehiclesNumber; i++) {
+			vehicles.add(OtokouVehicle.OtokouVehicleFromByteArray(getIntent().getExtras().getByteArray("vehicle_"+i)));
+		}			
+
+		otokouUser = OtokouUser.OtokouUserFromByteArray(getIntent().getExtras().getByteArray("user"));		
+	}
+
 	private void initializeUI() {		
 		datePicker = (DatePicker) findViewById(R.id.datePicker);
 		
@@ -107,23 +83,9 @@ public class AddCharge extends Activity {
 		});
 	}
 	
-	private void addCharge(OtokouCharge charge, OtokouUser user) {
-		String getRequest = OTOKOU_API_URL;
-		getRequest += "?request=set_charge";
-		getRequest += ","+user.apiKey;
-		getRequest += ","+charge.vehicleID+","+charge.categoryID+","+charge.date+","+charge.kilometers+","+charge.amount+","+charge.comment+","+charge.quantity;
-		HttpHelper httpHelper = new HttpHelper();
-    	try {
-    		String getResponse = httpHelper.executeHttpGet(getRequest);
-    		Log.i("request",getRequest);
-    		Log.i("response",getResponse);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}	
-	}
-	
 	private void submit() {	
+		// TODO evaluate values, notify errors
+		
 		OtokouCharge charge = new OtokouCharge(vehicles.get((int)spnVehicle.getSelectedItemId()).vehicleID, 
 												vehicles.get((int)spnVehicle.getSelectedItemId()).vehicle, 
 												(int)(spnChargeCategory.getSelectedItemId()+1), 
@@ -134,8 +96,33 @@ public class AddCharge extends Activity {
 												Double.parseDouble(edtQuantity.getText().toString()));
 		
 		
-		addCharge(charge, otokouUser);
+		OtokouAPI.setNewCharge(charge, otokouUser);
 		
-		//finish();
+		finish();
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {	
+		menu.add(Menu.NONE, MENU_ID_ADD_CHARGE, Menu.NONE, R.string.add_charge_menu_add).setIcon(R.drawable.menu_add);
+		menu.add(Menu.NONE, MENU_ID_BACK, Menu.NONE, R.string.add_charge_menu_back).setIcon(R.drawable.exit);
+		return super.onCreateOptionsMenu(menu);
+	}
+	
+	@Override
+	public boolean onPrepareOptionsMenu(Menu menu) {
+		return super.onPrepareOptionsMenu(menu);
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch(item.getItemId()) {
+			case MENU_ID_ADD_CHARGE:
+				submit();
+				break;
+			case MENU_ID_BACK:
+				finish();
+				break;
+		}
+		return super.onOptionsItemSelected(item);
 	}
 }

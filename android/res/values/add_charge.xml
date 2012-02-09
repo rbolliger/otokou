@@ -4,9 +4,13 @@
     <string name="txt_charge_category_text">Category</string>
     <string name="txt_date_text">Date</string>
     <string name="txt_kilometers_text">Kilometers</string>
+    <string name="etxt_kilometers_hint">Absolute distance traveled by the vehicle since the first release.</string>
     <string name="txt_amount_text">Amount</string>
+    <string name="etxt_amount_hint">Price of the charge.</string>
     <string name="txt_comment_text">Comment</string>
+    <string name="etxt_comment_hint">Want to take a note?</string>
     <string name="txt_quantity_text">Quantity</string>
+    <string name="etxt_quantity_hint">This field must be specified only for fuel.</string>
     <string name="btn_add_text">Add</string>
     <string-array name="charge_categories">
         <item>Fuel</item>
@@ -18,4 +22,6 @@
         <item>Fine</item>
         <item>Maintenance</item>
     </string-array>
+    <string name="add_charge_menu_add">Add</string>
+    <string name="add_charge_menu_back">Back</string>
 </resources>
