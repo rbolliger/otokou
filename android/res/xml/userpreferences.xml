@@ -6,6 +6,6 @@
 		android:dialogTitle="API key" 
 		android:dialogMessage="Insert the API key of your otokou account" 
 		android:key="apikey"
-		android:defaultValue="" />/>
+		android:defaultValue="" />
     </PreferenceCategory>
 </PreferenceScreen>
