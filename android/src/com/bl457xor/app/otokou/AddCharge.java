@@ -3,6 +3,10 @@ package com.bl457xor.app.otokou;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,26 +18,37 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-public class AddCharge extends Activity {
+public class AddCharge extends Activity implements OnClickListener {
 	// onOptionsItemSelected menu ids constants
-	public static final int MENU_ID_ADD_CHARGE = 2002;
-	public static final int MENU_ID_BACK = 2100;
+	private static final int MENU_ID_ADD_CHARGE = 2002;
+	private static final int MENU_ID_BACK = 2100;
 	
-	OtokouUser otokouUser;
-	ArrayList<OtokouVehicle> vehicles = new ArrayList<OtokouVehicle>();
-	EditText edtKilometers;
-	EditText edtAmount;
-	EditText edtComment;
-	EditText edtQuantity;
-	DatePicker datePicker;
-	Spinner spnVehicle;
-	Spinner spnChargeCategory;
+	// messages constants
+	public static final int RETURN_RESULT_OK = 1000;
+	public static final int RETURN_RESULT_BACK = 1001;
+	public static final int RETURN_RESULT_ERROR = 1002;
+	public static final String RETURN_ERROR_EXTRA_KEY = "code";
+	public static final int RETURN_ERROR_UNKNOWN = 0;
+	public static final int RETURN_ERROR_NO_CONNECTION = 1;
+	
+	// global variables initialization
+	private OtokouUser otokouUser;
+	private ArrayList<OtokouVehicle> vehicles = new ArrayList<OtokouVehicle>();
+	private EditText edtKilometers;
+	private EditText edtAmount;
+	private EditText edtComment;
+	private EditText edtQuantity;
+	private DatePicker datePicker;
+	private Spinner spnVehicle;
+	private Spinner spnChargeCategory;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_charge);
-              
+        
+        setResult(RETURN_RESULT_BACK, null);
+        
 		retrieveDataFromExtras();
 		
 		initializeUI();
@@ -65,40 +80,54 @@ public class AddCharge extends Activity {
 	    vehicleAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 	    spnVehicle.setAdapter(vehicleAdapter);
 	    
-		spnChargeCategory = (Spinner) findViewById(R.id.spnChargeCategory);
+		spnChargeCategory = (Spinner)findViewById(R.id.spnChargeCategory);
 		ArrayAdapter<CharSequence> chargeTypeAdapter = ArrayAdapter.createFromResource(this, R.array.charge_categories, android.R.layout.simple_spinner_item);
 		chargeTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		spnChargeCategory.setAdapter(chargeTypeAdapter);
 
-		edtKilometers = (EditText) findViewById(R.id.edtKilometers);
-		edtAmount = (EditText) findViewById(R.id.edtAmount);
-		edtComment = (EditText) findViewById(R.id.edtComment);
-		edtQuantity = (EditText) findViewById(R.id.edtQuantity);
+		edtKilometers = (EditText)findViewById(R.id.edtKilometers);
+		edtAmount = (EditText)findViewById(R.id.edtAmount);
+		edtComment = (EditText)findViewById(R.id.edtComment);
+		edtQuantity = (EditText)findViewById(R.id.edtQuantity);
 		
-		Button btnSubmit = (Button) findViewById(R.id.btnAdd);
-		btnSubmit.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {			
-				submit();
-			}
-		});
+		((Button)findViewById(R.id.btnAdd)).setOnClickListener(this);
 	}
 	
 	private void submit() {	
-		// TODO evaluate values, notify errors
+		// TODO evaluate values, notify errors, exceptions from otokouAPI
 		
-		OtokouCharge charge = new OtokouCharge(vehicles.get((int)spnVehicle.getSelectedItemId()).vehicleID, 
-												vehicles.get((int)spnVehicle.getSelectedItemId()).vehicle, 
-												(int)(spnChargeCategory.getSelectedItemId()+1), 
-												""+datePicker.getYear()+"-"+(datePicker.getMonth()+1)+"-"+datePicker.getDayOfMonth(),
-												Double.parseDouble(edtKilometers.getText().toString()),
-												Double.parseDouble(edtAmount.getText().toString()),
-												edtComment.getText().toString(),
-												Double.parseDouble(edtQuantity.getText().toString()));
-		
-		
-		OtokouAPI.setNewCharge(charge, otokouUser);
-		
-		finish();
+		if (isOnline()) {
+			OtokouCharge charge = new OtokouCharge(vehicles.get((int)spnVehicle.getSelectedItemId()).vehicleID, 
+					vehicles.get((int)spnVehicle.getSelectedItemId()).vehicle, 
+					(int)(spnChargeCategory.getSelectedItemId()+1), 
+					""+datePicker.getYear()+"-"+(datePicker.getMonth()+1)+"-"+datePicker.getDayOfMonth(),
+					Double.parseDouble(edtKilometers.getText().toString()),
+					Double.parseDouble(edtAmount.getText().toString()),
+					edtComment.getText().toString(),
+					Double.parseDouble(edtQuantity.getText().toString()));
+
+
+			OtokouAPI.setNewCharge(charge, otokouUser);
+			setResult(RETURN_RESULT_OK, null);
+			finish();
+		}
+		else {					
+			Intent i = new Intent();
+			Bundle extras = new Bundle();
+			extras.putInt(RETURN_ERROR_EXTRA_KEY, RETURN_ERROR_NO_CONNECTION);
+			i.putExtras(extras);
+			setResult(RETURN_RESULT_ERROR, null);
+			finish();
+		}
+	}
+	
+	private boolean isOnline() {
+	    ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+	    NetworkInfo netInfo = cm.getActiveNetworkInfo();
+	    if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+	        return true;
+	    }
+	    return false;
 	}
 	
 	@Override
@@ -109,20 +138,25 @@ public class AddCharge extends Activity {
 	}
 	
 	@Override
-	public boolean onPrepareOptionsMenu(Menu menu) {
-		return super.onPrepareOptionsMenu(menu);
-	}
-	
-	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch(item.getItemId()) {
 			case MENU_ID_ADD_CHARGE:
 				submit();
 				break;
 			case MENU_ID_BACK:
+				setResult(RETURN_RESULT_BACK, null);
 				finish();
 				break;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.btnAdd:
+			submit();
+			break;
+		}			
 	}
 }
