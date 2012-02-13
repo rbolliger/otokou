@@ -32,25 +32,46 @@
             android:text="Loading data"
             android:textAppearance="?android:attr/textAppearanceMedium" />
     </LinearLayout>
-
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:gravity="bottom"
-        android:orientation="horizontal" >
+        android:orientation="vertical" >
 
-        <Button
-            android:id="@+id/btnAddCharge"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/main_btn_add_charge" />
+            android:gravity="bottom"
+            android:orientation="horizontal" >
 
-        <Button
-            android:id="@+id/btnUserPreferences"
-            android:layout_width="wrap_content"
+            <Button
+                android:id="@+id/btnUserPreferences"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:text="@string/main_btn_user_preferences" />
+
+            <Button
+                android:id="@+id/btnReloadData"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:text="@string/main_btn_reload_data" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:text="@string/main_btn_user_preferences" />
+            android:gravity="bottom"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/btnAddCharge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/main_btn_add_charge" />
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

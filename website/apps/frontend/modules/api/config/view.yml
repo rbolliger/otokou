@@ -1,2 +1,11 @@
 indexSuccess:
   has_layout: false
+
+getUserSuccess:
+  has_layout: false
+  
+getVehiclesSuccess:
+  has_layout: false
+  
+setChargeSuccess:
+  has_layout: false
