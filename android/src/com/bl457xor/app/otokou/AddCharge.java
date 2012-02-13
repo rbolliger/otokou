@@ -107,7 +107,7 @@ public class AddCharge extends Activity implements OnClickListener {
 					Double.parseDouble(edtQuantity.getText().toString()));
 
 
-			OtokouAPI.setNewCharge(charge, otokouUser);
+			OtokouTestAPI.setNewCharge(charge, otokouUser);
 			setResult(RETURN_RESULT_OK, null);
 			finish();
 		}

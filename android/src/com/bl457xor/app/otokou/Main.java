@@ -104,11 +104,11 @@ public class Main extends Activity implements Runnable, OnClickListener, OnShare
 			}
 			else {
 				handler.sendEmptyMessage(RUN_MSG_LOADING_USER);
-				otokouUser = OtokouAPI.getUserData(apiKey);
+				otokouUser = OtokouTestAPI.getUserData(apiKey);
 
 				if (otokouUser != null) {
 					handler.sendEmptyMessage(RUN_MSG_LOADING_VEHICLES);
-					vehicles = OtokouAPI.getVehiclesData(apiKey,otokouUser);
+					vehicles = OtokouTestAPI.getVehiclesData(apiKey,otokouUser);
 
 					if (vehicles != null) {
 						handler.sendEmptyMessage(RUN_MSG_LOADING_OK);

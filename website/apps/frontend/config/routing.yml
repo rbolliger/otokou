@@ -212,9 +212,26 @@ user_settings_account:
   requirements:
     sf_method: [get,post,put]
   
+## API Settings
+#------------------------------
+
+# test version
 api:
   url: /api
   param: {module: api, action: index }
+  
+# final version (not working yet)
+api_get_user:
+  url: /api/get_user
+  param: {module: api, action: getUser }
+  
+api_get_vehicles:
+  url: /api/get_vehicles
+  param: {module: api, action: getVehicles }
+  
+api_set_charge:
+  url: /api/set_charge
+  param: {module: api, action: setCharge }
 
 # default rules
 homepage:
