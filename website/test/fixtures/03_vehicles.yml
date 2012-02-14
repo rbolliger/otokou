@@ -53,12 +53,18 @@ Vehicle:
     User: user_gs
     is_archived: false
   car_reports_1:
-    name: car_reports_1
+    name: car_reports_01
     User: user_reports
   car_reports_2:
-    name: car_reports_2
+    name: car_reports_99
     User: user_reports
     is_archived: true
+<?php for ($i = 20; $i >= 2; $i--): ?>   # in reverse order to test sorting in report/index
+  car_reports_ur_<?php echo $i ?>:
+    name:             <?php echo sprintf('car_reports_%02d', $i) ?>  
+    User:             user_reports
+    is_archived:      false
+<?php endfor; ?>
 
   
     

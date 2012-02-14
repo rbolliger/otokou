@@ -4,7 +4,7 @@ include dirname(__FILE__) . '/../../lib/test/otokouTestFunctional.class.php';
 
 $ut = new otokouTestFunctional(new sfBrowser());
 
-$t = new lime_test(26, new lime_output_color());
+$t = new lime_test(48, new lime_output_color());
 
 /**
  * New vehicle
@@ -122,3 +122,23 @@ $t->cmp_ok($v->getCostPerKm(), '==',null , '->getCostPerKm() returns "null" if t
 // ->getAverageConsumption()
 $t->diag('->getAverageConsumption()');
 $t->cmp_ok($v->getAverageConsumption(), '==', null, '->getAverageConsumption() returns null" if the vehicle has not charges');
+
+
+
+// VehicleTable
+$t->diag('*** Vehicle Table Methods ***');
+
+$t->diag('findActiveByUsernameAndSortByName()');
+$t->can_ok(Doctrine::getTable('Vehicle'), 'findActiveByUsernameAndSortByName', 'Method "findActiveByUsernameAndSortByName" exists');
+
+$params = array('username' => 'user_reports');
+$v = Doctrine::getTable('Vehicle')->findActiveByUsernameAndSortByName($params);
+
+$t->cmp_ok(count($v), '===', 20, 'findActiveByUsernameAndSortByName returns the right num ber of elements');
+
+foreach ($v as $key => $vehicle) {
+    $name = sprintf('car_reports_%02d', $key+1);
+    $msg = 'Vehicle '.$name.' is correctly sorted';
+    $t->cmp_ok($vehicle->getName(), '===', $name, $msg);
+}
+

@@ -32,6 +32,22 @@ class VehicleTable extends Doctrine_Table {
 
         return $q->execute();
     }
+    
+    public function findActiveByUsernameAndSortByName($params) {
+        
+        $q = $this->createQuery('v')
+                        ->select('v.*');
+        
+        $q = $this->addUsernameQuery($q, $params['username']);
+        $q = $this->addIsArchivedQuery($q,false);
+        
+        //$q = $this->addWithSingleReportQuery($q);
+        
+        $q = $this->addSortByName($q);
+        
+        return $q->execute();
+        
+    }
 
     public function findWithReports($params) {
 
@@ -82,12 +98,27 @@ class VehicleTable extends Doctrine_Table {
 
         return $q;
     }
-
+    
+    protected function addISArchivedQuery(Doctrine_Query $q, $isArchived = false) {
+        
+        $root = $q->getRootAlias();
+        
+        $q->andWhere($root.'.is_archived = ?',$isArchived);
+        
+        return $q;
+    }
     protected function addSortByArchivedAndCreatedAt(Doctrine_Query $q) {
 
         $root = $q->getRootAlias();
 
         return $q->orderBy($root . '.is_archived DESC, ' . $root . '.created_at DESC');
+    }
+    
+    protected function addSortByName(Doctrine_Query $q) {
+        
+        $root = $q->getRootAlias();
+
+        return $q->orderBy($root . '.name ASC, ' . $root . '.created_at DESC');
     }
 
     protected function addWithSingleReportQuery(Doctrine_Query $q) {
