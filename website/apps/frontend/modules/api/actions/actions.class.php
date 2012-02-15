@@ -31,7 +31,8 @@ class apiActions extends sfActions
   */
   public function executeGetUser(sfWebRequest $request)
   {
-	
+	$this->api = new ApiRR($this->getRequestParameter('request'),ApiRR::GET_USER_REQUEST);
+	$this->api->treatRequest();
   }
   
     
@@ -43,7 +44,8 @@ class apiActions extends sfActions
   */
   public function executeGetVehicles(sfWebRequest $request)
   {
-
+	$this->api = new ApiRR($this->getRequestParameter('request'),ApiRR::GET_VEHICLE_REQUEST);
+	$this->api->treatRequest();
   }
   
     
@@ -55,7 +57,8 @@ class apiActions extends sfActions
   */
   public function executeSetCharge(sfWebRequest $request)
   {
-
+	$this->api = new ApiRR($this->getRequestParameter('request'),ApiRR::SET_CHARGE_REQUEST);
+	$this->api->treatRequest();
   }
   
 }

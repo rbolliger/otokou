@@ -25,9 +25,10 @@
  * @author Dave Bergomi
  */
 class apiRR {
-	const get_user_request = 0;
-	const get_vehicles_request = 1;
-	const set_charge_request = 2;
+	const GET_USER_REQUEST = 0;
+	const GET_VEHICLE_REQUEST = 1;
+	const SET_CHARGE_REQUEST = 2;
+	const UNDEFINED_REQUEST = 100;
 	
 	private $rawRequest;
 	private $decryptedRequest;
@@ -48,12 +49,35 @@ class apiRR {
 	private $errorCode;
 	private $errorMessage;
 
-    public function apiRR($string) {
+    public function apiRR($string,$request_type) {
         $this->rawRequest = $string;
 		$this->errorCode = '000';
 		$this->errorMessage = 'No Error';
 		$this->isError = false;
+		switch ($request_type) {
+			case self::GET_USER_REQUEST:
+			case self::GET_VEHICLE_REQUEST:
+			case self::SET_CHARGE_REQUEST:
+				$this->requestType = $request_type;
+				break;
+			default:
+				$this->errorCode = '201';
+				$this->errorMessage = 'Undefined Request Type';
+				$this->requestType = self::UNDEFINED_REQUEST;
+		}
     }
+	
+	public function isError() {
+		return $this->isError;
+	}
+	
+	public function getErrorCode() {
+		return $this->errorCode;
+	}
+	
+	public function getErrorMessage() {
+		return $this->errorMessage;
+	}
 	
 	public function getResponse() {
 		return $this->rawResponse;
@@ -108,7 +132,7 @@ class apiRR {
 					$this->isError = true;					
 				}
 				else {
-					$this->requestType = self::get_user_request;
+					$this->requestType = self::GET_USER_REQUEST;
 					$this->requestUser=$components[1];
 				}
 			}
@@ -119,7 +143,7 @@ class apiRR {
 					$this->isError = true;						
 				}
 				else {
-					$this->requestType = self::get_vehicles_request;
+					$this->requestType = self::GET_VEHICLE_REQUEST;
 					$this->requestUser=$components[1];
 				}
 			}
@@ -129,7 +153,7 @@ class apiRR {
 					$this->errorMessage = 'Wrong number of parameters for set_charge Request Type';
 					$this->isError = true;						
 				}				
-				$this->requestType = self::set_charge_request;
+				$this->requestType = self::SET_CHARGE_REQUEST;
 				$this->requestUser=$components[1];
 				$this->requestVehicle=$components[2];
 				$this->requestCategory=$components[3];
@@ -151,7 +175,7 @@ class apiRR {
 	
 	private function executeRequest() {
 		switch ($this->requestType) {
-			case self::get_user_request:
+			case self::GET_USER_REQUEST:
 				$user = Doctrine_Core::getTable('sfGuardUser')->createQuery('u')->where('u.api_key = ?',$this->requestUser)->execute();
 				if (sizeof($user)==1) {
 					$this->decriptedResponse=$user[0]->getId().','.$user[0]->getFirstName().','.$user[0]->getLastName();
@@ -162,7 +186,7 @@ class apiRR {
 					$this->isError = true;
 				}
 				break;
-			case self::get_vehicles_request:
+			case self::GET_VEHICLE_REQUEST:
 				//$cars = Doctrine_Core::getTable('Vehicle')->createQuery('v')->leftJoin('v.User u')->where('u.api_key = ?',$this->requestUser)->execute();
 				$user = Doctrine_Core::getTable('sfGuardUser')->createQuery('u')->where('u.api_key = ?',$this->requestUser)->execute();
 				if (sizeof($user)==1) {
@@ -178,7 +202,7 @@ class apiRR {
 					$this->isError = true;
 				}
 				break;
-			case self::set_charge_request:
+			case self::SET_CHARGE_REQUEST:
 				$user = Doctrine_Core::getTable('sfGuardUser')->createQuery('u')->where('u.api_key = ?',$this->requestUser)->execute();
 				if (sizeof($user)==1) {
 					$vehicle = Doctrine_Core::getTable('Vehicle')->createQuery('v')->where('v.user_id = ?',$user[0]->getId())->andwhere('v.id = ?',$this->requestVehicle)->execute();
