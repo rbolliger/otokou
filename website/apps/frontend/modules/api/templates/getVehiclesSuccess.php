@@ -1,1 +1,3 @@
-get vehicle
+<?php
+	echo $api->getResponse();
+?>

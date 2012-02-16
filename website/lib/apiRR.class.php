@@ -33,6 +33,7 @@ class apiRR {
 	private $rawRequest;
 	private $decryptedRequest;
 	private $requestType;
+	
 	private $requestUser;
 	private $requestVehicle;
 	private $requestCategory;
@@ -48,11 +49,11 @@ class apiRR {
 	private $isError;
 	private $errorCode;
 	private $errorMessage;
-
-    public function apiRR($string,$request_type) {
+	
+	public function apiRR($string,$request_type) {
         $this->rawRequest = $string;
 		$this->errorCode = '000';
-		$this->errorMessage = 'No Error';
+		$this->errorMessage = 'No Error.';
 		$this->isError = false;
 		switch ($request_type) {
 			case self::GET_USER_REQUEST:
@@ -62,10 +63,10 @@ class apiRR {
 				break;
 			default:
 				$this->errorCode = '201';
-				$this->errorMessage = 'Undefined Request Type';
+				$this->errorMessage = 'Undefined Request Type.';
 				$this->requestType = self::UNDEFINED_REQUEST;
 		}
-    }
+	}
 	
 	public function isError() {
 		return $this->isError;
@@ -84,9 +85,9 @@ class apiRR {
 	}
 	
 	public function treatRequest() {
-		if ($this->rawRequest == '' ) {	
+		if ($this->rawRequest == '' ) {
 			$this->errorCode = '110';
-			$this->errorMessage = 'Empty String';
+			$this->errorMessage = 'Empty String.';
 			$this->isError = true;
 		}
 		
@@ -101,7 +102,7 @@ class apiRR {
 		if (!$this->isError) {
 			$this->executeRequest();
 		}
-			
+		
 		$this->composeResponse();
 		
 		$this->encryptResponse();
@@ -112,6 +113,33 @@ class apiRR {
 	}
 	
 	private function decomposeRequest() {
+		$xml = new XMLReader();
+		if ($xml->XML($this->decryptedRequest)) {
+			if ($xml->isValid()) {
+				switch ($this->requestType) {
+					case self::GET_USER_REQUEST:
+						$this->decomposeGetUserRequest($xml);
+						break;
+					case self::GET_VEHICLE_REQUEST:
+						$this->decomposeGetVehicleRequest($xml);
+						break;
+					case self::SET_CHARGE_REQUEST:
+						$this->decomposeSetChargeRequest($xml);
+						break;
+				}
+			}
+			else {
+				$this->errorCode = '121';
+				$this->errorMessage = 'XML not Valid.';
+				$this->isError = true;
+			}
+		}
+		else {
+			$this->errorCode = '120';
+			$this->errorMessage = 'XML format not recognized.';
+			$this->isError = true;
+		}
+		/*
 		if (version_compare(PHP_VERSION, '5.3.0') >= 0) {
 			$components = str_getcsv($this->decryptedRequest);
 		}
@@ -129,7 +157,7 @@ class apiRR {
 				if (sizeof($components) != 2) {
 					$this->errorCode = '140';
 					$this->errorMessage = 'Wrong number of parameters for get_user Request Type';
-					$this->isError = true;					
+					$this->isError = true;
 				}
 				else {
 					$this->requestType = self::GET_USER_REQUEST;
@@ -140,7 +168,7 @@ class apiRR {
 				if (sizeof($components) != 2) {
 					$this->errorCode = '141';
 					$this->errorMessage = 'Wrong number of parameters for get_cars Request Type';
-					$this->isError = true;						
+					$this->isError = true;
 				}
 				else {
 					$this->requestType = self::GET_VEHICLE_REQUEST;
@@ -151,8 +179,8 @@ class apiRR {
 				if (sizeof($components) != 9) {
 					$this->errorCode = '142';
 					$this->errorMessage = 'Wrong number of parameters for set_charge Request Type';
-					$this->isError = true;						
-				}				
+					$this->isError = true;
+				}
 				$this->requestType = self::SET_CHARGE_REQUEST;
 				$this->requestUser=$components[1];
 				$this->requestVehicle=$components[2];
@@ -166,14 +194,35 @@ class apiRR {
 			else {
 				$this->errorCode = '130';
 				$this->errorMessage = 'Unknow Request Type';
-				$this->isError = true;				
+				$this->isError = true;
 			}
 			
 			$this->requestParameters = $components[1];
 		}
+		*/
+	}
+	
+	private function decomposeGetUserRequest($xml) {
+		while($xml->read()) {
+			switch ($xml->nodeType) {
+				case XMLReader::END_ELEMENT:
+				case XMLReader::ELEMENT:
+				case XMLReader::TEXT:
+				case XMLReader::CDATA:
+			} 
+		}
+	}
+	
+	private function decomposeGetVehicleRequest($xml) {
+		
+	}
+	
+	private function decomposeSetChargeRequest($xml) {
+		
 	}
 	
 	private function executeRequest() {
+		/*
 		switch ($this->requestType) {
 			case self::GET_USER_REQUEST:
 				$user = Doctrine_Core::getTable('sfGuardUser')->createQuery('u')->where('u.api_key = ?',$this->requestUser)->execute();
@@ -237,6 +286,7 @@ class apiRR {
 				$this->isError = true;					
 				break;
 		}
+		*/
 	}
 	
 	private function composeResponse() {

@@ -1,1 +1,3 @@
-set charge
+<?php
+	echo $api->getResponse();
+?>

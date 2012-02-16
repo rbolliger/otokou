@@ -16,7 +16,7 @@ unset($api);
 
 $api = new ApiRR("",ApiRR::SET_CHARGE_REQUEST);
 $api->treatRequest();
-$t->is($api->getErrorMessage(), 'Empty String', 'gives right error message for empty string error in set charge request');
+$t->is($api->getErrorMessage(), 'Empty String.', 'gives right error message for empty string error in set charge request');
 unset($api);
 
 $api = new ApiRR('<?xml version="1.0" encoding="UTF-8"?>
