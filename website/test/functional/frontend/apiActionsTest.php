@@ -11,12 +11,33 @@ $browser->info('1 - Get User')->
   with('request')->begin()->
     isParameter('module', 'api')->
     isParameter('action', 'getUser')->
+  end()
+;
+
+/*
+$browser->
+  get('/api/get_user?request=<?xml version="1.0" encoding="UTF-8"?>
+<root>
+ <otokou version="1.0">
+  <header>
+   <error>000</error>
+   <request>get_user</request>
+  </header>
+  <body>
+   <firstname>asdrubale</firstname>
+   <lastname>arnaldo</lastname>
+  </body>
+ </otokou>
+</root>')->
+  with('request')->begin()->
+    isParameter('module', 'api')->
+    isParameter('action', 'getUser')->
   end()->
   with('response')->begin()->
     info('  1.1 - asdrubale is name')->
-    checkElement('firstname', "asdrubale")->
+    checkElement('firstname', "Franz")->
   end()
-;
+;*/
 
 $browser->info('2 - Get Vehicles')->
   get('/api/get_vehicles')->
