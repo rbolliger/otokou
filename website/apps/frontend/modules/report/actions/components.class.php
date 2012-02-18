@@ -6,9 +6,7 @@ class reportComponents extends sfComponents {
 
         $username = $this->getUser()->getGuardUser()->getUsername();
 
-        $this->vehicles = Doctrine::getTable('Vehicle')
-                        ->findByUsernameWithNewReports($username);
-
-        }
+        $this->vehicles = Doctrine::getTable('Vehicle')->findByUsername($username);
+    }
 
 }
