@@ -16,6 +16,7 @@ $browser->setTester('doctrine', 'sfTesterDoctrine');
 
 $browser
         ->info('1 - Security')
+        
         ->info('1.1 - No access without login')
         ->get('/ruf/reports')
         ->with('request')
@@ -27,6 +28,7 @@ $browser
         ->begin()
         ->isStatusCode(401)
         ->end()
+        
         ->info('1.2 - Username is required in route')
         ->login('user_gs', 'user')
         ->get('/reports')
@@ -34,6 +36,7 @@ $browser
         ->begin()
         ->isStatusCode(404)
         ->end()
+        
         ->info('1.3 - A user can only access his resources')
         ->get('/ruf/reports')
         ->with('response')
@@ -48,7 +51,10 @@ $browser
         ->isParameter('action', 'index')
         ->end()
         ->logout()
+        
+        
         ->info('2 - Index')
+        
         ->info('2.1 - A user only sees his reports')
         ->login('ruf', 'admin@1')
         ->get('/ruf/reports')
@@ -72,6 +78,8 @@ $browser
         ->checkElement('ul li a:contains("By Vehicle")', true)
         ->checkElement('ul#reports_menu ul li.vehicle_archived', 1)
         ->checkElement('ul#reports_menu ul li.vehicle_active', 2)
+        ->checkElement('ul#reports_menu ul li:contains("Show all")',false)
+        ->checkElement('ul#reports_menu ul li:contains("...less")',false)
         ->checkElement('ul#reports_menu li a:contains("Custom reports")', true)
         ->checkElement('body:contains("No reports available")', false)
         ->checkElement('h1:contains("Reports")', true)
@@ -91,12 +99,17 @@ $browser
         ->begin()
         ->isStatusCode(200)
         ->checkElement('ul li a:contains("By Vehicle")', true)
-        ->checkElement('ul#reports_menu ul li.vehicle_archived', 1)
+        ->checkElement('ul#reports_menu ul li.vehicle_archived', 0)
         ->checkElement('ul#reports_menu ul li.vehicle_active', 1)
+        ->checkElement('ul#reports_menu ul li:contains("Show all")',true)
+        ->checkElement('ul#reports_menu ul li:contains("...less")',false)
         ->checkElement('ul#reports_menu li a:contains("Custom reports")', true)
         ->checkElement('body:contains("No reports available")', false)
         ->checkElement('h1:contains("Reports")', true)
+        ->checkElement('h3.report_category_title',7)
         ->checkElement('h3.report_category_title:contains("car_reports_1")', 1)
+        ->checkElement('table.vehicle_reports_table',1)
+        ->checkElement('div.vehicle_reports_none', 6)
         ->checkElement('div#category_car-reports-1 table.reports_list tbody tr', 3)
         ->checkElement('table.reports_list', 1)
         ->checkElement('table.reports_list tbody tr', 3)
@@ -106,11 +119,35 @@ $browser
         ->checkElement('table.reports_list tbody tr.report_new', true,array('position' => 2))
         ->checkElement('table.reports_list tbody tr.report_old', true, array('position' => 3))
         ->checkElement('tfoot.more_reports', 1)
+        ->checkElement('div.pagination',true)
         ->end()
+        
+        
+        
+        ->info('2.2 - Listing all vehicles in left menu')
+        ->click("Show all...")
+        ->with('response')
+        ->begin()
+        ->isStatusCode(200)
+        ->checkElement('ul#reports_menu ul li.vehicle_active',20)
+        ->checkElement('ul#reports_menu ul li:contains("Show all")',false)
+        ->checkElement('ul#reports_menu ul li:contains("...less")',true)
+        ->end()
+        >click("...less")
+        ->with('response')
+        ->begin()
+        ->isStatusCode(200)
+        ->checkElement('ul#reports_menu ul li.vehicle_active',1)
+        ->checkElement('ul#reports_menu ul li:contains("Show all")',true)
+        ->checkElement('ul#reports_menu ul li:contains("...less")',false)
+        ->end()
+        
+        
         ->logout()
         ->info('3 - List of reports')
         ->login('user_gs', 'user')
         ->get('/user_gs/reports')
+        
         ->info('3.1 - Vehicles')
         ->click('car_gs_2')
         ->with('request')
@@ -174,6 +211,7 @@ $browser
         ->checkElement('table.reports_list tbody tr.report_old', true, array('position' => 3))
         ->checkElement('div.sf_admin_pagination', true)
         ->end()
+        
         ->info('3.2 - Custom reports')
         ->logout()
         ->login('user_gs', 'user')
@@ -197,7 +235,10 @@ $browser
         ->checkElement('table.reports_list tbody tr.report_old', 0)
         ->checkElement('div.sf_admin_pagination', false)
         ->end()
+        
+        
         ->info('4 - Creation of a new custom report')
+        
         ->info('4.1 - "New" form')
         ->get('/user_gs/report/new')
         ->with('request')
@@ -216,6 +257,7 @@ $browser
         ->checkElement('div.report_form form', true)
         ->checkElement('div.report_form form table tbody tr', 4)
         ->end()
+        
         ->info('4.2 - Form errors - required fields')
         ->click('Create', array())
         ->with('form')
@@ -229,6 +271,7 @@ $browser
         ->isParameter('module', 'report')
         ->isParameter('action', 'create')
         ->end()
+        
         ->info('4.3 - Form errors - ranges and vehicles list')
         ->click('Create', array('report' =>
             array(
@@ -245,6 +288,7 @@ $browser
         ->hasGlobalError('/Only one/')
         ->isError('vehicles_list', '/invalid/')
         ->end()
+        
         ->info('4.4 - No charges related to the defined range')
         ->click('Create', array('report' =>
             array(
@@ -260,6 +304,7 @@ $browser
         ->hasErrors(1)
         ->hasGlobalError('/No charges/')
         ->end()
+        
         ->info('4.5 - Form errors - user_id')
         ->click('Create', array('report' =>
             array(
@@ -276,6 +321,7 @@ $browser
         ->hasErrors(1)
         ->hasGlobalError('/User/')
         ->end()
+        
         ->info('4.6 - Form ok')
         ->click('Create', array('report' =>
             array(
@@ -321,6 +367,7 @@ $browser
         ->begin()
         ->isStatusCode(200)
         ->end()
+        
         ->info('4.7 - Default values for form')
         ->get('/user_gs/report/new')
         ->click('Create', array('report' =>
@@ -350,7 +397,10 @@ $browser
                 ->andWhereIn('v.id', array($browser->getVehicleId('car-gs-1')))
                 , 1)
         ->end()
+        
+        
         ->info('5 - Delete')
+        
         ->info('5.1 - Vehicle report')
         ->get('/user_gs/report/new')
         ->click('Create', array('report' =>
@@ -411,6 +461,7 @@ $browser
                 ->andWhereIn('v.id', array($browser->getVehicleId('car-gs-1')))
                 , false)
         ->end()
+        
         ->info('5.2 - Custom report')
         ->get('/user_gs/report/new')
         ->click('Create', array('report' =>
@@ -472,7 +523,10 @@ $browser
                 ->andWhereIn('v.id', array($browser->getVehicleId('car-gs-1'), $browser->getVehicleId('car-gs-2')))
                 , false)
         ->end()
+        
+        
         ->info('6 - Show action')
+        
         ->info('6.1 - isNew() flag')
         ->get('/user_gs/reports')
         ->with('doctrine')
@@ -515,6 +569,7 @@ $browser
                 ->andWhere('r.is_new = ?', true)
                 , 1)
         ->end()
+        
         ->info('6.2 - Single vehicle')
         ->get('/user_gs/report/show/0-100-km-car-gs-1')
         ->with('request')
@@ -544,6 +599,7 @@ $browser
         ->checkElement('h1:contains("Fuel consumption")', 1)
         ->checkElement('body div#main img', 6)
         ->end()
+        
         ->info('6.3 - Multiple vehicles')
         ->get('/user_gs/report/show/0-1000-km-car-gs-1-and-car-gs-2')
         ->with('request')
@@ -574,6 +630,8 @@ $browser
         ->checkElement('body div#main img', 6)
         ->checkElement('body:contains("Not enough data")',false)
         ->end()
+        
+        
         ->info('7 - Pdf')
         ->get('/user_gs/report/pdf/0-1000-km-car-gs-1-and-car-gs-2')
         ->with('request')

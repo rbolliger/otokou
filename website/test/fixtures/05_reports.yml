@@ -32,7 +32,7 @@ Report:
     is_new:           true
     name:            "user_reports n.<?php echo $i ?>"
 <?php endfor; ?>
-<?php for ($i = 0; $i <= 28; $i++): ?>
+<?php for ($i = 2; $i <= 28; $i++): ?>
   report_ur_<?php echo $i ?>:
     User:             user_reports
     Vehicles:         [car_reports_1]

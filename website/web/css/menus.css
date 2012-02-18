@@ -56,8 +56,20 @@ ul.vert-menu li ul.menu_level_1 li
     border-bottom: 1px dashed #DDD;
     background: url(/images/menu_icon.png) no-repeat 4px 9px;
     padding-left: 16px;
-    color: #AB3B37;
+    color: #222;
     font-weight: normal;
+}
+
+ul.vert-menu li a,
+ul.vert-menu li ul.menu_level_1 li a
+{
+    color: #222;
+}
+
+ul.vert-menu li a:hover,
+ul.vert-menu li ul.menu_level_1 li a:hover
+{
+    color: #AB3B37;
 }
 
 ul.vert-menu li ul.menu_level_1 li

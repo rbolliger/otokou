@@ -33,6 +33,18 @@ class VehicleTable extends Doctrine_Table {
         return $q->execute();
     }
     
+    public function findByUsernameWithNewReports($username) {
+
+        $q = $this->createQuery('v');
+
+        $q = $this->addUsernameQuery($q, $username);
+        $q = $this->addSortByName($q);
+        $q = $this->addWithNewReportsQuery($q);
+        $q = $this->addWithSingleReportQuery($q);
+
+        return $q->execute();
+    }
+    
     public function findActiveByUsernameAndSortByName($params) {
         
         $q = $this->createQuery('v')
@@ -142,6 +154,17 @@ class VehicleTable extends Doctrine_Table {
                 ->andWhere('v.is_archived = ?', false)
                 ->leftJoin('v.User u')
                 ->execute();
+        
+    }
+    
+    protected function addWithNewReportsQuery(Doctrine_Query $q) {
+        
+        $alias = $q->getRootAlias();
+        
+        $q->innerJoin($alias.'.Reports r2')
+                ->addWhere('r2.is_new = ?',true);
+        
+        return $q;
         
     }
     

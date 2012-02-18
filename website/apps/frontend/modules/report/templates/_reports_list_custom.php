@@ -9,7 +9,7 @@
             $q = Doctrine_Core::getTable('Report')
                     ->addUsernameQuery($sf_user->getGuardUser()->getUsername())
                     ->andWhere('r.num_vehicles > ?', 1);
-            if (($count = Doctrine_Core::getTable('Report')->countOrderedReports($q) - sfConfig::get('app_report_max_on_index')) > 0):
+            if (($count = Doctrine_Core::getTable('Report')->countReports($q) - sfConfig::get('app_report_max_on_index')) > 0):
                 ?>
                 <tfoot class="more_reports">
                     <tr>

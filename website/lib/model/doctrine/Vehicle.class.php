@@ -11,7 +11,7 @@
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
 class Vehicle extends BaseVehicle {
-    
+
     protected $charge_bouds = array();
 
     public function toggleArchive() {
@@ -19,18 +19,18 @@ class Vehicle extends BaseVehicle {
         $this->save();
     }
 
-    public function getTraveledDistance() {  
-        
+    public function getTraveledDistance() {
+
         $id = $this->getInitialDistance();
         $fd = $this->getFinalDistance();
-        
+
         if (!$id || !$fd) {
-            
+
             return 0;
         }
-        
 
-        return $fd -  $id;
+
+        return $fd - $id;
     }
 
     public function getInitialDistance() {
@@ -42,17 +42,16 @@ class Vehicle extends BaseVehicle {
 
         return $c->getKilometers();
     }
-    
+
     public function getFinalDistance() {
 
-       $lc = $this->getLastChargeByRange('distance');
+        $lc = $this->getLastChargeByRange('distance');
 
         if (!$lc) {
             return null;
         }
-        
+
         return $lc->getKilometers();
-        
     }
 
     public function getOverallCost() {
@@ -74,14 +73,14 @@ class Vehicle extends BaseVehicle {
     public function getCostPerKm() {
 
         $cost = $this->getOverallCost();
-        
+
         $td = $this->getTraveledDistance();
 
         if ($td == 0) {
             return null;
         }
 
-       
+
 
         return $cost / $td;
     }
@@ -93,9 +92,9 @@ class Vehicle extends BaseVehicle {
         if (!count($charges)) {
             return null;
         }
-        
+
         $td = $this->getTraveledDistance();
-        
+
         if (!$td) {
             return null;
         }
@@ -145,12 +144,12 @@ class Vehicle extends BaseVehicle {
         if (!in_array($minOrMax, array('min', 'max'))) {
             throw new Doctrine_Exception('Unknown minOrMax value ' . $minOrMax . ' in ' . __METHOD__);
         }
-               
+
         if (isset($this->charge_bouds[$column][$minOrMax])) {
-            
+
             return $this->charge_bouds[$column][$minOrMax];
         }
-        
+
 
         $q = Doctrine_Core::getTable('Charge')
                 ->createQuery('c')
@@ -163,39 +162,61 @@ class Vehicle extends BaseVehicle {
                 ->andWhere('cs.vehicle_id = ' . $this->getId());
 
         $q->andWhere('c.' . $column . '= (' . $qs->getDql() . ')');
-        
+
         $res = $q->execute()->getFirst();
-        
+
         $this->charge_bouds[$column][$minOrMax] = $res;
-        
+
 
         return $res;
     }
 
     public function getOwnReports($max = 5) {
 
-        $q = $this->getOwnReportsQuery()
+        $q = $this
+                ->getSortedReportsQuery()
                 ->limit($max);
 
         return $q->execute();
     }
 
     public function countReports() {
-        
-        $q = $this->getOwnReportsQuery();
 
-        return $q->count();
+        $q = $this->addMyReportsQuery();
+
+        return Doctrine_Core::getTable('Report')->countReports($q);
+    }
+    
+    public function countNewReports() {
+
+        $q = $this->addMyReportsQuery()
+                ->addWhere('r.is_new = ?',true);
+        
+        return Doctrine_Core::getTable('Report')->countReports($q);
+        
     }
 
-    public function getOwnReportsQuery() {
+    public function getSortedReportsQuery() {
 
-        $q = Doctrine_Query::create()
-                ->from('Report r')
-                ->leftJoin('r.Vehicles v')
-                ->andWhere('v.id = ?', $this->getId())
-                ->andWhere('r.num_vehicles = ?', 1);
-        
+        $q = $this->addMyReportsQuery();
+
         return Doctrine_Core::getTable('Report')->addOrderedReportsQuery($q);
+    }
+
+    protected function addMyReportsQuery(Doctrine_Query $q = null) {
+
+        if (is_null($q)) {
+            $q = Doctrine_Query::create()
+                    ->from('Report r');
+        }
+
+        $alias = $q->getRootAlias();
+
+        $q->leftJoin($alias . '.Vehicles v')
+                ->andWhere('v.id = ?', $this->getId())
+                ->andWhere($alias . '.num_vehicles = ?', 1);
+
+        return $q;
     }
 
 }

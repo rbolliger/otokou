@@ -91,7 +91,7 @@ report_index:
   options:
     model:      Vehicle
     type:       list
-    method:   findWithReports
+    method:   findActiveByUsernameAndSortByName
 
 reports_list_vehicle:
   class: otkWithUserDoctrineRoute

@@ -64,13 +64,13 @@ class ReportTable extends Doctrine_Table {
     }
 
     public function addUsernameQuery($username, Doctrine_Query $q = null) {
-        
+
         if (is_null($q)) {
             $q = Doctrine_Query::create()
                     ->from('Report r');
         }
-        
-        
+
+
         $root = $q->getRootAlias();
 
         $q->leftJoin($root . '.User u')
@@ -87,8 +87,14 @@ class ReportTable extends Doctrine_Table {
         return $this->addOrderedReportsQuery($q)->execute();
     }
 
-    public function countOrderedReports(Doctrine_Query $q = null) {
-        return $this->addOrderedReportsQuery($q)->count();
+    public function countReports(Doctrine_Query $q = null) {
+
+        if (is_null($q)) {
+            $q = Doctrine_Query::create()
+                    ->from('Report r');
+        }
+
+        return $q->count();
     }
 
     public function addOrderedReportsQuery(Doctrine_Query $q = null) {
@@ -103,8 +109,5 @@ class ReportTable extends Doctrine_Table {
 
         return $q;
     }
-    
-    
-   
 
 }
