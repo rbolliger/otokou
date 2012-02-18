@@ -88,4 +88,11 @@ ul.vert-menu li ul.menu_level_1 li.current
 {
     font-weight: bold;
     background: url(/images/menu_icon_current.png) no-repeat 4px 9px;
+    color: #AB3B37;
+}
+
+ul.vert-menu li.current a,
+ul.vert-menu li ul.menu_level_1 li.current a
+{
+    color: #AB3B37;
 }
