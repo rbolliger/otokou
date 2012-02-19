@@ -4,7 +4,7 @@ include dirname(__FILE__) . '/../../lib/test/otokouTestFunctional.class.php';
 
 $ut = new otokouTestFunctional(new sfBrowser());
 
-$t = new lime_test(48, new lime_output_color());
+$t = new lime_test(32, new lime_output_color());
 
 /**
  * New vehicle
@@ -124,21 +124,23 @@ $t->diag('->getAverageConsumption()');
 $t->cmp_ok($v->getAverageConsumption(), '==', null, '->getAverageConsumption() returns null" if the vehicle has not charges');
 
 
+/**
+ *  General methods
+ */
 
-// VehicleTable
-$t->diag('*** Vehicle Table Methods ***');
+$t->diag('*** General methods ***');
 
-$t->diag('findActiveByUsernameAndSortByName()');
-$t->can_ok(Doctrine::getTable('Vehicle'), 'findActiveByUsernameAndSortByName', 'Method "findActiveByUsernameAndSortByName" exists');
+$t->diag('->getOwnReports()');
+$v = Doctrine_Core::getTable('Vehicle')->findOneByName('car_reports_01');
 
-$params = array('username' => 'user_reports');
-$v = Doctrine::getTable('Vehicle')->findActiveByUsernameAndSortByName($params);
+$limit = 7;
+//$r = $v->getOwnReports($limit);
+$r = $v->getReports();
 
-$t->cmp_ok(count($v), '===', 20, 'findActiveByUsernameAndSortByName returns the right num ber of elements');
+$t->cmp_ok(count($r), '===', $limit , '->getOwnReports() returns the right number of reports');
 
-foreach ($v as $key => $vehicle) {
-    $name = sprintf('car_reports_%02d', $key+1);
-    $msg = 'Vehicle '.$name.' is correctly sorted';
-    $t->cmp_ok($vehicle->getName(), '===', $name, $msg);
+foreach ($r as $key => $report) {    
+    $name = sprintf('user_reports n.%d', $key);
+    $msg = 'Report '.$name.' is correctly sorted';
+    $t->cmp_ok($report->getName(), '===', $name, $msg);
 }
-

@@ -33,6 +33,18 @@ class VehicleTable extends Doctrine_Table {
         return $q->execute();
     }
     
+    public function findByUsername($username) {
+
+        $q = $this->createQuery('v');
+
+        $q = $this->addUsernameQuery($q, $username);
+        $q = $this->addSortByName($q);
+        $q = $this->addIsArchivedQuery($q, false);
+
+        return $q->execute();
+    }
+    
+    
     public function findByUsernameWithNewReports($username) {
 
         $q = $this->createQuery('v');
@@ -41,6 +53,7 @@ class VehicleTable extends Doctrine_Table {
         $q = $this->addSortByName($q);
         $q = $this->addWithNewReportsQuery($q);
         $q = $this->addWithSingleReportQuery($q);
+        $q = $this->addIsArchivedQuery($q, false);
 
         return $q->execute();
     }
@@ -111,7 +124,7 @@ class VehicleTable extends Doctrine_Table {
         return $q;
     }
     
-    protected function addISArchivedQuery(Doctrine_Query $q, $isArchived = false) {
+    protected function addIsArchivedQuery(Doctrine_Query $q, $isArchived = false) {
         
         $root = $q->getRootAlias();
         

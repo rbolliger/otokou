@@ -172,7 +172,7 @@ class Vehicle extends BaseVehicle {
     }
 
     public function getOwnReports($max = 5) {
-
+        
         $q = $this
                 ->getSortedReportsQuery()
                 ->limit($max);
@@ -186,14 +186,13 @@ class Vehicle extends BaseVehicle {
 
         return Doctrine_Core::getTable('Report')->countReports($q);
     }
-    
+
     public function countNewReports() {
 
         $q = $this->addMyReportsQuery()
-                ->addWhere('r.is_new = ?',true);
-        
+                ->addWhere('r.is_new = ?', true);
+
         return Doctrine_Core::getTable('Report')->countReports($q);
-        
     }
 
     public function getSortedReportsQuery() {

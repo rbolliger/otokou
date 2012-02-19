@@ -39,11 +39,15 @@ class ReportTable extends Doctrine_Table {
                 ->leftJoin('r.Vehicles v')
                 ->andWhere('v.slug = ?', $vehicle_slug)
                 ->andWhere('r.num_vehicles = ?', 1)
-                ->orderBy('r.created_at ASC');
+                ->orderBy('r.is_new DESC, r.created_at ASC');
 
         $q = self::getInstance()->addUsernameQuery($username, $q);
 
 
+        if (isset($params['limit'])) {
+            $q->limit($params['limit']);
+        }
+        
         return $q->execute();
     }
 
@@ -105,7 +109,7 @@ class ReportTable extends Doctrine_Table {
 
         //$alias = $q->getRootAlias();
 
-        $q->addOrderBy('r.is_new ASC, r.created_at DESC');
+        $q->OrderBy('r.is_new DESC, r.created_at DESC');
 
         return $q;
     }
