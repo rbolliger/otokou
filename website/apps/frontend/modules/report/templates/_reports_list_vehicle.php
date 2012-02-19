@@ -9,10 +9,11 @@
     )
     ?></h3>
 
+        <?php if ($count = $category->countReports()) : ?>
 
         <table class="reports_list">
             <?php echo include_partial('report/reports_list_thead'); ?>
-            <?php if (($count = $category->countReports() - sfConfig::get('app_report_max_on_index')) > 0): ?>
+            <?php if (($count - sfConfig::get('app_report_max_on_index')) > 0): ?>
                 <tfoot class="more_reports">
                     <tr>
                         <th colspan="6">    
@@ -28,6 +29,14 @@
                 <?php endforeach; ?>
             </tbody>
         </table>
+        
+        <?php else: ?>
+        
+        <div class="vehicle_reports_none">
+            <?php echo include_partial('report/no_reports'); ?>
+        </div>
+        
+        <?php endif; ?>
 
     </div>
 

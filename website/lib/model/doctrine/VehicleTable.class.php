@@ -60,17 +60,22 @@ class VehicleTable extends Doctrine_Table {
     
     public function findActiveByUsernameAndSortByName($params) {
         
+        $this->getActiveVehiclesQuery($params['username']);
+        
+        return $q->execute();
+        
+    }
+    
+    public function getActiveVehiclesQuery($username) {
+        
         $q = $this->createQuery('v')
                         ->select('v.*');
         
-        $q = $this->addUsernameQuery($q, $params['username']);
-        $q = $this->addIsArchivedQuery($q,false);
-        
-        //$q = $this->addWithSingleReportQuery($q);
-        
+        $q = $this->addUsernameQuery($q, $username);
+        $q = $this->addIsArchivedQuery($q,false);        
         $q = $this->addSortByName($q);
         
-        return $q->execute();
+        return $q;
         
     }
 

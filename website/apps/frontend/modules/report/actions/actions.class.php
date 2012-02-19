@@ -17,12 +17,18 @@ class reportActions extends otkWithOwnerActions {
      */
     public function executeIndex(sfWebRequest $request) {
 
-        $this->vehicles = $this->getRoute()->getObjects();
+        //$this->vehicles = $this->getRoute()->getObjects();
 
-        $this->custom = Doctrine_Core::getTable('Report')->findCustomReportsByUser(
-                        array('username' => $request->getParameter('username'),
-                            'max' => sfConfig::get('app_report_max_on_index'),
-                ));
+        $this->pager = new sfDoctrinePager(
+                        'Vehicle',
+                        sfConfig::get('app_report_max_vehicles_on_index')
+        );
+        
+        $username = $this->getUser()->getUsername();
+        $q = Doctrine_Core::getTable('Vehicle')->getActiveVehiclesQuery($username);
+        $this->pager->setQuery($q);
+        $this->pager->setPage($request->getParameter('page', 1));
+        $this->pager->init();
     }
 
     public function executeListVehicle(sfWebRequest $request) {
@@ -46,7 +52,7 @@ class reportActions extends otkWithOwnerActions {
     }
 
     public function executeNew(sfWebRequest $request) {
-        
+
         $report = $this->newReport();
 
         //$this->form = new ReportEmbeddedUserForm();
@@ -55,7 +61,7 @@ class reportActions extends otkWithOwnerActions {
 
     public function executeCreate(sfWebRequest $request) {
 //        $this->form = new ReportEmbeddedUserForm();
-        
+
         $report = $this->newReport();
         $this->form = new ReportForm($report);
 
@@ -94,9 +100,9 @@ class reportActions extends otkWithOwnerActions {
         }
 
         $this->report = $r;
-        
-        
-        $r->setChartBuilder('ChartBuilderPChart'); 
+
+
+        $r->setChartBuilder('ChartBuilderPChart');
         $this->charts = $r->defineCharts();
     }
 
@@ -109,7 +115,7 @@ class reportActions extends otkWithOwnerActions {
             $r->save();
         }
 
-        $file = $r->getPdfFileFullPath(); 
+        $file = $r->getPdfFileFullPath();
 
         if (!file_exists($file) || sfConfig::get('app_report_force_generate')) {
             $status = $r->generatePdf($this->getContext(), 'ChartBuilderPChart', $file);
@@ -119,7 +125,7 @@ class reportActions extends otkWithOwnerActions {
 
             return sfView::SUCCESS;
         }
-        
+
         // disbale the layout
         $this->setLayout(false);
 
@@ -168,15 +174,13 @@ class reportActions extends otkWithOwnerActions {
             $this->getUser()->setFlash('error', 'The item has not been saved due to some errors.', false);
         }
     }
-    
-    
+
     protected function newReport() {
-        
+
         $report = new Report();
         $report->setUserId($this->getUser()->getGuardUser()->getId());
-        
+
         return $report;
-        
     }
 
 }

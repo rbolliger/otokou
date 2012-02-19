@@ -161,3 +161,9 @@ table tbody tr:nth-child(even) {
     width: 20%;
 }
 
+.pagination {
+   background-color: #fff;
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+}

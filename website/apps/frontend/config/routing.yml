@@ -82,16 +82,23 @@ charge:
        list:              getAllByUser
 
 
+#report_index:
+#  class: otkWithUserDoctrineRoute
+#  url: /:username/reports
+#  param: {module: report, action: index }
+#  requirements:
+#    sf_method: get
+#  options:
+#    model:      Vehicle
+#    type:       list
+#    method:   findActiveByUsernameAndSortByName
+
 report_index:
-  class: otkWithUserDoctrineRoute
+  class: otkWithUserRoute
   url: /:username/reports
   param: {module: report, action: index }
   requirements:
-    sf_method: get
-  options:
-    model:      Vehicle
-    type:       list
-    method:   findActiveByUsernameAndSortByName
+    sf_method: [ get ]
 
 reports_list_vehicle:
   class: otkWithUserDoctrineRoute

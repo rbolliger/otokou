@@ -6,6 +6,7 @@
 $menu = new ioMenu(array('id' => 'reports_menu', 'class' => 'vert-menu'));
 
 $menu->addChild('Create a new report', '@report_new');
+$menu->addChild('(Un)archive vehicles', '@vehicle');
 $menu->addChild('Custom reports', '@reports_list_custom');
 $menu->addChild('By Vehicle', '@report_index');
 
