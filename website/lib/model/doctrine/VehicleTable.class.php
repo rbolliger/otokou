@@ -60,7 +60,7 @@ class VehicleTable extends Doctrine_Table {
     
     public function findActiveByUsernameAndSortByName($params) {
         
-        $this->getActiveVehiclesQuery($params['username']);
+        $q = $this->getActiveVehiclesQuery($params['username']);
         
         return $q->execute();
         
