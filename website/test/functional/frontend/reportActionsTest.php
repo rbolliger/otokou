@@ -213,6 +213,7 @@ $browser
         ->checkElement('table.reports_list', true)
         ->checkElement('table.reports_list tbody tr', 1)
         ->checkElement('table.reports_list tbody tr.report_new', 1)
+        ->checkElement('table.reports_list tbody tr.report_new td:contains("0-1000 km - Car gs 1 and Car gs 2")',true) // ensures that reports defind with archived vehicles are shown
         ->checkElement('table.reports_list tbody tr.report_old', 0)
         ->checkElement('div.sf_admin_pagination', false)
         ->end()
