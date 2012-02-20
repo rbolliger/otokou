@@ -24,61 +24,25 @@
  *
  * @author Dave Bergomi
  */
- 
-/* examples
-
----outputs
--get user
-
-<?xml version="1.0" encoding="UTF-8"?>
-<root>
- <otokou version="1.0">
-  <header>
-   <error>000</error>
-   <request>get_user</request>
-  </header>
-  <body>
-   <firstname>asdrubale</firstname>
-   <lastname>arnaldo</lastname>
-  </body>
- </otokou>
-</root>
-
-
-
----inputs
--get user
-
-<?xml version="1.0" encoding="UTF-8"?>
-<root>
- <otokou version="1.0">
-  <header>
-   <request>get_user</request>
-  </header>
-  <body>
-   <apikey>rori123456</apikey>
-  </body>
- </otokou>
-</root>
-
-*/
 class apiRR {
+	// Constants codes for requests types
 	const GET_USER_REQUEST = 0;
 	const GET_VEHICLES_REQUEST = 1;
 	const SET_CHARGE_REQUEST = 2;
 	const UNDEFINED_REQUEST = 100;
 	
+	// Constants strings for requests types
 	const GET_USER_REQUEST_STRING = "get_user";
 	const GET_VEHICLES_REQUEST_STRING = "get_vehicles";
 	const SET_CHARGE_REQUEST_STRING = "set_charge";
 	
+	// request members
 	private $rawRequest;
 	private $decryptedRequest;
+	private $xmlRequest;
 	private $requestType;
-	private $xml;
-	
 	private $requestApiVersion;
-	private $requestUser;
+	private $requestApiKey;
 	private $requestVehicle;
 	private $requestCategory;
 	private $requestDate;
@@ -87,18 +51,30 @@ class apiRR {
 	private $requestComment;
 	private $requestQuantity;
 	
+	// response members
+	private $xmlResponse;
 	private $decriptedResponse;
 	private $rawResponse;
 	
+	// error members
 	private $isError;
 	private $errorCode;
 	private $errorMessage;
 	
+	/**
+	 * apiRR($string,$request_type) constructor
+	 *
+	 * Create an apiRR object instance.
+	 *
+	 * in: 
+	 *  - (string)$string: received API encrypted message
+	 *  - (int)$string: type of API request
+	 *
+	 */
 	public function apiRR($string,$request_type) {
-        $this->rawRequest = $string;
-		$this->errorCode = '000';
-		$this->errorMessage = 'No Error.';
-		$this->isError = false;
+		$this->setNoError();
+		$this->rawRequest = $string;
+		
 		switch ($request_type) {
 			case self::GET_USER_REQUEST:
 			case self::GET_VEHICLES_REQUEST:
@@ -106,49 +82,23 @@ class apiRR {
 				$this->requestType = $request_type;
 				break;
 			default:
-				$this->errorCode = '201';
-				$this->errorMessage = 'Undefined Request Type.';
+				$this->setError(201);
 				$this->requestType = self::UNDEFINED_REQUEST;
 		}
 	}
 	
-	public function isError() {
-		return $this->isError;
-	}
-	
-	public function getErrorCode() {
-		return $this->errorCode;
-	}
-	
-	public function getErrorMessage() {
-		return $this->errorMessage;
-	}
-	
-	public function getResponse() {
-		return $this->rawResponse;
-	}
-	
+	/**
+	 * treatRequest()
+	 *
+	 * Read API encrypted message and generate a response.
+	 *
+	 */
 	public function treatRequest() {
-		if ($this->rawRequest == '' ) {
-			$this->errorCode = '110';
-			$this->errorMessage = 'Empty String.';
-			$this->isError = true;
-		}
-		
-		if (!$this->isError) {
-			$this->decryptRequest();
-		}
-		
-		if (!$this->isError) {
-			$this->decomposeRequest();
-		}
-		
-		if (!$this->isError) {
-			$this->executeRequest();
-		}
-		
+		if ($this->rawRequest == '' ) $this->setError(110);
+		if (!$this->isError) $this->decryptRequest();
+		if (!$this->isError) $this->decomposeRequest();
+		if (!$this->isError) $this->executeRequest();
 		$this->composeResponse();
-		
 		$this->encryptResponse();
 	}
 	
@@ -157,86 +107,22 @@ class apiRR {
 	}
 	
 	private function decomposeRequest() {
-		if ($this->xml = simplexml_load_string($this->decryptedRequest)) {
+		if ($this->xmlRequest = simplexml_load_string($this->decryptedRequest)) {
 			$this->decomposeXml();
 		}
 		else {
-			$this->errorCode = '120';
-			$this->errorMessage = 'XML not Valid.';
-			$this->isError = true;
+			$this->setError(120);
 		}
-		
-		/*
-		if (version_compare(PHP_VERSION, '5.3.0') >= 0) {
-			$components = str_getcsv($this->decryptedRequest);
-		}
-		else {
-			$components = split(",", $this->decryptedRequest);
-		}
-		
-		if (sizeof($components) < 2 && sizeof($components) > 3) {
-			$this->errorCode = '120';
-			$this->errorMessage = 'Unknow Request Format';
-			$this->isError = true;
-		}
-		else {
-			if ($components[0] == 'get_user') {
-				if (sizeof($components) != 2) {
-					$this->errorCode = '140';
-					$this->errorMessage = 'Wrong number of parameters for get_user Request Type';
-					$this->isError = true;
-				}
-				else {
-					$this->requestType = self::GET_USER_REQUEST;
-					$this->requestUser=$components[1];
-				}
-			}
-			else if ($components[0] == 'get_vehicles') {
-				if (sizeof($components) != 2) {
-					$this->errorCode = '141';
-					$this->errorMessage = 'Wrong number of parameters for get_cars Request Type';
-					$this->isError = true;
-				}
-				else {
-					$this->requestType = self::GET_VEHICLE_REQUEST;
-					$this->requestUser=$components[1];
-				}
-			}
-			else if ($components[0] == 'set_charge') {
-				if (sizeof($components) != 9) {
-					$this->errorCode = '142';
-					$this->errorMessage = 'Wrong number of parameters for set_charge Request Type';
-					$this->isError = true;
-				}
-				$this->requestType = self::SET_CHARGE_REQUEST;
-				$this->requestUser=$components[1];
-				$this->requestVehicle=$components[2];
-				$this->requestCategory=$components[3];
-				$this->requestDate=$components[4];
-				$this->requestKilometers=$components[5];
-				$this->requestAmount=$components[6];
-				$this->requestComment=$components[7];
-				$this->requestQuantity=$components[8];
-			}
-			else {
-				$this->errorCode = '130';
-				$this->errorMessage = 'Unknow Request Type';
-				$this->isError = true;
-			}
-			
-			$this->requestParameters = $components[1];
-		}
-		*/
 	}
 	
 	private function decomposeXml() {
-		if ($this->xml->otokou) {
-			if ($this->xml->otokou->attributes()->version) {
-				$this->requestApiVersion = $this->xml->otokou->attributes()->version;
-				if ($this->xml->otokou->header->request) {
+		if ($this->xmlRequest->otokou) {
+			if ($this->xmlRequest->otokou->attributes()->version) {
+				$this->requestApiVersion = $this->xmlRequest->otokou->attributes()->version;
+				if ($this->xmlRequest->otokou->header->request) {
 					switch ($this->requestType) {
 						case self::GET_USER_REQUEST:
-							if ($this->xml->otokou->header->request == self::GET_USER_REQUEST_STRING) {
+							if ($this->xmlRequest->otokou->header->request == self::GET_USER_REQUEST_STRING) {
 								$this->decomposeGetUserRequest();
 							}
 							else {
@@ -244,7 +130,7 @@ class apiRR {
 							}
 							break;
 						case self::GET_VEHICLES_REQUEST:
-							if ($this->xml->otokou->header->request === self::GET_VEHICLES_REQUEST_STRING) {
+							if ($this->xmlRequest->otokou->header->request == self::GET_VEHICLES_REQUEST_STRING) {
 								$this->decomposeGetVehiclesRequest();
 							}
 							else {
@@ -252,7 +138,7 @@ class apiRR {
 							}
 							break;
 						case self::SET_CHARGE_REQUEST:
-							if ($this->xml->otokou->header->request === self::SET_CHARGE_REQUEST_STRING) {
+							if ($this->xmlRequest->otokou->header->request == self::SET_CHARGE_REQUEST_STRING) {
 								$this->decomposeSetChargeRequest();
 							}
 							else {
@@ -272,13 +158,12 @@ class apiRR {
 		else {
 			$this->setError(130);
 		}
-		
 	}
 	
 	private function decomposeGetUserRequest() {
-		if ($this->xml->otokou->body) {
-			if ($this->xml->otokou->body->apikey) {
-				$this->requestUser = $this->xml->otokou->body->apikey;
+		if ($this->xmlRequest->otokou->body) {
+			if ($this->xmlRequest->otokou->body->apikey) {
+				$this->requestApiKey = $this->xmlRequest->otokou->body->apikey;
 			}
 			else {
 				$this->setError(141);
@@ -290,38 +175,72 @@ class apiRR {
 	}
 	
 	private function decomposeGetVehiclesRequest() {
-		
+		if ($this->xmlRequest->otokou->body) {
+			if ($this->xmlRequest->otokou->body->apikey) {
+				$this->requestApiKey = $this->xmlRequest->otokou->body->apikey;
+			}
+			else {
+				$this->setError(151);
+			}
+		}
+		else {
+			$this->setError(150);
+		}
 	}
 	
 	private function decomposeSetChargeRequest() {
-		
-	}
-	
-	private function setError($code) {
-		$this->isError = true;
-		$this->errorCode = $code;
-		switch ($code) {
-			case 130:
-				$this->errorMessage = 'XML not recognized by API, missing otokou element.';
-				break;
-			case 131:
-				$this->errorMessage = 'XML not recognized by API, missing otokou attribute version.';
-				break;
-			case 132:
-				$this->errorMessage = 'XML not recognized by API, missing request element.';
-				break;
-			case 140:
-				$this->errorMessage = 'XML not recognized by API, missing body element.';
-				break;
-			case 141:
-				$this->errorMessage = 'XML not recognized by API, missing apikey element.';
-				break;
-			case 210:
-				$this->errorMessage = 'Wrong API request.';
-				break;
-			default:
-				$this->errorMessage = 'General error.';
-				break;
+		if ($this->xmlRequest->otokou->body) {
+			if ($this->xmlRequest->otokou->body->apikey) {
+				$this->requestApiKey = $this->xmlRequest->otokou->body->apikey;
+				if ($this->xmlRequest->otokou->body->vehicle_id) {
+					$this->requestVehicle = $this->xmlRequest->otokou->body->vehicle_id;
+					if ($this->xmlRequest->otokou->body->category_id) {
+						$this->requestCategory = $this->xmlRequest->otokou->body->category_id;
+						if ($this->xmlRequest->otokou->body->date) {
+							$this->requestDate = $this->xmlRequest->otokou->body->date;
+							if ($this->xmlRequest->otokou->body->kilometers) {
+								$this->requestKilometers = $this->xmlRequest->otokou->body->kilometers;
+								if ($this->xmlRequest->otokou->body->amount) {
+									$this->requestAmount = $this->xmlRequest->otokou->body->amount;
+									if ($this->xmlRequest->otokou->body->comment) {
+										$this->requestComment = $this->xmlRequest->otokou->body->comment;
+										if ($this->xmlRequest->otokou->body->quantity) {
+											$this->requestQuantity = $this->xmlRequest->otokou->body->quantity;
+										}
+										else {
+											$this->setError(168);
+										}
+									}
+									else {
+										$this->setError(167);
+									}
+								}
+								else {
+									$this->setError(166);
+								}
+							}
+							else {
+								$this->setError(165);
+							}
+						}
+						else {
+							$this->setError(164);
+						}
+					}
+					else {
+						$this->setError(163);
+					}
+				}
+				else {
+					$this->setError(162);
+				}
+			}
+			else {
+				$this->setError(161);
+			}
+		}
+		else {
+			$this->setError(160);
 		}
 	}
 	
@@ -329,20 +248,16 @@ class apiRR {
 		
 		switch ($this->requestType) {
 			case self::GET_USER_REQUEST:
-				$user = Doctrine_Core::getTable('sfGuardUser')->createQuery('u')->where('u.api_key = ?',$this->requestUser)->execute();
+				$user = Doctrine_Core::getTable('sfGuardUser')->createQuery('u')->where('u.api_key = ?',$this->requestApiKey)->execute();
 				if (sizeof($user)==1) {
 					$this->decriptedResponse=$user[0]->getId().','.$user[0]->getFirstName().','.$user[0]->getLastName();
 				}
 				else {
-					$this->errorCode = '211';
-					$this->errorMessage = 'User not found';
-					$this->isError = true;
+					$this->setError(211);
 				}
 				break;
-				/*
-			case self::GET_VEHICLE_REQUEST:
-				//$cars = Doctrine_Core::getTable('Vehicle')->createQuery('v')->leftJoin('v.User u')->where('u.api_key = ?',$this->requestUser)->execute();
-				$user = Doctrine_Core::getTable('sfGuardUser')->createQuery('u')->where('u.api_key = ?',$this->requestUser)->execute();
+			case self::GET_VEHICLES_REQUEST:
+				$user = Doctrine_Core::getTable('sfGuardUser')->createQuery('u')->where('u.api_key = ?',$this->requestApiKey)->execute();
 				if (sizeof($user)==1) {
 					$vehicles = Doctrine_Core::getTable('Vehicle')->createQuery('v')->where('v.user_id = ?',$user[0]->getId())->execute();
 					$this->decriptedResponse = sizeof($vehicles);
@@ -351,13 +266,11 @@ class apiRR {
 					}
 				}
 				else {
-					$this->errorCode = '210';
-					$this->errorMessage = 'User not found';
-					$this->isError = true;
+					$this->setError(211);
 				}
 				break;
 			case self::SET_CHARGE_REQUEST:
-				$user = Doctrine_Core::getTable('sfGuardUser')->createQuery('u')->where('u.api_key = ?',$this->requestUser)->execute();
+				$user = Doctrine_Core::getTable('sfGuardUser')->createQuery('u')->where('u.api_key = ?',$this->requestApiKey)->execute();
 				if (sizeof($user)==1) {
 					$vehicle = Doctrine_Core::getTable('Vehicle')->createQuery('v')->where('v.user_id = ?',$user[0]->getId())->andwhere('v.id = ?',$this->requestVehicle)->execute();
 					if (sizeof($vehicle)==1) {
@@ -371,25 +284,18 @@ class apiRR {
 						$charge->setComment($this->requestComment);
 						$charge->setQuantity($this->requestQuantity);
 						$charge->save();
-						$this->decriptedResponse = "New Charge Saved";						
+						$this->decriptedResponse = "New Charge Saved";
 					}
 					else {
-						$this->errorCode = '220';
-						$this->errorMessage = 'Vehicle not found';
-						$this->isError = true;
-					}	
+						$this->setError(220);
+					}
 				}
 				else {
-					$this->errorCode = '210';
-					$this->errorMessage = 'User not found';
-					$this->isError = true;
+					$this->setError(211);
 				}
 				break;
-				*/
 			default:
-				$this->errorCode = '500';
-				$this->errorMessage = 'Unknow API error';
-				$this->isError = true;
+				$this->setError(500);
 				break;
 		}
 	}
@@ -400,6 +306,148 @@ class apiRR {
 	
 	private function encryptResponse() {
 		$this->rawResponse = $this->decriptedResponse;
+	}
+	
+	/**
+	 * getErrorCode()
+	 *
+	 * Return the generated response xml code.
+	 *
+	 * out:
+	 *  - (string)xmlCode
+	 *
+	 */
+	public function getResponse() {
+		return $this->rawResponse;
+	}
+	
+	/**
+	 * isError()
+	 *
+	 * Return if API encountered an error.
+	 *
+	 * out:
+	 *  - (bool)isError
+	 *
+	 */
+	public function isError() {
+		return $this->isError;
+	}
+	
+	/**
+	 * getErrorCode()
+	 *
+	 * Return the error code.
+	 *
+	 * out:
+	 *  - (int)errorCode
+	 *
+	 */
+	public function getErrorCode() {
+		return $this->errorCode;
+	}
+	
+	/**
+	 * getErrorMessage()
+	 *
+	 * Return the error message.
+	 *
+	 * out:
+	 *  - (string)errorMessage
+	 *
+	 */
+	public function getErrorMessage() {
+		return $this->errorMessage;
+	}
+	
+	/**
+	 * setNoError()
+	 *
+	 * Set object status to no error found.
+	 *
+	 */
+	private function setNoError() {
+		$this->errorCode = 0;
+		$this->errorMessage = 'No Error.';
+		$this->isError = false;
+	}
+	
+	/**
+	 * setNoError($code)
+	 *
+	 * Set object status to a specified error.
+	 *
+	 * in: 
+	 *  - (int)$code: code of the error
+	 *
+	 */
+	private function setError($code) {
+		$this->isError = true;
+		$this->errorCode = $code;
+		switch ($code) {
+			case 110:
+				$this->errorMessage = 'Empty String.';
+				break;
+			case 120:
+				$this->errorMessage = 'XML not Valid.';
+				break;
+			case 130:
+				$this->errorMessage = 'XML not recognized by API, missing otokou element.';
+				break;
+			case 131:
+				$this->errorMessage = 'XML not recognized by API, missing otokou attribute version.';
+				break;
+			case 132:
+				$this->errorMessage = 'XML not recognized by API, missing request element.';
+				break;
+			case 140:
+			case 150:
+			case 160:
+				$this->errorMessage = 'XML not recognized by API, missing body element.';
+				break;
+			case 141:
+			case 151:
+			case 161:
+				$this->errorMessage = 'XML not recognized by API, missing apikey element.';
+				break;
+			case 162:
+				$this->errorMessage = 'XML not recognized by API, missing vehicle_id element.';
+				break;
+			case 163:
+				$this->errorMessage = 'XML not recognized by API, missing category_id element.';
+				break;
+			case 164:
+				$this->errorMessage = 'XML not recognized by API, missing date element.';
+				break;
+			case 165:
+				$this->errorMessage = 'XML not recognized by API, missing kilometers element.';
+				break;
+			case 166:
+				$this->errorMessage = 'XML not recognized by API, missing amount element.';
+				break;
+			case 167:
+				$this->errorMessage = 'XML not recognized by API, missing comment element.';
+				break;
+			case 168:
+				$this->errorMessage = 'XML not recognized by API, missing quantity element.';
+				break;
+			case 201:
+				$this->errorMessage = 'Undefined Request Type.';
+				break;
+			case 210:
+				$this->errorMessage = 'Wrong API request.';
+				break;
+			case 211:
+				$this->errorMessage = 'User not found.';
+				break;
+			case 220:
+				$this->errorMessage = 'Vehicle not found.';
+				break;
+			case 500:
+			default:
+				$this->errorMessage = 'Unknow API error.';
+				break;
+		}
 	}
 }
 

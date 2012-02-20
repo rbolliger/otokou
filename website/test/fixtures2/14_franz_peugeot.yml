@@ -1,0 +1,1601 @@
+Charge:
+  franz_peugeot_1:
+    User: franz
+    Vehicle: peugeot
+    date: '1992-02-10'
+    comment: Acquisto
+    kilometers: 81917
+    amount: 4500
+    Category: purchase
+  franz_peugeot_2:
+    User: franz
+    Vehicle: peugeot
+    date: '1992-02-10'
+    comment: Vignetta
+    kilometers: 81917
+    amount: 30
+    Category: taxes
+  franz_peugeot_3:
+    User: franz
+    Vehicle: peugeot
+    date: '1992-02-10'
+    comment: 'Targhe e circolazione'
+    kilometers: 81917
+    amount: 298.9
+    Category: taxes
+  franz_peugeot_4:
+    User: franz
+    Vehicle: peugeot
+    date: '1992-02-10'
+    comment: Benzina
+    kilometers: 81917
+    amount: 29.4
+    Category: fuel
+    quantity: 30
+  franz_peugeot_5:
+    User: franz
+    Vehicle: peugeot
+    date: '1992-02-22'
+    comment: Benzina
+    kilometers: 82259
+    amount: 30
+    Category: fuel
+    quantity: 30.3
+  franz_peugeot_6:
+    User: franz
+    Vehicle: peugeot
+    date: '1992-02-28'
+    comment: Benzina
+    kilometers: 82602
+    amount: 30
+    Category: fuel
+    quantity: 30
+  franz_peugeot_7:
+    User: franz
+    Vehicle: peugeot
+    date: '1992-03-16'
+    comment: Benzina
+    kilometers: 82859
+    amount: 30
+    Category: fuel
+    quantity: 30.3
+  franz_peugeot_8:
+    User: franz
+    Vehicle: peugeot
+    date: '1992-03-20'
+    comment: Benzina
+    kilometers: 83228
+    amount: 30
+    Category: fuel
+    quantity: 30
+  franz_peugeot_9:
+    User: franz
+    Vehicle: peugeot
+    date: '1992-03-31'
+    comment: Riparazioni
+    kilometers: 83400
+    amount: 132.55
+    Category: maintenance
+  franz_peugeot_10:
+    User: franz
+    Vehicle: peugeot
+    date: '1992-04-03'
+    comment: Benzina
+    kilometers: 83463
+    amount: 20
+    Category: fuel
+    quantity: 20
+  franz_peugeot_11:
+    User: franz
+    Vehicle: peugeot
+    date: '1992-04-15'
+    comment: Benzina
+    kilometers: 83719
+    amount: 20.15
+    Category: fuel
+    quantity: 19.9
+  franz_peugeot_12:
+    User: franz
+    Vehicle: peugeot
+    date: '1992-04-29'
+    comment: Benzina
+    kilometers: 83950
+    amount: 20
+    Category: fuel
+    quantity: 19.9
+  franz_peugeot_13:
+    User: franz
+    Vehicle: peugeot
+    date: '1992-05-10'
+    comment: Benzina
+    kilometers: 84144
+    amount: 30
+    Category: fuel
+    quantity: 30
+  franz_peugeot_14:
+    User: franz
+    Vehicle: peugeot
+    date: '1992-05-26'
+    comment: Benzina
+    kilometers: 84496
+    amount: 20
+    Category: fuel
+    quantity: 19.2
+  franz_peugeot_15:
+    User: franz
+    Vehicle: peugeot
+    date: '1992-06-03'
+    comment: Benzina
+    kilometers: 84639
+    amount: 20
+    Category: fuel
+    quantity: 19.2
+  franz_peugeot_16:
+    User: franz
+    Vehicle: peugeot
+    date: '1992-06-12'
+    comment: Benzina
+    kilometers: 84908
+    amount: 20
+    Category: fuel
+    quantity: 19.2
+  franz_peugeot_17:
+    User: franz
+    Vehicle: peugeot
+    date: '1992-07-10'
+    comment: Benzina
+    kilometers: 85028
+    amount: 30
+    Category: fuel
+    quantity: 30
+  franz_peugeot_18:
+    User: franz
+    Vehicle: peugeot
+    date: '1992-07-22'
+    comment: Benzina
+    kilometers: 85392
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_peugeot_19:
+    User: franz
+    Vehicle: peugeot
+    date: '1992-07-24'
+    comment: Benzina
+    kilometers: 85759
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_peugeot_20:
+    User: franz
+    Vehicle: peugeot
+    date: '1992-07-29'
+    comment: Benzina
+    kilometers: 86056
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_peugeot_21:
+    User: franz
+    Vehicle: peugeot
+    date: '1992-07-30'
+    comment: 'Servizio e olio'
+    kilometers: 86060
+    amount: 470
+    Category: maintenance
+  franz_peugeot_22:
+    User: franz
+    Vehicle: peugeot
+    date: '1992-08-27'
+    comment: Benzina
+    kilometers: 86324
+    amount: 20
+    Category: fuel
+    quantity: 20.2
+  franz_peugeot_23:
+    User: franz
+    Vehicle: peugeot
+    date: '1992-09-16'
+    comment: Benzina
+    kilometers: 86639
+    amount: 20
+    Category: fuel
+    quantity: 21.7
+  franz_peugeot_24:
+    User: franz
+    Vehicle: peugeot
+    date: '1992-09-18'
+    comment: 'Sostituzione asta comando marce'
+    kilometers: 86690
+    amount: 82.5
+    Category: taxes
+  franz_peugeot_25:
+    User: franz
+    Vehicle: peugeot
+    date: '1992-09-23'
+    comment: Benzina
+    kilometers: 86814
+    amount: 20
+    Category: fuel
+    quantity: 20.4
+  franz_peugeot_26:
+    User: franz
+    Vehicle: peugeot
+    date: '1992-09-27'
+    comment: Benzina
+    kilometers: 86874
+    amount: 20
+    Category: fuel
+    quantity: 20.7
+  franz_peugeot_27:
+    User: franz
+    Vehicle: peugeot
+    date: '1992-10-09'
+    comment: Benzina
+    kilometers: 87305
+    amount: 20
+    Category: fuel
+    quantity: 20.7
+  franz_peugeot_28:
+    User: franz
+    Vehicle: peugeot
+    date: '1992-10-22'
+    comment: Benzina
+    kilometers: 87521
+    amount: 20
+    Category: fuel
+    quantity: 20.4
+  franz_peugeot_29:
+    User: franz
+    Vehicle: peugeot
+    date: '1992-10-27'
+    comment: Benzina
+    kilometers: 87796
+    amount: 20
+    Category: fuel
+    quantity: 20.2
+  franz_peugeot_30:
+    User: franz
+    Vehicle: peugeot
+    date: '1992-11-04'
+    comment: Benzina
+    kilometers: 87964
+    amount: 20
+    Category: fuel
+    quantity: 20.2
+  franz_peugeot_31:
+    User: franz
+    Vehicle: peugeot
+    date: '1992-11-06'
+    comment: Benzina
+    kilometers: 88091
+    amount: 20
+    Category: fuel
+    quantity: 20.6
+  franz_peugeot_32:
+    User: franz
+    Vehicle: peugeot
+    date: '1992-11-16'
+    comment: Benzina
+    kilometers: 88394
+    amount: 20
+    Category: fuel
+    quantity: 20.2
+  franz_peugeot_33:
+    User: franz
+    Vehicle: peugeot
+    date: '1992-11-24'
+    comment: Benzina
+    kilometers: 88628
+    amount: 20.6
+    Category: fuel
+    quantity: 20.7
+  franz_peugeot_34:
+    User: franz
+    Vehicle: peugeot
+    date: '1992-12-04'
+    comment: Benzina
+    kilometers: 88890
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_peugeot_35:
+    User: franz
+    Vehicle: peugeot
+    date: '1992-12-04'
+    comment: 'CO, manicotto radiatore'
+    kilometers: 88890
+    amount: 75
+    Category: taxes
+  franz_peugeot_36:
+    User: franz
+    Vehicle: peugeot
+    date: '1993-01-15'
+    comment: Benzina
+    kilometers: 89264
+    amount: 20.1
+    Category: fuel
+    quantity: 22.6
+  franz_peugeot_37:
+    User: franz
+    Vehicle: peugeot
+    date: '1993-01-22'
+    comment: Benzina
+    kilometers: 89525
+    amount: 20.05
+    Category: fuel
+    quantity: 20.9
+  franz_peugeot_38:
+    User: franz
+    Vehicle: peugeot
+    date: '1993-01-27'
+    comment: Vignetta
+    kilometers: 89634
+    amount: 30
+    Category: taxes
+  franz_peugeot_39:
+    User: franz
+    Vehicle: peugeot
+    date: '1993-02-05'
+    comment: Benzina
+    kilometers: 89757
+    amount: 20.05
+    Category: fuel
+    quantity: 20.9
+  franz_peugeot_40:
+    User: franz
+    Vehicle: peugeot
+    date: '1993-02-17'
+    comment: Benzina
+    kilometers: 89943
+    amount: 20
+    Category: fuel
+    quantity: 20.2
+  franz_peugeot_41:
+    User: franz
+    Vehicle: peugeot
+    date: '1993-03-07'
+    comment: Benzina
+    kilometers: 90230
+    amount: 20
+    Category: fuel
+    quantity: 20.2
+  franz_peugeot_42:
+    User: franz
+    Vehicle: peugeot
+    date: '1993-03-10'
+    comment: Benzina
+    kilometers: 90333
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_peugeot_43:
+    User: franz
+    Vehicle: peugeot
+    date: '1993-04-01'
+    comment: 'Piccolo servizio e olio'
+    kilometers: 90714
+    amount: 138.8
+    Category: taxes
+  franz_peugeot_44:
+    User: franz
+    Vehicle: peugeot
+    date: '1993-04-12'
+    comment: Benzina
+    kilometers: 90786
+    amount: 30
+    Category: fuel
+    quantity: 25
+  franz_peugeot_45:
+    User: franz
+    Vehicle: peugeot
+    date: '1993-04-23'
+    comment: Benzina
+    kilometers: 91040
+    amount: 30.05
+    Category: fuel
+    quantity: 25.3
+  franz_peugeot_46:
+    User: franz
+    Vehicle: peugeot
+    date: '1993-05-12'
+    comment: Benzina
+    kilometers: 91302
+    amount: 30
+    Category: fuel
+    quantity: 25
+  franz_peugeot_47:
+    User: franz
+    Vehicle: peugeot
+    date: '1993-06-02'
+    comment: Benzina
+    kilometers: 91639
+    amount: 0
+    Category: fuel
+    quantity: 26.9
+  franz_peugeot_48:
+    User: franz
+    Vehicle: peugeot
+    date: '1993-06-09'
+    comment: Benzina
+    kilometers: 91892
+    amount: 30
+    Category: fuel
+    quantity: 25.2
+  franz_peugeot_49:
+    User: franz
+    Vehicle: peugeot
+    date: '1993-07-05'
+    comment: Benzina
+    kilometers: 92186
+    amount: 30
+    Category: fuel
+    quantity: 25.4
+  franz_peugeot_50:
+    User: franz
+    Vehicle: peugeot
+    date: '1993-07-16'
+    comment: Benzina
+    kilometers: 92562
+    amount: 10
+    Category: fuel
+    quantity: 8.3
+  franz_peugeot_51:
+    User: franz
+    Vehicle: peugeot
+    date: '1993-07-21'
+    comment: Benzina
+    kilometers: 92596
+    amount: 30
+    Category: fuel
+    quantity: 22.4
+  franz_peugeot_52:
+    User: franz
+    Vehicle: peugeot
+    date: '1993-07-31'
+    comment: 'Cambio gomme (4 pezzi)'
+    kilometers: 92762
+    amount: 312
+    Category: maintenance
+  franz_peugeot_53:
+    User: franz
+    Vehicle: peugeot
+    date: '1993-08-17'
+    comment: Benzina
+    kilometers: 92877
+    amount: 30
+    Category: fuel
+    quantity: 28.3
+  franz_peugeot_54:
+    User: franz
+    Vehicle: peugeot
+    date: '1993-09-03'
+    comment: Benzina
+    kilometers: 93215
+    amount: 30.05
+    Category: fuel
+    quantity: 26.8
+  franz_peugeot_55:
+    User: franz
+    Vehicle: peugeot
+    date: '1993-09-12'
+    comment: Benzina
+    kilometers: 93445
+    amount: 30
+    Category: fuel
+    quantity: 26.3
+  franz_peugeot_56:
+    User: franz
+    Vehicle: peugeot
+    date: '1993-09-22'
+    comment: Benzina
+    kilometers: 93779
+    amount: 20
+    Category: fuel
+    quantity: 17.4
+  franz_peugeot_57:
+    User: franz
+    Vehicle: peugeot
+    date: '1993-09-30'
+    comment: Benzina
+    kilometers: 93989
+    amount: 30
+    Category: fuel
+    quantity: 27.3
+  franz_peugeot_58:
+    User: franz
+    Vehicle: peugeot
+    date: '1993-10-19'
+    comment: Benzina
+    kilometers: 94281
+    amount: 30
+    Category: fuel
+    quantity: 26.3
+  franz_peugeot_59:
+    User: franz
+    Vehicle: peugeot
+    date: '1993-10-27'
+    comment: Benzina
+    kilometers: 94543
+    amount: 20
+    Category: fuel
+    quantity: 17.5
+  franz_peugeot_60:
+    User: franz
+    Vehicle: peugeot
+    date: '1993-10-31'
+    comment: Benzina
+    kilometers: 94761
+    amount: 0
+    Category: fuel
+    quantity: 30
+  franz_peugeot_61:
+    User: franz
+    Vehicle: peugeot
+    date: '1993-11-10'
+    comment: Benzina
+    kilometers: 95105
+    amount: 30
+    Category: fuel
+    quantity: 24.4
+  franz_peugeot_62:
+    User: franz
+    Vehicle: peugeot
+    date: '1993-11-15'
+    comment: 'Olio, cuscinetto ruota anteriore'
+    kilometers: 95150
+    amount: 341.5
+    Category: maintenance
+  franz_peugeot_63:
+    User: franz
+    Vehicle: peugeot
+    date: '1993-11-16'
+    comment: 'Calotta spinterogeno'
+    kilometers: 95245
+    amount: 174.5
+    Category: maintenance
+  franz_peugeot_64:
+    User: franz
+    Vehicle: peugeot
+    date: '1993-11-16'
+    comment: Benzina
+    kilometers: 95306
+    amount: 30
+    Category: fuel
+    quantity: 26.8
+  franz_peugeot_65:
+    User: franz
+    Vehicle: peugeot
+    date: '1993-12-02'
+    comment: Benzina
+    kilometers: 95577
+    amount: 20
+    Category: fuel
+    quantity: 17.9
+  franz_peugeot_66:
+    User: franz
+    Vehicle: peugeot
+    date: '1993-12-07'
+    comment: CO
+    kilometers: 95577
+    amount: 48
+    Category: taxes
+  franz_peugeot_67:
+    User: franz
+    Vehicle: peugeot
+    date: '1993-12-11'
+    comment: Benzina
+    kilometers: 95821
+    amount: 30
+    Category: fuel
+    quantity: 26.7
+  franz_peugeot_68:
+    User: franz
+    Vehicle: peugeot
+    date: '1993-12-15'
+    comment: Benzina
+    kilometers: 96096
+    amount: 30
+    Category: fuel
+    quantity: 27
+  franz_peugeot_69:
+    User: franz
+    Vehicle: peugeot
+    date: '1993-12-27'
+    comment: Assicurazione
+    kilometers: 96096
+    amount: 345.5
+    Category: insurance
+  franz_peugeot_70:
+    User: franz
+    Vehicle: peugeot
+    date: '1994-01-20'
+    comment: Benzina
+    kilometers: 96465
+    amount: 20
+    Category: fuel
+    quantity: 17.5
+  franz_peugeot_71:
+    User: franz
+    Vehicle: peugeot
+    date: '1994-01-21'
+    comment: Benzina
+    kilometers: 96565
+    amount: 20
+    Category: fuel
+    quantity: 18.1
+  franz_peugeot_72:
+    User: franz
+    Vehicle: peugeot
+    date: '1994-01-21'
+    comment: Vignetta
+    kilometers: 96565
+    amount: 30
+    Category: taxes
+  franz_peugeot_73:
+    User: franz
+    Vehicle: peugeot
+    date: '1994-02-02'
+    comment: Circolazione
+    kilometers: 96565
+    amount: 264
+    Category: taxes
+  franz_peugeot_74:
+    User: franz
+    Vehicle: peugeot
+    date: '1994-02-04'
+    comment: Benzina
+    kilometers: 96789
+    amount: 20
+    Category: fuel
+    quantity: 18.2
+  franz_peugeot_75:
+    User: franz
+    Vehicle: peugeot
+    date: '1994-02-23'
+    comment: Benzina
+    kilometers: 97034
+    amount: 20
+    Category: fuel
+    quantity: 18
+  franz_peugeot_76:
+    User: franz
+    Vehicle: peugeot
+    date: '1994-03-11'
+    comment: Benzina
+    kilometers: 97266
+    amount: 20
+    Category: fuel
+    quantity: 18
+  franz_peugeot_77:
+    User: franz
+    Vehicle: peugeot
+    date: '1994-03-24'
+    comment: Benzina
+    kilometers: 97486
+    amount: 20
+    Category: fuel
+    quantity: 18
+  franz_peugeot_78:
+    User: franz
+    Vehicle: peugeot
+    date: '1994-04-08'
+    comment: Benzina
+    kilometers: 97681
+    amount: 20.1
+    Category: fuel
+    quantity: 18.2
+  franz_peugeot_79:
+    User: franz
+    Vehicle: peugeot
+    date: '1994-04-20'
+    comment: Benzina
+    kilometers: 97909
+    amount: 30
+    Category: fuel
+    quantity: 26.1
+  franz_peugeot_80:
+    User: franz
+    Vehicle: peugeot
+    date: '1994-04-18'
+    comment: 'Rifatto freni posteriori'
+    kilometers: 97890
+    amount: 481.7
+    Category: maintenance
+  franz_peugeot_81:
+    User: franz
+    Vehicle: peugeot
+    date: '1994-04-29'
+    comment: Benzina
+    kilometers: 98180
+    amount: 20.05
+    Category: fuel
+    quantity: 17.5
+  franz_peugeot_82:
+    User: franz
+    Vehicle: peugeot
+    date: '1994-05-13'
+    comment: Benzina
+    kilometers: 98617
+    amount: 20
+    Category: fuel
+    quantity: 17.5
+  franz_peugeot_83:
+    User: franz
+    Vehicle: peugeot
+    date: '1994-06-03'
+    comment: Benzina
+    kilometers: 99017
+    amount: 20.5
+    Category: fuel
+    quantity: 17.3
+  franz_peugeot_84:
+    User: franz
+    Vehicle: peugeot
+    date: '1994-06-17'
+    comment: Benzina
+    kilometers: 99268
+    amount: 30
+    Category: fuel
+    quantity: 26
+  franz_peugeot_85:
+    User: franz
+    Vehicle: peugeot
+    date: '1994-06-30'
+    comment: Benzina
+    kilometers: 99475
+    amount: 20
+    Category: fuel
+    quantity: 17.4
+  franz_peugeot_86:
+    User: franz
+    Vehicle: peugeot
+    date: '1994-06-30'
+    comment: Assicurazione
+    kilometers: 99480
+    amount: 345.5
+    Category: insurance
+  franz_peugeot_87:
+    User: franz
+    Vehicle: peugeot
+    date: '1994-08-04'
+    comment: Benzina
+    kilometers: 99766
+    amount: 30
+    Category: fuel
+    quantity: 26
+  franz_peugeot_88:
+    User: franz
+    Vehicle: peugeot
+    date: '1994-08-22'
+    comment: Olio
+    kilometers: 99985
+    amount: 64
+    Category: maintenance
+  franz_peugeot_89:
+    User: franz
+    Vehicle: peugeot
+    date: '1994-08-24'
+    comment: Benzina
+    kilometers: 100054
+    amount: 20
+    Category: fuel
+    quantity: 16.7
+  franz_peugeot_90:
+    User: franz
+    Vehicle: peugeot
+    date: '1994-09-01'
+    comment: Benzina
+    kilometers: 100267
+    amount: 20
+    Category: fuel
+    quantity: 17.3
+  franz_peugeot_91:
+    User: franz
+    Vehicle: peugeot
+    date: '1994-09-08'
+    comment: Benzina
+    kilometers: 100448
+    amount: 20.05
+    Category: fuel
+    quantity: 17.3
+  franz_peugeot_92:
+    User: franz
+    Vehicle: peugeot
+    date: '1994-09-15'
+    comment: Benzina
+    kilometers: 100613
+    amount: 30
+    Category: fuel
+    quantity: 26.2
+  franz_peugeot_93:
+    User: franz
+    Vehicle: peugeot
+    date: '1994-09-28'
+    comment: Benzina
+    kilometers: 101004
+    amount: 20
+    Category: fuel
+    quantity: 17.1
+  franz_peugeot_94:
+    User: franz
+    Vehicle: peugeot
+    date: '1994-09-29'
+    comment: Benzina
+    kilometers: 101045
+    amount: 20
+    Category: fuel
+    quantity: 17.9
+  franz_peugeot_95:
+    User: franz
+    Vehicle: peugeot
+    date: '1994-10-13'
+    comment: Benzina
+    kilometers: 101369
+    amount: 30.05
+    Category: fuel
+    quantity: 26.8
+  franz_peugeot_96:
+    User: franz
+    Vehicle: peugeot
+    date: '1994-10-24'
+    comment: Benzina
+    kilometers: 101704
+    amount: 20
+    Category: fuel
+    quantity: 17.2
+  franz_peugeot_97:
+    User: franz
+    Vehicle: peugeot
+    date: '1994-11-07'
+    comment: Benzina
+    kilometers: 101893
+    amount: 20
+    Category: fuel
+    quantity: 17.6
+  franz_peugeot_98:
+    User: franz
+    Vehicle: peugeot
+    date: '1994-11-14'
+    comment: Benzina
+    kilometers: 102107
+    amount: 20
+    Category: fuel
+    quantity: 17.1
+  franz_peugeot_99:
+    User: franz
+    Vehicle: peugeot
+    date: '1994-11-17'
+    comment: Benzina
+    kilometers: 102300
+    amount: 20
+    Category: fuel
+    quantity: 17.1
+  franz_peugeot_100:
+    User: franz
+    Vehicle: peugeot
+    date: '1994-11-19'
+    comment: 'Gomme neve (2 pezzi)'
+    kilometers: 102364
+    amount: 184
+    Category: accessories
+  franz_peugeot_101:
+    User: franz
+    Vehicle: peugeot
+    date: '1994-11-24'
+    comment: Benzina
+    kilometers: 102496
+    amount: 30.05
+    Category: fuel
+    quantity: 26.3
+  franz_peugeot_102:
+    User: franz
+    Vehicle: peugeot
+    date: '1994-12-06'
+    comment: Benzina
+    kilometers: 102801
+    amount: 20
+    Category: fuel
+    quantity: 17.1
+  franz_peugeot_103:
+    User: franz
+    Vehicle: peugeot
+    date: '1994-12-06'
+    comment: CO
+    kilometers: 102801
+    amount: 65
+    Category: taxes
+  franz_peugeot_104:
+    User: franz
+    Vehicle: peugeot
+    date: '1994-12-15'
+    comment: Benzina
+    kilometers: 103007
+    amount: 30.05
+    Category: fuel
+    quantity: 26.8
+  franz_peugeot_105:
+    User: franz
+    Vehicle: peugeot
+    date: '1994-12-27'
+    comment: Assicurazione
+    kilometers: 103150
+    amount: 345.5
+    Category: insurance
+  franz_peugeot_106:
+    User: franz
+    Vehicle: peugeot
+    date: '1995-01-03'
+    comment: 'Vignetta ''95'
+    kilometers: 103291
+    amount: 40
+    Category: taxes
+  franz_peugeot_107:
+    User: franz
+    Vehicle: peugeot
+    date: '1995-01-10'
+    comment: Benzina
+    kilometers: 103325
+    amount: 20
+    Category: fuel
+    quantity: 17.8
+  franz_peugeot_108:
+    User: franz
+    Vehicle: peugeot
+    date: '1995-01-19'
+    comment: Benzina
+    kilometers: 103493
+    amount: 30
+    Category: fuel
+    quantity: 26.4
+  franz_peugeot_109:
+    User: franz
+    Vehicle: peugeot
+    date: '1995-02-02'
+    comment: Benzina
+    kilometers: 103892
+    amount: 30
+    Category: fuel
+    quantity: 26.5
+  franz_peugeot_110:
+    User: franz
+    Vehicle: peugeot
+    date: '1995-02-16'
+    comment: Benzina
+    kilometers: 104143
+    amount: 20
+    Category: fuel
+    quantity: 17.7
+  franz_peugeot_111:
+    User: franz
+    Vehicle: peugeot
+    date: '1995-03-02'
+    comment: Benzina
+    kilometers: 104336
+    amount: 20
+    Category: fuel
+    quantity: 17.7
+  franz_peugeot_112:
+    User: franz
+    Vehicle: peugeot
+    date: '1995-03-13'
+    comment: Benzina
+    kilometers: 104605
+    amount: 20
+    Category: fuel
+    quantity: 17.6
+  franz_peugeot_113:
+    User: franz
+    Vehicle: peugeot
+    date: '1995-03-16'
+    comment: Benzina
+    kilometers: 104721
+    amount: 20
+    Category: fuel
+    quantity: 17.7
+  franz_peugeot_114:
+    User: franz
+    Vehicle: peugeot
+    date: '1995-03-30'
+    comment: Benzina
+    kilometers: 105040
+    amount: 20
+    Category: fuel
+    quantity: 17.7
+  franz_peugeot_115:
+    User: franz
+    Vehicle: peugeot
+    date: '1995-04-03'
+    comment: 'Freni ant., cuscin., cinghia, candele...'
+    kilometers: 105110
+    amount: 490
+    Category: maintenance
+  franz_peugeot_116:
+    User: franz
+    Vehicle: peugeot
+    date: '1995-04-11'
+    comment: Benzina
+    kilometers: 105268
+    amount: 20
+    Category: fuel
+    quantity: 17.6
+  franz_peugeot_117:
+    User: franz
+    Vehicle: peugeot
+    date: '1995-04-20'
+    comment: Benzina
+    kilometers: 105430
+    amount: 30
+    Category: fuel
+    quantity: 26.6
+  franz_peugeot_118:
+    User: franz
+    Vehicle: peugeot
+    date: '1995-05-03'
+    comment: Benzina
+    kilometers: 105749
+    amount: 20
+    Category: fuel
+    quantity: 17.7
+  franz_peugeot_119:
+    User: franz
+    Vehicle: peugeot
+    date: '1995-05-16'
+    comment: Benzina
+    kilometers: 106005
+    amount: 20
+    Category: fuel
+    quantity: 17.6
+  franz_peugeot_120:
+    User: franz
+    Vehicle: peugeot
+    date: '1995-05-24'
+    comment: Benzina
+    kilometers: 106218
+    amount: 30
+    Category: fuel
+    quantity: 26.4
+  franz_peugeot_121:
+    User: franz
+    Vehicle: peugeot
+    date: '1995-06-01'
+    comment: Benzina
+    kilometers: 106434
+    amount: 20
+    Category: fuel
+    quantity: 17.7
+  franz_peugeot_122:
+    User: franz
+    Vehicle: peugeot
+    date: '1995-06-10'
+    comment: Benzina
+    kilometers: 106692
+    amount: 20
+    Category: fuel
+    quantity: 17.7
+  franz_peugeot_123:
+    User: franz
+    Vehicle: peugeot
+    date: '1995-06-22'
+    comment: Benzina
+    kilometers: 106971
+    amount: 20
+    Category: fuel
+    quantity: 17.8
+  franz_peugeot_124:
+    User: franz
+    Vehicle: peugeot
+    date: '1995-06-30'
+    comment: Assicurazione
+    kilometers: 107080
+    amount: 345.5
+    Category: insurance
+  franz_peugeot_125:
+    User: franz
+    Vehicle: peugeot
+    date: '1995-07-14'
+    comment: Benzina
+    kilometers: 107155
+    amount: 20.05
+    Category: fuel
+    quantity: 18.5
+  franz_peugeot_126:
+    User: franz
+    Vehicle: peugeot
+    date: '1995-07-21'
+    comment: Benzina
+    kilometers: 107292
+    amount: 20
+    Category: fuel
+    quantity: 18.4
+  franz_peugeot_127:
+    User: franz
+    Vehicle: peugeot
+    date: '1995-08-07'
+    comment: Benzina
+    kilometers: 107601
+    amount: 30
+    Category: fuel
+    quantity: 27.3
+  franz_peugeot_128:
+    User: franz
+    Vehicle: peugeot
+    date: '1995-09-06'
+    comment: Benzina
+    kilometers: 107910
+    amount: 20
+    Category: fuel
+    quantity: 18.3
+  franz_peugeot_129:
+    User: franz
+    Vehicle: peugeot
+    date: '1995-09-09'
+    comment: Benzina
+    kilometers: 108063
+    amount: 30
+    Category: fuel
+    quantity: 26.5
+  franz_peugeot_130:
+    User: franz
+    Vehicle: peugeot
+    date: '1995-09-20'
+    comment: Benzina
+    kilometers: 108409
+    amount: 20
+    Category: fuel
+    quantity: 18.3
+  franz_peugeot_131:
+    User: franz
+    Vehicle: peugeot
+    date: '1995-09-28'
+    comment: Benzina
+    kilometers: 108653
+    amount: 30
+    Category: fuel
+    quantity: 27.7
+  franz_peugeot_132:
+    User: franz
+    Vehicle: peugeot
+    date: '1995-10-12'
+    comment: Benzina
+    kilometers: 108892
+    amount: 20.05
+    Category: fuel
+    quantity: 18.7
+  franz_peugeot_133:
+    User: franz
+    Vehicle: peugeot
+    date: '1995-10-26'
+    comment: Benzina
+    kilometers: 109195
+    amount: 20
+    Category: fuel
+    quantity: 18.8
+  franz_peugeot_134:
+    User: franz
+    Vehicle: peugeot
+    date: '1995-11-09'
+    comment: Benzina
+    kilometers: 109436
+    amount: 30
+    Category: fuel
+    quantity: 22.6
+  franz_peugeot_135:
+    User: franz
+    Vehicle: peugeot
+    date: '1995-11-16'
+    comment: Benzina
+    kilometers: 109618
+    amount: 20
+    Category: fuel
+    quantity: 18.4
+  franz_peugeot_136:
+    User: franz
+    Vehicle: peugeot
+    date: '1995-11-24'
+    comment: 'cambio gomme'
+    kilometers: 109880
+    amount: 200
+    Category: maintenance
+  franz_peugeot_137:
+    User: franz
+    Vehicle: peugeot
+    date: '1995-11-28'
+    comment: Benzina
+    kilometers: 109941
+    amount: 20
+    Category: fuel
+    quantity: 18.3
+  franz_peugeot_138:
+    User: franz
+    Vehicle: peugeot
+    date: '1995-11-29'
+    comment: 'CO, olio, cuffia ruota'
+    kilometers: 109980
+    amount: 300
+    Category: taxes
+  franz_peugeot_139:
+    User: franz
+    Vehicle: peugeot
+    date: '1995-11-30'
+    comment: Benzina
+    kilometers: 110044
+    amount: 20
+    Category: fuel
+    quantity: 18.4
+  franz_peugeot_140:
+    User: franz
+    Vehicle: peugeot
+    date: '1995-12-07'
+    comment: Benzina
+    kilometers: 110259
+    amount: 20.2
+    Category: fuel
+    quantity: 18.6
+  franz_peugeot_141:
+    User: franz
+    Vehicle: peugeot
+    date: '1995-12-20'
+    comment: Benzina
+    kilometers: 110599
+    amount: 20
+    Category: fuel
+    quantity: 18.3
+  franz_peugeot_142:
+    User: franz
+    Vehicle: peugeot
+    date: '1996-01-04'
+    comment: Benzina
+    kilometers: 110788
+    amount: 20
+    Category: fuel
+    quantity: 18.3
+  franz_peugeot_143:
+    User: franz
+    Vehicle: peugeot
+    date: '1996-01-10'
+    comment: Benzina
+    kilometers: 111010
+    amount: 30
+    Category: fuel
+    quantity: 27.7
+  franz_peugeot_144:
+    User: franz
+    Vehicle: peugeot
+    date: '1996-01-25'
+    comment: Benzina
+    kilometers: 111308
+    amount: 20
+    Category: fuel
+    quantity: 18.4
+  franz_peugeot_145:
+    User: franz
+    Vehicle: peugeot
+    date: '1996-01-29'
+    comment: 'Vignetta ''96'
+    kilometers: 111395
+    amount: 40
+    Category: taxes
+  franz_peugeot_146:
+    User: franz
+    Vehicle: peugeot
+    date: '1996-01-30'
+    comment: 'Circolazione ''96'
+    kilometers: 111418
+    amount: 264
+    Category: taxes
+  franz_peugeot_147:
+    User: franz
+    Vehicle: peugeot
+    date: '1996-02-01'
+    comment: Benzina
+    kilometers: 111458
+    amount: 20.05
+    Category: fuel
+    quantity: 18.5
+  franz_peugeot_148:
+    User: franz
+    Vehicle: peugeot
+    date: '1996-02-15'
+    comment: Benzina
+    kilometers: 111727
+    amount: 20
+    Category: fuel
+    quantity: 17.9
+  franz_peugeot_149:
+    User: franz
+    Vehicle: peugeot
+    date: '1996-02-22'
+    comment: Benzina
+    kilometers: 111894
+    amount: 20
+    Category: fuel
+    quantity: 18
+  franz_peugeot_150:
+    User: franz
+    Vehicle: peugeot
+    date: '1996-03-07'
+    comment: Benzina
+    kilometers: 112194
+    amount: 20
+    Category: fuel
+    quantity: 17.8
+  franz_peugeot_151:
+    User: franz
+    Vehicle: peugeot
+    date: '1996-03-15'
+    comment: Benzina
+    kilometers: 112455
+    amount: 30
+    Category: fuel
+    quantity: 26.4
+  franz_peugeot_152:
+    User: franz
+    Vehicle: peugeot
+    date: '1996-03-17'
+    comment: 'Controllo carburatore'
+    kilometers: 112490
+    amount: 0
+    Category: taxes
+  franz_peugeot_153:
+    User: franz
+    Vehicle: peugeot
+    date: '1996-04-03'
+    comment: Benzina
+    kilometers: 112800
+    amount: 30
+    Category: fuel
+    quantity: 26
+  franz_peugeot_154:
+    User: franz
+    Vehicle: peugeot
+    date: '1996-04-05'
+    comment: Benzina
+    kilometers: 112890
+    amount: 22
+    Category: fuel
+    quantity: 19
+  franz_peugeot_155:
+    User: franz
+    Vehicle: peugeot
+    date: '1996-04-05'
+    comment: 'Liquido aggiuntivo per pulizia tubi'
+    kilometers: 112890
+    amount: 14.8
+    Category: maintenance
+  franz_peugeot_156:
+    User: franz
+    Vehicle: peugeot
+    date: '1996-04-22'
+    comment: 'Cambio gomme (1 nuova)'
+    kilometers: 113164
+    amount: 95
+    Category: maintenance
+  franz_peugeot_157:
+    User: franz
+    Vehicle: peugeot
+    date: '1996-04-24'
+    comment: 'Sostituzione marmitta'
+    kilometers: 113220
+    amount: 160
+    Category: maintenance
+  franz_peugeot_158:
+    User: franz
+    Vehicle: peugeot
+    date: '1996-04-25'
+    comment: 'Rifatto CO'
+    kilometers: 113310
+    amount: 50
+    Category: taxes
+  franz_peugeot_159:
+    User: franz
+    Vehicle: peugeot
+    date: '1996-04-28'
+    comment: Benzina
+    kilometers: 113357
+    amount: 30
+    Category: fuel
+    quantity: 25.3
+  franz_peugeot_160:
+    User: franz
+    Vehicle: peugeot
+    date: '1996-04-29'
+    comment: 'Candele + filtro benzina'
+    kilometers: 113390
+    amount: 46
+    Category: maintenance
+  franz_peugeot_161:
+    User: franz
+    Vehicle: peugeot
+    date: '1996-05-08'
+    comment: Benzina
+    kilometers: 113586
+    amount: 30
+    Category: fuel
+    quantity: 25.3
+  franz_peugeot_162:
+    User: franz
+    Vehicle: peugeot
+    date: '1996-05-17'
+    comment: Benzina
+    kilometers: 113874
+    amount: 20
+    Category: fuel
+    quantity: 16.8
+  franz_peugeot_163:
+    User: franz
+    Vehicle: peugeot
+    date: '1996-05-29'
+    comment: Benzina
+    kilometers: 114119
+    amount: 20
+    Category: fuel
+    quantity: 16.7
+  franz_peugeot_164:
+    User: franz
+    Vehicle: peugeot
+    date: '1996-06-11'
+    comment: Benzina
+    kilometers: 114347
+    amount: 20
+    Category: fuel
+    quantity: 17.1
+  franz_peugeot_165:
+    User: franz
+    Vehicle: peugeot
+    date: '1996-06-18'
+    comment: Benzina
+    kilometers: 114524
+    amount: 20
+    Category: fuel
+    quantity: 17.5
+  franz_peugeot_166:
+    User: franz
+    Vehicle: peugeot
+    date: '1996-07-15'
+    comment: Benzina
+    kilometers: 114808
+    amount: 31
+    Category: fuel
+    quantity: 27.1
+  franz_peugeot_167:
+    User: franz
+    Vehicle: peugeot
+    date: '1996-07-25'
+    comment: Benzina
+    kilometers: 115118
+    amount: 20.05
+    Category: fuel
+    quantity: 17.2
+  franz_peugeot_168:
+    User: franz
+    Vehicle: peugeot
+    date: '1996-08-06'
+    comment: Benzina
+    kilometers: 115317
+    amount: 30
+    Category: fuel
+    quantity: 26.2
+  franz_peugeot_169:
+    User: franz
+    Vehicle: peugeot
+    date: '1996-08-12'
+    comment: 'Olio, centralina, servizio'
+    kilometers: 115326
+    amount: 409.2
+    Category: maintenance
+  franz_peugeot_170:
+    User: franz
+    Vehicle: peugeot
+    date: '1996-08-20'
+    comment: Benzina
+    kilometers: 115616
+    amount: 30
+    Category: fuel
+    quantity: 26.2
+  franz_peugeot_171:
+    User: franz
+    Vehicle: peugeot
+    date: '1996-08-30'
+    comment: Benzina
+    kilometers: 115925
+    amount: 20
+    Category: fuel
+    quantity: 17.3
+  franz_peugeot_172:
+    User: franz
+    Vehicle: peugeot
+    date: '1996-09-02'
+    comment: Benzina
+    kilometers: 116119
+    amount: 30
+    Category: fuel
+    quantity: 26
+  franz_peugeot_173:
+    User: franz
+    Vehicle: peugeot
+    date: '1996-09-03'
+    comment: 'Bobina, cavo elettrico'
+    kilometers: 116180
+    amount: 191.4
+    Category: taxes
+  franz_peugeot_174:
+    User: franz
+    Vehicle: peugeot
+    date: '1996-09-06'
+    comment: Benzina
+    kilometers: 116419
+    amount: 30
+    Category: fuel
+    quantity: 25.5
+  franz_peugeot_175:
+    User: franz
+    Vehicle: peugeot
+    date: '1996-09-18'
+    comment: Benzina
+    kilometers: 116715
+    amount: 30
+    Category: fuel
+    quantity: 25.3
+  franz_peugeot_176:
+    User: franz
+    Vehicle: peugeot
+    date: '1996-10-01'
+    comment: Benzina
+    kilometers: 116954
+    amount: 20
+    Category: fuel
+    quantity: 16.9
+  franz_peugeot_177:
+    User: franz
+    Vehicle: peugeot
+    date: '1996-10-16'
+    comment: Benzina
+    kilometers: 117171
+    amount: 20
+    Category: fuel
+    quantity: 16.7
+  franz_peugeot_178:
+    User: franz
+    Vehicle: peugeot
+    date: '1996-10-23'
+    comment: Benzina
+    kilometers: 117368
+    amount: 20
+    Category: fuel
+    quantity: 16.7
+  franz_peugeot_179:
+    User: franz
+    Vehicle: peugeot
+    date: '1996-11-03'
+    comment: Benzina
+    kilometers: 117586
+    amount: 20
+    Category: fuel
+    quantity: 17.9
+  franz_peugeot_180:
+    User: franz
+    Vehicle: peugeot
+    date: '1996-11-12'
+    comment: Benzina
+    kilometers: 117791
+    amount: 20
+    Category: fuel
+    quantity: 16.8
+  franz_peugeot_181:
+    User: franz
+    Vehicle: peugeot
+    date: '1996-11-18'
+    comment: Benzina
+    kilometers: 118008
+    amount: 10
+    Category: fuel
+    quantity: 8.4
+  franz_peugeot_182:
+    User: franz
+    Vehicle: peugeot
+    date: '1996-11-18'
+    comment: Vendita
+    kilometers: 118012
+    amount: 1000
+    Category: purchase
