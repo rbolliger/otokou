@@ -1,0 +1,3780 @@
+Charge:
+  franz_corsa_1:
+    User: franz
+    Vehicle: corsa
+    date: '1999-03-25'
+    comment: Acquisto
+    kilometers: 0
+    amount: 3200
+    Category: purchase
+  franz_corsa_2:
+    User: franz
+    Vehicle: corsa
+    date: '1999-03-25'
+    comment: 'Cauzione + 1a rata'
+    kilometers: 0
+    amount: 863.35
+    Category: leasing
+  franz_corsa_3:
+    User: franz
+    Vehicle: corsa
+    date: '1999-03-25'
+    comment: Benzina
+    kilometers: 15
+    amount: 40
+    Category: fuel
+    quantity: 35.4
+  franz_corsa_4:
+    User: franz
+    Vehicle: corsa
+    date: '1999-03-25'
+    comment: 'Vignetta autostradale'
+    kilometers: 15
+    amount: 40
+    Category: taxes
+  franz_corsa_5:
+    User: franz
+    Vehicle: corsa
+    date: '1999-04-07'
+    comment: Benzina
+    kilometers: 427
+    amount: 30
+    Category: fuel
+    quantity: 26.2
+  franz_corsa_6:
+    User: franz
+    Vehicle: corsa
+    date: '1999-04-13'
+    comment: Benzina
+    kilometers: 771
+    amount: 30
+    Category: fuel
+    quantity: 25.7
+  franz_corsa_7:
+    User: franz
+    Vehicle: corsa
+    date: '1999-04-21'
+    comment: 'Servizio 1''000 km'
+    kilometers: 1049
+    amount: 88.8
+    Category: maintenance
+  franz_corsa_8:
+    User: franz
+    Vehicle: corsa
+    date: '1999-04-24'
+    comment: Benzina
+    kilometers: 1157
+    amount: 30
+    Category: fuel
+    quantity: 25.6
+  franz_corsa_9:
+    User: franz
+    Vehicle: corsa
+    date: '1999-04-24'
+    comment: 'Differenza circolazione'
+    kilometers: 1157
+    amount: 66.1
+    Category: taxes
+  franz_corsa_10:
+    User: franz
+    Vehicle: corsa
+    date: '1999-04-25'
+    comment: '2a rata'
+    kilometers: 1200
+    amount: 363.35
+    Category: leasing
+  franz_corsa_11:
+    User: franz
+    Vehicle: corsa
+    date: '1999-04-30'
+    comment: 'Assicurazione 1° sem. 99'
+    kilometers: 1350
+    amount: 24.9
+    Category: insurance
+  franz_corsa_12:
+    User: franz
+    Vehicle: corsa
+    date: '1999-04-30'
+    comment: 'Circolazione 99'
+    kilometers: 1350
+    amount: 272.1
+    Category: taxes
+  franz_corsa_13:
+    User: franz
+    Vehicle: corsa
+    date: '1999-05-04'
+    comment: Benzina
+    kilometers: 1542
+    amount: 30
+    Category: fuel
+    quantity: 25.4
+  franz_corsa_14:
+    User: franz
+    Vehicle: corsa
+    date: '1999-05-12'
+    comment: Benzina
+    kilometers: 1926
+    amount: 35
+    Category: fuel
+    quantity: 29.4
+  franz_corsa_15:
+    User: franz
+    Vehicle: corsa
+    date: '1999-05-25'
+    comment: '3a rata'
+    kilometers: 2310
+    amount: 40
+    Category: leasing
+  franz_corsa_16:
+    User: franz
+    Vehicle: corsa
+    date: '1999-05-27'
+    comment: Benzina
+    kilometers: 2333
+    amount: 30
+    Category: fuel
+    quantity: 25.2
+  franz_corsa_17:
+    User: franz
+    Vehicle: corsa
+    date: '1999-06-07'
+    comment: Benzina
+    kilometers: 2745
+    amount: 30
+    Category: fuel
+    quantity: 25.6
+  franz_corsa_18:
+    User: franz
+    Vehicle: corsa
+    date: '1999-06-16'
+    comment: Benzina
+    kilometers: 3140
+    amount: 30
+    Category: fuel
+    quantity: 25.7
+  franz_corsa_19:
+    User: franz
+    Vehicle: corsa
+    date: '1999-06-23'
+    comment: Benzina
+    kilometers: 3481
+    amount: 30
+    Category: fuel
+    quantity: 25.2
+  franz_corsa_20:
+    User: franz
+    Vehicle: corsa
+    date: '1999-06-25'
+    comment: '4a rata'
+    kilometers: 3520
+    amount: 363.35
+    Category: leasing
+  franz_corsa_21:
+    User: franz
+    Vehicle: corsa
+    date: '1999-06-30'
+    comment: Benzina
+    kilometers: 3837
+    amount: 30
+    Category: fuel
+    quantity: 25.2
+  franz_corsa_22:
+    User: franz
+    Vehicle: corsa
+    date: '1999-06-30'
+    comment: 'Assicurazione 2° sem. 99'
+    kilometers: 3837
+    amount: 420.8
+    Category: insurance
+  franz_corsa_23:
+    User: franz
+    Vehicle: corsa
+    date: '1999-07-12'
+    comment: Benzina
+    kilometers: 4213
+    amount: 30
+    Category: fuel
+    quantity: 24.8
+  franz_corsa_24:
+    User: franz
+    Vehicle: corsa
+    date: '1999-07-25'
+    comment: '5a rata'
+    kilometers: 4517
+    amount: 363.35
+    Category: leasing
+  franz_corsa_25:
+    User: franz
+    Vehicle: corsa
+    date: '1999-08-01'
+    comment: Benzina
+    kilometers: 4541
+    amount: 30
+    Category: fuel
+    quantity: 24.8
+  franz_corsa_26:
+    User: franz
+    Vehicle: corsa
+    date: '1999-08-13'
+    comment: Benzina
+    kilometers: 4937
+    amount: 30
+    Category: fuel
+    quantity: 24.4
+  franz_corsa_27:
+    User: franz
+    Vehicle: corsa
+    date: '1999-08-21'
+    comment: Benzina
+    kilometers: 5319
+    amount: 30
+    Category: fuel
+    quantity: 23.8
+  franz_corsa_28:
+    User: franz
+    Vehicle: corsa
+    date: '1999-08-25'
+    comment: Benzina
+    kilometers: 5642
+    amount: 30
+    Category: fuel
+    quantity: 23
+  franz_corsa_29:
+    User: franz
+    Vehicle: corsa
+    date: '1999-08-25'
+    comment: '6a rata'
+    kilometers: 5642
+    amount: 363.35
+    Category: leasing
+  franz_corsa_30:
+    User: franz
+    Vehicle: corsa
+    date: '1999-09-06'
+    comment: Benzina
+    kilometers: 6038
+    amount: 30
+    Category: fuel
+    quantity: 24.2
+  franz_corsa_31:
+    User: franz
+    Vehicle: corsa
+    date: '1999-09-15'
+    comment: Benzina
+    kilometers: 6421
+    amount: 30
+    Category: fuel
+    quantity: 24.2
+  franz_corsa_32:
+    User: franz
+    Vehicle: corsa
+    date: '1999-09-22'
+    comment: Benzina
+    kilometers: 6790
+    amount: 30
+    Category: fuel
+    quantity: 23.8
+  franz_corsa_33:
+    User: franz
+    Vehicle: corsa
+    date: '1999-09-25'
+    comment: '7a rata'
+    kilometers: 6850
+    amount: 363.35
+    Category: leasing
+  franz_corsa_34:
+    User: franz
+    Vehicle: corsa
+    date: '1999-10-03'
+    comment: Benzina
+    kilometers: 7145
+    amount: 30
+    Category: fuel
+    quantity: 23.8
+  franz_corsa_35:
+    User: franz
+    Vehicle: corsa
+    date: '1999-10-09'
+    comment: Benzina
+    kilometers: 7519
+    amount: 30
+    Category: fuel
+    quantity: 23.8
+  franz_corsa_36:
+    User: franz
+    Vehicle: corsa
+    date: '1999-10-14'
+    comment: 'Servizio 7''500 km'
+    kilometers: 7824
+    amount: 106.45
+    Category: maintenance
+  franz_corsa_37:
+    User: franz
+    Vehicle: corsa
+    date: '1999-10-15'
+    comment: Benzina
+    kilometers: 7900
+    amount: 30
+    Category: fuel
+    quantity: 23.8
+  franz_corsa_38:
+    User: franz
+    Vehicle: corsa
+    date: '1999-10-19'
+    comment: Benzina
+    kilometers: 8249
+    amount: 50
+    Category: fuel
+    quantity: 39.6
+  franz_corsa_39:
+    User: franz
+    Vehicle: corsa
+    date: '1999-10-25'
+    comment: '8a rata'
+    kilometers: 8520
+    amount: 363.35
+    Category: leasing
+  franz_corsa_40:
+    User: franz
+    Vehicle: corsa
+    date: '1999-11-04'
+    comment: Benzina
+    kilometers: 8806
+    amount: 30
+    Category: fuel
+    quantity: 23.8
+  franz_corsa_41:
+    User: franz
+    Vehicle: corsa
+    date: '1999-11-13'
+    comment: Benzina
+    kilometers: 9218
+    amount: 30
+    Category: fuel
+    quantity: 23.8
+  franz_corsa_42:
+    User: franz
+    Vehicle: corsa
+    date: '1999-11-20'
+    comment: Benzina
+    kilometers: 9532
+    amount: 40
+    Category: fuel
+    quantity: 31.2
+  franz_corsa_43:
+    User: franz
+    Vehicle: corsa
+    date: '1999-11-25'
+    comment: 'Gomme neve (4 pzi)'
+    kilometers: 9690
+    amount: 344
+    Category: accessories
+  franz_corsa_44:
+    User: franz
+    Vehicle: corsa
+    date: '1999-11-25'
+    comment: '9a rata'
+    kilometers: 9690
+    amount: 363.35
+    Category: leasing
+  franz_corsa_45:
+    User: franz
+    Vehicle: corsa
+    date: '1999-12-01'
+    comment: Benzina
+    kilometers: 9948
+    amount: 40
+    Category: fuel
+    quantity: 30.5
+  franz_corsa_46:
+    User: franz
+    Vehicle: corsa
+    date: '1999-12-15'
+    comment: Benzina
+    kilometers: 10407
+    amount: 40.05
+    Category: fuel
+    quantity: 30.6
+  franz_corsa_47:
+    User: franz
+    Vehicle: corsa
+    date: '1999-12-23'
+    comment: '10a rata'
+    kilometers: 10700
+    amount: 363.35
+    Category: leasing
+  franz_corsa_48:
+    User: franz
+    Vehicle: corsa
+    date: '1999-12-27'
+    comment: Benzina
+    kilometers: 10824
+    amount: 40
+    Category: fuel
+    quantity: 30.5
+  franz_corsa_49:
+    User: franz
+    Vehicle: corsa
+    date: '1999-12-30'
+    comment: 'Assicurazione 1° sem. 2000'
+    kilometers: 10890
+    amount: 420.2
+    Category: insurance
+  franz_corsa_50:
+    User: franz
+    Vehicle: corsa
+    date: '2000-01-07'
+    comment: Benzina
+    kilometers: 11267
+    amount: 40
+    Category: fuel
+    quantity: 31.2
+  franz_corsa_51:
+    User: franz
+    Vehicle: corsa
+    date: '2000-01-15'
+    comment: 'Vignetta autostradale'
+    kilometers: 11450
+    amount: 40
+    Category: taxes
+  franz_corsa_52:
+    User: franz
+    Vehicle: corsa
+    date: '2000-01-25'
+    comment: '11a rata'
+    kilometers: 11520
+    amount: 363.35
+    Category: leasing
+  franz_corsa_53:
+    User: franz
+    Vehicle: corsa
+    date: '2000-02-02'
+    comment: Benzina
+    kilometers: 11434
+    amount: 30
+    Category: fuel
+    quantity: 22.9
+  franz_corsa_54:
+    User: franz
+    Vehicle: corsa
+    date: '2000-02-10'
+    comment: Benzina
+    kilometers: 11976
+    amount: 40
+    Category: fuel
+    quantity: 30.1
+  franz_corsa_55:
+    User: franz
+    Vehicle: corsa
+    date: '2000-02-17'
+    comment: Benzina
+    kilometers: 12439
+    amount: 40
+    Category: fuel
+    quantity: 30.1
+  franz_corsa_56:
+    User: franz
+    Vehicle: corsa
+    date: '2000-02-24'
+    comment: Benzina
+    kilometers: 12922
+    amount: 40
+    Category: fuel
+    quantity: 29.4
+  franz_corsa_57:
+    User: franz
+    Vehicle: corsa
+    date: '2000-02-25'
+    comment: '12a rata'
+    kilometers: 13100
+    amount: 363.35
+    Category: leasing
+  franz_corsa_58:
+    User: franz
+    Vehicle: corsa
+    date: '2000-02-29'
+    comment: 'Circolazione 2000'
+    kilometers: 13300
+    amount: 278
+    Category: taxes
+  franz_corsa_59:
+    User: franz
+    Vehicle: corsa
+    date: '2000-03-01'
+    comment: Benzina
+    kilometers: 13342
+    amount: 40
+    Category: fuel
+    quantity: 29.4
+  franz_corsa_60:
+    User: franz
+    Vehicle: corsa
+    date: '2000-03-07'
+    comment: Benzina
+    kilometers: 13724
+    amount: 39
+    Category: fuel
+    quantity: 28.1
+  franz_corsa_61:
+    User: franz
+    Vehicle: corsa
+    date: '2000-03-16'
+    comment: Benzina
+    kilometers: 14156
+    amount: 40
+    Category: fuel
+    quantity: 28.8
+  franz_corsa_62:
+    User: franz
+    Vehicle: corsa
+    date: '2000-03-18'
+    comment: 'Cambio 4 gomme'
+    kilometers: 14255
+    amount: 70
+    Category: maintenance
+  franz_corsa_63:
+    User: franz
+    Vehicle: corsa
+    date: '2000-03-25'
+    comment: '13a rata'
+    kilometers: 14580
+    amount: 363.35
+    Category: leasing
+  franz_corsa_64:
+    User: franz
+    Vehicle: corsa
+    date: '2000-04-04'
+    comment: Benzina
+    kilometers: 14602
+    amount: 40
+    Category: fuel
+    quantity: 28.8
+  franz_corsa_65:
+    User: franz
+    Vehicle: corsa
+    date: '2000-04-17'
+    comment: Benzina
+    kilometers: 15019
+    amount: 40
+    Category: fuel
+    quantity: 29.4
+  franz_corsa_66:
+    User: franz
+    Vehicle: corsa
+    date: '2000-04-19'
+    comment: 'Servizio 15''000 km'
+    kilometers: 15069
+    amount: 272.6
+    Category: maintenance
+  franz_corsa_67:
+    User: franz
+    Vehicle: corsa
+    date: '2000-04-25'
+    comment: '14a rata'
+    kilometers: 15450
+    amount: 363.35
+    Category: leasing
+  franz_corsa_68:
+    User: franz
+    Vehicle: corsa
+    date: '2000-04-26'
+    comment: Benzina
+    kilometers: 15489
+    amount: 40
+    Category: fuel
+    quantity: 29.4
+  franz_corsa_69:
+    User: franz
+    Vehicle: corsa
+    date: '2000-05-11'
+    comment: Benzina
+    kilometers: 15952
+    amount: 40
+    Category: fuel
+    quantity: 28.4
+  franz_corsa_70:
+    User: franz
+    Vehicle: corsa
+    date: '2000-05-23'
+    comment: Benzina
+    kilometers: 16296
+    amount: 40
+    Category: fuel
+    quantity: 27.8
+  franz_corsa_71:
+    User: franz
+    Vehicle: corsa
+    date: '2000-05-25'
+    comment: '15a rata'
+    kilometers: 16350
+    amount: 363.4
+    Category: leasing
+  franz_corsa_72:
+    User: franz
+    Vehicle: corsa
+    date: '2000-06-05'
+    comment: Benzina
+    kilometers: 16816
+    amount: 0
+    Category: fuel
+    quantity: 26.7
+  franz_corsa_73:
+    User: franz
+    Vehicle: corsa
+    date: '2000-06-16'
+    comment: Benzina
+    kilometers: 17193
+    amount: 49
+    Category: fuel
+    quantity: 32.7
+  franz_corsa_74:
+    User: franz
+    Vehicle: corsa
+    date: '2000-06-25'
+    comment: '16a rata'
+    kilometers: 17581
+    amount: 363.35
+    Category: leasing
+  franz_corsa_75:
+    User: franz
+    Vehicle: corsa
+    date: '2000-06-30'
+    comment: 'Assicurazione 2° sem. 2000'
+    kilometers: 17500
+    amount: 420.2
+    Category: insurance
+  franz_corsa_76:
+    User: franz
+    Vehicle: corsa
+    date: '2000-07-03'
+    comment: Benzina
+    kilometers: 17741
+    amount: 40
+    Category: fuel
+    quantity: 26.5
+  franz_corsa_77:
+    User: franz
+    Vehicle: corsa
+    date: '2000-07-27'
+    comment: Benzina
+    kilometers: 18146
+    amount: 40
+    Category: fuel
+    quantity: 30.3
+  franz_corsa_78:
+    User: franz
+    Vehicle: corsa
+    date: '2000-07-27'
+    comment: '17a rata'
+    kilometers: 18146
+    amount: 363.35
+    Category: leasing
+  franz_corsa_79:
+    User: franz
+    Vehicle: corsa
+    date: '2000-08-10'
+    comment: Benzina
+    kilometers: 18562
+    amount: 40
+    Category: fuel
+    quantity: 29
+  franz_corsa_80:
+    User: franz
+    Vehicle: corsa
+    date: '2000-08-25'
+    comment: '18a rata'
+    kilometers: 18890
+    amount: 363.35
+    Category: leasing
+  franz_corsa_81:
+    User: franz
+    Vehicle: corsa
+    date: '2000-09-04'
+    comment: Benzina
+    kilometers: 18954
+    amount: 46.1
+    Category: fuel
+    quantity: 32.5
+  franz_corsa_82:
+    User: franz
+    Vehicle: corsa
+    date: '2000-09-20'
+    comment: Benzina
+    kilometers: 19527
+    amount: 40
+    Category: fuel
+    quantity: 24.8
+  franz_corsa_83:
+    User: franz
+    Vehicle: corsa
+    date: '2000-09-25'
+    comment: '19a rata'
+    kilometers: 19690
+    amount: 363.35
+    Category: leasing
+  franz_corsa_84:
+    User: franz
+    Vehicle: corsa
+    date: '2000-10-05'
+    comment: Benzina
+    kilometers: 19913
+    amount: 40
+    Category: fuel
+    quantity: 28.8
+  franz_corsa_85:
+    User: franz
+    Vehicle: corsa
+    date: '2000-10-13'
+    comment: Benzina
+    kilometers: 20359
+    amount: 40
+    Category: fuel
+    quantity: 28.8
+  franz_corsa_86:
+    User: franz
+    Vehicle: corsa
+    date: '2000-10-20'
+    comment: Benzina
+    kilometers: 20818
+    amount: 40
+    Category: fuel
+    quantity: 28
+  franz_corsa_87:
+    User: franz
+    Vehicle: corsa
+    date: '2000-10-25'
+    comment: '20a rata'
+    kilometers: 21030
+    amount: 363.35
+    Category: leasing
+  franz_corsa_88:
+    User: franz
+    Vehicle: corsa
+    date: '2000-11-01'
+    comment: Benzina
+    kilometers: 21241
+    amount: 41
+    Category: fuel
+    quantity: 28.1
+  franz_corsa_89:
+    User: franz
+    Vehicle: corsa
+    date: '2000-11-06'
+    comment: 'Cambio 4 gomme'
+    kilometers: 21394
+    amount: 68
+    Category: maintenance
+  franz_corsa_90:
+    User: franz
+    Vehicle: corsa
+    date: '2000-11-17'
+    comment: Benzina
+    kilometers: 21652
+    amount: 40.1
+    Category: fuel
+    quantity: 28.4
+  franz_corsa_91:
+    User: franz
+    Vehicle: corsa
+    date: '2000-11-25'
+    comment: '21a rata'
+    kilometers: 21920
+    amount: 363.35
+    Category: leasing
+  franz_corsa_92:
+    User: franz
+    Vehicle: corsa
+    date: '2000-11-30'
+    comment: Benzina
+    kilometers: 22045
+    amount: 40
+    Category: fuel
+    quantity: 28.4
+  franz_corsa_93:
+    User: franz
+    Vehicle: corsa
+    date: '2000-12-07'
+    comment: Benzina
+    kilometers: 22469
+    amount: 40
+    Category: fuel
+    quantity: 29.2
+  franz_corsa_94:
+    User: franz
+    Vehicle: corsa
+    date: '2000-12-12'
+    comment: 'Servizio 22''500 km'
+    kilometers: 22541
+    amount: 126
+    Category: maintenance
+  franz_corsa_95:
+    User: franz
+    Vehicle: corsa
+    date: '2000-12-21'
+    comment: Benzina
+    kilometers: 22888
+    amount: 40
+    Category: fuel
+    quantity: 30.5
+  franz_corsa_96:
+    User: franz
+    Vehicle: corsa
+    date: '2000-12-24'
+    comment: '22a rata'
+    kilometers: 22955
+    amount: 363.35
+    Category: leasing
+  franz_corsa_97:
+    User: franz
+    Vehicle: corsa
+    date: '2000-12-30'
+    comment: 'Assicurazione 1° sem. 2001'
+    kilometers: 23200
+    amount: 420.2
+    Category: insurance
+  franz_corsa_98:
+    User: franz
+    Vehicle: corsa
+    date: '2000-12-31'
+    comment: Benzina
+    kilometers: 23228
+    amount: 30.05
+    Category: fuel
+    quantity: 22.8
+  franz_corsa_99:
+    User: franz
+    Vehicle: corsa
+    date: '2001-01-10'
+    comment: Benzina
+    kilometers: 23620
+    amount: 40
+    Category: fuel
+    quantity: 30.5
+  franz_corsa_100:
+    User: franz
+    Vehicle: corsa
+    date: '2001-01-25'
+    comment: Benzina
+    kilometers: 24033
+    amount: 40
+    Category: fuel
+    quantity: 29.9
+  franz_corsa_101:
+    User: franz
+    Vehicle: corsa
+    date: '2001-01-25'
+    comment: 'Vignetta autostradale'
+    kilometers: 24033
+    amount: 40
+    Category: taxes
+  franz_corsa_102:
+    User: franz
+    Vehicle: corsa
+    date: '2001-01-25'
+    comment: '23a rata'
+    kilometers: 24033
+    amount: 363.7
+    Category: leasing
+  franz_corsa_103:
+    User: franz
+    Vehicle: corsa
+    date: '2001-02-10'
+    comment: Benzina
+    kilometers: 24503
+    amount: 40
+    Category: fuel
+    quantity: 29.2
+  franz_corsa_104:
+    User: franz
+    Vehicle: corsa
+    date: '2001-02-19'
+    comment: Benzina
+    kilometers: 24928
+    amount: 40.05
+    Category: fuel
+    quantity: 29.2
+  franz_corsa_105:
+    User: franz
+    Vehicle: corsa
+    date: '2001-02-25'
+    comment: '24a rata'
+    kilometers: 25100
+    amount: 363.7
+    Category: leasing
+  franz_corsa_106:
+    User: franz
+    Vehicle: corsa
+    date: '2001-02-27'
+    comment: Benzina
+    kilometers: 25364
+    amount: 40
+    Category: fuel
+    quantity: 29.2
+  franz_corsa_107:
+    User: franz
+    Vehicle: corsa
+    date: '2001-02-28'
+    comment: 'Circolazione 2001'
+    kilometers: 25378
+    amount: 278
+    Category: taxes
+  franz_corsa_108:
+    User: franz
+    Vehicle: corsa
+    date: '2001-03-01'
+    comment: Benzina
+    kilometers: 25782
+    amount: 40.05
+    Category: fuel
+    quantity: 29.9
+  franz_corsa_109:
+    User: franz
+    Vehicle: corsa
+    date: '2001-03-17'
+    comment: Benzina
+    kilometers: 26221
+    amount: 40
+    Category: fuel
+    quantity: 29.8
+  franz_corsa_110:
+    User: franz
+    Vehicle: corsa
+    date: '2001-03-25'
+    comment: '25a rata'
+    kilometers: 26450
+    amount: 363.7
+    Category: leasing
+  franz_corsa_111:
+    User: franz
+    Vehicle: corsa
+    date: '2001-03-31'
+    comment: Benzina
+    kilometers: 26691
+    amount: 40
+    Category: fuel
+    quantity: 29.2
+  franz_corsa_112:
+    User: franz
+    Vehicle: corsa
+    date: '2001-04-05'
+    comment: 'Cambio 4 gomme'
+    kilometers: 27002
+    amount: 60
+    Category: maintenance
+  franz_corsa_113:
+    User: franz
+    Vehicle: corsa
+    date: '2001-04-09'
+    comment: Benzina
+    kilometers: 27106
+    amount: 40
+    Category: fuel
+    quantity: 29.2
+  franz_corsa_114:
+    User: franz
+    Vehicle: corsa
+    date: '2001-04-19'
+    comment: Benzina
+    kilometers: 27533
+    amount: 40
+    Category: fuel
+    quantity: 28
+  franz_corsa_115:
+    User: franz
+    Vehicle: corsa
+    date: '2001-04-19'
+    comment: 'Controllo CO'
+    kilometers: 27539
+    amount: 48
+    Category: maintenance
+  franz_corsa_116:
+    User: franz
+    Vehicle: corsa
+    date: '2001-04-25'
+    comment: '26a rata'
+    kilometers: 27900
+    amount: 363.7
+    Category: leasing
+  franz_corsa_117:
+    User: franz
+    Vehicle: corsa
+    date: '2001-04-26'
+    comment: Benzina
+    kilometers: 27926
+    amount: 45
+    Category: fuel
+    quantity: 31.5
+  franz_corsa_118:
+    User: franz
+    Vehicle: corsa
+    date: '2001-05-10'
+    comment: Benzina
+    kilometers: 28407
+    amount: 40
+    Category: fuel
+    quantity: 27
+  franz_corsa_119:
+    User: franz
+    Vehicle: corsa
+    date: '2001-05-25'
+    comment: Benzina
+    kilometers: 28850
+    amount: 40
+    Category: fuel
+    quantity: 27.4
+  franz_corsa_120:
+    User: franz
+    Vehicle: corsa
+    date: '2001-05-25'
+    comment: '27a rata'
+    kilometers: 28850
+    amount: 363.7
+    Category: leasing
+  franz_corsa_121:
+    User: franz
+    Vehicle: corsa
+    date: '2001-06-07'
+    comment: Benzina
+    kilometers: 29253
+    amount: 40
+    Category: fuel
+    quantity: 28
+  franz_corsa_122:
+    User: franz
+    Vehicle: corsa
+    date: '2001-06-20'
+    comment: Benzina
+    kilometers: 29692
+    amount: 40
+    Category: fuel
+    quantity: 28.6
+  franz_corsa_123:
+    User: franz
+    Vehicle: corsa
+    date: '2001-06-25'
+    comment: '28a rata'
+    kilometers: 30080
+    amount: 363.7
+    Category: leasing
+  franz_corsa_124:
+    User: franz
+    Vehicle: corsa
+    date: '2001-06-26'
+    comment: Benzina
+    kilometers: 30177
+    amount: 40
+    Category: fuel
+    quantity: 29.2
+  franz_corsa_125:
+    User: franz
+    Vehicle: corsa
+    date: '2001-06-30'
+    comment: 'Assicurazione 2° sem. 2001'
+    kilometers: 30200
+    amount: 420.2
+    Category: insurance
+  franz_corsa_126:
+    User: franz
+    Vehicle: corsa
+    date: '2001-07-03'
+    comment: 'Servizio 30''000 km'
+    kilometers: 30352
+    amount: 448.3
+    Category: maintenance
+  franz_corsa_127:
+    User: franz
+    Vehicle: corsa
+    date: '2001-07-20'
+    comment: Benzina
+    kilometers: 30587
+    amount: 40
+    Category: fuel
+    quantity: 30
+  franz_corsa_128:
+    User: franz
+    Vehicle: corsa
+    date: '2001-07-25'
+    comment: '29a rata'
+    kilometers: 30967
+    amount: 363.7
+    Category: leasing
+  franz_corsa_129:
+    User: franz
+    Vehicle: corsa
+    date: '2001-07-30'
+    comment: Benzina
+    kilometers: 31029
+    amount: 40
+    Category: fuel
+    quantity: 30.6
+  franz_corsa_130:
+    User: franz
+    Vehicle: corsa
+    date: '2001-08-14'
+    comment: Benzina
+    kilometers: 31480
+    amount: 40
+    Category: fuel
+    quantity: 29.9
+  franz_corsa_131:
+    User: franz
+    Vehicle: corsa
+    date: '2001-08-20'
+    comment: Benzina
+    kilometers: 31941
+    amount: 40
+    Category: fuel
+    quantity: 28.8
+  franz_corsa_132:
+    User: franz
+    Vehicle: corsa
+    date: '2001-08-25'
+    comment: '30a rata'
+    kilometers: 31980
+    amount: 363.7
+    Category: leasing
+  franz_corsa_133:
+    User: franz
+    Vehicle: corsa
+    date: '2001-09-10'
+    comment: Benzina
+    kilometers: 32380
+    amount: 40
+    Category: fuel
+    quantity: 28.8
+  franz_corsa_134:
+    User: franz
+    Vehicle: corsa
+    date: '2001-09-24'
+    comment: Benzina
+    kilometers: 32830
+    amount: 40.05
+    Category: fuel
+    quantity: 28.8
+  franz_corsa_135:
+    User: franz
+    Vehicle: corsa
+    date: '2001-09-25'
+    comment: '31a rata'
+    kilometers: 32880
+    amount: 363.7
+    Category: leasing
+  franz_corsa_136:
+    User: franz
+    Vehicle: corsa
+    date: '2001-10-04'
+    comment: Benzina
+    kilometers: 33271
+    amount: 40
+    Category: fuel
+    quantity: 30.3
+  franz_corsa_137:
+    User: franz
+    Vehicle: corsa
+    date: '2001-10-11'
+    comment: Benzina
+    kilometers: 33664
+    amount: 43
+    Category: fuel
+    quantity: 33.1
+  franz_corsa_138:
+    User: franz
+    Vehicle: corsa
+    date: '2001-10-16'
+    comment: Benzina
+    kilometers: 34195
+    amount: 40
+    Category: fuel
+    quantity: 30.8
+  franz_corsa_139:
+    User: franz
+    Vehicle: corsa
+    date: '2001-10-25'
+    comment: '32a rata'
+    kilometers: 34600
+    amount: 363.7
+    Category: leasing
+  franz_corsa_140:
+    User: franz
+    Vehicle: corsa
+    date: '2001-10-25'
+    comment: Benzina
+    kilometers: 34717
+    amount: 45
+    Category: fuel
+    quantity: 35.2
+  franz_corsa_141:
+    User: franz
+    Vehicle: corsa
+    date: '2001-11-17'
+    comment: Benzina
+    kilometers: 35237
+    amount: 40
+    Category: fuel
+    quantity: 32
+  franz_corsa_142:
+    User: franz
+    Vehicle: corsa
+    date: '2001-11-20'
+    comment: 'Cambio 4 gomme'
+    kilometers: 35400
+    amount: 60
+    Category: maintenance
+  franz_corsa_143:
+    User: franz
+    Vehicle: corsa
+    date: '2001-11-25'
+    comment: '33a rata'
+    kilometers: 35540
+    amount: 363.7
+    Category: leasing
+  franz_corsa_144:
+    User: franz
+    Vehicle: corsa
+    date: '2001-11-29'
+    comment: Benzina
+    kilometers: 35757
+    amount: 40
+    Category: fuel
+    quantity: 31.8
+  franz_corsa_145:
+    User: franz
+    Vehicle: corsa
+    date: '2001-12-13'
+    comment: Benzina
+    kilometers: 36206
+    amount: 45
+    Category: fuel
+    quantity: 36.6
+  franz_corsa_146:
+    User: franz
+    Vehicle: corsa
+    date: '2001-12-14'
+    comment: 'Sostituzione marmitta finale'
+    kilometers: 36220
+    amount: 212
+    Category: maintenance
+  franz_corsa_147:
+    User: franz
+    Vehicle: corsa
+    date: '2001-12-24'
+    comment: '34a rata'
+    kilometers: 36609
+    amount: 363.7
+    Category: leasing
+  franz_corsa_148:
+    User: franz
+    Vehicle: corsa
+    date: '2001-12-25'
+    comment: Benzina
+    kilometers: 36699
+    amount: 40
+    Category: fuel
+    quantity: 32
+  franz_corsa_149:
+    User: franz
+    Vehicle: corsa
+    date: '2001-12-31'
+    comment: 'Assicurazione 1° sem. 2002'
+    kilometers: 36900
+    amount: 420.2
+    Category: insurance
+  franz_corsa_150:
+    User: franz
+    Vehicle: corsa
+    date: '2002-01-06'
+    comment: Benzina
+    kilometers: 37105
+    amount: 45
+    Category: fuel
+    quantity: 36.6
+  franz_corsa_151:
+    User: franz
+    Vehicle: corsa
+    date: '2002-01-18'
+    comment: 'Servizio 37''500 km'
+    kilometers: 37529
+    amount: 193.8
+    Category: maintenance
+  franz_corsa_152:
+    User: franz
+    Vehicle: corsa
+    date: '2002-01-22'
+    comment: Benzina
+    kilometers: 37622
+    amount: 40
+    Category: fuel
+    quantity: 32.5
+  franz_corsa_153:
+    User: franz
+    Vehicle: corsa
+    date: '2002-01-25'
+    comment: '35a rata'
+    kilometers: 37800
+    amount: 363.7
+    Category: leasing
+  franz_corsa_154:
+    User: franz
+    Vehicle: corsa
+    date: '2002-01-27'
+    comment: Benzina
+    kilometers: 37880
+    amount: 15.5
+    Category: fuel
+    quantity: 12.6
+  franz_corsa_155:
+    User: franz
+    Vehicle: corsa
+    date: '2002-02-06'
+    comment: Benzina
+    kilometers: 38387
+    amount: 45
+    Category: fuel
+    quantity: 36.6
+  franz_corsa_156:
+    User: franz
+    Vehicle: corsa
+    date: '2002-02-24'
+    comment: Benzina
+    kilometers: 38880
+    amount: 40
+    Category: fuel
+    quantity: 35.5
+  franz_corsa_157:
+    User: franz
+    Vehicle: corsa
+    date: '2002-02-25'
+    comment: '36a rata'
+    kilometers: 38903
+    amount: 363.7
+    Category: leasing
+  franz_corsa_158:
+    User: franz
+    Vehicle: corsa
+    date: '2002-02-28'
+    comment: 'Circolazione 2002'
+    kilometers: 39050
+    amount: 278
+    Category: taxes
+  franz_corsa_159:
+    User: franz
+    Vehicle: corsa
+    date: '2002-03-08'
+    comment: Benzina
+    kilometers: 39447
+    amount: 40
+    Category: fuel
+    quantity: 32
+  franz_corsa_160:
+    User: franz
+    Vehicle: corsa
+    date: '2002-03-25'
+    comment: Benzina
+    kilometers: 39911
+    amount: 40
+    Category: fuel
+    quantity: 30.8
+  franz_corsa_161:
+    User: franz
+    Vehicle: corsa
+    date: '2002-04-03'
+    comment: Benzina
+    kilometers: 40328
+    amount: 40
+    Category: fuel
+    quantity: 30.1
+  franz_corsa_162:
+    User: franz
+    Vehicle: corsa
+    date: '2002-04-08'
+    comment: Benzina
+    kilometers: 40572
+    amount: 30
+    Category: fuel
+    quantity: 22.6
+  franz_corsa_163:
+    User: franz
+    Vehicle: corsa
+    date: '2002-04-25'
+    comment: Benzina
+    kilometers: 41171
+    amount: 45
+    Category: fuel
+    quantity: 33.8
+  franz_corsa_164:
+    User: franz
+    Vehicle: corsa
+    date: '2002-04-28'
+    comment: 'Cambio 4 gomme'
+    kilometers: 41300
+    amount: 60
+    Category: maintenance
+  franz_corsa_165:
+    User: franz
+    Vehicle: corsa
+    date: '2002-05-12'
+    comment: Benzina
+    kilometers: 41704
+    amount: 50
+    Category: fuel
+    quantity: 38.2
+  franz_corsa_166:
+    User: franz
+    Vehicle: corsa
+    date: '2002-05-29'
+    comment: Benzina
+    kilometers: 42262
+    amount: 49
+    Category: fuel
+    quantity: 37.4
+  franz_corsa_167:
+    User: franz
+    Vehicle: corsa
+    date: '2002-06-18'
+    comment: Benzina
+    kilometers: 42855
+    amount: 45
+    Category: fuel
+    quantity: 34.9
+  franz_corsa_168:
+    User: franz
+    Vehicle: corsa
+    date: '2002-06-28'
+    comment: Benzina
+    kilometers: 43417
+    amount: 40
+    Category: fuel
+    quantity: 30.3
+  franz_corsa_169:
+    User: franz
+    Vehicle: corsa
+    date: '2002-07-20'
+    comment: Benzina
+    kilometers: 43897
+    amount: 40
+    Category: fuel
+    quantity: 30
+  franz_corsa_170:
+    User: franz
+    Vehicle: corsa
+    date: '2002-06-30'
+    comment: 'Assicurazione 2° sem. 2002'
+    kilometers: 44290
+    amount: 420.2
+    Category: insurance
+  franz_corsa_171:
+    User: franz
+    Vehicle: corsa
+    date: '2002-07-31'
+    comment: Benzina
+    kilometers: 44367
+    amount: 49
+    Category: fuel
+    quantity: 37.7
+  franz_corsa_172:
+    User: franz
+    Vehicle: corsa
+    date: '2002-08-10'
+    comment: Benzina
+    kilometers: 44953
+    amount: 40
+    Category: fuel
+    quantity: 30.8
+  franz_corsa_173:
+    User: franz
+    Vehicle: corsa
+    date: '2002-08-16'
+    comment: 'Servizio 45''000 km'
+    kilometers: 45063
+    amount: 280.9
+    Category: maintenance
+  franz_corsa_174:
+    User: franz
+    Vehicle: corsa
+    date: '2002-08-26'
+    comment: Benzina
+    kilometers: 45487
+    amount: 40
+    Category: fuel
+    quantity: 30.3
+  franz_corsa_175:
+    User: franz
+    Vehicle: corsa
+    date: '2002-09-02'
+    comment: Benzina
+    kilometers: 45587
+    amount: 40
+    Category: fuel
+    quantity: 30.2
+  franz_corsa_176:
+    User: franz
+    Vehicle: corsa
+    date: '2002-09-05'
+    comment: 'Cambio sterzo (garanzia)'
+    kilometers: 46001
+    amount: 0
+    Category: maintenance
+  franz_corsa_177:
+    User: franz
+    Vehicle: corsa
+    date: '2002-09-13'
+    comment: Benzina
+    kilometers: 46395
+    amount: 45
+    Category: fuel
+    quantity: 33.8
+  franz_corsa_178:
+    User: franz
+    Vehicle: corsa
+    date: '2002-09-25'
+    comment: Benzina
+    kilometers: 46911
+    amount: 40
+    Category: fuel
+    quantity: 30.1
+  franz_corsa_179:
+    User: franz
+    Vehicle: corsa
+    date: '2002-10-11'
+    comment: Benzina
+    kilometers: 47365
+    amount: 45
+    Category: fuel
+    quantity: 33.9
+  franz_corsa_180:
+    User: franz
+    Vehicle: corsa
+    date: '2002-10-24'
+    comment: Benzina
+    kilometers: 47906
+    amount: 45
+    Category: fuel
+    quantity: 33.8
+  franz_corsa_181:
+    User: franz
+    Vehicle: corsa
+    date: '2002-11-09'
+    comment: Benzina
+    kilometers: 48479
+    amount: 48.85
+    Category: fuel
+    quantity: 39.1
+  franz_corsa_182:
+    User: franz
+    Vehicle: corsa
+    date: '2002-12-05'
+    comment: Benzina
+    kilometers: 49507
+    amount: 50
+    Category: fuel
+    quantity: 38.8
+  franz_corsa_183:
+    User: franz
+    Vehicle: corsa
+    date: '2002-12-25'
+    comment: Benzina
+    kilometers: 50031
+    amount: 40
+    Category: fuel
+    quantity: 30
+  franz_corsa_184:
+    User: franz
+    Vehicle: corsa
+    date: '2002-12-31'
+    comment: 'Assicurazione 1° sem. 2003'
+    kilometers: 50200
+    amount: 420.6
+    Category: insurance
+  franz_corsa_185:
+    User: franz
+    Vehicle: corsa
+    date: '2003-01-09'
+    comment: Benzina
+    kilometers: 50492
+    amount: 45
+    Category: fuel
+    quantity: 34.1
+  franz_corsa_186:
+    User: franz
+    Vehicle: corsa
+    date: '2003-01-10'
+    comment: Lavaggio
+    kilometers: 50600
+    amount: 6.5
+    Category: maintenance
+  franz_corsa_187:
+    User: franz
+    Vehicle: corsa
+    date: '2003-01-24'
+    comment: Benzina
+    kilometers: 50994
+    amount: 40
+    Category: fuel
+    quantity: 30.3
+  franz_corsa_188:
+    User: franz
+    Vehicle: corsa
+    date: '2003-01-29'
+    comment: 'Vignetta autostradale'
+    kilometers: 51110
+    amount: 40
+    Category: taxes
+  franz_corsa_189:
+    User: franz
+    Vehicle: corsa
+    date: '2003-02-08'
+    comment: Benzina
+    kilometers: 51406
+    amount: 40
+    Category: fuel
+    quantity: 30.3
+  franz_corsa_190:
+    User: franz
+    Vehicle: corsa
+    date: '2003-02-11'
+    comment: 'Cambio lampadina'
+    kilometers: 51482
+    amount: 12.5
+    Category: maintenance
+  franz_corsa_191:
+    User: franz
+    Vehicle: corsa
+    date: '2003-02-20'
+    comment: Benzina
+    kilometers: 51926
+    amount: 45
+    Category: fuel
+    quantity: 33.3
+  franz_corsa_192:
+    User: franz
+    Vehicle: corsa
+    date: '2003-02-21'
+    comment: Lavaggio
+    kilometers: 51999
+    amount: 6.5
+    Category: maintenance
+  franz_corsa_193:
+    User: franz
+    Vehicle: corsa
+    date: '2003-02-28'
+    comment: 'Circolazione 2003'
+    kilometers: 52330
+    amount: 278
+    Category: taxes
+  franz_corsa_194:
+    User: franz
+    Vehicle: corsa
+    date: '2003-03-03'
+    comment: Benzina
+    kilometers: 52389
+    amount: 40.1
+    Category: fuel
+    quantity: 29.7
+  franz_corsa_195:
+    User: franz
+    Vehicle: corsa
+    date: '2003-03-18'
+    comment: Benzina
+    kilometers: 52897
+    amount: 40
+    Category: fuel
+    quantity: 30.3
+  franz_corsa_196:
+    User: franz
+    Vehicle: corsa
+    date: '2003-03-20'
+    comment: 'Servizio 52''500 km'
+    kilometers: 53017
+    amount: 181.6
+    Category: maintenance
+  franz_corsa_197:
+    User: franz
+    Vehicle: corsa
+    date: '2003-04-01'
+    comment: Benzina
+    kilometers: 53373
+    amount: 45
+    Category: fuel
+    quantity: 34.9
+  franz_corsa_198:
+    User: franz
+    Vehicle: corsa
+    date: '2003-04-14'
+    comment: 'Cambio 2 gomme + 2 nuove'
+    kilometers: 53780
+    amount: 219.4
+    Category: maintenance
+  franz_corsa_199:
+    User: franz
+    Vehicle: corsa
+    date: '2003-04-17'
+    comment: Benzina
+    kilometers: 53878
+    amount: 45
+    Category: fuel
+    quantity: 34.9
+  franz_corsa_200:
+    User: franz
+    Vehicle: corsa
+    date: '2003-05-02'
+    comment: Benzina
+    kilometers: 54430
+    amount: 48
+    Category: fuel
+    quantity: 37.8
+  franz_corsa_201:
+    User: franz
+    Vehicle: corsa
+    date: '2003-05-19'
+    comment: Benzina
+    kilometers: 54905
+    amount: 37
+    Category: fuel
+    quantity: 29.6
+  franz_corsa_202:
+    User: franz
+    Vehicle: corsa
+    date: '2003-05-30'
+    comment: Benzina
+    kilometers: 55561
+    amount: 49.7
+    Category: fuel
+    quantity: 38.8
+  franz_corsa_203:
+    User: franz
+    Vehicle: corsa
+    date: '2003-06-18'
+    comment: Benzina
+    kilometers: 56170
+    amount: 45
+    Category: fuel
+    quantity: 36.3
+  franz_corsa_204:
+    User: franz
+    Vehicle: corsa
+    date: '2003-06-30'
+    comment: 'Assicurazione 2° sem. 2003'
+    kilometers: 56450
+    amount: 420.6
+    Category: insurance
+  franz_corsa_205:
+    User: franz
+    Vehicle: corsa
+    date: '2003-07-15'
+    comment: Benzina
+    kilometers: 56690
+    amount: 48
+    Category: fuel
+    quantity: 37.2
+  franz_corsa_206:
+    User: franz
+    Vehicle: corsa
+    date: '2003-07-24'
+    comment: Benzina
+    kilometers: 57086
+    amount: 34
+    Category: fuel
+    quantity: 26
+  franz_corsa_207:
+    User: franz
+    Vehicle: corsa
+    date: '2003-07-25'
+    comment: Benzina
+    kilometers: 57457
+    amount: 17.3
+    Category: fuel
+    quantity: 13.2
+  franz_corsa_208:
+    User: franz
+    Vehicle: corsa
+    date: '2003-07-28'
+    comment: Benzina
+    kilometers: 57882
+    amount: 40
+    Category: fuel
+    quantity: 30.5
+  franz_corsa_209:
+    User: franz
+    Vehicle: corsa
+    date: '2003-08-12'
+    comment: Benzina
+    kilometers: 58241
+    amount: 40
+    Category: fuel
+    quantity: 29.9
+  franz_corsa_210:
+    User: franz
+    Vehicle: corsa
+    date: '2003-08-14'
+    comment: Benzina
+    kilometers: 58890
+    amount: 28.35
+    Category: fuel
+    quantity: 21.7
+  franz_corsa_211:
+    User: franz
+    Vehicle: corsa
+    date: '2003-09-01'
+    comment: Benzina
+    kilometers: 59159
+    amount: 45
+    Category: fuel
+    quantity: 33.1
+  franz_corsa_212:
+    User: franz
+    Vehicle: corsa
+    date: '2003-09-09'
+    comment: Benzina
+    kilometers: 59850
+    amount: 40
+    Category: fuel
+    quantity: 29.8
+  franz_corsa_213:
+    User: franz
+    Vehicle: corsa
+    date: '2003-09-10'
+    comment: 'Servizio 60''000 km'
+    kilometers: 60178
+    amount: 848.55
+    Category: maintenance
+  franz_corsa_214:
+    User: franz
+    Vehicle: corsa
+    date: '2003-09-17'
+    comment: Benzina
+    kilometers: 60570
+    amount: 40
+    Category: fuel
+    quantity: 30.5
+  franz_corsa_215:
+    User: franz
+    Vehicle: corsa
+    date: '2003-09-24'
+    comment: Benzina
+    kilometers: 61068
+    amount: 46.65
+    Category: fuel
+    quantity: 36.6
+  franz_corsa_216:
+    User: franz
+    Vehicle: corsa
+    date: '2003-10-01'
+    comment: Benzina
+    kilometers: 61553
+    amount: 35
+    Category: fuel
+    quantity: 26.3
+  franz_corsa_217:
+    User: franz
+    Vehicle: corsa
+    date: '2003-10-18'
+    comment: Benzina
+    kilometers: 62078
+    amount: 40
+    Category: fuel
+    quantity: 30.8
+  franz_corsa_218:
+    User: franz
+    Vehicle: corsa
+    date: '2003-10-28'
+    comment: Benzina
+    kilometers: 62494
+    amount: 40
+    Category: fuel
+    quantity: 30.8
+  franz_corsa_219:
+    User: franz
+    Vehicle: corsa
+    date: '2003-11-06'
+    comment: 'Cambio 4 gomme'
+    kilometers: 62720
+    amount: 64
+    Category: maintenance
+  franz_corsa_220:
+    User: franz
+    Vehicle: corsa
+    date: '2003-11-13'
+    comment: Benzina
+    kilometers: 62918
+    amount: 42.65
+    Category: fuel
+    quantity: 33.9
+  franz_corsa_221:
+    User: franz
+    Vehicle: corsa
+    date: '2003-11-21'
+    comment: 'Servizio precollaudo'
+    kilometers: 63074
+    amount: 170.55
+    Category: taxes
+  franz_corsa_222:
+    User: franz
+    Vehicle: corsa
+    date: '2003-11-21'
+    comment: Collaudo
+    kilometers: 63080
+    amount: 60
+    Category: taxes
+  franz_corsa_223:
+    User: franz
+    Vehicle: corsa
+    date: '2003-12-04'
+    comment: Benzina
+    kilometers: 63522
+    amount: 49.45
+    Category: fuel
+    quantity: 39.2
+  franz_corsa_224:
+    User: franz
+    Vehicle: corsa
+    date: '2003-12-22'
+    comment: Benzina
+    kilometers: 64036
+    amount: 46
+    Category: fuel
+    quantity: 36.2
+  franz_corsa_225:
+    User: franz
+    Vehicle: corsa
+    date: '2004-01-21'
+    comment: Benzina
+    kilometers: 64606
+    amount: 45
+    Category: fuel
+    quantity: 34.1
+  franz_corsa_226:
+    User: franz
+    Vehicle: corsa
+    date: '2004-01-21'
+    comment: 'Vignetta autostradale'
+    kilometers: 64606
+    amount: 40
+    Category: taxes
+  franz_corsa_227:
+    User: franz
+    Vehicle: corsa
+    date: '2004-01-30'
+    comment: 'Assicurazione 1° sem. 2004'
+    kilometers: 65010
+    amount: 420.6
+    Category: insurance
+  franz_corsa_228:
+    User: franz
+    Vehicle: corsa
+    date: '2004-02-11'
+    comment: Benzina
+    kilometers: 65130
+    amount: 45
+    Category: fuel
+    quantity: 34.1
+  franz_corsa_229:
+    User: franz
+    Vehicle: corsa
+    date: '2004-02-26'
+    comment: Benzina
+    kilometers: 65648
+    amount: 40
+    Category: fuel
+    quantity: 29.8
+  franz_corsa_230:
+    User: franz
+    Vehicle: corsa
+    date: '2004-03-01'
+    comment: 'Circolazione 2004'
+    kilometers: 65900
+    amount: 278
+    Category: taxes
+  franz_corsa_231:
+    User: franz
+    Vehicle: corsa
+    date: '2004-03-12'
+    comment: Benzina
+    kilometers: 66105
+    amount: 44
+    Category: fuel
+    quantity: 33.6
+  franz_corsa_232:
+    User: franz
+    Vehicle: corsa
+    date: '2004-03-31'
+    comment: Benzina
+    kilometers: 66614
+    amount: 40
+    Category: fuel
+    quantity: 25.4
+  franz_corsa_233:
+    User: franz
+    Vehicle: corsa
+    date: '2004-04-15'
+    comment: Benzina
+    kilometers: 67060
+    amount: 45.3
+    Category: fuel
+    quantity: 34.1
+  franz_corsa_234:
+    User: franz
+    Vehicle: corsa
+    date: '2004-04-28'
+    comment: Benzina
+    kilometers: 67461
+    amount: 42.05
+    Category: fuel
+    quantity: 30.5
+  franz_corsa_235:
+    User: franz
+    Vehicle: corsa
+    date: '2004-04-30'
+    comment: 'Servizio 67''500 km'
+    kilometers: 67606
+    amount: 268.05
+    Category: maintenance
+  franz_corsa_236:
+    User: franz
+    Vehicle: corsa
+    date: '2004-05-11'
+    comment: Benzina
+    kilometers: 68004
+    amount: 44.1
+    Category: fuel
+    quantity: 30.8
+  franz_corsa_237:
+    User: franz
+    Vehicle: corsa
+    date: '2004-05-27'
+    comment: Benzina
+    kilometers: 68558
+    amount: 45.1
+    Category: fuel
+    quantity: 31.1
+  franz_corsa_238:
+    User: franz
+    Vehicle: corsa
+    date: '2004-06-07'
+    comment: 'Riparazione sensore giri motore'
+    kilometers: 68893
+    amount: 205.5
+    Category: maintenance
+  franz_corsa_239:
+    User: franz
+    Vehicle: corsa
+    date: '2004-06-15'
+    comment: Benzina
+    kilometers: 69069
+    amount: 50.1
+    Category: fuel
+    quantity: 35.8
+  franz_corsa_240:
+    User: franz
+    Vehicle: corsa
+    date: '2004-06-27'
+    comment: Benzina
+    kilometers: 69423
+    amount: 45.05
+    Category: fuel
+    quantity: 32
+  franz_corsa_241:
+    User: franz
+    Vehicle: corsa
+    date: '2004-07-17'
+    comment: Benzina
+    kilometers: 70556
+    amount: 30
+    Category: fuel
+    quantity: 20.5
+  franz_corsa_242:
+    User: franz
+    Vehicle: corsa
+    date: '2004-07-25'
+    comment: 'Assicurazione 2° sem. 2004'
+    kilometers: 70950
+    amount: 444.6
+    Category: insurance
+  franz_corsa_243:
+    User: franz
+    Vehicle: corsa
+    date: '2004-07-31'
+    comment: Benzina
+    kilometers: 71128
+    amount: 40.05
+    Category: fuel
+    quantity: 28
+  franz_corsa_244:
+    User: franz
+    Vehicle: corsa
+    date: '2004-08-23'
+    comment: Benzina
+    kilometers: 71570
+    amount: 45
+    Category: fuel
+    quantity: 31.9
+  franz_corsa_245:
+    User: franz
+    Vehicle: corsa
+    date: '2004-09-04'
+    comment: Benzina
+    kilometers: 72071
+    amount: 45.05
+    Category: fuel
+    quantity: 32
+  franz_corsa_246:
+    User: franz
+    Vehicle: corsa
+    date: '2004-09-18'
+    comment: Benzina
+    kilometers: 72608
+    amount: 45
+    Category: fuel
+    quantity: 32.4
+  franz_corsa_247:
+    User: franz
+    Vehicle: corsa
+    date: '2004-09-23'
+    comment: Benzina
+    kilometers: 73028
+    amount: 46
+    Category: fuel
+    quantity: 33.1
+  franz_corsa_248:
+    User: franz
+    Vehicle: corsa
+    date: '2004-09-28'
+    comment: 'Sostituito lampadine'
+    kilometers: 73300
+    amount: 15
+    Category: maintenance
+  franz_corsa_249:
+    User: franz
+    Vehicle: corsa
+    date: '2004-10-08'
+    comment: Benzina
+    kilometers: 73558
+    amount: 50
+    Category: fuel
+    quantity: 35.5
+  franz_corsa_250:
+    User: franz
+    Vehicle: corsa
+    date: '2004-10-21'
+    comment: Benzina
+    kilometers: 74065
+    amount: 38
+    Category: fuel
+    quantity: 26.4
+  franz_corsa_251:
+    User: franz
+    Vehicle: corsa
+    date: '2004-11-06'
+    comment: Benzina
+    kilometers: 74579
+    amount: 45
+    Category: fuel
+    quantity: 31.9
+  franz_corsa_252:
+    User: franz
+    Vehicle: corsa
+    date: '2004-11-12'
+    comment: 'Servizio 75''000 km + cambio 4 gomme'
+    kilometers: 74812
+    amount: 404.8
+    Category: maintenance
+  franz_corsa_253:
+    User: franz
+    Vehicle: corsa
+    date: '2004-11-16'
+    comment: Benzina
+    kilometers: 75000
+    amount: 45
+    Category: fuel
+    quantity: 32.4
+  franz_corsa_254:
+    User: franz
+    Vehicle: corsa
+    date: '2004-11-28'
+    comment: Benzina
+    kilometers: 75386
+    amount: 45
+    Category: fuel
+    quantity: 31.9
+  franz_corsa_255:
+    User: franz
+    Vehicle: corsa
+    date: '2004-12-03'
+    comment: Benzina
+    kilometers: 76010
+    amount: 30
+    Category: fuel
+    quantity: 21.3
+  franz_corsa_256:
+    User: franz
+    Vehicle: corsa
+    date: '2004-12-01'
+    comment: Benzina
+    kilometers: 76344
+    amount: 40
+    Category: fuel
+    quantity: 29.6
+  franz_corsa_257:
+    User: franz
+    Vehicle: corsa
+    date: '2004-12-31'
+    comment: Benzina
+    kilometers: 76848
+    amount: 50
+    Category: fuel
+    quantity: 37
+  franz_corsa_258:
+    User: franz
+    Vehicle: corsa
+    date: '2005-01-17'
+    comment: 'Assicurazione 1° sem. 2005'
+    kilometers: 77250
+    amount: 444.6
+    Category: insurance
+  franz_corsa_259:
+    User: franz
+    Vehicle: corsa
+    date: '2005-01-19'
+    comment: Benzina
+    kilometers: 77333
+    amount: 45.5
+    Category: fuel
+    quantity: 34.2
+  franz_corsa_260:
+    User: franz
+    Vehicle: corsa
+    date: '2005-02-09'
+    comment: Benzina
+    kilometers: 77938
+    amount: 51
+    Category: fuel
+    quantity: 37.2
+  franz_corsa_261:
+    User: franz
+    Vehicle: corsa
+    date: '2005-02-23'
+    comment: Benzina
+    kilometers: 78476
+    amount: 50.05
+    Category: fuel
+    quantity: 36.6
+  franz_corsa_262:
+    User: franz
+    Vehicle: corsa
+    date: '2005-02-28'
+    comment: 'Circolazione 2005'
+    kilometers: 78661
+    amount: 278
+    Category: taxes
+  franz_corsa_263:
+    User: franz
+    Vehicle: corsa
+    date: '2005-03-06'
+    comment: Benzina
+    kilometers: 79049
+    amount: 23
+    Category: fuel
+    quantity: 16.6
+  franz_corsa_264:
+    User: franz
+    Vehicle: corsa
+    date: '2005-03-07'
+    comment: Benzina
+    kilometers: 79127
+    amount: 37
+    Category: fuel
+    quantity: 27
+  franz_corsa_265:
+    User: franz
+    Vehicle: corsa
+    date: '2005-03-24'
+    comment: Benzina
+    kilometers: 79633
+    amount: 44
+    Category: fuel
+    quantity: 31.4
+  franz_corsa_266:
+    User: franz
+    Vehicle: corsa
+    date: '2005-04-12'
+    comment: Benzina
+    kilometers: 80228
+    amount: 45
+    Category: fuel
+    quantity: 30.9
+  franz_corsa_267:
+    User: franz
+    Vehicle: corsa
+    date: '2005-04-27'
+    comment: Benzina
+    kilometers: 80700
+    amount: 50
+    Category: fuel
+    quantity: 34.7
+  franz_corsa_268:
+    User: franz
+    Vehicle: corsa
+    date: '2005-04-29'
+    comment: 'Cambio 4 gomme (2 nuove)'
+    kilometers: 80778
+    amount: 212
+    Category: maintenance
+  franz_corsa_269:
+    User: franz
+    Vehicle: corsa
+    date: '2005-05-19'
+    comment: Benzina
+    kilometers: 81268
+    amount: 54.5
+    Category: fuel
+    quantity: 37.9
+  franz_corsa_270:
+    User: franz
+    Vehicle: corsa
+    date: '2005-06-09'
+    comment: Benzina
+    kilometers: 81824
+    amount: 40.05
+    Category: fuel
+    quantity: 27.6
+  franz_corsa_271:
+    User: franz
+    Vehicle: corsa
+    date: '2005-06-15'
+    comment: 'Assicurazione 2° sem. 2005'
+    kilometers: 82000
+    amount: 444.6
+    Category: insurance
+  franz_corsa_272:
+    User: franz
+    Vehicle: corsa
+    date: '2005-06-22'
+    comment: 'Servizio 82''500 km + vari (v. fattura)'
+    kilometers: 82248
+    amount: 659.05
+    Category: maintenance
+  franz_corsa_273:
+    User: franz
+    Vehicle: corsa
+    date: '2005-06-24'
+    comment: Benzina
+    kilometers: 82336
+    amount: 61.25
+    Category: fuel
+    quantity: 41.1
+  franz_corsa_274:
+    User: franz
+    Vehicle: corsa
+    date: '2005-06-27'
+    comment: Benzina
+    kilometers: 82810
+    amount: 50
+    Category: fuel
+    quantity: 31.3
+  franz_corsa_275:
+    User: franz
+    Vehicle: corsa
+    date: '2005-06-30'
+    comment: Benzina
+    kilometers: 83284
+    amount: 50
+    Category: fuel
+    quantity: 31.3
+  franz_corsa_276:
+    User: franz
+    Vehicle: corsa
+    date: '2005-07-07'
+    comment: Benzina
+    kilometers: 83758
+    amount: 50
+    Category: fuel
+    quantity: 31.3
+  franz_corsa_277:
+    User: franz
+    Vehicle: corsa
+    date: '2005-07-14'
+    comment: Benzina
+    kilometers: 84232
+    amount: 50
+    Category: fuel
+    quantity: 31.3
+  franz_corsa_278:
+    User: franz
+    Vehicle: corsa
+    date: '2005-07-21'
+    comment: Benzina
+    kilometers: 84610
+    amount: 40
+    Category: fuel
+    quantity: 25
+  franz_corsa_279:
+    User: franz
+    Vehicle: corsa
+    date: '2005-07-28'
+    comment: Benzina
+    kilometers: 85085
+    amount: 45.5
+    Category: fuel
+    quantity: 28.4
+  franz_corsa_280:
+    User: franz
+    Vehicle: corsa
+    date: '2005-08-01'
+    comment: Benzina
+    kilometers: 85150
+    amount: 25
+    Category: fuel
+    quantity: 15.6
+  franz_corsa_281:
+    User: franz
+    Vehicle: corsa
+    date: '2005-08-03'
+    comment: Benzina
+    kilometers: 85274
+    amount: 30
+    Category: fuel
+    quantity: 18.1
+  franz_corsa_282:
+    User: franz
+    Vehicle: corsa
+    date: '2005-08-20'
+    comment: Benzina
+    kilometers: 85731
+    amount: 40
+    Category: fuel
+    quantity: 25.3
+  franz_corsa_283:
+    User: franz
+    Vehicle: corsa
+    date: '2005-09-04'
+    comment: Benzina
+    kilometers: 86108
+    amount: 40
+    Category: fuel
+    quantity: 24.1
+  franz_corsa_284:
+    User: franz
+    Vehicle: corsa
+    date: '2005-09-13'
+    comment: Benzina
+    kilometers: 86502
+    amount: 30
+    Category: fuel
+    quantity: 17.7
+  franz_corsa_285:
+    User: franz
+    Vehicle: corsa
+    date: '2005-09-22'
+    comment: Benzina
+    kilometers: 86761
+    amount: 30
+    Category: fuel
+    quantity: 24.7
+  franz_corsa_286:
+    User: franz
+    Vehicle: corsa
+    date: '2005-10-01'
+    comment: Benzina
+    kilometers: 87088
+    amount: 40
+    Category: fuel
+    quantity: 24.4
+  franz_corsa_287:
+    User: franz
+    Vehicle: corsa
+    date: '2005-10-14'
+    comment: Benzina
+    kilometers: 87596
+    amount: 50.05
+    Category: fuel
+    quantity: 31.1
+  franz_corsa_288:
+    User: franz
+    Vehicle: corsa
+    date: '2005-10-23'
+    comment: Benzina
+    kilometers: 88027
+    amount: 43.05
+    Category: fuel
+    quantity: 26.1
+  franz_corsa_289:
+    User: franz
+    Vehicle: corsa
+    date: '2005-11-03'
+    comment: Benzina
+    kilometers: 88507
+    amount: 40
+    Category: fuel
+    quantity: 25.8
+  franz_corsa_290:
+    User: franz
+    Vehicle: corsa
+    date: '2005-11-17'
+    comment: Benzina
+    kilometers: 88882
+    amount: 55
+    Category: fuel
+    quantity: 38.2
+  franz_corsa_291:
+    User: franz
+    Vehicle: corsa
+    date: '2005-11-17'
+    comment: 'Cambio gomme invernali'
+    kilometers: 88882
+    amount: 60
+    Category: maintenance
+  franz_corsa_292:
+    User: franz
+    Vehicle: corsa
+    date: '2005-12-07'
+    comment: Benzina
+    kilometers: 89521
+    amount: 50.1
+    Category: fuel
+    quantity: 33.4
+  franz_corsa_293:
+    User: franz
+    Vehicle: corsa
+    date: '2005-12-20'
+    comment: Benzina
+    kilometers: 90021
+    amount: 50
+    Category: fuel
+    quantity: 32.7
+  franz_corsa_294:
+    User: franz
+    Vehicle: corsa
+    date: '2006-01-03'
+    comment: 'Servizio 90''000 km '
+    kilometers: 90344
+    amount: 363.75
+    Category: maintenance
+  franz_corsa_295:
+    User: franz
+    Vehicle: corsa
+    date: '2006-01-06'
+    comment: Benzina
+    kilometers: 90465
+    amount: 55
+    Category: fuel
+    quantity: 36.7
+  franz_corsa_296:
+    User: franz
+    Vehicle: corsa
+    date: '2006-01-13'
+    comment: 'Assicurazione 1° sem. 2006'
+    kilometers: 90750
+    amount: 444.6
+    Category: insurance
+  franz_corsa_297:
+    User: franz
+    Vehicle: corsa
+    date: '2006-01-24'
+    comment: Benzina
+    kilometers: 91031
+    amount: 40
+    Category: fuel
+    quantity: 25.8
+  franz_corsa_298:
+    User: franz
+    Vehicle: corsa
+    date: '2006-01-25'
+    comment: 'Guarnizioni sensori temp.  radiatore'
+    kilometers: 91100
+    amount: 94.35
+    Category: maintenance
+  franz_corsa_299:
+    User: franz
+    Vehicle: corsa
+    date: '2006-02-10'
+    comment: Benzina
+    kilometers: 91431
+    amount: 50
+    Category: fuel
+    quantity: 32.3
+  franz_corsa_300:
+    User: franz
+    Vehicle: corsa
+    date: '2006-02-13'
+    comment: Benzina
+    kilometers: 91838
+    amount: 35
+    Category: fuel
+    quantity: 21.5
+  franz_corsa_301:
+    User: franz
+    Vehicle: corsa
+    date: '2006-02-16'
+    comment: Benzina
+    kilometers: 92303
+    amount: 30
+    Category: fuel
+    quantity: 19.4
+  franz_corsa_302:
+    User: franz
+    Vehicle: corsa
+    date: '2006-02-27'
+    comment: Benzina
+    kilometers: 92615
+    amount: 50.5
+    Category: fuel
+    quantity: 33
+  franz_corsa_303:
+    User: franz
+    Vehicle: corsa
+    date: '2006-02-28'
+    comment: 'Circolazione 2006'
+    kilometers: 92760
+    amount: 278
+    Category: taxes
+  franz_corsa_304:
+    User: franz
+    Vehicle: corsa
+    date: '2006-03-14'
+    comment: Benzina
+    kilometers: 93112
+    amount: 54.95
+    Category: fuel
+    quantity: 36.6
+  franz_corsa_305:
+    User: franz
+    Vehicle: corsa
+    date: '2006-03-28'
+    comment: Benzina
+    kilometers: 93711
+    amount: 45
+    Category: fuel
+    quantity: 28.7
+  franz_corsa_306:
+    User: franz
+    Vehicle: corsa
+    date: '2006-04-08'
+    comment: Benzina
+    kilometers: 94174
+    amount: 45
+    Category: fuel
+    quantity: 28
+  franz_corsa_307:
+    User: franz
+    Vehicle: corsa
+    date: '2006-04-22'
+    comment: Benzina
+    kilometers: 94541
+    amount: 40
+    Category: fuel
+    quantity: 23.8
+  franz_corsa_308:
+    User: franz
+    Vehicle: corsa
+    date: '2006-05-04'
+    comment: 'Cambio gomme'
+    kilometers: 94800
+    amount: 76
+    Category: maintenance
+  franz_corsa_309:
+    User: franz
+    Vehicle: corsa
+    date: '2006-05-09'
+    comment: Benzina
+    kilometers: 95002
+    amount: 45
+    Category: fuel
+    quantity: 26
+  franz_corsa_310:
+    User: franz
+    Vehicle: corsa
+    date: '2006-05-21'
+    comment: Benzina
+    kilometers: 95419
+    amount: 40
+    Category: fuel
+    quantity: 24.6
+  franz_corsa_311:
+    User: franz
+    Vehicle: corsa
+    date: '2006-06-06'
+    comment: Benzina
+    kilometers: 95699
+    amount: 40
+    Category: fuel
+    quantity: 24.3
+  franz_corsa_312:
+    User: franz
+    Vehicle: corsa
+    date: '2006-06-15'
+    comment: Benzina
+    kilometers: 96147
+    amount: 37
+    Category: fuel
+    quantity: 22.2
+  franz_corsa_313:
+    User: franz
+    Vehicle: corsa
+    date: '2006-06-15'
+    comment: 'Assicurazione 2° sem. 2006'
+    kilometers: 96150
+    amount: 444.6
+    Category: insurance
+  franz_corsa_314:
+    User: franz
+    Vehicle: corsa
+    date: '2006-06-29'
+    comment: Benzina
+    kilometers: 96532
+    amount: 40
+    Category: fuel
+    quantity: 24
+  franz_corsa_315:
+    User: franz
+    Vehicle: corsa
+    date: '2006-07-09'
+    comment: Benzina
+    kilometers: 96921
+    amount: 40
+    Category: fuel
+    quantity: 23.6
+  franz_corsa_316:
+    User: franz
+    Vehicle: corsa
+    date: '2006-07-24'
+    comment: Benzina
+    kilometers: 97356
+    amount: 40
+    Category: fuel
+    quantity: 23
+  franz_corsa_317:
+    User: franz
+    Vehicle: corsa
+    date: '2006-08-03'
+    comment: 'Servizio 97''500 km'
+    kilometers: 97630
+    amount: 138.85
+    Category: maintenance
+  franz_corsa_318:
+    User: franz
+    Vehicle: corsa
+    date: '2006-08-05'
+    comment: Benzina
+    kilometers: 97767
+    amount: 40
+    Category: fuel
+    quantity: 22.5
+  franz_corsa_319:
+    User: franz
+    Vehicle: corsa
+    date: '2006-08-14'
+    comment: Benzina
+    kilometers: 98133
+    amount: 45
+    Category: fuel
+    quantity: 25.9
+  franz_corsa_320:
+    User: franz
+    Vehicle: corsa
+    date: '2006-08-28'
+    comment: Benzina
+    kilometers: 98511
+    amount: 47
+    Category: fuel
+    quantity: 27.8
+  franz_corsa_321:
+    User: franz
+    Vehicle: corsa
+    date: '2006-08-30'
+    comment: Benzina
+    kilometers: 99033
+    amount: 45
+    Category: fuel
+    quantity: 26.8
+  franz_corsa_322:
+    User: franz
+    Vehicle: corsa
+    date: '2006-09-09'
+    comment: Benzina
+    kilometers: 99503
+    amount: 50.05
+    Category: fuel
+    quantity: 30.7
+  franz_corsa_323:
+    User: franz
+    Vehicle: corsa
+    date: '2006-09-16'
+    comment: Benzina
+    kilometers: 99958
+    amount: 54.1
+    Category: fuel
+    quantity: 33.8
+  franz_corsa_324:
+    User: franz
+    Vehicle: corsa
+    date: '2006-09-23'
+    comment: Benzina
+    kilometers: 100578
+    amount: 68.8
+    Category: fuel
+    quantity: 34.5
+  franz_corsa_325:
+    User: franz
+    Vehicle: corsa
+    date: '2006-09-25'
+    comment: Benzina
+    kilometers: 101216
+    amount: 45.05
+    Category: fuel
+    quantity: 28.7
+  franz_corsa_326:
+    User: franz
+    Vehicle: corsa
+    date: '2006-09-28'
+    comment: 'Sostituzione debimetro'
+    kilometers: 101258
+    amount: 701.55
+    Category: maintenance
+  franz_corsa_327:
+    User: franz
+    Vehicle: corsa
+    date: '2006-10-02'
+    comment: Benzina
+    kilometers: 101691
+    amount: 46
+    Category: fuel
+    quantity: 29.9
+  franz_corsa_328:
+    User: franz
+    Vehicle: corsa
+    date: '2006-10-07'
+    comment: 'Sostituzione lampadina'
+    kilometers: 101995
+    amount: 10
+    Category: maintenance
+  franz_corsa_329:
+    User: franz
+    Vehicle: corsa
+    date: '2006-10-11'
+    comment: Benzina
+    kilometers: 102155
+    amount: 56
+    Category: fuel
+    quantity: 36.4
+  franz_corsa_330:
+    User: franz
+    Vehicle: corsa
+    date: '2006-10-24'
+    comment: Benzina
+    kilometers: 102707
+    amount: 46.05
+    Category: fuel
+    quantity: 29.9
+  franz_corsa_331:
+    User: franz
+    Vehicle: corsa
+    date: '2006-11-07'
+    comment: 'Riparazione motorino del minimo'
+    kilometers: 103099
+    amount: 223.8
+    Category: maintenance
+  franz_corsa_332:
+    User: franz
+    Vehicle: corsa
+    date: '2006-11-09'
+    comment: '4 gomme invernali nuove'
+    kilometers: 103165
+    amount: 368
+    Category: accessories
+  franz_corsa_333:
+    User: franz
+    Vehicle: corsa
+    date: '2006-11-12'
+    comment: Benzina
+    kilometers: 103233
+    amount: 50
+    Category: fuel
+    quantity: 32.9
+  franz_corsa_334:
+    User: franz
+    Vehicle: corsa
+    date: '2006-11-25'
+    comment: Benzina
+    kilometers: 103719
+    amount: 57.5
+    Category: fuel
+    quantity: 38.3
+  franz_corsa_335:
+    User: franz
+    Vehicle: corsa
+    date: '2006-12-13'
+    comment: Benzina
+    kilometers: 104270
+    amount: 45.05
+    Category: fuel
+    quantity: 29.6
+  franz_corsa_336:
+    User: franz
+    Vehicle: corsa
+    date: '2007-01-07'
+    comment: Benzina
+    kilometers: 105100
+    amount: 50
+    Category: fuel
+    quantity: 32.9
+  franz_corsa_337:
+    User: franz
+    Vehicle: corsa
+    date: '2007-01-15'
+    comment: 'Assicurazione 1° sem. 2007'
+    kilometers: 105278
+    amount: 444.6
+    Category: insurance
+  franz_corsa_338:
+    User: franz
+    Vehicle: corsa
+    date: '2007-01-16'
+    comment: 'Servizio 105''000 km'
+    kilometers: 105284
+    amount: 282.15
+    Category: maintenance
+  franz_corsa_339:
+    User: franz
+    Vehicle: corsa
+    date: '2007-01-19'
+    comment: Benzina
+    kilometers: 105543
+    amount: 50.25
+    Category: fuel
+    quantity: 34.3
+  franz_corsa_340:
+    User: franz
+    Vehicle: corsa
+    date: '2007-02-16'
+    comment: Benzina
+    kilometers: 106060
+    amount: 45
+    Category: fuel
+    quantity: 30.2
+  franz_corsa_341:
+    User: franz
+    Vehicle: corsa
+    date: '2007-02-28'
+    comment: 'Circolazione 2007'
+    kilometers: 106500
+    amount: 278
+    Category: taxes
+  franz_corsa_342:
+    User: franz
+    Vehicle: corsa
+    date: '2007-03-01'
+    comment: Benzina
+    kilometers: 106544
+    amount: 50
+    Category: fuel
+    quantity: 32.5
+  franz_corsa_343:
+    User: franz
+    Vehicle: corsa
+    date: '2007-03-16'
+    comment: Benzina
+    kilometers: 107069
+    amount: 45
+    Category: fuel
+    quantity: 28.7
+  franz_corsa_344:
+    User: franz
+    Vehicle: corsa
+    date: '2007-03-29'
+    comment: Benzina
+    kilometers: 107443
+    amount: 50
+    Category: fuel
+    quantity: 31.9
+  franz_corsa_345:
+    User: franz
+    Vehicle: corsa
+    date: '2007-04-16'
+    comment: Benzina
+    kilometers: 107934
+    amount: 45
+    Category: fuel
+    quantity: 28.1
+  franz_corsa_346:
+    User: franz
+    Vehicle: corsa
+    date: '2007-05-03'
+    comment: '4 gomme nuove estive'
+    kilometers: 108435
+    amount: 400
+    Category: accessories
+  franz_corsa_347:
+    User: franz
+    Vehicle: corsa
+    date: '2007-05-03'
+    comment: 'Tassa collaudo'
+    kilometers: 108435
+    amount: 60
+    Category: taxes
+  franz_corsa_348:
+    User: franz
+    Vehicle: corsa
+    date: '2007-05-09'
+    comment: 'Controllo per collaudo + CO'
+    kilometers: 108477
+    amount: 629.45
+    Category: taxes
+  franz_corsa_349:
+    User: franz
+    Vehicle: corsa
+    date: '2007-05-09'
+    comment: Benzina
+    kilometers: 108484
+    amount: 45
+    Category: fuel
+    quantity: 26.6
+  franz_corsa_350:
+    User: franz
+    Vehicle: corsa
+    date: '2007-06-04'
+    comment: Benzina
+    kilometers: 108882
+    amount: 50
+    Category: fuel
+    quantity: 28.9
+  franz_corsa_351:
+    User: franz
+    Vehicle: corsa
+    date: '2007-07-04'
+    comment: Benzina
+    kilometers: 109271
+    amount: 50
+    Category: fuel
+    quantity: 28.9
+  franz_corsa_352:
+    User: franz
+    Vehicle: corsa
+    date: '2007-07-15'
+    comment: Benzina
+    kilometers: 109670
+    amount: 40
+    Category: fuel
+    quantity: 22.9
+  franz_corsa_353:
+    User: franz
+    Vehicle: corsa
+    date: '2007-07-21'
+    comment: Benzina
+    kilometers: 110014
+    amount: 48.05
+    Category: fuel
+    quantity: 28.3
+  franz_corsa_354:
+    User: franz
+    Vehicle: corsa
+    date: '2007-07-30'
+    comment: 'Assicurazione 2° sem. 2007'
+    kilometers: 110200
+    amount: 444.6
+    Category: insurance
+  franz_corsa_355:
+    User: franz
+    Vehicle: corsa
+    date: '2007-08-15'
+    comment: Benzina
+    kilometers: 110436
+    amount: 50
+    Category: fuel
+    quantity: 29.9
+  franz_corsa_356:
+    User: franz
+    Vehicle: corsa
+    date: '2007-08-30'
+    comment: Benzina
+    kilometers: 110986
+    amount: 51
+    Category: fuel
+    quantity: 30.9
+  franz_corsa_357:
+    User: franz
+    Vehicle: corsa
+    date: '2007-09-23'
+    comment: Benzina
+    kilometers: 111512
+    amount: 40.05
+    Category: fuel
+    quantity: 24
+  franz_corsa_358:
+    User: franz
+    Vehicle: corsa
+    date: '2007-10-18'
+    comment: Benzina
+    kilometers: 111909
+    amount: 50
+    Category: fuel
+    quantity: 30.3
+  franz_corsa_359:
+    User: franz
+    Vehicle: corsa
+    date: '2007-10-29'
+    comment: Benzina
+    kilometers: 112376
+    amount: 50
+    Category: fuel
+    quantity: 29.9
+  franz_corsa_360:
+    User: franz
+    Vehicle: corsa
+    date: '2007-11-07'
+    comment: 'Servizio 112''500 km'
+    kilometers: 112569
+    amount: 124.4
+    Category: maintenance
+  franz_corsa_361:
+    User: franz
+    Vehicle: corsa
+    date: '2007-11-15'
+    comment: 'Cambio 4 gomme invernali'
+    kilometers: 112726
+    amount: 64
+    Category: maintenance
+  franz_corsa_362:
+    User: franz
+    Vehicle: corsa
+    date: '2007-11-15'
+    comment: Benzina
+    kilometers: 112730
+    amount: 35
+    Category: fuel
+    quantity: 20.3
+  franz_corsa_363:
+    User: franz
+    Vehicle: corsa
+    date: '2007-11-27'
+    comment: Benzina
+    kilometers: 113066
+    amount: 45
+    Category: fuel
+    quantity: 26
+  franz_corsa_364:
+    User: franz
+    Vehicle: corsa
+    date: '2007-12-13'
+    comment: Benzina
+    kilometers: 113509
+    amount: 45
+    Category: fuel
+    quantity: 26.5
+  franz_corsa_365:
+    User: franz
+    Vehicle: corsa
+    date: '2008-01-11'
+    comment: Benzina
+    kilometers: 113908
+    amount: 45
+    Category: fuel
+    quantity: 26.2
+  franz_corsa_366:
+    User: franz
+    Vehicle: corsa
+    date: '2008-01-18'
+    comment: 'Assicurazione 1° sem. 2008'
+    kilometers: 114050
+    amount: 444.6
+    Category: insurance
+  franz_corsa_367:
+    User: franz
+    Vehicle: corsa
+    date: '2008-01-26'
+    comment: Benzina
+    kilometers: 114222
+    amount: 50
+    Category: fuel
+    quantity: 30.3
+  franz_corsa_368:
+    User: franz
+    Vehicle: corsa
+    date: '2008-02-15'
+    comment: Benzina
+    kilometers: 114621
+    amount: 40
+    Category: fuel
+    quantity: 24.2
+  franz_corsa_369:
+    User: franz
+    Vehicle: corsa
+    date: '2008-02-29'
+    comment: 'Circolazione 2008'
+    kilometers: 114850
+    amount: 278
+    Category: taxes
+  franz_corsa_370:
+    User: franz
+    Vehicle: corsa
+    date: '2008-03-13'
+    comment: Benzina
+    kilometers: 115142
+    amount: 50.1
+    Category: fuel
+    quantity: 28.8
+  franz_corsa_371:
+    User: franz
+    Vehicle: corsa
+    date: '2008-03-26'
+    comment: Benzina
+    kilometers: 115607
+    amount: 50
+    Category: fuel
+    quantity: 29.4
+  franz_corsa_372:
+    User: franz
+    Vehicle: corsa
+    date: '2008-04-02'
+    comment: Benzina
+    kilometers: 115988
+    amount: 51
+    Category: fuel
+    quantity: 29.8
+  franz_corsa_373:
+    User: franz
+    Vehicle: corsa
+    date: '2008-04-11'
+    comment: Benzina
+    kilometers: 116524
+    amount: 50
+    Category: fuel
+    quantity: 29.4
+  franz_corsa_374:
+    User: franz
+    Vehicle: corsa
+    date: '2008-04-23'
+    comment: Benzina
+    kilometers: 117017
+    amount: 50
+    Category: fuel
+    quantity: 29.3
+  franz_corsa_375:
+    User: franz
+    Vehicle: corsa
+    date: '2008-06-11'
+    comment: 'Sostituzione 4 gomme'
+    kilometers: 117213
+    amount: 86.1
+    Category: maintenance
+  franz_corsa_376:
+    User: franz
+    Vehicle: corsa
+    date: '2008-07-15'
+    comment: 'Assicurazione 2° sem. 2008'
+    kilometers: 117300
+    amount: 444.6
+    Category: insurance
+  franz_corsa_377:
+    User: franz
+    Vehicle: corsa
+    date: '2008-08-03'
+    comment: Benzina
+    kilometers: 117344
+    amount: 55
+    Category: fuel
+    quantity: 29.3
+  franz_corsa_378:
+    User: franz
+    Vehicle: corsa
+    date: '2008-08-10'
+    comment: Benzina
+    kilometers: 117808
+    amount: 56
+    Category: fuel
+    quantity: 28.6
+  franz_corsa_379:
+    User: franz
+    Vehicle: corsa
+    date: '2008-09-11'
+    comment: Benzina
+    kilometers: 118430
+    amount: 50
+    Category: fuel
+    quantity: 27.7
+  franz_corsa_380:
+    User: franz
+    Vehicle: corsa
+    date: '2008-10-08'
+    comment: Benzina
+    kilometers: 118734
+    amount: 40
+    Category: fuel
+    quantity: 22.8
+  franz_corsa_381:
+    User: franz
+    Vehicle: corsa
+    date: '2008-11-06'
+    comment: Benzina
+    kilometers: 119169
+    amount: 50
+    Category: fuel
+    quantity: 33.3
+  franz_corsa_382:
+    User: franz
+    Vehicle: corsa
+    date: '2008-11-22'
+    comment: Benzina
+    kilometers: 119500
+    amount: 45
+    Category: fuel
+    quantity: 32.6
+  franz_corsa_383:
+    User: franz
+    Vehicle: corsa
+    date: '2008-12-22'
+    comment: Benzina
+    kilometers: 120051
+    amount: 40.5
+    Category: fuel
+    quantity: 32.1
+  franz_corsa_384:
+    User: franz
+    Vehicle: corsa
+    date: '2008-12-31'
+    comment: 'Assicurazione 1° sem. 2009'
+    kilometers: 120480
+    amount: 444.6
+    Category: insurance
+  franz_corsa_385:
+    User: franz
+    Vehicle: corsa
+    date: '2009-01-01'
+    comment: Benzina
+    kilometers: 120483
+    amount: 38
+    Category: fuel
+    quantity: 28
+  franz_corsa_386:
+    User: franz
+    Vehicle: corsa
+    date: '2009-01-08'
+    comment: Benzina
+    kilometers: 120917
+    amount: 34
+    Category: fuel
+    quantity: 27.7
+  franz_corsa_387:
+    User: franz
+    Vehicle: corsa
+    date: '2009-01-24'
+    comment: Vignetta
+    kilometers: 121374
+    amount: 40
+    Category: taxes
+  franz_corsa_388:
+    User: franz
+    Vehicle: corsa
+    date: '2009-02-03'
+    comment: Benzina
+    kilometers: 121500
+    amount: 30
+    Category: fuel
+    quantity: 22.7
+  franz_corsa_389:
+    User: franz
+    Vehicle: corsa
+    date: '2009-02-18'
+    comment: Benzina
+    kilometers: 121806
+    amount: 30
+    Category: fuel
+    quantity: 22.9
+  franz_corsa_390:
+    User: franz
+    Vehicle: corsa
+    date: '2009-02-27'
+    comment: 'Circolazione 2009'
+    kilometers: 121922
+    amount: 278
+    Category: taxes
+  franz_corsa_391:
+    User: franz
+    Vehicle: corsa
+    date: '2009-03-11'
+    comment: Benzina
+    kilometers: 122172
+    amount: 30
+    Category: fuel
+    quantity: 23.3
+  franz_corsa_392:
+    User: franz
+    Vehicle: corsa
+    date: '2009-04-01'
+    comment: Benzina
+    kilometers: 122568
+    amount: 50
+    Category: fuel
+    quantity: 37
+  franz_corsa_393:
+    User: franz
+    Vehicle: corsa
+    date: '2009-04-03'
+    comment: 'Cambio 4 gomme + CO'
+    kilometers: 122700
+    amount: 110
+    Category: maintenance
+  franz_corsa_394:
+    User: franz
+    Vehicle: corsa
+    date: '2009-06-22'
+    comment: Benzina
+    kilometers: 123069
+    amount: 30
+    Category: fuel
+    quantity: 16.5
+  franz_corsa_395:
+    User: franz
+    Vehicle: corsa
+    date: '2009-06-30'
+    comment: 'Assicurazione 2° sem. 2009'
+    kilometers: 123200
+    amount: 444.6
+    Category: insurance
+  franz_corsa_396:
+    User: franz
+    Vehicle: corsa
+    date: '2009-07-15'
+    comment: Benzina
+    kilometers: 123403
+    amount: 50
+    Category: fuel
+    quantity: 32.4
+  franz_corsa_397:
+    User: franz
+    Vehicle: corsa
+    date: '2009-08-26'
+    comment: Benzina
+    kilometers: 123850
+    amount: 30
+    Category: fuel
+    quantity: 19.1
+  franz_corsa_398:
+    User: franz
+    Vehicle: corsa
+    date: '2009-09-23'
+    comment: Benzina
+    kilometers: 124155
+    amount: 50
+    Category: fuel
+    quantity: 32.8
+  franz_corsa_399:
+    User: franz
+    Vehicle: corsa
+    date: '2009-10-15'
+    comment: Benzina
+    kilometers: 124719
+    amount: 50
+    Category: fuel
+    quantity: 32.8
+  franz_corsa_400:
+    User: franz
+    Vehicle: corsa
+    date: '2009-10-15'
+    comment: 'Cambio 4 gomme'
+    kilometers: 124750
+    amount: 60
+    Category: maintenance
+  franz_corsa_401:
+    User: franz
+    Vehicle: corsa
+    date: '2009-11-16'
+    comment: Benzina
+    kilometers: 125245
+    amount: 46
+    Category: fuel
+    quantity: 29.1
+  franz_corsa_402:
+    User: franz
+    Vehicle: corsa
+    date: '2009-12-04'
+    comment: Benzina
+    kilometers: 125689
+    amount: 40
+    Category: fuel
+    quantity: 25.5
+  franz_corsa_403:
+    User: franz
+    Vehicle: corsa
+    date: '2009-12-31'
+    comment: 'Assicurazione 1° sem. 2010'
+    kilometers: 125800
+    amount: 444.6
+    Category: insurance
+  franz_corsa_404:
+    User: franz
+    Vehicle: corsa
+    date: '2010-01-10'
+    comment: Benzina
+    kilometers: 126061
+    amount: 45
+    Category: fuel
+    quantity: 27.9
+  franz_corsa_405:
+    User: franz
+    Vehicle: corsa
+    date: '2010-01-24'
+    comment: Vignetta
+    kilometers: 126342
+    amount: 40
+    Category: taxes
+  franz_corsa_406:
+    User: franz
+    Vehicle: corsa
+    date: '2010-02-01'
+    comment: Benzina
+    kilometers: 126523
+    amount: 40
+    Category: fuel
+    quantity: 25.2
+  franz_corsa_407:
+    User: franz
+    Vehicle: corsa
+    date: '2010-02-05'
+    comment: 'Servizio 120''000 km'
+    kilometers: 126577
+    amount: 942.65
+    Category: maintenance
+  franz_corsa_408:
+    User: franz
+    Vehicle: corsa
+    date: '2010-02-26'
+    comment: Benzina
+    kilometers: 126863
+    amount: 50
+    Category: fuel
+    quantity: 30.3
+  franz_corsa_409:
+    User: franz
+    Vehicle: corsa
+    date: '2010-02-26'
+    comment: 'Circolazione 2010'
+    kilometers: 126870
+    amount: 278
+    Category: taxes
+  franz_corsa_410:
+    User: franz
+    Vehicle: corsa
+    date: '2010-04-01'
+    comment: Benzina
+    kilometers: 127326
+    amount: 45
+    Category: fuel
+    quantity: 27
+  franz_corsa_411:
+    User: franz
+    Vehicle: corsa
+    date: '2010-04-30'
+    comment: Benzina
+    kilometers: 127697
+    amount: 40
+    Category: fuel
+    quantity: 23.5
+  franz_corsa_412:
+    User: franz
+    Vehicle: corsa
+    date: '2010-05-28'
+    comment: Benzina
+    kilometers: 128062
+    amount: 40
+    Category: fuel
+    quantity: 24.5
+  franz_corsa_413:
+    User: franz
+    Vehicle: corsa
+    date: '2010-06-02'
+    comment: 'Cambio 4 gomme'
+    kilometers: 128160
+    amount: 60
+    Category: maintenance
+  franz_corsa_414:
+    User: franz
+    Vehicle: corsa
+    date: '2010-06-30'
+    comment: 'Assicurazione 2° sem. 2010'
+    kilometers: 128370
+    amount: 444.6
+    Category: insurance
+  franz_corsa_415:
+    User: franz
+    Vehicle: corsa
+    date: '2010-07-02'
+    comment: Benzina
+    kilometers: 128381
+    amount: 51
+    Category: fuel
+    quantity: 30
+  franz_corsa_416:
+    User: franz
+    Vehicle: corsa
+    date: '2010-07-10'
+    comment: Benzina
+    kilometers: 128998
+    amount: 61
+    Category: fuel
+    quantity: 37.8
+  franz_corsa_417:
+    User: franz
+    Vehicle: corsa
+    date: '2010-07-19'
+    comment: Benzina
+    kilometers: 129430
+    amount: 16.5
+    Category: fuel
+    quantity: 10.2
+  franz_corsa_418:
+    User: franz
+    Vehicle: corsa
+    date: '2010-07-24'
+    comment: Benzina
+    kilometers: 129689
+    amount: 47
+    Category: fuel
+    quantity: 29.1
+  franz_corsa_419:
+    User: franz
+    Vehicle: corsa
+    date: '2010-08-06'
+    comment: Benzina
+    kilometers: 130179
+    amount: 20
+    Category: fuel
+    quantity: 12
+  franz_corsa_420:
+    User: franz
+    Vehicle: corsa
+    date: '2010-08-09'
+    comment: Benzina
+    kilometers: 130329
+    amount: 40
+    Category: fuel
+    quantity: 24
+  franz_corsa_421:
+    User: franz
+    Vehicle: corsa
+    date: '2010-08-19'
+    comment: Benzina
+    kilometers: 130975
+    amount: 50
+    Category: fuel
+    quantity: 27.3
+  franz_corsa_422:
+    User: franz
+    Vehicle: corsa
+    date: '2010-08-22'
+    comment: Benzina
+    kilometers: 131324
+    amount: 43
+    Category: fuel
+    quantity: 26.7
+  franz_corsa_423:
+    User: franz
+    Vehicle: corsa
+    date: '2010-08-30'
+    comment: Benzina
+    kilometers: 131784
+    amount: 32
+    Category: fuel
+    quantity: 19.7
+  franz_corsa_424:
+    User: franz
+    Vehicle: corsa
+    date: '2010-09-07'
+    comment: Benzina
+    kilometers: 132305
+    amount: 68
+    Category: fuel
+    quantity: 42
+  franz_corsa_425:
+    User: franz
+    Vehicle: corsa
+    date: '2010-09-19'
+    comment: Benzina
+    kilometers: 132943
+    amount: 30
+    Category: fuel
+    quantity: 18.9
+  franz_corsa_426:
+    User: franz
+    Vehicle: corsa
+    date: '2010-09-25'
+    comment: Benzina
+    kilometers: 133260
+    amount: 65
+    Category: fuel
+    quantity: 40
+  franz_corsa_427:
+    User: franz
+    Vehicle: corsa
+    date: '2010-09-30'
+    comment: 'Tassa collaudo'
+    kilometers: 133560
+    amount: 60
+    Category: taxes
+  franz_corsa_428:
+    User: franz
+    Vehicle: corsa
+    date: '2010-10-01'
+    comment: Benzina
+    kilometers: 133580
+    amount: 30
+    Category: fuel
+    quantity: 18.9
+  franz_corsa_429:
+    User: franz
+    Vehicle: corsa
+    date: '2010-10-13'
+    comment: 'Lavaggio motore + cambio 4 gomme'
+    kilometers: 134075
+    amount: 160
+    Category: maintenance
+  franz_corsa_430:
+    User: franz
+    Vehicle: corsa
+    date: '2010-10-14'
+    comment: Collaudo
+    kilometers: 134080
+    amount: 0
+    Category: taxes
+  franz_corsa_431:
+    User: franz
+    Vehicle: corsa
+    date: '2010-10-21'
+    comment: Benzina
+    kilometers: 134203
+    amount: 30
+    Category: fuel
+    quantity: 20
+  franz_corsa_432:
+    User: franz
+    Vehicle: corsa
+    date: '2010-11-07'
+    comment: Benzina
+    kilometers: 134442
+    amount: 30
+    Category: fuel
+    quantity: 20.1
+  franz_corsa_433:
+    User: franz
+    Vehicle: corsa
+    date: '2010-11-26'
+    comment: Benzina
+    kilometers: 134786
+    amount: 40
+    Category: fuel
+    quantity: 25.8
+  franz_corsa_434:
+    User: franz
+    Vehicle: corsa
+    date: '2010-12-16'
+    comment: Benzina
+    kilometers: 135123
+    amount: 40
+    Category: fuel
+    quantity: 25.5
+  franz_corsa_435:
+    User: franz
+    Vehicle: corsa
+    date: '2010-12-30'
+    comment: 'Assicurazione 1° sem. 2011'
+    kilometers: 135310
+    amount: 444.6
+    Category: insurance
