@@ -41,7 +41,7 @@ class reportActions extends otkWithOwnerActions {
                         'Report',
                         sfConfig::get('app_report_max_on_list')
         );
-        $this->pager->setQuery($this->vehicle->getOwnReportsQuery());
+        $this->pager->setQuery($this->vehicle->getSortedReportsQuery());
         $this->pager->setPage($request->getParameter('page', 1));
         $this->pager->init();
     }

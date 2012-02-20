@@ -4,7 +4,7 @@ Report:
     Vehicles:         [car_gs_1]
     kilometers_from:  0
     kilometers_to:    100
-    is_new:           true
+    is_new:           1
     name:            "0-100 km - Car gs 1"
 
   report_user_gs_2:
@@ -12,7 +12,7 @@ Report:
     Vehicles:         [car_gs_1]
     kilometers_from:  0
     kilometers_to:    101
-    is_new:           false
+    is_new:           0
     name:            "0-101 km - Car gs 1"
 
   report_user_gs_3:
@@ -20,7 +20,7 @@ Report:
     Vehicles:         [car_gs_1, car_gs_2]
     kilometers_from:  0
     kilometers_to:    1000
-    is_new:           true
+    is_new:           1
     name:            "0-1000 km - Car gs 1 and Car gs 2"
 
 
