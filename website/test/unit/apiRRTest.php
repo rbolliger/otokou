@@ -457,7 +457,7 @@ $api = new ApiRR('<?xml version="1.0" encoding="UTF-8"?>
    <apikey>rt5674asd0</apikey>
    <vehicle_id>4</vehicle_id>
    <category_id>1</category_id>
-   <date>1</date>
+   <date>2011-05-02</date>
    <kilometers>1</kilometers>
    <amount>1</amount>
    <comment>comment</comment>
