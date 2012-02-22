@@ -48,7 +48,16 @@ class reportActions extends otkWithOwnerActions {
 
     public function executeListCustom(sfWebRequest $request) {
 
-        $this->custom = $this->getRoute()->getObjects();
+        $q = Doctrine_core::getTable('Report')->getCustomReportsByUserQuery($request->getParameterHolder()->getAll());
+        
+        $this->pager = new sfDoctrinePager(
+                        'Report',
+                        sfConfig::get('app_report_max_on_list')
+        );
+        $this->pager->setQuery(Doctrine_core::getTable('Report')->getCustomReportsByUserQuery($request->getParameterHolder()->getAll()));
+        $this->pager->setPage($request->getParameter('page', 1));
+        $this->pager->init();
+        
     }
 
     public function executeNew(sfWebRequest $request) {

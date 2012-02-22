@@ -8,14 +8,25 @@ end_slot();
 <h1>Custom reports</h1>
 <?php end_slot(); ?>
 
-<?php if (count($custom)) : ?>
+<?php if ($pager->getNbResults()) : ?>
 
-    <table class="reports_list"><tbody>
-            <?php foreach ($custom as $report) : ?>
-                <?php include_partial('report/report_properties', array('report' => $report)); ?>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
+    <div id="sf_admin_container">
+        <div id="report_container">
+
+            <table class="reports_list">
+
+                <?php echo include_partial('report/reports_list_thead'); ?>
+
+                <?php echo include_partial('report/reports_list_tfoot', array('pager' => $pager, 'url' => '@reports_list_custom')); ?>
+
+                <tbody>
+                    <?php foreach ($pager->getResults() as $report) : ?>
+                        <?php include_partial('report/report_properties', array('report' => $report)); ?>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    </div> 
 
 <?php else: ?>
 

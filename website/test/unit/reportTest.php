@@ -42,7 +42,7 @@ $report->setUserId($ut->getUserId('user_gs'));
 $report->setVehicles($vehicles_query->execute());
 $report->save();
 
-$t->cmp_ok($report->getNumVehicles(), '===', 3);
+$t->cmp_ok($report->getNumVehicles(), '===', 4);
 
 
 $t->diag('getPdfFileName()');

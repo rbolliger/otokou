@@ -52,6 +52,10 @@ Vehicle:
     name: car_gs_3
     User: user_gs
     is_archived: false
+  car_gs_4:
+    name: car_gs_4
+    User: user_gs
+    is_archived: true
   car_reports_1:
     name: car_reports_01
     User: user_reports
