@@ -55,6 +55,8 @@ class apiRR {
 	private $xmlResponse;
 	private $decriptedResponse;
 	private $rawResponse;
+	private $responseUser;
+	private $responseVehicles;
 	
 	// error members
 	private $isError;
@@ -98,7 +100,7 @@ class apiRR {
 		if (!$this->isError) $this->decryptRequest();
 		if (!$this->isError) $this->decomposeRequest();
 		if (!$this->isError) $this->executeRequest();
-		$this->composeResponse();
+		if (!$this->isError) $this->composeResponseXML(); else  $this->composeErrorResponseXML();
 		$this->encryptResponse();
 	}
 	
@@ -245,12 +247,11 @@ class apiRR {
 	}
 	
 	private function executeRequest() {
-		
 		switch ($this->requestType) {
 			case self::GET_USER_REQUEST:
 				$user = Doctrine_Core::getTable('sfGuardUser')->createQuery('u')->where('u.api_key = ?',$this->requestApiKey)->execute();
 				if (sizeof($user)==1) {
-					$this->decriptedResponse=$user[0]->getId().','.$user[0]->getFirstName().','.$user[0]->getLastName();
+					$this->responseUser =$user[0];
 				}
 				else {
 					$this->setError(211);
@@ -259,11 +260,8 @@ class apiRR {
 			case self::GET_VEHICLES_REQUEST:
 				$user = Doctrine_Core::getTable('sfGuardUser')->createQuery('u')->where('u.api_key = ?',$this->requestApiKey)->execute();
 				if (sizeof($user)==1) {
-					$vehicles = Doctrine_Core::getTable('Vehicle')->createQuery('v')->where('v.user_id = ?',$user[0]->getId())->execute();
-					$this->decriptedResponse = sizeof($vehicles);
-					foreach ($vehicles as $vehicle) {
-						$this->decriptedResponse .=','.$vehicle->getId().','.$vehicle->getName();
-					}
+					$this->responseUser =$user[0];
+					$this->responseVehicles = Doctrine_Core::getTable('Vehicle')->createQuery('v')->where('v.user_id = ?',$user[0]->getId())->execute();
 				}
 				else {
 					$this->setError(211);
@@ -272,11 +270,12 @@ class apiRR {
 			case self::SET_CHARGE_REQUEST:
 				$user = Doctrine_Core::getTable('sfGuardUser')->createQuery('u')->where('u.api_key = ?',$this->requestApiKey)->execute();
 				if (sizeof($user)==1) {
-					$vehicle = Doctrine_Core::getTable('Vehicle')->createQuery('v')->where('v.user_id = ?',$user[0]->getId())->andwhere('v.id = ?',$this->requestVehicle)->execute();
-					if (sizeof($vehicle)==1) {
+					$this->responseUser =$user[0];
+					$this->responseVehicles = Doctrine_Core::getTable('Vehicle')->createQuery('v')->where('v.user_id = ?',$user[0]->getId())->andwhere('v.id = ?',$this->requestVehicle)->execute();
+					if (sizeof($this->responseVehicles)==1) {
 						$charge = new Charge();
-						$charge->setVehicleId($vehicle[0]->getId());
-						$charge->setUserId($user[0]->getId());
+						$charge->setVehicleId($this->responseVehicles[0]->getId());
+						$charge->setUserId($this->responseUser->getId());
 						$charge->setCategoryId($this->requestCategory);
 						$charge->setDate($this->requestDate);
 						$charge->setKilometers($this->requestKilometers);
@@ -284,7 +283,6 @@ class apiRR {
 						$charge->setComment($this->requestComment);
 						$charge->setQuantity($this->requestQuantity);
 						$charge->save();
-						$this->decriptedResponse = "New Charge Saved";
 					}
 					else {
 						$this->setError(220);
@@ -300,8 +298,108 @@ class apiRR {
 		}
 	}
 	
-	private function composeResponse() {
-		$this->decriptedResponse = $this->errorCode.','.$this->errorMessage.','.$this->decriptedResponse;
+	private function composeResponseXML() {
+		switch ($this->requestType) {
+			case self::GET_USER_REQUEST:
+				$this->generateGetUserXml();
+			break;
+			case self::GET_VEHICLES_REQUEST:
+				$this->generateGetVehiclesXml();
+			break;
+			case self::SET_CHARGE_REQUEST:
+				$this->generateSetChargeXml();
+			break;
+		}
+	}
+	
+	private function generateGetUserXml() {
+		$this->xmlResponse = new XMLWriter();
+		$this->xmlResponse->openMemory();
+		$this->xmlResponse->setIndent(true);
+		$this->xmlResponse->setIndentString(' ');
+		$this->xmlResponse->startDocument('1.0', 'UTF-8'); 
+		$this->xmlResponse->startElement('root');
+		$this->xmlResponse->startElement('otokou');
+		$this->xmlResponse->writeAttribute('version', '1.0');
+		$this->xmlResponse->startElement('header');
+		$this->xmlResponse->writeElement('error_code', $this->errorCode); 
+		$this->xmlResponse->writeElement('error_message', $this->errorMessage);
+		$this->xmlResponse->writeElement('response',self::GET_USER_REQUEST_STRING); 
+		$this->xmlResponse->endElement();
+		$this->xmlResponse->startElement('body');
+		$this->xmlResponse->writeElement('user_id', $this->responseUser->getId());
+		$this->xmlResponse->writeElement('first_name', $this->responseUser->getFirstName()); 
+		$this->xmlResponse->writeElement('last_name', $this->responseUser->getLastName()); 
+		$this->xmlResponse->endElement();
+		$this->xmlResponse->endElement();
+		$this->xmlResponse->endElement();
+		$this->decriptedResponse = $this->xmlResponse->outputMemory();
+	}
+	
+	private function generateGetVehiclesXml() {
+		$this->xmlResponse = new XMLWriter();
+		$this->xmlResponse->openMemory();
+		$this->xmlResponse->setIndent(true);
+		$this->xmlResponse->setIndentString(' ');
+		$this->xmlResponse->startDocument('1.0', 'UTF-8'); 
+		$this->xmlResponse->startElement('root');
+		$this->xmlResponse->startElement('otokou');
+		$this->xmlResponse->writeAttribute('version', '1.0');
+		$this->xmlResponse->startElement('header');
+		$this->xmlResponse->writeElement('error_code', $this->errorCode); 
+		$this->xmlResponse->writeElement('error_message', $this->errorMessage);
+		$this->xmlResponse->writeElement('response',self::GET_VEHICLES_REQUEST_STRING); 
+		$this->xmlResponse->endElement();
+		$this->xmlResponse->startElement('body');
+		$this->xmlResponse->writeElement('vehicles_number', sizeof($this->responseVehicles));
+		for ($i=0;$i<sizeof($this->responseVehicles);$i++) {
+			$this->xmlResponse->writeElement('vehicle_id_'.$i, $this->responseVehicles[$i]->getId());
+			$this->xmlResponse->writeElement('vehicle_name_'.$i, $this->responseVehicles[$i]->getName());
+		}
+		$this->xmlResponse->endElement();
+		$this->xmlResponse->endElement();
+		$this->xmlResponse->endElement();
+		$this->decriptedResponse = $this->xmlResponse->outputMemory();
+	}
+	
+	private function generateSetChargeXml() {
+		$this->xmlResponse = new XMLWriter();
+		$this->xmlResponse->openMemory();
+		$this->xmlResponse->setIndent(true);
+		$this->xmlResponse->setIndentString(' ');
+		$this->xmlResponse->startDocument('1.0', 'UTF-8'); 
+		$this->xmlResponse->startElement('root');
+		$this->xmlResponse->startElement('otokou');
+		$this->xmlResponse->writeAttribute('version', '1.0');
+		$this->xmlResponse->startElement('header');
+		$this->xmlResponse->writeElement('error_code', $this->errorCode); 
+		$this->xmlResponse->writeElement('error_message', $this->errorMessage);
+		$this->xmlResponse->writeElement('response',self::SET_CHARGE_REQUEST_STRING); 
+		$this->xmlResponse->endElement();
+		$this->xmlResponse->startElement('body');
+		$this->xmlResponse->writeElement('result', 'ok');
+		$this->xmlResponse->endElement();
+		$this->xmlResponse->endElement();
+		$this->xmlResponse->endElement();
+		$this->decriptedResponse = $this->xmlResponse->outputMemory();
+	}
+	
+	private function composeErrorResponseXML() {
+		$this->xmlResponse = new XMLWriter();
+		$this->xmlResponse->openMemory();
+		$this->xmlResponse->setIndent(true);
+		$this->xmlResponse->setIndentString(' ');
+		$this->xmlResponse->startDocument('1.0', 'UTF-8'); 
+		$this->xmlResponse->startElement('root');
+		$this->xmlResponse->startElement('otokou');
+		$this->xmlResponse->writeAttribute('version', '1.0');
+		$this->xmlResponse->startElement('header');
+		$this->xmlResponse->writeElement('error_code', $this->errorCode); 
+		$this->xmlResponse->writeElement('error_message', $this->errorMessage); 
+		$this->xmlResponse->endElement();
+		$this->xmlResponse->endElement();
+		$this->xmlResponse->endElement();
+		$this->decriptedResponse = $this->xmlResponse->outputMemory();
 	}
 	
 	private function encryptResponse() {

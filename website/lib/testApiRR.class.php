@@ -193,7 +193,7 @@ class testApiRR {
 						$charge->setComment($this->requestComment);
 						$charge->setQuantity($this->requestQuantity);
 						$charge->save();
-						$this->decriptedResponse = "New Charge Saved";						
+						$this->decriptedResponse = "New Charge Saved";
 					}
 					else {
 						$this->errorCode = '220';
@@ -210,7 +210,7 @@ class testApiRR {
 			default:
 				$this->errorCode = '500';
 				$this->errorMessage = 'Unknow API error';
-				$this->isError = true;					
+				$this->isError = true;
 				break;
 		}
 	}

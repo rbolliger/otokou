@@ -1,3 +1,3 @@
 <?php
-	echo $api->getResponse();
+	echo htmlspecialchars_decode($api->getResponse());
 ?>
