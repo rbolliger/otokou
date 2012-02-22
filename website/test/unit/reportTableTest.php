@@ -2,9 +2,9 @@
 include dirname(__FILE__) . '/../bootstrap/Doctrine.php';
 include dirname(__FILE__) . '/../../lib/test/otokouTestFunctional.class.php';
 
-//$ut = new otokouTestFunctional(new sfBrowser());
+$ut = new otkTestUtility();
 
-$t = new lime_test(37, new lime_output_color());
+$t = new lime_test(38, new lime_output_color());
 
 
 
@@ -50,3 +50,11 @@ foreach ($r as $key => $report) {
     $msg = 'Report '.$name.' is correctly sorted';
     $t->cmp_ok($report->getName(), '===', $name, $msg);
 }
+
+
+$t->diag('->countNewCustomReports()');
+$uid = $ut->getUserId('user_gs');
+
+$r = Doctrine_Core::getTable('Report')->countNewCustomReports($uid);
+
+$t->cmp_ok(count($r), '===', 1, '->countNewCustomReports() returns the right number of reports');

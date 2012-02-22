@@ -60,10 +60,10 @@ class ReportTable extends Doctrine_Table {
 
     public function getCustomReportsByUserQuery($params = array()) {
 
-        $username = $params['username']; 
+        $username = $params['username'];
 
         $q = self::getInstance()->createQuery('r')
-                ->addSelect('r.*, (r.num_vehicles) nv')
+                ->addSelect('r.*')
                 ->andWhere('r.num_vehicles > ?', 1)
                 ->orderBy('r.is_new DESC, r.created_at DESC');
 
@@ -71,17 +71,23 @@ class ReportTable extends Doctrine_Table {
 
 
         // ensures that at least one vehicle is active
-        $q->leftJoin('r.Vehicles v')
-                ->addSelect('SUM(v.is_archived) as num_archived')
-                ->groupBy('r.id')
-                ->having('SUM(v.is_archived) < nv');
+        $q = self::getInstance()->addCheckActiveQuery($q);
 
 
-        
 
         if (isset($params['max'])) {
             $q->limit($max);
         }
+
+        return $q;
+    }
+
+    public function addCheckActiveQuery($q) {
+
+        $q->leftJoin('r.Vehicles v')
+                ->addSelect('r.*, (r.num_vehicles) nv')
+                ->groupBy('r.id')
+                ->having('SUM(v.is_archived) < nv');
 
         return $q;
     }
@@ -117,6 +123,18 @@ class ReportTable extends Doctrine_Table {
                     ->from('Report r');
         }
 
+        return $q->count();
+    }
+
+    public function countNewCustomReports($user_id) {
+
+        $q = $this->createQuery('r')
+                ->addWhere('r.user_id = ?', $user_id)
+                ->addWhere('r.num_vehicles > ?', 1)
+                ->addWhere('r.is_new = ?', true);
+
+        $q = self::getInstance()->addCheckActiveQuery($q);
+        
         return $q->count();
     }
 
