@@ -5,9 +5,9 @@
  * the ApiRR class treat a request and generate the appropriate answer
  *
  * list of request:
- * - get the user informations (api?request=get_user,rori123456)
- * - get the user vehicles list (api?request=get_vehicles,rori123456)
- * - add a charge for a car (api?request=set_charge,rt5674asd0,2,1,2011-05-02,20,30,comment,40)
+ * - get the user informations (<body> <apikey> required)
+ * - get the user vehicles list (<body> <apikey> required)
+ * - add a charge for a car (<body> <apikey>, <user_id>, <vehicle_id>, <date>, <kilometers>, <amount>, <comment>, <quantity> required)
  *
  * error codes:
  * - 000 No Error
@@ -71,7 +71,6 @@ class apiRR {
 	 * in: 
 	 *  - (string)$string: received API encrypted message
 	 *  - (int)$string: type of API request
-	 *
 	 */
 	public function apiRR($string,$request_type) {
 		$this->setNoError();
@@ -93,10 +92,9 @@ class apiRR {
 	 * treatRequest()
 	 *
 	 * Read API encrypted message and generate a response.
-	 *
 	 */
 	public function treatRequest() {
-		if ($this->rawRequest == '' ) $this->setError(110);
+		if ($this->rawRequest=='') $this->setError(110);
 		if (!$this->isError) $this->decryptRequest();
 		if (!$this->isError) $this->decomposeRequest();
 		if (!$this->isError) $this->executeRequest();
@@ -104,10 +102,20 @@ class apiRR {
 		$this->encryptResponse();
 	}
 	
+	/**
+	 * decryptRequest()
+	 *
+	 * Decript received string.
+	 */
 	private function decryptRequest() {
 		$this->decryptedRequest = $this->rawRequest;
 	}
 	
+	/**
+	 * decomposeRequest()
+	 *
+	 * Generate an array from the XML string.
+	 */
 	private function decomposeRequest() {
 		if ($this->xmlRequest = simplexml_load_string($this->decryptedRequest)) {
 			$this->decomposeXml();
@@ -117,6 +125,11 @@ class apiRR {
 		}
 	}
 	
+	/**
+	 * decomposeXml()
+	 *
+	 * Check and store data extracted from XML.
+	 */
 	private function decomposeXml() {
 		if ($this->xmlRequest->otokou) {
 			if ($this->xmlRequest->otokou->attributes()->version) {
@@ -127,69 +140,64 @@ class apiRR {
 							if ($this->xmlRequest->otokou->header->request == self::GET_USER_REQUEST_STRING) {
 								$this->decomposeGetUserRequest();
 							}
-							else {
-								$this->setError(210);
-							}
+							else $this->setError(210);
 							break;
 						case self::GET_VEHICLES_REQUEST:
 							if ($this->xmlRequest->otokou->header->request == self::GET_VEHICLES_REQUEST_STRING) {
 								$this->decomposeGetVehiclesRequest();
 							}
-							else {
-								$this->setError(210);
-							}
+							else $this->setError(210);
 							break;
 						case self::SET_CHARGE_REQUEST:
 							if ($this->xmlRequest->otokou->header->request == self::SET_CHARGE_REQUEST_STRING) {
 								$this->decomposeSetChargeRequest();
 							}
-							else {
-								$this->setError(210);
-							}
+							else $this->setError(210);
 							break;
 					}
 				}
-				else {
-					$this->setError(132);
-				}
+				else $this->setError(132);
 			}
-			else {
-				$this->setError(131);
-			}
+			else $this->setError(131);
 		}
-		else {
-			$this->setError(130);
-		}
+		else $this->setError(130);
 	}
 	
+	/**
+	 * decomposeGetUserRequest()
+	 *
+	 * Check and store data extracted from XML for a get user request.
+	 */
 	private function decomposeGetUserRequest() {
 		if ($this->xmlRequest->otokou->body) {
 			if ($this->xmlRequest->otokou->body->apikey) {
 				$this->requestApiKey = $this->xmlRequest->otokou->body->apikey;
 			}
-			else {
-				$this->setError(141);
-			}
+			else $this->setError(141);
 		}
-		else {
-			$this->setError(140);
-		}
+		else $this->setError(140);
 	}
 	
+	/**
+	 * decomposeGetVehiclesRequest()
+	 *
+	 * Check and store data extracted from XML for a get vehicles request.
+	 */
 	private function decomposeGetVehiclesRequest() {
 		if ($this->xmlRequest->otokou->body) {
 			if ($this->xmlRequest->otokou->body->apikey) {
 				$this->requestApiKey = $this->xmlRequest->otokou->body->apikey;
 			}
-			else {
-				$this->setError(151);
-			}
+			else $this->setError(151);
 		}
-		else {
-			$this->setError(150);
-		}
+		else $this->setError(150);
 	}
 	
+	/**
+	 * decomposeSetChargeRequest()
+	 *
+	 * Check and store data extracted from XML for a set charge request.
+	 */
 	private function decomposeSetChargeRequest() {
 		if ($this->xmlRequest->otokou->body) {
 			if ($this->xmlRequest->otokou->body->apikey) {
@@ -209,53 +217,38 @@ class apiRR {
 										if ($this->xmlRequest->otokou->body->quantity) {
 											$this->requestQuantity = $this->xmlRequest->otokou->body->quantity;
 										}
-										else {
-											$this->setError(168);
-										}
+										else $this->setError(168);
 									}
-									else {
-										$this->setError(167);
-									}
+									else $this->setError(167);
 								}
-								else {
-									$this->setError(166);
-								}
+								else $this->setError(166);
 							}
-							else {
-								$this->setError(165);
-							}
+							else $this->setError(165);
 						}
-						else {
-							$this->setError(164);
-						}
+						else $this->setError(164);
 					}
-					else {
-						$this->setError(163);
-					}
+					else $this->setError(163);
 				}
-				else {
-					$this->setError(162);
-				}
+				else $this->setError(162);
 			}
-			else {
-				$this->setError(161);
-			}
+			else $this->setError(161);
 		}
-		else {
-			$this->setError(160);
-		}
+		else $this->setError(160);
 	}
 	
+	/**
+	 * executeRequest()
+	 *
+	 * Execute the received request.
+	 */
 	private function executeRequest() {
 		switch ($this->requestType) {
 			case self::GET_USER_REQUEST:
 				$user = Doctrine_Core::getTable('sfGuardUser')->createQuery('u')->where('u.api_key = ?',$this->requestApiKey)->execute();
 				if (sizeof($user)==1) {
-					$this->responseUser =$user[0];
+					$this->responseUser = $user[0];
 				}
-				else {
-					$this->setError(211);
-				}
+				else $this->setError(211);
 				break;
 			case self::GET_VEHICLES_REQUEST:
 				$user = Doctrine_Core::getTable('sfGuardUser')->createQuery('u')->where('u.api_key = ?',$this->requestApiKey)->execute();
@@ -263,9 +256,7 @@ class apiRR {
 					$this->responseUser =$user[0];
 					$this->responseVehicles = Doctrine_Core::getTable('Vehicle')->createQuery('v')->where('v.user_id = ?',$user[0]->getId())->execute();
 				}
-				else {
-					$this->setError(211);
-				}
+				else $this->setError(211);
 				break;
 			case self::SET_CHARGE_REQUEST:
 				$user = Doctrine_Core::getTable('sfGuardUser')->createQuery('u')->where('u.api_key = ?',$this->requestApiKey)->execute();
@@ -284,13 +275,9 @@ class apiRR {
 						$charge->setQuantity($this->requestQuantity);
 						$charge->save();
 					}
-					else {
-						$this->setError(220);
-					}
+					else $this->setError(220);
 				}
-				else {
-					$this->setError(211);
-				}
+				else $this->setError(211);
 				break;
 			default:
 				$this->setError(500);
@@ -298,6 +285,11 @@ class apiRR {
 		}
 	}
 	
+	/**
+	 * composeResponseXML()
+	 *
+	 * Compose the XML response for when not errors have been found.
+	 */
 	private function composeResponseXML() {
 		switch ($this->requestType) {
 			case self::GET_USER_REQUEST:
@@ -312,96 +304,51 @@ class apiRR {
 		}
 	}
 	
+	/**
+	 * generateGetUserXml()
+	 *
+	 * Compose the XML response for a get user request.
+	 */
 	private function generateGetUserXml() {
-		$this->xmlResponse = new XMLWriter();
-		$this->xmlResponse->openMemory();
-		$this->xmlResponse->setIndent(true);
-		$this->xmlResponse->setIndentString(' ');
-		$this->xmlResponse->startDocument('1.0', 'UTF-8'); 
-		$this->xmlResponse->startElement('root');
-		$this->xmlResponse->startElement('otokou');
-		$this->xmlResponse->writeAttribute('version', '1.0');
-		$this->xmlResponse->startElement('header');
-		$this->xmlResponse->writeElement('error_code', $this->errorCode); 
-		$this->xmlResponse->writeElement('error_message', $this->errorMessage);
-		$this->xmlResponse->writeElement('response',self::GET_USER_REQUEST_STRING); 
-		$this->xmlResponse->endElement();
-		$this->xmlResponse->startElement('body');
-		$this->xmlResponse->writeElement('user_id', $this->responseUser->getId());
-		$this->xmlResponse->writeElement('first_name', $this->responseUser->getFirstName()); 
-		$this->xmlResponse->writeElement('last_name', $this->responseUser->getLastName()); 
-		$this->xmlResponse->endElement();
-		$this->xmlResponse->endElement();
-		$this->xmlResponse->endElement();
-		$this->decriptedResponse = $this->xmlResponse->outputMemory();
+		$this->xmlResponse = new apiXmlWriter();
+		$this->decriptedResponse = $this->xmlResponse->startElements()->addHeader($this->errorCode,$this->errorMessage,self::GET_USER_REQUEST_STRING)->addBodyGetUser($this->responseUser)->endElements()->toString();
 	}
 	
+	/**
+	 * generateGetVehiclesXml()
+	 *
+	 * Compose the XML response for a get vehicles request.
+	 */
 	private function generateGetVehiclesXml() {
-		$this->xmlResponse = new XMLWriter();
-		$this->xmlResponse->openMemory();
-		$this->xmlResponse->setIndent(true);
-		$this->xmlResponse->setIndentString(' ');
-		$this->xmlResponse->startDocument('1.0', 'UTF-8'); 
-		$this->xmlResponse->startElement('root');
-		$this->xmlResponse->startElement('otokou');
-		$this->xmlResponse->writeAttribute('version', '1.0');
-		$this->xmlResponse->startElement('header');
-		$this->xmlResponse->writeElement('error_code', $this->errorCode); 
-		$this->xmlResponse->writeElement('error_message', $this->errorMessage);
-		$this->xmlResponse->writeElement('response',self::GET_VEHICLES_REQUEST_STRING); 
-		$this->xmlResponse->endElement();
-		$this->xmlResponse->startElement('body');
-		$this->xmlResponse->writeElement('vehicles_number', sizeof($this->responseVehicles));
-		for ($i=0;$i<sizeof($this->responseVehicles);$i++) {
-			$this->xmlResponse->writeElement('vehicle_id_'.$i, $this->responseVehicles[$i]->getId());
-			$this->xmlResponse->writeElement('vehicle_name_'.$i, $this->responseVehicles[$i]->getName());
-		}
-		$this->xmlResponse->endElement();
-		$this->xmlResponse->endElement();
-		$this->xmlResponse->endElement();
-		$this->decriptedResponse = $this->xmlResponse->outputMemory();
+		$this->xmlResponse = new apiXmlWriter();
+		$this->decriptedResponse = $this->xmlResponse->startElements()->addHeader($this->errorCode,$this->errorMessage,self::GET_VEHICLES_REQUEST_STRING)->addBodyGetVehicles($this->responseVehicles)->endElements()->toString();
 	}
 	
+	/**
+	 * generateSetChargeXml()
+	 *
+	 * Compose the XML response for a set charge request.
+	 */
 	private function generateSetChargeXml() {
-		$this->xmlResponse = new XMLWriter();
-		$this->xmlResponse->openMemory();
-		$this->xmlResponse->setIndent(true);
-		$this->xmlResponse->setIndentString(' ');
-		$this->xmlResponse->startDocument('1.0', 'UTF-8'); 
-		$this->xmlResponse->startElement('root');
-		$this->xmlResponse->startElement('otokou');
-		$this->xmlResponse->writeAttribute('version', '1.0');
-		$this->xmlResponse->startElement('header');
-		$this->xmlResponse->writeElement('error_code', $this->errorCode); 
-		$this->xmlResponse->writeElement('error_message', $this->errorMessage);
-		$this->xmlResponse->writeElement('response',self::SET_CHARGE_REQUEST_STRING); 
-		$this->xmlResponse->endElement();
-		$this->xmlResponse->startElement('body');
-		$this->xmlResponse->writeElement('result', 'ok');
-		$this->xmlResponse->endElement();
-		$this->xmlResponse->endElement();
-		$this->xmlResponse->endElement();
-		$this->decriptedResponse = $this->xmlResponse->outputMemory();
+		$this->xmlResponse = new apiXmlWriter();
+		$this->decriptedResponse = $this->xmlResponse->startElements()->addHeader($this->errorCode,$this->errorMessage,self::SET_CHARGE_REQUEST_STRING)->addBodySetCharge()->endElements()->toString();
 	}
 	
+	/**
+	 * composeErrorResponseXML()
+	 *
+	 * Compose the XML response for when errors have been found.
+	 */
 	private function composeErrorResponseXML() {
-		$this->xmlResponse = new XMLWriter();
-		$this->xmlResponse->openMemory();
-		$this->xmlResponse->setIndent(true);
-		$this->xmlResponse->setIndentString(' ');
-		$this->xmlResponse->startDocument('1.0', 'UTF-8'); 
-		$this->xmlResponse->startElement('root');
-		$this->xmlResponse->startElement('otokou');
-		$this->xmlResponse->writeAttribute('version', '1.0');
-		$this->xmlResponse->startElement('header');
-		$this->xmlResponse->writeElement('error_code', $this->errorCode); 
-		$this->xmlResponse->writeElement('error_message', $this->errorMessage); 
-		$this->xmlResponse->endElement();
-		$this->xmlResponse->endElement();
-		$this->xmlResponse->endElement();
-		$this->decriptedResponse = $this->xmlResponse->outputMemory();
+		$this->xmlResponse = new apiXmlWriter();
+		$this->decriptedResponse = $this->xmlResponse->startElements()->addHeader($this->errorCode,$this->errorMessage)->endElements()->toString();
 	}
 	
+	/**
+	 * encryptResponse()
+	 *
+	 * Encrypt the response XML string.
+	 */
 	private function encryptResponse() {
 		$this->rawResponse = $this->decriptedResponse;
 	}
@@ -413,7 +360,6 @@ class apiRR {
 	 *
 	 * out:
 	 *  - (string)xmlCode
-	 *
 	 */
 	public function getResponse() {
 		return $this->rawResponse;
@@ -426,7 +372,6 @@ class apiRR {
 	 *
 	 * out:
 	 *  - (bool)isError
-	 *
 	 */
 	public function isError() {
 		return $this->isError;
@@ -439,7 +384,6 @@ class apiRR {
 	 *
 	 * out:
 	 *  - (int)errorCode
-	 *
 	 */
 	public function getErrorCode() {
 		return $this->errorCode;
@@ -452,7 +396,6 @@ class apiRR {
 	 *
 	 * out:
 	 *  - (string)errorMessage
-	 *
 	 */
 	public function getErrorMessage() {
 		return $this->errorMessage;
@@ -462,7 +405,6 @@ class apiRR {
 	 * setNoError()
 	 *
 	 * Set object status to no error found.
-	 *
 	 */
 	private function setNoError() {
 		$this->errorCode = 0;
@@ -477,7 +419,6 @@ class apiRR {
 	 *
 	 * in: 
 	 *  - (int)$code: code of the error
-	 *
 	 */
 	private function setError($code) {
 		$this->isError = true;
