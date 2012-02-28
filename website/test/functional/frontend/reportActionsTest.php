@@ -237,8 +237,8 @@ $browser
         ->checkElement('ul#reports_menu ul li.vehicle_active', 2)
         ->checkElement('ul#reports_menu li a:contains("Custom reports")', true)
         ->checkElement('h1:contains("Create a new custom report")', true)
-        ->checkElement('div.report_form form', true)
-        ->checkElement('div.report_form form table tbody tr', 4)
+        ->checkElement('div.sf_admin_content form', true)
+        ->checkElement('div.sf_admin_content form div.sf_admin_form_row', 4)
         ->end()
         
         ->info('4.2 - Form errors - required fields')

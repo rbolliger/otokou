@@ -20,6 +20,7 @@ class ReportForm extends BaseReportForm {
         $this->validatorSchema['user_id'] = new sfValidatorChoice(array('choices' => array($this->getUserId()), 'required' => true));
 
         $this->validatorSchema['name'] = new sfValidatorString(array('max_length' => 255, 'required' => true));
+        $this->widgetSchema->setHelp('name','Define a meaningful name of the report');
         $this->widgetSchema->moveField('name', sfWidgetFormSchema::FIRST);
 
         $q = Doctrine_Core::getTable('Vehicle')
@@ -106,6 +107,9 @@ class ReportForm extends BaseReportForm {
                     'callback' => array($this, 'checkNumberCharges'),
                     'arguments' => $this->validatorSchema,
                 )));
+        
+        
+
     }
 
     public function checkDateAndKilometersFrom($validator, $values) {
