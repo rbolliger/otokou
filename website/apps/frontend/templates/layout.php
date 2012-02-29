@@ -48,7 +48,7 @@
                 <div class="row">
                     
                     <?php if (has_slot('content_title')): ?>
-                        <div class="ten columns offset-by-one content_title">
+                        <div class="ten columns offset-by-two content_title">
                             <?php include_slot('content_title') ?>
                         </div>
                     <?php endif; ?>
