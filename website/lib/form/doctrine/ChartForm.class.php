@@ -12,5 +12,7 @@ class ChartForm extends BaseChartForm
 {
   public function configure()
   {
+      
+      $this->widgetSchema->setFormFormatterName('table');
   }
 }

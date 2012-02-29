@@ -236,7 +236,7 @@ $browser
         ->checkElement('ul#reports_menu ul li.vehicle_archived', 0)
         ->checkElement('ul#reports_menu ul li.vehicle_active', 2)
         ->checkElement('ul#reports_menu li a:contains("Custom reports")', true)
-        ->checkElement('h1:contains("Create a new custom report")', true)
+        ->checkElement('h1:contains("Create a new report")', true)
         ->checkElement('div.sf_admin_content form', true)
         ->checkElement('div.sf_admin_content form div.sf_admin_form_row', 4)
         ->end()

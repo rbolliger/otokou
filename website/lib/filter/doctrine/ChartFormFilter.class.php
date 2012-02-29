@@ -11,6 +11,8 @@
 class ChartFormFilter extends BaseChartFormFilter {
 
     public function configure() {
+        
+        $this->widgetSchema->setFormFormatterName('table');
 
         // Removing some fields
         unset(
