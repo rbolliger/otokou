@@ -69,11 +69,4 @@ form th {
     vertical-align: middle;
 }
 
-form label {
-   display: inline;
-    padding: 0 1em 3px 0;
-    padding-left: 5px;
-    text-align: left;
-    color: #1d1d1d;
-    font-weight: normal !important; 
-}
+

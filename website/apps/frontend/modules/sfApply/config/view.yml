@@ -1,5 +1,0 @@
-all:
-  stylesheets: 
-      - admin_default.css
-      
-  

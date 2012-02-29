@@ -11,7 +11,7 @@ end_slot();
 <div id="sf_admin_container">
 
     <?php slot('content_title') ?>
-    <h1>Create a new custom report</h1>
+    <h1>Create a new report</h1>
     <?php end_slot(); ?>
 
     <div class="sf_admin_content">
