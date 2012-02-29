@@ -19,8 +19,10 @@ class ReportForm extends BaseReportForm {
         $this->widgetSchema['user_id'] = new sfWidgetFormInputHidden();
         $this->validatorSchema['user_id'] = new sfValidatorChoice(array('choices' => array($this->getUserId()), 'required' => true));
 
+        
         $this->validatorSchema['name'] = new sfValidatorString(array('max_length' => 255, 'required' => true));
-        $this->widgetSchema->setHelp('name','Define a meaningful name of the report');
+        $this->widgetSchema['name'] = new sfWidgetFormInputText(array(),array('size' => 100));
+        $this->widgetSchema->setHelp('name','Define a meaningful name for this report');
         $this->widgetSchema->moveField('name', sfWidgetFormSchema::FIRST);
 
         $q = Doctrine_Core::getTable('Vehicle')
@@ -45,6 +47,7 @@ class ReportForm extends BaseReportForm {
 
 
         $this->widgetSchema->moveField('vehicles_list', sfWidgetFormSchema::AFTER, 'name');
+        $this->widgetSchema->setHelp('vehicles_list','Select the vehicles you want to consider for this report');
 
 // Dates range
         unset(

@@ -62,6 +62,7 @@ select {
 
 input[type="checkbox"] {
     cursor: pointer;
+    vertical-align: middle;
 }
 
 form th {

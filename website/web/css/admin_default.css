@@ -93,6 +93,12 @@
 {
     list-style: none;
     display: inline;
+    vertical-align: middle;
+}
+
+#sf_admin_container .radio_list li label, #sf_admin_container .checkbox_list li label
+{
+    vertical-align: middle;
 }
 
 #sf_admin_container .double_list_select, #sf_admin_container .double_list_select-selected
@@ -309,7 +315,9 @@
 #sf_admin_container label
 {
     display: block;
-    padding: 0 1em 3px 0;
+    padding-left: 1em;
+    padding-right: 1em;
+    vertical-align: middle;
     float: left;
     text-align: left;
     width: 8em;
