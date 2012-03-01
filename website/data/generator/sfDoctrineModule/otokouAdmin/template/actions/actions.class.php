@@ -77,7 +77,7 @@ abstract class <?php echo $this->getGeneratedModuleName() ?>Actions extends <?ph
 
         $this->pager = $this->getPager();
         $this->sort = $this->getSort();
-        $this->filters_appearance = $this->getFiltersAppearance();
+        $this->filters_visibility = $this->getFiltersVisibility();
 
         $this->setTemplate('index');
         $this->pager->form = $form;
@@ -109,13 +109,41 @@ abstract class <?php echo $this->getGeneratedModuleName() ?>Actions extends <?ph
         return $options;
     }
     
-protected function setFiltersAppearance($appearance) {
-        $this->getUser()->setAttribute('charge.filters_appearance', $appearance, 'admin_module');
-}
+    protected function setFiltersVisibility($visibility) {
+            $this->getUser()->setAttribute('<?php echo $this->getModuleName() ?>.filters_visibility', $visibility, 'admin_module');
+    }
 
-protected function getFiltersAppearance() {
-        return $this->getUser()->getAttribute('charge.filters_appearance', 'hidden', 'admin_module');
-}
+    protected function getFiltersVisibility() {
+            return $this->getUser()->getAttribute('<?php echo $this->getModuleName() ?>.filters_visibility', 'hide', 'admin_module');
+    }
+    
+      public function executeToggleFilterVisibility(sfWebRequest $request) {
+
+            $fv = $this->getFiltersVisibility();
+            if ('hide' === $fv) {
+                $this->setFiltersVisibility('show');
+            } else {
+                $this->setFiltersVisibility('hide');
+            }
+
+            if (!$request->isXmlHttpRequest()) {
+            
+                $this->redirect('charge/index');
+            }
+            
+            
+            sfProjectConfiguration::getActive()->loadHelpers(array('I18N', 'Date'));
+
+            if ('show' === $this->getFiltersVisibility()) {
+
+                return $this->renderPartial('<?php echo $this->getModuleName() ?>/filters', array(
+                    'form' => $this->configuration->getFilterForm($this->getFilters()),
+                    'configuration' => $this->configuration));
+            }
+
+            return $this->renderText('&nbsp;');        
+        
+    }
 
     
 

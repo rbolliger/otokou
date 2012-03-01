@@ -81,17 +81,12 @@ charge:
     model_methods:
        list:              getAllByUser
 
-
-#report_index:
-#  class: otkWithUserDoctrineRoute
-#  url: /:username/reports
-#  param: {module: report, action: index }
-#  requirements:
-#    sf_method: get
-#  options:
-#    model:      Vehicle
-#    type:       list
-#    method:   findActiveByUsernameAndSortByName
+charge_toggle_filters_visibility:
+  url: /:username/charge/filter_visibility
+  class: otkWithUserRoute
+  param: {module: charge, action: toggleFilterVisibility }
+  requirements:
+    sf_method: [ post ]
 
 report_index:
   class: otkWithUserRoute

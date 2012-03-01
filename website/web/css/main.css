@@ -162,8 +162,16 @@ table tbody tr:nth-child(even) {
 }
 
 .pagination {
-   background-color: #fff;
+    background-color: #fff;
     padding: 10px;
     border: 1px solid #ddd;
     margin-bottom: 20px;
 }
+
+
+#indicator
+{
+    padding-left: 16px;
+    background: url(/images/ajax-loader.gif) no-repeat 0px 10px;
+}
+

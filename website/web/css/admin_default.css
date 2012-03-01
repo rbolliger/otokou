@@ -226,7 +226,7 @@
 
 #sf_admin_container ul li.sf_admin_action_new a
 {
-    background: url(/images/new.png) no-repeat 0 0;
+    background: url(/images/new.png) no-repeat 0 3px;
     background-size: 12px 12px;
     padding-left: 16px;
     background-position-y: center;
@@ -397,7 +397,7 @@
 }
 
 #sf_admin_max_per_page {
-    background: url(/images/list.png) no-repeat 0 0;
+    background: url(/images/list.png) no-repeat 0px 2px;
     background-size:16px 16px;
     padding-left: 20px;
 }

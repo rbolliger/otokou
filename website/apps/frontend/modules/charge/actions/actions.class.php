@@ -44,7 +44,7 @@ class chargeActions extends autoChargeActions {
 
     protected function getSumAmount() {
 
-        // calculating sum of all charges
+// calculating sum of all charges
         $a = clone $this->pager->getQuery();
         $rootAlias = $a->getRootAlias();
         $a->removeDQLqueryPart('limit');
@@ -60,12 +60,12 @@ class chargeActions extends autoChargeActions {
         }
 
 
-        // calculating sum of charges of this page
+// calculating sum of charges of this page
         $b = clone $this->pager->getQuery();
         $rootAlias = $b->getRootAlias();
         $b->addSelect($rootAlias . '.id');
 
-        // MySQL doesn't seems to like subqueries with LIMIT. So we recover ids by executing the subquery separately.
+// MySQL doesn't seems to like subqueries with LIMIT. So we recover ids by executing the subquery separately.
         $charges = $b->execute();
         $ids = array();
         foreach ($charges as $charge) {
@@ -89,11 +89,13 @@ class chargeActions extends autoChargeActions {
 
         return array('amount_total' => $r1_sum, 'amount_page' => $r2_sum);
     }
-    
+
     public function getToSlots() {
         return array(
             'leftcol' => $this->getSumAmount(),
         );
     }
+
+  
 
 }
