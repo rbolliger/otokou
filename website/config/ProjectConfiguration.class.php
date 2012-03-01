@@ -19,7 +19,7 @@ class ProjectConfiguration extends sfProjectConfiguration {
         if (@$_SERVER['HTTP_HOST'] == 'otokou.donax.ch') {
             $this->setWebDir($this->getRootDir() . '/..');
         }
-        //$this->enablePlugins('sfJqueryReloadedPlugin');
+        $this->enablePlugins('sfJqueryReloadedPlugin');
  
         
         // defines the default schema formatter for forms
