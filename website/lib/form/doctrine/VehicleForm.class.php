@@ -16,6 +16,7 @@ class VehicleForm extends BaseVehicleForm {
                 $this['created_at'], $this['updated_at'], $this['slug'], $this['charts_list'], $this['reports_list']
         );
 
+        $this->widgetSchema['name'] = new sfWidgetFormInputText(array(),array('size' => 100));
 
         $this->widgetSchema['user_id'] = new sfWidgetFormInputHidden();
         $this->validatorSchema['user_id'] = new sfValidatorChoice(array('choices' => array($this->getUserId()), 'required' => true));
