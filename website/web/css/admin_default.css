@@ -59,19 +59,19 @@
 #sf_admin_container ul.error_list
 {
     margin: 0;
-    margin-bottom: 7px;
+    margin-bottom: 0px;
     color: #AB3B37;
     border: none;
     background-color: transparent;
+    padding-left: 10.5em;
 }
 
 #sf_admin_container ul.error_list li
 {
-    padding: 4px;
-    padding-left: 28px;
     list-style: none;
     color: #AB3B37;
-    background: url(/images/error.png) no-repeat 4px 4px;
+    margin-bottom: -3px;
+    font-size: 0.9em;
 }
 
 #sf_admin_container tr:hover
@@ -383,7 +383,7 @@
 
 #sf_admin_container .errors input, #sf_admin_container .errors select
 {
-    border: 1px solid #EAEAEA;
+    border: 1px solid #AB3B37;
 }
 
 #sf_admin_container .sf_admin_list .sf_admin_boolean
