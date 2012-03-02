@@ -9,7 +9,7 @@
     )
     ?></h3>
 
-        <?php if ($count = $category->countReports()) : ?>
+        <?php if ($count = $category->countOwnReports()) : ?>
 
         <table class="reports_list">
             <?php echo include_partial('report/reports_list_thead'); ?>

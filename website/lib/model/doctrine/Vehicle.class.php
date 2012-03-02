@@ -180,14 +180,14 @@ class Vehicle extends BaseVehicle {
         return $q->execute();
     }
 
-    public function countReports() {
+    public function countOwnReports() {
 
         $q = $this->addMyReportsQuery();
 
         return Doctrine_Core::getTable('Report')->countReports($q);
     }
 
-    public function countNewReports() {
+    public function countNewOwnReports() {
 
         $q = $this->addMyReportsQuery()
                 ->addWhere('r.is_new = ?', true);

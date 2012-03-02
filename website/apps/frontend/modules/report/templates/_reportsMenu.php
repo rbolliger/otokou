@@ -22,9 +22,9 @@ foreach ($vehicles as $vehicle) {
 
     $class = $vehicle->getIsArchived() ? 'vehicle_archived' : 'vehicle_active';
 
-    $nr = $vehicle->countNewReports();
+    $nr = $vehicle->countNewOwnReports();
     if ($nr) {
-        $reports = '<span class="vehicle_reports_count">(' . $nr . ' new)</span>';
+        $reports = get_partial('report/new_reports', array('nr' => $nr));
     } else {
         $reports = '';
     }

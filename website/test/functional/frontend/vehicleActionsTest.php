@@ -64,10 +64,31 @@ $browser->
                     checkElement('div.sf_admin_list tbody tr',2)->
                     checkElement('div.sf_admin_list tbody tr td.sf_admin_list_td_is_archived img[alt="Checked"]',1)->
                 end()->
-
+        
+        info('  1.4 - Reports')->
+        logout()->
+        login('user_gs','user')->
+        get('/user_gs/settings/vehicles')->
+        with('response')->
+                begin()->
+                    checkElement('div.sf_admin_list tbody tr',4)->
+                    checkElement('div.sf_admin_list tbody tr','/car_gs_1/',array('position' => 0))->
+                    checkElement('div.sf_admin_list tbody tr','/2 reports/',array('position' => 0))->
+                    checkElement('div.sf_admin_list tbody tr','/1 new/',array('position' => 0))->
+                end()->
+        click('2 reports')->
+        with('request')->
+            begin()->
+                isParameter('module','report')->
+                isParameter('action','listVehicle')->
+                isParameter('slug','car-gs-1')->
+            end()->
+        
         
 
         info('2 - New')->
+        logout()->
+        login('user_vehicle','user')->
         
         info('  2.1 - Routing')->
         get('/settings/vehicles/new')->

@@ -44,18 +44,19 @@ Vehicle:
   car_gs_1:
     name: car_gs_1
     User: user_gs
+    is_archived: 0
   car_gs_2:
     name: car_gs_2
     User: user_gs
-    is_archived: true
+    is_archived: 1
   car_gs_3:
     name: car_gs_3
     User: user_gs
-    is_archived: false
+    is_archived: 0
   car_gs_4:
     name: car_gs_4
     User: user_gs
-    is_archived: true
+    is_archived: 1
   car_reports_1:
     name: car_reports_01
     User: user_reports

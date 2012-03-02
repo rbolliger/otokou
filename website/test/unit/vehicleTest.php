@@ -4,7 +4,7 @@ include dirname(__FILE__) . '/../../lib/test/otokouTestFunctional.class.php';
 
 $ut = new otokouTestFunctional(new sfBrowser());
 
-$t = new lime_test(32, new lime_output_color());
+$t = new lime_test(36, new lime_output_color());
 
 /**
  * New vehicle
@@ -134,8 +134,7 @@ $t->diag('->getOwnReports()');
 $v = Doctrine_Core::getTable('Vehicle')->findOneByName('car_reports_01');
 
 $limit = 7;
-//$r = $v->getOwnReports($limit);
-$r = $v->getReports();
+$r = $v->getOwnReports($limit);
 
 $t->cmp_ok(count($r), '===', $limit , '->getOwnReports() returns the right number of reports');
 
@@ -144,3 +143,8 @@ foreach ($r as $key => $report) {
     $msg = 'Report '.$name.' is correctly sorted';
     $t->cmp_ok($report->getName(), '===', $name, $msg);
 }
+
+$t->diag('->countOwnReports()');
+$v = Doctrine_Core::getTable('Vehicle')->findOneByName('car_gs_1');
+$t->cmp_ok($v->countOwnReports(), '===', 2, '->countReports() returns the right number of reports');
+$t->cmp_ok($v->countNewOwnReports(), '===', 1, '->countReports() returns the right number of reports');
