@@ -25,7 +25,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="11.2"
-     inkscape:cx="4.4702073"
+     inkscape:cx="-11.244078"
      inkscape:cy="-16.675835"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -57,9 +57,12 @@
      id="layer1"
      transform="translate(-148.96163,-510.05915)">
     <path
-       style="fill:none;stroke:#000000;stroke-width:4.59999895;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       style="fill:none;stroke:#363636;stroke-width:4.59999894999999981;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        d="m 151.3276,512.36218 18.96135,0"
        id="path3789"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/ruf/Public/otokou/website/web/images/icons/minus.png"
+       inkscape:export-xdpi="34.113842"
+       inkscape:export-ydpi="34.113842" />
   </g>
 </svg>

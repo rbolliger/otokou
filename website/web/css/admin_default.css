@@ -234,7 +234,7 @@
 
 #sf_admin_container ul li.sf_admin_action_delete a
 {
-    background: url(../../sfDoctrinePlugin/images/delete.png) no-repeat 0 0;
+    background: url(/images/icons/delete.png) no-repeat 0 0;
     background-position-y: center;
 }
 
@@ -245,12 +245,18 @@
 
 #sf_admin_container ul li.sf_admin_action_edit a
 {
-    background: url(../../sfDoctrinePlugin/images/edit.png) no-repeat 0 0;
+    background: url(/images/icons/edit.png) no-repeat 0 0;
 }
 
 #sf_admin_container ul li.sf_admin_action_pdf a
 {
     background: url(/images/icons/page_white_acrobat.png) no-repeat 0 0;
+    background-position-y: center;
+}
+
+#sf_admin_container ul li.sf_admin_action_archive a
+{
+    background: url(/images/icons/archive.png) no-repeat 0 0;
     background-position-y: center;
 }
 
@@ -398,8 +404,7 @@
 }
 
 #sf_admin_max_per_page {
-    background: url(/images/list.png) no-repeat 0px 2px;
-    background-size:16px 16px;
+    background: url(/images/list.png) no-repeat 0px 3px;
     padding-left: 20px;
 }
 

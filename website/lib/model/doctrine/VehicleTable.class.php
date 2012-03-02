@@ -32,7 +32,7 @@ class VehicleTable extends Doctrine_Table {
 
         return $q->execute();
     }
-    
+  
     public function findByUsername($username) {
 
         $q = $this->createQuery('v');
