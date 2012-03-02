@@ -64,12 +64,12 @@ class ReportForm extends BaseReportForm {
         $this->widgetSchema['date_range'] = new sfWidgetFormFilterDate(array(
                     'from_date' => new sfWidgetFormJQueryDate(array(
                         'config' => '{changeMonth: true, changeYear: true, yearRange: \'-25:+5\'}',
-                        'image' => '/images/calendar.png',
+                        'image' => '/images/icons/calendar.png',
                         'date_widget' => $widget
                     )),
                     'to_date' => new sfWidgetFormJQueryDate(array(
                         'config' => '{changeMonth: true, changeYear: true, yearRange: \'-25:+5\'}',
-                        'image' => '/images/calendar.png',
+                        'image' => '/images/icons/calendar.png',
                         'date_widget' => $widget
                     )),
                     'with_empty' => false,

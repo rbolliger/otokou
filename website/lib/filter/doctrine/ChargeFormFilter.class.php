@@ -29,12 +29,12 @@ class ChargeFormFilter extends BaseChargeFormFilter {
         $this->widgetSchema['date'] = new sfWidgetFormFilterDate(array(
                     'from_date' => new sfWidgetFormJQueryDate(array(
                         'config' => '{}',
-                        'image' => '/images/calendar.png',
+                        'image' => '/images/icons/calendar.png',
                         'date_widget' => $widget
                     )),
                     'to_date' => new sfWidgetFormJQueryDate(array(
                         'config' => '{}',
-                        'image' => '/images/calendar.png',
+                        'image' => '/images/icons/calendar.png',
                         'date_widget' => $widget
                     )),
                     'with_empty' => false,

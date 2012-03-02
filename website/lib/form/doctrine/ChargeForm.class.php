@@ -41,7 +41,7 @@ class ChargeForm extends BaseChargeForm {
 
         $this->widgetSchema['date'] = new sfWidgetFormJQueryDate(array(
                     'config' => '{}',
-                    'image' => '/images/calendar.png',
+                    'image' => '/images/icons/calendar.png',
                     'date_widget' => $widget
                 ));
 
