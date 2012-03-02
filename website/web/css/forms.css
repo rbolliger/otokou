@@ -27,6 +27,13 @@ input[type="submit"]:focus,
     background-color: #F75550;
 }
 
+/* must look like a link */
+input[type="submit"].noscript {
+    background-color: #fff;
+    color: #AB3B37;
+    font-weight: normal;
+}
+
 input[type="text"],
 input[type="password"],
 textarea {

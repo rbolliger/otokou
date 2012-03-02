@@ -154,7 +154,18 @@ $browser->
         info('5- Dropdown menus')->
         
         info('  5.1 - Charges list (filters)')->
-        get('/user_vehicle/charge?filters_appearance=show')->
+        get('/user_vehicle/charge')->
+        post('/user_vehicle/charge/filter_visibility')->
+        with('request')->
+                begin()->
+                    isParameter('module','charge')->
+                    isParameter('action','toggleFilterVisibility')->
+                end()->
+        with('response')->begin()->
+            isRedirected()->
+            followRedirect()->
+        end()->
+        //click('Show/hide filters',array(),array('method' => 'post'))->
             with('response')->
                 begin()->
                     checkElement('.sf_admin_filter_field_vehicle_id ul li',1)->

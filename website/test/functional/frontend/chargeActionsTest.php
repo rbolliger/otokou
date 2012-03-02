@@ -233,18 +233,109 @@ info('4 - List filters')->
         logout()->
         login('ruf','admin@1')->
         
-        info('  4.1 - Vehicle: the user can see only his vehicles in the list')->
-        get('/ruf/charge?filters_appearance=show')->
-            with('response')->
+        info(' 4.1 Show/hide filters without javascript')->
+        get('/user_vehicle/charge')->
+        with('response')->
                 begin()->
-                    checkElement('.sf_admin_filter_field_vehicle_id ul li',1)->
-                    // no vehicles are checked by default
-                    checkElement('.sf_admin_filter_field_vehicle_id ul li input[checked="checked"]',0)->
-                    // no categories are checked by default
-                    checkElement('.sf_admin_filter_field_category_id ul li input[checked="checked"]',0)->
+                    checkElement('div#filters',true)->
+                    checkElement('div#filters div.sf_admin_filters',false)->
+                end()->
+        click('Show/hide filters')->
+        with('request')->
+                begin()->
+                    isParameter('module','charge')->
+                    isParameter('action','toggleFilterVisibility')->
+                end()->
+        with('response')->begin()->
+            isRedirected()->
+            followRedirect()->
+        end()->
+        with('response')->
+                begin()->
+                    checkElement('div#filters',true)->
+                    checkElement('div#filters div.sf_admin_filter',true)->
+                end()->
+        click('Show/hide filters')->
+        with('request')->
+                begin()->
+                    isParameter('module','charge')->
+                    isParameter('action','toggleFilterVisibility')->
+                end()->
+        with('response')->begin()->
+            isRedirected()->
+            followRedirect()->
+        end()->
+        with('response')->
+                begin()->
+                    checkElement('div#filters',true)->
+                    checkElement('div#filters div.sf_admin_filter',false)->
                 end()->
         
-        info('  4.2 - Vehicle: the filtering works')->
+        info(' 4.2 Show/hide filters with ajax')->
+        setHttpHeader('X-Requested-With', 'XMLHttpRequest')->
+        click('Show/hide filters')->
+        with('request')->
+                begin()->
+                    isParameter('module','charge')->
+                    isParameter('action','toggleFilterVisibility')->
+                end()->
+        // response returns only the filters partial content
+        with('response')->
+            begin()->
+                isRedirected(false)->
+                checkElement('div#filters',false)->
+                checkElement('div.sf_admin_filter',true)->
+            end()->
+        get('/user_vehicle/charge')->
+        with('response')->
+            begin()->
+                checkElement('div#filters',true)->
+                checkElement('div#filters div.sf_admin_filter',true)->
+            end()->
+        setHttpHeader('X-Requested-With', 'XMLHttpRequest')->
+        click('Show/hide filters')->
+        with('request')->
+                begin()->
+                    isParameter('module','charge')->
+                    isParameter('action','toggleFilterVisibility')->
+                end()->
+        with('response')->
+            begin()->
+                isRedirected(false)->
+                checkElement('div#filters',false)->
+                checkElement('div.sf_admin_filter',false)->
+            end()->
+        get('/user_vehicle/charge')->
+        with('response')->
+            begin()->
+                checkElement('div#filters',true)->
+                checkElement('div#filters div.sf_admin_filter',false)->
+            end()->
+        
+        
+        info('  4.3 - Vehicle: the user can see only his vehicles in the list')->
+        post('/user_vehicle/charge/filter_visibility')->
+        with('response')->begin()->
+            isRedirected()->
+            followRedirect()->
+        end()->
+        with('request')->
+                begin()->
+                    isParameter('module','charge')->
+                    isParameter('action','index')->
+                end()->
+        with('response')->
+            begin()->
+                checkElement('div#filters',true)->
+                checkElement('div#filters div.sf_admin_filter',true)->
+                checkElement('.sf_admin_filter_field_vehicle_id ul li',1)->
+                // no vehicles are checked by default
+                checkElement('.sf_admin_filter_field_vehicle_id ul li input[checked="checked"]',0)->
+                // no categories are checked by default
+                checkElement('.sf_admin_filter_field_category_id ul li input[checked="checked"]',0)->
+                end()->
+        
+        info('  4.4 - Vehicle: the filtering works')->
         click('Filter',array(
             'charge_filters' => array(
                 'vehicle_id' => $browser->getVehicleId('car2')
@@ -278,7 +369,7 @@ info('4 - List filters')->
                         ),16)->
                 end()->
         
-        info('  4.3 - The user can select multiple categories')->
+        info('  4.5 - The user can select multiple categories')->
         call('/ruf/charge/filter/action?_reset','post',array('_with_csrf' => true))->
             with('response')->
                 begin()->
@@ -345,7 +436,7 @@ info('4 - List filters')->
                 end()->
         
         
-        info('  4.4 - Kilometers (and Amount and quantity): the range filter works')->
+        info('  4.6 - Kilometers (and Amount and quantity): the range filter works')->
         call('/ruf/charge/filter/action?_reset','post',array('_with_csrf' => true))->
             with('response')->
                 begin()->
@@ -400,7 +491,8 @@ info('4 - List filters')->
                 begin()->
                     checkElement('div.sf_admin_list tbody tr',16)->
                 end()->
-        info('  4.5 - When no charges can be found, the sums are null')->
+        
+        info('  4.7 - When no charges can be found, the sums are null')->
         click('Filter',array(
             'charge_filters' => array(
                 'kilometers' => array('from' => 1001, 'to' => 1002))))->
@@ -416,7 +508,7 @@ info('4 - List filters')->
                     checkElement('div#charges_sum_amount_page','/This page: 0 CHF/')->
                 end()->
 
-        info('  4.6 - Comments search')->
+        info('  4.8 - Comments search')->
         call('/ruf/charge/filter/action?_reset','post',array('_with_csrf' => true))->
             with('response')->
                 begin()->
@@ -448,7 +540,7 @@ info('4 - List filters')->
                             ,4)->
                 end()->
 
-           info('  4.7 - Filters deletion after logout and change user')->
+           info('  4.9 - Filters deletion after logout and change user')->
            logout()->
            with('user')->
             begin()->
@@ -714,79 +806,9 @@ info('6 - Edit')->
                         checkElement('select#charge_date_month option[selected="selected"]','01')->
                         checkElement('select#charge_date_year option[selected="selected"]','2011')->
                         checkElement('select#charge_date_year:contains(1970)',true)->
-                    end()->   
+                    end()
         
-info('7 - Show and hide filters')->
-info('  7.1 - Filters are hidden by default')->
-        get('/user4/charge')->
-            with('response')->
-                begin()->
-                    checkElement('#filters',true)->
-                    checkElement('#filters form',false)->
-                    checkElement('a:contains("Hide filters")',false)->
-                    checkElement('a:contains("Show filters")',true)->
-                end()->
-           with('user')->
-                begin()->
-                    isAttribute('charge.filters_appearance', NULL, 'admin_module')->
-                end()->
-info(' 7.2 - Clicking on "show filters"')->
-        click('Show filters')->
-            with('request')->
-                begin()->
-                  isParameter('filters_appearance', 'show')->  
-                end()->
-            with('response')->
-                begin()->
-                    checkElement('#filters',true)->
-                    checkElement('#filters form',true)->
-                    checkElement('a:contains("Hide filters")',true)->
-                    checkElement('a:contains("Show filters")',false)->
-                end()->
-            with('user')->
-                begin()->
-                    isAttribute('charge.filters_appearance', 'show', 'admin_module')->
-                end()->
-        click('Hide filters')->
-            with('request')->
-                begin()->
-                  isParameter('filters_appearance', 'hidden')->  
-                end()->
-            with('response')->
-                begin()->
-                    checkElement('#filters',true)->
-                    checkElement('#filters form',false)->
-                    checkElement('a:contains("Hide filters")',false)->
-                    checkElement('a:contains("Show filters")',true)->
-                end()->
-            with('user')->
-                begin()->
-                    isAttribute('charge.filters_appearance', 'hidden', 'admin_module')->
-                end()->
-        info('7.3 - Filtering data')->
-            get('/user4/charge?filters_appearance=show')->
-            click('Filter',array(
-                    'charge_filters' => array(
-                            'kilometers' => array('from' => null, 'to' => 1500))
-                ))->
-            with('response')->
-                begin()->
-                    isRedirected()->
-                    followRedirect()->
-                end()->
-            with('response')->
-                begin()->
-                    checkElement('div#filters',true)->
-                    checkElement('div#filters form',true)->
-                    checkElement('a:contains("Hide filters")',true)->
-                    checkElement('a:contains("Show filters")',false)->
-                end()->
-            with('user')->
-                begin()->
-                    isAttribute('charge.filters_appearance', 'show', 'admin_module')->
-                end()
-        
-        ;
+;
 
 function getFormData($browser, $fields = array()) {
 

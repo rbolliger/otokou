@@ -27,7 +27,7 @@
     
     $this->pager->form = new PaginationMaxPerPageForm($this->getUser(), $this->getMaxPerPageOptions(), false);
         
-    $this->filters_appearance = $this->getFiltersAppearance();
+    $this->filters_visibility = $this->getFiltersVisibility();
     
     
   }
