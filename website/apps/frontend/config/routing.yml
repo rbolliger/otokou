@@ -82,11 +82,26 @@ charge:
        list:              getAllByUser
 
 charge_toggle_filters_visibility:
-  url: /:username/charge/filter_visibility
+  url: /:username/charge/filter-visibility
   class: otkWithUserRoute
   param: {module: charge, action: toggleFilterVisibility }
   requirements:
     sf_method: [ post ]
+    
+charge_no_vehicle:
+  url: /:username/charge/no-vehicle
+  class: otkWithUserRoute
+  param: {module: charge, action: noVehicle }
+  requirements:
+    sf_method: [ get ]
+    
+charge_add_vehicle:
+    url: /:username/charge/add-vehicle
+    class: otkWithUserRoute
+    param: {module: charge, action: addVehicle }
+    requirements:
+      sf_method: [ get, post ]
+
 
 report_index:
   class: otkWithUserRoute

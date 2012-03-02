@@ -43,9 +43,10 @@ $browser->
                     checkElement('body','/Thank you for confirming your account/')->
                 end()->
         click('Continue')->
+            with('response')->followRedirect()->
             with('response')->
                 begin()->
-                    checkElement('body','/New Charge/')->
+                    checkElement('h1','/Add a new vehicle/')->
                 end()->
         
         
@@ -66,9 +67,10 @@ $browser->
                     checkElement('body','/For security reasons, a confirmation message has been sent to/')->
                 end()->
         click('Continue')->
+            with('response')->followRedirect()->
             with('response')->
                 begin()->
-                    checkElement('body','/New Charge/')->
+                    checkElement('h1','/Add a new vehicle/')->
                 end()->
         logout()->
         get(sprintf('/confirm/%s',getValidateKeyForUser($user['username'])))->
@@ -88,9 +90,10 @@ $browser->
                     checkElement('body','/Your password has been successfully reset/')->
                 end()->
         click('Continue')->
+            with('response')->followRedirect()->
             with('response')->
                 begin()->
-                    checkElement('body','/New Charge/')->
+                    checkElement('h1','/Add a new vehicle/')->
                 end()->
 
         
@@ -129,9 +132,10 @@ $browser->
                     checkElement('body','/Your password has been successfully reset/')->
                 end()->
         click('Continue')->
+            with('response')->followRedirect()->
             with('response')->
                 begin()->
-                    checkElement('body','/New Charge/')->
+                    checkElement('h1','/Add a new vehicle/')->
                 end()
         
         ;

@@ -12,18 +12,8 @@
     <?php if ($form->hasGlobalErrors()): ?>
         <?php echo $form->renderGlobalErrors() ?>
     <?php endif; ?>
-
-<!--    <fieldset id="sf_fieldset_none">
-        
-        
-        <?php //echo $form; ?>
-
-        <?php //echo include_partial('report/form_content', array('form' => $form)); ?>
-
-    </fieldset>-->
-    
-    <fieldset>
-        
+   
+    <fieldset>    
         <?php echo $form['name']->renderRow(); ?>
         <?php echo $form['vehicles_list']->renderRow(); ?>
     </fieldset>

@@ -155,7 +155,7 @@ $browser->
         
         info('  5.1 - Charges list (filters)')->
         get('/user_vehicle/charge')->
-        post('/user_vehicle/charge/filter_visibility')->
+        post('/user_vehicle/charge/filter-visibility')->
         with('request')->
                 begin()->
                     isParameter('module','charge')->

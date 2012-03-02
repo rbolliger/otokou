@@ -2,9 +2,9 @@
 include dirname(__FILE__) . '/../bootstrap/Doctrine.php';
 include dirname(__FILE__) . '/../../lib/test/otokouTestFunctional.class.php';
 
-//$ut = new otokouTestFunctional(new sfBrowser());
+$ut = new otkTestUtility();
 
-$t = new lime_test(24, new lime_output_color());
+$t = new lime_test(25, new lime_output_color());
 
 
 
@@ -28,3 +28,8 @@ $t->cmp_ok(count($v), '===', 1 , '::findByUsernameWithNewReports() retrieves onl
 
 $t->diag('::findByUsername');
 $t->cmp_ok(count(Doctrine_Core::getTable('Vehicle')->findByUsername('user_reports')), '===', 20 , '::findByUsername() retrieves all Vehicles for the given user');
+
+
+$t->diag('->countActiveByUserId()');
+$user_id = $ut->getUserId('user_vehicle');
+$t->cmp_ok(Doctrine_Core::getTable('Vehicle')->countActiveByUserId($user_id), '===', 1, '->countActiveByUserId() returns the right number of vehicles');

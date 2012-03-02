@@ -314,7 +314,7 @@ info('4 - List filters')->
         
         
         info('  4.3 - Vehicle: the user can see only his vehicles in the list')->
-        post('/user_vehicle/charge/filter_visibility')->
+        post('/user_vehicle/charge/filter-visibility')->
         with('response')->begin()->
             isRedirected()->
             followRedirect()->
@@ -806,7 +806,93 @@ info('6 - Edit')->
                         checkElement('select#charge_date_month option[selected="selected"]','01')->
                         checkElement('select#charge_date_year option[selected="selected"]','2011')->
                         checkElement('select#charge_date_year:contains(1970)',true)->
-                    end()
+                    end()->
+        
+info('7 - New user')->
+    logout()->
+    login('user_gb_noCars','user')->
+        with('doctrine')->
+           begin()->
+             check('Vehicle', array(
+                    'user_id'        => $browser->getUserId('user_gb_noCars'),
+                    'is_archived'    => false,
+                  ),0)->
+           end()->
+    get('/user_gb_noCars/charge/new')->
+        with('response')->
+            // no vehicle found, so the user is redirected to vehicle creation form
+            begin()->
+                isRedirected()->
+                followRedirect()->
+            end()->
+        with('request')->
+            begin()->
+                isParameter('module','charge')->
+                isParameter('action','noVehicle')->
+            end()->
+        with('response')->
+            begin()->
+                checkElement('form',true)->
+                checkElement('h1','/Add a new vehicle/')->
+            end()->
+    click('Save')->
+        with('form')->
+            begin()->
+                hasErrors(1)->
+                isError('name', '/required/')->
+           end()->
+    click('Save',array('vehicle' => array('name' => 'user_gb_noCars_1', 'is_archived' => true)))->
+         with('form')->
+            begin()->
+                hasErrors(false)->
+            end()->
+        with('response')->
+            begin()->
+                isRedirected()->
+                followRedirect()->
+            end()->
+        with('request')->
+            begin()->
+                isParameter('module','charge')->
+                isParameter('action','new')->
+            end()->
+        // still no active vehicle, so we redirect to the vehicle creation form
+        with('response')->
+            begin()->
+                isRedirected()->
+                followRedirect()->
+            end()->
+        with('request')->
+            begin()->
+                isParameter('module','charge')->
+                isParameter('action','noVehicle')->
+            end()->
+        with('response')->
+            begin()->
+                checkElement('form',true)->
+                checkElement('h1','/Add a new vehicle/')->
+            end()->
+        click('Save',array('vehicle' => array('name' => 'user_gb_noCars_2', 'is_archived' => false)))->
+         with('form')->
+            begin()->
+                hasErrors(false)->
+            end()->
+        with('response')->
+            begin()->
+                isRedirected()->
+                followRedirect()->
+            end()->
+        with('request')->
+            begin()->
+                isParameter('module','charge')->
+                isParameter('action','new')->
+            end()->
+        // still no active vehicle, so we redirect to the vehicle creation form
+        with('response')->
+            begin()->
+                isRedirected(false)->
+            end()
+        
         
 ;
 

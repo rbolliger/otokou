@@ -44,6 +44,17 @@ class VehicleTable extends Doctrine_Table {
         return $q->execute();
     }
     
+    public function countActiveByUserId($user_id) {
+        
+        $q = $this->createQuery('v');
+        
+        $q = $this->addUserIdQuery($q, $user_id);
+        $q = $this->addIsArchivedQuery($q, false);
+        
+        return $q->count();
+        
+    }
+    
     
     public function findByUsernameWithNewReports($username) {
 

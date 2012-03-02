@@ -36,10 +36,61 @@ class chargeActions extends autoChargeActions {
 
     public function executeNew(sfWebRequest $request) {
 
+        if (!Doctrine_Core::getTable('Vehicle')->countActiveByUserId($this->getUserIdFromRouteOrSession())) {
+            $this->redirect('@charge_no_vehicle');
+        }
+
         parent::executeNew($request);
 
         $this->charge->setDate(date('Y-m-d'));
         $this->form = $this->configuration->getForm($this->charge);
+    }
+
+    public function executeNoVehicle(sfWebRequest $request) {
+
+        $v = new Vehicle();
+        $v->setUserId($this->getUserIdFromRouteOrSession());
+
+        $this->form = new VehicleForm($v);
+    }
+
+    public function executeAddVehicle(sfWebRequest $request) {
+
+        $v = new Vehicle();
+        $v->setUserId($this->getUserIdFromRouteOrSession());
+
+        $this->form = new VehicleForm($v);
+
+        $this->processVehicleForm($request, $this->form);
+
+        $this->setTemplate('noVehicle');
+    }
+
+    protected function processVehicleForm(sfWebRequest $request, VehicleForm $form) {
+
+        $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
+        if ($form->isValid()) {
+
+            try {
+                $vehicle = $form->save();
+            } catch (Doctrine_Validator_Exception $e) {
+
+                $errorStack = $form->getObject()->getErrorStack();
+
+                $message = get_class($form->getObject()) . ' has ' . count($errorStack) . " field" . (count($errorStack) > 1 ? 's' : null) . " with validation errors: ";
+                foreach ($errorStack as $field => $errors) {
+                    $message .= "$field (" . implode(", ", $errors) . "), ";
+                }
+                $message = trim($message, ', ');
+
+                $this->getUser()->setFlash('error', $message);
+                return sfView::SUCCESS;
+            }
+
+            $this->redirect(array('sf_route' => 'charge_new'));
+        } else {
+            $this->getUser()->setFlash('error', 'The item has not been saved due to some errors.', false);
+        }
     }
 
     protected function getSumAmount() {
@@ -95,7 +146,5 @@ class chargeActions extends autoChargeActions {
             'leftcol' => $this->getSumAmount(),
         );
     }
-
-  
 
 }
