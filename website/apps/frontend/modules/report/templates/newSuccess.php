@@ -13,6 +13,8 @@ end_slot();
     <?php slot('content_title') ?>
     <h1>Create a new report</h1>
     <?php end_slot(); ?>
+    
+    <?php include_partial('charge/flashes') ?>
 
     <div class="sf_admin_content">
 
