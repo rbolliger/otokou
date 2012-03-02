@@ -217,5 +217,9 @@ class Vehicle extends BaseVehicle {
 
         return $q;
     }
+    
+    public function getIsActive() {
+        return !$this->getIsArchived();
+    }
 
 }

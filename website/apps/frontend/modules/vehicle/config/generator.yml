@@ -21,10 +21,14 @@ generator:
         is_archived:
            help: By archiving the vehicle, it won't appear anymore in charges, charts and reports lists. Its data still remain available.
            label: Is archived?
+        _list_is_active:
+           label: Is active?
+           type: boolean
       list:   
         display: [=name, is_archived]
         title: Your vehicles
         max_per_page:   20
+        sort: [is_archived, asc]
         object_actions:
             _edit:        ~
             _delete:      ~
