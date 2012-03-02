@@ -240,7 +240,7 @@
 
 #sf_admin_container ul li.sf_admin_action_list a
 {
-    background: url(../../sfDoctrinePlugin/images/list.png) no-repeat 0 0;
+    background: url(/images/icons/back.png) no-repeat 0 2px;
 }
 
 #sf_admin_container ul li.sf_admin_action_edit a
@@ -404,7 +404,7 @@
 }
 
 #sf_admin_max_per_page {
-    background: url(/images/list.png) no-repeat 0px 3px;
+    background: url(/images/icons/list.png) no-repeat 0px 3px;
     padding-left: 20px;
 }
 
