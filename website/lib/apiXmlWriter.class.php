@@ -72,14 +72,15 @@ class apiXmlWriter extends XMLWriter
 	 */
 	public function addHeader() {
 		$this->startElement(self::HEADER_ELEMENT_NAME);
+		$arg_list = func_get_args();
 		if (func_num_args()==3) {
-			$this->writeElement(self::ERROR_CODE_ELEMENT_NAME, func_get_arg(0)); 
-			$this->writeElement(self::ERROR_MESSAGE_ELEMENT_NAME,  func_get_arg(1));
-			$this->writeElement(self::RESPONSE_ELEMENT_NAME, func_get_arg(2)); 
+			$this->writeElement(self::ERROR_CODE_ELEMENT_NAME, $arg_list[0]); 
+			$this->writeElement(self::ERROR_MESSAGE_ELEMENT_NAME,  $arg_list[1]);
+			$this->writeElement(self::RESPONSE_ELEMENT_NAME, $arg_list[2]); 
 		}
 		else if (func_num_args()==2) {
-			$this->writeElement(self::ERROR_CODE_ELEMENT_NAME,  func_get_arg(0)); 
-			$this->writeElement(self::ERROR_MESSAGE_ELEMENT_NAME,  func_get_arg(1)); 
+			$this->writeElement(self::ERROR_CODE_ELEMENT_NAME,  $arg_list[0]); 
+			$this->writeElement(self::ERROR_MESSAGE_ELEMENT_NAME,  $arg_list[1]); 
 		}
 		$this->endElement();
 		return $this;
