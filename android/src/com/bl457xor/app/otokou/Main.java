@@ -90,6 +90,9 @@ public class Main extends Activity implements Runnable, OnClickListener, OnShare
 		btnAddCharge = (Button) findViewById(R.id.btnAddCharge);
 		btnAddCharge.setOnClickListener(this);
 		
+		// TO DELETE button to test
+		((Button)findViewById(R.id.btnTest)).setOnClickListener(this);
+		
 		// create text view for user communication
 		txtUser = (TextView)findViewById(R.id.txtUser);
 	}
@@ -193,6 +196,11 @@ public class Main extends Activity implements Runnable, OnClickListener, OnShare
 		startActivityForResult(i, 0);
 	}
 	
+	private void launchTest() {
+		String apiKey = preferences.getString("apikey", "");
+		System.out.println("plain : " + OtokouAPI.getUserData(apiKey));
+	}
+	
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// TODO manage returns of
 		if (resultCode == AddCharge.RETURN_RESULT_OK) {
@@ -274,6 +282,9 @@ public class Main extends Activity implements Runnable, OnClickListener, OnShare
 		case R.id.btnAddCharge:
 			launchAddChargeActivity();
 			break;
+		case R.id.btnTest:
+			launchTest();
+			break;			
 		}		
 	}
 
