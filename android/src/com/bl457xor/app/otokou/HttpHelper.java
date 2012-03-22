@@ -62,8 +62,8 @@ public class HttpHelper {
     		// accept ssl certificate from kreativemedia instead of donax
     		SSLSocketFactory sslSocketFactory = (SSLSocketFactory) httpclient.getConnectionManager().getSchemeRegistry().getScheme("https").getSocketFactory();
 		    final X509HostnameVerifier delegate = sslSocketFactory.getHostnameVerifier();
-		    if(!(delegate instanceof MyVerifier)) {
-		        sslSocketFactory.setHostnameVerifier(new MyVerifier(delegate));
+		    if(!(delegate instanceof OtokouSslVerifier)) {
+		        sslSocketFactory.setHostnameVerifier(new OtokouSslVerifier(delegate));
 		    }
     		
     		HttpPost httppost = new HttpPost(postUrl);

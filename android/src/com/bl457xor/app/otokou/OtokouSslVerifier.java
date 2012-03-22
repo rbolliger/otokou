@@ -5,11 +5,11 @@ import javax.net.ssl.SSLException;
 import org.apache.http.conn.ssl.AbstractVerifier;
 import org.apache.http.conn.ssl.X509HostnameVerifier;
 
-public class MyVerifier extends AbstractVerifier {
-	
+public class OtokouSslVerifier extends AbstractVerifier {
+
     private final X509HostnameVerifier delegate;
 
-    public MyVerifier(final X509HostnameVerifier delegate) {
+    public OtokouSslVerifier(final X509HostnameVerifier delegate) {
         this.delegate = delegate;
     }
     

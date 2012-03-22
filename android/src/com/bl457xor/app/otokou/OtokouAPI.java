@@ -18,11 +18,12 @@ public class OtokouAPI {
 		// TODO all
 	}
 	
-	public static String getUserData(String apiKey) {
+	public static OtokouUser getUserData(String apiKey) {
 		// TODO return OtokouUser and not string
 		String getRequest = OTOKOU_API_URL+OTOKOU_GET_USER_ACTION;
     	try {		
-    		return HttpHelper.executeHttpPost(getRequest,writeGetUserXml(apiKey));
+    		//return HttpHelper.executeHttpPost(getRequest,writeGetUserXml(apiKey));
+    		return new OtokouUser(HttpHelper.executeHttpPost(getRequest,writeGetUserXml(apiKey)),apiKey);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

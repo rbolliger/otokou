@@ -7,8 +7,19 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.io.StreamCorruptedException;
-import java.util.Arrays;
-import java.util.List;
+import java.io.StringReader;
+
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
+import org.xml.sax.XMLReader;
+
+import android.util.Log;
+
+import com.bl457xor.app.otokou.xml.OtokouXmlGetUserHandler;
 
 public class OtokouUser implements Serializable{
 
@@ -24,26 +35,38 @@ public class OtokouUser implements Serializable{
 	public String apiKey;
 	
 	public OtokouUser(String rawData, String apikey) throws Exception {
-		List<String> userData = Arrays.asList(rawData.split(","));
-		if (userData.size() >= 2) {
-			if (userData.get(0).equals("000")) {
-				if (userData.size() == 5) {
-					this.userID = Long.parseLong(userData.get(2));
-					this.firstName =userData.get(3);
-					this.lastName =userData.get(4);
-				}
-				else {
-					throw new Exception("Api Error: number of filds incorrect");
-				}
-			}
-			else {
-				throw new Exception("Api Error: "+userData.get(0));
-			}
-		}
-		else {
-			throw new Exception("Api Undefined Error");
-		}
-		this.apiKey = apikey;
+		  // sax stuff
+		  try {
+		    SAXParserFactory spf = SAXParserFactory.newInstance();
+		    SAXParser sp = spf.newSAXParser();
+
+		    XMLReader xr = sp.getXMLReader();
+
+		    OtokouXmlGetUserHandler xmlHandler = new OtokouXmlGetUserHandler();
+		    xr.setContentHandler(xmlHandler);
+
+		    InputSource is = new InputSource(new StringReader(rawData)); 
+		    
+		    xr.parse(is);
+
+		    Log.i("XML:", rawData);
+		    
+		    xmlHandler.getApiXmlVersion();
+		    if (!xmlHandler.headerOk()) throw new Exception("Cound't parse XML header");
+		    
+		    if (!xmlHandler.bodyOk()) throw new Exception("Cound't parse XML Body");
+			this.userID = Long.parseLong(xmlHandler.getXmlUserId());
+			this.firstName = xmlHandler.getXmlFirstName();
+			this.lastName = xmlHandler.getXmlLastName();
+			this.apiKey = apikey;
+		    
+		  } catch(ParserConfigurationException pce) {
+		    Log.i("SAX XML", "sax parse error", pce);
+		  } catch(SAXException se) {
+		    Log.i("SAX XML", "sax error", se);
+		  } catch(IOException ioe) {
+		    Log.i("SAX XML", "sax parse io error", ioe);
+		  }
 	}
 	
 	@Override

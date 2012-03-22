@@ -107,7 +107,7 @@ public class Main extends Activity implements Runnable, OnClickListener, OnShare
 			}
 			else {
 				handler.sendEmptyMessage(RUN_MSG_LOADING_USER);
-				otokouUser = OtokouTestAPI.getUserData(apiKey);
+				otokouUser = OtokouAPI.getUserData(apiKey);
 
 				if (otokouUser != null) {
 					handler.sendEmptyMessage(RUN_MSG_LOADING_VEHICLES);
@@ -198,7 +198,7 @@ public class Main extends Activity implements Runnable, OnClickListener, OnShare
 	
 	private void launchTest() {
 		String apiKey = preferences.getString("apikey", "");
-		System.out.println("plain : " + OtokouAPI.getUserData(apiKey));
+		OtokouAPI.getUserData(apiKey);
 	}
 	
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
