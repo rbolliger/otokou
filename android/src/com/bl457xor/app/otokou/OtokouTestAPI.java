@@ -40,7 +40,7 @@ public class OtokouTestAPI {
 		}		
 	}
 	
-	public static ArrayList<OtokouVehicle> getVehiclesData(String apiKey, OtokouUser otokouUser2) {
+	public static ArrayList<OtokouVehicle> getVehiclesData(String apiKey) {
 		String getRequest = OTOKOU_API_URL;
 		getRequest += "?request=get_vehicles";
 		getRequest += ","+apiKey;

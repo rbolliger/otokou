@@ -25,8 +25,12 @@ class apiXmlWriter extends XMLWriter
 	const FIRST_NAME_ELEMENT_NAME = 'first_name';
 	const LAST_NAME_ELEMENT_NAME = 'last_name';
 	const VEHICLES_NUMBER_ELEMENT_NAME = 'vehicles_number';
-	const VEHICLE_ID_ELEMENT_PREFIXNAME = 'vehicle_id_';
-	const VEHICLE_NAME_ELEMENT_PREFIXNAME = 'vehicle_name_';
+	//const VEHICLE_ID_ELEMENT_PREFIXNAME = 'vehicle_id_';
+	//const VEHICLE_NAME_ELEMENT_PREFIXNAME = 'vehicle_name_';
+	const VEHICLE_ELEMENT_PREFIXNAME = 'vehicle';
+	const VEHICLE_ELEMENT_ATTRIBUTE = 'id';
+	const VEHICLE_ID_ELEMENT_PREFIXNAME = 'vehicle_id';
+	const VEHICLE_NAME_ELEMENT_PREFIXNAME = 'vehicle_name';
 	const RESULT_ELEMENT_NAME = 'result';
 	const RESULT_ELEMENT_VALUE = 'ok';
 	
@@ -120,9 +124,18 @@ class apiXmlWriter extends XMLWriter
 	public function addBodyGetVehicles($vehicles) {
 		$this->startElement(self::BODY_ELEMENT_NAME);
 		$this->writeElement(self::VEHICLES_NUMBER_ELEMENT_NAME, sizeof($vehicles));
+		/*
 		for ($i=0;$i<sizeof($vehicles);$i++) {
 			$this->writeElement(self::VEHICLE_ID_ELEMENT_PREFIXNAME.$i, $vehicles[$i]->getId());
 			$this->writeElement(self::VEHICLE_NAME_ELEMENT_PREFIXNAME.$i, $vehicles[$i]->getName());
+		}
+		*/
+		for ($i=0;$i<sizeof($vehicles);$i++) {
+			$this->startElement(self::VEHICLE_ELEMENT_PREFIXNAME);
+			$this->writeAttribute(self::VEHICLE_ELEMENT_ATTRIBUTE, $i);
+			$this->writeElement(self::VEHICLE_ID_ELEMENT_PREFIXNAME, $vehicles[$i]->getId());
+			$this->writeElement(self::VEHICLE_NAME_ELEMENT_PREFIXNAME, $vehicles[$i]->getName());
+			$this->endElement();
 		}
 		$this->endElement();
 		return $this;

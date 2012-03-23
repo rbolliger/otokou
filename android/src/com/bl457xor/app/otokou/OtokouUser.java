@@ -35,7 +35,6 @@ public class OtokouUser implements Serializable{
 	public String apiKey;
 	
 	public OtokouUser(String rawData, String apikey) throws Exception {
-		  // sax stuff
 		  try {
 		    SAXParserFactory spf = SAXParserFactory.newInstance();
 		    SAXParser sp = spf.newSAXParser();
@@ -45,16 +44,13 @@ public class OtokouUser implements Serializable{
 		    OtokouXmlGetUserHandler xmlHandler = new OtokouXmlGetUserHandler();
 		    xr.setContentHandler(xmlHandler);
 
-		    InputSource is = new InputSource(new StringReader(rawData)); 
-		    
-		    xr.parse(is);
-
-		    Log.i("XML:", rawData);
-		    
+		    InputSource is = new InputSource(new StringReader(rawData)); 		    
+		    xr.parse(is);	    
 		    xmlHandler.getApiXmlVersion();
 		    if (!xmlHandler.headerOk()) throw new Exception("Cound't parse XML header");
 		    
 		    if (!xmlHandler.bodyOk()) throw new Exception("Cound't parse XML Body");
+		    
 			this.userID = Long.parseLong(xmlHandler.getXmlUserId());
 			this.firstName = xmlHandler.getXmlFirstName();
 			this.lastName = xmlHandler.getXmlLastName();

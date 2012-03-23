@@ -111,7 +111,7 @@ public class Main extends Activity implements Runnable, OnClickListener, OnShare
 
 				if (otokouUser != null) {
 					handler.sendEmptyMessage(RUN_MSG_LOADING_VEHICLES);
-					vehicles = OtokouTestAPI.getVehiclesData(apiKey,otokouUser);
+					vehicles = OtokouAPI.getVehiclesData(apiKey);
 
 					if (vehicles != null) {
 						handler.sendEmptyMessage(RUN_MSG_LOADING_OK);
@@ -198,7 +198,7 @@ public class Main extends Activity implements Runnable, OnClickListener, OnShare
 	
 	private void launchTest() {
 		String apiKey = preferences.getString("apikey", "");
-		OtokouAPI.getUserData(apiKey);
+		OtokouAPI.getVehiclesData(apiKey);
 	}
 	
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {

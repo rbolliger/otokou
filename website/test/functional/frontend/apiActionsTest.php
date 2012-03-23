@@ -72,7 +72,7 @@ $browser->info('2a - Get Vehicles of Franz')->
     info('  2a.2 - found 4 vehicles')->
 	matches('/<vehicles_number>4<\/vehicles_number>/')->
 	 info('  2a.3 - there is an opel caravan')->
-	matches('/<vehicle_name_1>Opel\sAstra\sCaravan\s1\.6<\/vehicle_name_1>/')->
+	matches('/<vehicle_name>Opel\sAstra\sCaravan\s1\.6<\/vehicle_name>/')->
   end()
 ;
 

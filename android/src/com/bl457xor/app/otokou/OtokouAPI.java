@@ -19,10 +19,8 @@ public class OtokouAPI {
 	}
 	
 	public static OtokouUser getUserData(String apiKey) {
-		// TODO return OtokouUser and not string
 		String getRequest = OTOKOU_API_URL+OTOKOU_GET_USER_ACTION;
     	try {		
-    		//return HttpHelper.executeHttpPost(getRequest,writeGetUserXml(apiKey));
     		return new OtokouUser(HttpHelper.executeHttpPost(getRequest,writeGetUserXml(apiKey)),apiKey);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -31,11 +29,17 @@ public class OtokouAPI {
 		}		
 	}
 	
-	public static ArrayList<OtokouVehicle> getVehiclesData(String apiKey, OtokouUser otokouUser2) {
-		// TODO all
-		return null;	
+	public static ArrayList<OtokouVehicle> getVehiclesData(String apiKey) {	
+		String getRequest = OTOKOU_API_URL+OTOKOU_GET_VEHICLES_ACTION;
+    	try {		
+    		return OtokouVehicle.CollectionFromXml(HttpHelper.executeHttpPost(getRequest,writeGetVehiclesXml(apiKey)));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
-	
+
 	private static String writeGetUserXml(String apiKey){
 	    XmlSerializer serializer = Xml.newSerializer();
 	    StringWriter writer = new StringWriter();
@@ -48,6 +52,34 @@ public class OtokouAPI {
 	        serializer.startTag(null, "header");
 	        serializer.startTag(null, "request");
 	        serializer.text(OTOKOU_GET_USER_ACTION);
+	        serializer.endTag(null, "request");
+	        serializer.endTag(null, "header");
+	        serializer.startTag(null, "body");
+	        serializer.startTag(null, "apikey");
+	        serializer.text(apiKey);
+	        serializer.endTag(null, "apikey");
+	        serializer.endTag(null, "body");
+	        serializer.endTag(null, "otokou");
+	        serializer.endTag(null, "root");
+	        serializer.endDocument();
+	        return writer.toString();
+	    } catch (Exception e) {
+	        throw new RuntimeException(e);
+	    } 
+	}
+	
+	private static String writeGetVehiclesXml(String apiKey) {
+	    XmlSerializer serializer = Xml.newSerializer();
+	    StringWriter writer = new StringWriter();
+	    try {
+	        serializer.setOutput(writer);
+	        serializer.startDocument("UTF-8", true);
+	        serializer.startTag(null, "root");
+	        serializer.startTag(null, "otokou");
+	        serializer.attribute(null, "version", "1.0");
+	        serializer.startTag(null, "header");
+	        serializer.startTag(null, "request");
+	        serializer.text(OTOKOU_GET_VEHICLES_ACTION);
 	        serializer.endTag(null, "request");
 	        serializer.endTag(null, "header");
 	        serializer.startTag(null, "body");

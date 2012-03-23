@@ -32,7 +32,6 @@ public class OtokouXmlGetUserHandler extends OtokouXmlResponseHandler {
 		return xmlFirstName;
 	}
 	
-	
 	/**
 	 * Returns the Last Name found in the XML.
 	 *
