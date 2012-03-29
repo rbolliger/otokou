@@ -32,7 +32,8 @@ public class AddCharge extends Activity implements OnClickListener {
 	public static final int RETURN_ERROR_NO_CONNECTION = 1;
 	
 	// global variables initialization
-	private OtokouUser otokouUser;
+	//private OtokouUser otokouUser;
+	private String apikey;
 	private ArrayList<OtokouVehicle> vehicles = new ArrayList<OtokouVehicle>();
 	private EditText edtKilometers;
 	private EditText edtAmount;
@@ -63,7 +64,8 @@ public class AddCharge extends Activity implements OnClickListener {
 			vehicles.add(OtokouVehicle.OtokouVehicleFromByteArray(getIntent().getExtras().getByteArray("vehicle_"+i)));
 		}			
 
-		otokouUser = OtokouUser.OtokouUserFromByteArray(getIntent().getExtras().getByteArray("user"));		
+		//otokouUser = OtokouUser.OtokouUserFromByteArray(getIntent().getExtras().getByteArray("user"));
+		apikey = getIntent().getExtras().getString("apikey");
 	}
 
 	private void initializeUI() {		
@@ -106,8 +108,8 @@ public class AddCharge extends Activity implements OnClickListener {
 					edtComment.getText().toString(),
 					Double.parseDouble(edtQuantity.getText().toString()));
 
-
-			OtokouTestAPI.setNewCharge(charge, otokouUser);
+			// TODO check results
+			OtokouAPI.setNewChargeData(charge, apikey);
 			setResult(RETURN_RESULT_OK, null);
 			finish();
 		}

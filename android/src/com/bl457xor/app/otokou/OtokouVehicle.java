@@ -97,10 +97,7 @@ public class OtokouVehicle implements Serializable {
 		}
 	}
 
-	public static ArrayList<OtokouVehicle> CollectionFromXml(String rawData) throws Exception {
-		// TODO erase debug
-		Log.i("XML:", rawData);
-		
+	public static ArrayList<OtokouVehicle> CollectionFromXml(String rawData) throws Exception {		
 		try {
 			    SAXParserFactory spf = SAXParserFactory.newInstance();
 			    SAXParser sp = spf.newSAXParser();
@@ -126,7 +123,6 @@ public class OtokouVehicle implements Serializable {
 			  } catch(IOException ioe) {
 			    Log.i("SAX XML", "sax parse io error", ioe);
 			  }
-
 		return null;
 	}
 }

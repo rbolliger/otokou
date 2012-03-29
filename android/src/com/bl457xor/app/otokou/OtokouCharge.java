@@ -1,5 +1,20 @@
 package com.bl457xor.app.otokou;
 
+import java.io.IOException;
+import java.io.StringReader;
+
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
+import org.xml.sax.XMLReader;
+
+import android.util.Log;
+
+import com.bl457xor.app.otokou.xml.OtokouXmlSetChargeHandler;
+
 public class OtokouCharge {
 	public static final String CATEGORY_001_NAME = "Fuel";
 	public static final String CATEGORY_002_NAME = "Initial Investment";
@@ -67,5 +82,36 @@ public class OtokouCharge {
 		default:			
 			return CATEGORY_ERR_NAME;
 		}	
+	}
+	
+	public static boolean checkReponseXml(String rawData) throws Exception {
+		  try {
+			    SAXParserFactory spf = SAXParserFactory.newInstance();
+			    SAXParser sp = spf.newSAXParser();
+
+			    XMLReader xr = sp.getXMLReader();
+
+			    OtokouXmlSetChargeHandler xmlHandler = new OtokouXmlSetChargeHandler();
+			    xr.setContentHandler(xmlHandler);
+
+			    InputSource is = new InputSource(new StringReader(rawData)); 		    
+			    xr.parse(is);	    
+			    xmlHandler.getApiXmlVersion();
+			    if (!xmlHandler.headerOk()) throw new Exception("Cound't parse XML header");
+			    
+			    if (!xmlHandler.bodyOk()) throw new Exception("Cound't parse XML Body");
+			    
+			    if (xmlHandler.getResult().equalsIgnoreCase("ok")) {
+			    	return true;
+			    }
+			    
+			  } catch(ParserConfigurationException pce) {
+			    Log.i("SAX XML", "sax parse error", pce);
+			  } catch(SAXException se) {
+			    Log.i("SAX XML", "sax error", se);
+			  } catch(IOException ioe) {
+			    Log.i("SAX XML", "sax parse io error", ioe);
+			  }
+		return false;
 	}
 }

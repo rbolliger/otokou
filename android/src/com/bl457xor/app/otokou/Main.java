@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -190,7 +191,8 @@ public class Main extends Activity implements Runnable, OnClickListener, OnShare
 		}
 		extras.putInt("vehiclesNumber", vehiclesNumber);
 		
-		extras.putByteArray("user", otokouUser.toByteArray());	
+		//extras.putByteArray("user", otokouUser.toByteArray());	
+		extras.putString("apikey", preferences.getString("apikey", ""));	
 		i.putExtras(extras);
 		
 		startActivityForResult(i, 0);
@@ -198,7 +200,17 @@ public class Main extends Activity implements Runnable, OnClickListener, OnShare
 	
 	private void launchTest() {
 		String apiKey = preferences.getString("apikey", "");
-		OtokouAPI.getVehiclesData(apiKey);
+		OtokouCharge charge = new OtokouCharge(3L, 
+				"name vehicle", 
+				1, 
+				"2012-03-29",
+				1.,
+				40.,
+				"comment",
+				40.);
+		if (OtokouAPI.setNewChargeData(charge, apiKey)) {
+			Log.i("result","ok");
+		}
 	}
 	
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
