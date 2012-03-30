@@ -23,6 +23,11 @@
  *
  *
  * @author Dave Bergomi
+ *
+ *
+ *  TODO:
+ *   - check apikey format (need define format before ;p)
+ *   - check if charge added correctly, if vehicles retrived correctly and user retrived correctly to/from database, before writing XML response
  */
 class apiRR {
 	// Constants codes for requests types
@@ -171,7 +176,7 @@ class apiRR {
 	private function decomposeGetUserRequest() {
 		if ($this->xmlRequest->otokou->body) {
 			if ($this->xmlRequest->otokou->body->apikey) {
-				$this->requestApiKey = $this->xmlRequest->otokou->body->apikey;
+				$this->requestApiKey = trim($this->xmlRequest->otokou->body->apikey);
 			}
 			else $this->setError(141);
 		}
@@ -186,7 +191,7 @@ class apiRR {
 	private function decomposeGetVehiclesRequest() {
 		if ($this->xmlRequest->otokou->body) {
 			if ($this->xmlRequest->otokou->body->apikey) {
-				$this->requestApiKey = $this->xmlRequest->otokou->body->apikey;
+				$this->requestApiKey = trim($this->xmlRequest->otokou->body->apikey);
 			}
 			else $this->setError(151);
 		}
@@ -199,27 +204,26 @@ class apiRR {
 	 * Check and store data extracted from XML for a set charge request.
 	 */
 	private function decomposeSetChargeRequest() {
+		// retrieve XML data
 		if ($this->xmlRequest->otokou->body) {
 			if ($this->xmlRequest->otokou->body->apikey) {
-				$this->requestApiKey = $this->xmlRequest->otokou->body->apikey;
+				$this->requestApiKey = trim($this->xmlRequest->otokou->body->apikey);
 				if ($this->xmlRequest->otokou->body->vehicle_id) {
-					$this->requestVehicle = $this->xmlRequest->otokou->body->vehicle_id;
+					$this->requestVehicle = trim($this->xmlRequest->otokou->body->vehicle_id);
 					if ($this->xmlRequest->otokou->body->category_id) {
-						$this->requestCategory = $this->xmlRequest->otokou->body->category_id;
+						$this->requestCategory = trim($this->xmlRequest->otokou->body->category_id);
 						if ($this->xmlRequest->otokou->body->date) {
-							$this->requestDate = $this->xmlRequest->otokou->body->date;
+							$this->requestDate = trim($this->xmlRequest->otokou->body->date);
 							if ($this->xmlRequest->otokou->body->kilometers) {
-								$this->requestKilometers = $this->xmlRequest->otokou->body->kilometers;
+								$this->requestKilometers = trim($this->xmlRequest->otokou->body->kilometers);
 								if ($this->xmlRequest->otokou->body->amount) {
-									$this->requestAmount = $this->xmlRequest->otokou->body->amount;
-									if ($this->xmlRequest->otokou->body->comment) {
-										$this->requestComment = $this->xmlRequest->otokou->body->comment;
-										if ($this->xmlRequest->otokou->body->quantity) {
-											$this->requestQuantity = $this->xmlRequest->otokou->body->quantity;
-										}
-										else $this->setError(168);
-									}
-									else $this->setError(167);
+									$this->requestAmount = trim($this->xmlRequest->otokou->body->amount);
+									
+									if ($this->xmlRequest->otokou->body->comment) $this->requestComment = trim($this->xmlRequest->otokou->body->comment);
+									else $this->requestComment = "";
+									
+									if ($this->xmlRequest->otokou->body->quantity) $this->requestQuantity = trim($this->xmlRequest->otokou->body->quantity);
+									else $this->requestQuantity = "";
 								}
 								else $this->setError(166);
 							}
@@ -234,6 +238,58 @@ class apiRR {
 			else $this->setError(161);
 		}
 		else $this->setError(160);
+		
+		// check values
+		if (!$this->isError) $this->checkSetChargeValues();
+	}
+	
+	/**
+	 * checkSetChargeValues()
+	 *
+	 * Check data extracted from XML for a set charge request.
+	 */
+	private function checkSetChargeValues() {
+		if ($this->isInt($this->requestVehicle)) {
+			if ($this->isInt($this->requestCategory)) {
+				if ($this->isDate($this->requestDate)) {
+					if (is_numeric($this->requestKilometers)) {
+						if (is_numeric($this->requestAmount)) {
+							if ($this->requestCategory == 1) {
+								if (!is_numeric($this->requestQuantity)) $this->setError(175);
+							}
+						}
+						else $this->setError(174);
+					}
+					else $this->setError(173);
+				}
+				else $this->setError(172);
+			}
+			else $this->setError(171);
+		}
+		else $this->setError(170);
+	}
+	
+	/**
+	 * isInt($value)
+	 *
+	 * Check if $value is an int
+	 */
+	private function isInt($value) {
+		if (is_numeric($value)) {
+			if((int)$value == $value) return true;
+			else return false;
+		}
+		else return false;
+	}
+	
+	/**
+	 * isDate($value)
+	 *
+	 * Check if $value is of format YYYY-(M)M-(D)D with a real day and month
+	 */
+	private function isDate($value) {
+		if(preg_match('/^[0-9]{4}-([1-9]|0[1-9]|1[0-2])-([1-9]|0[1-9]|[1-2][0-9]|3[0-1])$/', $value)) return true;
+		else return false;
 	}
 	
 	/**
@@ -464,11 +520,23 @@ class apiRR {
 			case 166:
 				$this->errorMessage = 'XML not recognized by API, missing amount element.';
 				break;
-			case 167:
-				$this->errorMessage = 'XML not recognized by API, missing comment element.';
+			case 170:
+				$this->errorMessage = 'invalid body -> vehicle_id element value.';
 				break;
-			case 168:
-				$this->errorMessage = 'XML not recognized by API, missing quantity element.';
+			case 171:
+				$this->errorMessage = 'invalid body -> cathegory_id element value.';
+				break;
+			case 172:
+				$this->errorMessage = 'invalid body -> date element value.';
+				break;
+			case 173:
+				$this->errorMessage = 'invalid body -> kilometers element value.';
+				break;
+			case 174:
+				$this->errorMessage = 'invalid body -> amount element value.';
+				break;
+			case 175:
+				$this->errorMessage = 'invalid body -> quantity element value.';
 				break;
 			case 201:
 				$this->errorMessage = 'Undefined Request Type.';

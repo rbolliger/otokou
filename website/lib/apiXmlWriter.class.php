@@ -25,8 +25,6 @@ class apiXmlWriter extends XMLWriter
 	const FIRST_NAME_ELEMENT_NAME = 'first_name';
 	const LAST_NAME_ELEMENT_NAME = 'last_name';
 	const VEHICLES_NUMBER_ELEMENT_NAME = 'vehicles_number';
-	//const VEHICLE_ID_ELEMENT_PREFIXNAME = 'vehicle_id_';
-	//const VEHICLE_NAME_ELEMENT_PREFIXNAME = 'vehicle_name_';
 	const VEHICLE_ELEMENT_PREFIXNAME = 'vehicle';
 	const VEHICLE_ELEMENT_ATTRIBUTE = 'id';
 	const VEHICLE_ID_ELEMENT_PREFIXNAME = 'vehicle_id';

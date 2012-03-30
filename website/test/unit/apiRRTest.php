@@ -6,7 +6,7 @@ new sfDatabaseManager($configuration);
 Doctrine::createTablesFromModels(dirname(__FILE__).'/../../lib/model');
 Doctrine_Core::loadData(sfConfig::get('sf_test_dir').'/fixtures2');
 
-$t = new lime_test(27);
+$t = new lime_test(32);
 $t->comment('-- errors');
 
 $t->comment('- Constructor parameters Errors');
@@ -362,17 +362,19 @@ $api = new ApiRR('<?xml version="1.0" encoding="UTF-8"?>
   </header>
   <body>
    <apikey>rt5674asd0</apikey>
-   <vehicle_id>2</vehicle_id>
+   <vehicle_id>a</vehicle_id>
    <category_id>1</category_id>
-   <date>1</date>
+   <date>2011-05-02</date>
    <kilometers>1</kilometers>
    <amount>1</amount>
+   <comment>comment</comment>
+   <quantity>40</quantity>
   </body>
  </otokou>
 </root>
 ',ApiRR::SET_CHARGE_REQUEST);
 $api->treatRequest();
-$t->is($api->getErrorCode(), 167, 'gives right error message for not finding comment element');
+$t->is($api->getErrorCode(), 170, 'gives right error message for not integer vehicle_id value');
 unset($api);
 
 // 24
@@ -385,17 +387,18 @@ $api = new ApiRR('<?xml version="1.0" encoding="UTF-8"?>
   <body>
    <apikey>rt5674asd0</apikey>
    <vehicle_id>2</vehicle_id>
-   <category_id>1</category_id>
-   <date>1</date>
+   <category_id>1.2</category_id>
+   <date>2011-05-02</date>
    <kilometers>1</kilometers>
    <amount>1</amount>
    <comment>comment</comment>
+   <quantity>40</quantity>
   </body>
  </otokou>
 </root>
 ',ApiRR::SET_CHARGE_REQUEST);
 $api->treatRequest();
-$t->is($api->getErrorCode(), 168, 'gives right error message for not finding quantity element');
+$t->is($api->getErrorCode(), 171, 'gives right error message for not integer cathegory_id value');
 unset($api);
 
 // 25
@@ -406,10 +409,128 @@ $api = new ApiRR('<?xml version="1.0" encoding="UTF-8"?>
    <request>set_charge</request>
   </header>
   <body>
+   <apikey>rt5674asd0</apikey>
+   <vehicle_id>2</vehicle_id>
+   <category_id>1</category_id>
+   <date>2011-12-45</date>
+   <kilometers>1</kilometers>
+   <amount>1</amount>
+   <comment>comment</comment>
+   <quantity>40</quantity>
+  </body>
+ </otokou>
+</root>
+',ApiRR::SET_CHARGE_REQUEST);
+$api->treatRequest();
+$t->is($api->getErrorCode(), 172, 'gives right error message for incorrect date format');
+unset($api);
+
+// 26
+$api = new ApiRR('<?xml version="1.0" encoding="UTF-8"?>
+<root>
+ <otokou version="1.0">
+  <header>
+   <request>set_charge</request>
+  </header>
+  <body>
+   <apikey>rt5674asd0</apikey>
+   <vehicle_id>2</vehicle_id>
+   <category_id>1</category_id>
+   <date>2011-13-02</date>
+   <kilometers>1</kilometers>
+   <amount>1</amount>
+   <comment>comment</comment>
+   <quantity>40</quantity>
+  </body>
+ </otokou>
+</root>
+',ApiRR::SET_CHARGE_REQUEST);
+$api->treatRequest();
+$t->is($api->getErrorCode(), 172, 'gives right error message for incorrect date format');
+unset($api);
+
+// 27
+$api = new ApiRR('<?xml version="1.0" encoding="UTF-8"?>
+<root>
+ <otokou version="1.0">
+  <header>
+   <request>set_charge</request>
+  </header>
+  <body>
+   <apikey>rt5674asd0</apikey>
+   <vehicle_id>2</vehicle_id>
+   <category_id>2</category_id>
+   <date>2011-05-02</date>
+   <kilometers>asd</kilometers>
+   <amount>1</amount>
+   <comment>comment</comment>
+  </body>
+ </otokou>
+</root>
+',ApiRR::SET_CHARGE_REQUEST);
+$api->treatRequest();
+$t->is($api->getErrorCode(), 173, 'gives right error message for not numeric kilometers value');
+unset($api);
+
+// 28
+$api = new ApiRR('<?xml version="1.0" encoding="UTF-8"?>
+<root>
+ <otokou version="1.0">
+  <header>
+   <request>set_charge</request>
+  </header>
+  <body>
+   <apikey>rt5674asd0</apikey>
+   <vehicle_id>2</vehicle_id>
+   <category_id>1</category_id>
+   <date>2011-05-02</date>
+   <kilometers>1</kilometers>
+   <amount>loco</amount>
+   <quantity>40</quantity>
+  </body>
+ </otokou>
+</root>
+',ApiRR::SET_CHARGE_REQUEST);
+$api->treatRequest();
+$t->is($api->getErrorCode(), 174, 'gives right error message for not numeric amount value');
+unset($api);
+
+// 29
+$api = new ApiRR('<?xml version="1.0" encoding="UTF-8"?>
+<root>
+ <otokou version="1.0">
+  <header>
+   <request>set_charge</request>
+  </header>
+  <body>
+   <apikey>rt5674asd0</apikey>
+   <vehicle_id>2</vehicle_id>
+   <category_id>1</category_id>
+   <date>2011-05-02</date>
+   <kilometers>1</kilometers>
+   <amount>1</amount>
+   <comment>comment</comment>
+   <quantity></quantity>
+  </body>
+ </otokou>
+</root>
+',ApiRR::SET_CHARGE_REQUEST);
+$api->treatRequest();
+$t->is($api->getErrorCode(), 175, 'gives right error message for not numeric quantity value when adding a fuel charge');
+unset($api);
+
+// 30
+$api = new ApiRR('<?xml version="1.0" encoding="UTF-8"?>
+<root>
+ <otokou version="1.0">
+  <header>
+   <request>set_charge</request>
+  </header>
+  <body>
    <apikey>rt5674asd30</apikey>
    <vehicle_id>2</vehicle_id>
    <category_id>1</category_id>
-   <date>1</date>
+   <date>2011-05-02</date>
    <kilometers>1</kilometers>
    <amount>1</amount>
    <comment>comment</comment>
@@ -422,7 +543,7 @@ $api->treatRequest();
 $t->is($api->getErrorCode(), 211, 'gives right error message for an unexisting api key');
 unset($api);
 
-// 26
+// 31
 $api = new ApiRR('<?xml version="1.0" encoding="UTF-8"?>
 <root>
  <otokou version="1.0">
@@ -433,7 +554,7 @@ $api = new ApiRR('<?xml version="1.0" encoding="UTF-8"?>
    <apikey>rt5674asd0</apikey>
    <vehicle_id>123</vehicle_id>
    <category_id>1</category_id>
-   <date>1</date>
+   <date>2011-05-02</date>
    <kilometers>1</kilometers>
    <amount>1</amount>
    <comment>comment</comment>
@@ -446,7 +567,7 @@ $api->treatRequest();
 $t->is($api->getErrorCode(), 220, 'gives right error message for an unexisting vehicle id');
 unset($api);
 
-// 27
+// 32
 $api = new ApiRR('<?xml version="1.0" encoding="UTF-8"?>
 <root>
  <otokou version="1.0">
