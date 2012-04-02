@@ -1,7 +1,4 @@
-indexSuccess:
-  has_layout: false
-
-setUserSuccess:
+getUserSuccess:
   has_layout: false
 
 getVehiclesSuccess:

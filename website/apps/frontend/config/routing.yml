@@ -227,13 +227,6 @@ user_settings_account:
   
 ## API Settings
 #------------------------------
-
-# test version
-api:
-  url: /api
-  param: {module: api, action: index }
-  
-# final version (not working yet)
 api_get_user:
   url: /api/get_user
   param: {module: api, action: getUser }
