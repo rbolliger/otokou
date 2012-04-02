@@ -1,0 +1,9 @@
+rendering: ~
+remember_me:
+  class: sfGuardRememberMeFilter
+security: ~
+sslFilter:
+  class: sfSslPostFilter
+cache: ~
+execution: ~
+

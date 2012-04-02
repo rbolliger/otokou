@@ -57,8 +57,35 @@ class apiActions extends sfActions
   */
   public function executeSetCharge(sfWebRequest $request)
   {
-	$this->api = new ApiRR($this->getRequestParameter('request'),ApiRR::SET_CHARGE_REQUEST);
-	$this->api->treatRequest();
+	//if ($request->isMethod('post')) {
+			$this->api = new ApiRR($this->getRequestParameter('request'),ApiRR::SET_CHARGE_REQUEST);
+			$this->api->treatRequest();
+	/*}
+	else {
+		$this->setTemplate('notPostError');
+	}*/
   }
   
+ /**
+  * Executes index action
+  *
+  *
+  * @param sfRequest $request A request object
+  */
+  public function executeNotSecureError(sfWebRequest $request)
+  {
+	
+  }
+  
+ /**
+  * Executes index action
+  *
+  *
+  * @param sfRequest $request A request object
+  */
+  public function executeNotPostError(sfWebRequest $request)
+  {
+	
+  }
+
 }

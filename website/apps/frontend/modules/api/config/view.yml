@@ -1,11 +1,17 @@
 indexSuccess:
   has_layout: false
 
-getUserSuccess:
+setUserSuccess:
   has_layout: false
-  
+
 getVehiclesSuccess:
   has_layout: false
-  
+
 setChargeSuccess:
+  has_layout: false
+
+notPostErrorSuccess:
+  has_layout: false
+
+notSecureErrorSuccess:
   has_layout: false

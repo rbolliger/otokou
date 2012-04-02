@@ -245,6 +245,14 @@ api_get_vehicles:
 api_set_charge:
   url: /api/set_charge
   param: {module: api, action: setCharge }
+  
+api_not_secure:
+  url: /api/not_secure_error
+  param: {module: api, action: notSecureError }
+  
+api_not_post:
+  url: /api/not_post_error
+  param: {module: api, action: notPostError }
 
 # default rules
 homepage:
