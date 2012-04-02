@@ -2,8 +2,11 @@ rendering: ~
 remember_me:
   class: sfGuardRememberMeFilter
 security: ~
-sslFilter:
+sslPostFilter:
   class: sfSslPostFilter
+  enabled: <?php echo in_array(sfConfig::get('sf_environment'), array('test'))?'false':'true',"\n" ?>
+postFilter:
+  class: sfpostFilter
+  enabled: <?php echo in_array(sfConfig::get('sf_environment'), array('test'))?'true':'false',"\n" ?>
 cache: ~
 execution: ~
-

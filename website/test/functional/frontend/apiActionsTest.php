@@ -7,7 +7,7 @@ $browser->loadData();
 
 
 $browser->info('1 - Get User')->
-  get('/api/get_user')->
+  post('/api/get_user')->
   with('request')->begin()->
     isParameter('module', 'api')->
     isParameter('action', 'getUser')->
@@ -19,7 +19,7 @@ $browser->info('1 - Get User')->
 ;
 
 $browser->info('1a - Get User Franz')->
-  get('/api/get_user?request=<?xml version="1.0" encoding="UTF-8"?>
+  post('/api/get_user',array('request' => '<?xml version="1.0" encoding="UTF-8"?>
 <root>
  <otokou version="1.0">
   <header>
@@ -29,7 +29,7 @@ $browser->info('1a - Get User Franz')->
    <apikey>rori123456</apikey>
   </body>
  </otokou>
-</root>')->
+</root>'))->
   with('request')->begin()->
     isParameter('module', 'api')->
     isParameter('action', 'getUser')->
@@ -43,7 +43,7 @@ $browser->info('1a - Get User Franz')->
 ;
 
 $browser->info('2 - Get Vehicles')->
-  get('/api/get_vehicles')->
+  post('/api/get_vehicles')->
   with('request')->begin()->
     isParameter('module', 'api')->
     isParameter('action', 'getVehicles')->
@@ -51,7 +51,7 @@ $browser->info('2 - Get Vehicles')->
 ;
 
 $browser->info('2a - Get Vehicles of Franz')->
-  get('/api/get_vehicles?request=<?xml version="1.0" encoding="UTF-8"?>
+  post('/api/get_vehicles',array('request' => '<?xml version="1.0" encoding="UTF-8"?>
 <root>
  <otokou version="1.0">
   <header>
@@ -61,7 +61,7 @@ $browser->info('2a - Get Vehicles of Franz')->
    <apikey>rori123456</apikey>
   </body>
  </otokou>
-</root>')->
+</root>'))->
   with('request')->begin()->
     isParameter('module', 'api')->
     isParameter('action', 'getVehicles')->
@@ -77,7 +77,7 @@ $browser->info('2a - Get Vehicles of Franz')->
 ;
 
 $browser->info('3 - Set Charge')->
-  get('/api/set_charge')->
+  post('/api/set_charge')->
   with('request')->begin()->
     isParameter('module', 'api')->
     isParameter('action', 'setCharge')->
@@ -86,7 +86,38 @@ $browser->info('3 - Set Charge')->
 
 
 $browser->info('3a - Set a real Charge')->
-  get('/api/set_charge?request=<?xml version="1.0" encoding="UTF-8"?>
+  post('/api/set_charge',array('request' => '<?xml version="1.0" encoding="UTF-8"?>
+<root>
+ <otokou version="1.0">
+  <header>
+   <request>set_charge</request>
+  </header>
+  <body>
+   <apikey>rt5674asd0</apikey>
+   <vehicle_id>4</vehicle_id>
+   <category_id>1</category_id>
+   <date>2011-05-02</date>
+   <kilometers>1</kilometers>
+   <amount>1</amount>
+   <comment>comment</comment>
+   <quantity>40</quantity>
+  </body>
+ </otokou>
+</root>'))->
+  with('request')->begin()->
+    isParameter('module', 'api')->
+    isParameter('action', 'setCharge')->
+  end()->
+  with('response')->begin()->
+    info('  3a.1 - no error')->
+	matches('/<error_code>0<\/error_code>/')->
+	 info('  3a.3 - result is ok')->
+	matches('/<result>ok<\/result>/')->
+  end()
+;
+
+$browser->info('4 - Get request')->
+ get('/api/set_charge?request=<?xml version="1.0" encoding="UTF-8"?>
 <root>
  <otokou version="1.0">
   <header>
@@ -109,9 +140,7 @@ $browser->info('3a - Set a real Charge')->
     isParameter('action', 'setCharge')->
   end()->
   with('response')->begin()->
-    info('  3a.1 - no error')->
-	matches('/<error_code>0<\/error_code>/')->
-	 info('  3a.3 - result is ok')->
-	matches('/<result>ok<\/result>/')->
+    info('  4.1 - error for using of get instead of post')->
+	matches('/<error_code>2<\/error_code>/')->
   end()
 ;
