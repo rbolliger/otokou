@@ -20,9 +20,7 @@ public class OtokouSslVerifier extends AbstractVerifier {
         try {
             delegate.verify(host, cns, subjectAlts);
         } catch (SSLException e) {
-        	System.out.println("reached");
             for (String cn : cns) {
-            	System.out.println("for: "+cn);
             	if (cn.equals("*.kreativmedia.ch")) {
             		ok = true;
             	}

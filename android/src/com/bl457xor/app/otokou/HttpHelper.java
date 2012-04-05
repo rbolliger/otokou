@@ -19,6 +19,8 @@ import org.apache.http.conn.ssl.X509HostnameVerifier;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
+import android.util.Log;
+
 
 public class HttpHelper {
     public String executeHttpGet(String getUrl) throws Exception {
@@ -54,6 +56,7 @@ public class HttpHelper {
     	
     	BufferedReader in = null;
     	String page = "";
+    	Log.i("request",Xml);
     	
     	try {
     		// Create a new HttpClient and Post Header
@@ -104,7 +107,7 @@ public class HttpHelper {
     			}
     		}
     	}
-
+    	Log.i("response",page);
     	return page;
     } 
 }

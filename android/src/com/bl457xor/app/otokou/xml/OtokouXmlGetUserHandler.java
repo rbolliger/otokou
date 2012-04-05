@@ -47,30 +47,44 @@ public class OtokouXmlGetUserHandler extends OtokouXmlResponseHandler {
 	 * @return
 	 */
 	public boolean bodyOk() {
-		if (xmlUserId != null && xmlFirstName != null && xmlLastName != null) {
-			return true;
-		}
-		else {
-			return false;
-		}
+		if (xmlUserId != null && xmlFirstName != null && xmlLastName != null) return true;
+		else return false;
 	}
 	
 	@Override
 	public void startElement(String namespaceURI, String localName, String qName, Attributes atts) throws SAXException {
 		super.startElement(namespaceURI,localName,qName,atts);
 		
-		if(localName.equals("user_id")) inUserId = true;
-		else if(localName.equals("first_name")) inFirstName = true;
-		else if(localName.equals("last_name")) inLastName = true;
+		if(localName.equals("user_id")) {
+			inUserId = true;
+			xmlUserId = null;
+		}
+		else if(localName.equals("first_name")) {
+			inFirstName = true;
+			xmlFirstName = null;
+		}
+		else if(localName.equals("last_name")) {
+			inLastName = true;
+			xmlLastName = null;
+		}
 	}
 	
 	@Override
 	public void endElement(String namespaceURI, String localName, String qName) throws SAXException {
 		super.endElement(namespaceURI,localName,qName);
 		
-		if(localName.equals("user_id")) inUserId = false;
-		else if(localName.equals("first_name")) inFirstName = false;
-		else if(localName.equals("last_name")) inLastName = false;
+		if(localName.equals("user_id")) {
+			inUserId = false;
+			xmlUserId = trimData(xmlUserId);
+		}
+		else if(localName.equals("first_name")) {
+			inFirstName = false;
+			xmlFirstName = trimData(xmlFirstName);
+		}
+		else if(localName.equals("last_name")) {
+			inLastName = false;
+			xmlLastName = trimData(xmlLastName);
+		}
 	}
 	
 	@Override
@@ -78,17 +92,16 @@ public class OtokouXmlGetUserHandler extends OtokouXmlResponseHandler {
 		super.characters(ch,start,length);
 		
 		String chars = new String(ch, start, length);
-		chars = chars.trim();
 
 		if(inBody && inOtokou && inRoot && !inHeader) {
 			if (inUserId) {
-				xmlUserId = chars;
+				xmlUserId = appendData(xmlUserId,chars);
 			}
 			else if (inFirstName) {
-				xmlFirstName = chars;
+				xmlFirstName = appendData(xmlFirstName,chars);
 			}
 			else if (inLastName) {
-				xmlLastName = chars;
+				xmlLastName = appendData(xmlLastName,chars);
 			}
 		} 
 	}

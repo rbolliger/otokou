@@ -15,12 +15,13 @@ public class OtokouXmlGetVehiclesHandler extends OtokouXmlResponseHandler {
 	protected boolean inVehicleName = false;
 	
 	// hold temporary data
-	protected Long vehicleId = null;
-	protected Long vehicleElementId = null;
-	protected String vehicleName = null;
+	protected String vehicleId = null;
+	protected String xmlVehicleId = null;
+	protected String xmlVehicleName = null;
+	protected String xmlVehiclesNumberString = null;
 	
 	// hold retrieved data
-	protected Long xmlVehicleNumber = null;
+	protected Long xmlVehiclesNumber = null;
 	protected ArrayList<OtokouVehicle> xmlVehicles = new ArrayList<OtokouVehicle>();
 
 	/**
@@ -28,8 +29,8 @@ public class OtokouXmlGetVehiclesHandler extends OtokouXmlResponseHandler {
 	 *
 	 * @return
 	 */
-	public long getXmlVehicleNumber() {
-		return xmlVehicleNumber;
+	public long getXmlVehiclesNumber() {
+		return xmlVehiclesNumber;
 	}
 	
 	/**
@@ -47,11 +48,7 @@ public class OtokouXmlGetVehiclesHandler extends OtokouXmlResponseHandler {
 	 * @return
 	 */
 	public boolean bodyOk() {
-		if (xmlVehicleNumber != null) {
-			if (xmlVehicleNumber == xmlVehicles.size()) {
-				return true;
-			}
-		}
+		if (xmlVehiclesNumber != null && xmlVehiclesNumber == xmlVehicles.size()) return true;
 		return false;
 	}
 	
@@ -60,35 +57,56 @@ public class OtokouXmlGetVehiclesHandler extends OtokouXmlResponseHandler {
 	public void startElement(String namespaceURI, String localName, String qName, Attributes atts) throws SAXException {
 		super.startElement(namespaceURI,localName,qName,atts);
 		
-		if(localName.equals("vehicles_number")) inVehiclesNumber = true;
+		if(localName.equals("vehicles_number")) {
+			inVehiclesNumber = true;
+			xmlVehiclesNumberString = null;
+		}
 		else if(localName.equals("vehicle")) {
 			inVehicle = true;
-			// TODO exception?
-			vehicleElementId = Long.parseLong(atts.getValue("id"));
+			vehicleId = atts.getValue("id");
 		}
-		else if(localName.equals("vehicle_id")) inVehicleId = true;
-		else if(localName.equals("vehicle_name")) inVehicleName = true;
+		else if(localName.equals("vehicle_id")) {
+			inVehicleId = true;
+			xmlVehicleId = null;		
+		}
+		else if(localName.equals("vehicle_name")) {
+			inVehicleName = true;
+			xmlVehicleName = null;
+		}
 	}
 	
 	@Override
 	public void endElement(String namespaceURI, String localName, String qName) throws SAXException {
 		super.endElement(namespaceURI,localName,qName);
 		
-		if(localName.equals("vehicles_number")) inVehiclesNumber = false;
+		if(localName.equals("vehicles_number")) {
+			inVehiclesNumber = false;
+			xmlVehiclesNumberString = trimData(xmlVehiclesNumberString);
+			// TODO parse exception?
+			xmlVehiclesNumber = Long.parseLong(xmlVehiclesNumberString);
+		}
 		else if(localName.equals("vehicle")) {
 			inVehicle = false;
-			if (vehicleId != null && vehicleName != null && vehicleElementId != null) {
-				xmlVehicles.add(new OtokouVehicle(vehicleId, vehicleName));
+			vehicleId = trimData(vehicleId);
+			if (vehicleId != null && xmlVehicleName != null && xmlVehicleId != null) {
+				// TODO parse exception?
+				xmlVehicles.add(new OtokouVehicle(Long.parseLong(xmlVehicleId), xmlVehicleName));
 			}
 			else {
-				// TODO exception?
+				// TODO wrong data exception?
 			}
 			vehicleId = null;
-			vehicleElementId = null;
-			vehicleName = null;
+			xmlVehicleId = null;
+			xmlVehicleName = null;
 		}
-		else if(localName.equals("vehicle_id")) inVehicleId = false;
-		else if(localName.equals("vehicle_name")) inVehicleName = false;
+		else if(localName.equals("vehicle_id")) {
+			inVehicleId = false;
+			xmlVehicleId = trimData(xmlVehicleId);
+		}
+		else if(localName.equals("vehicle_name")) {
+			inVehicleName = false;
+			xmlVehicleName = trimData(xmlVehicleName);
+		}
 	}
 	
 	@Override
@@ -96,20 +114,13 @@ public class OtokouXmlGetVehiclesHandler extends OtokouXmlResponseHandler {
 		super.characters(ch,start,length);
 		
 		String chars = new String(ch, start, length);
-		chars = chars.trim();
 
-		if (inBody && inVehicle && inRoot && !inHeader) {
-			if (inVehicleId) {
-				// TODO exception?
-				vehicleId = Long.parseLong(chars);
+		if (inBody && inRoot && !inHeader) {
+			if (inVehicle) {
+				if (inVehicleId) xmlVehicleId = appendData(xmlVehicleId,chars);
+				else if (inVehicleName) xmlVehicleName = appendData(xmlVehicleName,chars);
 			}
-			else if (inVehicleName) {
-				vehicleName = chars;
-			}
-		}
-		else if (inBody && inVehiclesNumber && inRoot && !inHeader) {
-			// TODO exception?
-			xmlVehicleNumber = Long.parseLong(chars);
+			else if (inVehiclesNumber) xmlVehiclesNumberString = appendData(xmlVehiclesNumberString,chars);
 		}
 	}
 }

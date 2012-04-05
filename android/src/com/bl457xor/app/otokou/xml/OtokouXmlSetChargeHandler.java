@@ -25,26 +25,28 @@ public class OtokouXmlSetChargeHandler extends OtokouXmlResponseHandler {
 	 * @return
 	 */
 	public boolean bodyOk() {
-		if (xmlResult != null) {
-			return true;
-		}
-		else {
-			return false;
-		}
+		if (xmlResult != null) return true;
+		else return false;
 	}
 	
 	@Override
 	public void startElement(String namespaceURI, String localName, String qName, Attributes atts) throws SAXException {
 		super.startElement(namespaceURI,localName,qName,atts);
 		
-		if(localName.equals("result")) inResult = true;
+		if(localName.equals("result")) {
+			inResult = true;
+			xmlResult = null;
+		}
 	}
 	
 	@Override
 	public void endElement(String namespaceURI, String localName, String qName) throws SAXException {
 		super.endElement(namespaceURI,localName,qName);
 		
-		if(localName.equals("result")) inResult = false;
+		if(localName.equals("result")) {
+			inResult = false;
+			xmlResult = trimData(xmlResult);
+		}
 	}
 	
 	@Override
@@ -52,12 +54,7 @@ public class OtokouXmlSetChargeHandler extends OtokouXmlResponseHandler {
 		super.characters(ch,start,length);
 		
 		String chars = new String(ch, start, length);
-		chars = chars.trim();
 
-		if(inBody && inOtokou && inRoot && !inHeader) {
-			if (inResult) {
-				xmlResult = chars;
-			}
-		} 
+		if(inBody && inOtokou && inRoot && !inHeader && inResult) xmlResult = appendData(xmlResult,chars);
 	}
 }
