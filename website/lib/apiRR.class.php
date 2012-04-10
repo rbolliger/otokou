@@ -11,23 +11,17 @@
  *
  * error codes:
  * - 000 No Error
- * - 1XX Syntax Error
- * - 2XX Parameters Error
+ * - 00X Comunication protocol error
+ * - 1XX XML Syntax Errors (elements and types of values)
+ * - 2XX Invalid values
  * - 5XX API Error
- *
- * TODO:
- * - tests
- * - doc
- * - encrypt/decript
- * - replace csv
  *
  *
  * @author Dave Bergomi
  *
- *
  *  TODO:
+ *   - doc
  *   - check apikey format (need define format before ;p)
- *   - check if charge added correctly, if vehicles retrived correctly and user retrived correctly to/from database, before writing XML response
  */
 class apiRR {
 	// Constants codes for requests types
@@ -43,7 +37,6 @@ class apiRR {
 	
 	// request members
 	private $rawRequest;
-	private $decryptedRequest;
 	private $xmlRequest;
 	private $requestType;
 	private $requestApiVersion;
@@ -58,7 +51,6 @@ class apiRR {
 	
 	// response members
 	private $xmlResponse;
-	private $decriptedResponse;
 	private $rawResponse;
 	private $responseUser;
 	private $responseVehicles;
@@ -96,24 +88,13 @@ class apiRR {
 	/**
 	 * treatRequest()
 	 *
-	 * Read API encrypted message and generate a response.
+	 * Read API XML message and generate a response.
 	 */
 	public function treatRequest() {
 		if ($this->rawRequest=='') $this->setError(110);
-		if (!$this->isError) $this->decryptRequest();
 		if (!$this->isError) $this->decomposeRequest();
 		if (!$this->isError) $this->executeRequest();
 		if (!$this->isError) $this->composeResponseXML(); else  $this->composeErrorResponseXML();
-		$this->encryptResponse();
-	}
-	
-	/**
-	 * decryptRequest()
-	 *
-	 * Decript received string.
-	 */
-	private function decryptRequest() {
-		$this->decryptedRequest = $this->rawRequest;
 	}
 	
 	/**
@@ -122,7 +103,7 @@ class apiRR {
 	 * Generate an array from the XML string.
 	 */
 	private function decomposeRequest() {
-		if ($this->xmlRequest = simplexml_load_string($this->decryptedRequest)) {
+		if ($this->xmlRequest = simplexml_load_string($this->rawRequest)) {
 			$this->decomposeXml();
 		}
 		else {
@@ -300,40 +281,53 @@ class apiRR {
 	private function executeRequest() {
 		switch ($this->requestType) {
 			case self::GET_USER_REQUEST:
-				$user = Doctrine_Core::getTable('sfGuardUser')->createQuery('u')->where('u.api_key = ?',$this->requestApiKey)->execute();
-				if (sizeof($user)==1) {
-					$this->responseUser = $user[0];
+				try {
+					$user = Doctrine_Core::getTable('sfGuardUser')->createQuery('u')->where('u.api_key = ?',$this->requestApiKey)->execute();
+					if (sizeof($user)==1) $this->responseUser = $user[0];
+					else $this->setError(211);
 				}
-				else $this->setError(211);
+				catch(Exception $e) {
+					$this->setError(230);
+				}
 				break;
 			case self::GET_VEHICLES_REQUEST:
-				$user = Doctrine_Core::getTable('sfGuardUser')->createQuery('u')->where('u.api_key = ?',$this->requestApiKey)->execute();
-				if (sizeof($user)==1) {
-					$this->responseUser =$user[0];
-					$this->responseVehicles = Doctrine_Core::getTable('Vehicle')->createQuery('v')->where('v.user_id = ?',$user[0]->getId())->execute();
+				try {
+					$user = Doctrine_Core::getTable('sfGuardUser')->createQuery('u')->where('u.api_key = ?',$this->requestApiKey)->execute();
+					if (sizeof($user)==1) {
+						$this->responseUser = $user[0];
+						$this->responseVehicles = Doctrine_Core::getTable('Vehicle')->createQuery('v')->where('v.user_id = ?',$user[0]->getId())->execute(); 
+					}
+					else $this->setError(211);
 				}
-				else $this->setError(211);
+				catch(Exception $e) {
+					$this->setError(230);
+				}
 				break;
 			case self::SET_CHARGE_REQUEST:
-				$user = Doctrine_Core::getTable('sfGuardUser')->createQuery('u')->where('u.api_key = ?',$this->requestApiKey)->execute();
-				if (sizeof($user)==1) {
-					$this->responseUser =$user[0];
-					$this->responseVehicles = Doctrine_Core::getTable('Vehicle')->createQuery('v')->where('v.user_id = ?',$user[0]->getId())->andwhere('v.id = ?',$this->requestVehicle)->execute();
-					if (sizeof($this->responseVehicles)==1) {
-						$charge = new Charge();
-						$charge->setVehicleId($this->responseVehicles[0]->getId());
-						$charge->setUserId($this->responseUser->getId());
-						$charge->setCategoryId($this->requestCategory);
-						$charge->setDate($this->requestDate);
-						$charge->setKilometers($this->requestKilometers);
-						$charge->setAmount($this->requestAmount);
-						$charge->setComment($this->requestComment);
-						$charge->setQuantity($this->requestQuantity);
-						$charge->save();
+				try {
+					$user = Doctrine_Core::getTable('sfGuardUser')->createQuery('u')->where('u.api_key = ?',$this->requestApiKey)->execute();
+					if (sizeof($user)==1) {
+						$this->responseUser =$user[0];
+						$this->responseVehicles = Doctrine_Core::getTable('Vehicle')->createQuery('v')->where('v.user_id = ?',$user[0]->getId())->andwhere('v.id = ?',$this->requestVehicle)->execute();
+						if (sizeof($this->responseVehicles)==1) {
+							$charge = new Charge();
+							$charge->setVehicleId($this->responseVehicles[0]->getId());
+							$charge->setUserId($this->responseUser->getId());
+							$charge->setCategoryId($this->requestCategory);
+							$charge->setDate($this->requestDate);
+							$charge->setKilometers($this->requestKilometers);
+							$charge->setAmount($this->requestAmount);
+							$charge->setComment($this->requestComment);
+							$charge->setQuantity($this->requestQuantity);
+							$charge->save();
+						}
+						else $this->setError(220);
 					}
-					else $this->setError(220);
+					else $this->setError(211);
 				}
-				else $this->setError(211);
+				catch(Exception $e) {
+					$this->setError(230);
+				}
 				break;
 			default:
 				$this->setError(500);
@@ -367,7 +361,7 @@ class apiRR {
 	 */
 	private function generateGetUserXml() {
 		$this->xmlResponse = new apiXmlWriter();
-		$this->decriptedResponse = $this->xmlResponse->startElements()->addHeader($this->errorCode,$this->errorMessage,self::GET_USER_REQUEST_STRING)->addBodyGetUser($this->responseUser)->endElements()->toString();
+		$this->rawResponse = $this->xmlResponse->startElements()->addHeader($this->errorCode,$this->errorMessage,self::GET_USER_REQUEST_STRING)->addBodyGetUser($this->responseUser)->endElements()->toString();
 	}
 	
 	/**
@@ -377,7 +371,7 @@ class apiRR {
 	 */
 	private function generateGetVehiclesXml() {
 		$this->xmlResponse = new apiXmlWriter();
-		$this->decriptedResponse = $this->xmlResponse->startElements()->addHeader($this->errorCode,$this->errorMessage,self::GET_VEHICLES_REQUEST_STRING)->addBodyGetVehicles($this->responseVehicles)->endElements()->toString();
+		$this->rawResponse = $this->xmlResponse->startElements()->addHeader($this->errorCode,$this->errorMessage,self::GET_VEHICLES_REQUEST_STRING)->addBodyGetVehicles($this->responseVehicles)->endElements()->toString();
 	}
 	
 	/**
@@ -387,7 +381,7 @@ class apiRR {
 	 */
 	private function generateSetChargeXml() {
 		$this->xmlResponse = new apiXmlWriter();
-		$this->decriptedResponse = $this->xmlResponse->startElements()->addHeader($this->errorCode,$this->errorMessage,self::SET_CHARGE_REQUEST_STRING)->addBodySetCharge()->endElements()->toString();
+		$this->rawResponse = $this->xmlResponse->startElements()->addHeader($this->errorCode,$this->errorMessage,self::SET_CHARGE_REQUEST_STRING)->addBodySetCharge()->endElements()->toString();
 	}
 	
 	/**
@@ -397,16 +391,7 @@ class apiRR {
 	 */
 	private function composeErrorResponseXML() {
 		$this->xmlResponse = new apiXmlWriter();
-		$this->decriptedResponse = $this->xmlResponse->startElements()->addHeader($this->errorCode,$this->errorMessage)->endElements()->toString();
-	}
-	
-	/**
-	 * encryptResponse()
-	 *
-	 * Encrypt the response XML string.
-	 */
-	private function encryptResponse() {
-		$this->rawResponse = $this->decriptedResponse;
+		$this->rawResponse = $this->xmlResponse->startElements()->addHeader($this->errorCode,$this->errorMessage)->endElements()->toString();
 	}
 	
 	/**
@@ -469,7 +454,7 @@ class apiRR {
 	}
 	
 	/**
-	 * setNoError($code)
+	 * setError($code)
 	 *
 	 * Set object status to a specified error.
 	 *
@@ -549,6 +534,9 @@ class apiRR {
 				break;
 			case 220:
 				$this->errorMessage = 'Vehicle not found.';
+				break;
+			case 230:
+				$this->errorMessage = 'Query exception.';
 				break;
 			case 500:
 			default:

@@ -2,11 +2,15 @@
 /**
  * XML Writer Helper to generate the otokou API response XML
  *
+ * extends XMLWriter.
+ *
+ *
  * @author Dave Bergomi
  */
 class apiXmlWriter extends XMLWriter
 {
 	// Constants
+	// general XML constants
 	const XML_VERSION = '1.0';
 	const XML_FORMAT = 'UTF-8';
 	const XML_INDENT = ' ';
@@ -15,11 +19,13 @@ class apiXmlWriter extends XMLWriter
 	const API_VERSION_NAME = 'version';
 	const API_VERSION_VALUE = '1.0';
 	
+	// XML header contants
 	const HEADER_ELEMENT_NAME = 'header';
 	const ERROR_CODE_ELEMENT_NAME = 'error_code';
 	const ERROR_MESSAGE_ELEMENT_NAME = 'error_message';
 	const RESPONSE_ELEMENT_NAME = 'response';
 	
+	// XML body contants
 	const BODY_ELEMENT_NAME = 'body';
 	const USER_ID_ELEMENT_NAME = 'user_id';
 	const FIRST_NAME_ELEMENT_NAME = 'first_name';
@@ -50,7 +56,7 @@ class apiXmlWriter extends XMLWriter
 	 * Create the first elements of the XML (root, otokou).
 	 *
 	 * out:
-	 *  - $this: apiXmlWriter isntance, for chaining purposes
+	 *  - $this: apiXmlWriter instance, for chaining purposes.
 	 */
 	public function startElements() {
 		$this->startElement(self::ROOT_ELEMENT_NAME);
@@ -70,7 +76,7 @@ class apiXmlWriter extends XMLWriter
 	 *  - string $responseType: type of response (optional)
 	 *
 	 * out:
-	 *  - $this: apiXmlWriter isntance, for chaining purposes
+	 *  - $this: apiXmlWriter instance, for chaining purposes.
 	 */
 	public function addHeader() {
 		$this->startElement(self::HEADER_ELEMENT_NAME);
@@ -97,7 +103,7 @@ class apiXmlWriter extends XMLWriter
 	 *  - $user: doctrine user object instance
 	 *
 	 * out:
-	 *  - $this: apiXmlWriter isntance, for chaining purposes
+	 *  - $this: apiXmlWriter instance, for chaining purposes.
 	 */
 	public function addBodyGetUser($user) {
 		$this->startElement(self::BODY_ELEMENT_NAME);
@@ -117,17 +123,11 @@ class apiXmlWriter extends XMLWriter
 	 *  - $vehicles: doctrine vehicle object instance collection
 	 *
 	 * out:
-	 *  - $this: apiXmlWriter isntance, for chaining purposes
+	 *  - $this: apiXmlWriter instance, for chaining purposes.
 	 */
 	public function addBodyGetVehicles($vehicles) {
 		$this->startElement(self::BODY_ELEMENT_NAME);
 		$this->writeElement(self::VEHICLES_NUMBER_ELEMENT_NAME, sizeof($vehicles));
-		/*
-		for ($i=0;$i<sizeof($vehicles);$i++) {
-			$this->writeElement(self::VEHICLE_ID_ELEMENT_PREFIXNAME.$i, $vehicles[$i]->getId());
-			$this->writeElement(self::VEHICLE_NAME_ELEMENT_PREFIXNAME.$i, $vehicles[$i]->getName());
-		}
-		*/
 		for ($i=0;$i<sizeof($vehicles);$i++) {
 			$this->startElement(self::VEHICLE_ELEMENT_PREFIXNAME);
 			$this->writeAttribute(self::VEHICLE_ELEMENT_ATTRIBUTE, $i);
@@ -145,7 +145,7 @@ class apiXmlWriter extends XMLWriter
 	 * Add the body element for the set charge response.
 	 *
 	 * out:
-	 *  - $this: apiXmlWriter isntance, for chaining purposes
+	 *  - $this: apiXmlWriter instance, for chaining purposes.
 	 */
 	public function addBodySetCharge() {
 		$this->startElement(self::BODY_ELEMENT_NAME);
@@ -160,7 +160,7 @@ class apiXmlWriter extends XMLWriter
 	 * End the elements of the XML (root, otokou).
 	 *
 	 * out:
-	 *  - $this: apiXmlWriter isntance, for chaining purposes
+	 *  - $this: apiXmlWriter instance, for chaining purposes.
 	 */
 	public function endElements() {
 		$this->endElement();
@@ -171,10 +171,10 @@ class apiXmlWriter extends XMLWriter
 	/**
 	 * toString()
 	 *
-	 * Close a number of XML elements.
+	 * return the generated XML in string format.
 	 *
 	 * out:
-	 *  - string $xml: XML in string format
+	 *  - string $xml: XML in string format.
 	 */
 	function toString()
 	{
