@@ -125,4 +125,12 @@ public class OtokouVehicle implements Serializable {
 			  }
 		return null;
 	}
+	
+	public long getVehicleId() {
+		return vehicleID;
+	}
+	
+	public String getVehicleName() {
+		return vehicle;
+	}
 }

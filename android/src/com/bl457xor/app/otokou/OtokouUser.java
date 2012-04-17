@@ -24,15 +24,22 @@ import com.bl457xor.app.otokou.xml.OtokouXmlGetUserHandler;
 public class OtokouUser implements Serializable{
 
 	private static final long serialVersionUID = 2592158732300070601L;
-	public long userID;
+	private long userID;
 	//public String title;
-	public String firstName;
+	private String firstName;
 	//public String middleName;
-	public String lastName;
+	private String lastName;
 	//public String userName;
 	//public String password
 	//public String email;
-	public String apiKey;
+	private String apiKey;
+	
+	public OtokouUser(long userID, String firstName, String lastName, String apiKey) throws Exception {
+		this.userID = userID;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.apiKey = apiKey;		
+	}
 	
 	public OtokouUser(String rawData, String apikey) throws Exception {
 		  try {
@@ -99,5 +106,21 @@ public class OtokouUser implements Serializable{
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	public long getUserId() {
+		return userID;
+	}
+	
+	public String getFirstName() {
+		return firstName;
+	}
+	
+	public String getLastName() {
+		return lastName;
+	}
+	
+	public String getApikey() {
+		return apiKey;
 	}
 }

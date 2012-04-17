@@ -8,18 +8,22 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.bl457xor.app.otokou.db.OtokouUserAdapter;
 
 public class Main extends Activity implements Runnable, OnClickListener, OnSharedPreferenceChangeListener {			
 	// onOptionsItemSelected menu ids constants
@@ -108,7 +112,24 @@ public class Main extends Activity implements Runnable, OnClickListener, OnShare
 			else {
 				handler.sendEmptyMessage(RUN_MSG_LOADING_USER);
 				otokouUser = OtokouAPI.getUserData(apiKey);
-
+				
+				OtokouUserAdapter OUAdb = new OtokouUserAdapter(getApplicationContext()).open();
+				Cursor c = OUAdb.getUsersByApikey(apiKey);
+				if (c.getCount() == 0) {
+					Log.i("User DB","1 user added");
+					OUAdb.insertUser(otokouUser);
+				}
+				else if (c.getCount() == 1) {
+					Log.i("User DB","1 user update");
+					OUAdb.updateUsersByApikey(apiKey, otokouUser);
+				}
+				else {
+					Log.e("User DB","error found 2 user with same apikey");
+					OUAdb.deleteUsersByApikey(apiKey);
+					OUAdb.insertUser(otokouUser);
+				}
+				OUAdb.close();
+				
 				if (otokouUser != null) {
 					handler.sendEmptyMessage(RUN_MSG_LOADING_VEHICLES);
 					vehicles = OtokouAPI.getVehiclesData(apiKey);
