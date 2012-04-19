@@ -24,6 +24,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.bl457xor.app.otokou.db.OtokouUserAdapter;
+import com.bl457xor.app.otokou.db.OtokouVehicleAdapter;
 
 public class Main extends Activity implements Runnable, OnClickListener, OnSharedPreferenceChangeListener {			
 	// onOptionsItemSelected menu ids constants
@@ -109,32 +110,78 @@ public class Main extends Activity implements Runnable, OnClickListener, OnShare
 			if (!OtokouApiKey.checkKey(apiKey)) {
 				handler.sendEmptyMessage(RUN_ERROR_API_KEY);
 			}
-			else {
+			else {				
+				// load user data from Otokou
 				handler.sendEmptyMessage(RUN_MSG_LOADING_USER);
 				otokouUser = OtokouAPI.getUserData(apiKey);
 				
-				OtokouUserAdapter OUAdb = new OtokouUserAdapter(getApplicationContext()).open();
-				Cursor c = OUAdb.getUsersByApikey(apiKey);
-				if (c.getCount() == 0) {
-					Log.i("User DB","1 user added");
-					OUAdb.insertUser(otokouUser);
-				}
-				else if (c.getCount() == 1) {
-					Log.i("User DB","1 user update");
-					OUAdb.updateUsersByApikey(apiKey, otokouUser);
-				}
-				else {
-					Log.e("User DB","error found 2 user with same apikey");
-					OUAdb.deleteUsersByApikey(apiKey);
-					OUAdb.insertUser(otokouUser);
-				}
-				OUAdb.close();
-				
 				if (otokouUser != null) {
-					handler.sendEmptyMessage(RUN_MSG_LOADING_VEHICLES);
-					vehicles = OtokouAPI.getVehiclesData(apiKey);
+					// save user data to database
+					OtokouUserAdapter OUAdb = new OtokouUserAdapter(getApplicationContext()).open();
+					Cursor userCursor = OUAdb.getUsersByApikey(apiKey);
+					if (userCursor.getCount() == 0) {
+						Log.i("User DB","1 user added");
+						otokouUser.setId(OUAdb.insertUser(otokouUser));
+					}
+					else if (userCursor.getCount() == 1) {
+						Log.i("User DB","1 user update");
+						userCursor.moveToLast();
+						otokouUser.setId(userCursor.getLong(userCursor.getColumnIndex(OtokouUserAdapter.COL_ID_NAME)));		
+						OUAdb.updateUsersByApikey(apiKey, otokouUser);
+					}
+					else {
+						Log.e("User DB","error found 2 user with same apikey");
+						OUAdb.deleteUsersByApikey(apiKey);
+						userCursor.moveToLast();
+						OtokouVehicleAdapter OVAdb = new OtokouVehicleAdapter(getApplicationContext()).open();
+						do {
+							OVAdb.deleteVehiclesByUserId(userCursor.getLong(userCursor.getColumnIndex(OtokouUserAdapter.COL_ID_NAME)));
+						} while (userCursor.moveToPrevious());
+						OVAdb.close();
+						otokouUser.setId(OUAdb.insertUser(otokouUser));
+					}
+					userCursor.close();
+					OUAdb.close();
 
+					// load vehicles data from Otokou
+					handler.sendEmptyMessage(RUN_MSG_LOADING_VEHICLES);
+					vehicles = OtokouAPI.getVehiclesData(apiKey);					
+					
 					if (vehicles != null) {
+						// save vehicles data to database
+						OtokouVehicleAdapter OVAdb2 = new OtokouVehicleAdapter(getApplicationContext()).open();
+						Cursor vehiclesCursor = OVAdb2.getVehiclesByUserId(otokouUser.getId());
+						if (vehiclesCursor.getCount() > 0) {
+							vehiclesCursor.moveToLast();
+							do {
+								long otokouVehicleId = vehiclesCursor.getLong(vehiclesCursor.getColumnIndex(OtokouVehicleAdapter.COL_2_NAME));
+								boolean found = false;
+								for (OtokouVehicle vehicle : vehicles) {
+									if (vehicle.getOtokouVehicleId() == otokouVehicleId) {
+										long id = vehiclesCursor.getLong(vehiclesCursor.getColumnIndex(OtokouVehicleAdapter.COL_ID_NAME));
+										found = true;									
+										vehicle.setFound(true);
+										vehicle.setId(id);			
+										OVAdb2.updateVehicleById(id, vehicle, otokouUser);
+									}
+								}
+								if (!found) {
+									OVAdb2.deleteVehicleById(vehiclesCursor.getLong(vehiclesCursor.getColumnIndex(OtokouVehicleAdapter.COL_ID_NAME)));
+								}
+							} while (vehiclesCursor.moveToPrevious());
+							for (OtokouVehicle vehicle : vehicles) {
+								if (!vehicle.isFound()) {
+									vehicle.setId(OVAdb2.insertVehicle(vehicle, otokouUser));
+								}
+							}
+						}
+						else {
+							for (OtokouVehicle vehicle : vehicles) {
+								vehicle.setId(OVAdb2.insertVehicle(vehicle, otokouUser));
+							}
+						}
+						vehiclesCursor.close();
+						OVAdb2.close();
 						handler.sendEmptyMessage(RUN_MSG_LOADING_OK);
 					}
 					else {

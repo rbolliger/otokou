@@ -176,7 +176,7 @@ public class OtokouUserAdapter {
 		if (!connectionOpen) return -1;
 		
 		ContentValues values = new ContentValues();
-		values.put(OtokouUserAdapter.COL_1_NAME, user.getUserId());
+		values.put(OtokouUserAdapter.COL_1_NAME, user.getOtokouUserId());
 		values.put(OtokouUserAdapter.COL_2_NAME, user.getFirstName());
 		values.put(OtokouUserAdapter.COL_3_NAME, user.getLastName());
 		values.put(OtokouUserAdapter.COL_4_NAME, user.getApikey());
@@ -275,7 +275,7 @@ public class OtokouUserAdapter {
 		if (!connectionOpen) return false;
 		
 		ContentValues values = new ContentValues();
-		values.put(OtokouUserAdapter.COL_1_NAME, user.getUserId());
+		values.put(OtokouUserAdapter.COL_1_NAME, user.getOtokouUserId());
 		values.put(OtokouUserAdapter.COL_2_NAME, user.getFirstName());
 		values.put(OtokouUserAdapter.COL_3_NAME, user.getLastName());
 

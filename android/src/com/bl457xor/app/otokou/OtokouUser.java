@@ -24,7 +24,8 @@ import com.bl457xor.app.otokou.xml.OtokouXmlGetUserHandler;
 public class OtokouUser implements Serializable{
 
 	private static final long serialVersionUID = 2592158732300070601L;
-	private long userID;
+	private long otokouUserID;
+	private long id;
 	//public String title;
 	private String firstName;
 	//public String middleName;
@@ -34,8 +35,8 @@ public class OtokouUser implements Serializable{
 	//public String email;
 	private String apiKey;
 	
-	public OtokouUser(long userID, String firstName, String lastName, String apiKey) throws Exception {
-		this.userID = userID;
+	public OtokouUser(long otokouUserID, String firstName, String lastName, String apiKey) throws Exception {
+		this.otokouUserID = otokouUserID;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.apiKey = apiKey;		
@@ -58,7 +59,7 @@ public class OtokouUser implements Serializable{
 		    
 		    if (!xmlHandler.bodyOk()) throw new Exception("Cound't parse XML Body");
 		    
-			this.userID = Long.parseLong(xmlHandler.getXmlUserId());
+			this.otokouUserID = Long.parseLong(xmlHandler.getXmlUserId());
 			this.firstName = xmlHandler.getXmlFirstName();
 			this.lastName = xmlHandler.getXmlLastName();
 			this.apiKey = apikey;
@@ -108,8 +109,16 @@ public class OtokouUser implements Serializable{
 		return null;
 	}
 	
-	public long getUserId() {
-		return userID;
+	public long getOtokouUserId() {
+		return otokouUserID;
+	}
+	
+	public void setId(long id) {
+		this.id = id;
+	}
+	
+	public long getId() {
+		return id;
 	}
 	
 	public String getFirstName() {

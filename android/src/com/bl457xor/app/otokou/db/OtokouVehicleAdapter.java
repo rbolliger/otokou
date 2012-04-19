@@ -171,8 +171,8 @@ public class OtokouVehicleAdapter {
 		if (!connectionOpen) return -1;
 		
 		ContentValues values = new ContentValues();
-		values.put(OtokouVehicleAdapter.COL_1_NAME, user.getUserId());
-		values.put(OtokouVehicleAdapter.COL_2_NAME, vehicle.getVehicleId());
+		values.put(OtokouVehicleAdapter.COL_1_NAME, user.getId());
+		values.put(OtokouVehicleAdapter.COL_2_NAME, vehicle.getOtokouVehicleId());
 		values.put(OtokouVehicleAdapter.COL_3_NAME, vehicle.getVehicleName());
 		return db.insert(OtokouVehicleAdapter.TABLE_NAME, null, values);		
 	}
@@ -222,8 +222,8 @@ public class OtokouVehicleAdapter {
 		if (!connectionOpen) return false;
 		
 		ContentValues values = new ContentValues();
-		values.put(OtokouVehicleAdapter.COL_1_NAME, user.getUserId());
-		values.put(OtokouVehicleAdapter.COL_2_NAME, vehicle.getVehicleId());
+		values.put(OtokouVehicleAdapter.COL_1_NAME, user.getId());
+		values.put(OtokouVehicleAdapter.COL_2_NAME, vehicle.getOtokouVehicleId());
 		values.put(OtokouVehicleAdapter.COL_3_NAME, vehicle.getVehicleName());
 
 		return db.update(OtokouVehicleAdapter.TABLE_NAME, values, OtokouVehicleAdapter.COL_ID_NAME+"="+id, null) == 1;

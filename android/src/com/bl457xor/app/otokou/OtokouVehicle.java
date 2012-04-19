@@ -27,17 +27,19 @@ import com.bl457xor.app.otokou.xml.OtokouXmlGetVehiclesHandler;
 public class OtokouVehicle implements Serializable {
 
 	private static final long serialVersionUID = 4361161188955806700L;
-	public long vehicleID;
-	public String vehicle;
+	private long otokouVehicleID;
+	private long id;
+	private String vehicle;
+	private boolean found;
 	
-	public OtokouVehicle(long vehicleID, String vehicle) {
-		this.vehicleID = vehicleID;
+	public OtokouVehicle(long otokouVehicleID, String vehicle) {
+		this.otokouVehicleID = otokouVehicleID;
 		this.vehicle = vehicle;
 	}
 	
 	@Override
 	public String toString() {
-		return vehicleID+" "+vehicle;
+		return otokouVehicleID+" "+vehicle;
 	}
 	
 	public static OtokouVehicle OtokouVehicleFromByteArray(byte[] byteArray) {
@@ -126,11 +128,29 @@ public class OtokouVehicle implements Serializable {
 		return null;
 	}
 	
-	public long getVehicleId() {
-		return vehicleID;
+	public long getOtokouVehicleId() {
+		return otokouVehicleID;
+	}
+	
+	public long getId() {
+		return id;
+	}
+	
+	public void setId(long id) {
+		this.id = id;
 	}
 	
 	public String getVehicleName() {
 		return vehicle;
 	}
+	
+	public boolean isFound() {
+		return found;
+	}
+	
+	public void setFound(boolean found) {
+		this.found = found;
+	}
+	
+	
 }

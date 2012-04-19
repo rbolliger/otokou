@@ -75,7 +75,7 @@ public class AddCharge extends Activity implements OnClickListener {
 		String[] items = new String[vehicles.size()];
 	    int i=0;
 	    for (OtokouVehicle vehicle : vehicles) {
-	    	items[i]=vehicle.vehicle;
+	    	items[i]=vehicle.getVehicleName();
 	    	i++;
 	    }
 	    ArrayAdapter<String> vehicleAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,items);
@@ -99,8 +99,8 @@ public class AddCharge extends Activity implements OnClickListener {
 		// TODO evaluate values, notify errors, exceptions from otokouAPI
 		
 		if (isOnline()) {
-			OtokouCharge charge = new OtokouCharge(vehicles.get((int)spnVehicle.getSelectedItemId()).vehicleID, 
-					vehicles.get((int)spnVehicle.getSelectedItemId()).vehicle, 
+			OtokouCharge charge = new OtokouCharge(vehicles.get((int)spnVehicle.getSelectedItemId()).getOtokouVehicleId(), 
+					vehicles.get((int)spnVehicle.getSelectedItemId()).getVehicleName(), 
 					(int)(spnChargeCategory.getSelectedItemId()+1), 
 					""+datePicker.getYear()+"-"+(datePicker.getMonth()+1)+"-"+datePicker.getDayOfMonth(),
 					Double.parseDouble(edtKilometers.getText().toString()),
