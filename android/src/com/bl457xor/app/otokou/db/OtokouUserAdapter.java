@@ -51,7 +51,7 @@ public class OtokouUserAdapter {
 	/** Primary key field type			**/ public static final String COL_ID_TYPE = "integer primary key autoincrement";
 	/** column 1 field name				**/ public static final String COL_1_NAME = "otokou_user_id";
 	/** column 1 field type				**/ public static final String COL_1_TYPE = "integer not null";
-	/** column 1 field default value	**/ public static final String COL_1_DEFAULT = "0";
+	/** column 1 field default value	**/ public static final long COL_1_DEFAULT = 0;
 	/** column 2 field name				**/ public static final String COL_2_NAME = "first_name"; 
 	/** column 2 field type				**/ public static final String COL_2_TYPE = "text not null";
 	/** column 2 field default value	**/ public static final String COL_2_DEFAULT = "";

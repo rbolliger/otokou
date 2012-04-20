@@ -16,7 +16,7 @@ import com.bl457xor.app.otokou.OtokouVehicle;
  * -database: vehicles
  * --table: vehicles
  * ---field: id (primary key)
- * ---field: user_id (foreign key. user id)
+ * ---field: user_id (foreign key user id)
  * ---field: otokou_vehicle_id (otokou database primary key)
  * ---field: name (name of the vehicle)
  * 
@@ -32,10 +32,10 @@ import com.bl457xor.app.otokou.OtokouVehicle;
  *  4. insert of a new Vehicle (insertVehicle() method)<br>
  *  5. delete a single Vehicle by id (deleteVehicleById() method)<br>
  *  6. delete Vehicles by user_id (deleteVehicleByUserId() method)<br>
- *  6. update a single Vehicle (updateVehicleById() method)<br>
- *  7. (getAllVehicles() method)<br>
- *  8. (getVehicleById() method)<br>
- *  9. (getVehiclesByUserId() method)<br>
+ *  7. update a single Vehicle (updateVehicleById() method)<br>
+ *  8. (getAllVehicles() method)<br>
+ *  9. (getVehicleById() method)<br>
+ *  10. (getVehiclesByUserId() method)<br>
  *  
  *  @author Dave Bergomi
  *  @version 1
@@ -49,10 +49,10 @@ public class OtokouVehicleAdapter {
 	/** Primary key field type			**/ public static final String COL_ID_TYPE = "integer primary key autoincrement";
 	/** column 1 field name				**/ public static final String COL_1_NAME = "user_id"; 
 	/** column 1 field type				**/ public static final String COL_1_TYPE = "integer not null";
-	/** column 1 field default value	**/ public static final String COL_1_DEFAULT = "0";
+	/** column 1 field default value	**/ public static final long COL_1_DEFAULT = 0;
 	/** column 2 field name				**/ public static final String COL_2_NAME = "otokou_vehicle_id";
 	/** column 2 field type				**/ public static final String COL_2_TYPE = "integer not null";
-	/** column 2 field default value	**/ public static final String COL_2_DEFAULT = "0";
+	/** column 2 field default value	**/ public static final long COL_2_DEFAULT = 0;
 	/** column 3 field name				**/ public static final String COL_3_NAME = "name";
 	/** column 3 field type				**/ public static final String COL_3_TYPE = "text not null";
 	/** column 3 field default value	**/ public static final String COL_3_DEFAULT = "";

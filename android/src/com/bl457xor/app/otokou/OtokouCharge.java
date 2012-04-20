@@ -35,15 +35,16 @@ public class OtokouCharge {
 	public static final int CATEGORY_007_ID = 7;
 	public static final int CATEGORY_008_ID = 8;
 	
-	public long vehicleID;
-	public String vehicle;
-	public long categoryID;
-	public String category;	
-	public String date;
-	public double kilometers;
-	public double amount;	
-	public String comment;	
-	public double quantity;	
+	private long id;
+	private long vehicleID;
+	private String vehicle;
+	private long categoryID;
+	private String category;	
+	private String date;
+	private double kilometers;
+	private double amount;	
+	private String comment;	
+	private double quantity;	
 	
 	public OtokouCharge(long vehicleID, String vehicle, int categoryID, String date, double kilometers, double amount, String comment, double quantity) {
 		this.vehicleID = vehicleID;
@@ -113,5 +114,53 @@ public class OtokouCharge {
 			    Log.i("SAX XML", "sax parse io error", ioe);
 			  }
 		return false;
+	}
+
+	public long getId() {
+		return id;
+	}
+	
+	public void setId(long id) {
+		this.id = id;
+	}	
+	
+	public long getUserId() {
+		return vehicleID;
+	}	
+	
+	public long getVehicleId() {
+		return vehicleID;
+	}
+	
+	public String getVehicleName() {
+		return vehicle;
+	}
+	
+	public long getCategoryId() {
+		return categoryID;
+	}
+	
+	public String getCategory() {
+		return category;
+	}	
+
+	public String getDate() {
+		return date;
+	}	
+	
+	public double getKilometers() {
+		return kilometers;
+	}	
+	
+	public double getAmount() {
+		return amount;
+	}
+	
+	public String getComment() {
+		return comment;
+	}	
+	
+	public double getQuantity() {
+		return quantity;
 	}
 }
