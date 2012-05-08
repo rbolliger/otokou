@@ -281,15 +281,6 @@ class apiRR {
 	private function executeRequest() {
 		switch ($this->requestType) {
 			case self::GET_USER_REQUEST:
-				try {
-					$user = Doctrine_Core::getTable('sfGuardUser')->createQuery('u')->where('u.api_key = ?',$this->requestApiKey)->execute();
-					if (sizeof($user)==1) $this->responseUser = $user[0];
-					else $this->setError(211);
-				}
-				catch(Exception $e) {
-					$this->setError(230);
-				}
-				break;
 			case self::GET_VEHICLES_REQUEST:
 				try {
 					$user = Doctrine_Core::getTable('sfGuardUser')->createQuery('u')->where('u.api_key = ?',$this->requestApiKey)->execute();
@@ -361,7 +352,7 @@ class apiRR {
 	 */
 	private function generateGetUserXml() {
 		$this->xmlResponse = new apiXmlWriter();
-		$this->rawResponse = $this->xmlResponse->startElements()->addHeader($this->errorCode,$this->errorMessage,self::GET_USER_REQUEST_STRING)->addBodyGetUser($this->responseUser)->endElements()->toString();
+		$this->rawResponse = $this->xmlResponse->startElements()->addHeader($this->errorCode,$this->errorMessage,self::GET_USER_REQUEST_STRING)->addBodyGetUser($this->responseUser,$this->responseVehicles)->endElements()->toString();
 	}
 	
 	/**

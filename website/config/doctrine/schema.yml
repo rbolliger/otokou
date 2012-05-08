@@ -56,7 +56,6 @@ sfGuardUser:
     api_key: 
       type: string(10)
 
-
 Chart:
   actAs:
     Timestampable:

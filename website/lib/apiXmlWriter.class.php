@@ -30,6 +30,9 @@ class apiXmlWriter extends XMLWriter
 	const USER_ID_ELEMENT_NAME = 'user_id';
 	const FIRST_NAME_ELEMENT_NAME = 'first_name';
 	const LAST_NAME_ELEMENT_NAME = 'last_name';
+	const USER_UPDATED_AT_ELEMENT_NAME = 'last_user_update';
+	const VEHICLES_UPDATED_AT_ELEMENT_NAME = 'last_vehicles_update';
+	const VEHICLES_UPDATED_AT_DEFAULT_VALUE = '2000-01-01 00:00:00';
 	const VEHICLES_NUMBER_ELEMENT_NAME = 'vehicles_number';
 	const VEHICLE_ELEMENT_PREFIXNAME = 'vehicle';
 	const VEHICLE_ELEMENT_ATTRIBUTE = 'id';
@@ -105,11 +108,25 @@ class apiXmlWriter extends XMLWriter
 	 * out:
 	 *  - $this: apiXmlWriter instance, for chaining purposes.
 	 */
-	public function addBodyGetUser($user) {
+	public function addBodyGetUser($user, $vehicles) {
 		$this->startElement(self::BODY_ELEMENT_NAME);
 		$this->writeElement(self::USER_ID_ELEMENT_NAME, $user->getId());
 		$this->writeElement(self::FIRST_NAME_ELEMENT_NAME, $user->getFirstName()); 
-		$this->writeElement(self::LAST_NAME_ELEMENT_NAME, $user->getLastName()); 
+		$this->writeElement(self::LAST_NAME_ELEMENT_NAME, $user->getLastName());
+		$this->writeElement(self::USER_UPDATED_AT_ELEMENT_NAME, $user->getUpdatedAt());
+		$this->writeElement(self::VEHICLES_NUMBER_ELEMENT_NAME, sizeof($vehicles));
+		if (sizeof($vehicles) > 0) {
+			$vehicles_updated_at = $vehicles[0]->getUpdatedAt();
+			for ($i=1;$i<sizeof($vehicles);$i++) {
+				if ($vehicles[$i]->getUpdatedAt() > $vehicles_updated_at) {
+					$vehicles_updated_at = $vehicles[$i]->getUpdatedAt();
+				}
+			}
+		}
+		else {
+			$vehicles_updated_at = 'VEHICLES_UPDATED_AT_DEFAULT_VALUE';
+		}
+		$this->writeElement(self::VEHICLES_UPDATED_AT_ELEMENT_NAME, $vehicles_updated_at); 
 		$this->endElement();
 		return $this;
 	}

@@ -88,7 +88,7 @@ class vehicleActions extends autoVehicleActions {
         return $user->getId();
     }
     
-     public function executeNew(sfWebRequest $request) {
+    public function executeNew(sfWebRequest $request) {
         $charge = new Vehicle();
         $charge->setUserId($this->getUserIdFromRouteOrSession());
         
