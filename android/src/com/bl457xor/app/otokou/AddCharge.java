@@ -18,6 +18,8 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.bl457xor.app.otokou.db.OtokouChargeAdapter;
+
 public class AddCharge extends Activity implements OnClickListener {
 	// onOptionsItemSelected menu ids constants
 	private static final int MENU_ID_ADD_CHARGE = 2002;
@@ -32,7 +34,7 @@ public class AddCharge extends Activity implements OnClickListener {
 	public static final int RETURN_ERROR_NO_CONNECTION = 1;
 	
 	// global variables initialization
-	//private OtokouUser otokouUser;
+	private OtokouUser otokouUser;
 	private String apikey;
 	private ArrayList<OtokouVehicle> vehicles = new ArrayList<OtokouVehicle>();
 	private EditText edtKilometers;
@@ -64,14 +66,14 @@ public class AddCharge extends Activity implements OnClickListener {
 			vehicles.add(OtokouVehicle.OtokouVehicleFromByteArray(getIntent().getExtras().getByteArray("vehicle_"+i)));
 		}			
 
-		//otokouUser = OtokouUser.OtokouUserFromByteArray(getIntent().getExtras().getByteArray("user"));
+		otokouUser = OtokouUser.OtokouUserFromByteArray(getIntent().getExtras().getByteArray("user"));
 		apikey = getIntent().getExtras().getString("apikey");
 	}
 
 	private void initializeUI() {		
-		datePicker = (DatePicker) findViewById(R.id.datePicker);
+		datePicker = (DatePicker) findViewById(R.id.dtpAddChargeDate);
 		
-		spnVehicle = (Spinner) findViewById(R.id.spnVehicle);
+		spnVehicle = (Spinner) findViewById(R.id.spnAddChargeVehicle);
 		String[] items = new String[vehicles.size()];
 	    int i=0;
 	    for (OtokouVehicle vehicle : vehicles) {
@@ -82,37 +84,47 @@ public class AddCharge extends Activity implements OnClickListener {
 	    vehicleAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 	    spnVehicle.setAdapter(vehicleAdapter);
 	    
-		spnChargeCategory = (Spinner)findViewById(R.id.spnChargeCategory);
+		spnChargeCategory = (Spinner)findViewById(R.id.spnAddChargeCategory);
 		ArrayAdapter<CharSequence> chargeTypeAdapter = ArrayAdapter.createFromResource(this, R.array.charge_categories, android.R.layout.simple_spinner_item);
 		chargeTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		spnChargeCategory.setAdapter(chargeTypeAdapter);
 
-		edtKilometers = (EditText)findViewById(R.id.edtKilometers);
-		edtAmount = (EditText)findViewById(R.id.edtAmount);
-		edtComment = (EditText)findViewById(R.id.edtComment);
-		edtQuantity = (EditText)findViewById(R.id.edtQuantity);
+		edtKilometers = (EditText)findViewById(R.id.edtAddChargeKilometers);
+		edtAmount = (EditText)findViewById(R.id.edtAddChargeAmount);
+		edtComment = (EditText)findViewById(R.id.edtAddChargeComment);
+		edtQuantity = (EditText)findViewById(R.id.edtAddChargeQuantity);
 		
-		((Button)findViewById(R.id.btnAdd)).setOnClickListener(this);
+		((Button)findViewById(R.id.btnAddChargeAdd)).setOnClickListener(this);
 	}
 	
 	private void submit() {	
 		// TODO evaluate values, notify errors, exceptions from otokouAPI
 		
+		OtokouCharge charge = new OtokouCharge(vehicles.get((int)spnVehicle.getSelectedItemId()).getOtokouVehicleId(), 
+				vehicles.get((int)spnVehicle.getSelectedItemId()).getVehicleName(), 
+				(int)(spnChargeCategory.getSelectedItemId()+1), 
+				""+datePicker.getYear()+"-"+(datePicker.getMonth()+1)+"-"+datePicker.getDayOfMonth(),
+				Double.parseDouble(edtKilometers.getText().toString()),
+				Double.parseDouble(edtAmount.getText().toString()),
+				edtComment.getText().toString(),
+				Double.parseDouble(edtQuantity.getText().toString()));
+		
 		if (isOnline()) {
-			OtokouCharge charge = new OtokouCharge(vehicles.get((int)spnVehicle.getSelectedItemId()).getOtokouVehicleId(), 
-					vehicles.get((int)spnVehicle.getSelectedItemId()).getVehicleName(), 
-					(int)(spnChargeCategory.getSelectedItemId()+1), 
-					""+datePicker.getYear()+"-"+(datePicker.getMonth()+1)+"-"+datePicker.getDayOfMonth(),
-					Double.parseDouble(edtKilometers.getText().toString()),
-					Double.parseDouble(edtAmount.getText().toString()),
-					edtComment.getText().toString(),
-					Double.parseDouble(edtQuantity.getText().toString()));
 			// TODO check results
 			OtokouAPI.setNewChargeData(charge, apikey);
+			
+			OtokouChargeAdapter OCAdb = new OtokouChargeAdapter(getApplicationContext()).open();
+			OCAdb.insertCharge(charge, otokouUser, vehicles.get((int)spnVehicle.getSelectedItemId()), OtokouChargeAdapter.COL_4_SENT_VALUE);
+			OCAdb.close();
+			
 			setResult(RETURN_RESULT_OK, null);
 			finish();
 		}
-		else {					
+		else {
+			OtokouChargeAdapter OCAdb = new OtokouChargeAdapter(getApplicationContext()).open();
+			OCAdb.insertCharge(charge, otokouUser, vehicles.get((int)spnVehicle.getSelectedItemId()), OtokouChargeAdapter.COL_4_NOT_SENT_VALUE);
+			OCAdb.close();
+			
 			Intent i = new Intent();
 			Bundle extras = new Bundle();
 			extras.putInt(RETURN_ERROR_EXTRA_KEY, RETURN_ERROR_NO_CONNECTION);
@@ -155,7 +167,7 @@ public class AddCharge extends Activity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.btnAdd:
+		case R.id.btnAddChargeAdd:
 			submit();
 			break;
 		}			

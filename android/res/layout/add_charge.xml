@@ -9,46 +9,46 @@
         android:orientation="vertical" >
         
         <TextView
-            android:id="@+id/txtVehicle"
+            android:id="@+id/txtAddChargeVehicle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/txt_vehicle_text" />
 
         <Spinner
-            android:id="@+id/spnVehicle"
+            android:id="@+id/spnAddChargeVehicle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
         <TextView
-            android:id="@+id/txtChargeCategory"
+            android:id="@+id/txtAddChargeCategory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/txt_charge_category_text" />
 
         <Spinner
-            android:id="@+id/spnChargeCategory"
+            android:id="@+id/spnAddChargeCategory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
         <TextView
-            android:id="@+id/txtDate"
+            android:id="@+id/txtAddChargeDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/txt_date_text" />
 
         <DatePicker
-            android:id="@+id/datePicker"
+            android:id="@+id/dtpAddChargeDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <TextView
-            android:id="@+id/txtKilometers"
+            android:id="@+id/txtAddChargeKilometers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/txt_kilometers_text" />
 
         <EditText
-            android:id="@+id/edtKilometers"
+            android:id="@+id/edtAddChargeKilometers"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/etxt_kilometers_hint" >
@@ -57,43 +57,43 @@
         </EditText>
 
         <TextView
-            android:id="@+id/txtAmount"
+            android:id="@+id/txtAddChargeAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/txt_amount_text" />
 
         <EditText
-            android:id="@+id/edtAmount"
+            android:id="@+id/edtAddChargeAmount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/etxt_amount_hint" />
 
         <TextView
-            android:id="@+id/txtComment"
+            android:id="@+id/txtAddChargeComment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/txt_comment_text" />
 
         <EditText
-            android:id="@+id/edtComment"
+            android:id="@+id/edtAddChargeComment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/etxt_comment_hint" />
 
         <TextView
-            android:id="@+id/txtQuantity"
+            android:id="@+id/txtAddChargeQuantity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/txt_quantity_text" />
 
         <EditText
-            android:id="@+id/edtQuantity"
+            android:id="@+id/edtAddChargeQuantity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/etxt_quantity_hint" />
 
         <Button
-            android:id="@+id/btnAdd"
+            android:id="@+id/btnAddChargeAdd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/btn_add_text" />

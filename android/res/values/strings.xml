@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="hello">Hello World, Main!</string>
     <string name="app_name">Otokou</string>
     <string name="main_menu_user_preferences">Preferences</string>
@@ -14,8 +13,8 @@
     <string name="main_txt_welcome">Welcome</string>
     <string name="main_dialog_title">Loading information from Otokou</string>
     <string name="main_dialog_message_start">verifying API Key</string>
-    <string name="main_dialog_message_loading_user">Loading user data ...</string>
-    <string name="main_dialog_message_loading_vehicles">Loading vehicle data ...</string>
+    <string name="main_dialog_message_loading_user">Loading user data &#8230;</string>
+    <string name="main_dialog_message_loading_vehicles">Loading vehicle data &#8230;</string>
     <string name="main_dialog_message_ok">OK</string>
     <string name="main_txt_user_error_not_connected">No internet connection found.</string>
     <string name="main_txt_user_error_api_key">Your API key seems invalid, please check it in the preferences.</string>

@@ -61,6 +61,11 @@ public class OtokouUserAdapter {
 	/** column 4 field name				**/ public static final String COL_4_NAME = "apikey";
 	/** column 4 field type				**/ public static final String COL_4_TYPE = "text not null";
 	/** column 4 field default value	**/ public static final String COL_4_DEFAULT = "";
+	/** column 5 field name				**/ public static final String COL_5_NAME = "autoload";
+	/** column 5 field type				**/ public static final String COL_5_TYPE = "integer not null";
+	/** column 5 field default value	**/ public static final long COL_5_DEFAULT = 0;
+	/** column 5 field autoload on		**/ public static final long COL_5_AUTOLOAD_ON = 1;
+	/** column 5 field autoload off		**/ public static final long COL_5_AUTOLOAD_OFF = COL_5_DEFAULT;
 	private User dbHelper;
 	private Context context;
 	private SQLiteDatabase db;
@@ -96,7 +101,8 @@ public class OtokouUserAdapter {
 					+ OtokouUserAdapter.COL_1_NAME + " " + OtokouUserAdapter.COL_1_TYPE + ","
 					+ OtokouUserAdapter.COL_2_NAME + " " + OtokouUserAdapter.COL_2_TYPE + ","
 					+ OtokouUserAdapter.COL_3_NAME + " " + OtokouUserAdapter.COL_3_TYPE + ","
-					+ OtokouUserAdapter.COL_4_NAME + " " + OtokouUserAdapter.COL_4_TYPE
+					+ OtokouUserAdapter.COL_4_NAME + " " + OtokouUserAdapter.COL_4_TYPE + ","
+					+ OtokouUserAdapter.COL_5_NAME + " " + OtokouUserAdapter.COL_5_TYPE
 					+ ");");
 		}
 
@@ -180,6 +186,7 @@ public class OtokouUserAdapter {
 		values.put(OtokouUserAdapter.COL_2_NAME, user.getFirstName());
 		values.put(OtokouUserAdapter.COL_3_NAME, user.getLastName());
 		values.put(OtokouUserAdapter.COL_4_NAME, user.getApikey());
+		values.put(OtokouUserAdapter.COL_5_NAME, user.getAutoload());
 		return db.insert(OtokouUserAdapter.TABLE_NAME, null, values);		
 	}
 	
@@ -203,6 +210,31 @@ public class OtokouUserAdapter {
 		values.put(OtokouUserAdapter.COL_2_NAME, firstName);
 		values.put(OtokouUserAdapter.COL_3_NAME, lastName);
 		values.put(OtokouUserAdapter.COL_4_NAME, apikey);
+		values.put(OtokouUserAdapter.COL_5_NAME, COL_5_AUTOLOAD_OFF);
+		return db.insert(OtokouUserAdapter.TABLE_NAME, null, values);		
+	}
+	
+	/**
+	 * Since Version 1<p>
+	 * 
+	 * Insert a row in the table.<p>
+	 * note: need a call to the open() method before a call to this method.
+	 * 
+	 * @param userId	otokou user database primary key
+	 * @param firstName	first name of the user
+	 * @param lastName	last name of the user
+	 * @param apikey	apikey of the user
+	 * @return id of the inserted row or -1 in case of an error
+	 */	
+	public long insertUser(long userId, String firstName, String lastName, String apikey, long autoload) {
+		if (!connectionOpen) return -1;
+		
+		ContentValues values = new ContentValues();
+		values.put(OtokouUserAdapter.COL_1_NAME, userId);
+		values.put(OtokouUserAdapter.COL_2_NAME, firstName);
+		values.put(OtokouUserAdapter.COL_3_NAME, lastName);
+		values.put(OtokouUserAdapter.COL_4_NAME, apikey);
+		values.put(OtokouUserAdapter.COL_5_NAME, autoload);
 		return db.insert(OtokouUserAdapter.TABLE_NAME, null, values);		
 	}
 
@@ -235,6 +267,28 @@ public class OtokouUserAdapter {
 		
 		return db.delete(OtokouUserAdapter.TABLE_NAME, OtokouUserAdapter.COL_4_NAME+"='"+apikey+"'", null);
 	}
+
+	/**
+	 * Since Version 1<p>
+	 * 
+	 * Update a row in the table identified by the its id.<p>
+	 * note: need a call to the open() method before a call to this method.
+	 * 
+	 * @param user	OtokouUser instance
+	 * @return true if the update of 1 database row executed correctly, false otherwise
+	 */		
+	public boolean updateUser(OtokouUser user) {
+		if (!connectionOpen) return false;
+		
+		ContentValues values = new ContentValues();
+		values.put(OtokouUserAdapter.COL_1_NAME, user.getOtokouUserId());
+		values.put(OtokouUserAdapter.COL_2_NAME, user.getFirstName());
+		values.put(OtokouUserAdapter.COL_3_NAME, user.getLastName());
+		values.put(OtokouUserAdapter.COL_4_NAME, user.getApikey());
+		values.put(OtokouUserAdapter.COL_5_NAME, user.getAutoload());
+
+		return db.update(OtokouUserAdapter.TABLE_NAME, values, OtokouUserAdapter.COL_ID_NAME+"="+user.getId() , null) == 1;
+	}
 	
 	/**
 	 * Since Version 1<p>
@@ -247,9 +301,10 @@ public class OtokouUserAdapter {
 	 * @param firstName	first name of the user (null to keep actual value)
 	 * @param lastName	last name of the user (null to keep actual value)
 	 * @param apikey	apikey of the user (null to keep actual value)
+	 * @param apikey	apikey of the user (-1 to keep actual value) 
 	 * @return true if the update of 1 database row executed correctly, false otherwise
 	 */		
-	public boolean updateUserById(long id, long userId, String firstName, String lastName, String apikey) {
+	public boolean updateUserById(long id, long userId, String firstName, String lastName, String apikey, long autoload) {
 		if (!connectionOpen) return false;
 		
 		ContentValues values = new ContentValues();
@@ -257,6 +312,7 @@ public class OtokouUserAdapter {
 		if (firstName != null) values.put(OtokouUserAdapter.COL_2_NAME, firstName);
 		if (lastName!= null) values.put(OtokouUserAdapter.COL_3_NAME, lastName);
 		if (apikey!= null) values.put(OtokouUserAdapter.COL_4_NAME, apikey);
+		if (autoload!= -1) values.put(OtokouUserAdapter.COL_5_NAME, autoload);
 
 		return db.update(OtokouUserAdapter.TABLE_NAME, values, OtokouUserAdapter.COL_ID_NAME+"="+id , null) == 1;
 	}
@@ -278,6 +334,7 @@ public class OtokouUserAdapter {
 		values.put(OtokouUserAdapter.COL_1_NAME, user.getOtokouUserId());
 		values.put(OtokouUserAdapter.COL_2_NAME, user.getFirstName());
 		values.put(OtokouUserAdapter.COL_3_NAME, user.getLastName());
+		values.put(OtokouUserAdapter.COL_5_NAME, (user.getAutoload() ? OtokouUserAdapter.COL_5_AUTOLOAD_ON :  OtokouUserAdapter.COL_5_AUTOLOAD_OFF) );
 
 		return db.update(OtokouUserAdapter.TABLE_NAME, values, OtokouUserAdapter.COL_4_NAME+"='"+apikey+"'" , null) == 1;
 	}
@@ -300,6 +357,7 @@ public class OtokouUserAdapter {
 					OtokouUserAdapter.COL_2_NAME,
 					OtokouUserAdapter.COL_3_NAME,
 					OtokouUserAdapter.COL_4_NAME,
+					OtokouUserAdapter.COL_5_NAME,
 		 		},
 		 		null,null, null, null, 
 		 OtokouUserAdapter.COL_1_NAME);

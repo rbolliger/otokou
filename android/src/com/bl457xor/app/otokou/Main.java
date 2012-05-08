@@ -2,362 +2,265 @@ package com.bl457xor.app.otokou;
 
 import java.util.ArrayList;
 
-import android.app.Activity;
-import android.app.ProgressDialog;
+import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.database.Cursor;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.preference.PreferenceManager;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import com.bl457xor.app.otokou.db.OtokouUserAdapter;
-import com.bl457xor.app.otokou.db.OtokouVehicleAdapter;
 
-public class Main extends Activity implements Runnable, OnClickListener, OnSharedPreferenceChangeListener {			
-	// onOptionsItemSelected menu ids constants
-	private static final int MENU_ID_USER_PREFERENCES = 2001;
-	private static final int MENU_ID_RELOAD_DATA = 2002;
-	private static final int MENU_ID_ADD_CHARGE = 2003;
-	private static final int MENU_ID_EXIT = 2200;
-	
-	// run messages constants
-	private static final int RUN_END = 0;
-	private static final int RUN_MSG_LOADING_USER = 10;
-	private static final int RUN_MSG_LOADING_VEHICLES = 11;
-	private static final int RUN_MSG_LOADING_OK = 12;
-	private static final int RUN_ERROR_NOT_CONNECTED = 100;
-	private static final int RUN_ERROR_API_KEY = 101;
-	private static final int RUN_ERROR_USER = 102;
-	private static final int RUN_ERROR_VEHICLES = 103;
-
+public class Main extends ListActivity implements OnClickListener {
 	// global variables initialization
-	private SharedPreferences preferences;
-	private OtokouUser otokouUser;
-	private ArrayList<OtokouVehicle> vehicles;
-	private ProgressDialog progressDialog;
-	private TextView txtUser;
-	private boolean dataOK = false;
-	private Button btnAddCharge;
+	private EfficientAdapter adap;
+	private ArrayList<OtokouUser> users;
+	private boolean autoload = true;
 	
-    /** Called when the activity is first created. */
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
-        
-		initializePreferences();
-        
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		setContentView(R.layout.main);
+		
 		initializeUI();
-		
-    	if (!dataOK) {
-    		retrieveDataFromOtokou();
-    	}
-    }
-
-	private void retrieveDataFromOtokou() {
-		dataOK = false;
-		
-    	// create progress dialog
-    	progressDialog = ProgressDialog.show(this,getString(R.string.main_dialog_title), getString(R.string.main_dialog_message_start), true, false);
-    	
-    	// launch thread, connection with otokou website
-    	Thread thread = new Thread(this);
-    	thread.start();
-	}
-
-    private void initializePreferences() {
-        // load user preferences
-        preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        preferences.registerOnSharedPreferenceChangeListener(this);
 	}
 	
-	private void initializeUI() {		
-		// create button to open the preferences
-		((Button)findViewById(R.id.btnUserPreferences)).setOnClickListener(this);
-
-		// create button to reload data from website
-		((Button)findViewById(R.id.btnReloadData)).setOnClickListener(this);
+	@Override
+	protected void onResume() {
+		super.onResume();
 		
-		// create button to add a new charge
-		btnAddCharge = (Button) findViewById(R.id.btnAddCharge);
-		btnAddCharge.setOnClickListener(this);
+		loadUsers();
 		
-		// TO DELETE button to test
-		((Button)findViewById(R.id.btnTest)).setOnClickListener(this);
-		
-		// create text view for user communication
-		txtUser = (TextView)findViewById(R.id.txtUser);
+		if (adap != null) {
+			adap = null;
+		}
+		adap = new EfficientAdapter(this);
+		setListAdapter(adap);	
 	}
 	
-	public void run() {
-		// TODO handle errors more detailed with exceptions from otokouAPI
+	private void initializeUI() {
+		((Button)findViewById(R.id.btnAddUser)).setOnClickListener(this);		
+	}
+
+	private void loadUsers() {
+		if (users != null) {
+			users = null;
+		}
+		users = new ArrayList<OtokouUser>();
+		OtokouUserAdapter OUAdb = new OtokouUserAdapter(getApplicationContext()).open();
+		Cursor c = OUAdb.getAllUsers();
 		
-		if (isOnline()) {
-			String apiKey = preferences.getString("apikey", "");
-			if (!OtokouApiKey.checkKey(apiKey)) {
-				handler.sendEmptyMessage(RUN_ERROR_API_KEY);
+		c.moveToFirst();
+		do {	
+			try {
+				users.add(new OtokouUser(c));
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-			else {				
-				// load user data from Otokou
-				handler.sendEmptyMessage(RUN_MSG_LOADING_USER);
-				otokouUser = OtokouAPI.getUserData(apiKey);
-				
-				if (otokouUser != null) {
-					// save user data to database
-					OtokouUserAdapter OUAdb = new OtokouUserAdapter(getApplicationContext()).open();
-					Cursor userCursor = OUAdb.getUsersByApikey(apiKey);
-					if (userCursor.getCount() == 0) {
-						Log.i("User DB","1 user added");
-						otokouUser.setId(OUAdb.insertUser(otokouUser));
-					}
-					else if (userCursor.getCount() == 1) {
-						Log.i("User DB","1 user update");
-						userCursor.moveToLast();
-						otokouUser.setId(userCursor.getLong(userCursor.getColumnIndex(OtokouUserAdapter.COL_ID_NAME)));		
-						OUAdb.updateUsersByApikey(apiKey, otokouUser);
-					}
-					else {
-						Log.e("User DB","error found 2 user with same apikey");
-						OUAdb.deleteUsersByApikey(apiKey);
-						userCursor.moveToLast();
-						OtokouVehicleAdapter OVAdb = new OtokouVehicleAdapter(getApplicationContext()).open();
-						do {
-							OVAdb.deleteVehiclesByUserId(userCursor.getLong(userCursor.getColumnIndex(OtokouUserAdapter.COL_ID_NAME)));
-						} while (userCursor.moveToPrevious());
-						OVAdb.close();
-						otokouUser.setId(OUAdb.insertUser(otokouUser));
-					}
-					userCursor.close();
-					OUAdb.close();
+		} while (c.moveToNext());
+		
+		c.close();
+		OUAdb.close();
+		
+		if (autoload && users.size() >= 1) {
+			for (OtokouUser user : users) {
+				if (user.getAutoload()) {
+					launchUserActivity(user.getId());
+				}
+			}
+		}
+	}
+	
+	public class EfficientAdapter extends BaseAdapter implements Filterable {
+		private LayoutInflater mInflater;
+		//private Context context;
 
-					// load vehicles data from Otokou
-					handler.sendEmptyMessage(RUN_MSG_LOADING_VEHICLES);
-					vehicles = OtokouAPI.getVehiclesData(apiKey);					
-					
-					if (vehicles != null) {
-						// save vehicles data to database
-						OtokouVehicleAdapter OVAdb2 = new OtokouVehicleAdapter(getApplicationContext()).open();
-						Cursor vehiclesCursor = OVAdb2.getVehiclesByUserId(otokouUser.getId());
-						if (vehiclesCursor.getCount() > 0) {
-							vehiclesCursor.moveToLast();
-							do {
-								long otokouVehicleId = vehiclesCursor.getLong(vehiclesCursor.getColumnIndex(OtokouVehicleAdapter.COL_2_NAME));
-								boolean found = false;
-								for (OtokouVehicle vehicle : vehicles) {
-									if (vehicle.getOtokouVehicleId() == otokouVehicleId) {
-										long id = vehiclesCursor.getLong(vehiclesCursor.getColumnIndex(OtokouVehicleAdapter.COL_ID_NAME));
-										found = true;									
-										vehicle.setFound(true);
-										vehicle.setId(id);			
-										OVAdb2.updateVehicleById(id, vehicle, otokouUser);
-									}
-								}
-								if (!found) {
-									OVAdb2.deleteVehicleById(vehiclesCursor.getLong(vehiclesCursor.getColumnIndex(OtokouVehicleAdapter.COL_ID_NAME)));
-								}
-							} while (vehiclesCursor.moveToPrevious());
-							for (OtokouVehicle vehicle : vehicles) {
-								if (!vehicle.isFound()) {
-									vehicle.setId(OVAdb2.insertVehicle(vehicle, otokouUser));
-								}
-							}
-						}
-						else {
-							for (OtokouVehicle vehicle : vehicles) {
-								vehicle.setId(OVAdb2.insertVehicle(vehicle, otokouUser));
-							}
-						}
-						vehiclesCursor.close();
-						OVAdb2.close();
-						handler.sendEmptyMessage(RUN_MSG_LOADING_OK);
-					}
-					else {
-						handler.sendEmptyMessage(RUN_ERROR_VEHICLES);
-					}
+		public EfficientAdapter(Context context) {
+			// Cache the LayoutInflate to avoid asking for a new one each time.
+			mInflater = LayoutInflater.from(context);
+			//this.context = context;
+		}
+
+		/**
+		 * Make a view to hold each row.
+		 * 
+		 * @see android.widget.ListAdapter#getView(int, android.view.View,
+		 *      android.view.ViewGroup)
+		 */
+		public View getView(final int position, View convertView, ViewGroup parent) {
+			// A ViewHolder keeps references to children views to avoid
+			// unneccessary calls
+			// to findViewById() on each row.
+			ViewHolder holder;
+			/*for (int i = 0; i < holder.length; i++) {
+				holder[i] = new ViewHolder();
+			}*/
+
+			// When convertView is not null, we can reuse it directly, there is
+			// no need
+			// to reinflate it. We only inflate a new View when the convertView
+			// supplied
+			// by ListView is null.
+			//if (convertView == null) {
+				convertView = mInflater.inflate(R.layout.list_user_item, null);
+
+				// Creates a ViewHolder and store references to the two children
+				// views
+				// we want to bind data to.
+				holder = new ViewHolder();
+				holder.userTxt = (TextView) convertView.findViewById(R.id.userTxt);
+				holder.userBtnDelete = (Button) convertView.findViewById(R.id.userBtnDelete);
+				holder.userChb = (CheckBox) convertView.findViewById(R.id.userChb);
+				
+				if (((OtokouUser)getItem(position)).getAutoload()) {
+					holder.userChb.setChecked(true);
 				}
 				else {
-					handler.sendEmptyMessage(RUN_ERROR_USER);
+					holder.userChb.setChecked(false);
 				}
-			}
-		}
-		else {
-			handler.sendEmptyMessage(RUN_ERROR_NOT_CONNECTED);
-		}
-		handler.sendEmptyMessage(RUN_END);
-	}
+				
+				convertView.setOnClickListener(new OnClickListener() {
+					private long user_id = ((OtokouUser)getItem(position)).getId();
 
-	private Handler handler = new Handler() {
-		@Override
-		public void handleMessage(Message msg) {
-			switch (msg.what) {
-			case RUN_END:
-				progressDialog.dismiss();
-				break;
-			case RUN_MSG_LOADING_USER:	
-				progressDialog.setMessage(getString(R.string.main_dialog_message_loading_user));
-				break;
-			case RUN_MSG_LOADING_VEHICLES:	
-				progressDialog.setMessage(getString(R.string.main_dialog_message_loading_vehicles));
-				break;
-			case RUN_MSG_LOADING_OK:
-				progressDialog.setMessage(getString(R.string.main_dialog_message_ok));
-				txtUser.setText(otokouUser.toString());
-				dataOK = true;
-				btnAddCharge.setVisibility(Button.VISIBLE);
-				break;
-			case RUN_ERROR_NOT_CONNECTED:
-				txtUser.setText(getString(R.string.main_txt_user_error_not_connected));
-				dataOK = false;
-				btnAddCharge.setVisibility(Button.INVISIBLE);
-				break;
-			case RUN_ERROR_API_KEY:
-				txtUser.setText(getString(R.string.main_txt_user_error_api_key));
-				dataOK = false;
-				btnAddCharge.setVisibility(Button.INVISIBLE);
-				break;
-			case RUN_ERROR_USER:
-				txtUser.setText(getString(R.string.main_txt_user_error_user));
-				dataOK = false;
-				btnAddCharge.setVisibility(Button.INVISIBLE);
-				break;
-			case RUN_ERROR_VEHICLES:
-				txtUser.setText(otokouUser.toString()+"\n"+getString(R.string.main_txt_user_error_vehicle));
-				dataOK = false;
-				btnAddCharge.setVisibility(Button.INVISIBLE);
-				break;
-			}
-		}
-	};
-	
-	private void launchPreferencesUserActivity(){
-		Intent i = new Intent(Main.this, UserPreferenceActivity.class);
-		startActivity(i);
-	}
-	
-	private void launchAddChargeActivity() {
-		Intent i = new Intent(Main.this, AddCharge.class);
-		Bundle extras = new Bundle();
-		
-		int vehiclesNumber = 0;		
-		for (OtokouVehicle vehicle : vehicles) {
-			extras.putByteArray("vehicle_"+vehiclesNumber, vehicle.toByteArray());
-			vehiclesNumber++;
-		}
-		extras.putInt("vehiclesNumber", vehiclesNumber);
-		
-		//extras.putByteArray("user", otokouUser.toByteArray());	
-		extras.putString("apikey", preferences.getString("apikey", ""));	
-		i.putExtras(extras);
-		
-		startActivityForResult(i, 0);
-	}
-	
-	private void launchTest() {
-		// add a test here
-	}
-	
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		// TODO manage returns of
-		if (resultCode == AddCharge.RETURN_RESULT_OK) {
-		    
-		}
-		else if (resultCode == AddCharge.RETURN_RESULT_BACK) {
+					@Override
+					public void onClick(View v) {
+						launchUserActivity(user_id);  
+					}
+				});
 
-		}
-		else if (resultCode == AddCharge.RETURN_RESULT_ERROR) {
-			switch (data.getExtras().getInt(AddCharge.RETURN_ERROR_EXTRA_KEY,AddCharge.RETURN_ERROR_UNKNOWN)) {
-			case AddCharge.RETURN_ERROR_UNKNOWN:
-				break;
-			case AddCharge.RETURN_ERROR_NO_CONNECTION:
-				break;
-			}
-		}
-		else {
+				holder.userBtnDelete.setOnClickListener(new OnClickListener() {
+					private long user_id = ((OtokouUser)getItem(position)).getId();
+
+					@Override
+					public void onClick(View v) {
+						OtokouUserAdapter OUAdb = new OtokouUserAdapter(getApplicationContext()).open();
+						OUAdb.deleteUserById(user_id);
+						OUAdb.close();
+						loadUsers();
+						adap.notifyDataSetChanged();
+					}
+				});
+				
+				holder.userChb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+					private int pos = position;
+					
+					@Override
+					public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+						if (isChecked) {
+							for (OtokouUser user : users) {
+								if (((OtokouUser)getItem(pos)).getId() == user.getId()) {
+									user.setAutoload(true);
+									OtokouUserAdapter OUAdb = new OtokouUserAdapter(getApplicationContext()).open();
+									OUAdb.updateUser(user);
+									OUAdb.close();
+								}
+								else if (user.getAutoload()) {						
+									user.setAutoload(false);
+									OtokouUserAdapter OUAdb = new OtokouUserAdapter(getApplicationContext()).open();
+									OUAdb.updateUser(user);
+									OUAdb.close();
+								}						
+							}
+							adap.notifyDataSetChanged();
+						}
+						else {			
+							for (OtokouUser user : users) {
+								if (user.getAutoload()) {
+									user.setAutoload(false);
+									OtokouUserAdapter OUAdb = new OtokouUserAdapter(getApplicationContext()).open();
+									OUAdb.updateUser(user);
+									OUAdb.close();
+								}
+							}
+						}				
+					}
+				});
+
+				convertView.setTag(holder);
+			/*} else {
+				// Get the ViewHolder back to get fast access to the TextView
+				// and the ImageView.
+				holder = (ViewHolder)convertView.getTag();
+				
+				if (!((OtokouUser)getItem(position)).getAutoload()) {
+					holder.userChb.setChecked(false);
+				}
+			}*/
+
+			// Bind the data efficiently with the holder.
+			holder.userTxt.setText(((OtokouUser)getItem(position)).getFirstName() + " " +  ((OtokouUser)getItem(position)).getLastName());
 			
+			return convertView;
 		}
-	}
-	
-	private boolean isOnline() {
-	    ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
-	    NetworkInfo netInfo = cm.getActiveNetworkInfo();
-	    if (netInfo != null && netInfo.isConnectedOrConnecting()) {
-	        return true;
-	    }
-	    return false;
-	}
-	
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {	
-		menu.add(Menu.NONE, MENU_ID_USER_PREFERENCES, Menu.NONE, R.string.main_menu_user_preferences).setIcon(R.drawable.menu_user_preferences);
-		menu.add(Menu.NONE, MENU_ID_RELOAD_DATA, Menu.NONE, R.string.main_menu_reload_data).setIcon(R.drawable.menu_reload);
-		menu.add(Menu.NONE, MENU_ID_ADD_CHARGE, Menu.NONE, R.string.main_menu_add_charge).setIcon(R.drawable.menu_add);
-		menu.add(Menu.NONE, MENU_ID_EXIT, Menu.NONE, R.string.main_menu_exit).setIcon(R.drawable.exit);
-		return super.onCreateOptionsMenu(menu);
-	}
-	
-	@Override
-	public boolean onPrepareOptionsMenu(Menu menu) {
-		if (dataOK) {
-			menu.findItem(MENU_ID_ADD_CHARGE).setVisible(true);
+
+		public class ViewHolder {
+			TextView userTxt;
+			Button userBtnDelete;
+			CheckBox userChb;
 		}
-		else {
-			menu.findItem(MENU_ID_ADD_CHARGE).setVisible(false);
+
+		@Override
+		public Filter getFilter() {
+			// TODO Auto-generated method stub
+			return null;
 		}
-		return super.onPrepareOptionsMenu(menu);
-	}
-	
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch(item.getItemId()) {
-			case MENU_ID_USER_PREFERENCES:
-				launchPreferencesUserActivity();
-				break;
-			case MENU_ID_RELOAD_DATA:
-				retrieveDataFromOtokou();
-				break;
-			case MENU_ID_ADD_CHARGE:
-				launchAddChargeActivity();
-				break;
-			case MENU_ID_EXIT:
-				finish();
-				break;
+
+		@Override
+		public long getItemId(int position) {
+			// TODO Auto-generated method stub
+			return 0;
 		}
-		return super.onOptionsItemSelected(item);
+
+		@Override
+		public int getCount() {
+			// TODO Auto-generated method stub
+			return users.size();
+		}
+
+		@Override
+		public Object getItem(int position) {
+			// TODO Auto-generated method stub
+			return users.get(position);
+		}
 	}
 
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.btnUserPreferences:
-			launchPreferencesUserActivity();
+		case R.id.btnAddUser:
+			launchAddUserActivity();
 			break;
-		case R.id.btnReloadData:
-			retrieveDataFromOtokou();
-			break;
-		case R.id.btnAddCharge:
-			launchAddChargeActivity();
-			break;
-		case R.id.btnTest:
-			launchTest();
-			break;			
-		}		
+		}
 	}
 
-	@Override
-	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-		retrieveDataFromOtokou();		
+	private void launchAddUserActivity() {
+		Intent i = new Intent(Main.this, AddUser.class);
+		startActivity(i);
+	}
+	
+	private void launchUserActivity(long usedId) {
+		Intent i = new Intent(Main.this, User.class);		
+		Bundle extras = new Bundle();		
+		extras.putLong("user_id", usedId);	
+		i.putExtras(extras);
+		startActivityForResult(i,0);
+	}
+	
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		autoload = false;
 	}
 }

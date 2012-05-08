@@ -17,8 +17,10 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
+import android.database.Cursor;
 import android.util.Log;
 
+import com.bl457xor.app.otokou.db.OtokouUserAdapter;
 import com.bl457xor.app.otokou.xml.OtokouXmlGetUserHandler;
 
 public class OtokouUser implements Serializable{
@@ -34,12 +36,23 @@ public class OtokouUser implements Serializable{
 	//public String password
 	//public String email;
 	private String apiKey;
+	private boolean autoload;
 	
 	public OtokouUser(long otokouUserID, String firstName, String lastName, String apiKey) throws Exception {
+		this.id = 0;
 		this.otokouUserID = otokouUserID;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.apiKey = apiKey;		
+	}
+	
+	public OtokouUser(Cursor c) throws Exception {	
+		this.id = c.getLong(c.getColumnIndex(OtokouUserAdapter.COL_ID_NAME));
+		this.otokouUserID = c.getLong(c.getColumnIndex(OtokouUserAdapter.COL_1_NAME));
+		this.firstName = c.getString(c.getColumnIndex(OtokouUserAdapter.COL_2_NAME));
+		this.lastName = c.getString(c.getColumnIndex(OtokouUserAdapter.COL_3_NAME));
+		this.apiKey = c.getString(c.getColumnIndex(OtokouUserAdapter.COL_4_NAME));
+		this.autoload = (c.getLong(c.getColumnIndex(OtokouUserAdapter.COL_5_NAME)) == OtokouUserAdapter.COL_5_AUTOLOAD_ON) ? true : false;
 	}
 	
 	public OtokouUser(String rawData, String apikey) throws Exception {
@@ -119,6 +132,14 @@ public class OtokouUser implements Serializable{
 	
 	public long getId() {
 		return id;
+	}
+	
+	public void setAutoload(boolean autoload) {
+		this.autoload = autoload;
+	}
+	
+	public boolean getAutoload() {
+		return autoload;
 	}
 	
 	public String getFirstName() {
