@@ -23,6 +23,14 @@ import android.widget.TextView;
 
 import com.bl457xor.app.otokou.db.OtokouUserAdapter;
 
+
+// TODO
+// manage database relation (delete user, update database,...)
+// add API username + apikey
+// reload behicles only if needed
+// ...
+
+
 public class Main extends ListActivity implements OnClickListener {
 	// global variables initialization
 	private EfficientAdapter adap;

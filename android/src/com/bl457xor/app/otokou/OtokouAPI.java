@@ -14,10 +14,10 @@ public class OtokouAPI {
 	public static final String OTOKOU_GET_VEHICLES_ACTION = "get_vehicles";
 	public static final String OTOKOU_GET_USER_ACTION = "get_user";
 
-	public static OtokouUser getUserData(String apiKey) {
+	public static OtokouUser getUserData(String username, String apiKey) {
 		String getRequest = OTOKOU_API_URL+OTOKOU_GET_USER_ACTION;
     	try {		
-    		return new OtokouUser(HttpHelper.executeHttpPost(getRequest,writeGetUserXml(apiKey)),apiKey);
+    		return new OtokouUser(HttpHelper.executeHttpPost(getRequest,writeGetUserXml(username, apiKey)), username, apiKey);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -48,7 +48,7 @@ public class OtokouAPI {
 		return false;
 	}
 	
-	private static String writeGetUserXml(String apiKey){
+	private static String writeGetUserXml(String username, String apiKey){
 	    XmlSerializer serializer = Xml.newSerializer();
 	    StringWriter writer = new StringWriter();
 	    try {
@@ -63,6 +63,9 @@ public class OtokouAPI {
 	        serializer.endTag(null, "request");
 	        serializer.endTag(null, "header");
 	        serializer.startTag(null, "body");
+	        serializer.startTag(null, "username");
+	        serializer.text(username);
+	        serializer.endTag(null, "username");
 	        serializer.startTag(null, "apikey");
 	        serializer.text(apiKey);
 	        serializer.endTag(null, "apikey");

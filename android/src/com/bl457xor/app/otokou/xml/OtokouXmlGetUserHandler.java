@@ -8,11 +8,20 @@ public class OtokouXmlGetUserHandler extends OtokouXmlResponseHandler {
 	protected boolean inUserId = false;
 	protected boolean inFirstName = false;
 	protected boolean inLastName = false;
+	protected boolean inLastUserUpdate = false;
+	protected boolean inLastVehiclesUpdate = false;
+	protected boolean inVehiclesNumber = false;
+	
+	// hold temporary data
+	protected String xmlVehiclesNumberString = null;
 	
 	// hold retrieved data
 	protected String xmlUserId = null;
 	protected String xmlFirstName = null;
 	protected String xmlLastName = null;
+	protected String xmlLastUserUpdate = null;
+	protected String xmlLastVehiclesUpdate = null;
+	protected Long xmlVehiclesNumber = null;
 
 	/**
 	 * Returns the User ID found in the XML.
@@ -42,12 +51,39 @@ public class OtokouXmlGetUserHandler extends OtokouXmlResponseHandler {
 	}
 	
 	/**
+	 * Returns the Last Name found in the XML.
+	 *
+	 * @return
+	 */
+	public String getXmlLastUserUpdate() {
+		return xmlLastUserUpdate;
+	}
+	
+	/**
+	 * Returns the Last Vehicles Update found in the XML.
+	 *
+	 * @return
+	 */
+	public String getXmlLastVehiclesUpdate() {
+		return xmlLastVehiclesUpdate;
+	}
+	
+	/**
+	 * Returns the Vehicles number found in the XML.
+	 *
+	 * @return
+	 */
+	public long getXmlVehiclesNumber() {
+		return xmlVehiclesNumber;
+	}
+	
+	/**
 	 * Returns true if body data have been retrieved correctly.
 	 *
 	 * @return
 	 */
 	public boolean bodyOk() {
-		if (xmlUserId != null && xmlFirstName != null && xmlLastName != null) return true;
+		if (xmlUserId != null && xmlFirstName != null && xmlLastName != null && xmlLastUserUpdate != null && xmlLastVehiclesUpdate != null && xmlVehiclesNumber != null) return true;
 		else return false;
 	}
 	
@@ -67,6 +103,18 @@ public class OtokouXmlGetUserHandler extends OtokouXmlResponseHandler {
 			inLastName = true;
 			xmlLastName = null;
 		}
+		else if(localName.equals("last_user_update")) {
+			inLastUserUpdate = true;
+			xmlLastUserUpdate = null;
+		}
+		else if(localName.equals("last_vehicles_update")) {
+			inLastVehiclesUpdate = true;
+			xmlLastVehiclesUpdate = null;
+		}
+		else if(localName.equals("vehicles_number")) {
+			inVehiclesNumber = true;
+			xmlVehiclesNumber = null;
+		}
 	}
 	
 	@Override
@@ -85,6 +133,20 @@ public class OtokouXmlGetUserHandler extends OtokouXmlResponseHandler {
 			inLastName = false;
 			xmlLastName = trimData(xmlLastName);
 		}
+		else if(localName.equals("last_user_update")) {
+			inLastUserUpdate = false;
+			xmlLastUserUpdate = trimData(xmlLastUserUpdate);
+		}
+		else if(localName.equals("last_vehicles_update")) {
+			inLastVehiclesUpdate = false;
+			xmlLastVehiclesUpdate = trimData(xmlLastVehiclesUpdate);
+		}
+		else if(localName.equals("vehicles_number")) {			
+			inVehiclesNumber = false;
+			xmlVehiclesNumberString = trimData(xmlVehiclesNumberString);
+			// TODO parse exception?
+			xmlVehiclesNumber = Long.parseLong(xmlVehiclesNumberString);
+		}
 	}
 	
 	@Override
@@ -94,15 +156,12 @@ public class OtokouXmlGetUserHandler extends OtokouXmlResponseHandler {
 		String chars = new String(ch, start, length);
 
 		if(inBody && inOtokou && inRoot && !inHeader) {
-			if (inUserId) {
-				xmlUserId = appendData(xmlUserId,chars);
-			}
-			else if (inFirstName) {
-				xmlFirstName = appendData(xmlFirstName,chars);
-			}
-			else if (inLastName) {
-				xmlLastName = appendData(xmlLastName,chars);
-			}
+			if (inUserId) xmlUserId = appendData(xmlUserId,chars);
+			else if (inFirstName) xmlFirstName = appendData(xmlFirstName,chars);
+			else if (inLastName) xmlLastName = appendData(xmlLastName,chars);
+			else if (inLastUserUpdate) xmlLastUserUpdate = appendData(xmlLastUserUpdate,chars);
+			else if (inLastVehiclesUpdate) xmlLastVehiclesUpdate = appendData(xmlLastVehiclesUpdate,chars);
+			else if (inVehiclesNumber) xmlVehiclesNumberString = appendData(xmlVehiclesNumberString,chars);
 		} 
 	}
 }

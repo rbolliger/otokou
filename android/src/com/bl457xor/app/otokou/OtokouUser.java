@@ -32,30 +32,30 @@ public class OtokouUser implements Serializable{
 	private String firstName;
 	//public String middleName;
 	private String lastName;
-	//public String userName;
+	public String username;
+	private String apiKey;
 	//public String password
 	//public String email;
-	private String apiKey;
+	private long vehiclesNumber;
+	private String lastUpdate;
+	private String lastVehiclesUpdate;
 	private boolean autoload;
 	
-	public OtokouUser(long otokouUserID, String firstName, String lastName, String apiKey) throws Exception {
-		this.id = 0;
-		this.otokouUserID = otokouUserID;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.apiKey = apiKey;		
-	}
 	
 	public OtokouUser(Cursor c) throws Exception {	
 		this.id = c.getLong(c.getColumnIndex(OtokouUserAdapter.COL_ID_NAME));
 		this.otokouUserID = c.getLong(c.getColumnIndex(OtokouUserAdapter.COL_1_NAME));
 		this.firstName = c.getString(c.getColumnIndex(OtokouUserAdapter.COL_2_NAME));
 		this.lastName = c.getString(c.getColumnIndex(OtokouUserAdapter.COL_3_NAME));
-		this.apiKey = c.getString(c.getColumnIndex(OtokouUserAdapter.COL_4_NAME));
-		this.autoload = (c.getLong(c.getColumnIndex(OtokouUserAdapter.COL_5_NAME)) == OtokouUserAdapter.COL_5_AUTOLOAD_ON) ? true : false;
+		this.username = c.getString(c.getColumnIndex(OtokouUserAdapter.COL_4_NAME));
+		this.apiKey = c.getString(c.getColumnIndex(OtokouUserAdapter.COL_5_NAME));
+		this.vehiclesNumber = c.getLong(c.getColumnIndex(OtokouUserAdapter.COL_6_NAME));
+		this.lastUpdate = c.getString(c.getColumnIndex(OtokouUserAdapter.COL_7_NAME));
+		this.lastVehiclesUpdate = c.getString(c.getColumnIndex(OtokouUserAdapter.COL_8_NAME));	
+		this.autoload = (c.getLong(c.getColumnIndex(OtokouUserAdapter.COL_9_NAME)) == OtokouUserAdapter.COL_9_AUTOLOAD_ON) ? true : false;
 	}
 	
-	public OtokouUser(String rawData, String apikey) throws Exception {
+	public OtokouUser(String rawData, String username, String apikey) throws Exception {
 		  try {
 		    SAXParserFactory spf = SAXParserFactory.newInstance();
 		    SAXParser sp = spf.newSAXParser();
@@ -75,7 +75,11 @@ public class OtokouUser implements Serializable{
 			this.otokouUserID = Long.parseLong(xmlHandler.getXmlUserId());
 			this.firstName = xmlHandler.getXmlFirstName();
 			this.lastName = xmlHandler.getXmlLastName();
+			this.username = username;
 			this.apiKey = apikey;
+			this.lastUpdate = xmlHandler.getXmlLastUserUpdate();
+			this.lastVehiclesUpdate = xmlHandler.getXmlLastVehiclesUpdate();
+			this.vehiclesNumber = xmlHandler.getXmlVehiclesNumber();
 		    
 		  } catch(ParserConfigurationException pce) {
 		    Log.i("SAX XML", "sax parse error", pce);
@@ -150,7 +154,23 @@ public class OtokouUser implements Serializable{
 		return lastName;
 	}
 	
+	public String getUsername() {
+		return username;
+	}
+	
 	public String getApikey() {
 		return apiKey;
+	}
+	
+	public long getVehiclesNumber() {
+		return vehiclesNumber;
+	}
+	
+	public String getLastUpdate() {
+		return lastUpdate;
+	}
+	
+	public String getLastVehiclesUpdate() {
+		return lastVehiclesUpdate;
 	}
 }

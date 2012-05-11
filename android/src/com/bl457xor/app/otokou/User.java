@@ -106,6 +106,7 @@ public class User extends Activity implements OnSharedPreferenceChangeListener, 
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
         preferences.registerOnSharedPreferenceChangeListener(this);
         preferences.edit().putString("apikey", otokouUser.getApikey()).commit();
+        preferences.edit().putString("username", otokouUser.getUsername()).commit();
 	}
     
 	private void initializeUI() {		
@@ -143,13 +144,14 @@ public class User extends Activity implements OnSharedPreferenceChangeListener, 
 		
 		if (isOnline()) {
 			String apiKey = otokouUser.getApikey();
+			String username = otokouUser.getUsername();
 			if (!OtokouApiKey.checkKey(apiKey)) {
 				handler.sendEmptyMessage(RUN_ERROR_API_KEY);
 			}
 			else {				
 				// load user data from Otokou
 				handler.sendEmptyMessage(RUN_MSG_LOADING_USER);
-				OtokouUser retrivedOtokouUser = OtokouAPI.getUserData(apiKey);
+				OtokouUser retrivedOtokouUser = OtokouAPI.getUserData(username, apiKey);
 				
 				if (retrivedOtokouUser != null) {
 					retrivedOtokouUser.setAutoload(otokouUser.getAutoload());

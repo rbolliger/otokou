@@ -25,6 +25,21 @@
         android:gravity="top"
         android:orientation="vertical" >
 
+         <TextView
+            android:id="@+id/txtAddUserUsername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="insert the new username" />
+
+        <EditText
+            android:id="@+id/edtAddUserUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10" >
+
+            <requestFocus />
+        </EditText>
+        
         <TextView
             android:id="@+id/txtAddUserApikey"
             android:layout_width="wrap_content"
@@ -36,8 +51,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10" >
-
-            <requestFocus />
         </EditText>
 
         <TextView

@@ -19,7 +19,12 @@ import com.bl457xor.app.otokou.OtokouUser;
  * ---field: otokou_user_id (otokou database primary key)
  * ---field: first_name (first name of the user)
  * ---field: last_name (last name of the user)
+ * ---field: username (username of the user)
  * ---field: apikey (apikey of the user)
+ * ---field: vehicles_number (number of vehicles for this user)
+ * ---field: last_update (last update of this user in the otokou database)
+ * ---field: last_vehicles_update (last update of this user vehicles in the otokou database)
+ * ---field: autoload (if user is loaded at start of application)
  * 
  * usage:<br>
  *  1. build an instance of this object using the constructor.<br>
@@ -58,14 +63,26 @@ public class OtokouUserAdapter {
 	/** column 3 field name				**/ public static final String COL_3_NAME = "last_name";
 	/** column 3 field type				**/ public static final String COL_3_TYPE = "text not null";
 	/** column 3 field default value	**/ public static final String COL_3_DEFAULT = "";
-	/** column 4 field name				**/ public static final String COL_4_NAME = "apikey";
+	/** column 4 field name				**/ public static final String COL_4_NAME = "username";
 	/** column 4 field type				**/ public static final String COL_4_TYPE = "text not null";
 	/** column 4 field default value	**/ public static final String COL_4_DEFAULT = "";
-	/** column 5 field name				**/ public static final String COL_5_NAME = "autoload";
-	/** column 5 field type				**/ public static final String COL_5_TYPE = "integer not null";
-	/** column 5 field default value	**/ public static final long COL_5_DEFAULT = 0;
-	/** column 5 field autoload on		**/ public static final long COL_5_AUTOLOAD_ON = 1;
-	/** column 5 field autoload off		**/ public static final long COL_5_AUTOLOAD_OFF = COL_5_DEFAULT;
+	/** column 5 field name				**/ public static final String COL_5_NAME = "apikey";
+	/** column 5 field type				**/ public static final String COL_5_TYPE = "text not null";
+	/** column 5 field default value	**/ public static final String COL_5_DEFAULT = "";	
+	/** column 6 field name				**/ public static final String COL_6_NAME = "vehicles_number";
+	/** column 6 field type				**/ public static final String COL_6_TYPE = "integer not null";
+	/** column 6 field default value	**/ public static final long COL_6_DEFAULT = 0;	
+	/** column 7 field name				**/ public static final String COL_7_NAME = "last_update";
+	/** column 7 field type				**/ public static final String COL_7_TYPE = "text not null";
+	/** column 7 field default value	**/ public static final String COL_7_DEFAULT = "";	
+	/** column 8 field name				**/ public static final String COL_8_NAME = "last_vehicles_update";
+	/** column 8 field type				**/ public static final String COL_8_TYPE = "text not null";
+	/** column 8 field default value	**/ public static final String COL_8_DEFAULT = "";	
+	/** column 9 field name				**/ public static final String COL_9_NAME = "autoload";
+	/** column 9 field type				**/ public static final String COL_9_TYPE = "integer not null";
+	/** column 9 field default value	**/ public static final long COL_9_DEFAULT = 0;
+	/** column 9 field autoload on		**/ public static final long COL_9_AUTOLOAD_ON = 1;
+	/** column 9 field autoload off		**/ public static final long COL_9_AUTOLOAD_OFF = COL_9_DEFAULT;
 	private User dbHelper;
 	private Context context;
 	private SQLiteDatabase db;
@@ -102,7 +119,11 @@ public class OtokouUserAdapter {
 					+ OtokouUserAdapter.COL_2_NAME + " " + OtokouUserAdapter.COL_2_TYPE + ","
 					+ OtokouUserAdapter.COL_3_NAME + " " + OtokouUserAdapter.COL_3_TYPE + ","
 					+ OtokouUserAdapter.COL_4_NAME + " " + OtokouUserAdapter.COL_4_TYPE + ","
-					+ OtokouUserAdapter.COL_5_NAME + " " + OtokouUserAdapter.COL_5_TYPE
+					+ OtokouUserAdapter.COL_5_NAME + " " + OtokouUserAdapter.COL_5_TYPE + ","
+					+ OtokouUserAdapter.COL_6_NAME + " " + OtokouUserAdapter.COL_6_TYPE + ","
+					+ OtokouUserAdapter.COL_7_NAME + " " + OtokouUserAdapter.COL_7_TYPE + ","
+					+ OtokouUserAdapter.COL_8_NAME + " " + OtokouUserAdapter.COL_8_TYPE + ","
+					+ OtokouUserAdapter.COL_9_NAME + " " + OtokouUserAdapter.COL_9_TYPE
 					+ ");");
 		}
 
@@ -185,56 +206,12 @@ public class OtokouUserAdapter {
 		values.put(OtokouUserAdapter.COL_1_NAME, user.getOtokouUserId());
 		values.put(OtokouUserAdapter.COL_2_NAME, user.getFirstName());
 		values.put(OtokouUserAdapter.COL_3_NAME, user.getLastName());
-		values.put(OtokouUserAdapter.COL_4_NAME, user.getApikey());
-		values.put(OtokouUserAdapter.COL_5_NAME, user.getAutoload());
-		return db.insert(OtokouUserAdapter.TABLE_NAME, null, values);		
-	}
-	
-	/**
-	 * Since Version 1<p>
-	 * 
-	 * Insert a row in the table.<p>
-	 * note: need a call to the open() method before a call to this method.
-	 * 
-	 * @param userId	otokou user database primary key
-	 * @param firstName	first name of the user
-	 * @param lastName	last name of the user
-	 * @param apikey	apikey of the user
-	 * @return id of the inserted row or -1 in case of an error
-	 */	
-	public long insertUser(long userId, String firstName, String lastName, String apikey) {
-		if (!connectionOpen) return -1;
-		
-		ContentValues values = new ContentValues();
-		values.put(OtokouUserAdapter.COL_1_NAME, userId);
-		values.put(OtokouUserAdapter.COL_2_NAME, firstName);
-		values.put(OtokouUserAdapter.COL_3_NAME, lastName);
-		values.put(OtokouUserAdapter.COL_4_NAME, apikey);
-		values.put(OtokouUserAdapter.COL_5_NAME, COL_5_AUTOLOAD_OFF);
-		return db.insert(OtokouUserAdapter.TABLE_NAME, null, values);		
-	}
-	
-	/**
-	 * Since Version 1<p>
-	 * 
-	 * Insert a row in the table.<p>
-	 * note: need a call to the open() method before a call to this method.
-	 * 
-	 * @param userId	otokou user database primary key
-	 * @param firstName	first name of the user
-	 * @param lastName	last name of the user
-	 * @param apikey	apikey of the user
-	 * @return id of the inserted row or -1 in case of an error
-	 */	
-	public long insertUser(long userId, String firstName, String lastName, String apikey, long autoload) {
-		if (!connectionOpen) return -1;
-		
-		ContentValues values = new ContentValues();
-		values.put(OtokouUserAdapter.COL_1_NAME, userId);
-		values.put(OtokouUserAdapter.COL_2_NAME, firstName);
-		values.put(OtokouUserAdapter.COL_3_NAME, lastName);
-		values.put(OtokouUserAdapter.COL_4_NAME, apikey);
-		values.put(OtokouUserAdapter.COL_5_NAME, autoload);
+		values.put(OtokouUserAdapter.COL_4_NAME, user.getUsername());
+		values.put(OtokouUserAdapter.COL_5_NAME, user.getApikey());
+		values.put(OtokouUserAdapter.COL_6_NAME, user.getVehiclesNumber());
+		values.put(OtokouUserAdapter.COL_7_NAME, user.getLastUpdate());
+		values.put(OtokouUserAdapter.COL_8_NAME, user.getLastVehiclesUpdate());
+		values.put(OtokouUserAdapter.COL_9_NAME, user.getAutoload());
 		return db.insert(OtokouUserAdapter.TABLE_NAME, null, values);		
 	}
 
@@ -265,7 +242,7 @@ public class OtokouUserAdapter {
 	public int deleteUsersByApikey(String apikey){
 		if (!connectionOpen) return -1;
 		
-		return db.delete(OtokouUserAdapter.TABLE_NAME, OtokouUserAdapter.COL_4_NAME+"='"+apikey+"'", null);
+		return db.delete(OtokouUserAdapter.TABLE_NAME, OtokouUserAdapter.COL_5_NAME+"='"+apikey+"'", null);
 	}
 
 	/**
@@ -284,37 +261,14 @@ public class OtokouUserAdapter {
 		values.put(OtokouUserAdapter.COL_1_NAME, user.getOtokouUserId());
 		values.put(OtokouUserAdapter.COL_2_NAME, user.getFirstName());
 		values.put(OtokouUserAdapter.COL_3_NAME, user.getLastName());
-		values.put(OtokouUserAdapter.COL_4_NAME, user.getApikey());
-		values.put(OtokouUserAdapter.COL_5_NAME, user.getAutoload());
+		values.put(OtokouUserAdapter.COL_4_NAME, user.getUsername());
+		values.put(OtokouUserAdapter.COL_5_NAME, user.getApikey());
+		values.put(OtokouUserAdapter.COL_6_NAME, user.getVehiclesNumber());
+		values.put(OtokouUserAdapter.COL_7_NAME, user.getLastUpdate());
+		values.put(OtokouUserAdapter.COL_8_NAME, user.getLastVehiclesUpdate());
+		values.put(OtokouUserAdapter.COL_9_NAME, user.getAutoload());
 
 		return db.update(OtokouUserAdapter.TABLE_NAME, values, OtokouUserAdapter.COL_ID_NAME+"="+user.getId() , null) == 1;
-	}
-	
-	/**
-	 * Since Version 1<p>
-	 * 
-	 * Update a row in the table identified by the its id.<p>
-	 * note: need a call to the open() method before a call to this method.
-	 * 
-	 * @param id	id of the row to update
-	 * @param userId	otokou user database primary key (0 to keep actual value)
-	 * @param firstName	first name of the user (null to keep actual value)
-	 * @param lastName	last name of the user (null to keep actual value)
-	 * @param apikey	apikey of the user (null to keep actual value)
-	 * @param apikey	apikey of the user (-1 to keep actual value) 
-	 * @return true if the update of 1 database row executed correctly, false otherwise
-	 */		
-	public boolean updateUserById(long id, long userId, String firstName, String lastName, String apikey, long autoload) {
-		if (!connectionOpen) return false;
-		
-		ContentValues values = new ContentValues();
-		if (userId != 0) values.put(OtokouUserAdapter.COL_1_NAME, userId);
-		if (firstName != null) values.put(OtokouUserAdapter.COL_2_NAME, firstName);
-		if (lastName!= null) values.put(OtokouUserAdapter.COL_3_NAME, lastName);
-		if (apikey!= null) values.put(OtokouUserAdapter.COL_4_NAME, apikey);
-		if (autoload!= -1) values.put(OtokouUserAdapter.COL_5_NAME, autoload);
-
-		return db.update(OtokouUserAdapter.TABLE_NAME, values, OtokouUserAdapter.COL_ID_NAME+"="+id , null) == 1;
 	}
 	
 	/**
@@ -334,9 +288,13 @@ public class OtokouUserAdapter {
 		values.put(OtokouUserAdapter.COL_1_NAME, user.getOtokouUserId());
 		values.put(OtokouUserAdapter.COL_2_NAME, user.getFirstName());
 		values.put(OtokouUserAdapter.COL_3_NAME, user.getLastName());
-		values.put(OtokouUserAdapter.COL_5_NAME, (user.getAutoload() ? OtokouUserAdapter.COL_5_AUTOLOAD_ON :  OtokouUserAdapter.COL_5_AUTOLOAD_OFF) );
+		values.put(OtokouUserAdapter.COL_4_NAME, user.getUsername());
+		values.put(OtokouUserAdapter.COL_6_NAME, user.getVehiclesNumber());
+		values.put(OtokouUserAdapter.COL_7_NAME, user.getLastUpdate());
+		values.put(OtokouUserAdapter.COL_8_NAME, user.getLastVehiclesUpdate());		
+		values.put(OtokouUserAdapter.COL_9_NAME, (user.getAutoload() ? OtokouUserAdapter.COL_9_AUTOLOAD_ON :  OtokouUserAdapter.COL_9_AUTOLOAD_OFF) );
 
-		return db.update(OtokouUserAdapter.TABLE_NAME, values, OtokouUserAdapter.COL_4_NAME+"='"+apikey+"'" , null) == 1;
+		return db.update(OtokouUserAdapter.TABLE_NAME, values, OtokouUserAdapter.COL_5_NAME+"='"+apikey+"'" , null) == 1;
 	}
 
 	/**
@@ -358,6 +316,10 @@ public class OtokouUserAdapter {
 					OtokouUserAdapter.COL_3_NAME,
 					OtokouUserAdapter.COL_4_NAME,
 					OtokouUserAdapter.COL_5_NAME,
+					OtokouUserAdapter.COL_6_NAME,
+					OtokouUserAdapter.COL_7_NAME,
+					OtokouUserAdapter.COL_8_NAME,
+					OtokouUserAdapter.COL_9_NAME,
 		 		},
 		 		null,null, null, null, 
 		 OtokouUserAdapter.COL_1_NAME);
@@ -419,7 +381,7 @@ public class OtokouUserAdapter {
 		
 		return db.query(OtokouUserAdapter.TABLE_NAME, 
 				null, 
-				""+OtokouUserAdapter.COL_4_NAME+ "='"+apikey+"'", 
+				""+OtokouUserAdapter.COL_5_NAME+ "='"+apikey+"'", 
 				null,
 				null, 
 				null, 

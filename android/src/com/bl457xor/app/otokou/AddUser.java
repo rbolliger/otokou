@@ -25,6 +25,7 @@ public class AddUser extends Activity implements OnClickListener, Runnable {
 	private static final int RUN_ERROR_USER = 102;
 	
 	// global variables initialization
+	private EditText edtAUUsername;
 	private EditText edtAUAPikey;
 	private TextView txtAUErrorMessage;
 	private ProgressDialog progressDialog;
@@ -40,6 +41,8 @@ public class AddUser extends Activity implements OnClickListener, Runnable {
 	private void initializeUI() {
 		((Button)findViewById(R.id.btnAddUserAdd)).setOnClickListener(this);
 		((Button)findViewById(R.id.btnAddUserBack)).setOnClickListener(this);
+		
+		edtAUUsername = (EditText)findViewById(R.id.edtAddUserUsername);
 		
 		edtAUAPikey = (EditText)findViewById(R.id.edtAddUserApikey);
 		
@@ -59,7 +62,7 @@ public class AddUser extends Activity implements OnClickListener, Runnable {
 	}
 	
 	private void submit() {		
-		if (apikeyIsValid(edtAUAPikey.getText().toString())) {
+		if (formIsValid(edtAUUsername.getText().toString(),edtAUAPikey.getText().toString())) {
 			
 			// TODO check otokou and add user to database
 
@@ -83,7 +86,7 @@ public class AddUser extends Activity implements OnClickListener, Runnable {
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
-		OtokouUser otokouUser = OtokouAPI.getUserData(edtAUAPikey.getText().toString());
+		OtokouUser otokouUser = OtokouAPI.getUserData(edtAUUsername.getText().toString(), edtAUAPikey.getText().toString());
 		if (otokouUser != null) {
 			handler.sendEmptyMessage(RUN_MSG_LOADING_OK);
 			// save user data to database
@@ -115,16 +118,24 @@ public class AddUser extends Activity implements OnClickListener, Runnable {
 		}
 	};
 
-	private boolean apikeyIsValid(String apikey) {
+	private boolean formIsValid(String username, String apikey) {
 		// TODO check apikey format
 		
-		if (apikey.contentEquals("")) {
-			txtAUErrorMessage.setText("empy string");
-			return false;
+		String message = "";
+		boolean result = true;
+		
+		if (username.contentEquals("")) {
+			message += "empty username  ";
+			result = false;
 		}
-		else {
-			return true;
-		}	
+		
+		if (apikey.contentEquals("")) {
+			message += "empty apikey";
+			result = false;
+		}
+		
+		txtAUErrorMessage.setText(message);	
+		return result;
 	}
 	
 	private boolean isOnline() {
@@ -135,5 +146,4 @@ public class AddUser extends Activity implements OnClickListener, Runnable {
 	    }
 	    return false;
 	}
-
 }
