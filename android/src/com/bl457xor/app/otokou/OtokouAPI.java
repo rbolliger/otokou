@@ -25,10 +25,10 @@ public class OtokouAPI {
 		}		
 	}
 	
-	public static ArrayList<OtokouVehicle> getVehiclesData(String apiKey) {	
+	public static ArrayList<OtokouVehicle> getVehiclesData(String username, String apiKey) {	
 		String getRequest = OTOKOU_API_URL+OTOKOU_GET_VEHICLES_ACTION;
     	try {		
-    		return OtokouVehicle.CollectionFromXml(HttpHelper.executeHttpPost(getRequest,writeGetVehiclesXml(apiKey)));
+    		return OtokouVehicle.CollectionFromXml(HttpHelper.executeHttpPost(getRequest,writeGetVehiclesXml(username, apiKey)));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -36,10 +36,10 @@ public class OtokouAPI {
 		}
 	}
 
-	public static boolean setNewChargeData(OtokouCharge charge, String apiKey) {
+	public static boolean setNewChargeData(String username, String apiKey, OtokouCharge charge) {
 		String getRequest = OTOKOU_API_URL+OTOKOU_SET_CHARGE_ACTION;
     	try {
-    		return OtokouCharge.checkReponseXml(HttpHelper.executeHttpPost(getRequest,writeSetNewChargeXml(charge, apiKey)));
+    		return OtokouCharge.checkReponseXml(HttpHelper.executeHttpPost(getRequest,writeSetNewChargeXml(username, apiKey, charge)));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -79,7 +79,7 @@ public class OtokouAPI {
 	    } 
 	}
 	
-	private static String writeGetVehiclesXml(String apiKey) {
+	private static String writeGetVehiclesXml(String username, String apiKey) {
 	    XmlSerializer serializer = Xml.newSerializer();
 	    StringWriter writer = new StringWriter();
 	    try {
@@ -94,6 +94,9 @@ public class OtokouAPI {
 	        serializer.endTag(null, "request");
 	        serializer.endTag(null, "header");
 	        serializer.startTag(null, "body");
+	        serializer.startTag(null, "username");
+	        serializer.text(username);
+	        serializer.endTag(null, "username");
 	        serializer.startTag(null, "apikey");
 	        serializer.text(apiKey);
 	        serializer.endTag(null, "apikey");
@@ -107,7 +110,7 @@ public class OtokouAPI {
 	    } 
 	}
 	
-	private static String writeSetNewChargeXml(OtokouCharge charge, String apiKey) {
+	private static String writeSetNewChargeXml(String username, String apiKey, OtokouCharge charge) {
 	    XmlSerializer serializer = Xml.newSerializer();
 	    StringWriter writer = new StringWriter();
 	    try {
@@ -122,9 +125,12 @@ public class OtokouAPI {
 	        serializer.endTag(null, "request");
 	        serializer.endTag(null, "header");
 	        serializer.startTag(null, "body");
+	        serializer.startTag(null, "username");
+	        serializer.text(username);
+	        serializer.endTag(null, "username");
 	        serializer.startTag(null, "apikey");
 	        serializer.text(apiKey);
-	        serializer.endTag(null, "apikey");        
+	        serializer.endTag(null, "apikey");
 	        serializer.startTag(null, "vehicle_id");
 	        serializer.text(""+charge.getVehicleId());
 	        serializer.endTag(null, "vehicle_id");

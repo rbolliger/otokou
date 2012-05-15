@@ -106,7 +106,6 @@ public class User extends Activity implements OnSharedPreferenceChangeListener, 
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
         preferences.registerOnSharedPreferenceChangeListener(this);
         preferences.edit().putString("apikey", otokouUser.getApikey()).commit();
-        preferences.edit().putString("username", otokouUser.getUsername()).commit();
 	}
     
 	private void initializeUI() {		
@@ -145,6 +144,7 @@ public class User extends Activity implements OnSharedPreferenceChangeListener, 
 		if (isOnline()) {
 			String apiKey = otokouUser.getApikey();
 			String username = otokouUser.getUsername();
+			long userId = otokouUser.getId();
 			if (!OtokouApiKey.checkKey(apiKey)) {
 				handler.sendEmptyMessage(RUN_ERROR_API_KEY);
 			}
@@ -158,7 +158,7 @@ public class User extends Activity implements OnSharedPreferenceChangeListener, 
 					
 					// save user data to database
 					OtokouUserAdapter OUAdb = new OtokouUserAdapter(getApplicationContext()).open();
-					OUAdb.updateUsersByApikey(apiKey, retrivedOtokouUser);
+					OUAdb.updateUsersById(userId, retrivedOtokouUser);
 					OUAdb.close();
 					
 					otokouUser = null;
@@ -167,7 +167,7 @@ public class User extends Activity implements OnSharedPreferenceChangeListener, 
 					
 					// load vehicles data from Otokou
 					handler.sendEmptyMessage(RUN_MSG_LOADING_VEHICLES);
-					vehicles = OtokouAPI.getVehiclesData(apiKey);					
+					vehicles = OtokouAPI.getVehiclesData(username, apiKey);					
 					
 					if (vehicles != null) {
 						// save vehicles data to database
@@ -281,7 +281,7 @@ public class User extends Activity implements OnSharedPreferenceChangeListener, 
 		extras.putInt("vehiclesNumber", vehiclesNumber);
 		
 		extras.putByteArray("user", otokouUser.toByteArray());	
-		extras.putString("apikey", preferences.getString("apikey", ""));	
+		//extras.putString("apikey", preferences.getString("apikey", ""));	
 		i.putExtras(extras);
 		
 		startActivityForResult(i, 0);

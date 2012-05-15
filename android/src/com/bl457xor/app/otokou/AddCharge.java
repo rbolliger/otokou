@@ -35,7 +35,6 @@ public class AddCharge extends Activity implements OnClickListener {
 	
 	// global variables initialization
 	private OtokouUser otokouUser;
-	private String apikey;
 	private ArrayList<OtokouVehicle> vehicles = new ArrayList<OtokouVehicle>();
 	private EditText edtKilometers;
 	private EditText edtAmount;
@@ -67,7 +66,7 @@ public class AddCharge extends Activity implements OnClickListener {
 		}			
 
 		otokouUser = OtokouUser.OtokouUserFromByteArray(getIntent().getExtras().getByteArray("user"));
-		apikey = getIntent().getExtras().getString("apikey");
+		//apikey = getIntent().getExtras().getString("apikey");
 	}
 
 	private void initializeUI() {		
@@ -111,7 +110,7 @@ public class AddCharge extends Activity implements OnClickListener {
 		
 		if (isOnline()) {
 			// TODO check results
-			OtokouAPI.setNewChargeData(charge, apikey);
+			OtokouAPI.setNewChargeData(otokouUser.getUsername(), otokouUser.getApikey(), charge);
 			
 			OtokouChargeAdapter OCAdb = new OtokouChargeAdapter(getApplicationContext()).open();
 			OCAdb.insertCharge(charge, otokouUser, vehicles.get((int)spnVehicle.getSelectedItemId()), OtokouChargeAdapter.COL_4_SENT_VALUE);

@@ -26,6 +26,7 @@ $browser->info('1a - Get User Franz')->
    <request>get_user</request>
   </header>
   <body>
+   <username>franz</username>
    <apikey>rori123456</apikey>
   </body>
  </otokou>
@@ -58,6 +59,7 @@ $browser->info('2a - Get Vehicles of Franz')->
    <request>get_vehicles</request>
   </header>
   <body>
+   <username>franz</username>
    <apikey>rori123456</apikey>
   </body>
  </otokou>
@@ -93,6 +95,7 @@ $browser->info('3a - Set a real Charge')->
    <request>set_charge</request>
   </header>
   <body>
+   <username>ruf</username>
    <apikey>rt5674asd0</apikey>
    <vehicle_id>4</vehicle_id>
    <category_id>1</category_id>
@@ -124,6 +127,7 @@ $browser->info('4 - Get request')->
    <request>set_charge</request>
   </header>
   <body>
+   <username>ruf</username>
    <apikey>rt5674asd0</apikey>
    <vehicle_id>4</vehicle_id>
    <category_id>1</category_id>

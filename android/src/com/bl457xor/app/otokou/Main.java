@@ -25,9 +25,10 @@ import com.bl457xor.app.otokou.db.OtokouUserAdapter;
 
 
 // TODO
-// manage database relation (delete user, update database,...)
-// add API username + apikey
-// reload behicles only if needed
+// reload vehicles only if needed
+// check values for add charge
+// change apikey on preference consequences
+// exceptions system
 // ...
 
 

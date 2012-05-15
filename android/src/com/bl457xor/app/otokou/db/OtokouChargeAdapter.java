@@ -33,8 +33,8 @@ import com.bl457xor.app.otokou.OtokouVehicle;
  *  3. use the various method you need to perform actions on the database (see functionalities section).<br>
  *  4. use the close() method to close a connection.<p>
  *  functionalities:<br>
- *  1. Moves database connection<br>
- *  2. Moves database creation and upgrade<br>
+ *  1. Charges database connection<br>
+ *  2. Charges database creation and upgrade<br>
  *  3. delete all Charges (deleteAllCharges() method)<br>
  *  4. insert of a new Charge (insertCharge() method)<br>
  *  5. delete a single Charge by id (deleteChargeById() method)<br>

@@ -32,17 +32,17 @@ import com.bl457xor.app.otokou.OtokouUser;
  *  3. use the various method you need to perform actions on the database (see functionalities section).<br>
  *  4. use the close() method to close a connection.<p>
  *  functionalities:<br>
- *  1. Moves database connection<br>
- *  2. Moves database creation and upgrade<br>
- *  3. insert of a new User (insertUser() method)<br>
- *  4. delete a single User by ID (deleteUserById() method)<br>
- *  4. delete Users by apikey (deleteUsersByApikey() method)<br>
- *  5. update a single User by ID (updateUserById() method)<br>
- *  5. update a Users by apikey (updateUsersByApikey() method)<br>
- *  7. (getAllUsers() method)<br>
- *  8. (getUserById() method)<br>
- *  9. (getUsersByApikey() method)<br>
- *  10. (getMoveById() method)<br>
+ *  1. Users database connection<br>
+ *  2. Users database creation and upgrade<br>
+ *  3. delete all Users (deleteAllUsers() method)<br>
+ *  4. insert of a new User (insertUser() method)<br>
+ *  5. delete a single User by ID (deleteUserById() method)<br>
+ *  7. update a single User by ID (updateUserById() method)<br>
+ *  8. update a Users by id (updateUsersById() method)<br>
+ *  9. (getAllUsers() method)<br>
+ *  10. (getUserById() method)<br>
+ *  
+ *  note: related databases will also be affected (deleting a user will also delete all of his vehicles and charges)
  *  
  *  @author Dave Bergomi
  *  @version 1
@@ -83,6 +83,7 @@ public class OtokouUserAdapter {
 	/** column 9 field default value	**/ public static final long COL_9_DEFAULT = 0;
 	/** column 9 field autoload on		**/ public static final long COL_9_AUTOLOAD_ON = 1;
 	/** column 9 field autoload off		**/ public static final long COL_9_AUTOLOAD_OFF = COL_9_DEFAULT;
+	
 	private User dbHelper;
 	private Context context;
 	private SQLiteDatabase db;
@@ -114,6 +115,7 @@ public class OtokouUserAdapter {
 
 		@Override
 		public void onCreate(SQLiteDatabase db) {
+			// create new database
 			db.execSQL("create table " + OtokouUserAdapter.TABLE_NAME + " (" + OtokouUserAdapter.COL_ID_NAME + " " + OtokouUserAdapter.COL_ID_TYPE + ", "
 					+ OtokouUserAdapter.COL_1_NAME + " " + OtokouUserAdapter.COL_1_TYPE + ","
 					+ OtokouUserAdapter.COL_2_NAME + " " + OtokouUserAdapter.COL_2_TYPE + ","
@@ -125,6 +127,13 @@ public class OtokouUserAdapter {
 					+ OtokouUserAdapter.COL_8_NAME + " " + OtokouUserAdapter.COL_8_TYPE + ","
 					+ OtokouUserAdapter.COL_9_NAME + " " + OtokouUserAdapter.COL_9_TYPE
 					+ ");");
+			
+			// delete related databases data
+			OtokouVehicleAdapter otokouVehicleAdapter = new OtokouVehicleAdapter(context).open();
+			otokouVehicleAdapter.deleteAllVehicles().close();
+			
+			OtokouChargeAdapter otokouChargeAdapter = new OtokouChargeAdapter(context).open();
+			otokouChargeAdapter.deleteAllCharges().close();
 		}
 
 		@Override
@@ -186,7 +195,16 @@ public class OtokouUserAdapter {
 	 * @return this (for chaining)
 	 */	
 	public OtokouUserAdapter deleteAllUsers(){
-		if (connectionOpen) db.execSQL("DELETE FROM "+ OtokouUserAdapter.TABLE_NAME);
+		if (connectionOpen) {		
+			// delete related databases data
+			OtokouVehicleAdapter otokouVehicleAdapter = new OtokouVehicleAdapter(context).open();
+			otokouVehicleAdapter.deleteAllVehicles().close();
+			
+			OtokouChargeAdapter otokouChargeAdapter = new OtokouChargeAdapter(context).open();
+			otokouChargeAdapter.deleteAllCharges().close();
+			
+			db.execSQL("DELETE FROM "+ OtokouUserAdapter.TABLE_NAME);
+		}
 		return this;
 	}
 
@@ -227,22 +245,16 @@ public class OtokouUserAdapter {
 	public boolean deleteUserById(long id){
 		if (!connectionOpen) return false;
 		
-		return db.delete(OtokouUserAdapter.TABLE_NAME, OtokouUserAdapter.COL_ID_NAME+"="+id, null) == 1;
-	}
-	
-	/**
-	 * Since Version 1<p>
-	 * 
-	 * Delete rows in the table using the apikey as row identifier.<p>
-	 * note: need a call to the open() method before a call to this method.
-	 * 
-	 * @param id identifier of the rows to delete
-	 * @return number of row deleted, -1 if error
-	 */	
-	public int deleteUsersByApikey(String apikey){
-		if (!connectionOpen) return -1;
+		// delete related databases data
+		OtokouVehicleAdapter otokouVehicleAdapter = new OtokouVehicleAdapter(context).open();
+		otokouVehicleAdapter.deleteVehiclesByUserId(id);
+		otokouVehicleAdapter.close();
 		
-		return db.delete(OtokouUserAdapter.TABLE_NAME, OtokouUserAdapter.COL_5_NAME+"='"+apikey+"'", null);
+		OtokouChargeAdapter otokouChargeAdapter = new OtokouChargeAdapter(context).open();
+		otokouChargeAdapter.deleteChargesByUserId(id);
+		otokouChargeAdapter.close();
+		
+		return db.delete(OtokouUserAdapter.TABLE_NAME, OtokouUserAdapter.COL_ID_NAME+"="+id, null) == 1;
 	}
 
 	/**
@@ -274,14 +286,14 @@ public class OtokouUserAdapter {
 	/**
 	 * Since Version 1<p>
 	 * 
-	 * Update a row in the table identified by the its apikey.<p>
+	 * Update a row in the table identified by its id.<p>
 	 * note: need a call to the open() method before a call to this method.
 	 * 
-	 * @param apikey	apikey of the row to update
+	 * @param id	id of the row to update
 	 * @param user	OtokouUser instance
 	 * @return true if the update of 1 database row executed correctly, false otherwise
 	 */		
-	public boolean updateUsersByApikey(String apikey, OtokouUser user) {
+	public boolean updateUsersById(long id, OtokouUser user) {
 		if (!connectionOpen) return false;
 		
 		ContentValues values = new ContentValues();
@@ -289,12 +301,13 @@ public class OtokouUserAdapter {
 		values.put(OtokouUserAdapter.COL_2_NAME, user.getFirstName());
 		values.put(OtokouUserAdapter.COL_3_NAME, user.getLastName());
 		values.put(OtokouUserAdapter.COL_4_NAME, user.getUsername());
+		values.put(OtokouUserAdapter.COL_5_NAME, user.getApikey());
 		values.put(OtokouUserAdapter.COL_6_NAME, user.getVehiclesNumber());
 		values.put(OtokouUserAdapter.COL_7_NAME, user.getLastUpdate());
 		values.put(OtokouUserAdapter.COL_8_NAME, user.getLastVehiclesUpdate());		
 		values.put(OtokouUserAdapter.COL_9_NAME, (user.getAutoload() ? OtokouUserAdapter.COL_9_AUTOLOAD_ON :  OtokouUserAdapter.COL_9_AUTOLOAD_OFF) );
 
-		return db.update(OtokouUserAdapter.TABLE_NAME, values, OtokouUserAdapter.COL_5_NAME+"='"+apikey+"'" , null) == 1;
+		return db.update(OtokouUserAdapter.TABLE_NAME, values, OtokouUserAdapter.COL_ID_NAME+"="+user.getId() , null) == 1;
 	}
 
 	/**
@@ -340,48 +353,6 @@ public class OtokouUserAdapter {
 		return db.query(OtokouUserAdapter.TABLE_NAME, 
 				null, 
 				""+OtokouUserAdapter.COL_ID_NAME+ "="+id, 
-				null,
-				null, 
-				null, 
-				null);
-	}
-	
-	/**
-	 * Since Version 1<p>
-	 * 
-	 * Get a row identified by its otokou user database id.<p>
-	 * note: need a call to the open() method before a call to this method.
-	 * 
-	 * @param otokou_user_id	otokou user database id of the row to get
-	 * @return cursor object containing the row data. null object will be returned in case of errors.
-	 */		
-	public Cursor getUserByOtokouUserId(long otokou_user_id){
-		if (!connectionOpen) return null;
-		
-		return db.query(OtokouUserAdapter.TABLE_NAME, 
-				null, 
-				""+OtokouUserAdapter.COL_1_NAME+ "="+otokou_user_id, 
-				null,
-				null, 
-				null, 
-				null);
-	}
-	
-	/**
-	 * Since Version 1<p>
-	 * 
-	 * Get rows identified by its apikey.<p>
-	 * note: need a call to the open() method before a call to this method.
-	 * 
-	 * @param apikey	apikey of the row to update
-	 * @return cursor object containing the row data. null object will be returned in case of errors.
-	 */		
-	public Cursor getUsersByApikey(String apikey){
-		if (!connectionOpen) return null;
-		
-		return db.query(OtokouUserAdapter.TABLE_NAME, 
-				null, 
-				""+OtokouUserAdapter.COL_5_NAME+ "='"+apikey+"'", 
 				null,
 				null, 
 				null, 

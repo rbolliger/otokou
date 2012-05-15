@@ -26,8 +26,8 @@ import com.bl457xor.app.otokou.OtokouVehicle;
  *  3. use the various method you need to perform actions on the database (see functionalities section).<br>
  *  4. use the close() method to close a connection.<p>
  *  functionalities:<br>
- *  1. Moves database connection<br>
- *  2. Moves database creation and upgrade<br>
+ *  1. Vehicles database connection<br>
+ *  2. Vehicles database creation and upgrade<br>
  *  3. delete all Vehicles (deleteAllVehicles() method)<br>
  *  4. insert of a new Vehicle (insertVehicle() method)<br>
  *  5. delete a single Vehicle by id (deleteVehicleById() method)<br>
@@ -36,6 +36,8 @@ import com.bl457xor.app.otokou.OtokouVehicle;
  *  8. (getAllVehicles() method)<br>
  *  9. (getVehicleById() method)<br>
  *  10. (getVehiclesByUserId() method)<br>
+ *  
+ *  note: related databases will also be affected (deleting a vehicle will also delete all of his charges)
  *  
  *  @author Dave Bergomi
  *  @version 1
@@ -92,6 +94,10 @@ public class OtokouVehicleAdapter {
 					+ OtokouVehicleAdapter.COL_2_NAME + " " + OtokouVehicleAdapter.COL_2_TYPE + ","
 					+ OtokouVehicleAdapter.COL_3_NAME + " " + OtokouVehicleAdapter.COL_3_TYPE
 					+ ");");
+			
+			// delete related databases data
+			OtokouChargeAdapter otokouChargeAdapter = new OtokouChargeAdapter(context).open();
+			otokouChargeAdapter.deleteAllCharges().close();
 		}
 
 		@Override
@@ -153,7 +159,13 @@ public class OtokouVehicleAdapter {
 	 * @return this (for chaining)
 	 */	
 	public OtokouVehicleAdapter deleteAllVehicles(){
-		if (connectionOpen) db.execSQL("DELETE FROM "+ OtokouVehicleAdapter.TABLE_NAME);
+		if (connectionOpen) {
+			// delete related databases data
+			OtokouChargeAdapter otokouChargeAdapter = new OtokouChargeAdapter(context).open();
+			otokouChargeAdapter.deleteAllCharges().close();
+			
+			db.execSQL("DELETE FROM "+ OtokouVehicleAdapter.TABLE_NAME);
+		}
 		return this;
 	}
 
@@ -189,6 +201,11 @@ public class OtokouVehicleAdapter {
 	public boolean deleteVehicleById(long id){
 		if (!connectionOpen) return false;
 		
+		// delete related databases data
+		OtokouChargeAdapter otokouChargeAdapter = new OtokouChargeAdapter(context).open();
+		otokouChargeAdapter.deleteChargesByVehicleId(id);
+		otokouChargeAdapter.close();
+		
 		return db.delete(OtokouVehicleAdapter.TABLE_NAME, OtokouVehicleAdapter.COL_ID_NAME+"="+id, null) == 1;
 	}
 	
@@ -203,6 +220,18 @@ public class OtokouVehicleAdapter {
 	 */	
 	public int deleteVehiclesByUserId(long user_id){
 		if (!connectionOpen) return -1;
+		
+		// delete related databases data
+		Cursor cursor = getVehiclesByUserId(user_id);
+		if (cursor.getCount() > 0) {
+			OtokouChargeAdapter otokouChargeAdapter = new OtokouChargeAdapter(context).open();
+			cursor.moveToLast();
+			do {
+				otokouChargeAdapter.deleteChargesByVehicleId(cursor.getLong(cursor.getColumnIndex(COL_ID_NAME)));
+			} while (cursor.moveToPrevious());
+			otokouChargeAdapter.close();
+		}
+		cursor.close();
 		
 		return db.delete(OtokouVehicleAdapter.TABLE_NAME, OtokouVehicleAdapter.COL_1_NAME+"="+user_id, null);
 	}

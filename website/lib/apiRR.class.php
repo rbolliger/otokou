@@ -40,6 +40,7 @@ class apiRR {
 	private $xmlRequest;
 	private $requestType;
 	private $requestApiVersion;
+	private $requestUsername;
 	private $requestApiKey;
 	private $requestVehicle;
 	private $requestCategory;
@@ -156,8 +157,12 @@ class apiRR {
 	 */
 	private function decomposeGetUserRequest() {
 		if ($this->xmlRequest->otokou->body) {
-			if ($this->xmlRequest->otokou->body->apikey) {
-				$this->requestApiKey = trim($this->xmlRequest->otokou->body->apikey);
+			if ($this->xmlRequest->otokou->body->username) {
+				$this->requestUsername = trim($this->xmlRequest->otokou->body->username);
+				if ($this->xmlRequest->otokou->body->apikey) {
+					$this->requestApiKey = trim($this->xmlRequest->otokou->body->apikey);
+				}
+				else $this->setError(142);
 			}
 			else $this->setError(141);
 		}
@@ -171,8 +176,12 @@ class apiRR {
 	 */
 	private function decomposeGetVehiclesRequest() {
 		if ($this->xmlRequest->otokou->body) {
-			if ($this->xmlRequest->otokou->body->apikey) {
-				$this->requestApiKey = trim($this->xmlRequest->otokou->body->apikey);
+			if ($this->xmlRequest->otokou->body->username) {
+				$this->requestUsername = trim($this->xmlRequest->otokou->body->username);
+				if ($this->xmlRequest->otokou->body->apikey) {
+					$this->requestApiKey = trim($this->xmlRequest->otokou->body->apikey);
+				}
+				else $this->setError(152);
 			}
 			else $this->setError(151);
 		}
@@ -187,24 +196,28 @@ class apiRR {
 	private function decomposeSetChargeRequest() {
 		// retrieve XML data
 		if ($this->xmlRequest->otokou->body) {
-			if ($this->xmlRequest->otokou->body->apikey) {
-				$this->requestApiKey = trim($this->xmlRequest->otokou->body->apikey);
-				if ($this->xmlRequest->otokou->body->vehicle_id) {
-					$this->requestVehicle = trim($this->xmlRequest->otokou->body->vehicle_id);
-					if ($this->xmlRequest->otokou->body->category_id) {
-						$this->requestCategory = trim($this->xmlRequest->otokou->body->category_id);
-						if ($this->xmlRequest->otokou->body->date) {
-							$this->requestDate = trim($this->xmlRequest->otokou->body->date);
-							if ($this->xmlRequest->otokou->body->kilometers) {
-								$this->requestKilometers = trim($this->xmlRequest->otokou->body->kilometers);
-								if ($this->xmlRequest->otokou->body->amount) {
-									$this->requestAmount = trim($this->xmlRequest->otokou->body->amount);
-									
-									if ($this->xmlRequest->otokou->body->comment) $this->requestComment = trim($this->xmlRequest->otokou->body->comment);
-									else $this->requestComment = "";
-									
-									if ($this->xmlRequest->otokou->body->quantity) $this->requestQuantity = trim($this->xmlRequest->otokou->body->quantity);
-									else $this->requestQuantity = "";
+			if ($this->xmlRequest->otokou->body->username) {
+				$this->requestUsername = trim($this->xmlRequest->otokou->body->username);
+				if ($this->xmlRequest->otokou->body->apikey) {
+					$this->requestApiKey = trim($this->xmlRequest->otokou->body->apikey);
+					if ($this->xmlRequest->otokou->body->vehicle_id) {
+						$this->requestVehicle = trim($this->xmlRequest->otokou->body->vehicle_id);
+						if ($this->xmlRequest->otokou->body->category_id) {
+							$this->requestCategory = trim($this->xmlRequest->otokou->body->category_id);
+							if ($this->xmlRequest->otokou->body->date) {
+								$this->requestDate = trim($this->xmlRequest->otokou->body->date);
+								if ($this->xmlRequest->otokou->body->kilometers) {
+									$this->requestKilometers = trim($this->xmlRequest->otokou->body->kilometers);
+									if ($this->xmlRequest->otokou->body->amount) {
+										$this->requestAmount = trim($this->xmlRequest->otokou->body->amount);
+										
+										if ($this->xmlRequest->otokou->body->comment) $this->requestComment = trim($this->xmlRequest->otokou->body->comment);
+										else $this->requestComment = "";
+										
+										if ($this->xmlRequest->otokou->body->quantity) $this->requestQuantity = trim($this->xmlRequest->otokou->body->quantity);
+										else $this->requestQuantity = "";
+									}
+									else $this->setError(167);
 								}
 								else $this->setError(166);
 							}
@@ -283,7 +296,7 @@ class apiRR {
 			case self::GET_USER_REQUEST:
 			case self::GET_VEHICLES_REQUEST:
 				try {
-					$user = Doctrine_Core::getTable('sfGuardUser')->createQuery('u')->where('u.api_key = ?',$this->requestApiKey)->execute();
+					$user = Doctrine_Core::getTable('sfGuardUser')->createQuery('u')->where('u.api_key = ?',$this->requestApiKey)->andwhere('u.username = ?',$this->requestUsername)->execute();
 					if (sizeof($user)==1) {
 						$this->responseUser = $user[0];
 						$this->responseVehicles = Doctrine_Core::getTable('Vehicle')->createQuery('v')->where('v.user_id = ?',$user[0]->getId())->execute(); 
@@ -296,7 +309,7 @@ class apiRR {
 				break;
 			case self::SET_CHARGE_REQUEST:
 				try {
-					$user = Doctrine_Core::getTable('sfGuardUser')->createQuery('u')->where('u.api_key = ?',$this->requestApiKey)->execute();
+					$user = Doctrine_Core::getTable('sfGuardUser')->createQuery('u')->where('u.api_key = ?',$this->requestApiKey)->andwhere('u.username = ?',$this->requestUsername)->execute();
 					if (sizeof($user)==1) {
 						$this->responseUser =$user[0];
 						$this->responseVehicles = Doctrine_Core::getTable('Vehicle')->createQuery('v')->where('v.user_id = ?',$user[0]->getId())->andwhere('v.id = ?',$this->requestVehicle)->execute();
@@ -479,21 +492,26 @@ class apiRR {
 			case 141:
 			case 151:
 			case 161:
+				$this->errorMessage = 'XML not recognized by API, missing username element.';
+				break;
+			case 142:
+			case 152:
+			case 162:
 				$this->errorMessage = 'XML not recognized by API, missing apikey element.';
 				break;
-			case 162:
+			case 163:
 				$this->errorMessage = 'XML not recognized by API, missing vehicle_id element.';
 				break;
-			case 163:
+			case 164:
 				$this->errorMessage = 'XML not recognized by API, missing category_id element.';
 				break;
-			case 164:
+			case 165:
 				$this->errorMessage = 'XML not recognized by API, missing date element.';
 				break;
-			case 165:
+			case 166:
 				$this->errorMessage = 'XML not recognized by API, missing kilometers element.';
 				break;
-			case 166:
+			case 167:
 				$this->errorMessage = 'XML not recognized by API, missing amount element.';
 				break;
 			case 170:
@@ -521,7 +539,7 @@ class apiRR {
 				$this->errorMessage = 'Wrong API request.';
 				break;
 			case 211:
-				$this->errorMessage = 'User not found.';
+				$this->errorMessage = 'Username or apikey incorrect.';
 				break;
 			case 220:
 				$this->errorMessage = 'Vehicle not found.';
