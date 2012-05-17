@@ -20,8 +20,10 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
+import android.database.Cursor;
 import android.util.Log;
 
+import com.bl457xor.app.otokou.db.OtokouVehicleAdapter;
 import com.bl457xor.app.otokou.xml.OtokouXmlGetVehiclesHandler;
 
 public class OtokouVehicle implements Serializable {
@@ -36,7 +38,13 @@ public class OtokouVehicle implements Serializable {
 		this.otokouVehicleID = otokouVehicleID;
 		this.vehicle = vehicle;
 	}
-	
+
+	public OtokouVehicle(Cursor cursor) {
+		this.id = cursor.getLong(cursor.getColumnIndex(OtokouVehicleAdapter.COL_ID_NAME));
+		this.otokouVehicleID = cursor.getLong(cursor.getColumnIndex(OtokouVehicleAdapter.COL_2_NAME));
+		this.vehicle = cursor.getString(cursor.getColumnIndex(OtokouVehicleAdapter.COL_3_NAME));
+	}
+
 	@Override
 	public String toString() {
 		return otokouVehicleID+" "+vehicle;
@@ -151,6 +159,19 @@ public class OtokouVehicle implements Serializable {
 	public void setFound(boolean found) {
 		this.found = found;
 	}
-	
-	
+
+	public static ArrayList<OtokouVehicle> getVehiclesFromCursor(Cursor cursor) {
+		ArrayList<OtokouVehicle> vehicles = new ArrayList<OtokouVehicle>();
+		
+		if (cursor.getCount() > 0) {
+			cursor.moveToLast();
+			do {
+				vehicles.add(new OtokouVehicle(cursor));
+			} while (cursor.moveToPrevious());
+			return vehicles;
+		}
+		else {
+			return null;
+		}		
+	}
 }

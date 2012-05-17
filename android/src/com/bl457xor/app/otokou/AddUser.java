@@ -91,7 +91,7 @@ public class AddUser extends Activity implements OnClickListener, Runnable {
 			handler.sendEmptyMessage(RUN_MSG_LOADING_OK);
 			// save user data to database
 			OtokouUserAdapter OUAdb = new OtokouUserAdapter(getApplicationContext()).open();
-			OUAdb.insertUser(otokouUser);
+			OUAdb.insertUserWithoutVehicles(otokouUser);
 			OUAdb.close();
 		}
 		else {

@@ -66,7 +66,6 @@ public class AddCharge extends Activity implements OnClickListener {
 		}			
 
 		otokouUser = OtokouUser.OtokouUserFromByteArray(getIntent().getExtras().getByteArray("user"));
-		//apikey = getIntent().getExtras().getString("apikey");
 	}
 
 	private void initializeUI() {		

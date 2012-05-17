@@ -154,60 +154,75 @@ public class User extends Activity implements OnSharedPreferenceChangeListener, 
 				OtokouUser retrivedOtokouUser = OtokouAPI.getUserData(username, apiKey);
 				
 				if (retrivedOtokouUser != null) {
-					retrivedOtokouUser.setAutoload(otokouUser.getAutoload());
+					retrivedOtokouUser.addLocalUserData(otokouUser);
 					
 					// save user data to database
 					OtokouUserAdapter OUAdb = new OtokouUserAdapter(getApplicationContext()).open();
 					OUAdb.updateUsersById(userId, retrivedOtokouUser);
 					OUAdb.close();
 					
-					otokouUser = null;
-					otokouUser = retrivedOtokouUser;
-					retrivedOtokouUser = null;
-					
-					// load vehicles data from Otokou
-					handler.sendEmptyMessage(RUN_MSG_LOADING_VEHICLES);
-					vehicles = OtokouAPI.getVehiclesData(username, apiKey);					
-					
-					if (vehicles != null) {
-						// save vehicles data to database
-						OtokouVehicleAdapter OVAdb = new OtokouVehicleAdapter(getApplicationContext()).open();
-						Cursor vehiclesCursor = OVAdb.getVehiclesByUserId(otokouUser.getId());
-						if (vehiclesCursor.getCount() > 0) {
-							vehiclesCursor.moveToLast();
-							do {
-								long otokouVehicleId = vehiclesCursor.getLong(vehiclesCursor.getColumnIndex(OtokouVehicleAdapter.COL_2_NAME));
-								boolean found = false;
+					// check if vehicles data has changed
+					if (otokouUser.vehiclesAreOutOfDate(retrivedOtokouUser)) {
+						otokouUser = null;
+						otokouUser = retrivedOtokouUser;
+						retrivedOtokouUser = null;
+						
+						// load vehicles data from Otokou
+						handler.sendEmptyMessage(RUN_MSG_LOADING_VEHICLES);
+						vehicles = OtokouAPI.getVehiclesData(username, apiKey);
+						
+						if (vehicles != null) {
+							// save vehicles data to database
+							OtokouVehicleAdapter OVAdb = new OtokouVehicleAdapter(getApplicationContext()).open();
+							Cursor vehiclesCursor = OVAdb.getVehiclesByUserId(otokouUser.getId());
+							if (vehiclesCursor.getCount() > 0) {
+								vehiclesCursor.moveToLast();
+								do {
+									long otokouVehicleId = vehiclesCursor.getLong(vehiclesCursor.getColumnIndex(OtokouVehicleAdapter.COL_2_NAME));
+									boolean found = false;
+									for (OtokouVehicle vehicle : vehicles) {
+										if (vehicle.getOtokouVehicleId() == otokouVehicleId) {
+											long id = vehiclesCursor.getLong(vehiclesCursor.getColumnIndex(OtokouVehicleAdapter.COL_ID_NAME));
+											found = true;									
+											vehicle.setFound(true);
+											vehicle.setId(id);			
+											OVAdb.updateVehicleById(id, vehicle, otokouUser);
+										}
+									}
+									if (!found) {
+										OVAdb.deleteVehicleById(vehiclesCursor.getLong(vehiclesCursor.getColumnIndex(OtokouVehicleAdapter.COL_ID_NAME)));
+									}
+								} while (vehiclesCursor.moveToPrevious());
 								for (OtokouVehicle vehicle : vehicles) {
-									if (vehicle.getOtokouVehicleId() == otokouVehicleId) {
-										long id = vehiclesCursor.getLong(vehiclesCursor.getColumnIndex(OtokouVehicleAdapter.COL_ID_NAME));
-										found = true;									
-										vehicle.setFound(true);
-										vehicle.setId(id);			
-										OVAdb.updateVehicleById(id, vehicle, otokouUser);
+									if (!vehicle.isFound()) {
+										vehicle.setId(OVAdb.insertVehicle(vehicle, otokouUser));
 									}
 								}
-								if (!found) {
-									OVAdb.deleteVehicleById(vehiclesCursor.getLong(vehiclesCursor.getColumnIndex(OtokouVehicleAdapter.COL_ID_NAME)));
-								}
-							} while (vehiclesCursor.moveToPrevious());
-							for (OtokouVehicle vehicle : vehicles) {
-								if (!vehicle.isFound()) {
+							}
+							else {
+								for (OtokouVehicle vehicle : vehicles) {
 									vehicle.setId(OVAdb.insertVehicle(vehicle, otokouUser));
 								}
 							}
+							vehiclesCursor.close();
+							OVAdb.close();
+							handler.sendEmptyMessage(RUN_MSG_LOADING_OK);
 						}
 						else {
-							for (OtokouVehicle vehicle : vehicles) {
-								vehicle.setId(OVAdb.insertVehicle(vehicle, otokouUser));
-							}
-						}
+							handler.sendEmptyMessage(RUN_ERROR_VEHICLES);
+						}						
+					}
+					else {
+						otokouUser = null;
+						otokouUser = retrivedOtokouUser;
+						retrivedOtokouUser = null;
+						
+						OtokouVehicleAdapter OVAdb = new OtokouVehicleAdapter(getApplicationContext()).open();
+						Cursor vehiclesCursor = OVAdb.getVehiclesByUserId(otokouUser.getId());
+						vehicles = OtokouVehicle.getVehiclesFromCursor(vehiclesCursor);
 						vehiclesCursor.close();
 						OVAdb.close();
 						handler.sendEmptyMessage(RUN_MSG_LOADING_OK);
-					}
-					else {
-						handler.sendEmptyMessage(RUN_ERROR_VEHICLES);
 					}
 				}
 				else {
@@ -273,15 +288,14 @@ public class User extends Activity implements OnSharedPreferenceChangeListener, 
 		Intent i = new Intent(User.this, AddCharge.class);
 		Bundle extras = new Bundle();
 		
-		int vehiclesNumber = 0;		
+		int vehiclesNumber = 0;
 		for (OtokouVehicle vehicle : vehicles) {
 			extras.putByteArray("vehicle_"+vehiclesNumber, vehicle.toByteArray());
 			vehiclesNumber++;
 		}
 		extras.putInt("vehiclesNumber", vehiclesNumber);
 		
-		extras.putByteArray("user", otokouUser.toByteArray());	
-		//extras.putString("apikey", preferences.getString("apikey", ""));	
+		extras.putByteArray("user", otokouUser.toByteArray());		
 		i.putExtras(extras);
 		
 		startActivityForResult(i, 0);

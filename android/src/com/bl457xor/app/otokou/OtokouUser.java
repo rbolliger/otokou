@@ -8,6 +8,9 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.io.StreamCorruptedException;
 import java.io.StringReader;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
@@ -172,5 +175,29 @@ public class OtokouUser implements Serializable{
 	
 	public String getLastVehiclesUpdate() {
 		return lastVehiclesUpdate;
+	}
+	
+	public boolean vehiclesAreOutOfDate(OtokouUser user) {
+		String myFormatString = "yyyy-MM-dd HH:mm:ss";
+		SimpleDateFormat df = new SimpleDateFormat(myFormatString);
+		try {
+			Date date1 = df.parse(this.getLastVehiclesUpdate());
+			Date date2 = df.parse(user.getLastVehiclesUpdate());
+			if (date2.after(date1) || this.getVehiclesNumber() !=  user.getVehiclesNumber()) {
+				return true;
+			}
+			else return false;
+			
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		return true;
+	}
+
+	public void addLocalUserData(OtokouUser user) {
+		this.autoload = user.getAutoload();
+		this.id = user.getId();
+		this.apiKey = user.getApikey();
 	}
 }

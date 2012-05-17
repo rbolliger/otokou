@@ -25,10 +25,11 @@ import com.bl457xor.app.otokou.db.OtokouUserAdapter;
 
 
 // TODO
-// reload vehicles only if needed
+// reload button, change apikey, otokouUser / retrievedOtokouUser do it better
 // check values for add charge
 // change apikey on preference consequences
 // exceptions system
+// layouts
 // ...
 
 

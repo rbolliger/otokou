@@ -36,7 +36,8 @@ import com.bl457xor.app.otokou.OtokouUser;
  *  2. Users database creation and upgrade<br>
  *  3. delete all Users (deleteAllUsers() method)<br>
  *  4. insert of a new User (insertUser() method)<br>
- *  5. delete a single User by ID (deleteUserById() method)<br>
+ *  5. insert of a new User, put vehicles to 0 (insertUserWithoutVehicles() method)<br>
+ *  6. delete a single User by ID (deleteUserById() method)<br>
  *  7. update a single User by ID (updateUserById() method)<br>
  *  8. update a Users by id (updateUsersById() method)<br>
  *  9. (getAllUsers() method)<br>
@@ -77,7 +78,7 @@ public class OtokouUserAdapter {
 	/** column 7 field default value	**/ public static final String COL_7_DEFAULT = "";	
 	/** column 8 field name				**/ public static final String COL_8_NAME = "last_vehicles_update";
 	/** column 8 field type				**/ public static final String COL_8_TYPE = "text not null";
-	/** column 8 field default value	**/ public static final String COL_8_DEFAULT = "";	
+	/** column 8 field default value	**/ public static final String COL_8_DEFAULT = "2000-01-01 00:00:00";	
 	/** column 9 field name				**/ public static final String COL_9_NAME = "autoload";
 	/** column 9 field type				**/ public static final String COL_9_TYPE = "integer not null";
 	/** column 9 field default value	**/ public static final long COL_9_DEFAULT = 0;
@@ -229,6 +230,31 @@ public class OtokouUserAdapter {
 		values.put(OtokouUserAdapter.COL_6_NAME, user.getVehiclesNumber());
 		values.put(OtokouUserAdapter.COL_7_NAME, user.getLastUpdate());
 		values.put(OtokouUserAdapter.COL_8_NAME, user.getLastVehiclesUpdate());
+		values.put(OtokouUserAdapter.COL_9_NAME, user.getAutoload());
+		return db.insert(OtokouUserAdapter.TABLE_NAME, null, values);		
+	}
+	
+	/**
+	 * Since Version 1<p>
+	 * 
+	 * Insert a row in the table.<p>
+	 * note: need a call to the open() method before a call to this method.
+	 * 
+	 * @param user	OtokouUser instance
+	 * @return id of the inserted row or -1 in case of an error
+	 */	
+	public long insertUserWithoutVehicles(OtokouUser user) {
+		if (!connectionOpen) return -1;
+		
+		ContentValues values = new ContentValues();
+		values.put(OtokouUserAdapter.COL_1_NAME, user.getOtokouUserId());
+		values.put(OtokouUserAdapter.COL_2_NAME, user.getFirstName());
+		values.put(OtokouUserAdapter.COL_3_NAME, user.getLastName());
+		values.put(OtokouUserAdapter.COL_4_NAME, user.getUsername());
+		values.put(OtokouUserAdapter.COL_5_NAME, user.getApikey());
+		values.put(OtokouUserAdapter.COL_6_NAME, 0);
+		values.put(OtokouUserAdapter.COL_7_NAME, user.getLastUpdate());
+		values.put(OtokouUserAdapter.COL_8_NAME, OtokouUserAdapter.COL_8_DEFAULT);
 		values.put(OtokouUserAdapter.COL_9_NAME, user.getAutoload());
 		return db.insert(OtokouUserAdapter.TABLE_NAME, null, values);		
 	}
