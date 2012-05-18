@@ -21,8 +21,8 @@ public class AddUser extends Activity implements OnClickListener, Runnable {
 	private static final int RUN_END = 0;
 	private static final int RUN_MSG_LOADING_USER = 10;
 	private static final int RUN_MSG_LOADING_OK = 12;
-	private static final int RUN_ERROR_API_KEY = 101;
-	private static final int RUN_ERROR_USER = 102;
+	private static final int RUN_ERROR_NOT_CONNECTED = 100;
+	private static final int RUN_ERROR_USER = 101;
 	
 	// global variables initialization
 	private EditText edtAUUsername;
@@ -67,7 +67,7 @@ public class AddUser extends Activity implements OnClickListener, Runnable {
 			// TODO check otokou and add user to database
 
 			if (isOnline()) {
-				progressDialog = ProgressDialog.show(this,getString(R.string.main_dialog_title), getString(R.string.main_dialog_message_start), true, false);
+				progressDialog = ProgressDialog.show(this,getString(R.string.add_user_dialog_title), getString(R.string.add_user_dialog_message_start), true, false);
 				
 		    	Thread thread = new Thread(this);
 		    	thread.start();
@@ -86,18 +86,25 @@ public class AddUser extends Activity implements OnClickListener, Runnable {
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
-		OtokouUser otokouUser = OtokouAPI.getUserData(edtAUUsername.getText().toString(), edtAUAPikey.getText().toString());
-		if (otokouUser != null) {
-			handler.sendEmptyMessage(RUN_MSG_LOADING_OK);
-			// save user data to database
-			OtokouUserAdapter OUAdb = new OtokouUserAdapter(getApplicationContext()).open();
-			OUAdb.insertUserWithoutVehicles(otokouUser);
-			OUAdb.close();
+		if (isOnline()) {
+			handler.sendEmptyMessage(RUN_MSG_LOADING_USER);
+			OtokouUser otokouUser = OtokouAPI.getUserData(edtAUUsername.getText().toString(), edtAUAPikey.getText().toString());
+			if (otokouUser != null) {
+				handler.sendEmptyMessage(RUN_MSG_LOADING_OK);
+				// save user data to database
+				OtokouUserAdapter OUAdb = new OtokouUserAdapter(getApplicationContext()).open();
+				OUAdb.insertUserWithoutVehicles(otokouUser);
+				OUAdb.close();
+				handler.sendEmptyMessage(RUN_END);
+			}
+			else {
+				handler.sendEmptyMessage(RUN_ERROR_USER);
+			}
 		}
 		else {
-			handler.sendEmptyMessage(RUN_ERROR_USER);
+			handler.sendEmptyMessage(RUN_ERROR_NOT_CONNECTED);
 		}
-		handler.sendEmptyMessage(RUN_END);
+		
 	}
 	
 	private Handler handler = new Handler() {
@@ -108,12 +115,20 @@ public class AddUser extends Activity implements OnClickListener, Runnable {
 				progressDialog.dismiss();
 				finish();
 				break;
-			case RUN_MSG_LOADING_USER:	
+			case RUN_MSG_LOADING_USER:
 				progressDialog.setMessage(getString(R.string.add_user_dialog_message_loading_user));
 				break;
 			case RUN_MSG_LOADING_OK:
 				progressDialog.setMessage(getString(R.string.add_user_dialog_message_ok));			
 				break;
+			case RUN_ERROR_USER:
+				progressDialog.dismiss();
+				txtAUErrorMessage.setText(R.string.add_user_error_not_found);	
+				break;
+			case RUN_ERROR_NOT_CONNECTED:
+				progressDialog.dismiss();
+				txtAUErrorMessage.setText(R.string.add_user_error_not_connected);	
+				break;	
 			}
 		}
 	};

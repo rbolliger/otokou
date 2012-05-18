@@ -14,7 +14,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
-            android:contentDescription="@string/main_image_description"
+            android:contentDescription="@string/user_image_description"
             android:scaleType="fitStart"
             android:src="@drawable/otokou_logo" />
 
@@ -22,7 +22,7 @@
             android:id="@+id/txtUserWelcome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/main_txt_welcome"
+            android:text="@string/user_txt_welcome"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
@@ -50,14 +50,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:text="@string/main_btn_user_preferences" />
+                android:text="@string/user_btn_user_preferences" />
 
             <Button
                 android:id="@+id/btnUserReloadData"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:text="@string/main_btn_reload_data" />
+                android:text="@string/user_btn_reload_data" />
         </LinearLayout>
 
         <LinearLayout
@@ -70,7 +70,7 @@
                 android:id="@+id/btnUserAddCharge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/main_btn_add_charge" />
+                android:text="@string/user_btn_add_charge" />
 
             <Button
                 android:id="@+id/btnUserTest"

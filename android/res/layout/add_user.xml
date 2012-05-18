@@ -14,7 +14,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
-            android:contentDescription="@string/main_image_description"
+            android:contentDescription="@string/add_user_image_description"
             android:scaleType="fitStart"
             android:src="@drawable/otokou_logo" />
     </LinearLayout>

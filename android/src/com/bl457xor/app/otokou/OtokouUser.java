@@ -161,6 +161,10 @@ public class OtokouUser implements Serializable{
 		return username;
 	}
 	
+	public void setApikey(String apikey) {
+		this.apiKey = apikey;
+	}
+	
 	public String getApikey() {
 		return apiKey;
 	}

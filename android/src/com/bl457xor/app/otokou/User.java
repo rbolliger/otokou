@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -63,16 +64,30 @@ public class User extends Activity implements OnSharedPreferenceChangeListener, 
         setContentView(R.layout.user);
         
         setResult(RETURN_RESULT_BACK, null);
-        
+
 		retrieveUserData();
-		
-        initializePreferences();
-        
+
         initializeUI();
+        
+        initializePreferences();
         
     	if (!dataOK) {
     		retrieveDataFromOtokou();
     	}
+    }
+    
+    @Override
+    protected void onResume() {
+    	Log.i("resume","1");
+    	registerPreferences();
+    	Log.i("resume","2");
+    	super.onResume();
+    }
+    
+    @Override
+    protected void onPause() {
+    	unregisterPreferences();
+    	super.onPause();
     }
 
 	private void retrieveUserData() {		
@@ -102,10 +117,16 @@ public class User extends Activity implements OnSharedPreferenceChangeListener, 
 	}
     
     private void initializePreferences() {
-        // load user preferences
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        preferences.registerOnSharedPreferenceChangeListener(this);
         preferences.edit().putString("apikey", otokouUser.getApikey()).commit();
+	}
+    
+    private void registerPreferences() {
+        preferences.registerOnSharedPreferenceChangeListener(this);
+	}
+    
+    private void unregisterPreferences() {
+        preferences.unregisterOnSharedPreferenceChangeListener(this);
 	}
     
 	private void initializeUI() {		
@@ -130,7 +151,7 @@ public class User extends Activity implements OnSharedPreferenceChangeListener, 
 		dataOK = false;
 		
     	// create progress dialog
-    	progressDialog = ProgressDialog.show(this,getString(R.string.main_dialog_title), getString(R.string.main_dialog_message_start), true, false);
+    	progressDialog = ProgressDialog.show(this,getString(R.string.user_dialog_title), getString(R.string.user_dialog_message_start), true, false);
     	
     	// launch thread, connection with otokou website
     	Thread thread = new Thread(this);
@@ -140,15 +161,15 @@ public class User extends Activity implements OnSharedPreferenceChangeListener, 
 	@Override
 	public void run() {
 		// TODO handle errors more detailed with exceptions from otokouAPI
-		
 		if (isOnline()) {
 			String apiKey = otokouUser.getApikey();
 			String username = otokouUser.getUsername();
 			long userId = otokouUser.getId();
+			
 			if (!OtokouApiKey.checkKey(apiKey)) {
 				handler.sendEmptyMessage(RUN_ERROR_API_KEY);
 			}
-			else {				
+			else {
 				// load user data from Otokou
 				handler.sendEmptyMessage(RUN_MSG_LOADING_USER);
 				OtokouUser retrivedOtokouUser = OtokouAPI.getUserData(username, apiKey);
@@ -172,39 +193,8 @@ public class User extends Activity implements OnSharedPreferenceChangeListener, 
 						vehicles = OtokouAPI.getVehiclesData(username, apiKey);
 						
 						if (vehicles != null) {
-							// save vehicles data to database
 							OtokouVehicleAdapter OVAdb = new OtokouVehicleAdapter(getApplicationContext()).open();
-							Cursor vehiclesCursor = OVAdb.getVehiclesByUserId(otokouUser.getId());
-							if (vehiclesCursor.getCount() > 0) {
-								vehiclesCursor.moveToLast();
-								do {
-									long otokouVehicleId = vehiclesCursor.getLong(vehiclesCursor.getColumnIndex(OtokouVehicleAdapter.COL_2_NAME));
-									boolean found = false;
-									for (OtokouVehicle vehicle : vehicles) {
-										if (vehicle.getOtokouVehicleId() == otokouVehicleId) {
-											long id = vehiclesCursor.getLong(vehiclesCursor.getColumnIndex(OtokouVehicleAdapter.COL_ID_NAME));
-											found = true;									
-											vehicle.setFound(true);
-											vehicle.setId(id);			
-											OVAdb.updateVehicleById(id, vehicle, otokouUser);
-										}
-									}
-									if (!found) {
-										OVAdb.deleteVehicleById(vehiclesCursor.getLong(vehiclesCursor.getColumnIndex(OtokouVehicleAdapter.COL_ID_NAME)));
-									}
-								} while (vehiclesCursor.moveToPrevious());
-								for (OtokouVehicle vehicle : vehicles) {
-									if (!vehicle.isFound()) {
-										vehicle.setId(OVAdb.insertVehicle(vehicle, otokouUser));
-									}
-								}
-							}
-							else {
-								for (OtokouVehicle vehicle : vehicles) {
-									vehicle.setId(OVAdb.insertVehicle(vehicle, otokouUser));
-								}
-							}
-							vehiclesCursor.close();
+							OVAdb.updateVehicleForUser(otokouUser, vehicles);
 							OVAdb.close();
 							handler.sendEmptyMessage(RUN_MSG_LOADING_OK);
 						}
@@ -244,34 +234,34 @@ public class User extends Activity implements OnSharedPreferenceChangeListener, 
 				progressDialog.dismiss();
 				break;
 			case RUN_MSG_LOADING_USER:	
-				progressDialog.setMessage(getString(R.string.main_dialog_message_loading_user));
+				progressDialog.setMessage(getString(R.string.user_dialog_message_loading_user));
 				break;
 			case RUN_MSG_LOADING_VEHICLES:	
-				progressDialog.setMessage(getString(R.string.main_dialog_message_loading_vehicles));
+				progressDialog.setMessage(getString(R.string.user_dialog_message_loading_vehicles));
 				break;
 			case RUN_MSG_LOADING_OK:
-				progressDialog.setMessage(getString(R.string.main_dialog_message_ok));
+				progressDialog.setMessage(getString(R.string.user_dialog_message_ok));
 				txtUser.setText(otokouUser.toString());
 				dataOK = true;
 				btnAddCharge.setVisibility(Button.VISIBLE);
 				break;
 			case RUN_ERROR_NOT_CONNECTED:
-				txtUser.setText(getString(R.string.main_txt_user_error_not_connected));
+				txtUser.setText(getString(R.string.user_txt_user_error_not_connected));
 				dataOK = false;
 				btnAddCharge.setVisibility(Button.INVISIBLE);
 				break;
 			case RUN_ERROR_API_KEY:
-				txtUser.setText(getString(R.string.main_txt_user_error_api_key));
+				txtUser.setText(getString(R.string.user_txt_user_error_api_key));
 				dataOK = false;
 				btnAddCharge.setVisibility(Button.INVISIBLE);
 				break;
 			case RUN_ERROR_USER:
-				txtUser.setText(getString(R.string.main_txt_user_error_user));
+				txtUser.setText(getString(R.string.user_txt_user_error_user));
 				dataOK = false;
 				btnAddCharge.setVisibility(Button.INVISIBLE);
 				break;
 			case RUN_ERROR_VEHICLES:
-				txtUser.setText(otokouUser.toString()+"\n"+getString(R.string.main_txt_user_error_vehicle));
+				txtUser.setText(otokouUser.toString()+"\n"+getString(R.string.user_txt_user_error_vehicle));
 				dataOK = false;
 				btnAddCharge.setVisibility(Button.INVISIBLE);
 				break;
@@ -337,10 +327,10 @@ public class User extends Activity implements OnSharedPreferenceChangeListener, 
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {	
-		menu.add(Menu.NONE, MENU_ID_USER_PREFERENCES, Menu.NONE, R.string.main_menu_user_preferences).setIcon(R.drawable.menu_user_preferences);
-		menu.add(Menu.NONE, MENU_ID_RELOAD_DATA, Menu.NONE, R.string.main_menu_reload_data).setIcon(R.drawable.menu_reload);
-		menu.add(Menu.NONE, MENU_ID_ADD_CHARGE, Menu.NONE, R.string.main_menu_add_charge).setIcon(R.drawable.menu_add);
-		menu.add(Menu.NONE, MENU_ID_EXIT, Menu.NONE, R.string.main_menu_exit).setIcon(R.drawable.exit);
+		menu.add(Menu.NONE, MENU_ID_USER_PREFERENCES, Menu.NONE, R.string.user_menu_user_preferences).setIcon(R.drawable.menu_user_preferences);
+		menu.add(Menu.NONE, MENU_ID_RELOAD_DATA, Menu.NONE, R.string.user_menu_reload_data).setIcon(R.drawable.menu_reload);
+		menu.add(Menu.NONE, MENU_ID_ADD_CHARGE, Menu.NONE, R.string.user_menu_add_charge).setIcon(R.drawable.menu_add);
+		menu.add(Menu.NONE, MENU_ID_EXIT, Menu.NONE, R.string.user_menu_exit).setIcon(R.drawable.exit);
 		return super.onCreateOptionsMenu(menu);
 	}
 	
@@ -395,6 +385,17 @@ public class User extends Activity implements OnSharedPreferenceChangeListener, 
 	@Override
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
 			String key) {
-		//retrieveDataFromOtokou();		
+
+		String newApiKey = preferences.getString("apikey", "");
+		if (OtokouApiKey.checkKey(newApiKey)) {
+			otokouUser.setApikey(newApiKey);
+			OtokouUserAdapter OUAdb = new OtokouUserAdapter(getApplicationContext()).open();
+			OUAdb.updateUsersById(otokouUser.getId(), otokouUser);
+			OUAdb.close();
+			retrieveDataFromOtokou();
+		}
+		else {
+			txtUser.setText(R.string.user_txt_user_error_api_key);
+		}	
 	}
 }

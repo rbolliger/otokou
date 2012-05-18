@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="user_menu_user_preferences">Preferences</string>
+    <string name="user_menu_reload_data">Reload Data</string>
+    <string name="user_menu_add_charge">Add Charge</string>
+    <string name="user_menu_exit">Exit</string>
+    <string name="user_btn_add_charge">Add a new charge</string>
+    <string name="user_btn_user_preferences">Preferences</string>
+    <string name="user_btn_reload_data">Reload Data</string>
+    <string name="user_image_description">Otokou</string>
+    <string name="user_txt_welcome">Welcome</string>
+    <string name="user_dialog_title">Loading information from Otokou</string>
+    <string name="user_dialog_message_start">verifying API Key</string>
+    <string name="user_dialog_message_loading_user">Loading user data &#8230;</string>
+    <string name="user_dialog_message_loading_vehicles">Loading vehicle data &#8230;</string>
+    <string name="user_dialog_message_ok">OK</string>
+    <string name="user_txt_user_error_not_connected">No internet connection found.</string>
+    <string name="user_txt_user_error_api_key">Your API key seems invalid, please check it in the preferences.</string>
+    <string name="user_txt_user_error_user">Invalid User API key combination, please check your API key in the preferences.</string>
+    <string name="user_txt_user_error_vehicle">No vehicles found</string>
+</resources>

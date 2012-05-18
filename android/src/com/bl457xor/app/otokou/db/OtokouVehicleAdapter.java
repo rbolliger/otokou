@@ -1,5 +1,7 @@
 package com.bl457xor.app.otokou.db;
 
+import java.util.ArrayList;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -320,5 +322,56 @@ public class OtokouVehicleAdapter {
 				null, 
 				null, 
 				null);
+	}
+	
+	/**
+	 * Since Version 1<p>
+	 * 
+	 * Updates all vehicles of an user.<p>
+	 * Update existing vehicles (using otokou_vehicle_id), add new vehicles, delete not existing vehicles
+	 * note: need a call to the open() method before a call to this method.
+	 * 
+	 * @param user	OtokouUser instance
+	 * @param vehicles	collection of OtokouVehicle instances
+	 * 
+	 * @return false if error.
+	 */		
+	public boolean updateVehicleForUser(OtokouUser user, ArrayList<OtokouVehicle> vehicles){
+		if (!connectionOpen) return false;
+		
+		// save vehicles data to database
+		Cursor cursor = this.getVehiclesByUserId(user.getId());
+		if (cursor.getCount() > 0) {
+			cursor.moveToLast();
+			do {
+				long otokouVehicleId = cursor.getLong(cursor.getColumnIndex(COL_2_NAME));
+				boolean found = false;
+				for (OtokouVehicle vehicle : vehicles) {
+					if (vehicle.getOtokouVehicleId() == otokouVehicleId) {
+						long id = cursor.getLong(cursor.getColumnIndex(COL_ID_NAME));
+						found = true;									
+						vehicle.setFound(true);
+						vehicle.setId(id);			
+						this.updateVehicleById(id, vehicle, user);
+					}
+				}
+				if (!found) {
+					this.deleteVehicleById(cursor.getLong(cursor.getColumnIndex(COL_ID_NAME)));
+				}
+			} while (cursor.moveToPrevious());
+			for (OtokouVehicle vehicle : vehicles) {
+				if (!vehicle.isFound()) {
+					vehicle.setId(this.insertVehicle(vehicle, user));
+				}
+			}
+		}
+		else {
+			for (OtokouVehicle vehicle : vehicles) {
+				vehicle.setId(this.insertVehicle(vehicle, user));
+			}
+		}
+		cursor.close();
+		
+		return true;
 	}
 }
