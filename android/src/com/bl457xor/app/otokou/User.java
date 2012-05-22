@@ -161,10 +161,10 @@ public class User extends Activity implements OnClickListener, Runnable {
 	public void run() {
 		// TODO handle errors more detailed with exceptions from otokouAPI
 		if (isOnline()) {
-			String apiKey = otokouUser.getApikey();
-			String username = otokouUser.getUsername();
 			long userId = otokouUser.getId();
-			
+			String username = otokouUser.getUsername();
+			String apiKey = otokouUser.getApikey();		
+					
 			if (!OtokouApiKey.checkKey(apiKey)) {
 				handler.sendEmptyMessage(RUN_ERROR_API_KEY);
 			}
@@ -174,26 +174,15 @@ public class User extends Activity implements OnClickListener, Runnable {
 				OtokouUser retrivedOtokouUser = OtokouAPI.getUserData(username, apiKey);
 				
 				if (retrivedOtokouUser != null) {
-					retrivedOtokouUser.addLocalUserData(otokouUser);
-					
-					// save user data to database
-					OtokouUserAdapter OUAdb = new OtokouUserAdapter(getApplicationContext()).open();
-					OUAdb.updateUsersById(userId, retrivedOtokouUser);
-					OUAdb.close();
-					
 					// check if vehicles data has changed
-					if (otokouUser.vehiclesAreOutOfDate(retrivedOtokouUser)) {
-						otokouUser = null;
-						otokouUser = retrivedOtokouUser;
-						retrivedOtokouUser = null;
-						
+					if (otokouUser.vehiclesAreOutOfDate(retrivedOtokouUser)) {						
 						// load vehicles data from Otokou
 						handler.sendEmptyMessage(RUN_MSG_LOADING_VEHICLES);
 						vehicles = OtokouAPI.getVehiclesData(username, apiKey);
 						
 						if (vehicles != null) {
 							OtokouVehicleAdapter OVAdb = new OtokouVehicleAdapter(getApplicationContext()).open();
-							OVAdb.updateVehicleForUser(otokouUser, vehicles);
+							OVAdb.updateVehicleForUser(userId, vehicles);
 							OVAdb.close();
 							handler.sendEmptyMessage(RUN_MSG_LOADING_OK);
 						}
@@ -201,18 +190,23 @@ public class User extends Activity implements OnClickListener, Runnable {
 							handler.sendEmptyMessage(RUN_ERROR_VEHICLES);
 						}						
 					}
-					else {
-						otokouUser = null;
-						otokouUser = retrivedOtokouUser;
-						retrivedOtokouUser = null;
-						
+					else {						
 						OtokouVehicleAdapter OVAdb = new OtokouVehicleAdapter(getApplicationContext()).open();
-						Cursor vehiclesCursor = OVAdb.getVehiclesByUserId(otokouUser.getId());
+						Cursor vehiclesCursor = OVAdb.getVehiclesByUserId(userId);
 						vehicles = OtokouVehicle.getVehiclesFromCursor(vehiclesCursor);
 						vehiclesCursor.close();
 						OVAdb.close();
 						handler.sendEmptyMessage(RUN_MSG_LOADING_OK);
 					}
+					
+					// update user data
+					otokouUser.updateData(retrivedOtokouUser);
+					retrivedOtokouUser = null;
+					
+					// save user data to database
+					OtokouUserAdapter OUAdb = new OtokouUserAdapter(getApplicationContext()).open();
+					OUAdb.updateUsersById(userId, otokouUser);
+					OUAdb.close();				
 				}
 				else {
 					handler.sendEmptyMessage(RUN_ERROR_USER);

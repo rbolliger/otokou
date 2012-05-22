@@ -199,9 +199,12 @@ public class OtokouUser implements Serializable{
 		return true;
 	}
 
-	public void addLocalUserData(OtokouUser user) {
-		this.autoload = user.getAutoload();
-		this.id = user.getId();
-		this.apiKey = user.getApikey();
+	public void updateData(OtokouUser retrivedOtokouUser) {
+		this.otokouUserID = retrivedOtokouUser.getOtokouUserId();
+		this.firstName = retrivedOtokouUser.getFirstName();
+		this.lastName = retrivedOtokouUser.getLastName();
+		this.lastUpdate = retrivedOtokouUser.getLastUpdate();
+		this.lastVehiclesUpdate = retrivedOtokouUser.getLastVehiclesUpdate();
+		this.vehiclesNumber = retrivedOtokouUser.getVehiclesNumber();
 	}
 }
