@@ -11,8 +11,6 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
-import android.util.Log;
-
 import com.bl457xor.app.otokou.xml.OtokouXmlSetChargeHandler;
 
 public class OtokouCharge {
@@ -85,7 +83,7 @@ public class OtokouCharge {
 		}	
 	}
 	
-	public static boolean checkReponseXml(String rawData) throws Exception {
+	public static boolean checkReponseXml(String rawData) throws OtokouException {
 		  try {
 			    SAXParserFactory spf = SAXParserFactory.newInstance();
 			    SAXParser sp = spf.newSAXParser();
@@ -98,22 +96,24 @@ public class OtokouCharge {
 			    InputSource is = new InputSource(new StringReader(rawData)); 		    
 			    xr.parse(is);	    
 			    xmlHandler.getApiXmlVersion();
-			    if (!xmlHandler.headerOk()) throw new Exception("Cound't parse XML header");
+			    if (!xmlHandler.headerOk()) throw new OtokouException("Cound't parse XML header",OtokouException.CODE_asd);
 			    
-			    if (!xmlHandler.bodyOk()) throw new Exception("Cound't parse XML Body");
+			    if (!xmlHandler.bodyOk()) throw new OtokouException("Cound't parse XML Body",OtokouException.CODE_asd);
 			    
 			    if (xmlHandler.getResult().equalsIgnoreCase("ok")) {
 			    	return true;
 			    }
+			    else {
+			    	return false;
+			    }
 			    
-			  } catch(ParserConfigurationException pce) {
-			    Log.i("SAX XML", "sax parse error", pce);
-			  } catch(SAXException se) {
-			    Log.i("SAX XML", "sax error", se);
-			  } catch(IOException ioe) {
-			    Log.i("SAX XML", "sax parse io error", ioe);
-			  }
-		return false;
+			} catch(ParserConfigurationException pce) {
+				throw new OtokouException("sax parse error",OtokouException.CODE_asd);
+			} catch(SAXException se) {
+				throw new OtokouException("sax error",OtokouException.CODE_asd);
+			} catch(IOException ioe) {
+				throw new OtokouException("sax parse io error",OtokouException.CODE_asd);
+			}
 	}
 
 	public long getId() {

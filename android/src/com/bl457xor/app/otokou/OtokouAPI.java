@@ -18,7 +18,7 @@ public class OtokouAPI {
 		String getRequest = OTOKOU_API_URL+OTOKOU_GET_USER_ACTION;
     	try {		
     		return new OtokouUser(HttpHelper.executeHttpPost(getRequest,writeGetUserXml(username, apiKey)), username, apiKey);
-		} catch (Exception e) {
+		} catch (OtokouException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
@@ -29,7 +29,7 @@ public class OtokouAPI {
 		String getRequest = OTOKOU_API_URL+OTOKOU_GET_VEHICLES_ACTION;
     	try {		
     		return OtokouVehicle.CollectionFromXml(HttpHelper.executeHttpPost(getRequest,writeGetVehiclesXml(username, apiKey)));
-		} catch (Exception e) {
+		} catch (OtokouException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
@@ -40,12 +40,11 @@ public class OtokouAPI {
 		String getRequest = OTOKOU_API_URL+OTOKOU_SET_CHARGE_ACTION;
     	try {
     		return OtokouCharge.checkReponseXml(HttpHelper.executeHttpPost(getRequest,writeSetNewChargeXml(username, apiKey, charge)));
-		} catch (Exception e) {
+		} catch (OtokouException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		}
-		
-		return false;
 	}
 	
 	private static String writeGetUserXml(String username, String apiKey){

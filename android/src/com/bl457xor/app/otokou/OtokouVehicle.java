@@ -21,7 +21,6 @@ import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
 import android.database.Cursor;
-import android.util.Log;
 
 import com.bl457xor.app.otokou.db.OtokouVehicleAdapter;
 import com.bl457xor.app.otokou.xml.OtokouXmlGetVehiclesHandler;
@@ -107,33 +106,32 @@ public class OtokouVehicle implements Serializable {
 		}
 	}
 
-	public static ArrayList<OtokouVehicle> CollectionFromXml(String rawData) throws Exception {		
+	public static ArrayList<OtokouVehicle> CollectionFromXml(String rawData) throws OtokouException {		
 		try {
-			    SAXParserFactory spf = SAXParserFactory.newInstance();
-			    SAXParser sp = spf.newSAXParser();
+			SAXParserFactory spf = SAXParserFactory.newInstance();
+			SAXParser sp = spf.newSAXParser();
 
-			    XMLReader xr = sp.getXMLReader();
+			XMLReader xr = sp.getXMLReader();
 
-			    OtokouXmlGetVehiclesHandler xmlHandler = new OtokouXmlGetVehiclesHandler();
-			    xr.setContentHandler(xmlHandler);
+			OtokouXmlGetVehiclesHandler xmlHandler = new OtokouXmlGetVehiclesHandler();
+			xr.setContentHandler(xmlHandler);
 
-			    InputSource is = new InputSource(new StringReader(rawData)); 		    
-			    xr.parse(is);	    
-			    xmlHandler.getApiXmlVersion();
-			    if (!xmlHandler.headerOk()) throw new Exception("Cound't parse XML header");
-			    
-			    if (!xmlHandler.bodyOk()) throw new Exception("Cound't parse XML Body");
-			    
-			    return xmlHandler.getXmlVehicles();
-			    
-			  } catch(ParserConfigurationException pce) {
-			    Log.i("SAX XML", "sax parse error", pce);
-			  } catch(SAXException se) {
-			    Log.i("SAX XML", "sax error", se);
-			  } catch(IOException ioe) {
-			    Log.i("SAX XML", "sax parse io error", ioe);
-			  }
-		return null;
+			InputSource is = new InputSource(new StringReader(rawData)); 		    
+			xr.parse(is);	    
+			xmlHandler.getApiXmlVersion();
+			if (!xmlHandler.headerOk()) throw new OtokouException("Cound't parse XML header",OtokouException.CODE_asd);
+
+			if (!xmlHandler.bodyOk()) throw new OtokouException("Cound't parse XML Body",OtokouException.CODE_asd);
+
+			return xmlHandler.getXmlVehicles();
+
+		} catch(ParserConfigurationException pce) {
+			throw new OtokouException("sax parse error",OtokouException.CODE_asd);
+		} catch(SAXException se) {
+			throw new OtokouException("sax error",OtokouException.CODE_asd);
+		} catch(IOException ioe) {
+			throw new OtokouException("sax parse io error",OtokouException.CODE_asd);
+		}
 	}
 	
 	public long getOtokouVehicleId() {

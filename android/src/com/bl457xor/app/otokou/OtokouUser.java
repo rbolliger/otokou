@@ -21,7 +21,6 @@ import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
 import android.database.Cursor;
-import android.util.Log;
 
 import com.bl457xor.app.otokou.db.OtokouUserAdapter;
 import com.bl457xor.app.otokou.xml.OtokouXmlGetUserHandler;
@@ -58,7 +57,7 @@ public class OtokouUser implements Serializable{
 		this.autoload = (c.getLong(c.getColumnIndex(OtokouUserAdapter.COL_9_NAME)) == OtokouUserAdapter.COL_9_AUTOLOAD_ON) ? true : false;
 	}
 	
-	public OtokouUser(String rawData, String username, String apikey) throws Exception {
+	public OtokouUser(String rawData, String username, String apikey) throws OtokouException {
 		  try {
 		    SAXParserFactory spf = SAXParserFactory.newInstance();
 		    SAXParser sp = spf.newSAXParser();
@@ -71,9 +70,9 @@ public class OtokouUser implements Serializable{
 		    InputSource is = new InputSource(new StringReader(rawData)); 		    
 		    xr.parse(is);	    
 		    xmlHandler.getApiXmlVersion();
-		    if (!xmlHandler.headerOk()) throw new Exception("Cound't parse XML header");
+		    if (!xmlHandler.headerOk()) throw new OtokouException("Cound't parse XML header",OtokouException.CODE_asd);
 		    
-		    if (!xmlHandler.bodyOk()) throw new Exception("Cound't parse XML Body");
+		    if (!xmlHandler.bodyOk()) throw new OtokouException("Cound't parse XML Body",OtokouException.CODE_asd);
 		    
 			this.otokouUserID = Long.parseLong(xmlHandler.getXmlUserId());
 			this.firstName = xmlHandler.getXmlFirstName();
@@ -85,11 +84,11 @@ public class OtokouUser implements Serializable{
 			this.vehiclesNumber = xmlHandler.getXmlVehiclesNumber();
 		    
 		  } catch(ParserConfigurationException pce) {
-		    Log.i("SAX XML", "sax parse error", pce);
+			throw new OtokouException("sax parse error",OtokouException.CODE_asd);
 		  } catch(SAXException se) {
-		    Log.i("SAX XML", "sax error", se);
+			throw new OtokouException("sax error",OtokouException.CODE_asd);
 		  } catch(IOException ioe) {
-		    Log.i("SAX XML", "sax parse io error", ioe);
+			throw new OtokouException("sax parse io error",OtokouException.CODE_asd);
 		  }
 	}
 	
