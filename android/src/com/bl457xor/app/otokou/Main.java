@@ -25,7 +25,7 @@ import com.bl457xor.app.otokou.db.OtokouUserAdapter;
 
 
 // TODO
-// preferences (unregister listener, but get data!), otokouUser / retrievedOtokouUser do it better, offline behavior
+// otokouUser / retrievedOtokouUser do it better, offline behavior
 // check values for add charge
 // change apikey on preference consequences
 // exceptions system

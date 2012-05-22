@@ -7,7 +7,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -15,7 +14,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,7 +24,7 @@ import android.widget.TextView;
 import com.bl457xor.app.otokou.db.OtokouUserAdapter;
 import com.bl457xor.app.otokou.db.OtokouVehicleAdapter;
 
-public class User extends Activity implements OnSharedPreferenceChangeListener, OnClickListener, Runnable {
+public class User extends Activity implements OnClickListener, Runnable {
 	// messages constants
 	public static final int RETURN_RESULT_OK = 1000;
 	public static final int RETURN_RESULT_BACK = 1001;
@@ -78,16 +76,8 @@ public class User extends Activity implements OnSharedPreferenceChangeListener, 
     
     @Override
     protected void onResume() {
-    	Log.i("resume","1");
-    	registerPreferences();
-    	Log.i("resume","2");
+    	checkPreferencesChanges();
     	super.onResume();
-    }
-    
-    @Override
-    protected void onPause() {
-    	unregisterPreferences();
-    	super.onPause();
     }
 
 	private void retrieveUserData() {		
@@ -121,12 +111,21 @@ public class User extends Activity implements OnSharedPreferenceChangeListener, 
         preferences.edit().putString("apikey", otokouUser.getApikey()).commit();
 	}
     
-    private void registerPreferences() {
-        preferences.registerOnSharedPreferenceChangeListener(this);
-	}
-    
-    private void unregisterPreferences() {
-        preferences.unregisterOnSharedPreferenceChangeListener(this);
+    private void checkPreferencesChanges() {
+		String newApiKey = preferences.getString("apikey", "");
+		
+		if (!otokouUser.getApikey().equals(newApiKey)) {
+			if (OtokouApiKey.checkKey(newApiKey)) {
+				otokouUser.setApikey(newApiKey);
+				OtokouUserAdapter OUAdb = new OtokouUserAdapter(getApplicationContext()).open();
+				OUAdb.updateUsersById(otokouUser.getId(), otokouUser);
+				OUAdb.close();
+				retrieveDataFromOtokou();
+			}
+			else {
+				txtUser.setText(R.string.user_txt_user_error_api_key);
+			}	
+		}
 	}
     
 	private void initializeUI() {		
@@ -380,22 +379,5 @@ public class User extends Activity implements OnSharedPreferenceChangeListener, 
 			launchTest();
 			break;			
 		}		
-	}
-	
-	@Override
-	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
-			String key) {
-
-		String newApiKey = preferences.getString("apikey", "");
-		if (OtokouApiKey.checkKey(newApiKey)) {
-			otokouUser.setApikey(newApiKey);
-			OtokouUserAdapter OUAdb = new OtokouUserAdapter(getApplicationContext()).open();
-			OUAdb.updateUsersById(otokouUser.getId(), otokouUser);
-			OUAdb.close();
-			retrieveDataFromOtokou();
-		}
-		else {
-			txtUser.setText(R.string.user_txt_user_error_api_key);
-		}	
 	}
 }
