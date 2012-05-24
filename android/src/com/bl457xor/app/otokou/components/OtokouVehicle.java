@@ -1,4 +1,4 @@
-package com.bl457xor.app.otokou;
+package com.bl457xor.app.otokou.components;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -21,12 +21,12 @@ import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
 import android.database.Cursor;
-import android.util.Log;
 
+import com.bl457xor.app.otokou.OtokouException;
 import com.bl457xor.app.otokou.db.OtokouVehicleAdapter;
 import com.bl457xor.app.otokou.xml.OtokouXmlGetVehiclesHandler;
 
-public class OtokouVehicle implements Serializable {
+public class OtokouVehicle  extends OtokouComponent implements Serializable {
 
 	private static final long serialVersionUID = 4361161188955806700L;
 	private long otokouVehicleID;
@@ -34,12 +34,19 @@ public class OtokouVehicle implements Serializable {
 	private String vehicle;
 	private boolean found;
 	
+	
+	public OtokouVehicle(int errorCode, String errorMessage) {
+		super(errorCode,errorMessage);
+	}
+	
 	public OtokouVehicle(long otokouVehicleID, String vehicle) {
+		super();
 		this.otokouVehicleID = otokouVehicleID;
 		this.vehicle = vehicle;
 	}
 
 	public OtokouVehicle(Cursor cursor) {
+		super();
 		this.id = cursor.getLong(cursor.getColumnIndex(OtokouVehicleAdapter.COL_ID_NAME));
 		this.otokouVehicleID = cursor.getLong(cursor.getColumnIndex(OtokouVehicleAdapter.COL_2_NAME));
 		this.vehicle = cursor.getString(cursor.getColumnIndex(OtokouVehicleAdapter.COL_3_NAME));
@@ -107,33 +114,35 @@ public class OtokouVehicle implements Serializable {
 		}
 	}
 
-	public static ArrayList<OtokouVehicle> CollectionFromXml(String rawData) throws Exception {		
+	public static ArrayList<OtokouVehicle> CollectionFromXml(String rawData) throws OtokouException {		
 		try {
-			    SAXParserFactory spf = SAXParserFactory.newInstance();
-			    SAXParser sp = spf.newSAXParser();
+			SAXParserFactory spf = SAXParserFactory.newInstance();
+			SAXParser sp = spf.newSAXParser();
 
-			    XMLReader xr = sp.getXMLReader();
+			XMLReader xr = sp.getXMLReader();
 
-			    OtokouXmlGetVehiclesHandler xmlHandler = new OtokouXmlGetVehiclesHandler();
-			    xr.setContentHandler(xmlHandler);
+			OtokouXmlGetVehiclesHandler xmlHandler = new OtokouXmlGetVehiclesHandler();
+			xr.setContentHandler(xmlHandler);
 
-			    InputSource is = new InputSource(new StringReader(rawData)); 		    
-			    xr.parse(is);	    
-			    xmlHandler.getApiXmlVersion();
-			    if (!xmlHandler.headerOk()) throw new Exception("Cound't parse XML header");
-			    
-			    if (!xmlHandler.bodyOk()) throw new Exception("Cound't parse XML Body");
-			    
-			    return xmlHandler.getXmlVehicles();
-			    
-			  } catch(ParserConfigurationException pce) {
-			    Log.i("SAX XML", "sax parse error", pce);
-			  } catch(SAXException se) {
-			    Log.i("SAX XML", "sax error", se);
-			  } catch(IOException ioe) {
-			    Log.i("SAX XML", "sax parse io error", ioe);
-			  }
-		return null;
+			InputSource is = new InputSource(new StringReader(rawData)); 		    
+			xr.parse(is);	    
+			xmlHandler.getApiXmlVersion();
+
+			if (!xmlHandler.headerOk()) throw new OtokouException(OtokouException.CODE_RESPONSE_GET_VEHICLES_XML_HEADER_PARSE_FAIL);
+			if (!xmlHandler.bodyOk()) throw new OtokouException(OtokouException.CODE_RESPONSE_GET_VEHICLES_XML_BODY_PARSE_FAIL);
+
+			return xmlHandler.getXmlVehicles();
+
+		} catch(ParserConfigurationException e) {
+			e.printStackTrace();
+			throw new OtokouException(OtokouException.CODE_RESPONSE_GET_VEHICLES_PARSE_FAIL);
+		} catch(SAXException e) {
+			e.printStackTrace();
+			throw new OtokouException(OtokouException.CODE_RESPONSE_GET_VEHICLES_PARSE_FAIL);
+		} catch(IOException e) {
+			e.printStackTrace();
+			throw new OtokouException(OtokouException.CODE_RESPONSE_GET_VEHICLES_PARSE_FAIL);
+		}
 	}
 	
 	public long getOtokouVehicleId() {

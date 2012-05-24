@@ -1,4 +1,4 @@
-package com.bl457xor.app.otokou;
+package com.bl457xor.app.otokou.components;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -21,12 +21,12 @@ import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
 import android.database.Cursor;
-import android.util.Log;
 
+import com.bl457xor.app.otokou.OtokouException;
 import com.bl457xor.app.otokou.db.OtokouUserAdapter;
 import com.bl457xor.app.otokou.xml.OtokouXmlGetUserHandler;
 
-public class OtokouUser implements Serializable{
+public class OtokouUser  extends OtokouComponent implements Serializable {
 
 	private static final long serialVersionUID = 2592158732300070601L;
 	private long otokouUserID;
@@ -45,7 +45,12 @@ public class OtokouUser implements Serializable{
 	private boolean autoload;
 	
 	
-	public OtokouUser(Cursor c) throws Exception {	
+	public OtokouUser (int errorCode, String errorMessage) {
+		super(errorCode,errorMessage);
+	}
+	
+	public OtokouUser(Cursor c) {
+		super();
 		this.id = c.getLong(c.getColumnIndex(OtokouUserAdapter.COL_ID_NAME));
 		this.otokouUserID = c.getLong(c.getColumnIndex(OtokouUserAdapter.COL_1_NAME));
 		this.firstName = c.getString(c.getColumnIndex(OtokouUserAdapter.COL_2_NAME));
@@ -58,23 +63,24 @@ public class OtokouUser implements Serializable{
 		this.autoload = (c.getLong(c.getColumnIndex(OtokouUserAdapter.COL_9_NAME)) == OtokouUserAdapter.COL_9_AUTOLOAD_ON) ? true : false;
 	}
 	
-	public OtokouUser(String rawData, String username, String apikey) throws Exception {
-		  try {
-		    SAXParserFactory spf = SAXParserFactory.newInstance();
-		    SAXParser sp = spf.newSAXParser();
+	public OtokouUser(String rawData, String username, String apikey) throws OtokouException {
+		super();
+		try {
+			SAXParserFactory spf = SAXParserFactory.newInstance();
+			SAXParser sp = spf.newSAXParser();
 
-		    XMLReader xr = sp.getXMLReader();
+			XMLReader xr = sp.getXMLReader();
 
-		    OtokouXmlGetUserHandler xmlHandler = new OtokouXmlGetUserHandler();
-		    xr.setContentHandler(xmlHandler);
+			OtokouXmlGetUserHandler xmlHandler = new OtokouXmlGetUserHandler();
+			xr.setContentHandler(xmlHandler);
 
-		    InputSource is = new InputSource(new StringReader(rawData)); 		    
-		    xr.parse(is);	    
-		    xmlHandler.getApiXmlVersion();
-		    if (!xmlHandler.headerOk()) throw new Exception("Cound't parse XML header");
-		    
-		    if (!xmlHandler.bodyOk()) throw new Exception("Cound't parse XML Body");
-		    
+			InputSource is = new InputSource(new StringReader(rawData)); 		    
+			xr.parse(is);	    
+			xmlHandler.getApiXmlVersion();
+			
+			if (!xmlHandler.headerOk()) throw new OtokouException(OtokouException.CODE_RESPONSE_GET_USER_XML_HEADER_PARSE_FAIL);
+			if (!xmlHandler.bodyOk()) throw new OtokouException(OtokouException.CODE_RESPONSE_GET_USER_XML_BODY_PARSE_FAIL);
+
 			this.otokouUserID = Long.parseLong(xmlHandler.getXmlUserId());
 			this.firstName = xmlHandler.getXmlFirstName();
 			this.lastName = xmlHandler.getXmlLastName();
@@ -83,14 +89,17 @@ public class OtokouUser implements Serializable{
 			this.lastUpdate = xmlHandler.getXmlLastUserUpdate();
 			this.lastVehiclesUpdate = xmlHandler.getXmlLastVehiclesUpdate();
 			this.vehiclesNumber = xmlHandler.getXmlVehiclesNumber();
-		    
-		  } catch(ParserConfigurationException pce) {
-		    Log.i("SAX XML", "sax parse error", pce);
-		  } catch(SAXException se) {
-		    Log.i("SAX XML", "sax error", se);
-		  } catch(IOException ioe) {
-		    Log.i("SAX XML", "sax parse io error", ioe);
-		  }
+
+		} catch(ParserConfigurationException e) {
+			e.printStackTrace();
+			throw new OtokouException(OtokouException.CODE_RESPONSE_GET_USER_PARSE_FAIL);
+		} catch(SAXException e) {
+			e.printStackTrace();
+			throw new OtokouException(OtokouException.CODE_RESPONSE_GET_USER_PARSE_FAIL);
+		} catch(IOException e) {
+			e.printStackTrace();
+			throw new OtokouException(OtokouException.CODE_RESPONSE_GET_USER_PARSE_FAIL);
+		}
 	}
 	
 	@Override
@@ -161,6 +170,10 @@ public class OtokouUser implements Serializable{
 		return username;
 	}
 	
+	public void setApikey(String apikey) {
+		this.apiKey = apikey;
+	}
+	
 	public String getApikey() {
 		return apiKey;
 	}
@@ -195,9 +208,12 @@ public class OtokouUser implements Serializable{
 		return true;
 	}
 
-	public void addLocalUserData(OtokouUser user) {
-		this.autoload = user.getAutoload();
-		this.id = user.getId();
-		this.apiKey = user.getApikey();
+	public void updateData(OtokouUser retrivedOtokouUser) {
+		this.otokouUserID = retrivedOtokouUser.getOtokouUserId();
+		this.firstName = retrivedOtokouUser.getFirstName();
+		this.lastName = retrivedOtokouUser.getLastName();
+		this.lastUpdate = retrivedOtokouUser.getLastUpdate();
+		this.lastVehiclesUpdate = retrivedOtokouUser.getLastVehiclesUpdate();
+		this.vehiclesNumber = retrivedOtokouUser.getVehiclesNumber();
 	}
 }

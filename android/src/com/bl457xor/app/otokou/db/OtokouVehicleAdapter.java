@@ -1,13 +1,14 @@
 package com.bl457xor.app.otokou.db;
 
+import java.util.ArrayList;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.bl457xor.app.otokou.OtokouUser;
-import com.bl457xor.app.otokou.OtokouVehicle;
+import com.bl457xor.app.otokou.components.OtokouVehicle;
 
 /**
  * Adapter to the database containing the Vehicles.<p>
@@ -176,14 +177,14 @@ public class OtokouVehicleAdapter {
 	 * note: need a call to the open() method before a call to this method.
 	 * 
 	 * @param vehicle	OtokouVehicle instance
-	 * @param user	 OtokouUser  instance (user owning the vehicle)
+	 * @param user	 OtokouUser id (user owning the vehicle)
 	 * @return id of the inserted row or -1 in case of an error
 	 */	
-	public long insertVehicle(OtokouVehicle vehicle, OtokouUser user) {
+	public long insertVehicle(OtokouVehicle vehicle, long user_id) {
 		if (!connectionOpen) return -1;
 		
 		ContentValues values = new ContentValues();
-		values.put(OtokouVehicleAdapter.COL_1_NAME, user.getId());
+		values.put(OtokouVehicleAdapter.COL_1_NAME, user_id);
 		values.put(OtokouVehicleAdapter.COL_2_NAME, vehicle.getOtokouVehicleId());
 		values.put(OtokouVehicleAdapter.COL_3_NAME, vehicle.getVehicleName());
 		return db.insert(OtokouVehicleAdapter.TABLE_NAME, null, values);		
@@ -244,14 +245,14 @@ public class OtokouVehicleAdapter {
 	 * 
 	 * @param id	id of the row to update
 	 * @param vehicle	OtokouVehicle instance
-	 * @param user	 OtokouUser  instance (user owning the vehicle)
+	 * @param user_id	 OtokouUser  id (user owning the vehicle)
 	 * @return true if the update of 1 database row executed correctly, false otherwise
 	 */		
-	public boolean updateVehicleById(long id, OtokouVehicle vehicle, OtokouUser user) {
+	public boolean updateVehicleById(long id, OtokouVehicle vehicle, long user_id) {
 		if (!connectionOpen) return false;
 		
 		ContentValues values = new ContentValues();
-		values.put(OtokouVehicleAdapter.COL_1_NAME, user.getId());
+		values.put(OtokouVehicleAdapter.COL_1_NAME, user_id);
 		values.put(OtokouVehicleAdapter.COL_2_NAME, vehicle.getOtokouVehicleId());
 		values.put(OtokouVehicleAdapter.COL_3_NAME, vehicle.getVehicleName());
 
@@ -320,5 +321,56 @@ public class OtokouVehicleAdapter {
 				null, 
 				null, 
 				null);
+	}
+	
+	/**
+	 * Since Version 1<p>
+	 * 
+	 * Updates all vehicles of an user.<p>
+	 * Update existing vehicles (using otokou_vehicle_id), add new vehicles, delete not existing vehicles
+	 * note: need a call to the open() method before a call to this method.
+	 * 
+	 * @param user_id	OtokouUser id (user owning the vehicle)
+	 * @param vehicles	collection of OtokouVehicle instances
+	 * 
+	 * @return false if error.
+	 */		
+	public boolean updateVehicleForUser(long user_id, ArrayList<OtokouVehicle> vehicles){
+		if (!connectionOpen) return false;
+		
+		// save vehicles data to database
+		Cursor cursor = this.getVehiclesByUserId(user_id);
+		if (cursor.getCount() > 0) {
+			cursor.moveToLast();
+			do {
+				long otokouVehicleId = cursor.getLong(cursor.getColumnIndex(COL_2_NAME));
+				boolean found = false;
+				for (OtokouVehicle vehicle : vehicles) {
+					if (vehicle.getOtokouVehicleId() == otokouVehicleId) {
+						long id = cursor.getLong(cursor.getColumnIndex(COL_ID_NAME));
+						found = true;									
+						vehicle.setFound(true);
+						vehicle.setId(id);			
+						this.updateVehicleById(id, vehicle, user_id);
+					}
+				}
+				if (!found) {
+					this.deleteVehicleById(cursor.getLong(cursor.getColumnIndex(COL_ID_NAME)));
+				}
+			} while (cursor.moveToPrevious());
+			for (OtokouVehicle vehicle : vehicles) {
+				if (!vehicle.isFound()) {
+					vehicle.setId(this.insertVehicle(vehicle, user_id));
+				}
+			}
+		}
+		else {
+			for (OtokouVehicle vehicle : vehicles) {
+				vehicle.setId(this.insertVehicle(vehicle, user_id));
+			}
+		}
+		cursor.close();
+		
+		return true;
 	}
 }
