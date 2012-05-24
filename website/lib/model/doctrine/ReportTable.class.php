@@ -16,41 +16,6 @@ class ReportTable extends Doctrine_Table {
         return Doctrine_Core::getTable('Report');
     }
 
-    public static function findNewByUser($params) {
-
-        $username = $params['username'];
-
-        $q = self::getInstance()->createQuery('r')
-                ->andWhere('r.is_new = ?', true)
-                ->orderBy('r.created_at ASC');
-
-        $q = $this->addUsernameQuery($username, $q);
-
-
-        return $q->execute();
-    }
-
-    public static function findByUserAndVehicleSlug($params) {
-
-        $username = $params['username'];
-        $vehicle_slug = $params['slug'];
-
-        $q = self::getInstance()->createQuery('r')
-                ->leftJoin('r.Vehicles v')
-                ->andWhere('v.slug = ?', $vehicle_slug)
-                ->andWhere('r.num_vehicles = ?', 1)
-                ->orderBy('r.is_new DESC, r.created_at DESC');
-
-        $q = self::getInstance()->addUsernameQuery($username, $q);
-
-
-        if (isset($params['limit'])) {
-            $q->limit($params['limit']);
-        }
-
-        return $q->execute();
-    }
-
     public static function findCustomReportsByUser($params) {
 
         $q = self::getInstance()->getCustomReportsByUserQuery($params);
@@ -58,6 +23,7 @@ class ReportTable extends Doctrine_Table {
         return $q->execute();
     }
 
+    // TODO: unit test
     public function getCustomReportsByUserQuery($params = array()) {
 
         $username = $params['username'];
@@ -106,14 +72,6 @@ class ReportTable extends Doctrine_Table {
                 ->andWhere('u.username = ?', $username);
 
         return $q;
-    }
-
-    public function retrieveOrderedReport(Doctrine_Query $q) {
-        return $this->addOrderedReportsQuery($q)->fetchOne();
-    }
-
-    public function getOrderedReports(Doctrine_Query $q = null) {
-        return $this->addOrderedReportsQuery($q)->execute();
     }
 
     public function countReports(Doctrine_Query $q = null) {
