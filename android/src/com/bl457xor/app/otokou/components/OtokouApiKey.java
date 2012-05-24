@@ -1,4 +1,4 @@
-package com.bl457xor.app.otokou;
+package com.bl457xor.app.otokou.components;
 
 public class OtokouApiKey {
 

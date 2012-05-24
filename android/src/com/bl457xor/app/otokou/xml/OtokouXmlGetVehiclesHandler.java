@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 
-import com.bl457xor.app.otokou.OtokouVehicle;
+import com.bl457xor.app.otokou.components.OtokouVehicle;
 
 public class OtokouXmlGetVehiclesHandler extends OtokouXmlResponseHandler {
 	// booleans that check whether it's in a specific element

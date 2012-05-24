@@ -8,7 +8,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.bl457xor.app.otokou.OtokouVehicle;
+import com.bl457xor.app.otokou.components.OtokouVehicle;
 
 /**
  * Adapter to the database containing the Vehicles.<p>

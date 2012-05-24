@@ -1,4 +1,4 @@
-package com.bl457xor.app.otokou;
+package com.bl457xor.app.otokou.components;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -22,10 +22,11 @@ import org.xml.sax.XMLReader;
 
 import android.database.Cursor;
 
+import com.bl457xor.app.otokou.OtokouException;
 import com.bl457xor.app.otokou.db.OtokouUserAdapter;
 import com.bl457xor.app.otokou.xml.OtokouXmlGetUserHandler;
 
-public class OtokouUser implements Serializable{
+public class OtokouUser  extends OtokouComponent implements Serializable {
 
 	private static final long serialVersionUID = 2592158732300070601L;
 	private long otokouUserID;
@@ -44,7 +45,12 @@ public class OtokouUser implements Serializable{
 	private boolean autoload;
 	
 	
-	public OtokouUser(Cursor c) throws Exception {	
+	public OtokouUser (int errorCode, String errorMessage) {
+		super(errorCode,errorMessage);
+	}
+	
+	public OtokouUser(Cursor c) {
+		super();
 		this.id = c.getLong(c.getColumnIndex(OtokouUserAdapter.COL_ID_NAME));
 		this.otokouUserID = c.getLong(c.getColumnIndex(OtokouUserAdapter.COL_1_NAME));
 		this.firstName = c.getString(c.getColumnIndex(OtokouUserAdapter.COL_2_NAME));
@@ -58,22 +64,23 @@ public class OtokouUser implements Serializable{
 	}
 	
 	public OtokouUser(String rawData, String username, String apikey) throws OtokouException {
-		  try {
-		    SAXParserFactory spf = SAXParserFactory.newInstance();
-		    SAXParser sp = spf.newSAXParser();
+		super();
+		try {
+			SAXParserFactory spf = SAXParserFactory.newInstance();
+			SAXParser sp = spf.newSAXParser();
 
-		    XMLReader xr = sp.getXMLReader();
+			XMLReader xr = sp.getXMLReader();
 
-		    OtokouXmlGetUserHandler xmlHandler = new OtokouXmlGetUserHandler();
-		    xr.setContentHandler(xmlHandler);
+			OtokouXmlGetUserHandler xmlHandler = new OtokouXmlGetUserHandler();
+			xr.setContentHandler(xmlHandler);
 
-		    InputSource is = new InputSource(new StringReader(rawData)); 		    
-		    xr.parse(is);	    
-		    xmlHandler.getApiXmlVersion();
-		    if (!xmlHandler.headerOk()) throw new OtokouException("Cound't parse XML header",OtokouException.CODE_asd);
-		    
-		    if (!xmlHandler.bodyOk()) throw new OtokouException("Cound't parse XML Body",OtokouException.CODE_asd);
-		    
+			InputSource is = new InputSource(new StringReader(rawData)); 		    
+			xr.parse(is);	    
+			xmlHandler.getApiXmlVersion();
+			
+			if (!xmlHandler.headerOk()) throw new OtokouException(OtokouException.CODE_RESPONSE_GET_USER_XML_HEADER_PARSE_FAIL);
+			if (!xmlHandler.bodyOk()) throw new OtokouException(OtokouException.CODE_RESPONSE_GET_USER_XML_BODY_PARSE_FAIL);
+
 			this.otokouUserID = Long.parseLong(xmlHandler.getXmlUserId());
 			this.firstName = xmlHandler.getXmlFirstName();
 			this.lastName = xmlHandler.getXmlLastName();
@@ -82,14 +89,17 @@ public class OtokouUser implements Serializable{
 			this.lastUpdate = xmlHandler.getXmlLastUserUpdate();
 			this.lastVehiclesUpdate = xmlHandler.getXmlLastVehiclesUpdate();
 			this.vehiclesNumber = xmlHandler.getXmlVehiclesNumber();
-		    
-		  } catch(ParserConfigurationException pce) {
-			throw new OtokouException("sax parse error",OtokouException.CODE_asd);
-		  } catch(SAXException se) {
-			throw new OtokouException("sax error",OtokouException.CODE_asd);
-		  } catch(IOException ioe) {
-			throw new OtokouException("sax parse io error",OtokouException.CODE_asd);
-		  }
+
+		} catch(ParserConfigurationException e) {
+			e.printStackTrace();
+			throw new OtokouException(OtokouException.CODE_RESPONSE_GET_USER_PARSE_FAIL);
+		} catch(SAXException e) {
+			e.printStackTrace();
+			throw new OtokouException(OtokouException.CODE_RESPONSE_GET_USER_PARSE_FAIL);
+		} catch(IOException e) {
+			e.printStackTrace();
+			throw new OtokouException(OtokouException.CODE_RESPONSE_GET_USER_PARSE_FAIL);
+		}
 	}
 	
 	@Override

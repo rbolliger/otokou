@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.bl457xor.app.otokou.OtokouUser;
+import com.bl457xor.app.otokou.components.OtokouUser;
 
 
 /**

@@ -1,4 +1,4 @@
-package com.bl457xor.app.otokou;
+package com.bl457xor.app.otokou.components;
 
 import java.io.IOException;
 import java.io.StringReader;
@@ -11,9 +11,10 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
+import com.bl457xor.app.otokou.OtokouException;
 import com.bl457xor.app.otokou.xml.OtokouXmlSetChargeHandler;
 
-public class OtokouCharge {
+public class OtokouCharge extends OtokouComponent {
 	public static final String CATEGORY_001_NAME = "Fuel";
 	public static final String CATEGORY_002_NAME = "Initial Investment";
 	public static final String CATEGORY_003_NAME = "Leasing";
@@ -44,7 +45,13 @@ public class OtokouCharge {
 	private String comment;	
 	private double quantity;	
 	
+	
+	public OtokouCharge(int errorCode, String errorMessage) {
+		super(errorCode,errorMessage);
+	}
+	
 	public OtokouCharge(long vehicleID, String vehicle, int categoryID, String date, double kilometers, double amount, String comment, double quantity) {
+		super();
 		this.vehicleID = vehicleID;
 		this.vehicle = vehicle;
 		this.categoryID = categoryID;
@@ -83,7 +90,7 @@ public class OtokouCharge {
 		}	
 	}
 	
-	public static boolean checkReponseXml(String rawData) throws OtokouException {
+	public static void checkReponseXml(String rawData) throws OtokouException {
 		  try {
 			    SAXParserFactory spf = SAXParserFactory.newInstance();
 			    SAXParser sp = spf.newSAXParser();
@@ -96,24 +103,24 @@ public class OtokouCharge {
 			    InputSource is = new InputSource(new StringReader(rawData)); 		    
 			    xr.parse(is);	    
 			    xmlHandler.getApiXmlVersion();
-			    if (!xmlHandler.headerOk()) throw new OtokouException("Cound't parse XML header",OtokouException.CODE_asd);
 			    
-			    if (!xmlHandler.bodyOk()) throw new OtokouException("Cound't parse XML Body",OtokouException.CODE_asd);
-			    
-			    if (xmlHandler.getResult().equalsIgnoreCase("ok")) {
-			    	return true;
+				if (!xmlHandler.headerOk()) throw new OtokouException(OtokouException.CODE_RESPONSE_SET_CHARGE_XML_HEADER_PARSE_FAIL);
+				if (!xmlHandler.bodyOk()) throw new OtokouException(OtokouException.CODE_RESPONSE_SET_CHARGE_XML_BODY_PARSE_FAIL);
+				
+			    if (!xmlHandler.getResult().equalsIgnoreCase("ok")) {
+			    	// TODO manage the differents errors
+			    	throw new OtokouException(OtokouException.CODE_RESPONSE_SET_CHARGE_NOT_OK);
 			    }
-			    else {
-			    	return false;
-			    }
-			    
-			} catch(ParserConfigurationException pce) {
-				throw new OtokouException("sax parse error",OtokouException.CODE_asd);
-			} catch(SAXException se) {
-				throw new OtokouException("sax error",OtokouException.CODE_asd);
-			} catch(IOException ioe) {
-				throw new OtokouException("sax parse io error",OtokouException.CODE_asd);
-			}
+		  } catch(ParserConfigurationException e) {
+			  e.printStackTrace();
+			  throw new OtokouException(OtokouException.CODE_RESPONSE_SET_CHARGE_PARSE_FAIL);
+		  } catch(SAXException e) {
+			  e.printStackTrace();
+			  throw new OtokouException(OtokouException.CODE_RESPONSE_SET_CHARGE_PARSE_FAIL);
+		  } catch(IOException e) {
+			  e.printStackTrace();
+			  throw new OtokouException(OtokouException.CODE_RESPONSE_SET_CHARGE_PARSE_FAIL);
+		  }
 	}
 
 	public long getId() {
