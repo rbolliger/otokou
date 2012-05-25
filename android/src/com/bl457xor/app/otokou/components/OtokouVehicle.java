@@ -22,6 +22,7 @@ import org.xml.sax.XMLReader;
 
 import android.database.Cursor;
 
+import com.bl457xor.app.otokou.OtokouAPI;
 import com.bl457xor.app.otokou.OtokouException;
 import com.bl457xor.app.otokou.db.OtokouVehicleAdapter;
 import com.bl457xor.app.otokou.xml.OtokouXmlGetVehiclesHandler;
@@ -129,8 +130,15 @@ public class OtokouVehicle  extends OtokouComponent implements Serializable {
 			xmlHandler.getApiXmlVersion();
 
 			if (!xmlHandler.headerOk()) throw new OtokouException(OtokouException.CODE_RESPONSE_GET_VEHICLES_XML_HEADER_PARSE_FAIL);
-			if (!xmlHandler.bodyOk()) throw new OtokouException(OtokouException.CODE_RESPONSE_GET_VEHICLES_XML_BODY_PARSE_FAIL);
-
+			if (!xmlHandler.bodyOk()) {
+				if (Long.parseLong(xmlHandler.getXmlErrorCode()) == OtokouAPI.OTOKOU_API_ERROR_CODE_INCORRECT_LOGIN) {
+					throw new OtokouException(OtokouException.CODE_RESPONSE_GET_VEHICLES_INCORRECT_LOGIN);
+				}
+				else {
+					throw new OtokouException(OtokouException.CODE_RESPONSE_GET_VEHICLES_XML_BODY_PARSE_FAIL);
+				}
+			}
+			
 			return xmlHandler.getXmlVehicles();
 
 		} catch(ParserConfigurationException e) {

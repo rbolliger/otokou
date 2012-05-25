@@ -7,5 +7,6 @@
     <string name="add_user_dialog_message_loading_user">Loading user data &#8230;</string>
     <string name="add_user_dialog_message_ok">OK</string>
     <string name="add_user_error_not_connected">No internet connection found. Connect and try again.</string>
-    <string name="add_user_error_not_found">The provided username and API key combination is invalid.</string>
+    <string name="add_user_error_user">Error while retrieving user information.</string>
+    <string name="add_user_error_user_login">Invalid User API key combination, please check your API key in the preferences.</string>
 </resources>

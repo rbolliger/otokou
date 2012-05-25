@@ -21,13 +21,13 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
 
+import com.bl457xor.app.otokou.components.OtokouUser;
 import com.bl457xor.app.otokou.db.OtokouUserAdapter;
 
 
 // TODO
-// API exceptions system
+// refine and make use of Exception system (check values for add charge)
 // offline behavior
-// check values for add charge
 // layouts
 // ...
 
@@ -72,15 +72,12 @@ public class Main extends ListActivity implements OnClickListener {
 		OtokouUserAdapter OUAdb = new OtokouUserAdapter(getApplicationContext()).open();
 		Cursor c = OUAdb.getAllUsers();
 		
-		c.moveToFirst();
-		do {	
-			try {
+		if (c.getCount() > 0) {
+			c.moveToFirst();
+			do {				
 				users.add(new OtokouUser(c));
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		} while (c.moveToNext());
+			} while (c.moveToNext());
+		}	
 		
 		c.close();
 		OUAdb.close();
@@ -224,25 +221,21 @@ public class Main extends ListActivity implements OnClickListener {
 
 		@Override
 		public Filter getFilter() {
-			// TODO Auto-generated method stub
 			return null;
 		}
 
 		@Override
 		public long getItemId(int position) {
-			// TODO Auto-generated method stub
 			return 0;
 		}
 
 		@Override
 		public int getCount() {
-			// TODO Auto-generated method stub
 			return users.size();
 		}
 
 		@Override
 		public Object getItem(int position) {
-			// TODO Auto-generated method stub
 			return users.get(position);
 		}
 	}
@@ -270,6 +263,7 @@ public class Main extends ListActivity implements OnClickListener {
 	}
 	
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO handle errors on result return
 		autoload = false;
 	}
 }

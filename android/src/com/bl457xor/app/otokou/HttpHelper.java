@@ -23,6 +23,7 @@ import android.util.Log;
 
 
 public class HttpHelper {
+	//TODO delete not used
     public String executeHttpGet(String getUrl) throws Exception {
         BufferedReader in = null;
         String page = "";
@@ -52,10 +53,12 @@ public class HttpHelper {
         return page;
     }
     
-    public static String executeHttpPost(String postUrl,String Xml) {    	
+    public static String executeHttpPost(String postUrl,String Xml) throws OtokouException {    	
     	
     	BufferedReader in = null;
     	String page = "";
+    	
+    	//TODO delete debug
     	Log.i("request",Xml);
     	
     	try {
@@ -89,14 +92,14 @@ public class HttpHelper {
     		page = sb.toString();
     		
     	} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	    	e.printStackTrace();
+	    	throw new OtokouException(OtokouException.CODE_HTTP_CLIENT_FAIL);
 		} catch (ClientProtocolException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			throw new OtokouException(OtokouException.CODE_HTTP_CLIENT_FAIL);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			throw new OtokouException(OtokouException.CODE_HTTP_CLIENT_FAIL);
 		}
     	finally {        	
     		if (in != null) {
@@ -107,7 +110,15 @@ public class HttpHelper {
     			}
     		}
     	}
+    	
+    	//TODO delete debug
     	Log.i("response",page);
-    	return page;
+    	
+    	if (page.equals("")) {
+    		throw new OtokouException(OtokouException.CODE_HTTP_CLIENT_EMPTY_RESPONSE);
+    	}
+    	else {
+    		return page;
+    	}
     } 
 }

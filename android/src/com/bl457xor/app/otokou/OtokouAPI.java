@@ -1,11 +1,16 @@
 package com.bl457xor.app.otokou;
 
 import java.io.StringWriter;
-import java.util.ArrayList;
 
 import org.xmlpull.v1.XmlSerializer;
 
 import android.util.Xml;
+
+import com.bl457xor.app.otokou.components.OtokouCharge;
+import com.bl457xor.app.otokou.components.OtokouComponent;
+import com.bl457xor.app.otokou.components.OtokouUser;
+import com.bl457xor.app.otokou.components.OtokouVehicle;
+import com.bl457xor.app.otokou.components.OtokouVehicles;
 
 public class OtokouAPI {
 	// general constants
@@ -13,41 +18,38 @@ public class OtokouAPI {
 	public static final String OTOKOU_SET_CHARGE_ACTION = "set_charge";
 	public static final String OTOKOU_GET_VEHICLES_ACTION = "get_vehicles";
 	public static final String OTOKOU_GET_USER_ACTION = "get_user";
+	// Otokou API error codes
+	public static final long OTOKOU_API_ERROR_CODE_INCORRECT_LOGIN = 211;
 
 	public static OtokouUser getUserData(String username, String apiKey) {
 		String getRequest = OTOKOU_API_URL+OTOKOU_GET_USER_ACTION;
     	try {		
     		return new OtokouUser(HttpHelper.executeHttpPost(getRequest,writeGetUserXml(username, apiKey)), username, apiKey);
 		} catch (OtokouException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
+			return new OtokouUser(e.getExceptionCode(),e.getMessage());
 		}		
 	}
 	
-	public static ArrayList<OtokouVehicle> getVehiclesData(String username, String apiKey) {	
+	public static OtokouVehicles getVehiclesData(String username, String apiKey) {	
 		String getRequest = OTOKOU_API_URL+OTOKOU_GET_VEHICLES_ACTION;
     	try {		
-    		return OtokouVehicle.CollectionFromXml(HttpHelper.executeHttpPost(getRequest,writeGetVehiclesXml(username, apiKey)));
+    		return new OtokouVehicles(OtokouVehicle.CollectionFromXml(HttpHelper.executeHttpPost(getRequest,writeGetVehiclesXml(username, apiKey))));
 		} catch (OtokouException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
+			return new OtokouVehicles(e.getExceptionCode(),e.getMessage());
 		}
 	}
 
-	public static boolean setNewChargeData(String username, String apiKey, OtokouCharge charge) {
+	public static OtokouComponent setNewChargeData(String username, String apiKey, OtokouCharge charge) {
 		String getRequest = OTOKOU_API_URL+OTOKOU_SET_CHARGE_ACTION;
     	try {
-    		return OtokouCharge.checkReponseXml(HttpHelper.executeHttpPost(getRequest,writeSetNewChargeXml(username, apiKey, charge)));
+    		OtokouCharge.checkReponseXml(HttpHelper.executeHttpPost(getRequest,writeSetNewChargeXml(username, apiKey, charge)));
+    		return new OtokouComponent();
 		} catch (OtokouException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return false;
+			return new OtokouComponent(e.getExceptionCode(),e.getMessage());
 		}
 	}
 	
-	private static String writeGetUserXml(String username, String apiKey){
+	private static String writeGetUserXml(String username, String apiKey) throws OtokouException {
 	    XmlSerializer serializer = Xml.newSerializer();
 	    StringWriter writer = new StringWriter();
 	    try {
@@ -74,11 +76,12 @@ public class OtokouAPI {
 	        serializer.endDocument();
 	        return writer.toString();
 	    } catch (Exception e) {
-	        throw new RuntimeException(e);
+	    	e.printStackTrace();
+	    	throw new OtokouException(OtokouException.CODE_WRITE_GET_USER_XML_FAIL);
 	    } 
 	}
 	
-	private static String writeGetVehiclesXml(String username, String apiKey) {
+	private static String writeGetVehiclesXml(String username, String apiKey) throws OtokouException {
 	    XmlSerializer serializer = Xml.newSerializer();
 	    StringWriter writer = new StringWriter();
 	    try {
@@ -105,11 +108,12 @@ public class OtokouAPI {
 	        serializer.endDocument();
 	        return writer.toString();
 	    } catch (Exception e) {
-	        throw new RuntimeException(e);
+	    	e.printStackTrace();
+	    	throw new OtokouException(OtokouException.CODE_WRITE_GET_VEHICLES_XML_FAIL);
 	    } 
 	}
 	
-	private static String writeSetNewChargeXml(String username, String apiKey, OtokouCharge charge) {
+	private static String writeSetNewChargeXml(String username, String apiKey, OtokouCharge charge) throws OtokouException {
 	    XmlSerializer serializer = Xml.newSerializer();
 	    StringWriter writer = new StringWriter();
 	    try {
@@ -157,7 +161,8 @@ public class OtokouAPI {
 	        serializer.endDocument();
 	        return writer.toString();
 	    } catch (Exception e) {
-	        throw new RuntimeException(e);
+	    	e.printStackTrace();
+	    	throw new OtokouException(OtokouException.CODE_WRITE_SET_CHARGE_XML_FAIL);
 	    } 
 	}
 }

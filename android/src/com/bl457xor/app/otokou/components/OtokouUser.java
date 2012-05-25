@@ -22,6 +22,7 @@ import org.xml.sax.XMLReader;
 
 import android.database.Cursor;
 
+import com.bl457xor.app.otokou.OtokouAPI;
 import com.bl457xor.app.otokou.OtokouException;
 import com.bl457xor.app.otokou.db.OtokouUserAdapter;
 import com.bl457xor.app.otokou.xml.OtokouXmlGetUserHandler;
@@ -79,7 +80,14 @@ public class OtokouUser  extends OtokouComponent implements Serializable {
 			xmlHandler.getApiXmlVersion();
 			
 			if (!xmlHandler.headerOk()) throw new OtokouException(OtokouException.CODE_RESPONSE_GET_USER_XML_HEADER_PARSE_FAIL);
-			if (!xmlHandler.bodyOk()) throw new OtokouException(OtokouException.CODE_RESPONSE_GET_USER_XML_BODY_PARSE_FAIL);
+			if (!xmlHandler.bodyOk()) {
+				if (Long.parseLong(xmlHandler.getXmlErrorCode()) == OtokouAPI.OTOKOU_API_ERROR_CODE_INCORRECT_LOGIN) {
+					throw new OtokouException(OtokouException.CODE_RESPONSE_GET_USER_INCORRECT_LOGIN);
+				}
+				else {
+					throw new OtokouException(OtokouException.CODE_RESPONSE_GET_USER_XML_BODY_PARSE_FAIL);
+				}
+			}
 
 			this.otokouUserID = Long.parseLong(xmlHandler.getXmlUserId());
 			this.firstName = xmlHandler.getXmlFirstName();

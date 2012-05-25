@@ -1,7 +1,5 @@
 package com.bl457xor.app.otokou;
 
-import java.util.ArrayList;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -21,6 +19,10 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.bl457xor.app.otokou.components.OtokouApiKey;
+import com.bl457xor.app.otokou.components.OtokouUser;
+import com.bl457xor.app.otokou.components.OtokouVehicle;
+import com.bl457xor.app.otokou.components.OtokouVehicles;
 import com.bl457xor.app.otokou.db.OtokouUserAdapter;
 import com.bl457xor.app.otokou.db.OtokouVehicleAdapter;
 
@@ -45,12 +47,12 @@ public class User extends Activity implements OnClickListener, Runnable {
 	private static final int RUN_ERROR_API_KEY = 101;
 	private static final int RUN_ERROR_USER = 102;
 	private static final int RUN_ERROR_VEHICLES = 103;
+	private static final int RUN_ERROR_USER_LOGIN = 104;
 	
 	// global variables initialization
 	private OtokouUser otokouUser;
-	private TextView txtUserWelcome;
 	private SharedPreferences preferences;
-	private ArrayList<OtokouVehicle> vehicles;
+	private OtokouVehicles vehicles;
 	private ProgressDialog progressDialog;
 	private TextView txtUser;
 	private boolean dataOK = false;
@@ -86,17 +88,9 @@ public class User extends Activity implements OnClickListener, Runnable {
 
 		if (c.getCount() == 1) {
 			c.moveToLast();
-			try {
-				otokouUser = new OtokouUser(c);
-				txtUserWelcome.setText(otokouUser.getFirstName());
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			finally {
-				c.close();
-				OUAdb.close();			
-			}
+			otokouUser = new OtokouUser(c);
+			c.close();
+			OUAdb.close();			
 		}
 		else {
 			c.close();
@@ -159,7 +153,6 @@ public class User extends Activity implements OnClickListener, Runnable {
 
 	@Override
 	public void run() {
-		// TODO handle errors more detailed with exceptions from otokouAPI
 		if (isOnline()) {
 			long userId = otokouUser.getId();
 			String username = otokouUser.getUsername();
@@ -173,27 +166,32 @@ public class User extends Activity implements OnClickListener, Runnable {
 				handler.sendEmptyMessage(RUN_MSG_LOADING_USER);
 				OtokouUser retrivedOtokouUser = OtokouAPI.getUserData(username, apiKey);
 				
-				if (retrivedOtokouUser != null) {
+				if (retrivedOtokouUser.isValid()) {
 					// check if vehicles data has changed
 					if (otokouUser.vehiclesAreOutOfDate(retrivedOtokouUser)) {						
 						// load vehicles data from Otokou
 						handler.sendEmptyMessage(RUN_MSG_LOADING_VEHICLES);
 						vehicles = OtokouAPI.getVehiclesData(username, apiKey);
 						
-						if (vehicles != null) {
+						if (vehicles.isValid()) {
 							OtokouVehicleAdapter OVAdb = new OtokouVehicleAdapter(getApplicationContext()).open();
-							OVAdb.updateVehicleForUser(userId, vehicles);
+							OVAdb.updateVehicleForUser(userId, vehicles.items);
 							OVAdb.close();
 							handler.sendEmptyMessage(RUN_MSG_LOADING_OK);
 						}
 						else {
-							handler.sendEmptyMessage(RUN_ERROR_VEHICLES);
+							if (vehicles.getErrorCode() == OtokouException.CODE_RESPONSE_GET_VEHICLES_INCORRECT_LOGIN) {
+								handler.sendEmptyMessage(RUN_ERROR_USER_LOGIN);
+							}
+							else {
+								handler.sendEmptyMessage(RUN_ERROR_VEHICLES);
+							}
 						}						
 					}
 					else {						
 						OtokouVehicleAdapter OVAdb = new OtokouVehicleAdapter(getApplicationContext()).open();
 						Cursor vehiclesCursor = OVAdb.getVehiclesByUserId(userId);
-						vehicles = OtokouVehicle.getVehiclesFromCursor(vehiclesCursor);
+						vehicles = new OtokouVehicles(OtokouVehicle.getVehiclesFromCursor(vehiclesCursor));
 						vehiclesCursor.close();
 						OVAdb.close();
 						handler.sendEmptyMessage(RUN_MSG_LOADING_OK);
@@ -209,7 +207,12 @@ public class User extends Activity implements OnClickListener, Runnable {
 					OUAdb.close();				
 				}
 				else {
-					handler.sendEmptyMessage(RUN_ERROR_USER);
+					if (retrivedOtokouUser.getErrorCode() == OtokouException.CODE_RESPONSE_GET_USER_INCORRECT_LOGIN) {
+						handler.sendEmptyMessage(RUN_ERROR_USER_LOGIN);
+					}
+					else {
+						handler.sendEmptyMessage(RUN_ERROR_USER);
+					}
 				}
 			}
 		}
@@ -258,6 +261,11 @@ public class User extends Activity implements OnClickListener, Runnable {
 				dataOK = false;
 				btnAddCharge.setVisibility(Button.INVISIBLE);
 				break;
+			case RUN_ERROR_USER_LOGIN:
+				txtUser.setText(getString(R.string.user_txt_user_error_user_login));
+				dataOK = false;
+				btnAddCharge.setVisibility(Button.INVISIBLE);
+				break;
 			}
 		}
 	};
@@ -272,7 +280,7 @@ public class User extends Activity implements OnClickListener, Runnable {
 		Bundle extras = new Bundle();
 		
 		int vehiclesNumber = 0;
-		for (OtokouVehicle vehicle : vehicles) {
+		for (OtokouVehicle vehicle : vehicles.items) {
 			extras.putByteArray("vehicle_"+vehiclesNumber, vehicle.toByteArray());
 			vehiclesNumber++;
 		}

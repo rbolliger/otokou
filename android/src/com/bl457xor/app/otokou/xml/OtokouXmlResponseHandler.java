@@ -64,7 +64,7 @@ public class OtokouXmlResponseHandler extends DefaultHandler {
 	 * @return
 	 */
 	public boolean headerOk() {
-		if (xmlVersion != null && xmlErrorCode != null && xmlErrorMessage != null && xmlResponse != null) return true;
+		if (xmlVersion != null && xmlErrorCode != null && xmlErrorMessage != null) return true;
 		else return false;
 	}
 

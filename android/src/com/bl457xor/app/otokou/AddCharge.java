@@ -18,6 +18,10 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.bl457xor.app.otokou.components.OtokouCharge;
+import com.bl457xor.app.otokou.components.OtokouComponent;
+import com.bl457xor.app.otokou.components.OtokouUser;
+import com.bl457xor.app.otokou.components.OtokouVehicle;
 import com.bl457xor.app.otokou.db.OtokouChargeAdapter;
 
 public class AddCharge extends Activity implements OnClickListener {
@@ -108,15 +112,18 @@ public class AddCharge extends Activity implements OnClickListener {
 				Double.parseDouble(edtQuantity.getText().toString()));
 		
 		if (isOnline()) {
-			// TODO check results
-			OtokouAPI.setNewChargeData(otokouUser.getUsername(), otokouUser.getApikey(), charge);
 			
-			OtokouChargeAdapter OCAdb = new OtokouChargeAdapter(getApplicationContext()).open();
-			OCAdb.insertCharge(charge, otokouUser, vehicles.get((int)spnVehicle.getSelectedItemId()), OtokouChargeAdapter.COL_4_SENT_VALUE);
-			OCAdb.close();
-			
-			setResult(RETURN_RESULT_OK, null);
-			finish();
+			OtokouComponent otokouComponent = OtokouAPI.setNewChargeData(otokouUser.getUsername(), otokouUser.getApikey(), charge);
+			if (otokouComponent.isValid()) {
+				OtokouChargeAdapter OCAdb = new OtokouChargeAdapter(getApplicationContext()).open();
+				OCAdb.insertCharge(charge, otokouUser, vehicles.get((int)spnVehicle.getSelectedItemId()), OtokouChargeAdapter.COL_4_SENT_VALUE);
+				OCAdb.close();	
+				setResult(RETURN_RESULT_OK, null);
+				finish();			
+			}
+			else {
+				// TODO check errors		
+			}		
 		}
 		else {
 			OtokouChargeAdapter OCAdb = new OtokouChargeAdapter(getApplicationContext()).open();
