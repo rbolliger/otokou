@@ -40,12 +40,25 @@
             android:id="@+id/dtpAddChargeDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-
-        <TextView
-            android:id="@+id/txtAddChargeKilometers"
+        
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/txt_kilometers_text" />
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/txtAddChargeKilometers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_kilometers_text" />
+
+            <TextView
+                android:id="@+id/etxtAddChargeKilometers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/error_message_color" />         
+        </LinearLayout>
 
         <EditText
             android:id="@+id/edtAddChargeKilometers"
@@ -56,47 +69,98 @@
             <requestFocus />
         </EditText>
 
-        <TextView
-            android:id="@+id/txtAddChargeAmount"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/txt_amount_text" />
+            android:orientation="horizontal" >
+            
+            <TextView
+                android:id="@+id/txtAddChargeAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_amount_text" />
 
+            <TextView
+                android:id="@+id/etxtAddChargeAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/error_message_color" />          
+        </LinearLayout>
+        
         <EditText
             android:id="@+id/edtAddChargeAmount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/etxt_amount_hint" />
-
-        <TextView
-            android:id="@+id/txtAddChargeComment"
+        
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/txt_comment_text" />
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/txtAddChargeComment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_comment_text" />
+
+            <TextView
+                android:id="@+id/etxtAddChargeComment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/error_message_color" />
+        </LinearLayout>
 
         <EditText
             android:id="@+id/edtAddChargeComment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/etxt_comment_hint" />
-
-        <TextView
-            android:id="@+id/txtAddChargeQuantity"
+        
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/txt_quantity_text" />
+            android:orientation="horizontal" >
 
-        <EditText
+            <TextView
+                android:id="@+id/txtAddChargeQuantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_quantity_text" />
+
+            <TextView
+                android:id="@+id/etxtAddChargeQuantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/error_message_color" />
+        </LinearLayout>
+        
+		<EditText
             android:id="@+id/edtAddChargeQuantity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/etxt_quantity_hint" />
 
-        <Button
-            android:id="@+id/btnAddChargeAdd"
+		<LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/btn_add_text" />
+            android:orientation="horizontal" >
+            
+            <Button
+                android:id="@+id/btnAddChargeAdd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_add_text" />
 
+            <TextView
+                android:id="@+id/etxtAddChargeAdd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/error_message_color" />
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>

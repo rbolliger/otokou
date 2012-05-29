@@ -44,6 +44,9 @@ public class OtokouException extends Exception {
 	public static final String MESSAGE_RESPONSE_GET_USER_INCORRECT_LOGIN = "login data incorrect";
 	public static final int CODE_RESPONSE_GET_VEHICLES_INCORRECT_LOGIN = 42002;
 	public static final String MESSAGE_RESPONSE_GET_VEHICLES_INCORRECT_LOGIN = "login data incorrect";
+	public static final int CODE_RESPONSE_SET_CHARGE_INCORRECT_LOGIN = 42003;
+	public static final String MESSAGE_RESPONSE_SET_CHARGE_INCORRECT_LOGIN = "login data incorrect";
+	
 	
 	//// members
 	private int exceptionCode;

@@ -11,6 +11,7 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
+import com.bl457xor.app.otokou.OtokouAPI;
 import com.bl457xor.app.otokou.OtokouException;
 import com.bl457xor.app.otokou.xml.OtokouXmlSetChargeHandler;
 
@@ -105,12 +106,19 @@ public class OtokouCharge extends OtokouComponent {
 			    xmlHandler.getApiXmlVersion();
 			    
 				if (!xmlHandler.headerOk()) throw new OtokouException(OtokouException.CODE_RESPONSE_SET_CHARGE_XML_HEADER_PARSE_FAIL);
-				if (!xmlHandler.bodyOk()) throw new OtokouException(OtokouException.CODE_RESPONSE_SET_CHARGE_XML_BODY_PARSE_FAIL);
+				if (!xmlHandler.bodyOk()) {
+					if (Long.parseLong(xmlHandler.getXmlErrorCode()) == OtokouAPI.OTOKOU_API_ERROR_CODE_INCORRECT_LOGIN) {
+						throw new OtokouException(OtokouException.CODE_RESPONSE_SET_CHARGE_INCORRECT_LOGIN);
+					}
+					else {
+						throw new OtokouException(OtokouException.CODE_RESPONSE_SET_CHARGE_XML_BODY_PARSE_FAIL);
+					}
+				}
 				
 			    if (!xmlHandler.getResult().equalsIgnoreCase("ok")) {
-			    	// TODO manage the differents errors
 			    	throw new OtokouException(OtokouException.CODE_RESPONSE_SET_CHARGE_NOT_OK);
 			    }
+			    
 		  } catch(ParserConfigurationException e) {
 			  e.printStackTrace();
 			  throw new OtokouException(OtokouException.CODE_RESPONSE_SET_CHARGE_PARSE_FAIL);

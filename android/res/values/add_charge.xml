@@ -24,4 +24,9 @@
     </string-array>
     <string name="add_charge_menu_add">Add</string>
     <string name="add_charge_menu_back">Back</string>
+    <string name="add_charge_error_kilometers">A numeric value needed for this field.</string>
+    <string name="add_charge_error_amount">A numeric value needed for this field.</string>
+    <string name="add_charge_error_quantity">A numeric value needed for this field for Fuel Category.</string>
+    <string name="add_charge_error_user_login">Invalid User API key combination, please check your API key in the preferences.</string>
+    <string name="add_charge_error_set_charge">Error while sending the new charge information.</string>
 </resources>
