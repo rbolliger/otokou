@@ -2,11 +2,7 @@ package com.bl457xor.app.otokou;
 
 import java.util.ArrayList;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,7 +21,7 @@ import com.bl457xor.app.otokou.components.OtokouUser;
 import com.bl457xor.app.otokou.components.OtokouVehicle;
 import com.bl457xor.app.otokou.db.OtokouChargeAdapter;
 
-public class AddCharge extends Activity implements OnClickListener {
+public class AddCharge extends OnlineActivity implements OnClickListener {
 	// onOptionsItemSelected menu ids constants
 	private static final int MENU_ID_ADD_CHARGE = 2002;
 	private static final int MENU_ID_BACK = 2100;
@@ -198,15 +194,6 @@ public class AddCharge extends Activity implements OnClickListener {
 		default:
 			etxtChargeAdd.setText(R.string.add_charge_error_set_charge);
 		}		
-	}
-
-	private boolean isOnline() {
-	    ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
-	    NetworkInfo netInfo = cm.getActiveNetworkInfo();
-	    if (netInfo != null && netInfo.isConnectedOrConnecting()) {
-	        return true;
-	    }
-	    return false;
 	}
 	
 	@Override

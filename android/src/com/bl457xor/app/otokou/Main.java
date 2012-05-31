@@ -2,7 +2,6 @@ package com.bl457xor.app.otokou;
 
 import java.util.ArrayList;
 
-import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -26,17 +25,22 @@ import com.bl457xor.app.otokou.db.OtokouUserAdapter;
 
 
 // TODO
-// refine and make use of Exception system (check values for add charge)
-// offline behavior
+// offline behavior 
+//  - main -> button addUser off if offline, notify
+//  - adduser -> no access, can't add user
+//  - user -> notify
+//  - addcharge -> save on database
 // layouts
 // ...
 
 
-public class Main extends ListActivity implements OnClickListener {
+public class Main extends OnlineListActivity implements OnClickListener {
 	// global variables initialization
 	private EfficientAdapter adap;
 	private ArrayList<OtokouUser> users;
 	private boolean autoload = true;
+	private boolean isOnline = false;
+	private Button btnAddUser;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -51,7 +55,12 @@ public class Main extends ListActivity implements OnClickListener {
 	protected void onResume() {
 		super.onResume();
 		
+		if (isOnline()) isOnline = true;
+		else isOnline = false;
+		
 		loadUsers();
+		
+		updateUI();
 		
 		if (adap != null) {
 			adap = null;
@@ -59,9 +68,15 @@ public class Main extends ListActivity implements OnClickListener {
 		adap = new EfficientAdapter(this);
 		setListAdapter(adap);	
 	}
-	
+
 	private void initializeUI() {
-		((Button)findViewById(R.id.btnAddUser)).setOnClickListener(this);		
+		btnAddUser = (Button)findViewById(R.id.btnAddUser);
+		btnAddUser.setOnClickListener(this);	
+	}
+	
+	private void updateUI() {
+		if (isOnline) btnAddUser.setClickable(true);
+		else btnAddUser.setClickable(false);
 	}
 
 	private void loadUsers() {

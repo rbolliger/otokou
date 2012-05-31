@@ -1,10 +1,6 @@
 package com.bl457xor.app.otokou;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -17,7 +13,7 @@ import android.widget.TextView;
 import com.bl457xor.app.otokou.components.OtokouUser;
 import com.bl457xor.app.otokou.db.OtokouUserAdapter;
 
-public class AddUser extends Activity implements OnClickListener, Runnable {
+public class AddUser extends OnlineActivity implements OnClickListener, Runnable {
 	// run messages constants
 	private static final int RUN_END = 0;
 	private static final int RUN_MSG_LOADING_USER = 10;
@@ -162,14 +158,5 @@ public class AddUser extends Activity implements OnClickListener, Runnable {
 		
 		txtAUErrorMessage.setText(message);	
 		return result;
-	}
-	
-	private boolean isOnline() {
-	    ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
-	    NetworkInfo netInfo = cm.getActiveNetworkInfo();
-	    if (netInfo != null && netInfo.isConnectedOrConnecting()) {
-	        return true;
-	    }
-	    return false;
 	}
 }

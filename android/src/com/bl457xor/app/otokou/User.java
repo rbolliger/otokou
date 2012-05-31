@@ -1,13 +1,9 @@
 package com.bl457xor.app.otokou;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -26,7 +22,7 @@ import com.bl457xor.app.otokou.components.OtokouVehicles;
 import com.bl457xor.app.otokou.db.OtokouUserAdapter;
 import com.bl457xor.app.otokou.db.OtokouVehicleAdapter;
 
-public class User extends Activity implements OnClickListener, Runnable {
+public class User extends OnlineActivity implements OnClickListener, Runnable {
 	// messages constants
 	public static final int RETURN_RESULT_OK = 1000;
 	public static final int RETURN_RESULT_BACK = 1001;
@@ -315,15 +311,6 @@ public class User extends Activity implements OnClickListener, Runnable {
 		else {
 			
 		}
-	}
-	
-	private boolean isOnline() {
-	    ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
-	    NetworkInfo netInfo = cm.getActiveNetworkInfo();
-	    if (netInfo != null && netInfo.isConnectedOrConnecting()) {
-	        return true;
-	    }
-	    return false;
 	}
 
 	@Override
