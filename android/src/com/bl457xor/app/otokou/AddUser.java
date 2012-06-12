@@ -14,6 +14,13 @@ import com.bl457xor.app.otokou.components.OtokouUser;
 import com.bl457xor.app.otokou.db.OtokouUserAdapter;
 
 public class AddUser extends OnlineActivity implements OnClickListener, Runnable {
+	// return messages constants
+	public static final int RETURN_RESULT_OK = 2000;
+	public static final int RETURN_RESULT_BACK = 2001;
+	public static final int RETURN_RESULT_OFFLINE = 2002; 
+	public static final int RETURN_RESULT_USER_ADDED = 2003; 
+	public static final int RETURN_RESULT_UNEXPECTED = 2100; 
+	
 	// run messages constants
 	private static final int RUN_END = 0;
 	private static final int RUN_MSG_LOADING_USER = 10;
@@ -33,8 +40,17 @@ public class AddUser extends OnlineActivity implements OnClickListener, Runnable
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_user);
         
+        setResult(RETURN_RESULT_UNEXPECTED, null);
+        
 		initializeUI();
     }
+    
+	@Override
+	protected void onResume() {
+		super.onResume();
+		
+		if (!isOnline()) offline();
+	}
 
 	private void initializeUI() {
 		((Button)findViewById(R.id.btnAddUserAdd)).setOnClickListener(this);
@@ -71,13 +87,18 @@ public class AddUser extends OnlineActivity implements OnClickListener, Runnable
 		    	thread.start();
 			}
 			else {
-				// TODO if not online behavior
-				finish();
+				offline();
 			}
 		}
 	}
 	
 	private void back() {
+		setResult(RETURN_RESULT_BACK, null);
+		finish();
+	}
+	
+	private void offline() {
+		setResult(RETURN_RESULT_OFFLINE, null);
 		finish();
 	}
 	
@@ -116,6 +137,7 @@ public class AddUser extends OnlineActivity implements OnClickListener, Runnable
 			switch (msg.what) {
 			case RUN_END:
 				progressDialog.dismiss();
+				setResult(RETURN_RESULT_USER_ADDED, null);
 				finish();
 				break;
 			case RUN_MSG_LOADING_USER:
@@ -134,7 +156,7 @@ public class AddUser extends OnlineActivity implements OnClickListener, Runnable
 				break;
 			case RUN_ERROR_NOT_CONNECTED:
 				progressDialog.dismiss();
-				txtAUErrorMessage.setText(R.string.add_user_error_not_connected);	
+				offline();
 				break;	
 			}
 		}

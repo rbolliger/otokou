@@ -176,19 +176,4 @@ public class OtokouVehicle  extends OtokouComponent implements Serializable {
 	public void setFound(boolean found) {
 		this.found = found;
 	}
-
-	public static ArrayList<OtokouVehicle> getVehiclesFromCursor(Cursor cursor) {
-		ArrayList<OtokouVehicle> vehicles = new ArrayList<OtokouVehicle>();
-		
-		if (cursor.getCount() > 0) {
-			cursor.moveToLast();
-			do {
-				vehicles.add(new OtokouVehicle(cursor));
-			} while (cursor.moveToPrevious());
-			return vehicles;
-		}
-		else {
-			return null;
-		}		
-	}
 }

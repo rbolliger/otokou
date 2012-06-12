@@ -305,7 +305,7 @@ public class OtokouVehicleAdapter {
 	/**
 	 * Since Version 1<p>
 	 * 
-	 * Get a row identified by its user_id.<p>
+	 * Get all rows identified by a user_id.<p>
 	 * note: need a call to the open() method before a call to this method.
 	 * 
 	 * @param user_id	user_id the row to get

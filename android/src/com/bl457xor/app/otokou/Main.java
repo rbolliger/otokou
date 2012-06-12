@@ -26,21 +26,26 @@ import com.bl457xor.app.otokou.db.OtokouUserAdapter;
 
 // TODO
 // offline behavior 
-//  - main -> button addUser off if offline, notify
-//  - adduser -> no access, can't add user
-//  - user -> notify
-//  - addcharge -> save on database
+//  - addcharge -> save on database, check if there are saved and add if online (where in user or addcharge?)
 // layouts
+//  - main: menu, image button for delete/add, disabled button layout instead of invisible
+//  - adduser: menu, image buttons
+// behaviour:
+//  - user: check reload data, offline system
+// refactoring
+//  - text in xml
+//  - ...
 // ...
 
 
 public class Main extends OnlineListActivity implements OnClickListener {
 	// global variables initialization
-	private EfficientAdapter adap;
+	private EfficientAdapter listAdapter;
 	private ArrayList<OtokouUser> users;
 	private boolean autoload = true;
 	private boolean isOnline = false;
 	private Button btnAddUser;
+	private TextView txtMessage;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -62,21 +67,31 @@ public class Main extends OnlineListActivity implements OnClickListener {
 		
 		updateUI();
 		
-		if (adap != null) {
-			adap = null;
+		if (listAdapter != null) {
+			listAdapter = null;
 		}
-		adap = new EfficientAdapter(this);
-		setListAdapter(adap);	
+		listAdapter = new EfficientAdapter(this);
+		setListAdapter(listAdapter);	
 	}
 
 	private void initializeUI() {
 		btnAddUser = (Button)findViewById(R.id.btnAddUser);
-		btnAddUser.setOnClickListener(this);	
+		btnAddUser.setOnClickListener(this);
+		
+		txtMessage = (TextView)findViewById(R.id.txtErrorMessage);
 	}
 	
 	private void updateUI() {
-		if (isOnline) btnAddUser.setClickable(true);
-		else btnAddUser.setClickable(false);
+		if (isOnline) {
+			btnAddUser.setClickable(true);
+			btnAddUser.setVisibility(Button.VISIBLE);
+			txtMessage.setText("");
+		}
+		else {
+			btnAddUser.setClickable(false);
+			btnAddUser.setVisibility(Button.INVISIBLE);
+			txtMessage.setText(R.string.warning_offline);
+		}
 	}
 
 	private void loadUsers() {
@@ -123,106 +138,81 @@ public class Main extends OnlineListActivity implements OnClickListener {
 		 *      android.view.ViewGroup)
 		 */
 		public View getView(final int position, View convertView, ViewGroup parent) {
-			// A ViewHolder keeps references to children views to avoid
-			// unneccessary calls
-			// to findViewById() on each row.
 			ViewHolder holder;
-			/*for (int i = 0; i < holder.length; i++) {
-				holder[i] = new ViewHolder();
-			}*/
 
-			// When convertView is not null, we can reuse it directly, there is
-			// no need
-			// to reinflate it. We only inflate a new View when the convertView
-			// supplied
-			// by ListView is null.
-			//if (convertView == null) {
-				convertView = mInflater.inflate(R.layout.list_user_item, null);
+			convertView = mInflater.inflate(R.layout.list_user_item, null);
 
-				// Creates a ViewHolder and store references to the two children
-				// views
-				// we want to bind data to.
-				holder = new ViewHolder();
-				holder.userTxt = (TextView) convertView.findViewById(R.id.userTxt);
-				holder.userBtnDelete = (Button) convertView.findViewById(R.id.userBtnDelete);
-				holder.userChb = (CheckBox) convertView.findViewById(R.id.userChb);
-				
-				if (((OtokouUser)getItem(position)).getAutoload()) {
-					holder.userChb.setChecked(true);
+			holder = new ViewHolder();
+			holder.userTxt = (TextView) convertView.findViewById(R.id.userTxt);
+			holder.userBtnDelete = (Button) convertView.findViewById(R.id.userBtnDelete);
+			holder.userChb = (CheckBox) convertView.findViewById(R.id.userChb);
+
+			if (((OtokouUser)getItem(position)).getAutoload()) {
+				holder.userChb.setChecked(true);
+			}
+			else {
+				holder.userChb.setChecked(false);
+			}
+
+			convertView.setOnClickListener(new OnClickListener() {
+				private long user_id = ((OtokouUser)getItem(position)).getId();
+
+				@Override
+				public void onClick(View v) {
+					launchUserActivity(user_id);  
 				}
-				else {
-					holder.userChb.setChecked(false);
+			});
+
+			holder.userBtnDelete.setOnClickListener(new OnClickListener() {
+				private long user_id = ((OtokouUser)getItem(position)).getId();
+
+				@Override
+				public void onClick(View v) {
+					OtokouUserAdapter OUAdb = new OtokouUserAdapter(getApplicationContext()).open();
+					OUAdb.deleteUserById(user_id);
+					OUAdb.close();
+					loadUsers();
+					listAdapter.notifyDataSetChanged();
 				}
-				
-				convertView.setOnClickListener(new OnClickListener() {
-					private long user_id = ((OtokouUser)getItem(position)).getId();
+			});
 
-					@Override
-					public void onClick(View v) {
-						launchUserActivity(user_id);  
-					}
-				});
+			holder.userChb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+				private int pos = position;
 
-				holder.userBtnDelete.setOnClickListener(new OnClickListener() {
-					private long user_id = ((OtokouUser)getItem(position)).getId();
-
-					@Override
-					public void onClick(View v) {
-						OtokouUserAdapter OUAdb = new OtokouUserAdapter(getApplicationContext()).open();
-						OUAdb.deleteUserById(user_id);
-						OUAdb.close();
-						loadUsers();
-						adap.notifyDataSetChanged();
-					}
-				});
-				
-				holder.userChb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-					private int pos = position;
-					
-					@Override
-					public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-						if (isChecked) {
-							for (OtokouUser user : users) {
-								if (((OtokouUser)getItem(pos)).getId() == user.getId()) {
-									user.setAutoload(true);
-									OtokouUserAdapter OUAdb = new OtokouUserAdapter(getApplicationContext()).open();
-									OUAdb.updateUser(user);
-									OUAdb.close();
-								}
-								else if (user.getAutoload()) {						
-									user.setAutoload(false);
-									OtokouUserAdapter OUAdb = new OtokouUserAdapter(getApplicationContext()).open();
-									OUAdb.updateUser(user);
-									OUAdb.close();
-								}						
+				@Override
+				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+					if (isChecked) {
+						for (OtokouUser user : users) {
+							if (((OtokouUser)getItem(pos)).getId() == user.getId()) {
+								user.setAutoload(true);
+								OtokouUserAdapter OUAdb = new OtokouUserAdapter(getApplicationContext()).open();
+								OUAdb.updateUser(user);
+								OUAdb.close();
 							}
-							adap.notifyDataSetChanged();
+							else if (user.getAutoload()) {						
+								user.setAutoload(false);
+								OtokouUserAdapter OUAdb = new OtokouUserAdapter(getApplicationContext()).open();
+								OUAdb.updateUser(user);
+								OUAdb.close();
+							}						
 						}
-						else {			
-							for (OtokouUser user : users) {
-								if (user.getAutoload()) {
-									user.setAutoload(false);
-									OtokouUserAdapter OUAdb = new OtokouUserAdapter(getApplicationContext()).open();
-									OUAdb.updateUser(user);
-									OUAdb.close();
-								}
-							}
-						}				
+						listAdapter.notifyDataSetChanged();
 					}
-				});
-
-				convertView.setTag(holder);
-			/*} else {
-				// Get the ViewHolder back to get fast access to the TextView
-				// and the ImageView.
-				holder = (ViewHolder)convertView.getTag();
-				
-				if (!((OtokouUser)getItem(position)).getAutoload()) {
-					holder.userChb.setChecked(false);
+					else {			
+						for (OtokouUser user : users) {
+							if (user.getAutoload()) {
+								user.setAutoload(false);
+								OtokouUserAdapter OUAdb = new OtokouUserAdapter(getApplicationContext()).open();
+								OUAdb.updateUser(user);
+								OUAdb.close();
+							}
+						}
+					}				
 				}
-			}*/
+			});
 
-			// Bind the data efficiently with the holder.
+			convertView.setTag(holder);
+
 			holder.userTxt.setText(((OtokouUser)getItem(position)).getFirstName() + " " +  ((OtokouUser)getItem(position)).getLastName());
 			
 			return convertView;
@@ -266,7 +256,7 @@ public class Main extends OnlineListActivity implements OnClickListener {
 
 	private void launchAddUserActivity() {
 		Intent i = new Intent(Main.this, AddUser.class);
-		startActivity(i);
+		startActivityForResult(i,0);
 	}
 	
 	private void launchUserActivity(long usedId) {
@@ -278,6 +268,19 @@ public class Main extends OnlineListActivity implements OnClickListener {
 	}
 	
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		switch (resultCode) {
+			case AddUser.RETURN_RESULT_OK:
+			case AddUser.RETURN_RESULT_BACK:
+			case AddUser.RETURN_RESULT_OFFLINE:
+			case AddUser.RETURN_RESULT_USER_ADDED:
+			case AddUser.RETURN_RESULT_UNEXPECTED:
+			case User.RETURN_RESULT_OK:
+			case User.RETURN_RESULT_BACK:
+			case User.RETURN_RESULT_USER_NOT_FOUND:
+			case User.RETURN_RESULT_UNEXPECTED:
+				break;
+				
+		}
 		// TODO handle errors on result return
 		autoload = false;
 	}

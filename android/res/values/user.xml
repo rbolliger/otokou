@@ -19,4 +19,6 @@
     <string name="user_txt_user_error_user">Error while retrieving user information.</string>
     <string name="user_txt_user_error_vehicle">Error while retrieving vehicles information.</string>
     <string name="user_txt_user_error_user_login">Invalid User API key combination, please check your API key in the preferences.</string>
+    <string name="user_txt_user_warning_offline">Offline connection.</string>
+    <string name="user_txt_user_warning_online"></string>
 </resources>

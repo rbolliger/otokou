@@ -29,4 +29,14 @@
         android:layout_alignParentLeft="true"
         android:text="Add New User" />
 
+    <TextView
+        android:id="@+id/txtErrorMessage"
+        android:textColor="@color/error_message_color" 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btnAddUser"
+        android:layout_alignBottom="@+id/btnAddUser"
+        android:layout_toRightOf="@+id/btnAddUser"
+        android:text="" />
+
 </RelativeLayout>
