@@ -135,7 +135,7 @@ public class OtokouAPI {
 	        serializer.text(apiKey);
 	        serializer.endTag(null, "apikey");
 	        serializer.startTag(null, "vehicle_id");
-	        serializer.text(""+charge.getVehicleId());
+	        serializer.text(""+charge.getOtokouVehicleId());
 	        serializer.endTag(null, "vehicle_id");
 	        serializer.startTag(null, "category_id");
 	        serializer.text(""+charge.getCategoryId());

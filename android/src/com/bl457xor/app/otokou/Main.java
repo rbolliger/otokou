@@ -25,8 +25,6 @@ import com.bl457xor.app.otokou.db.OtokouUserAdapter;
 
 
 // TODO
-// offline behavior 
-//  - addcharge -> save on database, check if there are saved and add if online (where in user or addcharge?)
 // layouts
 //  - main: menu, image button for delete/add, disabled button layout instead of invisible
 //  - adduser: menu, image buttons

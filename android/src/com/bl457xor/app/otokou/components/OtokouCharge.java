@@ -11,8 +11,11 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
+import android.database.Cursor;
+
 import com.bl457xor.app.otokou.OtokouAPI;
 import com.bl457xor.app.otokou.OtokouException;
+import com.bl457xor.app.otokou.db.OtokouChargeAdapter;
 import com.bl457xor.app.otokou.xml.OtokouXmlSetChargeHandler;
 
 public class OtokouCharge extends OtokouComponent {
@@ -36,6 +39,7 @@ public class OtokouCharge extends OtokouComponent {
 	public static final int CATEGORY_008_ID = 8;
 	
 	private long id;
+	private long otokouVehicleID;
 	private long vehicleID;
 	private String vehicle;
 	private long categoryID;
@@ -51,9 +55,9 @@ public class OtokouCharge extends OtokouComponent {
 		super(errorCode,errorMessage);
 	}
 	
-	public OtokouCharge(long vehicleID, String vehicle, int categoryID, String date, double kilometers, double amount, String comment, double quantity) {
+	public OtokouCharge(long otokouVehicleID, String vehicle, int categoryID, String date, double kilometers, double amount, String comment, double quantity) {
 		super();
-		this.vehicleID = vehicleID;
+		this.otokouVehicleID = otokouVehicleID;
 		this.vehicle = vehicle;
 		this.categoryID = categoryID;
 		this.category = getCategoryFromID(categoryID);
@@ -64,8 +68,22 @@ public class OtokouCharge extends OtokouComponent {
 		this.quantity = quantity;	
 	}
 	
-	public OtokouCharge(long vehicleID, String vehicle, int categoryID, String date, double kilometers, double amount, String comment) {
-		this(vehicleID,vehicle,categoryID,date,kilometers,amount,comment,0.0);
+	public OtokouCharge(long otokouVehicleID, String vehicle, int categoryID, String date, double kilometers, double amount, String comment) {
+		this(otokouVehicleID,vehicle,categoryID,date,kilometers,amount,comment,0.0);
+	}
+	
+	public OtokouCharge(Cursor c) {
+		super();
+		this.id = c.getLong(c.getColumnIndex(OtokouChargeAdapter.COL_ID_NAME));
+		this.vehicleID = c.getLong(c.getColumnIndex(OtokouChargeAdapter.COL_2_NAME));
+		this.vehicle = "";
+		this.categoryID = c.getLong(c.getColumnIndex(OtokouChargeAdapter.COL_3_NAME));
+		this.category = getCategoryFromID((int)this.categoryID);
+		this.date = c.getString(c.getColumnIndex(OtokouChargeAdapter.COL_5_NAME));
+		this.kilometers = c.getFloat(c.getColumnIndex(OtokouChargeAdapter.COL_6_NAME));
+		this.amount = c.getFloat(c.getColumnIndex(OtokouChargeAdapter.COL_7_NAME));
+		this.comment = c.getString(c.getColumnIndex(OtokouChargeAdapter.COL_8_NAME));
+		this.quantity = c.getFloat(c.getColumnIndex(OtokouChargeAdapter.COL_9_NAME));
 	}
 	
 	public static String getCategoryFromID(int ID) {
@@ -142,6 +160,14 @@ public class OtokouCharge extends OtokouComponent {
 	public long getUserId() {
 		return vehicleID;
 	}	
+
+	public long getOtokouVehicleId() {
+		return otokouVehicleID;
+	}
+	
+	public void setOtokouVehicleId(long id) {
+		this.otokouVehicleID = id;
+	}
 	
 	public long getVehicleId() {
 		return vehicleID;

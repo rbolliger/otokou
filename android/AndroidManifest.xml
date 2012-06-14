@@ -18,8 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>        
         </activity>    
-        <activity android:name="AddUser" android:label="Users"></activity>
-        <activity android:name="User" android:label="Users"></activity>
+        <activity android:name="AddUser" android:label="Add User"></activity>
+        <activity android:name=".User" android:label="Users"></activity>
         <activity android:name="AddCharge" android:label="Add Charge"></activity>
         <activity android:name="UserPreferenceActivity" android:label="User Preferences"></activity>
     </application>

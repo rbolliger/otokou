@@ -27,9 +27,10 @@ public class AddCharge extends OnlineActivity implements OnClickListener {
 	private static final int MENU_ID_BACK = 2100;
 	
 	// messages constants
-	public static final int RETURN_RESULT_OK = 1000;
-	public static final int RETURN_RESULT_BACK = 1001;
-	public static final int RETURN_RESULT_ERROR = 1002;
+	public static final int RETURN_RESULT_OK = 3000;
+	public static final int RETURN_RESULT_BACK = 3001;
+	public static final int RETURN_RESULT_ERROR = 3002;
+	public static final int RETURN_RESULT_UNEXPECTED = 3100;
 	public static final String RETURN_ERROR_EXTRA_KEY = "code";
 	public static final int RETURN_ERROR_UNKNOWN = 0;
 	public static final int RETURN_ERROR_NO_CONNECTION = 1;
@@ -55,13 +56,19 @@ public class AddCharge extends OnlineActivity implements OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_charge);
         
-        setResult(RETURN_RESULT_BACK, null);
+        setResult(RETURN_RESULT_UNEXPECTED, null);
         
 		retrieveDataFromExtras();
 		
 		initializeUI();
     }
     
+	@Override
+	protected void onResume() {
+		super.onResume();
+		updateUI();
+	}
+
 	private void retrieveDataFromExtras() {
 		// TODO check extras loaded correctly
 		
@@ -107,6 +114,17 @@ public class AddCharge extends OnlineActivity implements OnClickListener {
 		((Button)findViewById(R.id.btnAddChargeAdd)).setOnClickListener(this);
 	}
 	
+	private void updateUI() {
+		if (isOnline()) {
+			if (etxtChargeAdd.getText().toString().contentEquals(getString(R.string.add_charge_warning_offline))) {
+				etxtChargeAdd.setText(R.string.add_charge_warning_online);
+			}
+		}
+		else {
+			etxtChargeAdd.setText(R.string.add_charge_warning_offline);
+		}
+	}
+	
 	private void submit() {		
 		if (checkCorrectValues()) {
 			String quantity = "0";
@@ -123,7 +141,6 @@ public class AddCharge extends OnlineActivity implements OnClickListener {
 					Double.parseDouble(quantity));
 
 			if (isOnline()) {
-
 				OtokouComponent otokouComponent = OtokouAPI.setNewChargeData(otokouUser.getUsername(), otokouUser.getApikey(), charge);
 				if (otokouComponent.isValid()) {
 					OtokouChargeAdapter OCAdb = new OtokouChargeAdapter(getApplicationContext()).open();
@@ -145,7 +162,7 @@ public class AddCharge extends OnlineActivity implements OnClickListener {
 				Bundle extras = new Bundle();
 				extras.putInt(RETURN_ERROR_EXTRA_KEY, RETURN_ERROR_NO_CONNECTION);
 				i.putExtras(extras);
-				setResult(RETURN_RESULT_ERROR, null);
+				setResult(RETURN_RESULT_ERROR, i);
 				finish();
 			}
 		}

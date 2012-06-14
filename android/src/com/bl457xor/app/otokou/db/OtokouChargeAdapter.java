@@ -44,7 +44,9 @@ import com.bl457xor.app.otokou.components.OtokouVehicle;
  *  9. (getAllCharges() method)<br>
  *  10. (getChargeById() method)<br>
  *  11. (getChargesByUserId() method)<br>
- *  12. (getChargesByVehicleId() method)<br>
+ *  12. (getUnsentChargesByUserId() method)<br>
+ *  13. (getChargesByVehicleId() method)<br>
+ *  14. (setChargeToSent() method)<br>
  *  
  *  @author Dave Bergomi
  *  @version 1
@@ -212,7 +214,7 @@ public class OtokouChargeAdapter {
 		ContentValues values = new ContentValues();
 		values.put(OtokouChargeAdapter.COL_1_NAME, user.getId());
 		values.put(OtokouChargeAdapter.COL_2_NAME, vehicle.getId());
-		values.put(OtokouChargeAdapter.COL_3_NAME, charge.getCategory());
+		values.put(OtokouChargeAdapter.COL_3_NAME, charge.getCategoryId());
 		values.put(OtokouChargeAdapter.COL_4_NAME, sent);
 		values.put(OtokouChargeAdapter.COL_5_NAME, charge.getDate());
 		values.put(OtokouChargeAdapter.COL_6_NAME, charge.getKilometers());
@@ -349,7 +351,7 @@ public class OtokouChargeAdapter {
 	/**
 	 * Since Version 1<p>
 	 * 
-	 * Get a row identified by its user_id.<p>
+	 * Get all rows identified by its user_id.<p>
 	 * note: need a call to the open() method before a call to this method.
 	 * 
 	 * @param user_id	user_id the row to get
@@ -361,6 +363,27 @@ public class OtokouChargeAdapter {
 		return db.query(OtokouChargeAdapter.TABLE_NAME, 
 				null, 
 				""+OtokouChargeAdapter.COL_1_NAME+ "="+user_id, 
+				null,
+				null, 
+				null, 
+				null);
+	}
+	
+	/**
+	 * Since Version 1<p>
+	 * 
+	 * Get a all rows identified by its user_id and not sent.<p>
+	 * note: need a call to the open() method before a call to this method.
+	 * 
+	 * @param user_id	user_id the row to get
+	 * @return cursor object containing the row data. null object will be returned in case of errors.
+	 */		
+	public Cursor getUnsentChargesByUserId(long user_id){
+		if (!connectionOpen) return null;
+		
+		return db.query(OtokouChargeAdapter.TABLE_NAME, 
+				null, 
+				""+OtokouChargeAdapter.COL_1_NAME+"="+user_id+" AND "+OtokouChargeAdapter.COL_4_NAME+"="+COL_4_NOT_SENT_VALUE, 
 				null,
 				null, 
 				null, 
@@ -386,6 +409,24 @@ public class OtokouChargeAdapter {
 				null, 
 				null, 
 				null);
+	}
+	
+	/**
+	 * Since Version 1<p>
+	 * 
+	 * Update sent field to sent in the row identified by the its ID.<p>
+	 * note: need a call to the open() method before a call to this method.
+	 * 
+	 * @param id	id of the row to update
+	 * @return true if the update of 1 database row executed correctly, false otherwise
+	 */		
+	public boolean setChargeToSent(long id) {
+		if (!connectionOpen) return false;
+		
+		ContentValues values = new ContentValues();
+		values.put(OtokouChargeAdapter.COL_4_NAME, COL_4_SENT_VALUE);
+		
+		return db.update(OtokouChargeAdapter.TABLE_NAME, values, OtokouChargeAdapter.COL_ID_NAME+"="+id, null) == 1;
 	}
 }
 

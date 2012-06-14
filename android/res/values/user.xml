@@ -13,6 +13,7 @@
     <string name="user_dialog_message_start">verifying API Key</string>
     <string name="user_dialog_message_loading_user">Loading user data &#8230;</string>
     <string name="user_dialog_message_loading_vehicles">Loading vehicle data &#8230;</string>
+    <string name="user_dialog_message_sending_charges">Sending unsent charges &#8230;</string>
     <string name="user_dialog_message_ok">OK</string>
     <string name="user_txt_user_error_not_connected">No internet connection found.</string>
     <string name="user_txt_user_error_api_key">Your API key seems invalid, please check it in the preferences.</string>
@@ -21,4 +22,5 @@
     <string name="user_txt_user_error_user_login">Invalid User API key combination, please check your API key in the preferences.</string>
     <string name="user_txt_user_warning_offline">Offline connection.</string>
     <string name="user_txt_user_warning_online"></string>
+    <string name="user_txt_user_warning_unsent_charge">The new charge will be uploaded when online.</string>
 </resources>
