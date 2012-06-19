@@ -3,10 +3,9 @@
     <string name="user_menu_user_preferences">Preferences</string>
     <string name="user_menu_reload_data">Reload Data</string>
     <string name="user_menu_add_charge">Add Charge</string>
-    <string name="user_menu_exit">Exit</string>
-    <string name="user_btn_add_charge">Add a new charge</string>
+    <string name="user_menu_back">Back</string>
+    <string name="user_btn_add_charge">Create a Charge</string>
     <string name="user_btn_user_preferences">Preferences</string>
-    <string name="user_btn_reload_data">Reload Data</string>
     <string name="user_image_description">Otokou</string>
     <string name="user_txt_welcome">Welcome</string>
     <string name="user_dialog_title">Loading information from Otokou</string>
@@ -20,7 +19,7 @@
     <string name="user_txt_user_error_user">Error while retrieving user information.</string>
     <string name="user_txt_user_error_vehicle">Error while retrieving vehicles information.</string>
     <string name="user_txt_user_error_user_login">Invalid User API key combination, please check your API key in the preferences.</string>
-    <string name="user_txt_user_warning_offline">Offline connection.</string>
+    <string name="user_txt_user_warning_offline">No internet connection found.</string>
     <string name="user_txt_user_warning_online"></string>
     <string name="user_txt_user_warning_unsent_charge">The new charge will be uploaded when online.</string>
 </resources>

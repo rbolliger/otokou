@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Otokou</string>
-    <string name="warning_offline">Offline connection</string>
+    <string name="warning_offline">No Internet Connection found</string>
+    <string name="main_menu_add_user">Add User</string>
+    <string name="main_menu_exit">Exit</string>
 </resources>

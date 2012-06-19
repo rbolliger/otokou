@@ -25,41 +25,70 @@
         android:gravity="top"
         android:orientation="vertical" >
 
-         <TextView
-            android:id="@+id/txtAddUserUsername"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="insert the new username" />
+            android:gravity="top"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/txtAddUserUsername"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Username:" />
+            
+            <TextView
+                android:id="@+id/txtAddUserErrorUsername"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/error_message_color"
+                android:text="" />
+        </LinearLayout>
 
         <EditText
             android:id="@+id/edtAddUserUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10" >
+            android:ems="10"
+            android:hint="Otokou website username" >
 
             <requestFocus />
         </EditText>
-        
-        <TextView
-            android:id="@+id/txtAddUserApikey"
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="insert the new user apikey" />
+            android:gravity="top"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/txtAddUserApikey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Apikey:" />
+            
+            <TextView
+                android:id="@+id/txtAddUserErrorApikey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/error_message_color"
+                android:text="" />
+        </LinearLayout>
 
         <EditText
             android:id="@+id/edtAddUserApikey"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10" >
+            android:ems="10"
+            android:hint="Otokou website apikey" >
         </EditText>
 
         <TextView
-            android:id="@+id/txtAddUserErrorMessage"
+            android:id="@+id/txtAddUserEmpty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
-            android:textColor="@color/error_message_color" />
-
+            android:text="" />
+        
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
@@ -70,13 +99,16 @@
                 android:id="@+id/btnAddUserAdd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Add" />
+                android:text="Add user" />
 
-            <Button
-                android:id="@+id/btnAddUserBack"
+            <TextView
+                android:id="@+id/txtAddUserErrorMessage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Back" />
+                android:text=""
+                android:textColor="@color/error_message_color" />
         </LinearLayout>
+
     </LinearLayout>
+
 </LinearLayout>

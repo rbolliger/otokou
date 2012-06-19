@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bl457xor.app.otokou.components.OtokouApiKey;
 import com.bl457xor.app.otokou.components.OtokouCharge;
@@ -33,10 +34,10 @@ public class User extends OnlineActivity implements OnClickListener, Runnable {
 	public static final int RETURN_RESULT_UNEXPECTED = 1100;
 	
 	// onOptionsItemSelected menu ids constants
-	private static final int MENU_ID_USER_PREFERENCES = 2001;
-	private static final int MENU_ID_RELOAD_DATA = 2002;
-	private static final int MENU_ID_ADD_CHARGE = 2003;
-	private static final int MENU_ID_EXIT = 2200;
+	private static final int MENU_ID_USER_PREFERENCES = 10001;
+	private static final int MENU_ID_RELOAD_DATA = 10002;
+	private static final int MENU_ID_ADD_CHARGE = 10003;
+	private static final int MENU_ID_EXIT = 10004;
 	
 	// run messages constants
 	private static final int RUN_END = 0;
@@ -139,16 +140,10 @@ public class User extends OnlineActivity implements OnClickListener, Runnable {
 	private void initializeUI() {		
 		// create button to open the preferences
 		((Button)findViewById(R.id.btnUserUserPreferences)).setOnClickListener(this);
-
-		// create button to reload data from website
-		((Button)findViewById(R.id.btnUserReloadData)).setOnClickListener(this);
 		
 		// create button to add a new charge
 		btnAddCharge = (Button) findViewById(R.id.btnUserAddCharge);
 		btnAddCharge.setOnClickListener(this);
-		
-		// TO DELETE button to test
-		((Button)findViewById(R.id.btnUserTest)).setOnClickListener(this);
 		
 		// create text view for user communication
 		txtUser = (TextView)findViewById(R.id.txtUserUser);
@@ -303,7 +298,7 @@ public class User extends OnlineActivity implements OnClickListener, Runnable {
 			case RUN_ERROR_NOT_CONNECTED:
 				txtUser.setText(otokouUser.toString());
 				txtUserWarning.setText(getString(R.string.user_txt_user_warning_offline));
-				dataOK = false;
+				dataOK = true;
 				btnAddCharge.setVisibility(Button.VISIBLE);
 				break;
 			case RUN_ERROR_API_KEY:
@@ -340,24 +335,25 @@ public class User extends OnlineActivity implements OnClickListener, Runnable {
 	}
 	
 	private void launchAddChargeActivity() {
-		Intent i = new Intent(User.this, AddCharge.class);
-		Bundle extras = new Bundle();
-		
-		int vehiclesNumber = 0;
-		for (OtokouVehicle vehicle : vehicles.items) {
-			extras.putByteArray("vehicle_"+vehiclesNumber, vehicle.toByteArray());
-			vehiclesNumber++;
+		if (dataOK) {
+			Intent i = new Intent(User.this, AddCharge.class);
+			Bundle extras = new Bundle();
+
+			int vehiclesNumber = 0;
+			for (OtokouVehicle vehicle : vehicles.items) {
+				extras.putByteArray("vehicle_"+vehiclesNumber, vehicle.toByteArray());
+				vehiclesNumber++;
+			}
+			extras.putInt("vehiclesNumber", vehiclesNumber);
+
+			extras.putByteArray("user", otokouUser.toByteArray());		
+			i.putExtras(extras);
+
+			startActivityForResult(i, 0);
 		}
-		extras.putInt("vehiclesNumber", vehiclesNumber);
-		
-		extras.putByteArray("user", otokouUser.toByteArray());		
-		i.putExtras(extras);
-		
-		startActivityForResult(i, 0);
-	}
-	
-	private void launchTest() {
-		// add a test here
+		else {
+			Toast.makeText(getApplicationContext(), "Can't create a Charge while not syncronized with otokou website.",Toast.LENGTH_SHORT).show();
+		}
 	}
 	
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -384,22 +380,11 @@ public class User extends OnlineActivity implements OnClickListener, Runnable {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {	
-		menu.add(Menu.NONE, MENU_ID_USER_PREFERENCES, Menu.NONE, R.string.user_menu_user_preferences).setIcon(R.drawable.menu_user_preferences);
-		menu.add(Menu.NONE, MENU_ID_RELOAD_DATA, Menu.NONE, R.string.user_menu_reload_data).setIcon(R.drawable.menu_reload);
-		menu.add(Menu.NONE, MENU_ID_ADD_CHARGE, Menu.NONE, R.string.user_menu_add_charge).setIcon(R.drawable.menu_add);
-		menu.add(Menu.NONE, MENU_ID_EXIT, Menu.NONE, R.string.user_menu_exit).setIcon(R.drawable.exit);
+		menu.add(Menu.NONE, MENU_ID_USER_PREFERENCES, Menu.NONE, R.string.user_menu_user_preferences);
+		menu.add(Menu.NONE, MENU_ID_RELOAD_DATA, Menu.NONE, R.string.user_menu_reload_data);
+		menu.add(Menu.NONE, MENU_ID_ADD_CHARGE, Menu.NONE, R.string.user_menu_add_charge);
+		menu.add(Menu.NONE, MENU_ID_EXIT, Menu.NONE, R.string.user_menu_back);
 		return super.onCreateOptionsMenu(menu);
-	}
-	
-	@Override
-	public boolean onPrepareOptionsMenu(Menu menu) {
-		if (dataOK) {
-			menu.findItem(MENU_ID_ADD_CHARGE).setVisible(true);
-		}
-		else {
-			menu.findItem(MENU_ID_ADD_CHARGE).setVisible(false);
-		}
-		return super.onPrepareOptionsMenu(menu);
 	}
 	
 	@Override
@@ -428,15 +413,9 @@ public class User extends OnlineActivity implements OnClickListener, Runnable {
 		case R.id.btnUserUserPreferences:
 			launchPreferencesUserActivity();
 			break;
-		case R.id.btnUserReloadData:
-			retrieveDataFromOtokou();
-			break;
 		case R.id.btnUserAddCharge:
 			launchAddChargeActivity();
-			break;
-		case R.id.btnUserTest:
-			launchTest();
-			break;			
+			break;		
 		}		
 	}
 }

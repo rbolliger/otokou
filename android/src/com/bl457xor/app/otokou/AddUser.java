@@ -4,6 +4,8 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -21,6 +23,11 @@ public class AddUser extends OnlineActivity implements OnClickListener, Runnable
 	public static final int RETURN_RESULT_USER_ADDED = 2003; 
 	public static final int RETURN_RESULT_UNEXPECTED = 2100; 
 	
+	// onOptionsItemSelected menu ids constants
+	private static final int MENU_ID_ADD = 10001;
+	private static final int MENU_ID_BACK = 10002;
+	private static final int MENU_ID_CLEAR = 10003;
+	
 	// run messages constants
 	private static final int RUN_END = 0;
 	private static final int RUN_MSG_LOADING_USER = 10;
@@ -33,6 +40,8 @@ public class AddUser extends OnlineActivity implements OnClickListener, Runnable
 	private EditText edtAUUsername;
 	private EditText edtAUAPikey;
 	private TextView txtAUErrorMessage;
+	private TextView txtAUErrorUsername;
+	private TextView txtAUErrorApikey;
 	private ProgressDialog progressDialog;
 	
     @Override
@@ -54,13 +63,13 @@ public class AddUser extends OnlineActivity implements OnClickListener, Runnable
 
 	private void initializeUI() {
 		((Button)findViewById(R.id.btnAddUserAdd)).setOnClickListener(this);
-		((Button)findViewById(R.id.btnAddUserBack)).setOnClickListener(this);
 		
-		edtAUUsername = (EditText)findViewById(R.id.edtAddUserUsername);
-		
+		edtAUUsername = (EditText)findViewById(R.id.edtAddUserUsername);	
 		edtAUAPikey = (EditText)findViewById(R.id.edtAddUserApikey);
 		
 		txtAUErrorMessage = (TextView)findViewById(R.id.txtAddUserErrorMessage);
+		txtAUErrorUsername = (TextView)findViewById(R.id.txtAddUserErrorUsername);
+		txtAUErrorApikey = (TextView)findViewById(R.id.txtAddUserErrorApikey);
 	}
 
 	@Override
@@ -68,9 +77,6 @@ public class AddUser extends OnlineActivity implements OnClickListener, Runnable
 		switch (v.getId()) {
 		case R.id.btnAddUserAdd:
 			submit();
-			break;
-		case R.id.btnAddUserBack:
-			back();
 			break;
 		}	
 	}
@@ -92,19 +98,18 @@ public class AddUser extends OnlineActivity implements OnClickListener, Runnable
 		}
 	}
 	
-	private void back() {
-		setResult(RETURN_RESULT_BACK, null);
-		finish();
-	}
-	
 	private void offline() {
 		setResult(RETURN_RESULT_OFFLINE, null);
 		finish();
 	}
 	
+	private void clear() {
+		edtAUUsername.setText("");
+		edtAUAPikey.setText("");
+	}
+	
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
 		if (isOnline()) {
 			handler.sendEmptyMessage(RUN_MSG_LOADING_USER);
 			OtokouUser otokouUser = OtokouAPI.getUserData(edtAUUsername.getText().toString(), edtAUAPikey.getText().toString());
@@ -164,21 +169,45 @@ public class AddUser extends OnlineActivity implements OnClickListener, Runnable
 
 	private boolean formIsValid(String username, String apikey) {
 		// TODO check apikey format
+		txtAUErrorUsername.setText("");
+		txtAUErrorApikey.setText("");
 		
-		String message = "";
 		boolean result = true;
 		
 		if (username.contentEquals("")) {
-			message += "empty username  ";
+			txtAUErrorUsername.setText("  username field can't be empty");
 			result = false;
 		}
 		
 		if (apikey.contentEquals("")) {
-			message += "empty apikey";
+			txtAUErrorApikey.setText("  apikey field can't be empty");
 			result = false;
 		}
-		
-		txtAUErrorMessage.setText(message);	
+
 		return result;
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {	
+		menu.add(Menu.NONE, MENU_ID_ADD, Menu.NONE, R.string.add_user_menu_add);
+		menu.add(Menu.NONE, MENU_ID_BACK, Menu.NONE, R.string.add_user_menu_back);
+		menu.add(Menu.NONE, MENU_ID_CLEAR, Menu.NONE, R.string.add_user_menu_clear);
+		return super.onCreateOptionsMenu(menu);
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch(item.getItemId()) {
+			case MENU_ID_ADD:
+				submit();
+				break;
+			case MENU_ID_BACK:
+				finish();
+				break;
+			case MENU_ID_CLEAR:
+				clear();
+				break;
+		}
+		return super.onOptionsItemSelected(item);
 	}
 }

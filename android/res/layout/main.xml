@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:text="Add New User" />
+        android:text="Add User" />
 
     <TextView
         android:id="@+id/txtErrorMessage"

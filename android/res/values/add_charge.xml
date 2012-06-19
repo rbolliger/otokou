@@ -11,7 +11,7 @@
     <string name="etxt_comment_hint">Want to take a note?</string>
     <string name="txt_quantity_text">Quantity</string>
     <string name="etxt_quantity_hint">This field must be specified only for fuel.</string>
-    <string name="btn_add_text">Add</string>
+    <string name="btn_add_text">Send</string>
     <string-array name="charge_categories">
         <item>Fuel</item>
         <item>Initial Investment</item>
@@ -22,14 +22,14 @@
         <item>Fine</item>
         <item>Maintenance</item>
     </string-array>
-    <string name="add_charge_menu_add">Add</string>
+    <string name="add_charge_menu_send">Send</string>
     <string name="add_charge_menu_back">Back</string>
     <string name="add_charge_error_kilometers">A numeric value needed for this field.</string>
     <string name="add_charge_error_amount">A numeric value needed for this field.</string>
     <string name="add_charge_error_quantity">A numeric value needed for this field for Fuel Category.</string>
     <string name="add_charge_error_user_login">Invalid User API key combination, please check your API key in the preferences.</string>
     <string name="add_charge_error_set_charge">Error while sending the new charge information.</string>
-    <string name="add_charge_warning_offline">Offline connection</string>
+    <string name="add_charge_warning_offline">No internet connection found.</string>
     <string name="add_charge_warning_online"></string>
     
 </resources>

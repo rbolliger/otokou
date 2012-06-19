@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -19,6 +21,7 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bl457xor.app.otokou.components.OtokouUser;
 import com.bl457xor.app.otokou.db.OtokouUserAdapter;
@@ -26,23 +29,32 @@ import com.bl457xor.app.otokou.db.OtokouUserAdapter;
 
 // TODO
 // layouts
-//  - main: menu, image button for delete/add, disabled button layout instead of invisible
-//  - adduser: menu, image buttons
-// behaviour:
+//  - user: look, add basic vehicle data?
+//  - addcharge: look, menu
+// Behavior:
 //  - user: check reload data, offline system
-// refactoring
+//  - can't add 2 times same user!
+//  - ask confirmation before deleting user
+//  - manage phone back button, activity returns (offline add charge,...) ?
+// help:
+//  - add help where needed
+// refactoring:
 //  - text in xml
+//  - name of main xmls
 //  - ...
 // ...
 
 
 public class Main extends OnlineListActivity implements OnClickListener {
+	// onOptionsItemSelected menu ids constants
+	private static final int MENU_ID_ADD_USER = 10001;
+	private static final int MENU_ID_EXIT = 10002;
+	
 	// global variables initialization
 	private EfficientAdapter listAdapter;
 	private ArrayList<OtokouUser> users;
 	private boolean autoload = true;
 	private boolean isOnline = false;
-	private Button btnAddUser;
 	private TextView txtMessage;
 	
 	@Override
@@ -73,21 +85,16 @@ public class Main extends OnlineListActivity implements OnClickListener {
 	}
 
 	private void initializeUI() {
-		btnAddUser = (Button)findViewById(R.id.btnAddUser);
-		btnAddUser.setOnClickListener(this);
+		((Button)findViewById(R.id.btnAddUser)).setOnClickListener(this);
 		
 		txtMessage = (TextView)findViewById(R.id.txtErrorMessage);
 	}
 	
 	private void updateUI() {
 		if (isOnline) {
-			btnAddUser.setClickable(true);
-			btnAddUser.setVisibility(Button.VISIBLE);
 			txtMessage.setText("");
 		}
 		else {
-			btnAddUser.setClickable(false);
-			btnAddUser.setVisibility(Button.INVISIBLE);
 			txtMessage.setText(R.string.warning_offline);
 		}
 	}
@@ -253,8 +260,13 @@ public class Main extends OnlineListActivity implements OnClickListener {
 	}
 
 	private void launchAddUserActivity() {
-		Intent i = new Intent(Main.this, AddUser.class);
-		startActivityForResult(i,0);
+		if (isOnline()) {
+			Intent i = new Intent(Main.this, AddUser.class);
+			startActivityForResult(i,0);
+		}
+		else {
+			Toast.makeText(getApplicationContext(), "Can't add an user while not connected.",Toast.LENGTH_SHORT).show();
+		}
 	}
 	
 	private void launchUserActivity(long usedId) {
@@ -266,6 +278,7 @@ public class Main extends OnlineListActivity implements OnClickListener {
 	}
 	
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO handle errors on result return
 		switch (resultCode) {
 			case AddUser.RETURN_RESULT_OK:
 			case AddUser.RETURN_RESULT_BACK:
@@ -278,8 +291,29 @@ public class Main extends OnlineListActivity implements OnClickListener {
 			case User.RETURN_RESULT_UNEXPECTED:
 				break;
 				
-		}
-		// TODO handle errors on result return
+		}	
 		autoload = false;
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {	
+		menu.add(Menu.NONE, MENU_ID_ADD_USER, Menu.NONE, R.string.main_menu_add_user);
+		menu.add(Menu.NONE, MENU_ID_EXIT, Menu.NONE, R.string.main_menu_exit);
+		return super.onCreateOptionsMenu(menu);
+	}
+	
+
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch(item.getItemId()) {
+			case MENU_ID_ADD_USER:
+				launchAddUserActivity();
+				break;
+			case MENU_ID_EXIT:
+				finish();
+				break;
+		}
+		return super.onOptionsItemSelected(item);
 	}
 }

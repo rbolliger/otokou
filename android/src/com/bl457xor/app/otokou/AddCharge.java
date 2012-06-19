@@ -215,8 +215,8 @@ public class AddCharge extends OnlineActivity implements OnClickListener {
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {	
-		menu.add(Menu.NONE, MENU_ID_ADD_CHARGE, Menu.NONE, R.string.add_charge_menu_add).setIcon(R.drawable.menu_add);
-		menu.add(Menu.NONE, MENU_ID_BACK, Menu.NONE, R.string.add_charge_menu_back).setIcon(R.drawable.exit);
+		menu.add(Menu.NONE, MENU_ID_ADD_CHARGE, Menu.NONE, R.string.add_charge_menu_send);
+		menu.add(Menu.NONE, MENU_ID_BACK, Menu.NONE, R.string.add_charge_menu_back);
 		return super.onCreateOptionsMenu(menu);
 	}
 	
