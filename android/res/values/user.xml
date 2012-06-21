@@ -2,9 +2,9 @@
 <resources>
     <string name="user_menu_user_preferences">Preferences</string>
     <string name="user_menu_reload_data">Reload Data</string>
-    <string name="user_menu_add_charge">Add Charge</string>
+    <string name="user_menu_add_charge">Send new Charge</string>
     <string name="user_menu_back">Back</string>
-    <string name="user_btn_add_charge">Create a Charge</string>
+    <string name="user_btn_add_charge">Send new Charge</string>
     <string name="user_btn_user_preferences">Preferences</string>
     <string name="user_image_description">Otokou</string>
     <string name="user_txt_welcome">Welcome</string>

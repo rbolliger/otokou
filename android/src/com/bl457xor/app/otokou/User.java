@@ -57,6 +57,7 @@ public class User extends OnlineActivity implements OnClickListener, Runnable {
 	private OtokouVehicles vehicles;
 	private ProgressDialog progressDialog;
 	private TextView txtUser;
+	private TextView txtVehicles;
 	private TextView txtUserWarning;
 	private boolean dataOK = false;
 	private Button btnAddCharge;
@@ -147,6 +148,7 @@ public class User extends OnlineActivity implements OnClickListener, Runnable {
 		
 		// create text view for user communication
 		txtUser = (TextView)findViewById(R.id.txtUserUser);
+		txtVehicles = (TextView)findViewById(R.id.txtUserVehicles);
 		
 		txtUserWarning = (TextView)findViewById(R.id.txtUserWarning);
 	}
@@ -273,6 +275,10 @@ public class User extends OnlineActivity implements OnClickListener, Runnable {
 	}
 
 	private Handler handler = new Handler() {
+		private static final int VEHICLES_SHOW = 0;
+		private static final int VEHICLES_HIDE = 1;
+		private static final int VEHICLES_ERROR = 2;
+		
 		@Override
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
@@ -288,6 +294,7 @@ public class User extends OnlineActivity implements OnClickListener, Runnable {
 			case RUN_MSG_LOADING_OK:
 				progressDialog.setMessage(getString(R.string.user_dialog_message_ok));
 				txtUser.setText(otokouUser.toString());
+				setTxtVehicles(VEHICLES_SHOW);
 				txtUserWarning.setText(getString(R.string.user_txt_user_warning_online));
 				dataOK = true;
 				btnAddCharge.setVisibility(Button.VISIBLE);
@@ -297,34 +304,64 @@ public class User extends OnlineActivity implements OnClickListener, Runnable {
 				break;
 			case RUN_ERROR_NOT_CONNECTED:
 				txtUser.setText(otokouUser.toString());
+				setTxtVehicles(VEHICLES_SHOW);
 				txtUserWarning.setText(getString(R.string.user_txt_user_warning_offline));
 				dataOK = true;
 				btnAddCharge.setVisibility(Button.VISIBLE);
 				break;
 			case RUN_ERROR_API_KEY:
 				txtUser.setText(getString(R.string.user_txt_user_error_api_key));
+				setTxtVehicles(VEHICLES_HIDE);
 				txtUserWarning.setText(getString(R.string.user_txt_user_warning_online));
 				dataOK = false;
 				btnAddCharge.setVisibility(Button.INVISIBLE);
 				break;
 			case RUN_ERROR_USER:
 				txtUser.setText(getString(R.string.user_txt_user_error_user));
+				setTxtVehicles(VEHICLES_HIDE);
 				txtUserWarning.setText(getString(R.string.user_txt_user_warning_online));
 				dataOK = false;
 				btnAddCharge.setVisibility(Button.INVISIBLE);
 				break;
 			case RUN_ERROR_VEHICLES:
-				txtUser.setText(otokouUser.toString()+"\n"+getString(R.string.user_txt_user_error_vehicle));
+				txtUser.setText(otokouUser.toString());
+				setTxtVehicles(VEHICLES_ERROR);
 				txtUserWarning.setText(getString(R.string.user_txt_user_warning_online));
 				dataOK = false;
 				btnAddCharge.setVisibility(Button.INVISIBLE);
 				break;
 			case RUN_ERROR_USER_LOGIN:
 				txtUser.setText(getString(R.string.user_txt_user_error_user_login));
+				setTxtVehicles(VEHICLES_HIDE);
 				txtUserWarning.setText(getString(R.string.user_txt_user_warning_online));
 				dataOK = false;
 				btnAddCharge.setVisibility(Button.INVISIBLE);
 				break;
+			}
+		}
+
+		private void setTxtVehicles(int setCode) {
+			switch (setCode) {
+			case VEHICLES_SHOW:
+				if (vehicles.items.size() == 0) {
+					txtVehicles.setText(vehicles.items.size()+"no vehicles found");
+				}
+				else if (vehicles.items.size() == 1) {
+					txtVehicles.setText(vehicles.items.size()+" vehicle found.");
+				}
+				else if (vehicles.items.size() > 1) {
+					txtVehicles.setText(vehicles.items.size()+" vehicles found.");
+				}
+				else {
+					txtVehicles.setText("");
+				}
+				break;
+			case VEHICLES_ERROR:
+				txtVehicles.setText(getString(R.string.user_txt_user_error_vehicle));
+				break;
+			case VEHICLES_HIDE:
+			default:	
+				txtVehicles.setText("");
 			}
 		}
 	};

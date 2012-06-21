@@ -8,6 +8,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -21,7 +23,7 @@ import com.bl457xor.app.otokou.components.OtokouUser;
 import com.bl457xor.app.otokou.components.OtokouVehicle;
 import com.bl457xor.app.otokou.db.OtokouChargeAdapter;
 
-public class AddCharge extends OnlineActivity implements OnClickListener {
+public class AddCharge extends OnlineActivity implements OnClickListener, OnItemSelectedListener {
 	// onOptionsItemSelected menu ids constants
 	private static final int MENU_ID_ADD_CHARGE = 2002;
 	private static final int MENU_ID_BACK = 2100;
@@ -47,6 +49,7 @@ public class AddCharge extends OnlineActivity implements OnClickListener {
 	private TextView etxtComment;
 	private TextView etxtQuantity;
 	private TextView etxtChargeAdd;
+	private TextView txtQuantity;
 	private DatePicker datePicker;
 	private Spinner spnVehicle;
 	private Spinner spnChargeCategory;
@@ -99,7 +102,11 @@ public class AddCharge extends OnlineActivity implements OnClickListener {
 		ArrayAdapter<CharSequence> chargeTypeAdapter = ArrayAdapter.createFromResource(this, R.array.charge_categories, android.R.layout.simple_spinner_item);
 		chargeTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		spnChargeCategory.setAdapter(chargeTypeAdapter);
-
+		spnChargeCategory.setOnItemSelectedListener(this);
+		
+		
+		txtQuantity = (TextView)findViewById(R.id.txtAddChargeQuantity);
+		
 		edtKilometers = (EditText)findViewById(R.id.edtAddChargeKilometers);
 		edtAmount = (EditText)findViewById(R.id.edtAddChargeAmount);
 		edtComment = (EditText)findViewById(R.id.edtAddChargeComment);
@@ -176,17 +183,17 @@ public class AddCharge extends OnlineActivity implements OnClickListener {
 		etxtQuantity.setText("");
 		
 		if (!isNumeric(edtKilometers.getText().toString())) {
-			etxtKilometers.setText(R.string.add_charge_error_kilometers);
+			etxtKilometers.setText(" "+getString(R.string.add_charge_error_kilometers));
 			returnValue = false;
 		}
 		
 		if (!isNumeric(edtAmount.getText().toString())) {
-			etxtAmount.setText(R.string.add_charge_error_amount);
+			etxtAmount.setText(" "+getString(R.string.add_charge_error_amount));
 			returnValue = false;
 		}
 		
 		if (!isNumeric(edtQuantity.getText().toString()) && spnChargeCategory.getSelectedItemId()==0 ) {
-			etxtQuantity.setText(R.string.add_charge_error_quantity);
+			etxtQuantity.setText(" "+getString(R.string.add_charge_error_quantity));
 			returnValue = false;
 		}
 		
@@ -241,5 +248,27 @@ public class AddCharge extends OnlineActivity implements OnClickListener {
 			submit();
 			break;
 		}			
+	}
+
+	@Override
+	public void onItemSelected(AdapterView<?> arg0, View arg1, int position,
+			long id) {
+		if (id == 0) {
+			txtQuantity.setVisibility(View.VISIBLE);
+			etxtQuantity.setVisibility(View.VISIBLE);
+			edtQuantity.setVisibility(View.VISIBLE);
+		}
+		else {
+			txtQuantity.setVisibility(View.INVISIBLE);
+			etxtQuantity.setVisibility(View.INVISIBLE);
+			edtQuantity.setVisibility(View.INVISIBLE);
+		}		
+	}
+
+	@Override
+	public void onNothingSelected(AdapterView<?> arg0) {
+		txtQuantity.setVisibility(View.VISIBLE);
+		etxtQuantity.setVisibility(View.VISIBLE);
+		edtQuantity.setVisibility(View.VISIBLE);
 	}
 }

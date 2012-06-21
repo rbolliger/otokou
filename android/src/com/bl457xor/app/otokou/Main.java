@@ -28,9 +28,6 @@ import com.bl457xor.app.otokou.db.OtokouUserAdapter;
 
 
 // TODO
-// layouts
-//  - user: look, add basic vehicle data?
-//  - addcharge: look, menu
 // Behavior:
 //  - user: check reload data, offline system
 //  - can't add 2 times same user!
