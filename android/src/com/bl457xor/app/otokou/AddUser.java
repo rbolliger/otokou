@@ -1,6 +1,7 @@
 package com.bl457xor.app.otokou;
 
 import android.app.ProgressDialog;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -17,7 +18,6 @@ import com.bl457xor.app.otokou.db.OtokouUserAdapter;
 
 public class AddUser extends OnlineActivity implements OnClickListener, Runnable {
 	// return messages constants
-	public static final int RETURN_RESULT_OK = 2000;
 	public static final int RETURN_RESULT_BACK = 2001;
 	public static final int RETURN_RESULT_OFFLINE = 2002; 
 	public static final int RETURN_RESULT_USER_ADDED = 2003; 
@@ -61,6 +61,12 @@ public class AddUser extends OnlineActivity implements OnClickListener, Runnable
 		if (!isOnline()) offline();
 	}
 
+	@Override
+	public void onBackPressed() {
+		setResult(RETURN_RESULT_BACK, null);
+		super.onBackPressed();
+	}
+	
 	private void initializeUI() {
 		((Button)findViewById(R.id.btnAddUserAdd)).setOnClickListener(this);
 		
@@ -83,9 +89,6 @@ public class AddUser extends OnlineActivity implements OnClickListener, Runnable
 	
 	private void submit() {		
 		if (formIsValid(edtAUUsername.getText().toString(),edtAUAPikey.getText().toString())) {
-			
-			// TODO check otokou and add user to database
-
 			if (isOnline()) {
 				progressDialog = ProgressDialog.show(this,getString(R.string.add_user_dialog_title), getString(R.string.add_user_dialog_message_start), true, false);
 				
@@ -132,8 +135,7 @@ public class AddUser extends OnlineActivity implements OnClickListener, Runnable
 		}
 		else {
 			handler.sendEmptyMessage(RUN_ERROR_NOT_CONNECTED);
-		}
-		
+		}		
 	}
 	
 	private Handler handler = new Handler() {
@@ -178,12 +180,22 @@ public class AddUser extends OnlineActivity implements OnClickListener, Runnable
 			txtAUErrorUsername.setText("  username field can't be empty");
 			result = false;
 		}
+		else {
+			// check if user already exists
+			OtokouUserAdapter OUAdb = new OtokouUserAdapter(getApplicationContext()).open();		
+			Cursor userCursor = OUAdb.getUserByUsername(username);
+			if (userCursor.getCount() > 0) {
+				txtAUErrorUsername.setText("  a user with this username already exists");
+				result = false;
+			}
+			userCursor.close();
+		}
 		
 		if (apikey.contentEquals("")) {
 			txtAUErrorApikey.setText("  apikey field can't be empty");
 			result = false;
-		}
-
+		}	
+		
 		return result;
 	}
 	
@@ -202,6 +214,7 @@ public class AddUser extends OnlineActivity implements OnClickListener, Runnable
 				submit();
 				break;
 			case MENU_ID_BACK:
+				setResult(RETURN_RESULT_BACK, null);
 				finish();
 				break;
 			case MENU_ID_CLEAR:

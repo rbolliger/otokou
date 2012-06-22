@@ -42,6 +42,7 @@ import com.bl457xor.app.otokou.components.OtokouUser;
  *  8. update a Users by id (updateUsersById() method)<br>
  *  9. (getAllUsers() method)<br>
  *  10. (getUserById() method)<br>
+ *  11. (getUserByUsername() method)<br>
  *  
  *  note: related databases will also be affected (deleting a user will also delete all of his vehicles and charges)
  *  
@@ -370,7 +371,7 @@ public class OtokouUserAdapter {
 	 * Get a row identified by its id.<p>
 	 * note: need a call to the open() method before a call to this method.
 	 * 
-	 * @param id	id of the row to update
+	 * @param id	id of the row to get
 	 * @return cursor object containing the row data. null object will be returned in case of errors.
 	 */		
 	public Cursor getUserById(long id){
@@ -380,6 +381,27 @@ public class OtokouUserAdapter {
 				null, 
 				""+OtokouUserAdapter.COL_ID_NAME+ "="+id, 
 				null,
+				null, 
+				null, 
+				null);
+	}
+	
+	/**
+	 * Since Version 1<p>
+	 * 
+	 * Get a row identified by its username.<p>
+	 * note: need a call to the open() method before a call to this method.
+	 * 
+	 * @param username	username of the row to get
+	 * @return cursor object containing the row data. null object will be returned in case of errors.
+	 */		
+	public Cursor getUserByUsername(String username){
+		if (!connectionOpen) return null;
+		
+		return db.query(OtokouUserAdapter.TABLE_NAME, 
+				null, 
+				""+OtokouUserAdapter.COL_4_NAME+"=?", 
+				new String[] {username},
 				null, 
 				null, 
 				null);

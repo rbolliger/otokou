@@ -29,7 +29,7 @@ public class AddCharge extends OnlineActivity implements OnClickListener, OnItem
 	private static final int MENU_ID_BACK = 2100;
 	
 	// messages constants
-	public static final int RETURN_RESULT_OK = 3000;
+	public static final int RETURN_RESULT_CHARGE_ADDED = 3000;
 	public static final int RETURN_RESULT_BACK = 3001;
 	public static final int RETURN_RESULT_ERROR = 3002;
 	public static final int RETURN_RESULT_UNEXPECTED = 3100;
@@ -72,6 +72,12 @@ public class AddCharge extends OnlineActivity implements OnClickListener, OnItem
 		updateUI();
 	}
 
+	@Override
+	public void onBackPressed() {
+		setResult(RETURN_RESULT_BACK, null);
+		super.onBackPressed();
+	}
+	
 	private void retrieveDataFromExtras() {
 		// TODO check extras loaded correctly
 		
@@ -153,7 +159,7 @@ public class AddCharge extends OnlineActivity implements OnClickListener, OnItem
 					OtokouChargeAdapter OCAdb = new OtokouChargeAdapter(getApplicationContext()).open();
 					OCAdb.insertCharge(charge, otokouUser, vehicles.get((int)spnVehicle.getSelectedItemId()), OtokouChargeAdapter.COL_4_SENT_VALUE);
 					OCAdb.close();	
-					setResult(RETURN_RESULT_OK, null);
+					setResult(RETURN_RESULT_CHARGE_ADDED, null);
 					finish();			
 				}
 				else {

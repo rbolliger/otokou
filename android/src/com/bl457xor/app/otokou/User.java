@@ -28,7 +28,6 @@ import com.bl457xor.app.otokou.db.OtokouVehicleAdapter;
 
 public class User extends OnlineActivity implements OnClickListener, Runnable {
 	// messages constants
-	public static final int RETURN_RESULT_OK = 1000;
 	public static final int RETURN_RESULT_BACK = 1001;
 	public static final int RETURN_RESULT_USER_NOT_FOUND = 1002;
 	public static final int RETURN_RESULT_UNEXPECTED = 1100;
@@ -88,6 +87,12 @@ public class User extends OnlineActivity implements OnClickListener, Runnable {
     	
     	super.onResume();
     }
+    
+	@Override
+	public void onBackPressed() {
+		setResult(RETURN_RESULT_BACK, null);
+		super.onBackPressed();
+	}
 
 	private void retrieveUserData() {		
 		OtokouUserAdapter OUAdb = new OtokouUserAdapter(getApplicationContext()).open();
@@ -394,24 +399,21 @@ public class User extends OnlineActivity implements OnClickListener, Runnable {
 	}
 	
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		// TODO manage returns of
-		if (resultCode == AddCharge.RETURN_RESULT_OK) {
-		    
-		}
-		else if (resultCode == AddCharge.RETURN_RESULT_BACK) {
-
-		}
-		else if (resultCode == AddCharge.RETURN_RESULT_ERROR) {
-			switch (data.getExtras().getInt(AddCharge.RETURN_ERROR_EXTRA_KEY,AddCharge.RETURN_ERROR_UNKNOWN)) {
-			case AddCharge.RETURN_ERROR_UNKNOWN:
+		// TODO, if needed, handle returns from called activities
+		switch (resultCode) {
+			case AddCharge.RETURN_RESULT_ERROR:
+				switch (data.getExtras().getInt(AddCharge.RETURN_ERROR_EXTRA_KEY,AddCharge.RETURN_ERROR_UNKNOWN)) {
+					case AddCharge.RETURN_ERROR_UNKNOWN:
+						break;
+					case AddCharge.RETURN_ERROR_NO_CONNECTION:
+						txtUserWarning.setText(R.string.user_txt_user_warning_unsent_charge);
+						break;
+				}
 				break;
-			case AddCharge.RETURN_ERROR_NO_CONNECTION:
-				txtUserWarning.setText(R.string.user_txt_user_warning_unsent_charge);
-				break;
-			}
-		}
-		else {
-			
+			case AddCharge.RETURN_RESULT_CHARGE_ADDED:
+			case AddCharge.RETURN_RESULT_BACK:
+			case AddCharge.RETURN_RESULT_UNEXPECTED:	
+			default:
 		}
 	}
 
@@ -443,7 +445,7 @@ public class User extends OnlineActivity implements OnClickListener, Runnable {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-
+	
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {

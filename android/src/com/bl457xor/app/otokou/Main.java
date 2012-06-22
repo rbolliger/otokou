@@ -2,7 +2,9 @@ package com.bl457xor.app.otokou;
 
 import java.util.ArrayList;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -28,18 +30,17 @@ import com.bl457xor.app.otokou.db.OtokouUserAdapter;
 
 
 // TODO
-// Behavior:
-//  - user: check reload data, offline system
-//  - can't add 2 times same user!
-//  - ask confirmation before deleting user
-//  - manage phone back button, activity returns (offline add charge,...) ?
-// help:
-//  - add help where needed
 // refactoring:
 //  - text in xml
 //  - name of main xmls
+//  - delete debug code
 //  - ...
-// ...
+// other (need more finalized otokou site):
+//  - apikey format check
+//  - add help where needed
+// next versions:
+//  - check if online status change live
+//  - find better way to choose when synchronize with data on website
 
 
 public class Main extends OnlineListActivity implements OnClickListener {
@@ -125,12 +126,12 @@ public class Main extends OnlineListActivity implements OnClickListener {
 	
 	public class EfficientAdapter extends BaseAdapter implements Filterable {
 		private LayoutInflater mInflater;
-		//private Context context;
+		private Context context;
 
 		public EfficientAdapter(Context context) {
 			// Cache the LayoutInflate to avoid asking for a new one each time.
 			mInflater = LayoutInflater.from(context);
-			//this.context = context;
+			this.context = context;
 		}
 
 		/**
@@ -170,11 +171,26 @@ public class Main extends OnlineListActivity implements OnClickListener {
 
 				@Override
 				public void onClick(View v) {
-					OtokouUserAdapter OUAdb = new OtokouUserAdapter(getApplicationContext()).open();
-					OUAdb.deleteUserById(user_id);
-					OUAdb.close();
-					loadUsers();
-					listAdapter.notifyDataSetChanged();
+					AlertDialog.Builder builder = new AlertDialog.Builder(context);
+				    builder.setMessage("Are you sure you want to Delete this user?")
+				           .setCancelable(false)
+				           .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+				               public void onClick(DialogInterface dialog, int id) {
+									OtokouUserAdapter OUAdb = new OtokouUserAdapter(getApplicationContext()).open();
+									OUAdb.deleteUserById(user_id);
+									OUAdb.close();
+									loadUsers();
+									dialog.cancel();
+									listAdapter.notifyDataSetChanged();
+				               }
+				           })
+				           .setNegativeButton("No", new DialogInterface.OnClickListener() {
+				               public void onClick(DialogInterface dialog, int id) {
+				                    dialog.cancel();
+				               }
+				           });
+				    AlertDialog alert = builder.create();
+				    alert.show();
 				}
 			});
 
@@ -275,14 +291,12 @@ public class Main extends OnlineListActivity implements OnClickListener {
 	}
 	
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		// TODO handle errors on result return
+		// TODO, if needed, handle returns from called activities
 		switch (resultCode) {
-			case AddUser.RETURN_RESULT_OK:
 			case AddUser.RETURN_RESULT_BACK:
 			case AddUser.RETURN_RESULT_OFFLINE:
 			case AddUser.RETURN_RESULT_USER_ADDED:
 			case AddUser.RETURN_RESULT_UNEXPECTED:
-			case User.RETURN_RESULT_OK:
 			case User.RETURN_RESULT_BACK:
 			case User.RETURN_RESULT_USER_NOT_FOUND:
 			case User.RETURN_RESULT_UNEXPECTED:
