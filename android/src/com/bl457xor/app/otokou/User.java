@@ -50,6 +50,10 @@ public class User extends OnlineActivity implements OnClickListener, Runnable {
 	private static final int RUN_ERROR_VEHICLES = 103;
 	private static final int RUN_ERROR_USER_LOGIN = 104;
 	
+	// call activity constants
+	public static final String PARAMETER_USER_ID = "user_id";
+	public static final String PREFERENCES_PARAMETER_APIKEY = "apikey";
+	
 	// global variables initialization
 	private OtokouUser otokouUser;
 	private SharedPreferences preferences;
@@ -77,6 +81,7 @@ public class User extends OnlineActivity implements OnClickListener, Runnable {
     
     @Override
     protected void onResume() {
+    	// retrieve data if a new apikey is put in the preferences or the data isn't ok
     	if (!checkPreferencesChanges()) {
         	if (!dataOK) {
         		retrieveDataFromOtokou();
@@ -94,9 +99,10 @@ public class User extends OnlineActivity implements OnClickListener, Runnable {
 		super.onBackPressed();
 	}
 
-	private void retrieveUserData() {		
+	private void retrieveUserData() {
+		// load the user using the ID in the extras, finish() if can't find
 		OtokouUserAdapter OUAdb = new OtokouUserAdapter(getApplicationContext()).open();
-		Cursor c = OUAdb.getUserById(getIntent().getExtras().getLong("user_id"));
+		Cursor c = OUAdb.getUserById(getIntent().getExtras().getLong(PARAMETER_USER_ID));
 
 		if (c.getCount() == 1) {
 			c.moveToLast();
@@ -120,11 +126,11 @@ public class User extends OnlineActivity implements OnClickListener, Runnable {
     
     private void initializePreferences() {
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        preferences.edit().putString("apikey", otokouUser.getApikey()).commit();
+        preferences.edit().putString(PREFERENCES_PARAMETER_APIKEY, otokouUser.getApikey()).commit();
 	}
     
     private boolean checkPreferencesChanges() {
-		String newApiKey = preferences.getString("apikey", "");
+		String newApiKey = preferences.getString(PREFERENCES_PARAMETER_APIKEY, "");
 		
 		if (!otokouUser.getApikey().equals(newApiKey)) {
 			if (OtokouApiKey.checkKey(newApiKey)) {
@@ -159,11 +165,12 @@ public class User extends OnlineActivity implements OnClickListener, Runnable {
 	}
 	
 	private void updateUI() {
+		// set warning text for online status
 		if (isOnline()) {
-			txtUserWarning.setText(getString(R.string.user_txt_user_warning_online));
+			txtUserWarning.setText(getString(R.string.user_txt_warning_online));
 		}
 		else {
-			txtUserWarning.setText(getString(R.string.user_txt_user_warning_offline));
+			txtUserWarning.setText(getString(R.string.user_txt_warning_offline));
 		}
 	}
 	
@@ -254,6 +261,7 @@ public class User extends OnlineActivity implements OnClickListener, Runnable {
 	}
 
 	private void sendUnsentCharges(long userId, String username, String apiKey) {		
+		// if there are unsent charges, send them
 		OtokouChargeAdapter OCAdb = new OtokouChargeAdapter(getApplicationContext()).open();
 		Cursor cCharges = OCAdb.getUnsentChargesByUserId(userId);
 		if (cCharges.getCount() > 0) {
@@ -300,7 +308,7 @@ public class User extends OnlineActivity implements OnClickListener, Runnable {
 				progressDialog.setMessage(getString(R.string.user_dialog_message_ok));
 				txtUser.setText(otokouUser.toString());
 				setTxtVehicles(VEHICLES_SHOW);
-				txtUserWarning.setText(getString(R.string.user_txt_user_warning_online));
+				txtUserWarning.setText(getString(R.string.user_txt_warning_online));
 				dataOK = true;
 				btnAddCharge.setVisibility(Button.VISIBLE);
 				break;
@@ -310,35 +318,35 @@ public class User extends OnlineActivity implements OnClickListener, Runnable {
 			case RUN_ERROR_NOT_CONNECTED:
 				txtUser.setText(otokouUser.toString());
 				setTxtVehicles(VEHICLES_SHOW);
-				txtUserWarning.setText(getString(R.string.user_txt_user_warning_offline));
+				txtUserWarning.setText(getString(R.string.user_txt_warning_offline));
 				dataOK = true;
 				btnAddCharge.setVisibility(Button.VISIBLE);
 				break;
 			case RUN_ERROR_API_KEY:
 				txtUser.setText(getString(R.string.user_txt_user_error_api_key));
 				setTxtVehicles(VEHICLES_HIDE);
-				txtUserWarning.setText(getString(R.string.user_txt_user_warning_online));
+				txtUserWarning.setText(getString(R.string.user_txt_warning_online));
 				dataOK = false;
 				btnAddCharge.setVisibility(Button.INVISIBLE);
 				break;
 			case RUN_ERROR_USER:
 				txtUser.setText(getString(R.string.user_txt_user_error_user));
 				setTxtVehicles(VEHICLES_HIDE);
-				txtUserWarning.setText(getString(R.string.user_txt_user_warning_online));
+				txtUserWarning.setText(getString(R.string.user_txt_warning_online));
 				dataOK = false;
 				btnAddCharge.setVisibility(Button.INVISIBLE);
 				break;
 			case RUN_ERROR_VEHICLES:
 				txtUser.setText(otokouUser.toString());
 				setTxtVehicles(VEHICLES_ERROR);
-				txtUserWarning.setText(getString(R.string.user_txt_user_warning_online));
+				txtUserWarning.setText(getString(R.string.user_txt_warning_online));
 				dataOK = false;
 				btnAddCharge.setVisibility(Button.INVISIBLE);
 				break;
 			case RUN_ERROR_USER_LOGIN:
 				txtUser.setText(getString(R.string.user_txt_user_error_user_login));
 				setTxtVehicles(VEHICLES_HIDE);
-				txtUserWarning.setText(getString(R.string.user_txt_user_warning_online));
+				txtUserWarning.setText(getString(R.string.user_txt_warning_online));
 				dataOK = false;
 				btnAddCharge.setVisibility(Button.INVISIBLE);
 				break;
@@ -349,20 +357,20 @@ public class User extends OnlineActivity implements OnClickListener, Runnable {
 			switch (setCode) {
 			case VEHICLES_SHOW:
 				if (vehicles.items.size() == 0) {
-					txtVehicles.setText(vehicles.items.size()+"no vehicles found");
+					txtVehicles.setText(getString(R.string.user_txt_vehicles_no_found));
 				}
 				else if (vehicles.items.size() == 1) {
-					txtVehicles.setText(vehicles.items.size()+" vehicle found.");
+					txtVehicles.setText(getString(R.string.user_txt_vehicles_pre_one_found)+vehicles.items.size()+getString(R.string.user_txt_vehicles_post_one_found));
 				}
 				else if (vehicles.items.size() > 1) {
-					txtVehicles.setText(vehicles.items.size()+" vehicles found.");
+					txtVehicles.setText(getString(R.string.user_txt_vehicles_pre_many_found)+vehicles.items.size()+getString(R.string.user_txt_vehicles_post_many_found));
 				}
 				else {
 					txtVehicles.setText("");
 				}
 				break;
 			case VEHICLES_ERROR:
-				txtVehicles.setText(getString(R.string.user_txt_user_error_vehicle));
+				txtVehicles.setText(getString(R.string.user_txt_vehicles_error_vehicle));
 				break;
 			case VEHICLES_HIDE:
 			default:	
@@ -383,18 +391,18 @@ public class User extends OnlineActivity implements OnClickListener, Runnable {
 
 			int vehiclesNumber = 0;
 			for (OtokouVehicle vehicle : vehicles.items) {
-				extras.putByteArray("vehicle_"+vehiclesNumber, vehicle.toByteArray());
+				extras.putByteArray(AddCharge.PARAMETER_VEHICLE_PREFIX+vehiclesNumber, vehicle.toByteArray());
 				vehiclesNumber++;
 			}
-			extras.putInt("vehiclesNumber", vehiclesNumber);
+			extras.putInt(AddCharge.PARAMETER_VEHICLE_NUMBER, vehiclesNumber);
 
-			extras.putByteArray("user", otokouUser.toByteArray());		
+			extras.putByteArray(AddCharge.PARAMETER_USER, otokouUser.toByteArray());		
 			i.putExtras(extras);
 
 			startActivityForResult(i, 0);
 		}
 		else {
-			Toast.makeText(getApplicationContext(), "Can't create a Charge while not syncronized with otokou website.",Toast.LENGTH_SHORT).show();
+			Toast.makeText(getApplicationContext(),R.string.user_toast_cant_create_charge,Toast.LENGTH_SHORT).show();
 		}
 	}
 	
@@ -406,7 +414,7 @@ public class User extends OnlineActivity implements OnClickListener, Runnable {
 					case AddCharge.RETURN_ERROR_UNKNOWN:
 						break;
 					case AddCharge.RETURN_ERROR_NO_CONNECTION:
-						txtUserWarning.setText(R.string.user_txt_user_warning_unsent_charge);
+						txtUserWarning.setText(R.string.user_txt_warning_unsent_charge);
 						break;
 				}
 				break;

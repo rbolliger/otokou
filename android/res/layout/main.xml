@@ -5,38 +5,39 @@
     android:layout_height="fill_parent" >
 
     <ImageView
-        android:id="@+id/bannerImage"
+        android:id="@+id/ImgMainOtokouLogo"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:background="@drawable/otokou_logo" />
+        android:background="@drawable/otokou_logo"
+        android:contentDescription="@string/main_img_description" />
 
     <ListView
         android:id="@+id/android:list"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@+id/bannerImage"
+        android:layout_below="@+id/ImgMainOtokouLogo"
         android:layout_marginBottom="60dip"
         android:layout_marginTop="10dip"
         android:cacheColorHint="#00000000"
         android:drawSelectorOnTop="false" />
 
     <Button
-        android:id="@+id/btnAddUser"
+        android:id="@+id/btnMainAddUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:text="Add User" />
+        android:text="@string/main_btn_add_user" />
 
     <TextView
-        android:id="@+id/txtErrorMessage"
-        android:textColor="@color/error_message_color" 
+        android:id="@+id/txtMainMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/btnAddUser"
-        android:layout_alignBottom="@+id/btnAddUser"
-        android:layout_toRightOf="@+id/btnAddUser"
-        android:text="" />
+        android:layout_alignBaseline="@+id/btnMainAddUser"
+        android:layout_alignBottom="@+id/btnMainAddUser"
+        android:layout_toRightOf="@+id/btnMainAddUser"
+        android:text=""
+        android:textColor="@color/error_message_color" />
 
 </RelativeLayout>

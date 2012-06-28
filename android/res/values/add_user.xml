@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="add_user_menu_add">Add User</string>
+
+    <string name="add_user_menu_add">Link User</string>
     <string name="add_user_menu_back">Back</string>
     <string name="add_user_menu_clear">Clear fields</string>
-    <color name="error_message_color">#FF0000</color>
-    <string name="add_user_image_description">Otokou</string>
+    <string name="add_user_img_description">Otokou</string>
+    <string name="add_user_btn_add_user">Link User</string>
     <string name="add_user_dialog_title">Loading information from Otokou</string>
     <string name="add_user_dialog_message_start">verifying API Key</string>
-    <string name="add_user_dialog_message_loading_user">Loading user data &#8230;</string>
+    <string name="add_user_dialog_message_loading_user">Loading user data …</string>
     <string name="add_user_dialog_message_ok">OK</string>
     <string name="add_user_error_user">Error while retrieving user information.</string>
     <string name="add_user_error_user_login">Invalid Username and Apikey combination, please check the Apikey on Otokou website.</string>
+    <string name="add_user_txt_username_text">Username:</string>
+    <string name="add_user_txt_username_hint">Otokou website username.</string>
+    <string name="add_user_txt_apikey_text">Apikey:</string>
+    <string name="add_user_txt_apikey_hint">Otokou website apikey.</string>
+    <string name="add_user_etxt_username_empty_field">Username field can\'t be left empty.</string>
+    <string name="add_user_etxt_username_duplicate">The same user is already linked.</string>
+    <string name="add_user_etxt_apikey_empty_field">Apikey field can\'t be left empty.</string>
 </resources>

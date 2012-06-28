@@ -87,15 +87,18 @@ public class AddUser extends OnlineActivity implements OnClickListener, Runnable
 		}	
 	}
 	
-	private void submit() {		
+	private void submit() {	
+		//check if data in form is vlid
 		if (formIsValid(edtAUUsername.getText().toString(),edtAUAPikey.getText().toString())) {
 			if (isOnline()) {
+				//get user data
 				progressDialog = ProgressDialog.show(this,getString(R.string.add_user_dialog_title), getString(R.string.add_user_dialog_message_start), true, false);
 				
 		    	Thread thread = new Thread(this);
 		    	thread.start();
 			}
 			else {
+				//exit
 				offline();
 			}
 		}
@@ -107,6 +110,7 @@ public class AddUser extends OnlineActivity implements OnClickListener, Runnable
 	}
 	
 	private void clear() {
+		// delete data in form fields
 		edtAUUsername.setText("");
 		edtAUAPikey.setText("");
 	}
@@ -171,13 +175,15 @@ public class AddUser extends OnlineActivity implements OnClickListener, Runnable
 
 	private boolean formIsValid(String username, String apikey) {
 		// TODO check apikey format
+		
+		// check form data
 		txtAUErrorUsername.setText("");
 		txtAUErrorApikey.setText("");
 		
 		boolean result = true;
 		
 		if (username.contentEquals("")) {
-			txtAUErrorUsername.setText("  username field can't be empty");
+			txtAUErrorUsername.setText("  "+getString(R.string.add_user_etxt_username_empty_field));
 			result = false;
 		}
 		else {
@@ -185,14 +191,14 @@ public class AddUser extends OnlineActivity implements OnClickListener, Runnable
 			OtokouUserAdapter OUAdb = new OtokouUserAdapter(getApplicationContext()).open();		
 			Cursor userCursor = OUAdb.getUserByUsername(username);
 			if (userCursor.getCount() > 0) {
-				txtAUErrorUsername.setText("  a user with this username already exists");
+				txtAUErrorUsername.setText("  "+getString(R.string.add_user_etxt_username_duplicate));
 				result = false;
 			}
 			userCursor.close();
 		}
 		
 		if (apikey.contentEquals("")) {
-			txtAUErrorApikey.setText("  apikey field can't be empty");
+			txtAUErrorApikey.setText("  "+getString(R.string.add_user_etxt_apikey_empty_field));
 			result = false;
 		}	
 		

@@ -12,16 +12,16 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name" >      
         <activity android:name=".Main" 
-                  android:label="@string/app_name" >
+                  android:label="@string/main_activity_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>        
         </activity>    
-        <activity android:name="AddUser" android:label="Add User"></activity>
-        <activity android:name=".User" android:label="Users"></activity>
-        <activity android:name="AddCharge" android:label="Add Charge"></activity>
-        <activity android:name="UserPreferenceActivity" android:label="User Preferences"></activity>
+        <activity android:name=".AddUser" android:label="@string/add_user_activity_name"></activity>
+        <activity android:name=".User" android:label="@string/user_activity_name"></activity>
+        <activity android:name=".AddCharge" android:label="@string/add_charge_activity_name"></activity>
+        <activity android:name=".UserPreferenceActivity" android:label="@string/user_preferences_activity_name"></activity>
     </application>
 
 </manifest>

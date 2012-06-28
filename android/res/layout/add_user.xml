@@ -14,7 +14,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
-            android:contentDescription="@string/add_user_image_description"
+            android:contentDescription="@string/add_user_img_description"
             android:scaleType="fitStart"
             android:src="@drawable/otokou_logo" />
     </LinearLayout>
@@ -35,14 +35,14 @@
                 android:id="@+id/txtAddUserUsername"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Username:" />
-            
+                android:text="@string/add_user_txt_username_text" />
+
             <TextView
                 android:id="@+id/txtAddUserErrorUsername"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/error_message_color"
-                android:text="" />
+                android:text=""
+                android:textColor="@color/error_message_color" />
         </LinearLayout>
 
         <EditText
@@ -50,7 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Otokou website username" >
+            android:hint="@string/add_user_txt_username_hint" >
 
             <requestFocus />
         </EditText>
@@ -65,14 +65,14 @@
                 android:id="@+id/txtAddUserApikey"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Apikey:" />
-            
+                android:text="@string/add_user_txt_apikey_text" />
+
             <TextView
                 android:id="@+id/txtAddUserErrorApikey"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/error_message_color"
-                android:text="" />
+                android:text=""
+                android:textColor="@color/error_message_color" />
         </LinearLayout>
 
         <EditText
@@ -80,7 +80,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Otokou website apikey" >
+            android:hint="@string/add_user_txt_apikey_hint" >
         </EditText>
 
         <TextView
@@ -88,7 +88,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="" />
-        
+
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
@@ -99,7 +99,7 @@
                 android:id="@+id/btnAddUserAdd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Add user" />
+                android:text="@string/add_user_btn_add_user" />
 
             <TextView
                 android:id="@+id/txtAddUserErrorMessage"
@@ -108,7 +108,6 @@
                 android:text=""
                 android:textColor="@color/error_message_color" />
         </LinearLayout>
-
     </LinearLayout>
 
 </LinearLayout>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="user_menu_user_preferences">Preferences</string>
     <string name="user_menu_reload_data">Reload Data</string>
     <string name="user_menu_add_charge">Send new Charge</string>
@@ -10,16 +11,22 @@
     <string name="user_txt_welcome">Welcome</string>
     <string name="user_dialog_title">Loading information from Otokou</string>
     <string name="user_dialog_message_start">verifying API Key</string>
-    <string name="user_dialog_message_loading_user">Loading user data &#8230;</string>
-    <string name="user_dialog_message_loading_vehicles">Loading vehicle data &#8230;</string>
-    <string name="user_dialog_message_sending_charges">Sending unsent charges &#8230;</string>
+    <string name="user_dialog_message_loading_user">Loading user data …</string>
+    <string name="user_dialog_message_loading_vehicles">Loading vehicle data …</string>
+    <string name="user_dialog_message_sending_charges">Sending unsent charges …</string>
     <string name="user_dialog_message_ok">OK</string>
     <string name="user_txt_user_error_not_connected">No internet connection found.</string>
     <string name="user_txt_user_error_api_key">Your API key seems invalid, please check it in the preferences.</string>
     <string name="user_txt_user_error_user">Error while retrieving user information.</string>
-    <string name="user_txt_user_error_vehicle">Error while retrieving vehicles information.</string>
+    <string name="user_txt_vehicles_error_vehicle">Error while retrieving vehicles information.</string>
+    <string name="user_txt_vehicles_no_found">No vehicles found.</string>
+    <string name="user_txt_vehicles_pre_one_found"></string>
+    <string name="user_txt_vehicles_pre_many_found"></string>
+    <string name="user_txt_vehicles_post_one_found">\u0020vehicle found.</string>
+    <string name="user_txt_vehicles_post_many_found">\u0020vehicles found.</string>
     <string name="user_txt_user_error_user_login">Invalid User API key combination, please check your API key in the preferences.</string>
-    <string name="user_txt_user_warning_offline">No internet connection found.</string>
-    <string name="user_txt_user_warning_online"></string>
-    <string name="user_txt_user_warning_unsent_charge">The new charge will be uploaded when online.</string>
+    <string name="user_txt_warning_offline">No internet connection found.</string>
+    <string name="user_txt_warning_online"></string>
+    <string name="user_txt_warning_unsent_charge">The new charge will be uploaded when online.</string>
+	<string name="user_toast_cant_create_charge">Can\'t create a Charge while not syncronized with otokou website.</string>
 </resources>

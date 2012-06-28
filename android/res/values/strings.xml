@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">Otokou</string>
-    <string name="warning_offline">No Internet Connection found</string>
-    <string name="main_menu_add_user">Add User</string>
-    <string name="main_menu_exit">Exit</string>
+    <string name="main_activity_name">Otokou</string>
+    <string name="user_activity_name">User</string>
+    <string name="add_user_activity_name">Link User</string>
+    <string name="add_charge_activity_name">Send Charge</string>
+    <string name="user_preferences_activity_name">User Preferences</string>
+
+    <color name="error_message_color">#FF0000</color>
+
 </resources>

@@ -29,16 +29,16 @@
             android:id="@+id/txtUserUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Loading data"
+            android:text=""
             android:textAppearance="?android:attr/textAppearanceMedium" />
-        
+
         <TextView
             android:id="@+id/txtUserEmpy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""
             android:textAppearance="?android:attr/textAppearanceMedium" />
-        
+
         <TextView
             android:id="@+id/txtUserVehicles"
             android:layout_width="wrap_content"

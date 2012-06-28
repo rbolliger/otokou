@@ -31,8 +31,7 @@ import com.bl457xor.app.otokou.db.OtokouUserAdapter;
 
 // TODO
 // refactoring:
-//  - text in xml
-//  - name of main xmls
+//  - text in xml: addcharge
 //  - delete debug code
 //  - ...
 // other (need more finalized otokou site):
@@ -41,15 +40,16 @@ import com.bl457xor.app.otokou.db.OtokouUserAdapter;
 // next versions:
 //  - check if online status change live
 //  - find better way to choose when synchronize with data on website
+//  - multilingue
 
 
 public class Main extends OnlineListActivity implements OnClickListener {
-	// onOptionsItemSelected menu ids constants
+	// menu constants
 	private static final int MENU_ID_ADD_USER = 10001;
 	private static final int MENU_ID_EXIT = 10002;
 	
 	// global variables initialization
-	private EfficientAdapter listAdapter;
+	private MainAdapter listAdapter;
 	private ArrayList<OtokouUser> users;
 	private boolean autoload = true;
 	private boolean isOnline = false;
@@ -58,6 +58,7 @@ public class Main extends OnlineListActivity implements OnClickListener {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.main);
 		
@@ -75,25 +76,26 @@ public class Main extends OnlineListActivity implements OnClickListener {
 		
 		updateUI();
 		
+		// create a new adapter
 		if (listAdapter != null) {
 			listAdapter = null;
 		}
-		listAdapter = new EfficientAdapter(this);
+		listAdapter = new MainAdapter(this);
 		setListAdapter(listAdapter);	
 	}
 
 	private void initializeUI() {
-		((Button)findViewById(R.id.btnAddUser)).setOnClickListener(this);
-		
-		txtMessage = (TextView)findViewById(R.id.txtErrorMessage);
+		((Button)findViewById(R.id.btnMainAddUser)).setOnClickListener(this);	
+		txtMessage = (TextView)findViewById(R.id.txtMainMessage);
 	}
 	
 	private void updateUI() {
+		// set warning message if not connected
 		if (isOnline) {
-			txtMessage.setText("");
+			txtMessage.setText(R.string.main_txt_online);
 		}
 		else {
-			txtMessage.setText(R.string.warning_offline);
+			txtMessage.setText(R.string.main_txt_offline);
 		}
 	}
 
@@ -124,32 +126,28 @@ public class Main extends OnlineListActivity implements OnClickListener {
 		}
 	}
 	
-	public class EfficientAdapter extends BaseAdapter implements Filterable {
+	public class MainAdapter extends BaseAdapter implements Filterable {
 		private LayoutInflater mInflater;
 		private Context context;
 
-		public EfficientAdapter(Context context) {
-			// Cache the LayoutInflate to avoid asking for a new one each time.
+		public MainAdapter(Context context) {
+			// Cache the LayoutInflate.
 			mInflater = LayoutInflater.from(context);
 			this.context = context;
 		}
 
-		/**
-		 * Make a view to hold each row.
-		 * 
-		 * @see android.widget.ListAdapter#getView(int, android.view.View,
-		 *      android.view.ViewGroup)
-		 */
 		public View getView(final int position, View convertView, ViewGroup parent) {
 			ViewHolder holder;
 
-			convertView = mInflater.inflate(R.layout.list_user_item, null);
+			convertView = mInflater.inflate(R.layout.main_list_user_item, null);
 
+			// store listview elements
 			holder = new ViewHolder();
 			holder.userTxt = (TextView) convertView.findViewById(R.id.userTxt);
 			holder.userBtnDelete = (Button) convertView.findViewById(R.id.userBtnDelete);
 			holder.userChb = (CheckBox) convertView.findViewById(R.id.userChb);
 
+			// check automatic login box if needed
 			if (((OtokouUser)getItem(position)).getAutoload()) {
 				holder.userChb.setChecked(true);
 			}
@@ -157,6 +155,7 @@ public class Main extends OnlineListActivity implements OnClickListener {
 				holder.userChb.setChecked(false);
 			}
 
+			// set listener for list item click
 			convertView.setOnClickListener(new OnClickListener() {
 				private long user_id = ((OtokouUser)getItem(position)).getId();
 
@@ -166,15 +165,16 @@ public class Main extends OnlineListActivity implements OnClickListener {
 				}
 			});
 
+			// set listener for delete user button
 			holder.userBtnDelete.setOnClickListener(new OnClickListener() {
 				private long user_id = ((OtokouUser)getItem(position)).getId();
 
 				@Override
 				public void onClick(View v) {
 					AlertDialog.Builder builder = new AlertDialog.Builder(context);
-				    builder.setMessage("Are you sure you want to Delete this user?")
+				    builder.setMessage(R.string.main_dialog_text_unlink)
 				           .setCancelable(false)
-				           .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+				           .setPositiveButton(R.string.main_dialog_yes, new DialogInterface.OnClickListener() {
 				               public void onClick(DialogInterface dialog, int id) {
 									OtokouUserAdapter OUAdb = new OtokouUserAdapter(getApplicationContext()).open();
 									OUAdb.deleteUserById(user_id);
@@ -184,7 +184,7 @@ public class Main extends OnlineListActivity implements OnClickListener {
 									listAdapter.notifyDataSetChanged();
 				               }
 				           })
-				           .setNegativeButton("No", new DialogInterface.OnClickListener() {
+				           .setNegativeButton(R.string.main_dialog_no, new DialogInterface.OnClickListener() {
 				               public void onClick(DialogInterface dialog, int id) {
 				                    dialog.cancel();
 				               }
@@ -194,6 +194,7 @@ public class Main extends OnlineListActivity implements OnClickListener {
 				}
 			});
 
+			// set listener for check box
 			holder.userChb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 				private int pos = position;
 
@@ -231,7 +232,7 @@ public class Main extends OnlineListActivity implements OnClickListener {
 
 			convertView.setTag(holder);
 
-			holder.userTxt.setText(((OtokouUser)getItem(position)).getFirstName() + " " +  ((OtokouUser)getItem(position)).getLastName());
+			holder.userTxt.setText(((OtokouUser)getItem(position)).toString());
 			
 			return convertView;
 		}
@@ -266,7 +267,7 @@ public class Main extends OnlineListActivity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.btnAddUser:
+		case R.id.btnMainAddUser:
 			launchAddUserActivity();
 			break;
 		}
@@ -278,14 +279,14 @@ public class Main extends OnlineListActivity implements OnClickListener {
 			startActivityForResult(i,0);
 		}
 		else {
-			Toast.makeText(getApplicationContext(), "Can't add an user while not connected.",Toast.LENGTH_SHORT).show();
+			Toast.makeText(getApplicationContext(), R.string.main_toast_offline_add_user,Toast.LENGTH_SHORT).show();
 		}
 	}
 	
 	private void launchUserActivity(long usedId) {
 		Intent i = new Intent(Main.this, User.class);		
 		Bundle extras = new Bundle();		
-		extras.putLong("user_id", usedId);	
+		extras.putLong(User.PARAMETER_USER_ID, usedId);	
 		i.putExtras(extras);
 		startActivityForResult(i,0);
 	}

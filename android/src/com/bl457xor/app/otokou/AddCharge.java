@@ -37,6 +37,11 @@ public class AddCharge extends OnlineActivity implements OnClickListener, OnItem
 	public static final int RETURN_ERROR_UNKNOWN = 0;
 	public static final int RETURN_ERROR_NO_CONNECTION = 1;
 	
+	// call activity constants
+	public static final String PARAMETER_VEHICLE_PREFIX = "vehicle_";
+	public static final String PARAMETER_VEHICLE_NUMBER = "vehiclesNumber";
+	public static final String PARAMETER_USER = "user";
+	
 	// global variables initialization
 	private OtokouUser otokouUser;
 	private ArrayList<OtokouVehicle> vehicles = new ArrayList<OtokouVehicle>();
@@ -81,13 +86,13 @@ public class AddCharge extends OnlineActivity implements OnClickListener, OnItem
 	private void retrieveDataFromExtras() {
 		// TODO check extras loaded correctly
 		
-		int vehiclesNumber = getIntent().getExtras().getInt("vehiclesNumber");
+		int vehiclesNumber = getIntent().getExtras().getInt(PARAMETER_VEHICLE_NUMBER);
 		
 		for (int i=0; i<vehiclesNumber; i++) {
-			vehicles.add(OtokouVehicle.OtokouVehicleFromByteArray(getIntent().getExtras().getByteArray("vehicle_"+i)));
+			vehicles.add(OtokouVehicle.OtokouVehicleFromByteArray(getIntent().getExtras().getByteArray(PARAMETER_VEHICLE_PREFIX+i)));
 		}			
 
-		otokouUser = OtokouUser.OtokouUserFromByteArray(getIntent().getExtras().getByteArray("user"));
+		otokouUser = OtokouUser.OtokouUserFromByteArray(getIntent().getExtras().getByteArray(PARAMETER_USER));
 	}
 
 	private void initializeUI() {		
