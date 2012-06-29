@@ -30,10 +30,6 @@ import com.bl457xor.app.otokou.db.OtokouUserAdapter;
 
 
 // TODO
-// refactoring:
-//  - text in xml: addcharge
-//  - delete debug code
-//  - ...
 // other (need more finalized otokou site):
 //  - apikey format check
 //  - add help where needed
@@ -41,6 +37,8 @@ import com.bl457xor.app.otokou.db.OtokouUserAdapter;
 //  - check if online status change live
 //  - find better way to choose when synchronize with data on website
 //  - multilingue
+//  - activity return codes,... -> send debug information to server
+//  - more comments on code?
 
 
 public class Main extends OnlineListActivity implements OnClickListener {
@@ -301,6 +299,7 @@ public class Main extends OnlineListActivity implements OnClickListener {
 			case User.RETURN_RESULT_BACK:
 			case User.RETURN_RESULT_USER_NOT_FOUND:
 			case User.RETURN_RESULT_UNEXPECTED:
+			case User.RETURN_RESULT_WRONG_EXTRAS:
 				break;
 				
 		}	

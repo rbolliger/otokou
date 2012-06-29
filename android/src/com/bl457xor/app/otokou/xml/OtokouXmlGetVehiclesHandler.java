@@ -82,19 +82,26 @@ public class OtokouXmlGetVehiclesHandler extends OtokouXmlResponseHandler {
 		if(localName.equals("vehicles_number")) {
 			inVehiclesNumber = false;
 			xmlVehiclesNumberString = trimData(xmlVehiclesNumberString);
-			// TODO parse exception?
-			xmlVehiclesNumber = Long.parseLong(xmlVehiclesNumberString);
+			try {
+				xmlVehiclesNumber = Long.parseLong(xmlVehiclesNumberString);
+			}
+			catch (NumberFormatException e) {
+				xmlVehiclesNumber = null;
+			}
 		}
 		else if(localName.equals("vehicle")) {
 			inVehicle = false;
 			vehicleId = trimData(vehicleId);
 			if (vehicleId != null && xmlVehicleName != null && xmlVehicleId != null) {
-				// TODO parse exception?
-				xmlVehicles.add(new OtokouVehicle(Long.parseLong(xmlVehicleId), xmlVehicleName));
+				// if error: number of vehicles should be different from xmlVehiclesNumber parameter
+				try {
+					xmlVehicles.add(new OtokouVehicle(Long.parseLong(xmlVehicleId), xmlVehicleName));
+				}
+				catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
-			else {
-				// TODO wrong data exception?
-			}
+
 			vehicleId = null;
 			xmlVehicleId = null;
 			xmlVehicleName = null;

@@ -32,6 +32,7 @@ public class AddCharge extends OnlineActivity implements OnClickListener, OnItem
 	public static final int RETURN_RESULT_CHARGE_ADDED = 3000;
 	public static final int RETURN_RESULT_BACK = 3001;
 	public static final int RETURN_RESULT_ERROR = 3002;
+	public static final int RETURN_RESULT_WRONG_EXTRAS = 3003;
 	public static final int RETURN_RESULT_UNEXPECTED = 3100;
 	public static final String RETURN_ERROR_EXTRA_KEY = "code";
 	public static final int RETURN_ERROR_UNKNOWN = 0;
@@ -84,15 +85,27 @@ public class AddCharge extends OnlineActivity implements OnClickListener, OnItem
 	}
 	
 	private void retrieveDataFromExtras() {
-		// TODO check extras loaded correctly
+		int vehiclesNumber = getIntent().getExtras().getInt(PARAMETER_VEHICLE_NUMBER,-1);
 		
-		int vehiclesNumber = getIntent().getExtras().getInt(PARAMETER_VEHICLE_NUMBER);
-		
-		for (int i=0; i<vehiclesNumber; i++) {
-			vehicles.add(OtokouVehicle.OtokouVehicleFromByteArray(getIntent().getExtras().getByteArray(PARAMETER_VEHICLE_PREFIX+i)));
-		}			
+		if ( vehiclesNumber == -1)  wrongParameters();
+		else {			
+			byte[] serializedUser = getIntent().getExtras().getByteArray(PARAMETER_USER);
 
-		otokouUser = OtokouUser.OtokouUserFromByteArray(getIntent().getExtras().getByteArray(PARAMETER_USER));
+			if (serializedUser == null) wrongParameters();
+			else {
+				otokouUser = OtokouUser.OtokouUserFromByteArray(serializedUser);
+						
+				for (int i=0; i<vehiclesNumber; i++) {
+					byte[] serializedVehicle = getIntent().getExtras().getByteArray(PARAMETER_VEHICLE_PREFIX+i);
+
+					if (serializedVehicle == null) {
+						wrongParameters();
+						break;
+					}
+					else vehicles.add(OtokouVehicle.OtokouVehicleFromByteArray(serializedVehicle));
+				}
+			}
+		}
 	}
 
 	private void initializeUI() {		
@@ -184,6 +197,11 @@ public class AddCharge extends OnlineActivity implements OnClickListener, OnItem
 				finish();
 			}
 		}
+	}
+	
+	private void wrongParameters() {
+		setResult(RETURN_RESULT_WRONG_EXTRAS, null);
+		finish();	
 	}
 	
 	private boolean checkCorrectValues() {

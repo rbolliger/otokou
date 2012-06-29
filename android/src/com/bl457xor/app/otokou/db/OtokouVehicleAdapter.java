@@ -37,6 +37,7 @@ import com.bl457xor.app.otokou.components.OtokouVehicle;
  *  8. (getAllVehicles() method)<br>
  *  9. (getVehicleById() method)<br>
  *  10. (getVehiclesByUserId() method)<br>
+ *  11. updates all vehicles of a user (updateVehicleForUser() method)<br>
  *  
  *  note: related databases will also be affected (deleting a vehicle will also delete all of his charges)
  *  

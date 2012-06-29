@@ -144,8 +144,12 @@ public class OtokouXmlGetUserHandler extends OtokouXmlResponseHandler {
 		else if(localName.equals("vehicles_number")) {			
 			inVehiclesNumber = false;
 			xmlVehiclesNumberString = trimData(xmlVehiclesNumberString);
-			// TODO parse exception?
-			xmlVehiclesNumber = Long.parseLong(xmlVehiclesNumberString);
+			try {
+				xmlVehiclesNumber = Long.parseLong(xmlVehiclesNumberString);
+			}
+			catch (NumberFormatException e) {
+				xmlVehiclesNumber = null;
+			}
 		}
 	}
 	

@@ -18,6 +18,7 @@ public class OtokouAPI {
 	public static final String OTOKOU_SET_CHARGE_ACTION = "set_charge";
 	public static final String OTOKOU_GET_VEHICLES_ACTION = "get_vehicles";
 	public static final String OTOKOU_GET_USER_ACTION = "get_user";
+	
 	// Otokou API error codes
 	public static final long OTOKOU_API_ERROR_CODE_INCORRECT_LOGIN = 211;
 

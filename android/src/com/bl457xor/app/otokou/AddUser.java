@@ -20,7 +20,7 @@ public class AddUser extends OnlineActivity implements OnClickListener, Runnable
 	// return messages constants
 	public static final int RETURN_RESULT_BACK = 2001;
 	public static final int RETURN_RESULT_OFFLINE = 2002; 
-	public static final int RETURN_RESULT_USER_ADDED = 2003; 
+	public static final int RETURN_RESULT_USER_ADDED = 2003;
 	public static final int RETURN_RESULT_UNEXPECTED = 2100; 
 	
 	// onOptionsItemSelected menu ids constants

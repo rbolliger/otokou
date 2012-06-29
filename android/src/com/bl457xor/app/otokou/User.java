@@ -30,6 +30,7 @@ public class User extends OnlineActivity implements OnClickListener, Runnable {
 	// messages constants
 	public static final int RETURN_RESULT_BACK = 1001;
 	public static final int RETURN_RESULT_USER_NOT_FOUND = 1002;
+	public static final int RETURN_RESULT_WRONG_EXTRAS = 1003;
 	public static final int RETURN_RESULT_UNEXPECTED = 1100;
 	
 	// onOptionsItemSelected menu ids constants
@@ -102,26 +103,33 @@ public class User extends OnlineActivity implements OnClickListener, Runnable {
 	private void retrieveUserData() {
 		// load the user using the ID in the extras, finish() if can't find
 		OtokouUserAdapter OUAdb = new OtokouUserAdapter(getApplicationContext()).open();
-		Cursor c = OUAdb.getUserById(getIntent().getExtras().getLong(PARAMETER_USER_ID));
-
-		if (c.getCount() == 1) {
-			c.moveToLast();
-			otokouUser = new OtokouUser(c);
-			c.close();
-			OUAdb.close();
-			
-			OtokouVehicleAdapter OVAdb = new OtokouVehicleAdapter(getApplicationContext()).open();
-			Cursor cv = OVAdb.getVehiclesByUserId(otokouUser.getId());
-			vehicles = new OtokouVehicles(cv);
-			cv.close();
-			OVAdb.close();
+		long userId = getIntent().getExtras().getLong(PARAMETER_USER_ID,-1);
+		if (userId == -1) {
+			setResult(RETURN_RESULT_WRONG_EXTRAS, null);
+			finish();
 		}
 		else {
-			c.close();
-			OUAdb.close();			
-			setResult(RETURN_RESULT_USER_NOT_FOUND, null);
-			finish();
-		}	
+			Cursor c = OUAdb.getUserById(userId);
+
+			if (c.getCount() == 1) {
+				c.moveToLast();
+				otokouUser = new OtokouUser(c);
+				c.close();
+				OUAdb.close();
+
+				OtokouVehicleAdapter OVAdb = new OtokouVehicleAdapter(getApplicationContext()).open();
+				Cursor cv = OVAdb.getVehiclesByUserId(otokouUser.getId());
+				vehicles = new OtokouVehicles(cv);
+				cv.close();
+				OVAdb.close();
+			}
+			else {
+				c.close();
+				OUAdb.close();			
+				setResult(RETURN_RESULT_USER_NOT_FOUND, null);
+				finish();
+			}
+		}
 	}
     
     private void initializePreferences() {
@@ -420,7 +428,8 @@ public class User extends OnlineActivity implements OnClickListener, Runnable {
 				break;
 			case AddCharge.RETURN_RESULT_CHARGE_ADDED:
 			case AddCharge.RETURN_RESULT_BACK:
-			case AddCharge.RETURN_RESULT_UNEXPECTED:	
+			case AddCharge.RETURN_RESULT_UNEXPECTED:
+			case AddCharge.RETURN_RESULT_WRONG_EXTRAS:	
 			default:
 		}
 	}

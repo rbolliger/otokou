@@ -12,18 +12,15 @@ import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.conn.ssl.SSLSocketFactory;
 import org.apache.http.conn.ssl.X509HostnameVerifier;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
-import android.util.Log;
-
 
 public class HttpHelper {
-	//TODO delete not used
+	/*
     public String executeHttpGet(String getUrl) throws Exception {
         BufferedReader in = null;
         String page = "";
@@ -51,15 +48,15 @@ public class HttpHelper {
             }
         }
         return page;
-    }
+    }*/
     
     public static String executeHttpPost(String postUrl,String Xml) throws OtokouException {    	
     	
     	BufferedReader in = null;
     	String page = "";
     	
-    	//TODO delete debug
-    	Log.i("request",Xml);
+    	// debug see requests on log
+    	// Log.i("request",Xml);
     	
     	try {
     		// Create a new HttpClient and Post Header
@@ -111,14 +108,10 @@ public class HttpHelper {
     		}
     	}
     	
-    	//TODO delete debug
-    	Log.i("response",page);
+    	// debug see response on log
+    	// Log.i("response",page);
     	
-    	if (page.equals("")) {
-    		throw new OtokouException(OtokouException.CODE_HTTP_CLIENT_EMPTY_RESPONSE);
-    	}
-    	else {
-    		return page;
-    	}
+    	if (page.equals("")) throw new OtokouException(OtokouException.CODE_HTTP_CLIENT_EMPTY_RESPONSE);
+    	else return page;
     } 
 }
