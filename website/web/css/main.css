@@ -105,6 +105,23 @@ table tbody tr:nth-child(even) {
     margin-bottom: 20px;
 }
 
+.signin_form {
+    background-color: #fff;
+    padding: 5px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    border: 1px solid #ddd;
+}
+
+.signin_form label {
+    float: none;
+    width: auto;
+}
+
+.signin_form .content {
+    padding-left: 20px;
+}
 
 
 .signin_form table {
