@@ -4,6 +4,7 @@ web/images/charts
 web/pdf
 web/functional
 web/images/functional
+web/sf*
 config/databases.yml
 
 *.netbeans-base
