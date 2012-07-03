@@ -16,7 +16,7 @@
     <string name="user_dialog_message_sending_charges">Sending unsent charges …</string>
     <string name="user_dialog_message_ok">OK</string>
     <string name="user_txt_user_error_not_connected">No internet connection found.</string>
-    <string name="user_txt_user_error_api_key">Your API key seems invalid, please check it in the preferences.</string>
+    <string name="user_txt_user_error_api_key">Incorrect Apikey format, please check it in the preferences.</string>
     <string name="user_txt_user_error_user">Error while retrieving user information.</string>
     <string name="user_txt_vehicles_error_vehicle">Error while retrieving vehicles information.</string>
     <string name="user_txt_vehicles_no_found">No vehicles found.</string>

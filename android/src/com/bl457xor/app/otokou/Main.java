@@ -31,7 +31,7 @@ import com.bl457xor.app.otokou.db.OtokouUserAdapter;
 
 // TODO
 // other (need more finalized otokou site):
-//  - apikey format check
+//  - apikey (only server side)
 //  - add help where needed
 // next versions:
 //  - check if online status change live

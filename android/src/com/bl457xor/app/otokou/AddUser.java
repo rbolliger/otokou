@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.bl457xor.app.otokou.components.OtokouApiKey;
 import com.bl457xor.app.otokou.components.OtokouUser;
 import com.bl457xor.app.otokou.db.OtokouUserAdapter;
 
@@ -200,7 +201,13 @@ public class AddUser extends OnlineActivity implements OnClickListener, Runnable
 		if (apikey.contentEquals("")) {
 			txtAUErrorApikey.setText("  "+getString(R.string.add_user_etxt_apikey_empty_field));
 			result = false;
-		}	
+		}
+		else {
+			if (!OtokouApiKey.checkKey(apikey)) {
+				txtAUErrorApikey.setText("  "+getString(R.string.add_user_etxt_apikey_wrong_format));
+				result = false;
+			}
+		}
 		
 		return result;
 	}

@@ -19,4 +19,5 @@
     <string name="add_user_etxt_username_empty_field">Username field can\'t be left empty.</string>
     <string name="add_user_etxt_username_duplicate">The same user is already linked.</string>
     <string name="add_user_etxt_apikey_empty_field">Apikey field can\'t be left empty.</string>
+    <string name="add_user_etxt_apikey_wrong_format">Incorrect Apikey format.</string>
 </resources>
