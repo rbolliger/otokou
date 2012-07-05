@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -23,10 +24,11 @@ import com.bl457xor.app.otokou.components.OtokouUser;
 import com.bl457xor.app.otokou.components.OtokouVehicle;
 import com.bl457xor.app.otokou.db.OtokouChargeAdapter;
 
-public class AddCharge extends OnlineActivity implements OnClickListener, OnItemSelectedListener {
+public class AddCharge extends OtokouActivity implements OnClickListener, OnItemSelectedListener {
 	// onOptionsItemSelected menu ids constants
-	private static final int MENU_ID_ADD_CHARGE = 2002;
-	private static final int MENU_ID_BACK = 2100;
+	private static final int MENU_ID_ADD_CHARGE = 10001;
+	private static final int MENU_ID_HELP = 10101;
+	private static final int MENU_ID_BACK = 10201;
 	
 	// messages constants
 	public static final int RETURN_RESULT_CHARGE_ADDED = 3000;
@@ -143,6 +145,7 @@ public class AddCharge extends OnlineActivity implements OnClickListener, OnItem
 		etxtChargeAdd = (TextView)findViewById(R.id.etxtAddChargeAdd);
 		
 		((Button)findViewById(R.id.btnAddChargeAdd)).setOnClickListener(this);
+		((ImageButton)findViewById(R.id.imbAddChargeHelp)).setOnClickListener(this);
 	}
 	
 	private void updateUI() {
@@ -252,6 +255,7 @@ public class AddCharge extends OnlineActivity implements OnClickListener, OnItem
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {	
 		menu.add(Menu.NONE, MENU_ID_ADD_CHARGE, Menu.NONE, R.string.add_charge_menu_send);
+		menu.add(Menu.NONE, MENU_ID_HELP, Menu.NONE, R.string.add_charge_menu_help);
 		menu.add(Menu.NONE, MENU_ID_BACK, Menu.NONE, R.string.add_charge_menu_back);
 		return super.onCreateOptionsMenu(menu);
 	}
@@ -261,6 +265,9 @@ public class AddCharge extends OnlineActivity implements OnClickListener, OnItem
 		switch(item.getItemId()) {
 			case MENU_ID_ADD_CHARGE:
 				submit();
+				break;
+			case MENU_ID_HELP:
+				HelpAlertDialog(getString(R.string.add_charge_dialog_help_message));
 				break;
 			case MENU_ID_BACK:
 				setResult(RETURN_RESULT_BACK, null);
@@ -275,6 +282,9 @@ public class AddCharge extends OnlineActivity implements OnClickListener, OnItem
 		switch (v.getId()) {
 		case R.id.btnAddChargeAdd:
 			submit();
+			break;
+		case R.id.imbAddChargeHelp:
+			HelpAlertDialog(getString(R.string.add_charge_dialog_help_message));
 			break;
 		}			
 	}

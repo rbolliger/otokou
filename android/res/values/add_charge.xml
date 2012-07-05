@@ -26,6 +26,7 @@
     </string-array>
 
     <string name="add_charge_menu_send">Send</string>
+    <string name="add_charge_menu_help">Help</string>
     <string name="add_charge_menu_back">Back</string>
     <string name="add_charge_error_kilometers">A numeric value needed for this field.</string>
     <string name="add_charge_error_amount">A numeric value needed for this field.</string>
@@ -34,5 +35,7 @@
     <string name="add_charge_error_set_charge">Error while sending the new charge information.</string>
     <string name="add_charge_warning_offline">No internet connection found.</string>
     <string name="add_charge_warning_online"></string>
+    <string name="add_charge_dialog_help_message">Fill the fields to send a new charge to the Otokou website.\n\n
+        Touch the \"Send\" button when the fields are correctly filled.</string>
 
 </resources>

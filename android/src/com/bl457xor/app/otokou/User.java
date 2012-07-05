@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,7 +27,7 @@ import com.bl457xor.app.otokou.db.OtokouChargeAdapter;
 import com.bl457xor.app.otokou.db.OtokouUserAdapter;
 import com.bl457xor.app.otokou.db.OtokouVehicleAdapter;
 
-public class User extends OnlineActivity implements OnClickListener, Runnable {
+public class User extends OtokouActivity implements OnClickListener, Runnable {
 	// messages constants
 	public static final int RETURN_RESULT_BACK = 1001;
 	public static final int RETURN_RESULT_USER_NOT_FOUND = 1002;
@@ -37,7 +38,8 @@ public class User extends OnlineActivity implements OnClickListener, Runnable {
 	private static final int MENU_ID_USER_PREFERENCES = 10001;
 	private static final int MENU_ID_RELOAD_DATA = 10002;
 	private static final int MENU_ID_ADD_CHARGE = 10003;
-	private static final int MENU_ID_EXIT = 10004;
+	private static final int MENU_ID_HELP = 10101;
+	private static final int MENU_ID_BACK = 10201;
 	
 	// run messages constants
 	private static final int RUN_END = 0;
@@ -160,6 +162,7 @@ public class User extends OnlineActivity implements OnClickListener, Runnable {
 	private void initializeUI() {		
 		// create button to open the preferences
 		((Button)findViewById(R.id.btnUserUserPreferences)).setOnClickListener(this);
+		((ImageButton)findViewById(R.id.imbUserHelp)).setOnClickListener(this);
 		
 		// create button to add a new charge
 		btnAddCharge = (Button) findViewById(R.id.btnUserAddCharge);
@@ -439,7 +442,8 @@ public class User extends OnlineActivity implements OnClickListener, Runnable {
 		menu.add(Menu.NONE, MENU_ID_USER_PREFERENCES, Menu.NONE, R.string.user_menu_user_preferences);
 		menu.add(Menu.NONE, MENU_ID_RELOAD_DATA, Menu.NONE, R.string.user_menu_reload_data);
 		menu.add(Menu.NONE, MENU_ID_ADD_CHARGE, Menu.NONE, R.string.user_menu_add_charge);
-		menu.add(Menu.NONE, MENU_ID_EXIT, Menu.NONE, R.string.user_menu_back);
+		menu.add(Menu.NONE, MENU_ID_HELP, Menu.NONE, R.string.user_menu_help);
+		menu.add(Menu.NONE, MENU_ID_BACK, Menu.NONE, R.string.user_menu_back);
 		return super.onCreateOptionsMenu(menu);
 	}
 	
@@ -455,7 +459,10 @@ public class User extends OnlineActivity implements OnClickListener, Runnable {
 			case MENU_ID_ADD_CHARGE:
 				launchAddChargeActivity();
 				break;
-			case MENU_ID_EXIT:
+			case MENU_ID_HELP:
+				HelpAlertDialog(getString(R.string.user_dialog_help_message));
+				break;				
+			case MENU_ID_BACK:
 				setResult(RETURN_RESULT_BACK, null);
 				finish();
 				break;
@@ -471,7 +478,10 @@ public class User extends OnlineActivity implements OnClickListener, Runnable {
 			break;
 		case R.id.btnUserAddCharge:
 			launchAddChargeActivity();
-			break;		
+			break;
+		case R.id.imbUserHelp:
+			HelpAlertDialog(getString(R.string.user_dialog_help_message));
+			break;
 		}		
 	}
 }

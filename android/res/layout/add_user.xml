@@ -1,114 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:layout_height="fill_parent" >
 
-    <LinearLayout
-        android:layout_width="fill_parent"
+    <TextView
+        android:id="@+id/txtAddUserUsername"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/add_user_txt_username_text" />
 
-        <ImageView
-            android:id="@+id/imgAddUserOtokouLogo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:contentDescription="@string/add_user_img_description"
-            android:scaleType="fitStart"
-            android:src="@drawable/otokou_logo" />
-    </LinearLayout>
+    <TextView
+        android:id="@+id/txtAddUserErrorUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text=""
+        android:textColor="@color/error_message_color" />
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="match_parent"
-        android:gravity="top"
-        android:orientation="vertical" >
+    <EditText
+        android:id="@+id/edtAddUserUsername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/txtAddUserUsername"
+        android:hint="@string/add_user_txt_username_hint" >
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="top"
-            android:orientation="horizontal" >
+        <requestFocus />
+    </EditText>
 
-            <TextView
-                android:id="@+id/txtAddUserUsername"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/add_user_txt_username_text" />
+    <TextView
+        android:id="@+id/txtAddUserApikey"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/edtAddUserUsername"
+        android:text="@string/add_user_txt_apikey_text" />
 
-            <TextView
-                android:id="@+id/txtAddUserErrorUsername"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textColor="@color/error_message_color" />
-        </LinearLayout>
+    <TextView
+        android:id="@+id/txtAddUserErrorApikey"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/edtAddUserUsername"
+        android:text=""
+        android:textColor="@color/error_message_color" />
 
-        <EditText
-            android:id="@+id/edtAddUserUsername"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/add_user_txt_username_hint" >
+    <EditText
+        android:id="@+id/edtAddUserApikey"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/txtAddUserApikey"
+        android:hint="@string/add_user_txt_apikey_hint" />
 
-            <requestFocus />
-        </EditText>
+    <TextView
+        android:id="@+id/txtAddUserErrorMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/edtAddUserApikey"
+        android:text=""
+        android:textColor="@color/error_message_color" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="top"
-            android:orientation="horizontal" >
+    <Button
+        android:id="@+id/btnAddUserAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/txtAddUserErrorMessage"
+        android:text="@string/add_user_btn_add_user" />
 
-            <TextView
-                android:id="@+id/txtAddUserApikey"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/add_user_txt_apikey_text" />
+    <ImageButton
+        android:id="@+id/imbAddUserHelp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/txtAddUserErrorMessage"
+        android:contentDescription="@string/btn_help_content_description"
+        android:src="@drawable/help" />
 
-            <TextView
-                android:id="@+id/txtAddUserErrorApikey"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textColor="@color/error_message_color" />
-        </LinearLayout>
-
-        <EditText
-            android:id="@+id/edtAddUserApikey"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/add_user_txt_apikey_hint" >
-        </EditText>
-
-        <TextView
-            android:id="@+id/txtAddUserEmpty"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="" />
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:gravity="top"
-            android:orientation="horizontal" >
-
-            <Button
-                android:id="@+id/btnAddUserAdd"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/add_user_btn_add_user" />
-
-            <TextView
-                android:id="@+id/txtAddUserErrorMessage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textColor="@color/error_message_color" />
-
-        </LinearLayout>
-    </LinearLayout>
-
-</LinearLayout>
+</RelativeLayout>

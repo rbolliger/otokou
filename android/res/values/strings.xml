@@ -10,4 +10,6 @@
 
     <color name="error_message_color">#FF0000</color>
 
-</resources>
+    <string name="dialog_help_ok">OK</string>
+	<string name="dialog_help_title">Help</string>
+	<string name="btn_help_content_description">Help</string></resources>
