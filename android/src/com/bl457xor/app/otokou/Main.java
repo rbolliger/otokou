@@ -22,6 +22,7 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,8 +32,9 @@ import com.bl457xor.app.otokou.db.OtokouUserAdapter;
 
 // TODO
 // other (need more finalized otokou site):
-//  - apikey format check
-//  - add help where needed
+//  - apikey (only server side)
+//  - final site URL (need server side)
+//  - distribution on market
 // next versions:
 //  - check if online status change live
 //  - find better way to choose when synchronize with data on website
@@ -41,10 +43,11 @@ import com.bl457xor.app.otokou.db.OtokouUserAdapter;
 //  - more comments on code?
 
 
-public class Main extends OnlineListActivity implements OnClickListener {
+public class Main extends OtokouListActivity implements OnClickListener {
 	// menu constants
 	private static final int MENU_ID_ADD_USER = 10001;
-	private static final int MENU_ID_EXIT = 10002;
+	private static final int MENU_ID_HELP = 10101;
+	private static final int MENU_ID_EXIT = 10201;
 	
 	// global variables initialization
 	private MainAdapter listAdapter;
@@ -83,7 +86,8 @@ public class Main extends OnlineListActivity implements OnClickListener {
 	}
 
 	private void initializeUI() {
-		((Button)findViewById(R.id.btnMainAddUser)).setOnClickListener(this);	
+		((Button)findViewById(R.id.btnMainAddUser)).setOnClickListener(this);
+		((ImageButton)findViewById(R.id.imbMainHelp)).setOnClickListener(this);
 		txtMessage = (TextView)findViewById(R.id.txtMainMessage);
 	}
 	
@@ -268,6 +272,9 @@ public class Main extends OnlineListActivity implements OnClickListener {
 		case R.id.btnMainAddUser:
 			launchAddUserActivity();
 			break;
+		case R.id.imbMainHelp:
+			HelpAlertDialog(getString(R.string.main_dialog_help_message));
+			break;
 		}
 	}
 
@@ -309,6 +316,7 @@ public class Main extends OnlineListActivity implements OnClickListener {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {	
 		menu.add(Menu.NONE, MENU_ID_ADD_USER, Menu.NONE, R.string.main_menu_add_user);
+		menu.add(Menu.NONE, MENU_ID_HELP, Menu.NONE, R.string.main_menu_help);
 		menu.add(Menu.NONE, MENU_ID_EXIT, Menu.NONE, R.string.main_menu_exit);
 		return super.onCreateOptionsMenu(menu);
 	}
@@ -320,6 +328,9 @@ public class Main extends OnlineListActivity implements OnClickListener {
 		switch(item.getItemId()) {
 			case MENU_ID_ADD_USER:
 				launchAddUserActivity();
+				break;
+			case MENU_ID_HELP:
+				HelpAlertDialog(getString(R.string.main_dialog_help_message));
 				break;
 			case MENU_ID_EXIT:
 				finish();

@@ -4,6 +4,7 @@
     <string name="user_menu_user_preferences">Preferences</string>
     <string name="user_menu_reload_data">Reload Data</string>
     <string name="user_menu_add_charge">Send new Charge</string>
+    <string name="user_menu_help">Help</string>
     <string name="user_menu_back">Back</string>
     <string name="user_btn_add_charge">Send new Charge</string>
     <string name="user_btn_user_preferences">Preferences</string>
@@ -16,7 +17,7 @@
     <string name="user_dialog_message_sending_charges">Sending unsent charges …</string>
     <string name="user_dialog_message_ok">OK</string>
     <string name="user_txt_user_error_not_connected">No internet connection found.</string>
-    <string name="user_txt_user_error_api_key">Your API key seems invalid, please check it in the preferences.</string>
+    <string name="user_txt_user_error_api_key">Incorrect Apikey format, please check it in the preferences.</string>
     <string name="user_txt_user_error_user">Error while retrieving user information.</string>
     <string name="user_txt_vehicles_error_vehicle">Error while retrieving vehicles information.</string>
     <string name="user_txt_vehicles_no_found">No vehicles found.</string>
@@ -28,5 +29,9 @@
     <string name="user_txt_warning_offline">No internet connection found.</string>
     <string name="user_txt_warning_online"></string>
     <string name="user_txt_warning_unsent_charge">The new charge will be uploaded when online.</string>
-	<string name="user_toast_cant_create_charge">Can\'t create a Charge while not syncronized with otokou website.</string>
+    <string name="user_toast_cant_create_charge">Can\'t create a Charge while not syncronized with otokou website.</string>
+    <string name="user_dialog_help_message">In this screen you can see basic information about the linked Otokou account.\n\n
+	    Use the \"Send new Charge\" button to create and send a charge to the Otokou website.\n\n
+        Use the \"Preferences\" button to modify the account Apikey.</string>
+
 </resources>

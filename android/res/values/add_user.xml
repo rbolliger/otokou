@@ -2,8 +2,9 @@
 <resources>
 
     <string name="add_user_menu_add">Link User</string>
-    <string name="add_user_menu_back">Back</string>
     <string name="add_user_menu_clear">Clear fields</string>
+    <string name="add_user_menu_help">Help</string>
+    <string name="add_user_menu_back">Back</string>
     <string name="add_user_img_description">Otokou</string>
     <string name="add_user_btn_add_user">Link User</string>
     <string name="add_user_dialog_title">Loading information from Otokou</string>
@@ -19,4 +20,10 @@
     <string name="add_user_etxt_username_empty_field">Username field can\'t be left empty.</string>
     <string name="add_user_etxt_username_duplicate">The same user is already linked.</string>
     <string name="add_user_etxt_apikey_empty_field">Apikey field can\'t be left empty.</string>
+    <string name="add_user_etxt_apikey_wrong_format">Incorrect Apikey format.</string>
+    <string name="add_user_dialog_help_message">Fill the following fields to link to a user in the Otokou website.\n\n
+        Username: The username used to login in the Otokou site.\n\n
+        Apikey: Found on the user setting page in the Otokou website.\n\n
+        Touch the \"Link User\" button when the fields are correctly filled.</string>
+
 </resources>

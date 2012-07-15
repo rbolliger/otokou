@@ -11,12 +11,14 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.bl457xor.app.otokou.components.OtokouApiKey;
 import com.bl457xor.app.otokou.components.OtokouUser;
 import com.bl457xor.app.otokou.db.OtokouUserAdapter;
 
-public class AddUser extends OnlineActivity implements OnClickListener, Runnable {
+public class AddUser extends OtokouActivity implements OnClickListener, Runnable {
 	// return messages constants
 	public static final int RETURN_RESULT_BACK = 2001;
 	public static final int RETURN_RESULT_OFFLINE = 2002; 
@@ -25,8 +27,10 @@ public class AddUser extends OnlineActivity implements OnClickListener, Runnable
 	
 	// onOptionsItemSelected menu ids constants
 	private static final int MENU_ID_ADD = 10001;
-	private static final int MENU_ID_BACK = 10002;
-	private static final int MENU_ID_CLEAR = 10003;
+	private static final int MENU_ID_CLEAR = 10002;
+	private static final int MENU_ID_HELP = 10101;
+	private static final int MENU_ID_BACK = 10201;
+	
 	
 	// run messages constants
 	private static final int RUN_END = 0;
@@ -69,6 +73,7 @@ public class AddUser extends OnlineActivity implements OnClickListener, Runnable
 	
 	private void initializeUI() {
 		((Button)findViewById(R.id.btnAddUserAdd)).setOnClickListener(this);
+		((ImageButton)findViewById(R.id.imbAddUserHelp)).setOnClickListener(this);
 		
 		edtAUUsername = (EditText)findViewById(R.id.edtAddUserUsername);	
 		edtAUAPikey = (EditText)findViewById(R.id.edtAddUserApikey);
@@ -83,6 +88,9 @@ public class AddUser extends OnlineActivity implements OnClickListener, Runnable
 		switch (v.getId()) {
 		case R.id.btnAddUserAdd:
 			submit();
+			break;
+		case R.id.imbAddUserHelp:
+			HelpAlertDialog(getString(R.string.add_user_dialog_help_message));
 			break;
 		}	
 	}
@@ -200,7 +208,13 @@ public class AddUser extends OnlineActivity implements OnClickListener, Runnable
 		if (apikey.contentEquals("")) {
 			txtAUErrorApikey.setText("  "+getString(R.string.add_user_etxt_apikey_empty_field));
 			result = false;
-		}	
+		}
+		else {
+			if (!OtokouApiKey.checkKey(apikey)) {
+				txtAUErrorApikey.setText("  "+getString(R.string.add_user_etxt_apikey_wrong_format));
+				result = false;
+			}
+		}
 		
 		return result;
 	}
@@ -208,8 +222,9 @@ public class AddUser extends OnlineActivity implements OnClickListener, Runnable
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {	
 		menu.add(Menu.NONE, MENU_ID_ADD, Menu.NONE, R.string.add_user_menu_add);
-		menu.add(Menu.NONE, MENU_ID_BACK, Menu.NONE, R.string.add_user_menu_back);
 		menu.add(Menu.NONE, MENU_ID_CLEAR, Menu.NONE, R.string.add_user_menu_clear);
+		menu.add(Menu.NONE, MENU_ID_HELP, Menu.NONE, R.string.add_user_menu_help);	
+		menu.add(Menu.NONE, MENU_ID_BACK, Menu.NONE, R.string.add_user_menu_back);	
 		return super.onCreateOptionsMenu(menu);
 	}
 	
@@ -219,12 +234,15 @@ public class AddUser extends OnlineActivity implements OnClickListener, Runnable
 			case MENU_ID_ADD:
 				submit();
 				break;
+			case MENU_ID_CLEAR:
+				clear();
+				break;
+			case MENU_ID_HELP:
+				HelpAlertDialog(getString(R.string.add_user_dialog_help_message));
+				break;
 			case MENU_ID_BACK:
 				setResult(RETURN_RESULT_BACK, null);
 				finish();
-				break;
-			case MENU_ID_CLEAR:
-				clear();
 				break;
 		}
 		return super.onOptionsItemSelected(item);
