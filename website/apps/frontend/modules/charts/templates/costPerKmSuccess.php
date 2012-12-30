@@ -7,9 +7,9 @@ end_slot();
 
 <?php
 
-slot('leftcol');
+//slot('leftcol');
 include_partial('filters', array('filters' => $filters));
-end_slot();
+//end_slot();
 ?>
 
 <?php $gb = $sf_data->getRaw('gb');?>

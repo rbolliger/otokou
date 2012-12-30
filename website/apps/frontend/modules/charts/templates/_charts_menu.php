@@ -1,6 +1,6 @@
 <?php
 
-$menu = new ioMenu('charts_menu');
+$menu = new ioMenu(array('id' => 'charts_menu','class' => 'vert-menu'));
 $menu->addChild('Performance Indicators', '@chart_index');
 $menu->addChild('Costs');
 $menu->addChild('Travel');
