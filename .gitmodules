@@ -4,3 +4,6 @@
 [submodule "website/lib/vendor/zurb_foundation"]
 	path = website/lib/vendor/zurb_foundation
 	url = git://github.com/zurb/foundation.git
+[submodule "website/lib/vendor/symfony"]
+	path = website/lib/vendor/symfony
+	url = https://github.com/symfony/symfony1.git
