@@ -1,34 +1,0 @@
-10
-
-dir
-33263
-http://svn.symfony-project.com/branches/1.4/lib/plugins
-http://svn.symfony-project.com
-
-
-
-2011-10-24T07:57:16.877704Z
-33150
-fabien
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-ee427ae8-e902-0410-961c-c3ed070cd9f9
-
-sfDoctrinePlugin
-dir
-
-sfPropelPlugin
-dir
-

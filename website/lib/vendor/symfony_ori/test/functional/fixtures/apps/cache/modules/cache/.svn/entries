@@ -1,43 +1,0 @@
-10
-
-dir
-33263
-http://svn.symfony-project.com/branches/1.4/test/functional/fixtures/apps/cache/modules/cache
-http://svn.symfony-project.com
-
-
-
-2011-01-29T16:02:51.990563Z
-31928
-Kris.Wallsmith
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-ee427ae8-e902-0410-961c-c3ed070cd9f9
-
-actions
-dir
-
-config
-dir
-
-lib
-dir
-
-data
-dir
-
-templates
-dir
-

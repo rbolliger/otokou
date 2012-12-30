@@ -1,124 +1,0 @@
-10
-
-dir
-33263
-http://svn.symfony-project.com/branches/1.4/lib
-http://svn.symfony-project.com
-
-
-
-2011-12-13T17:36:20.922733Z
-33262
-fabien
-has-props
-
-
-svn:externals
-
-
-
-
-
-
-
-
-
-
-ee427ae8-e902-0410-961c-c3ed070cd9f9
-
-escaper
-dir
-
-widget
-dir
-
-controller
-dir
-
-validator
-dir
-
-debug
-dir
-
-generator
-dir
-
-response
-dir
-
-plugin
-dir
-
-exception
-dir
-
-task
-dir
-
-cache
-dir
-
-storage
-dir
-
-database
-dir
-
-autoload
-dir
-
-mailer
-dir
-
-view
-dir
-
-command
-dir
-
-test
-dir
-
-helper
-dir
-
-i18n
-dir
-
-plugins
-dir
-
-log
-dir
-
-addon
-dir
-
-filter
-dir
-
-routing
-dir
-
-request
-dir
-
-vendor
-dir
-
-form
-dir
-
-config
-dir
-
-util
-dir
-
-action
-dir
-
-user
-dir
-
