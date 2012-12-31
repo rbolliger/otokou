@@ -89,7 +89,7 @@ $browser->
                 checkElement('body:contains("Warning")]',false)->
                 checkElement('body:contains("Notice")]',false)->
             // two vehicles listed, including archived one
-                checkElement('div.charts_filters tr input[name="chart_filters[vehicles_list][]"]',2)->
+                checkElement('div#charts_filters tr input[name="chart_filters[vehicles_list][]"]',2)->
                 checkElement('#filter_values_vehicles_list:contains("nothing")',true)->
                 checkElement('#filter_values_vehicle_display:contains("nothing")',true)->
                 checkElement('#filter_values_categories_list:contains("nothing")',true)->
@@ -100,7 +100,7 @@ $browser->
                 checkElement('#filter_values_chart_name',false)->
                 checkElement('table#query_results tbody tr',1)->
                 checkElement('table#filter_values tbody tr',7)->
-                checkElement('.charts_filters table tbody tr',7)->
+                checkElement('#charts_filters table tbody tr',7)->
                 checkElement('div.vehicle_statistics',2)->
                 checkElement('div.vehicle_statistics div.overall_cost',2)->
                 checkElement('div.vehicle_statistics div.traveled_distance',2)->
@@ -204,10 +204,10 @@ $browser->
                 checkElement('body:contains("Warning")]',false)->
                 checkElement('body:contains("Notice")]',false)->
             // two vehicles listed, including archived one
-                checkElement('div.charts_filters tr input[name="chart_filters[vehicles_list][]"][checked="checked"]',1)->
-                checkElement('div.charts_filters tr input[name="chart_filters[vehicle_display]"][checked="checked"]',1)->
-                checkElement('div.charts_filters tr input[name="chart_filters[categories_list][]"][checked="checked"]',2)->
-                checkElement('div.charts_filters tr input[name="chart_filters[category_display]"][checked="checked"]',1)->
+                checkElement('div#charts_filters tr input[name="chart_filters[vehicles_list][]"][checked="checked"]',1)->
+                checkElement('div#charts_filters tr input[name="chart_filters[vehicle_display]"][checked="checked"]',1)->
+                checkElement('div#charts_filters tr input[name="chart_filters[categories_list][]"][checked="checked"]',2)->
+                checkElement('div#charts_filters tr input[name="chart_filters[category_display]"][checked="checked"]',1)->
                 checkElement('#filter_values_vehicles_list:contains("'.$browser->getVehicleId('car-charts-1').'")',true)->
                 checkElement('#filter_values_vehicle_display:contains("stacked")',true)->
                 checkElement('#filter_values_categories_list:contains("'.$browser->getIdForCategory('Tax').', '.$browser->getIdForCategory('Fuel').'")',true)->
@@ -253,7 +253,7 @@ $browser->
             // two vehicles listed, including archived one
                 checkElement('table#filter_values:contains("No elements found")]',true)->
                 checkElement('table#query_results:contains("No elements found")]',true)->
-                checkElement('.charts_filters table tbody tr',7)->
+                checkElement('#charts_filters table tbody tr',7)->
             end()->
 
 

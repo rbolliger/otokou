@@ -1,13 +1,16 @@
 <?php use_stylesheets_for_form($filters) ?>
 <?php use_javascripts_for_form($filters) ?>
 
-<div class="charts_filters">
+<div id="charts_filters">
+    
+    <div class="sf_admin_filter">
 <?php if ($filters->hasGlobalErrors()): ?>
     <?php echo $filters->renderGlobalErrors() ?>
 <?php endif; ?>
 
 <?php echo $filters->renderFormTag(url_for('@chart_filter')) ?>
-    <table><tbody>
+    <table>
+        <tbody>
     <?php echo $filters ?>
          </tbody>
          <tfoot>
@@ -20,5 +23,7 @@
     </tfoot>
 </table>
 </form>
+
+</div>
 
 </div>
