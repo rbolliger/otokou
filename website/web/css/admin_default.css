@@ -336,7 +336,7 @@
     font-weight: normal !important;
 }
 
-#sf_admin_container ul label, #sf_admin_container td label
+#sf_admin_container ul label, #sf_admin_container td label, #sf_admin_container th label
 {
     display: inline;
     float: none !important;

@@ -5,6 +5,7 @@ include_partial('charts_menu');
 end_slot();
 ?>
 
+<div id="sf_admin_container">
 
 <h1>Vehicles Performances</h1>
 
@@ -14,4 +15,4 @@ end_slot();
 
 <?php include_partial('debug',array('debug' => $debug)) ?>
 
-
+</div>

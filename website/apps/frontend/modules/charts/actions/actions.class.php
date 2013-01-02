@@ -51,6 +51,8 @@ class chartsActions extends otkWithOwnerActions {
         $this->setFilterField('chart_name', 'cost_per_km');
 
         $this->gb = new ChartBuilderPChart($this->getGBData());
+        
+        $this->title = "Cost per km";
     }
 
     public function executeCostPerYear(sfWebRequest $request) {
@@ -67,6 +69,8 @@ class chartsActions extends otkWithOwnerActions {
         $this->setFilterField('chart_name', 'cost_per_year');
 
         $this->gb = new ChartBuilderPChart($this->getGBData());
+        
+        $this->title = "Annual cost";
     }
 
     public function executeCostPie(sfWebRequest $request) {
@@ -82,6 +86,8 @@ class chartsActions extends otkWithOwnerActions {
         $this->setFilterField('chart_name', 'cost_pie');
 
         $this->gb = new ChartBuilderPChart($this->getGBData());
+        
+        $this->title = "Cost breakdown";
     }
 
     public function executeTripAnnual(sfWebRequest $request) {
@@ -97,6 +103,8 @@ class chartsActions extends otkWithOwnerActions {
         $this->setFilterField('chart_name', 'trip_annual');
 
         $this->gb = new ChartBuilderPChart($this->getGBData());
+        
+        $this->title = "Annual travel";
     }
 
     public function executeTripMonthly(sfWebRequest $request) {
@@ -111,6 +119,8 @@ class chartsActions extends otkWithOwnerActions {
         $this->setFilterField('chart_name', 'trip_monthly');
 
         $this->gb = new ChartBuilderPChart($this->getGBData());
+        
+        $this->title = "Monthly travel";
     }
 
     public function executeConsumptionPerDistance(sfWebRequest $request) {
@@ -126,6 +136,8 @@ class chartsActions extends otkWithOwnerActions {
         $this->setFilterField('chart_name', 'consumption_per_distance');
 
         $this->gb = new ChartBuilderPChart($this->getGBData());
+        
+        $this->title = "Consumption";
     }
 
     public function executeFilter(sfWebRequest $request) {
