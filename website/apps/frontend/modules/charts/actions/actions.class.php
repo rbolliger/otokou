@@ -14,6 +14,8 @@ class chartsActions extends otkWithOwnerActions {
         parent::preExecute();
 
         $this->filters = new ChartWithUserFormFilter($this->getFilters());
+
+        $this->filters_visibility = $this->getFiltersVisibility();
     }
 
     public function postExecute() {
@@ -46,12 +48,12 @@ class chartsActions extends otkWithOwnerActions {
         $filters = $this->updateFilterFieldIfEmpty($filters, 'vehicle_display', 'single');
         $filters = $this->updateFilterFieldIfEmpty($filters, 'category_display', 'stacked');
         $filters = $this->updateFilterFieldIfEmpty($filters, 'range_type', 'distance');
-        
+
         $this->setFilters($filters);
         $this->setFilterField('chart_name', 'cost_per_km');
 
         $this->gb = new ChartBuilderPChart($this->getGBData());
-        
+
         $this->title = "Cost per km";
     }
 
@@ -69,7 +71,7 @@ class chartsActions extends otkWithOwnerActions {
         $this->setFilterField('chart_name', 'cost_per_year');
 
         $this->gb = new ChartBuilderPChart($this->getGBData());
-        
+
         $this->title = "Annual cost";
     }
 
@@ -86,7 +88,7 @@ class chartsActions extends otkWithOwnerActions {
         $this->setFilterField('chart_name', 'cost_pie');
 
         $this->gb = new ChartBuilderPChart($this->getGBData());
-        
+
         $this->title = "Cost breakdown";
     }
 
@@ -103,7 +105,7 @@ class chartsActions extends otkWithOwnerActions {
         $this->setFilterField('chart_name', 'trip_annual');
 
         $this->gb = new ChartBuilderPChart($this->getGBData());
-        
+
         $this->title = "Annual travel";
     }
 
@@ -119,7 +121,7 @@ class chartsActions extends otkWithOwnerActions {
         $this->setFilterField('chart_name', 'trip_monthly');
 
         $this->gb = new ChartBuilderPChart($this->getGBData());
-        
+
         $this->title = "Monthly travel";
     }
 
@@ -136,7 +138,7 @@ class chartsActions extends otkWithOwnerActions {
         $this->setFilterField('chart_name', 'consumption_per_distance');
 
         $this->gb = new ChartBuilderPChart($this->getGBData());
-        
+
         $this->title = "Consumption";
     }
 
@@ -168,6 +170,36 @@ class chartsActions extends otkWithOwnerActions {
         if ('index' == $templ) {
             $this->vehicles = $this->getRequestedVehicles();
         }
+
+        $this->filters_visibility = $this->getFiltersVisibility();
+    }
+
+    public function executeToggleFilterVisibility(sfWebRequest $request) {
+
+        $fv = $this->getFiltersVisibility();
+        if ('hide' === $fv) {
+            $this->setFiltersVisibility('show');
+        } else {
+            $this->setFiltersVisibility('hide');
+        }
+
+        if (!$request->isXmlHttpRequest()) {
+
+            $this->redirect($this->getPreviousAction());
+        }
+
+
+        sfProjectConfiguration::getActive()->loadHelpers(array('I18N', 'Date'));
+
+        if ('show' === $this->getFiltersVisibility()) {
+
+            return $this->renderPartial('charts/filters', array(
+                        'filters' => new ChartWithUserFormFilter($this->getFilters()),
+                        'filters_visibility' => $this->getFiltersVisibility(),
+                ));
+        }
+
+        return $this->renderText('&nbsp;');
     }
 
     protected function setFilters(array $filters) {
@@ -184,7 +216,7 @@ class chartsActions extends otkWithOwnerActions {
     }
 
     protected function getFilters() {
-       return $this->getUser()->getAttribute('charts.filters', $this->getFilterDefaults(), 'charts');
+        return $this->getUser()->getAttribute('charts.filters', $this->getFilterDefaults(), 'charts');
     }
 
     protected function getFilterDefaults() {
@@ -226,19 +258,18 @@ class chartsActions extends otkWithOwnerActions {
 
         $filter_vehicles = $this->getFilterValue('vehicles_list');
         $user_id = $this->getUserId();
-        
-        $q = Doctrine_Core::getTable('Vehicle')->createQuery('v')
-                ->andWhere('v.user_id = ?',$user_id)
-                ->leftJoin('v.Charges c');
-        
-        if (count($filter_vehicles)) {
-            $q->andWhereIn('v.id',$filter_vehicles);
-        }
-        
- 
-        return $q->execute();
 
-       }
+        $q = Doctrine_Core::getTable('Vehicle')->createQuery('v')
+                ->andWhere('v.user_id = ?', $user_id)
+                ->leftJoin('v.Charges c');
+
+        if (count($filter_vehicles)) {
+            $q->andWhereIn('v.id', $filter_vehicles);
+        }
+
+
+        return $q->execute();
+    }
 
     protected function getUserId() {
         return $this->getUser()->getGuardUser()->getId();
@@ -249,7 +280,7 @@ class chartsActions extends otkWithOwnerActions {
         if (!isset($filters[$field])) {
             $filters[$field] = $value;
         }
-        
+
         return $filters;
     }
 
@@ -294,6 +325,14 @@ class chartsActions extends otkWithOwnerActions {
         }
 
         return $filters;
+    }
+
+    protected function setFiltersVisibility($visibility) {
+        $this->getUser()->setAttribute('charts.filters_visibility', $visibility, 'admin_module');
+    }
+
+    protected function getFiltersVisibility() {
+        return $this->getUser()->getAttribute('charts.filters_visibility', 'hide', 'admin_module');
     }
 
 }

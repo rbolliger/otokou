@@ -54,6 +54,13 @@ chart_consumption_per_distance:
   param: {module: charts, action: consumptionPerDistance }
   requirements:
     sf_method: [ get ]
+    
+chart_toggle_filters_visibility:
+  url: /:username/charts/filter-visibility
+  class: otkWithUserRoute
+  param: {module: charts, action: toggleFilterVisibility }
+  requirements:
+    sf_method: [ post ]
 
 
 vehicle:

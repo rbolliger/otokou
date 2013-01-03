@@ -55,7 +55,91 @@ $browser->
         
         info('2 - Filters')->
         
-        info('  2.1 - Blank filtering')->
+        info('  2.1 - Show/hide filters without javascript')->
+        get('/user_charts/charts')->
+        with('response')->
+                begin()->
+                    checkElement('div#filters',true)->
+                    checkElement('div#filters div.sf_admin_filters',false)->
+                    checkElement('div#sf_admin_actions_menu ul li input[type="submit"]:contains("Show/hide filters")',true)->
+                end()->
+        click('Show/hide filters')->
+        with('request')->
+                begin()->
+                    isParameter('module','charts')->
+                    isParameter('action','toggleFilterVisibility')->
+                end()->
+        with('response')->begin()->
+            isRedirected()->
+            followRedirect()->
+        end()->
+        with('response')->
+                begin()->
+                    checkElement('div#filters',true)->
+                    checkElement('div#filters div.sf_admin_filter',true)->
+                end()->
+        click('Show/hide filters')->
+        with('request')->
+                begin()->
+                    isParameter('module','charts')->
+                    isParameter('action','toggleFilterVisibility')->
+                end()->
+        with('response')->begin()->
+            isRedirected()->
+            followRedirect()->
+        end()->
+        with('response')->
+                begin()->
+                    checkElement('div#filters',true)->
+                    checkElement('div#filters div.sf_admin_filter',false)->
+                end()->
+        
+        info(' 2.2 Show/hide filters with ajax')->
+        setHttpHeader('X-Requested-With', 'XMLHttpRequest')->
+        click('Show/hide filters')->
+        with('request')->
+                begin()->
+                    isParameter('module','charts')->
+                    isParameter('action','toggleFilterVisibility')->
+                end()->
+        // response returns only the filters partial content
+        with('response')->
+            begin()->
+                isRedirected(false)->
+                checkElement('div#filters',false)->
+                checkElement('div.sf_admin_filter',true)->
+            end()->
+        get('/user_charts/charts')->
+        with('response')->
+            begin()->
+                checkElement('div#filters',true)->
+                checkElement('div#filters div.sf_admin_filter',true)->
+            end()->
+        setHttpHeader('X-Requested-With', 'XMLHttpRequest')->
+        click('Show/hide filters')->
+        with('request')->
+                begin()->
+                    isParameter('module','charts')->
+                    isParameter('action','toggleFilterVisibility')->
+                end()->
+        with('response')->
+            begin()->
+                isRedirected(false)->
+                checkElement('div#filters',false)->
+                checkElement('div.sf_admin_filter',false)->
+            end()->
+        get('/user_charts/charts')->
+        with('response')->
+            begin()->
+                checkElement('div#filters',true)->
+                checkElement('div#filters div.sf_admin_filter',false)->
+            end()->
+        setHttpHeader('X-Requested-With', 'XMLHttpRequest')->
+        // setting filters visibility to "show" for the following tests
+        click('Show/hide filters')->
+        get('/user_charts/charts')->
+        
+        info('  2.3 - Blank filtering')->
         Click('Filter')->
         with('request')->
             begin()->
@@ -89,7 +173,7 @@ $browser->
                 checkElement('body:contains("Warning")]',false)->
                 checkElement('body:contains("Notice")]',false)->
             // two vehicles listed, including archived one
-                checkElement('div#charts_filters tr input[name="chart_filters[vehicles_list][]"]',2)->
+                checkElement('div#filters tr input[name="chart_filters[vehicles_list][]"]',2)->
                 checkElement('#filter_values_vehicles_list:contains("nothing")',true)->
                 checkElement('#filter_values_vehicle_display:contains("nothing")',true)->
                 checkElement('#filter_values_categories_list:contains("nothing")',true)->
@@ -100,7 +184,7 @@ $browser->
                 checkElement('#filter_values_chart_name',false)->
                 checkElement('table#query_results tbody tr',1)->
                 checkElement('table#filter_values tbody tr',7)->
-                checkElement('#charts_filters table tbody tr',7)->
+                checkElement('#filters table tbody tr',7)->
                 checkElement('div.vehicle_statistics',2)->
                 checkElement('div.vehicle_statistics div.overall_cost',2)->
                 checkElement('div.vehicle_statistics div.traveled_distance',2)->
@@ -109,7 +193,7 @@ $browser->
             end()->
         
         
-        info('  2.2 - Filter action')->
+        info('  2.4 - Filter action')->
         Click('Filter',array(
             'chart_filters' => array(
                 'vehicles_list' => array($browser->getVehicleId('car-charts-1df',false)),
@@ -204,10 +288,10 @@ $browser->
                 checkElement('body:contains("Warning")]',false)->
                 checkElement('body:contains("Notice")]',false)->
             // two vehicles listed, including archived one
-                checkElement('div#charts_filters tr input[name="chart_filters[vehicles_list][]"][checked="checked"]',1)->
-                checkElement('div#charts_filters tr input[name="chart_filters[vehicle_display]"][checked="checked"]',1)->
-                checkElement('div#charts_filters tr input[name="chart_filters[categories_list][]"][checked="checked"]',2)->
-                checkElement('div#charts_filters tr input[name="chart_filters[category_display]"][checked="checked"]',1)->
+                checkElement('div#filters tr input[name="chart_filters[vehicles_list][]"][checked="checked"]',1)->
+                checkElement('div#filters tr input[name="chart_filters[vehicle_display]"][checked="checked"]',1)->
+                checkElement('div#filters tr input[name="chart_filters[categories_list][]"][checked="checked"]',2)->
+                checkElement('div#filters tr input[name="chart_filters[category_display]"][checked="checked"]',1)->
                 checkElement('#filter_values_vehicles_list:contains("'.$browser->getVehicleId('car-charts-1').'")',true)->
                 checkElement('#filter_values_vehicle_display:contains("stacked")',true)->
                 checkElement('#filter_values_categories_list:contains("'.$browser->getIdForCategory('Tax').', '.$browser->getIdForCategory('Fuel').'")',true)->
@@ -253,24 +337,23 @@ $browser->
             // two vehicles listed, including archived one
                 checkElement('table#filter_values:contains("No elements found")]',true)->
                 checkElement('table#query_results:contains("No elements found")]',true)->
-                checkElement('#charts_filters table tbody tr',7)->
+                checkElement('#filters table tbody tr',7)->
             end()->
 
 
-        info('  2.3 - Clear filters at logout')->
+        info('  2.5 - Clear filters at logout')->
         logout()->
         with('user')->
             begin()->
                 isAuthenticated(false)->
-                isAttribute('charge.filters', null, 'admin_module')->
+                isAttribute('charts.filters', null, 'admin_module')->
             end()->
         login('user_charts','user')->
         with('user')->
             begin()->
                 isAuthenticated(true)->
-                isAttribute('charge.filters', null, 'admin_module')->
+                isAttribute('charts.filters', null, 'admin_module')->
             end()->
-
 
          info('3 - Cost per km')->
          get('/user_charts/charts/cost_per_km')->
@@ -292,6 +375,13 @@ $browser->
           with('doctrine')->
             begin()->
                 check('Chart',array('user_id' => $browser->getUserId('user_charts')),1)->
+            end()->
+        
+        click('Show/hide filters')->
+        with('response')->
+            begin()->
+                isRedirected()->
+                followRedirect()->
             end()->
 
         Click('Filter',array(
